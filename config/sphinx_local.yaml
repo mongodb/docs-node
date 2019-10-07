@@ -4,7 +4,7 @@ logo: ".static/logo.png"
 paths:
   static: ['source/.static']
 theme:
-  name: 'ruby-driver'
+  name: 'node-driver'
   project: 'docs-node'
   google_analytics: 'UA-7301842-8'
   book_path_base: 'node-driver'
