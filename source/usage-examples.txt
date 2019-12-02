@@ -4,3 +4,4 @@ Usage Examples
 
 .. default-domain:: mongodb
 
+:doc:`find </usage-examples/find>`
