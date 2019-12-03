@@ -9,4 +9,4 @@ Usage Examples
 .. toctree::
    :caption: Examples
 
-   findOne </usage-examples/findOne>
+   /usage-examples/findOne
