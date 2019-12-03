@@ -7,7 +7,6 @@ Usage Examples
 :doc:`findOne </usage-examples/findOne>`
 
 .. toctree::
-   :caption: Types
-   :hidden:
+   :caption: Examples
 
-   findOne </logs/findOne>
+   findOne </usage-examples/findOne>
