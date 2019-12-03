@@ -4,4 +4,10 @@ Usage Examples
 
 .. default-domain:: mongodb
 
-:doc:`find </usage-examples/find>`
+:doc:`findOne </usage-examples/findOne>`
+
+.. toctree::
+   :caption: Types
+   :hidden:
+
+   findOne </logs/findOne>

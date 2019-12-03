@@ -15,15 +15,17 @@ Overview
 --------
 
 You can find a single document using the ``collection.findOne()``
-action. The following snippet finds a single document from the
-``movies`` collection:
+method. If no document is found, ``findOne`` returns the ``null``. If a
+document is found, ``findOne`` returns that document as a Object.
+The following snippet finds a single document from the ``movies``
+collection:
 
 .. code-block:: javascript
 
    const { MongoClient } = require('mongodb');
 
    const client = new MongoClient(
-      'mongodb+srv://<user>:<password>@<server url>?retryWrites=true&w=majority'
+      'mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority'
    );
 
    async function run() {
@@ -31,12 +33,11 @@ action. The following snippet finds a single document from the
          await client.connect();
          const database = client.db("sample_mflix");
          var collection = database.collection("movies");
-         const movie = await collection.findOne({});
+         const movie = await collection.findOne({"title" : "The Room"});
+         // since this method returns the matched document, not a cursor, we can print it directly
          console.log(movie);
       } finally {
          await client.close();
       }
    }
    run().catch(console.dir);
-
-``findOne`` returns an object.
