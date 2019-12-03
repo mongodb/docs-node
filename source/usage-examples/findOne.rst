@@ -4,18 +4,13 @@ Find a Document
 
 .. default-domain:: mongodb
 
-
-.. contents:: On this page
-   :local:
-   :backlinks: none
-   :depth: 2
-   :class: singlecol
-
 Overview
 --------
 
 You can find a single document using the ``collection.findOne()``
-method. If no document is found, ``findOne`` returns ``null``. If a
+method. ``findOne`` returns the first document matching the query
+in the specified sort order, which defaults to :term:`natural-order`.
+If no document is found, ``findOne`` returns ``null``. If a
 document is found, ``findOne`` returns that document as an Object.
 The following snippet finds a single document from the ``movies``
 collection:
@@ -34,7 +29,8 @@ collection:
          await client.connect();
          const database = client.db('sample_mflix');
          const collection = database.collection('movies');
-         const movie = await collection.findOne({ title: 'The Room' });
+         const query = { title: 'The Room' };
+         const movie = await collection.findOne(query);
          // since this method returns the matched document, not a cursor, print it directly
          console.log(movie);
       } finally {
