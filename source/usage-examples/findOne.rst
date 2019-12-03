@@ -15,8 +15,8 @@ Overview
 --------
 
 You can find a single document using the ``collection.findOne()``
-method. If no document is found, ``findOne`` returns the ``null``. If a
-document is found, ``findOne`` returns that document as a Object.
+method. If no document is found, ``findOne`` returns ``null``. If a
+document is found, ``findOne`` returns that document as an Object.
 The following snippet finds a single document from the ``movies``
 collection:
 
