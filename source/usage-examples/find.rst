@@ -14,7 +14,7 @@ Find a Document
 Overview
 --------
 
-You can find a single document using the :method:`collection.findOne()`
+You can find a single document using the ``collection.findOne()``
 action. The following snippet finds a single document from the
 ``movies`` collection:
 
