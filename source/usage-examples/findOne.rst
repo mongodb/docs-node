@@ -15,6 +15,5 @@ document is found, ``findOne`` returns that document as an Object.
 The following snippet finds a single document from the ``movies``
 collection:
 
-.. code-block:: javascript
-
-   .. include:: /code-snippets/usage-examples/findOne.js
+.. literalinclude:: /code-snippets/usage-examples/findOne.js
+  :language: javascript
