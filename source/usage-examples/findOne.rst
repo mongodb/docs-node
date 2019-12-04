@@ -8,8 +8,8 @@ Overview
 --------
 
 You can find a single document using the ``collection.findOne()``
-method. ``findOne`` takes a query document, an optional sort order,
-and an optional projection. ``findOne`` returns a
+method. ``findOne`` takes an optional query document, an optional sort
+order, and an optional projection. ``findOne`` returns a
 `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 that resolves
 to the first document matching the query in the specified sort order,
