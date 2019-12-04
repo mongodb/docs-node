@@ -1,0 +1,140 @@
+=======================
+Find Multiple Documents
+=======================
+
+.. default-domain:: mongodb
+
+Overview
+--------
+
+`collection.find() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_
+lets you query for multiple documents in MongoDB. You can pass ``find``
+an optional query document, an optional sort order, and an optional
+projection.
+
+Query Document
+~~~~~~~~~~~~~~
+
+You can use the query document to filter the collection down from all
+documents to a specific subset. Consider a collection containing the
+following documents describing fruit:
+
+.. code-block:: javascript
+
+   { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
+   { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
+   { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
+   { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
+
+You could pass the following query to the ``find`` method to search for
+only fruit documents listing a quantity of greater than 5:
+
+.. code-block:: javascript
+
+   const query = { qty: { $gt : 5 } };
+
+``find`` returns the following documents for such a query:
+
+.. code-block:: javascript
+
+   { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
+   { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
+
+Sort Order
+~~~~~~~~~~
+
+You can use the sort order to change the order in which documents are
+returned by ``find``. You could pass the following sort order to
+``find`` to ensure that fruit documents with higher ratings are returned
+before fruit documents with lower ratings:
+
+.. code-block:: javascript
+
+   const sort = { rating: -1 }
+
+In this case, the number ``-1`` tells ``find`` to sort the fruit in
+descending order by rating, so the highest rated fruit comes first and
+the lowest rated fruit comes last. ``find`` returns the following
+documents when this sort is used with no query:
+
+.. code-block:: javascript
+
+   { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
+   { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
+   { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
+   { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
+
+
+If we rewrote this sort to use a value of
+``1`` for the ``rating`` key instead of a ``-1``, ``find`` would sort
+our fruit in *ascending* order by rating, and the lowest rated fruit
+would come first. If you do not specify a sort order, documents are
+returned in
+`natural sort order <https://docs.mongodb.com/manual/reference/glossary/#term-natural-order>`_.
+
+Projection
+~~~~~~~~~~
+
+You can use a projection to control which fields are included in the
+documents returned by ``find``. You could pass the following projection
+to ``find`` to only return the names of the fruits:
+
+.. code-block:: javascript
+
+   const projection = { name: 1 }
+
+``name`` has a value of ``1`` here to indicate that ``find`` should
+*include* the ``name`` field of each document returned. This implicitly
+*excludes* any fields that aren't explicitly included, so remember to
+specify any fields you'd like returned with a ``1``. Passing this
+projection to ``find`` with no query and no sort order yields the
+following results:
+
+.. code-block:: javascript
+
+   { "_id": 1, "name": "apples" }
+   { "_id": 2, "name": "bananas" }
+   { "_id": 3, "name": "oranges" }
+   { "_id": 4, "name": "avocados" }
+
+Despite the fact that we only explicitly included the ``name`` field,
+the ``_id`` field is returned as well! This happens because the ``_id``
+field is a unique identifier for each document, and if you wanted to
+refer to these documents again, you'd create a query document matching
+by ``_id`` in case there are duplicate ``name`` values in your
+collection. MongoDB anticipates that you might want a unique identifier
+for any documents you've found, so ``_id`` is always included unless you
+explicitly exclude it.
+
+You can explicitly *exclude* fields in your projections using a
+value of ``0``. This works just like include: if you explicitly exclude,
+all other fields are implicitly *included*.
+
+Return Value
+------------
+
+``find`` returns a
+`Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to a
+`Cursor <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html>`_
+that contains the results of your query. If no document matches the
+query, the returned Cursor contains an empty collection of
+documents.
+
+The following snippet finds documents from the ``movies``
+collection. It uses the following:
+
+- A **query document** that filters returned documents down to only
+  movies with a runtime of less than 15 minutes.
+
+- A **sort order** that organizes returned documents by ascending title
+  (A->Z)
+
+- A **projection** that explicitly excludes the ``_id`` field from
+  returned documents and explicitly includes only the title and imdb
+  object, which contains ratings, votes, and an id.
+
+.. literalinclude:: /code-snippets/usage-examples/find.js
+  :language: javascript
+  :emphasize-lines: 18
+  :linenos:
