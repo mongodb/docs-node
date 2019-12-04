@@ -9,8 +9,11 @@ const client = new MongoClient(
 async function run() {
    try {
       await client.connect();
+
       const database = client.db('sample_mflix');
       const collection = database.collection('movies');
+
+      // create a query document to look up an exact match for a move with this title
       const query = { title: 'The Room' };
       const movie = await collection.findOne(query);
       // since this method returns the matched document, not a cursor, print it directly
