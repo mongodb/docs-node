@@ -9,23 +9,30 @@ Overview
 
 ``collection.find()`` lets you
 `query <https://docs.mongodb.com/manual/tutorial/query-documents/#read-operations-query-argument>`_
-for multiple documents in MongoDB. You can pass ``find``
-an (optional) query document and an options object. Use the options
-object to specify a
-`sort order <https://docs.mongodb.com/manual/reference/bson-type-comparison-order/index.html>`_
-and a
-`projection <https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/>`_,
-both of which
-are optional. Consult the
+for multiple documents in a collection. By default,
+``collection.find()`` returns all documents in the collection. You can
+define an optional query to match only a subset of documents in the
+collection. You can also define additional query options such as
+`sort <https://docs.mongodb.com/manual/reference/bson-type-comparison-order/index.html>`_
+and
+`projection <https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/>`_
+to configure the result set. Consult the
 `collection.find() reference documentation <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_
-to learn about more you can accomplish with options and
-``find``.
+to learn about more you can accomplish with options and ``find``.
 
-Query Document
-~~~~~~~~~~~~~~
+``find`` returns a
+`Cursor <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html>`_
+that provides the results of your query. You need to iterate through the
+cursor using a cursor method like ``next()``, ``toArray()``, or
+``forEach()`` to actually fetch the documents. If no document matches
+the query, the returned Cursor contains an empty collection of
+documents.
+
+Specify a Query
+~~~~~~~~~~~~~~~
 
 The query document is the heart of the ``find`` method. You use ``find``
-to look up something: in other words, to find it. The query document is
+to look something up: in other words, to find it. The query document is
 where you describe the thing you're looking for using BSON. Query
 documents can describe all kinds of ways to look up items in a
 collection: exact, partial, and range matches on fields. Combine these
@@ -56,11 +63,11 @@ quantity value greater than 5:
    { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
    { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
 
-Sort Order
-~~~~~~~~~~
+Specify a Sort
+~~~~~~~~~~~~~~
 
 Use sort to change the order in which ``find`` returns documents. Pass
-the following sort order to ``find`` to ensure that the operation
+the following sort to ``find`` to ensure that the operation
 returns fruit documents with higher ratings before fruit documents with
 lower ratings:
 
@@ -75,8 +82,9 @@ documents when this sort is used with no query:
 
 .. code-block:: javascript
 
-   options = {};
-   options.sort = sort;
+   const options = {
+     sort: { rating: -1 }
+   }
    const cursor = collection.find({}, options);
 
    { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
@@ -88,11 +96,11 @@ documents when this sort is used with no query:
 Rewriting this sort to use a value of
 ``1`` instead of a ``-1``, will sort our fruit in *ascending* order
 by rating, so the lowest rated fruit would come first. If you do not
-specify a sort order, the order of documents returned is
+specify a sort, the order of documents returned is
 `not guaranteed <https://docs.mongodb.com/manual/reference/method/cursor.sort/#result-ordering>`_.
 
-Projection
-~~~~~~~~~~
+Specify Which Fields to Return
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use a projection to control which fields ``find`` includes in the
 returned documents. Pass the following projection to only return the
@@ -104,15 +112,16 @@ names of the fruits:
 
 ``name`` has a value of ``1`` here to indicate that ``find`` should
 *include* the ``name`` field of each document returned. This implicitly
-*excludes* any fields that aren't explicitly included, so remember to
-specify any fields you want ``find`` to return with a ``1``. Passing
-this projection to ``find`` with no query and no sort order yields the
-following results:
+*excludes* any fields that aren't explicitly included in the projection,
+so remember to specify any fields you want ``find`` to return with a
+``1``. Passing this projection to ``find`` with no query and no sort
+order yields the following results:
 
 .. code-block:: javascript
 
-   options = {};
-   options.projection = projection;
+   const options = {
+     projection: { name: 1 }
+   }
    const cursor = collection.find({}, options);
 
    { "_id": 1, "name": "apples" }
@@ -120,27 +129,21 @@ following results:
    { "_id": 3, "name": "oranges" }
    { "_id": 4, "name": "avocados" }
 
-Despite the fact that this query only explicitly included the ``name``
-field, the ``_id`` field is returned as well! This happens because the
-``_id`` field is a unique identifier for each document, and if you
-want to refer to these documents again, you'd create a query document
-matching by ``_id`` in case there are duplicate ``name`` values in your
-collection. MongoDB anticipates that you might want a unique identifier
-for any documents you've found, so ``_id`` is always included unless you
-explicitly exclude it.
+Despite the fact that this projection only explicitly included the
+``name`` field, the query returns the ``_id`` field as well! This
+happens because the ``_id`` field is a special case: it is always
+included in every query unless explicitly specified otherwise. That's
+because ``_id`` is a unique identifier for each document, a property
+that can be very useful when constructing queries. The ``movies``
+collection is a good example of why this property is useful: because
+remakes and even separate works can sometimes reuse movie titles, you
+need a unique ``_id`` value to refer to any specific movie.
 
 You can explicitly *exclude* fields in your projections using a
 value of ``0``. This works just like include: if you explicitly exclude,
-all other fields are implicitly *included*.
-
-Return Value
-~~~~~~~~~~~~
-
-``find`` returns a
-`Cursor <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html>`_
-that contains the results of your query. If no document matches the
-query, the returned Cursor contains an empty collection of
-documents.
+all other fields are implicitly *included*. Keep in mind that, aside
+from excluding ``_id`` while including other fields, you cannot use both
+inclusive and exclusive statements in your projections.
 
 Example
 -------
@@ -148,15 +151,15 @@ Example
 The following snippet finds documents from the ``movies``
 collection. It uses the following:
 
-- A **query document** that filters returned documents down to only
+- A **query document** that configures the query to return only
   movies with a runtime of less than 15 minutes.
 
-- A **sort order** that organizes returned documents by ascending title
-  (A->Z)
+- A **sort** that organizes returned documents in ascending order by
+  title (A->Z)
 
 - A **projection** that explicitly excludes the ``_id`` field from
-  returned documents and explicitly includes only the title and imdb
-  object, which contains ratings, votes, and an id.
+  returned documents and explicitly includes only the ``title`` and
+  ``imdb`` object, which contains ``ratings``, ``votes``, and an ``id``.
 
 .. literalinclude:: /code-snippets/usage-examples/find.js
   :language: javascript

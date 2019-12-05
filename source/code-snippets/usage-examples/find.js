@@ -13,19 +13,16 @@ async function run() {
       const database = client.db('sample_mflix');
       const collection = database.collection('movies');
 
-      // create a query document for a range match for a movie less than 15 minutes long
-      const query = { runtime: { $lt : 15 } };
+      // query for movies that have a runtime less than 15 minutes
+      const query = { title: "Black Sheep" };
 
       // initialize an empty options object
-      options = {}
-
-      // sort our returned documents by ascending title
-      const sort = { title: 1 };
-
-      // returned documents should only contain title and the imdb object, no _id
-      const projection = { title : 1, _id: 0, imdb: 1 }
-      options.sort = sort;
-      options.projection = projection;
+      const options = {
+         // sort returned documents in ascending order by title (A->Z)
+         sort: { title: 1 },
+         // Include only the `title` and `imdb` fields in each returned document
+         projection: { title : 1, _id: 0, imdb: 1, fullplot: 1}
+      }
 
       // pass our query and constructed options
       const cursor = collection.find(query, options);
