@@ -117,8 +117,6 @@ Return Value
 ~~~~~~~~~~~~
 
 ``find`` returns a
-`Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-that resolves to a
 `Cursor <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html>`_
 that contains the results of your query. If no document matches the
 query, the returned Cursor contains an empty collection of

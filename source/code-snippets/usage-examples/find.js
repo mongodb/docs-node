@@ -28,7 +28,7 @@ async function run() {
       options.projection = projection;
 
       // pass our query and constructed options
-      const cursor = await collection.find(query, options);
+      const cursor = collection.find(query, options);
 
       // iterate with await so the session doesn't end while printing
       for await (const movie of cursor) {
