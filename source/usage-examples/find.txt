@@ -114,7 +114,7 @@ value of ``0``. This works just like include: if you explicitly exclude,
 all other fields are implicitly *included*.
 
 Return Value
-------------
+~~~~~~~~~~~~
 
 ``find`` returns a
 `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
@@ -123,6 +123,9 @@ that resolves to a
 that contains the results of your query. If no document matches the
 query, the returned Cursor contains an empty collection of
 documents.
+
+Example
+-------
 
 The following snippet finds documents from the ``movies``
 collection. It uses the following:
