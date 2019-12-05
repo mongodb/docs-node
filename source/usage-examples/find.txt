@@ -9,8 +9,11 @@ Overview
 
 `collection.find() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_
 lets you query for multiple documents in MongoDB. You can pass ``find``
-an optional query document, an optional sort order, and an optional
-projection.
+an (optional) query document and an options object. Use the options
+object to specify a sort order and a projection, both of which
+are optional. Consult the `collection.find() reference documentation <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_
+to learn about other things you can accomplish with options and
+``find``.
 
 Query Document
 ~~~~~~~~~~~~~~
