@@ -71,9 +71,9 @@ documents when this sort is used with no query:
 If we rewrote this sort to use a value of
 ``1`` for the ``rating`` key instead of a ``-1``, ``find`` would sort
 our fruit in *ascending* order by rating, and the lowest rated fruit
-would come first. If you do not specify a sort order, documents are
-returned in
-`natural sort order <https://docs.mongodb.com/manual/reference/glossary/#term-natural-order>`_.
+would come first. If you do not specify a sort order, the order of
+documents returned is
+`not guaranteed <https://docs.mongodb.com/manual/reference/method/cursor.sort/#result-ordering>`_.
 
 Projection
 ~~~~~~~~~~
