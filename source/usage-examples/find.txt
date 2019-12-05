@@ -7,18 +7,24 @@ Find Multiple Documents
 Overview
 --------
 
-`collection.find() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_
-lets you query for multiple documents in MongoDB. You can pass ``find``
+``collection.find()`` lets you
+`query <https://docs.mongodb.com/manual/tutorial/query-documents/#read-operations-query-argument>`_
+for multiple documents in MongoDB. You can pass ``find``
 an (optional) query document and an options object. Use the options
-object to specify a sort order and a projection, both of which
-are optional. Consult the `collection.find() reference documentation <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_
-to learn about other things you can accomplish with options and
+object to specify a
+`sort order <https://docs.mongodb.com/manual/reference/bson-type-comparison-order/index.html>`_
+and a
+`projection <https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/>`_,
+both of which
+are optional. Consult the
+`collection.find() reference documentation <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_
+to learn about more you can accomplish with options and
 ``find``.
 
 Query Document
 ~~~~~~~~~~~~~~
 
-You can use the query document to filter the collection down from all
+Use the query document to filter the collection down from all
 documents to a specific subset. Consider a collection containing the
 following documents describing fruit:
 
@@ -29,8 +35,8 @@ following documents describing fruit:
    { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
    { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
 
-You could pass the following query to the ``find`` method to search for
-only fruit documents listing a quantity of greater than 5:
+Pass the following query document to search for documents with a
+quantity value greater than 5:
 
 .. code-block:: javascript
 
@@ -40,16 +46,18 @@ only fruit documents listing a quantity of greater than 5:
 
 .. code-block:: javascript
 
+   const cursor = collection.find(query);
+
    { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
    { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
 
 Sort Order
 ~~~~~~~~~~
 
-You can use the sort order to change the order in which documents are
-returned by ``find``. You could pass the following sort order to
-``find`` to ensure that fruit documents with higher ratings are returned
-before fruit documents with lower ratings:
+Use sort to change the order in which ``find`` returns documents. Pass
+the following sort order to ``find`` to ensure that the operation
+returns fruit documents with higher ratings before fruit documents with
+lower ratings:
 
 .. code-block:: javascript
 
@@ -62,25 +70,28 @@ documents when this sort is used with no query:
 
 .. code-block:: javascript
 
+   options = {};
+   options.sort = sort;
+   const cursor = collection.find({}, options);
+
    { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
    { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
    { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
    { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
 
 
-If we rewrote this sort to use a value of
-``1`` for the ``rating`` key instead of a ``-1``, ``find`` would sort
-our fruit in *ascending* order by rating, and the lowest rated fruit
-would come first. If you do not specify a sort order, the order of
-documents returned is
+Rewriting this sort to use a value of
+``1`` instead of a ``-1``, will sort our fruit in *ascending* order
+by rating, so the lowest rated fruit would come first. If you do not
+specify a sort order, the order of documents returned is
 `not guaranteed <https://docs.mongodb.com/manual/reference/method/cursor.sort/#result-ordering>`_.
 
 Projection
 ~~~~~~~~~~
 
-You can use a projection to control which fields are included in the
-documents returned by ``find``. You could pass the following projection
-to ``find`` to only return the names of the fruits:
+Use a projection to control which fields ``find`` includes in the
+returned documents. Pass the following projection to only return the
+names of the fruits:
 
 .. code-block:: javascript
 
@@ -89,22 +100,26 @@ to ``find`` to only return the names of the fruits:
 ``name`` has a value of ``1`` here to indicate that ``find`` should
 *include* the ``name`` field of each document returned. This implicitly
 *excludes* any fields that aren't explicitly included, so remember to
-specify any fields you'd like returned with a ``1``. Passing this
-projection to ``find`` with no query and no sort order yields the
+specify any fields you want ``find`` to return with a ``1``. Passing
+this projection to ``find`` with no query and no sort order yields the
 following results:
 
 .. code-block:: javascript
+
+   options = {};
+   options.projection = projection;
+   const cursor = collection.find({}, options);
 
    { "_id": 1, "name": "apples" }
    { "_id": 2, "name": "bananas" }
    { "_id": 3, "name": "oranges" }
    { "_id": 4, "name": "avocados" }
 
-Despite the fact that we only explicitly included the ``name`` field,
-the ``_id`` field is returned as well! This happens because the ``_id``
-field is a unique identifier for each document, and if you wanted to
-refer to these documents again, you'd create a query document matching
-by ``_id`` in case there are duplicate ``name`` values in your
+Despite the fact that this query only explicitly included the ``name``
+field, the ``_id`` field is returned as well! This happens because the
+``_id`` field is a unique identifier for each document, and if you
+want to refer to these documents again, you'd create a query document
+matching by ``_id`` in case there are duplicate ``name`` values in your
 collection. MongoDB anticipates that you might want a unique identifier
 for any documents you've found, so ``_id`` is always included unless you
 explicitly exclude it.
