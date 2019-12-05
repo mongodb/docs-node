@@ -24,9 +24,14 @@ to learn about more you can accomplish with options and
 Query Document
 ~~~~~~~~~~~~~~
 
-Use the query document to filter the collection down from all
-documents to a specific subset. Consider a collection containing the
-following documents describing fruit:
+The query document is the heart of the ``find`` method. You use ``find``
+to look up something: in other words, to find it. The query document is
+where you describe the thing you're looking for using BSON. Query
+documents can describe all kinds of ways to look up items in a
+collection: exact, partial, and range matches on fields. Combine these
+to narrow down your collection of returned results considerably.
+Consider a collection containing the following documents that describe
+fruit:
 
 .. code-block:: javascript
 
