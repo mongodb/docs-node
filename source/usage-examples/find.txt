@@ -7,67 +7,82 @@ Find Multiple Documents
 Overview
 --------
 
-``collection.find()`` lets you
+You can
 `query <https://docs.mongodb.com/manual/tutorial/query-documents/#read-operations-query-argument>`_
-for multiple documents in a collection. By default,
-``collection.find()`` returns all documents in the collection. You can
-define an optional query to match only a subset of documents in the
-collection. You can also define additional query options such as
+for multiple documents in a collection with ``collection.find()``.
+The ``find()`` method uses a query document that you provide to match
+only the subset of the documents in the collection that match the query.
+If you don't provide a query document (or if you provide an empty document),
+MongoDB returns all documents in the collection.
+
+
+You can also define additional query options such as
 `sort <https://docs.mongodb.com/manual/reference/bson-type-comparison-order/index.html>`_
 and
 `projection <https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/>`_
-to configure the result set. Consult the
-`collection.find() reference documentation <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_
-to learn about more you can accomplish with options and ``find``.
+to configure the result set. You should specify these options using the
+cursor methods
+`sort() <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html#sort>`_
+and
+`project() <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html#project>`_.
+For detailed referenced documentation, see
+`collection.find() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_.
 
-``find`` returns a
+``find()`` returns a
 `Cursor <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html>`_
 that provides the results of your query. Iterate through the cursor
 using cursor methods like ``next()``, ``toArray()``, or ``forEach()`` to
-actually fetch the returned documents. If no document matches
-the query, the returned cursor contains an empty collection of
-documents.
+fetch and work with the returned documents. If no documents match the
+query, ``find()`` returns an empty cursor.
 
 Specify a Query
 ~~~~~~~~~~~~~~~
 
-The ``find`` method allows you to look up items in the database; the
-query document allows you to make that search more specific. The
-query document describes the thing you're looking for using a
-`BSON document <https://docs.mongodb.com/manual/core/document/>`_. Query
-documents can describe all kinds of ways to look up items in a
-collection:
-`Comparison Operators <https://docs.mongodb.com/manual/reference/operator/query-comparison/>`_,
-`Logical Operators <https://docs.mongodb.com/manual/reference/operator/query-logical/>`_,
-`Element Operators <https://docs.mongodb.com/manual/reference/operator/query-element/>`_,
-`Evaluation Operators <https://docs.mongodb.com/manual/reference/operator/query-evaluation/>`_,
-and
-`more <https://docs.mongodb.com/manual/reference/operator/query/>`_
-. Combine these
-to narrow down your collection of returned results considerably.
-Consider a collection containing the following documents that describe
-fruit:
+The ``find()`` method allows you to look up items in a collection; the
+query document allows you to make that search more specific.
+Query documents contain one or more field-level expressions that
+determine which documents to include in the result set. You can match
+fields against literal values (e.g. ``{ title: 'The Room' }``) or
+compose query operators to express more complex queries. MongoDB
+supports multiple types of
+`query operators <https://docs.mongodb.com/manual/reference/operator/query/>`_,
+including:
+
+- `Comparison Operators <https://docs.mongodb.com/manual/reference/operator/query-comparison/>`_
+
+- `Logical Operators <https://docs.mongodb.com/manual/reference/operator/query-logical/>`_
+
+- `Element Operators <https://docs.mongodb.com/manual/reference/operator/query-element/>`_
+
+- `Evaluation Operators <https://docs.mongodb.com/manual/reference/operator/query-evaluation/>`_
+
+Consider a collection containing documents that describe an inventory of
+fruit. To insert this data into a collection, run the following
+operation:
 
 .. code-block:: javascript
 
-   { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
-   { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
-   { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
-   { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
+   await collection.insertMany([
+     { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
+     { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 },
+     { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },
+     { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
+   ]);
 
-Pass the following query document to search for documents with a
-quantity value greater than 5:
+The following operation will search for documents with a
+quantity value greater than 5 and print them out:
 
 .. code-block:: javascript
+   :emphasize-lines: 2
 
-   // $gt means "greater than" 
+   // $gt means "greater than"
    const query = { qty: { $gt : 5 } };
+   const cursor = collection.find(query);
+   await cursor.forEach(console.dir);
 
-``find`` returns the following documents for such a query:
+This will print out the following results:
 
 .. code-block:: javascript
-
-   const cursor = collection.find(query);
 
    { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
    { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
@@ -75,25 +90,27 @@ quantity value greater than 5:
 Specify a Sort
 ~~~~~~~~~~~~~~
 
-Use sort to change the order in which ``find`` returns documents. Pass
-the following sort to ``find`` to ensure that the operation
+Use sort to change the order in which ``find()`` returns documents. Pass
+the following sort to ``find()`` to ensure that the operation
 returns fruit documents with higher ratings before fruit documents with
 lower ratings:
 
 .. code-block:: javascript
+   :emphasize-lines: 4
 
-   const sort = { rating: -1 }
+   // define an empty query document
+   const query = {};
+   // sort in descending (-1) order by rating
+   const sort = { rating: -1 };
+   const cursor = collection.find(query).sort(sort);
+   await cursor.forEach(console.dir);
 
-In this case, the number ``-1`` tells ``find`` to sort the fruit in
+In this case, the number ``-1`` tells ``find()`` to sort the fruit in
 descending order by rating, so the highest rated fruit comes first and
-the lowest rated fruit comes last. ``find`` returns the following
-documents when this sort is used with no query:
+the lowest rated fruit comes last. ``find()`` returns the following
+documents when this sort is used with an empty query:
 
 .. code-block:: javascript
-
-   const query = {}
-   const sort = { rating: -1 }
-   const cursor = collection.find(query).sort(sort)
 
    { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
    { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
@@ -102,34 +119,36 @@ documents when this sort is used with no query:
 
 
 Rewriting this sort to use a value of
-``1`` instead of a ``-1``, will sort our fruit in *ascending* order
-by rating, so the lowest rated fruit would come first. If you do not
+``1`` instead of a ``-1`` sorts our fruit in *ascending* order
+by rating, so the lowest rated fruit comes first. If you do not
 specify a sort, the order of documents returned is
 `not guaranteed <https://docs.mongodb.com/manual/reference/method/cursor.sort/#result-ordering>`_.
 
 Specify Which Fields to Return
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use a projection to control which fields ``find`` includes in the
+Use a projection to control which fields ``find()`` includes in the
 returned documents. Pass the following projection to only return the
 names of the fruits:
 
 .. code-block:: javascript
+   :emphasize-lines: 4
 
-   const projection = { name: 1 }
-
-``name`` has a value of ``1`` here to indicate that ``find`` should
-*include* the ``name`` field of each document returned. This implicitly
-*excludes* any fields that aren't explicitly included in the projection,
-so remember to specify any fields you want ``find`` to return with a
-``1``. Passing this projection to ``find`` with an empty query and no
-sort order yields the following results:
-
-.. code-block:: javascript
-
+   // define an empty query document
    const query = {}
+   // return only* the name field
    const projection = { name: 1 }
    const cursor = collection.find(query).project(projection);
+   await cursor.forEach(console.dir);
+
+``name`` has a value of ``1`` here to indicate that ``find`` should
+*include* the ``name`` field of each document returned. Including any
+field implicitly *excludes* any fields that aren't explicitly included
+in the projection, so remember to specify any fields you want ``find()``
+to return with a ``1``. Passing this projection to ``find`` with an
+empty query and no sort order yields the following results:
+
+.. code-block:: javascript
 
    { "_id": 1, "name": "apples" }
    { "_id": 2, "name": "bananas" }
@@ -146,7 +165,7 @@ collection is a good example of why this property is useful: because
 remakes and even separate works can sometimes reuse movie titles, you
 need a unique ``_id`` value to refer to any specific movie.
 
-You can explicitly *exclude* fields in your projections using a
+You can also explicitly *exclude* fields in your projections using a
 value of ``0``. This works just like include: if you explicitly exclude,
 all other fields are implicitly *included*. Keep in mind that, aside
 from excluding ``_id`` while including other fields, you cannot use both
