@@ -15,10 +15,10 @@ async function run() {
     const query = { runtime: { $lt: 15 } };
     // sort returned documents in ascending order by title (A->Z)
     const sort = { title: 1 };
-    // Include only the `title` and `fullplot` fields in each returned document
-    const projection = { title: 1, _id: 0, fullplot: 1 };
+    // Include only the `title` and `imdb` fields in each returned document
+    const projection = { _id: 0, title: 1, imdb: 1 };
 
-    // pass our query, sort, and projection
+    // find documents based on our query, sort, and projection
     const cursor = collection
       .find(query)
       .sort(sort)
@@ -26,7 +26,7 @@ async function run() {
 
     // print a message if no documents were found
     if (!(await cursor.hasNext())) {
-      console.log("No documents found");
+      console.log("No documents found!");
     }
 
     await cursor.forEach(console.dir);
