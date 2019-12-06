@@ -1,8 +1,10 @@
+// ignored first line
 const { MongoClient } = require("mongodb");
 
-const client = new MongoClient(
-  "mongodb+srv://admin:admin@mflix-2sp0m.mongodb.net/test?retryWrites=true&w=majority",
-);
+const uri =
+  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
+
+const client = new MongoClient(uri);
 
 async function run() {
   try {
