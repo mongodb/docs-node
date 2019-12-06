@@ -22,20 +22,28 @@ to learn about more you can accomplish with options and ``find``.
 
 ``find`` returns a
 `Cursor <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html>`_
-that provides the results of your query. You need to iterate through the
-cursor using a cursor method like ``next()``, ``toArray()``, or
-``forEach()`` to actually fetch the documents. If no document matches
-the query, the returned Cursor contains an empty collection of
+that provides the results of your query. Iterate through the cursor
+using cursor methods like ``next()``, ``toArray()``, or ``forEach()`` to
+actually fetch the returned documents. If no document matches
+the query, the returned cursor contains an empty collection of
 documents.
 
 Specify a Query
 ~~~~~~~~~~~~~~~
 
-The query document is the heart of the ``find`` method. You use ``find``
-to look something up: in other words, to find it. The query document is
-where you describe the thing you're looking for using BSON. Query
+The ``find`` method allows you to look up items in the database; the
+query document allows you to make that search more specific. The
+query document describes the thing you're looking for using a
+`BSON document <https://docs.mongodb.com/manual/core/document/>`_. Query
 documents can describe all kinds of ways to look up items in a
-collection: exact, partial, and range matches on fields. Combine these
+collection:
+`Comparison Operators <https://docs.mongodb.com/manual/reference/operator/query-comparison/>`_,
+`Logical Operators <https://docs.mongodb.com/manual/reference/operator/query-logical/>`_,
+`Element Operators <https://docs.mongodb.com/manual/reference/operator/query-element/>`_,
+`Evaluation Operators <https://docs.mongodb.com/manual/reference/operator/query-evaluation/>`_,
+and
+`more <https://docs.mongodb.com/manual/reference/operator/query/>`_
+. Combine these
 to narrow down your collection of returned results considerably.
 Consider a collection containing the following documents that describe
 fruit:
@@ -52,6 +60,7 @@ quantity value greater than 5:
 
 .. code-block:: javascript
 
+   // $gt means "greater than" 
    const query = { qty: { $gt : 5 } };
 
 ``find`` returns the following documents for such a query:
@@ -82,10 +91,9 @@ documents when this sort is used with no query:
 
 .. code-block:: javascript
 
-   const options = {
-     sort: { rating: -1 }
-   }
-   const cursor = collection.find({}, options);
+   const query = {}
+   const sort = { rating: -1 }
+   const cursor = collection.find(query).sort(sort)
 
    { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
    { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
@@ -114,15 +122,14 @@ names of the fruits:
 *include* the ``name`` field of each document returned. This implicitly
 *excludes* any fields that aren't explicitly included in the projection,
 so remember to specify any fields you want ``find`` to return with a
-``1``. Passing this projection to ``find`` with no query and no sort
-order yields the following results:
+``1``. Passing this projection to ``find`` with an empty query and no
+sort order yields the following results:
 
 .. code-block:: javascript
 
-   const options = {
-     projection: { name: 1 }
-   }
-   const cursor = collection.find({}, options);
+   const query = {}
+   const projection = { name: 1 }
+   const cursor = collection.find(query).project(projection);
 
    { "_id": 1, "name": "apples" }
    { "_id": 2, "name": "bananas" }
