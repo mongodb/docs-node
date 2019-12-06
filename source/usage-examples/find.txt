@@ -42,7 +42,7 @@ The ``find()`` method allows you to look up items in a collection; the
 query document allows you to make that search more specific.
 Query documents contain one or more field-level expressions that
 determine which documents to include in the result set. You can match
-fields against literal values (e.g. ``{ title: 'The Room' }``) or
+fields against literal values (e.g. ``{title:'The Room'}``) or
 compose query operators to express more complex queries. MongoDB
 supports multiple types of
 `query operators <https://docs.mongodb.com/manual/reference/operator/query/>`_,
@@ -90,8 +90,8 @@ This will print out the following results:
 Specify a Sort
 ~~~~~~~~~~~~~~
 
-Use a sort document to change the order in which ``find()`` returns
-documents. Sort documents tell MongoDB to order returned documents by
+Use ``sort()`` with a document to change the order in which ``find()``
+returns documents. Sorts tell MongoDB to order returned documents by
 the values of one or more fields in a certain direction. To
 sort returned documents by a field in ascending (lowest first) order,
 use a value of ``1``. To sort in descending (greatest first) order
@@ -127,7 +127,7 @@ documents when this sort is used with an empty query:
 Specify Which Fields to Return
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use a projection document to control which fields appear in the
+Use ``project()`` with a document to control which fields appear in the
 documents returned by ``find()``. You can accomplish this in two ways:
 
 - Explicitly include fields with a value of ``1``. This has the
@@ -144,7 +144,7 @@ Pass the following projection to only return the ``name`` field of each
 document:
 
 .. code-block:: javascript
-   :emphasize-lines: 4
+   :emphasize-lines: 2
 
    // return only* the name field
    const projection = { name: 1 };
@@ -166,8 +166,9 @@ results:
    { "_id": 4, "name": "avocados" }
 
 Despite the fact that this projection only explicitly included the
-``name`` field, the query returns the ``_id`` field as well! This
-happens because the ``_id`` field is a special case: it is always
+``name`` field, the query returned the ``_id`` field as well!
+
+This happens because the ``_id`` field is a special case: it is always
 included in every query unless explicitly specified otherwise. That's
 because ``_id`` is a unique identifier for each document, a property
 that can be very useful when constructing queries. The ``movies``
