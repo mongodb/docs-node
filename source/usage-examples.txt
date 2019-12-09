@@ -6,9 +6,13 @@ Usage Examples
 
 :doc:`findOne </usage-examples/findOne>`
 :doc:`find </usage-examples/find>`
+:doc:`updateOne</usage-examples/updateOne>`
+:doc:`findOneAndUpdate</usage-examples/findOneAndUpdate>`
 
 .. toctree::
    :caption: Examples
 
    /usage-examples/findOne
    /usage-examples/find
+   /usage-examples/updateOne
+   /usage-examples/findOneAndUpdate
