@@ -18,6 +18,14 @@ The ``updateOne()`` method returns a document containing information such
 as the number of documents that match the filter, and the number of
 documents that were modified.
 
+Specifying incorrect parameters for your ``updateOne()`` operation can
+cause errors to be thrown. One common error is the attempt to update an
+immutable field, causing the error message: "Performing an update on the
+path '_id' would modify the immutable field '_id'". Also, attempting to
+update a field with a unique index would throw the error, "E11000
+duplicate key error collection: <dbName>.<collectionName> index:
+<indexField> dup key: { : <attempted update value> }"
+
 
 .. literalinclude:: /code-snippets/usage-examples/updateOne.js
   :language: javascript

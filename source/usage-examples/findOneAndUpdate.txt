@@ -29,11 +29,13 @@ original document, or the updated document if ``returnNewDocument:true``
 is specified in the Options object, and info about the success of the
 operation and the ``operationTime``.
 
-
-Specifying incorrect options can cause errors to be thrown. For
-instance, defining both fields to include and to exclude ( ``{ field: 1,
-otherField: 0 }``) will cause the error: "MongoError: Projection cannot
-have a mix of inclusion and exclusion."
+Specifying incorrect parameters for your ``findOneAndUpdate()`` operation can
+cause errors to be thrown. One common error is the attempt to update an
+immutable field, causing the error message: "Performing an update on the
+path '_id' would modify the immutable field '_id'". Also, attempting to
+update a field with a unique index would throw the error, "E11000
+duplicate key error collection: <dbName>.<collectionName> index:
+<indexField> dup key: { : <attempted update value> }"
 
 .. literalinclude:: /code-snippets/usage-examples/findOneAndUpdate.js
   :language: javascript
