@@ -1,0 +1,36 @@
+============================
+Update a Document Atomically
+============================
+
+.. default-domain:: mongodb
+
+A single document can be updated and returned in one single atomic
+operation using the `findOneAndUpdate()
+<https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndUpdate>`_
+method.  ``findOneAndUpdate()`` takes a filter object, updating the
+first document that matches it. An empty filter updates the first
+document in a collection. 
+
+.. note::
+    While ``findOneAndUpdate()`` is in execution, any attempts to modify
+    the same document by another client will have an error conflict. The
+    concurrent    operation to alter the document will automatically
+    rerun after the original ``findOneAndUpdate()`` is done. 
+
+Create an Options object to specify additional options. Specify the
+fields to return by providing specific fields to retrieve via the
+``projection`` key. Specify whether the filter should be ascending or
+descending to update a document based on a particular order by using the
+``sort`` key. The ``upsert`` option creates a new document if no
+documents match the filter. Specify to return the updated document by
+setting ``returnNewDocument`` to true. 
+
+The ``findOneAndUpdate()`` method returns an object containing the
+original document, or the updated document if ``returnNewDocument:true``
+is specified in the Options object, and info about the success of the
+operation and the ``operationTime``.
+
+
+.. literalinclude:: /code-snippets/usage-examples/findOneAndUpdate.js
+  :language: javascript
+  :linenos:
