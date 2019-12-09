@@ -8,8 +8,7 @@ A single document can be updated and returned in one single atomic
 operation using the `findOneAndUpdate()
 <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndUpdate>`_
 method.  ``findOneAndUpdate()`` takes a filter object, updating the
-first document that matches it. An empty filter updates the first
-document in a collection. 
+first document that matches it. 
 
 .. note::
     While ``findOneAndUpdate()`` is in execution, any attempts to modify

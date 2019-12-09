@@ -6,13 +6,13 @@ Update a Document
 
 You can update a single document using the `updateOne() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#updateOne>`_ method. 
 ``updateOne()`` takes a filter for a document, and updates the first document
-that matches the filter. An empty filter will update the first document 
-in a collection.
+that matches the filter.
 
-Create an Options object to specify additional options.
-The ``upsert`` option creates a new document if no documents match the filter. 
-The ``w`` option can be used to specify the :manual:`Write Concern 
-</reference/write-concern/>` of the operation. 
+Create an Options object to specify additional options. Specify the
+``upsert`` option to create a new document if no documents match the
+filter.  To receive acknowledgment in the response from MongoDB that the
+write operation was performed on the specified number of :manual:`mongod
+</reference/program/mongod>` servers, set the ``w`` option. 
 
 The ``updateOne()`` method returns a document containing information such
 as the number of documents that match the filter, and the number of
