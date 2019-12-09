@@ -31,6 +31,11 @@ is specified in the Options object, and info about the success of the
 operation and the ``operationTime``.
 
 
+Specifying incorrect options can cause errors to be thrown. Defining
+both fields to include and to exclude ( ``{ field: 1, otherField: 0 }``)
+will cause the error: "MongoError: Projection cannot have a mix of
+inclusion and exclusion."
+
 .. literalinclude:: /code-snippets/usage-examples/findOneAndUpdate.js
   :language: javascript
   :linenos:
