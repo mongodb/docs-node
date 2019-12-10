@@ -1,0 +1,81 @@
+===================
+Delete One Document
+===================
+
+.. default-domain:: mongodb
+
+Overview
+--------
+
+You can delete a single document in a collection with
+``collection.findOneAndDelete()``.
+The ``findOneAndDelete()`` method uses a query document that you provide
+to match only the subset of the documents in the collection that match
+the query. If you don't provide a query document (or if you provide an
+empty document), MongoDB matches all documents in the collection.
+However, only the first matched document is deleted.
+
+You can also define additional query options such as
+`sort <https://docs.mongodb.com/manual/reference/bson-type-comparison-order/index.html>`_
+and
+`projection <https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/>`_
+to configure the returned document. You should specify these options
+through the ``options`` object passed as the second parameter of the
+``findOneAndDelete`` method. For detailed reference documentation, see
+`collection.findOneAndDelete() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndDelete>`_.
+You can also pass a callback method as an optional third parameter.
+
+``findOneAndDelete()`` can behave in two different ways depending on
+whether or not a callback method is provided:
+
+- if no callback method is provided, ``findOneAndDelete()`` returns a
+  `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+  that resolves to an
+  `Object <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
+
+- if a callback method is provided, ``findOneAndDelete()`` returns
+  nothing, and instead passes the result object or error object to the
+  provided callback method
+
+The result object contains multiple keys in the event of a successful
+execution:
+
+- ``ok``, with a value of ``1`` indicating a successful execution
+
+- ``value``, the document deleted by the call to ``findOneAndDelete``.
+  This field has a value of ``null`` if no document was deleted.
+
+- ``lastErrorObject``, an object that contains a single key, ``n``.
+  ``n`` indicates the number of documents deleted by this command. There
+  are two possibilities: ``1``, which indicates that a single document
+  was deleted, and ``0``, which indicates that no documents were
+  deleted.
+
+- ``operationTime``, which contains information about when the call to
+  ``findOneAndDelete`` was executed.
+
+The error object contains ``errmsg``, a human-readable explanation of
+what caused the operation to fail.
+
+Example
+-------
+
+The following snippet deletes a single document from the ``movies``
+collection. It uses the following:
+
+- A **query document** that configures the query to match only
+  movies with a title of type ``string``.
+
+- A **sort** that organizes matched documents in ascending order by
+  rating. Since ``findOneAndDelete`` only deletes the first matched
+  document, this example deletes only the lowest rated matching
+  document.
+
+- A **projection** that explicitly excludes the ``_id`` field from
+  the returned document and explicitly includes only the ``title`` and
+  ``fullplot`` fields.
+
+.. literalinclude:: /code-snippets/usage-examples/findOneAndDelete.js
+  :language: javascript
+  :emphasize-lines: 26
+  :linenos:
