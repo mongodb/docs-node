@@ -16,13 +16,6 @@ async function run() {
     // Query for a movie that has a title of type string
     const query = { title: { $type: "string" } };
 
-    const options = {
-      // timeout after 30 seconds with no response
-      wtimeout: 30000,
-      // confirm write only after majority of replicas have acknowledged
-      w: "majority",
-    };
-
     collection.deleteOne(query, options, function(error, result) {
       if (error) {
         console.log("Error: " + error.errmsg);
