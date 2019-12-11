@@ -7,7 +7,6 @@ Usage Examples
 :doc:`findOne </usage-examples/findOne>`
 :doc:`find </usage-examples/find>`
 :doc:`updateOne</usage-examples/updateOne>`
-:doc:`findOneAndUpdate</usage-examples/findOneAndUpdate>`
 
 .. toctree::
    :caption: Examples

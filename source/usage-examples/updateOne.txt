@@ -32,6 +32,6 @@ duplicate key error collection: <dbName>.<collectionName> index:
   :linenos:
 
 .. note::
-    `findOneAndUpdate()
+    The method `findOneAndUpdate()
     <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndUpdate>`_
     can be used to update a document and return the document
