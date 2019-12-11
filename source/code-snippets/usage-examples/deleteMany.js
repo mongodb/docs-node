@@ -15,13 +15,6 @@ async function run() {
     // Query for all movies with the title "Santa Claus"
     const query = { title: "Santa Claus" };
 
-    const options = {
-      // timeout after 30 seconds with no response
-      wtimeout: 30000,
-      // acknowledge write only after majority of replicas have acknowledged
-      w: "majority",
-    };
-
     collection.deleteMany(query, options, function(err, r) {
       if (err) {
         console.log("Error: " + err.errmsg);
