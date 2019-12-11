@@ -15,4 +15,3 @@ Usage Examples
    /usage-examples/findOne
    /usage-examples/find
    /usage-examples/updateOne
-   /usage-examples/findOneAndUpdate

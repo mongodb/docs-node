@@ -30,3 +30,8 @@ duplicate key error collection: <dbName>.<collectionName> index:
 .. literalinclude:: /code-snippets/usage-examples/updateOne.js
   :language: javascript
   :linenos:
+
+.. note::
+    `findOneAndUpdate()
+    <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndUpdate>`_
+    can be used to update a document and return the document
