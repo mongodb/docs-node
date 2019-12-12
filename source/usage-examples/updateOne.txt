@@ -13,11 +13,10 @@ Create an `object
 to specify additional options. Set the ``upsert`` option to create a new
 document if no documents match the filter.
 
-The ``updateOne()`` method returns `Promise
+The ``updateOne()`` method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 that resolves to an object that contains information, such as the number
-of documents that match the filter, and the number of documents that
-were modified.
+of documents that match the filter, and if a document was updated.
 
 Specifying incorrect parameters for your updateOne() operation can cause
 problems. Attempting to modify the immutable field ``_id`` will result
