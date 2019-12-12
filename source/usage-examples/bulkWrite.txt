@@ -70,8 +70,7 @@ Example
 The following code sample performs a bulk write operation against the
 ``users`` collection in the ``sample_mflix`` database. Specifically, the
 program formats the data from a ``users.json`` source file to perform
-a series of ``insertOne`` operations with the :node-api:`collection.bulkWrite()
-<Collection.html#bulkWrite>` method. Download the dataset here: `users.json <https://raw.githubusercontent.com/mongodb-university/universal-driver-examples/master/users.json>`_
+a series of ``insertOne`` operations with the ``collection.bulkWrite()`` method. Download the dataset here: `users.json <https://raw.githubusercontent.com/mongodb-university/universal-driver-examples/master/users.json>`_
 
 ``users.json`` is an array of objects that resemble the following:
 
