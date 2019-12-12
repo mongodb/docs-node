@@ -15,7 +15,7 @@ document if no documents match the filter.
 
 The ``updateOne()`` method returns `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-that resolves to an object that contains information such as the number
+that resolves to an object that contains information, such as the number
 of documents that match the filter, and the number of documents that
 were modified.
 
