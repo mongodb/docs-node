@@ -33,8 +33,8 @@ duplicate key error collection: <dbName>.<collectionName> index:
 
 .. note::
 
-  If your application requires document after updating,
+  If your application requires the document after updating,
   consider using the
   `collection.findOneAndUpdate() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndUpdate>`_.
-  method, which has a similar interface to ``deleteOne()`` but also
+  method, which has a similar interface to ``updateOne()`` but also
   returns the original or updated document.
