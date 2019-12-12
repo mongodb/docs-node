@@ -10,12 +10,13 @@ that matches the filter.
 
 Create an Options object to specify additional options. Specify the
 ``upsert`` option to create a new document if no documents match the
-filter.  To receive acknowledgment in the response from MongoDB that the
-write operation was performed on the specified number of :manual:`mongod
-</reference/program/mongod>` servers, set the ``w`` option. 
+filter.
 
-The ``updateOne()`` method returns a document containing information such
-as the number of documents that match the filter, and the number of
+The ``updateOne()`` method returns 
+`Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to an
+`Object <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_,
+that contains information such as the number of documents that match the filter, and the number of
 documents that were modified.
 
 Specifying incorrect parameters for your ``updateOne()`` operation can

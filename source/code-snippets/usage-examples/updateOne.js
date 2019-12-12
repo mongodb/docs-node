@@ -16,7 +16,6 @@ async function run() {
     const filter = { title: "Blacksmith Scene" };
     const options = {};
     options.upsert = true; // create a document if no documents match the filter
-    options.w = 1; // request acknowledgment from MongoDB when the update has been performed on the standalone mongod instance
 
     const result = await collection.updateOne(
       filter,

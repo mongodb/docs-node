@@ -18,8 +18,11 @@ descending to update a document based on a particular order by using the
 documents match the filter. Specify to return the updated document by
 setting ``returnNewDocument`` to true. 
 
-The ``findOneAndUpdate()`` method returns an object containing the
-original document, or the updated document if ``returnNewDocument:true``
+The ``findOneAndUpdate()`` method returns a
+`Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to an
+`Object <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_,
+containing the original document, or the updated document if ``returnNewDocument:true``
 is specified in the Options object, and info about the success of the
 operation and the ``operationTime``.
 
