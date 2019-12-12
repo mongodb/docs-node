@@ -17,7 +17,7 @@ The updateOne() method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 that resolves to an object. The ``modifiedCount`` field of this object
 has a value of 0 if no documents were updated, and a value of 1 if a
-document was updated.
+document was updated. 
 
 Specifying incorrect parameters for your ``updateOne()`` operation can cause
 problems. Attempting to modify the immutable field ``_id`` will result
