@@ -8,7 +8,7 @@ You can update a single document using the `updateOne() <https://mongodb.github.
 ``updateOne()`` takes a filter for a document, and updates the first document
 that matches the filter.
 
-Create an Options object to specify additional options. Specify the
+Create an object to specify additional options. Specify the
 ``upsert`` option to create a new document if no documents match the
 filter.
 

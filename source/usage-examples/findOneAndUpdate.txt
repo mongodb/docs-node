@@ -10,7 +10,7 @@ operation using the `findOneAndUpdate()
 method.  ``findOneAndUpdate()`` takes a filter object, updating the
 first document that it matches.
 
-Create an Options object to specify additional options. Specify the
+Create an object to specify additional options. Specify the
 fields to return by providing specific fields to retrieve via the
 ``projection`` key. Specify whether the filter should be ascending or
 descending to update a document based on a particular order by using the
