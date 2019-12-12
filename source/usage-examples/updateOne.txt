@@ -10,7 +10,7 @@ that matches the filter.
 
 Create an `object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
-to specify additional options. Set the ``upsert`` option to create a new
+to specify additional options. Set the ``upsert`` option to ``true`` to create a new
 document if no documents match the filter.
 
 The ``updateOne()`` method returns a `Promise
