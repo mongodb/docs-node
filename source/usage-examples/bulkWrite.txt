@@ -7,23 +7,21 @@ Perform Bulk Operations
 Overview
 --------
 
-MongoDB provides clients the ability to perform write operations in bulk.
-Bulk operations affect a *single* collection.
-
-The following code sample performs a bulk write operation against the
-``users`` collection in the ``sample_mflix`` database. Specifically, the
-program uses the :node-api:`collection.bulkWrite
-<Collection.html#bulkWrite>` method and ``insertOne`` operations to write
-the user information from a ``users.json`` file to the ``users``
-collection. Download the dataset here: `users.json <https://raw.githubusercontent.com/mongodb-university/universal-driver-examples/master/users.json>`_
+:node-api:`collection.bulkWrite <Collection.html#bulkWrite>` lets you
+perform bulk write operations against a *single* collection. With
+``collection.bulkWrite()``, you specify a list of operations to perform and
+MongoDB then executes those operations in bulk. Bulk write supports
+``insertOne``, ``updateOne``, ``updateMany``, ``deleteOne``,
+``deleteMany``, and ``replaceOne`` operations. Refer to the method
+documentation for full details.
 
 ``bulkWrite()`` accepts the following parameters:
 
-- ``operations`` (``Array.<object>``): specifies the bulk operations to
+- ``operations``: specifies the bulk operations to
   perform. Each operation is passed to ``bulkWrite()`` as an object in
   an array.
 
-- ``options`` (``object``): *optional* settings that affect the execution
+- ``options``: *optional* settings that affect the execution
   of the operation, such as :manual:`write concern
   </reference/write-concern>` and order.
 
@@ -40,35 +38,16 @@ collection. Download the dataset here: `users.json <https://raw.githubuserconten
   <bulkwrite-write-operations-executionofoperations>` for more
   information.
 
-- ``callback`` (``bulkWriteOpCallback``): *optional* command result
-  callback. If you do not pass a callback, the command returns a promise.
+- ``callback``: command result callback. Like other collection methods,
+  ``bulkWrite()`` returns a Promise if you do not specify a callback. The
+  Promise resolves to a :node-api:`bulkWriteOpCallback </Collection.html#~bulkWriteOpCallback>` object containing the
+  result of the operation.
 
-Example
--------
-
-``users.json`` is an array of objects that resemble the following:
-
-.. code-block:: javascript
-
-   { 
-     "email" : "marieconrad@example.com",
-     "password" : "450f6704710dcf8033157978f7fbdfde",
-     "name" : "Marie Conrad"
-   }
-
-The existing documents in the ``users`` collection also contain ``email``,
-``password``, and ``name`` fields.
-
-.. literalinclude:: /code-snippets/usage-examples/bulkWrite-example.js
-   :language: javascript
-
-The ``BulkWriteResult`` object returned includes the number of updated or
-inserted documents, the ``_id`` of each document, and any ``writeError`` or
-``writeConcernErrors``. Ordered operations stop after encountering a
-write error. In this unordered example, if MongoDB encounters a write error,
-MongoDB reports the error upon completion of the remaining items in the list.
-Refer to the documentation for
-:node-api:`BulkWriteResult </BulkWriteResult>` for more information.
+``collection.bulkWrite()`` returns a ``BulkWriteResult`` object
+that includes the number of updated or inserted documents, the ``_id`` of
+each document, and any ``writeError`` or ``writeConcernErrors``. Refer to
+the documentation for :node-api:`BulkWriteResult </BulkWriteResult>` for
+more information.
 
 If you create an index with a :ref:`unique constraint
 <index-type-unique>`, you might encounter a duplicate key write error
@@ -84,3 +63,30 @@ Similarly, if you attempt to perform a bulk write against a  collection
 that uses :manual:`schema validation </core/schema-validation>`, you may
 encounter warnings or errors related to the formatting of inserted or modified
 documents.
+
+Example
+-------
+
+The following code sample performs a bulk write operation against the
+``users`` collection in the ``sample_mflix`` database. Specifically, the
+program formats the data from a ``users.json`` source file to perform
+a series of ``insertOne`` operations with the :node-api:`collection.bulkWrite()
+<Collection.html#bulkWrite>` method. Download the dataset here: `users.json <https://raw.githubusercontent.com/mongodb-university/universal-driver-examples/master/users.json>`_
+
+``users.json`` is an array of objects that resemble the following:
+
+.. code-block:: javascript
+
+   { 
+     "email" : "marieconrad@example.com",
+     "password" : "450f6704710dcf8033157978f7fbdfde",
+     "name" : "Marie Conrad"
+   }
+
+The existing documents in the ``users`` collection also contain
+``email``, ``password``, and ``name`` fields.
+
+.. literalinclude:: /code-snippets/usage-examples/bulkWrite-example.js
+   :language: javascript
+
+
