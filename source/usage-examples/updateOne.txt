@@ -1,5 +1,5 @@
 =================
-Updating a Docume
+Update a Document
 =================
 
 .. default-domain:: mongodb
@@ -32,6 +32,9 @@ duplicate key error collection: <dbName>.<collectionName> index:
   :linenos:
 
 .. note::
-    The method `findOneAndUpdate()
-    <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndUpdate>`_
-    can be used to update a document and return the document
+
+  If your application requires document after updating,
+  consider using the
+  `collection.findOneAndUpdate() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndUpdate>`_.
+  method, which has a similar interface to ``deleteOne()`` but also
+  returns the original or updated document.
