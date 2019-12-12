@@ -10,7 +10,7 @@ operation using the `findOneAndUpdate()
 method.  ``findOneAndUpdate()`` takes a filter object, updating the
 first document that it matches.
 
-Create an object to specify additional options. Specify the
+Create an `object <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_ to specify additional options. Set the
 fields to return by providing specific fields to retrieve via the
 ``projection`` key. Specify whether the filter should be ascending or
 descending to update a document based on a particular order by using the
@@ -18,13 +18,12 @@ descending to update a document based on a particular order by using the
 documents match the filter. Specify to return the updated document by
 setting ``returnNewDocument`` to true. 
 
-The ``findOneAndUpdate()`` method returns a
-`Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-that resolves to an
-`Object <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_,
-containing the original document, or the updated document if ``returnNewDocument:true``
-is specified in the Options object, and info about the success of the
-operation and the ``operationTime``.
+The ``findOneAndUpdate()`` method returns a `Promise
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to an object containing the original document, or the
+updated document if ``returnNewDocument:true`` is specified in the
+Options object, and info about the success of the operation and the
+``operationTime``.
 
 Specifying incorrect parameters for your ``findOneAndUpdate()`` operation can
 cause errors to be thrown. One common error is the attempt to update an

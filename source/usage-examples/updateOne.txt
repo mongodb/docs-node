@@ -8,16 +8,16 @@ You can update a single document using the `updateOne() <https://mongodb.github.
 ``updateOne()`` takes a filter for a document, and updates the first document
 that matches the filter.
 
-Create an object to specify additional options. Specify the
-``upsert`` option to create a new document if no documents match the
-filter.
+Create an `object
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
+to specify additional options. Set the ``upsert`` option to create a new
+document if no documents match the filter.
 
-The ``updateOne()`` method returns 
-`Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-that resolves to an
-`Object <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_,
-that contains information such as the number of documents that match the filter, and the number of
-documents that were modified.
+The ``updateOne()`` method returns `Promise
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to an object that contains information such as the number
+of documents that match the filter, and the number of documents that
+were modified.
 
 Specifying incorrect parameters for your ``updateOne()`` operation can
 cause errors to be thrown. One common error is the attempt to update an
