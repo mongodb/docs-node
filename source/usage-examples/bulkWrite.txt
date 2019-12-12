@@ -43,7 +43,7 @@ documentation for full details.
   Promise resolves to a :node-api:`bulkWriteOpCallback </Collection.html#~bulkWriteOpCallback>` object containing the
   result of the operation.
 
-``collection.bulkWrite()`` returns a ``BulkWriteResult`` object
+``bulkWrite()`` returns a ``BulkWriteResult`` object
 that includes the number of updated or inserted documents, the ``_id`` of
 each document, and any ``writeError`` or ``writeConcernErrors``. Refer to
 the documentation for :node-api:`BulkWriteResult </BulkWriteResult>` for
@@ -69,8 +69,10 @@ Example
 
 The following code sample performs a bulk write operation against the
 ``users`` collection in the ``sample_mflix`` database. Specifically, the
-program formats the data from a ``users.json`` source file to perform
-a series of ``insertOne`` operations with the ``collection.bulkWrite()`` method. Download the dataset here: `users.json <https://raw.githubusercontent.com/mongodb-university/universal-driver-examples/master/users.json>`_
+program formats the data from a ``users.json`` source file to perform a
+series of ``insertOne`` operations with the ``bulkWrite()``collection
+method. Download the dataset here: `users.json
+<https://raw.githubusercontent.com/mongodb-university/universal-driver-examples/master/users.json>`_
 
 ``users.json`` is an array of objects that resemble the following:
 
