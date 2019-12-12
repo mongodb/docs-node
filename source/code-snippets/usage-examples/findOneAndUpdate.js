@@ -1,18 +1,18 @@
 // ignored first line
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require("mongodb");
 
 const client = new MongoClient(
-  'mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority',
+  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority",
 );
 
 async function run() {
   try {
     await client.connect();
 
-    const database = client.db('sample_mflix');
-    const collection = database.collection('movies');
+    const database = client.db("sample_mflix");
+    const collection = database.collection("movies");
     // create a query for a movie to update
-    const query = { rated: 'TV-G' };
+    const query = { rated: "TV-G" };
 
     const options = {};
 
@@ -32,12 +32,12 @@ async function run() {
       query,
       {
         $set: {
-          rated: 'TV-PG',
+          rated: "TV-PG",
         },
       },
       options,
     );
-    console.log('results: \t', result);
+    console.log("results: \t", result);
   } finally {
     await client.close();
   }
