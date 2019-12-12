@@ -12,7 +12,7 @@ async function run() {
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
 
-    // create a query for a movie to update
+    // create a filter for a movie to update
     const filter = { title: "Blacksmith Scene" };
     const options = {};
     options.upsert = true; // create a document if no documents match the filter
@@ -29,7 +29,7 @@ async function run() {
       options,
     );
     console.log(
-      `${result.matchedCount} document matched the query and ${result.modifiedCount} document was updated`,
+      `${result.matchedCount} document matched the filter and ${result.modifiedCount} document was updated`,
     );
   } finally {
     await client.close();

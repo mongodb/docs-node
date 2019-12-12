@@ -11,8 +11,8 @@ async function run() {
 
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
-    // create a query for a movie to update
-    const query = { rated: "TV-G" };
+    // create a filter for a movie to update
+    const filter = { rated: "TV-G" };
 
     const options = {};
 
@@ -29,7 +29,7 @@ async function run() {
     options.returnNewDocument = true; // return the updated document, not the original document
 
     const result = await collection.findOneAndUpdate(
-      query,
+      filter,
       {
         $set: {
           rated: "TV-PG",

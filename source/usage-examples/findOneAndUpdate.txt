@@ -1,20 +1,14 @@
-============================
-Update a Document Atomically
-============================
+==========================
+Find and Update a Document
+==========================
 
 .. default-domain:: mongodb
 
-A single document can be updated and returned in one single atomic
+A single document can be updated and returned in an atomic
 operation using the `findOneAndUpdate()
 <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndUpdate>`_
 method.  ``findOneAndUpdate()`` takes a filter object, updating the
-first document that matches it. 
-
-.. note::
-    While ``findOneAndUpdate()`` is in execution, any attempts to modify
-    the same document by another client will have an error conflict. The
-    concurrent    operation to alter the document will automatically
-    rerun after the original ``findOneAndUpdate()`` is done. 
+first document that it matches.
 
 Create an Options object to specify additional options. Specify the
 fields to return by providing specific fields to retrieve via the
