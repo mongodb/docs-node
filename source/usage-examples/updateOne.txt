@@ -4,9 +4,13 @@ Update a Document
 
 .. default-domain:: mongodb
 
-You can update a single document using the `updateOne() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#updateOne>`_ method. 
-``updateOne()`` takes a filter for a document, and updates the first document
-that matches the filter using an update document.
+You can update a single document using the `updateOne()
+<https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#updateOne>`_
+method. ``updateOne()`` takes a filter for a document, and updates the
+first document that matches the filter using an update document. The
+update document uses the :manual:`$set operator
+<reference/operator/update/set/>` to replace the value of a
+field with the specified value.
 
 Create an `object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
