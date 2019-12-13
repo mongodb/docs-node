@@ -1,0 +1,20 @@
+======================================
+Insert or Update in a Single Operation
+======================================
+
+.. default-domain:: mongodb
+
+It can be very useful to handle both an insert of a new document or an
+update to an existing document in a single operation. For cases like
+this, use ``updateOne()`` or ``replaceOne()`` with the ``upsert`` option
+set to true.
+
+.. code-block:: javascript
+
+   // define an empty query document
+   const query = {"address":"1780 State Route 860"};
+   const update = {"address":"42 Avenue B"};
+   const options = {
+      upsert: true
+   }
+   collection.updateOne(query, update, options)

@@ -1,0 +1,89 @@
+=====================
+CRUD Operations Guide
+=====================
+
+.. default-domain:: mongodb
+
+.. toctree::
+   :caption: CRUD Operations
+   :hidden:
+
+   /crud/read-operations
+   /crud/write-operations
+   /crud/query-document
+   /crud/returned-data
+   /crud/compound-operations
+
+Overview
+--------
+
+MongoDB helps you store data persistently across different instances of
+your applications. CRUD (Create, Read, Update, Delete) operations allow
+you to work with the data stored inside of MongoDB. CRUD operations fall
+into two categories: read operations and write operations. All operation
+methods can be configured with a special ``options`` parameter.
+
+Read Operations
+---------------
+
+CRUD read operations help you get data out of MongoDB.
+Read operations provide flexibility so you can use them to
+view data in many different ways. While some read operations focus on
+allowing you to view data that exists in the database, other operations
+let you monitor the database for new data that matches certain criteria,
+and still other read operations let you apply a series of
+transformations and filters to data before returning a resulting
+emphemeral collection.
+
+- If you want to view documents already in a collection, you can use
+  ``find()`` and ``findOne()``. These methods accept a query document
+  that describes the documents you would like to view. While
+  ``findOne()`` returns a single document, ``find()`` returns a cursor
+  that can be used to navigate matched documents.
+
+- If you want to transform materialized views of documents in a
+  collection, you can use ``aggregate()``. This method accepts a
+  pipeline of aggregation commands that are run in sequence.
+
+- If you want to monitor a collection for new documents that match a
+  certain criteria, you can use ``watch()``. This method takes a
+  pipeline of aggregation commands that are run in sequence on new
+  data whenever write operations are run on the collection.
+
+Write Operations
+----------------
+
+CRUD write operations help you get data into MongoDB. Sometimes this
+means putting entirely new data into a collection, but other times it
+involves changing data that already exists, or even removing it
+entirely. There are three distinct operations: create, update, and
+delete. Write operations allow you to handle return values with
+Promises and throw exceptions if an error occurs during operation
+execution.
+
+Create
+~~~~~~
+
+If you want to add new documents to a collection, you can use
+:doc:`insertOne() </usage-examples/insertOne>` or
+:doc:`insertMany() </usage-examples/insertMany`. These methods accept a
+single document or a collection of documents respectively. Note that the
+driver will generate a unique ``_id`` field automatically for any
+inserted documents that lack such a field.
+
+Update
+~~~~~~
+
+If you want to alter existing documents in a collection, you can use
+``updateOne()``, ``replaceOne()``, or ``updateMany()``. These methods
+accept a query document that describes the documents you would like to
+change and an update document that describes the changes you would
+like to apply to matched documents. In the case of ``replaceOne()``,
+a replacement document is used instead of an update document.
+
+Delete
+~~~~~~
+
+If you want to remove existing documents from a collection, you can
+use ``deleteOne()`` or ``deleteMany()``. These methods accept a query
+document that describes the documents you would like to delete.

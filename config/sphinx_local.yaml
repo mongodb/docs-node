@@ -11,7 +11,10 @@ theme:
   repo: 'docs-node'
   jira: 'DOCS'
   sitename: 'Node Driver'
-  nav_excluded: []
+  nav_excluded:
+    - /crud/read-operations
+    - /crud/write-operations
+
 sidebars:
   '**':
     - 'pagenav.html'

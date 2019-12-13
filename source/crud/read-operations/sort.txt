@@ -1,0 +1,81 @@
+============
+Sort Results
+============
+
+.. default-domain:: mongodb
+
+Use a sort to change the order in which operations return documents.
+Sorts tell MongoDB to order returned documents by the values of one or
+more fields in a certain direction. To sort returned documents by a
+field in ascending (lowest first) order, use a value of ``1``. To sort
+in descending (greatest first) order instead, use ``-1``. If you do not
+specify a sort, the order of documents returned is
+`not guaranteed <https://docs.mongodb.com/manual/reference/method/cursor.sort/#result-ordering>`_.
+
+Consider a collection containing documents that describe books. To
+insert this data into a collection, run the following operation:
+
+.. code-block:: javascript
+
+   await collection.insertMany([
+     { "_id": 1, "name": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 },
+     { "_id": 2, "name": "Les Misérables", "author": "Hugo", "length": 1462 },
+     { "_id": 3, "name": "Atlas Shrugged", "author": "Rand", "length": 1088 },
+     { "_id": 4, "name": "Infinite Jest", "author": "Wallace", "length": 1104 },
+     { "_id": 5, "name": "Cryptonomicon", "author": "Stephenson", "length": 918 },
+     { "_id": 6, "name": "A Dance With Dragons", "author": "Tolkein", "length": 1104 },
+   ]);
+
+Pass the following sort document to a read operation to ensure that the
+operation returns books with longer lengths before books with shorter
+lengths:
+
+.. code-block:: javascript
+   :emphasize-lines: 4
+
+   // define an empty query document
+   const query = {};
+   // sort in descending (-1) order by length
+   const sort = { length: -1 };
+   const cursor = collection.find(query).sort(sort);
+   await cursor.forEach(console.dir);
+
+In this case, the number ``-1`` tells the read operation to sort the
+books in descending order by length. ``find()`` returns the following
+documents when this sort is used with an empty query:
+
+.. code-block:: javascript
+
+   { "_id": 2, "title": "Les Misérables", "author": "Hugo", "length": 1462 }
+   { "_id": 6, "title": "A Dance With Dragons", "author": "Martin", "length": 1104 }
+   { "_id": 4, "title": "Infinite Jest", "author": "Wallace", "length": 1104 }
+   { "_id": 3, "title": "Atlas Shrugged", "author": "Rand", "length": 1088 }
+   { "_id": 5, "title": "Cryptonomicon", "author": "Stephenson", "length": 918 }
+   { "_id": 1, "title": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 }
+
+To resolve ties in your sorted results, add additional fields to the
+sort document:
+
+.. code-block:: javascript
+   :emphasize-lines: 4
+
+   // define an empty query document
+   const query = {};
+   // sort in ascending (1) order by length
+   const sort = { length: 1, author: 1 };
+   const cursor = collection.find(query).sort(sort);
+   await cursor.forEach(console.dir);
+
+In this case, the the read operation sorts matching documents first by
+``length`` and, in the event of a tie, then by ``author``.
+``find()`` returns the following ordering of documents when this sort is
+used with an empty query:
+
+.. code-block:: javascript
+
+   { "_id": 1, "title": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 }
+   { "_id": 5, "title": "Cryptonomicon", "author": "Stephenson", "length": 918 }
+   { "_id": 3, "title": "Atlas Shrugged", "author": "Rand", "length": 1088 }
+   { "_id": 6, "title": "A Dance With Dragons", "author": "Martin", "length": 1104 }
+   { "_id": 4, "title": "Infinite Jest", "author": "Wallace", "length": 1104 }
+   { "_id": 2, "title": "Les Misérables", "author": "Hugo", "length": 1462 }

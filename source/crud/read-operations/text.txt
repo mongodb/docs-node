@@ -1,0 +1,5 @@
+===========
+Search Text
+===========
+
+.. default-domain:: mongodb

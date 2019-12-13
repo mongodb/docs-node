@@ -1,0 +1,5 @@
+===================
+Search Geospatially
+===================
+
+.. default-domain:: mongodb

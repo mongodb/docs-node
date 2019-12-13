@@ -1,0 +1,17 @@
+===============
+Read Operations
+===============
+
+.. default-domain:: mongodb
+
+.. toctree::
+   :caption: Read Operations
+   :hidden:
+
+   /crud/read-operations/sort
+   /crud/read-operations/limit
+   /crud/read-operations/project
+   /crud/read-operations/skip
+   /crud/read-operations/cursor
+   /crud/read-operations/geo
+   /crud/read-operations/text

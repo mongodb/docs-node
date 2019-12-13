@@ -1,0 +1,46 @@
+==================
+Operation Behavior
+==================
+
+.. default-domain:: mongodb
+
+CRUD operations return data in several different ways. Write operations
+typically return a Promise that resolves to some kind of operation
+summary, commonly in a field called ``return``. Read operations
+typically return more information than this since returning information
+is their primary goal, so read operation return values fall into two
+categories: those that return data directly, and those that return a
+cursor. Despite these differences, CRUD operations do share one
+characteristic in common: they all occur asyncronously, and as such are
+usually invoked using ``async`` ... ``await`` syntax and Promises.
+
+Promises
+--------
+
+CRUD operations are entirely asyncronous, so expect to use
+syntax like ``async`` ... ``await`` or ``.then()`` .... ``.catch()``
+when working with data in MongoDB. While almost all CRUD operations
+return Promises by default, you should also properly handle any
+exceptions that driver methods emit in the event of an error.
+
+Callback Methods
+----------------
+
+All CRUD operations have an optional parameter called ``callback``. This
+parameter always occurs last in the list of parameters. This parameter
+must be a function with two arguments: ``error`` and ``result``. If the
+operation completes successfully, the callback method is called with a
+value for ``result`` that summarizes the operation or contains data,
+depending on the operation. If the operation throws an error that would
+normally resolve to an exception, the callback method is called with a
+value for ``error`` ascribed to the problem that occurred during
+execution. In any case, only one of these parameters will ever be
+non-``null``, so you can use a ``null`` check on one of these parameters
+to figure out if you're dealing with a successful or unsuccessful
+operation execution.
+
+.. note::
+
+   CRUD operations for which you have supplied a callback method will
+   **not** throw exceptions in the event of an error, since the callback
+   method is called with a non-``null`` ``error`` parameter value instead.

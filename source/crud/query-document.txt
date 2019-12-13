@@ -1,0 +1,114 @@
+===============
+Specify a Query
+===============
+
+.. default-domain:: mongodb
+
+Specify a Query
+~~~~~~~~~~~~~~~
+
+All CRUD operations apply to a set of matched documents in a collection.
+By default, these operations match **all** documents in a collection.
+Sometimes, however, you want to match only certain items in a
+collection; the query document allows you to make your searches more
+specific. Query documents contain one or more field-level expressions
+that determine which documents to include in the result set. You can
+match fields against literal values (e.g. ``{title:'The Room'}``) or
+compose query operators to express more complex queries. MongoDB
+supports multiple types of
+`query operators <https://docs.mongodb.com/manual/reference/operator/query/>`_,
+including:
+
+- `Comparison Operators <https://docs.mongodb.com/manual/reference/operator/query-comparison/>`_
+
+- `Logical Operators <https://docs.mongodb.com/manual/reference/operator/query-logical/>`_
+
+- `Element Operators <https://docs.mongodb.com/manual/reference/operator/query-element/>`_
+
+- `Evaluation Operators <https://docs.mongodb.com/manual/reference/operator/query-evaluation/>`_
+
+Consider a collection containing documents that describe an inventory of
+fruit. To insert this data into a collection, run the following
+operation:
+
+.. code-block:: javascript
+
+   await collection.insertMany([
+     { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
+     { "_id": 2, "name": "bananas", "qty": 7, "rating": 1, "microsieverts": 0.1 },
+     { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },
+     { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
+   ]);
+
+
+The following operation uses the comparison operator ``$gt`` to search for
+documents with a quantity value greater than 5 and prints them out:
+
+.. code-block:: javascript
+   :emphasize-lines: 2
+
+   // $gt means "greater than"
+   const query = { qty: { $gt : 5 } };
+   const cursor = collection.find(query);
+   await cursor.forEach(console.dir);
+
+This will print out the following results:
+
+.. code-block:: javascript
+
+   { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
+   { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
+
+The following operation uses the logical operator ``$not`` to search for
+documents with a quantity value that is not greater than 5 and prints
+them out:
+
+.. code-block:: javascript
+   :emphasize-lines: 2
+
+   // $gt means "greater than"
+   const query = { qty: { $not { { $gt : 5 } } };
+   const cursor = collection.find(query);
+   await cursor.forEach(console.dir);
+
+This will print out the following results:
+
+.. code-block:: javascript
+
+   { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
+   { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
+
+The following operation uses the element operator ``$exists`` to search
+for documents containing the ``microsieverts`` field:
+
+.. code-block:: javascript
+   :emphasize-lines: 2
+
+   // $gt means "greater than"
+   const query = { microsieverts: { $exists : true } };
+   const cursor = collection.find(query);
+   await cursor.forEach(console.dir);
+
+This will print out the following results:
+
+.. code-block:: javascript
+
+   { "_id": 2, "name": "bananas", "qty": 7, "rating": 1, "microsieverts": 0.1 }
+
+The following operation uses the evaluation operator ``$mod`` to search
+for documents with a quantity value that is divisible by 3:
+
+.. code-block:: javascript
+   :emphasize-lines: 2
+
+   // $gt means "greater than"
+   const query = { microsieverts: { $mod : 3, 0 } };
+   const cursor = collection.find(query);
+   await cursor.forEach(console.dir);
+
+This will print out the following results:
+
+.. code-block:: javascript
+
+   { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
+   { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }

@@ -1,0 +1,146 @@
+===========================
+Work With Operation Results
+===========================
+
+.. default-domain:: mongodb
+
+Read operations that return multiple documents do not immediately return
+all values matching the query. Instead, these operations rely upon an
+object called a **cursor** that fetches documents in batches. Cursors
+are highly configurable and offer multiple interaction paradigms for
+different use cases.
+
+The following functions directly return cursors:
+
+- ``Collection.find()``
+
+- ``Collection.aggregate()``
+
+- ``Collection.listIndexes()``
+
+- ``Db.aggregate()``
+
+- ``Db.listCollections()``
+
+Other methods, like ``Collection.findOne()`` and ``Collection.watch()``
+use cursors to generate results, but do not directly expose those
+cursors to the method caller.
+
+.. warning:: Do not combine different cursor paradigms on a single cursor
+
+   Cursors are designed under the assumption that users will use only
+   **one** of the following paradigms to access data. Failure to use
+   just one of these paradigms will lead to undefined behavior. For
+   instance, calling both ``count()`` and ``toArray()`` or both
+   ``hasNext()`` and ``forEach()`` on the same cursor will likely lead
+   to an error.
+
+.. warning:: Do not execute multiple async methods on a single cursor in parallel
+
+   Only perform one async operation at a time on a single cursor.
+   Attempting multiple async operations in parallel on a single cursor
+   will result in undefined behavior. For example,
+   pushing the result of multiple ``next()`` method calls to a
+   collection of promises and then calling ``Promise.all()`` on that
+   collection of promises will likely lead to an error.
+
+View Cursor Contents One By One
+-------------------------------
+
+Many use cases only require one document at a time. Cursors are designed
+with this usage in mind, abstracting away network accesses and caching
+behind individual document accesses. There are several syntax options to
+access documents in this way.
+
+For Each
+--------
+
+You can pass a function to the ``forEach()`` method of any cursor.
+
+.. code-block:: javascript
+
+   const cursor = collection.find({});
+   await cursor.forEach(doc => console.log(doc));
+
+Async Iterator
+--------------
+
+Cursors implement the AsyncIterator interface, which allows you to
+use Cursors in ``for``...``await`` loops.
+
+.. code-block:: javascript
+
+   const cursor = collection.find({});
+   for await(const doc of cursor) {
+      console.log(doc);
+   }
+
+next/hasNext
+------------
+
+You can use the ``hasNext()`` method to check if a cursor can provide
+additional data, and then use the ``next()`` method to actually view
+the next element of that
+
+.. code-block:: javascript
+
+   const cursor = collection.find({});
+   let firstValue, secondValue;
+   if (await cursor.hasNext()) {
+      firstValue = await cursor.next();
+      if (await cursor.hasNext()) {
+         secondValue = await cursor.next();
+      }
+   }
+
+Stream API
+~~~~~~~~~~
+
+All cursors are Node Readable Streams operating in Object Mode. Cursors
+will work with most Node stream APIs.
+
+.. code-block:: javascript
+   :emphasize-lines: 2
+
+   const cursor = collection.find({});
+   cursor.pipe(new stream.Writable({
+      write: function(doc, _, callback) {
+         console.log(doc);
+         callback();
+      }
+   }));
+
+Event API
+~~~~~~~~~
+
+As Readable Streams, Cursors also support the Event API.
+
+.. code-block:: javascript
+
+   const cursor = collection.find({});
+   cursor.on('data', data => console.log(data));
+
+Fetch All Documents At Once
+---------------------------
+
+For use cases that require all documents matched by a query to be held
+in memory at the same time, use ``toArray()``. Note that large sets of
+matched documents can cause performance issues or even failures due to
+excessive memory requirements.
+
+.. code-block:: javascript
+
+   const cursor = collection.find({});
+   const allValues = await cursor.toArray();
+
+Count
+-----
+
+For an estimated count of the number of documents referenced by the
+cursor, use ``count()``
+
+.. code-block:: javascript
+
+   // Get an estimate of the number of documents in a cursor
+   const cursor = collection.find({});
+   const count = await cursor.count();

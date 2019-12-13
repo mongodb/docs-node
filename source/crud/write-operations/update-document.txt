@@ -1,0 +1,12 @@
+=================
+Update a Document
+=================
+
+.. default-domain:: mongodb
+
+Update operations require a description of how to change matched
+documents. The update document gives us a way of communicating such a
+description.
+
+link to $set etc. operators
+talk about explicit value setting
