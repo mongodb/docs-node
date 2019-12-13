@@ -12,7 +12,7 @@ update document uses the :manual:`$set operator
 <reference/operator/update/set/>` to replace the value of a
 field with the specified value.
 
-Create an `object
+Create an `Object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
 to specify additional options. Set the ``upsert`` option to ``true`` to create a new
 document if no documents match the filter.
