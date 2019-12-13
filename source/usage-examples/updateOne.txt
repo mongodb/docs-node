@@ -6,14 +6,14 @@ Update a Document
 
 You can update a single document using the `updateOne() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#updateOne>`_ method. 
 ``updateOne()`` takes a filter for a document, and updates the first document
-that matches the filter.
+that matches the filter using an update document.
 
 Create an `object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
 to specify additional options. Set the ``upsert`` option to ``true`` to create a new
 document if no documents match the filter.
 
-The updateOne() method returns a `Promise
+The ``updateOne()`` method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 that resolves to an object. The ``modifiedCount`` field of this object
 has a value of ``0`` if no documents were updated, and a value of ``1`` if a

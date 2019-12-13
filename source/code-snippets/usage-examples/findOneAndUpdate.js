@@ -1,9 +1,14 @@
 // ignored first line
 const { MongoClient } = require("mongodb");
 
-const client = new MongoClient(
-  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority",
-);
+// Replace the following with your MongoDB deployment's connection string.
+const uri =
+  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
+
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 async function run() {
   try {
