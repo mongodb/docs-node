@@ -21,17 +21,14 @@ async function run() {
     const filter = { title: "Blacksmith Scene" };
     const options = {};
     options.upsert = true; // create a document if no documents match the filter
-
-    const result = await collection.updateOne(
-      filter,
-      {
-        $set: {
-          plot:
-            "Blacksmith Scene is a silent film directed by William K.L. Dickson",
-        },
+    // create a document that sets the plot of the movie
+    const updateDoc = {
+      $set: {
+        plot:
+          "Blacksmith Scene is a silent film directed by William K.L. Dickson",
       },
-      options,
-    );
+    };
+    const result = await collection.updateOne(filter, updateDoc, options);
     console.log(
       `${result.matchedCount} document matched the filter and ${result.modifiedCount} document was updated`,
     );
