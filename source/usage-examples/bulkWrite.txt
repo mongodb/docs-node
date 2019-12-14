@@ -25,17 +25,17 @@ documentation for full details.
   of the operation, such as :manual:`write concern
   </reference/write-concern>` and order.
 
-  By default, MongoDB executes bulk operations in the specified order
-  (i.e. serially). When executing operations in order, if an error occurs
-  during the processing MongoDB returns without processing any of the
-  remaining operations in the list. In contrast, when ``ordered`` is
-  ``false``, MongoDB continues to process remaining write operations in
-  the list. Unordered operations are faster as MongoDB can execute the
-  operations in parallel, but the results of the operation may vary. For
-  example, a ``deleteOne`` operation run before an ``updateMany``
-  operation might have a different result from running it after the
-  ``updateMany``. Refer to :ref:`Execution of Operations
-  <bulkwrite-write-operations-executionofoperations>` for more
+  By default, MongoDB executes bulk operations one-by-one in the
+  specified order (i.e. serially). During an ordered bulk write, if
+  an error occurs during the processing of an operation, MongoDB returns without
+  processing the remaining operations in the list. In contrast,
+  when ``ordered`` is ``false``, MongoDB continues to process remaining
+  write operations in the list. Unordered operations are faster as
+  MongoDB can execute the operations in parallel, but the results of the
+  operation may vary. For example, a ``deleteOne`` operation run before
+  an ``updateMany`` operation might have a different result from running
+  it after the ``updateMany``. Refer to :manual:`Execution of Operations
+  </reference/method/db.collection.bulkWrite/#execution-of-operations>` for more
   information.
 
 - ``callback``: command result callback. Like other collection methods,
@@ -49,8 +49,8 @@ each document, and any ``writeError`` or ``writeConcernErrors``. Refer to
 the documentation for :node-api:`BulkWriteResult </BulkWriteResult>` for
 more information.
 
-If you create an index with a :ref:`unique constraint
-<index-type-unique>`, you might encounter a duplicate key write error
+If you create an index with a :manual:`unique constraint
+</core/index-unique>`, you might encounter a duplicate key write error
 during an operation. The following example shows a duplicate key error
 encountered when two of the users in the inserted sample dataset had the
 same email address. 
@@ -70,11 +70,14 @@ Example
 The following code sample performs a bulk write operation against the
 ``users`` collection in the ``sample_mflix`` database. Specifically, the
 program formats the data from a ``users.json`` source file to perform a
-series of ``insertOne`` operations with the ``bulkWrite()``collection
+series of ``insertOne`` operations with the ``bulkWrite()`` collection
 method. Download the dataset here: `users.json
-<https://raw.githubusercontent.com/mongodb-university/universal-driver-examples/master/users.json>`_
+<https://raw.githubusercontent.com/mongodb-university/universal-driver-examples/master/users.json>`_.
 
-``users.json`` is an array of objects that resemble the following:
+Documents in the ``users`` collection have ``email``, ``password``,
+and ``name`` fields, as well as the generated ``_id`` field.
+``users.json`` contains an array of objects that map directly to the
+existing fields in the collection, as in the following:
 
 .. code-block:: javascript
 
@@ -83,9 +86,6 @@ method. Download the dataset here: `users.json
      "password" : "450f6704710dcf8033157978f7fbdfde",
      "name" : "Marie Conrad"
    }
-
-The existing documents in the ``users`` collection also contain
-``email``, ``password``, and ``name`` fields.
 
 .. literalinclude:: /code-snippets/usage-examples/bulkWrite-example.js
    :language: javascript
