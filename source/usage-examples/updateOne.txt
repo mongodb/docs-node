@@ -6,7 +6,7 @@ Update a Document
 
 You can update a single document using the `updateOne()
 <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#updateOne>`_
-method. ``updateOne()`` takes a filter for a document, and updates the
+method. ``updateOne()`` accepts a filter document, and updates the
 first document that matches the filter using an update document. The
 update document uses the :manual:`$set operator
 <reference/operator/update/set/>` to replace the value of a
