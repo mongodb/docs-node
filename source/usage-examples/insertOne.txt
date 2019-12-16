@@ -10,11 +10,6 @@ method. The ``insertOne()`` method inserts a document into the specified
 collection. If the specified collection does not exist, the
 ``insertOne()`` method creates the collection. 
 
-Create an `Object
-<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
-to specify additional options. Set the ``bypassDocumentValidation`` option to bypass
-:manual:`schema validation <core/schema-validation/>` rules in MongoDB 3.2 or higher.
-
 The ``insertOne()`` method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 that resolves to an object. The ``insertedId`` field of this object is

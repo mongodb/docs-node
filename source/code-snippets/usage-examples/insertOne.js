@@ -14,9 +14,6 @@ async function run() {
     const collection = database.collection("movies");
     // create a document object
     const doc = { name: "Red", town: "kanto" };
-    // specify an additional options object
-    const options = {};
-    options.bypassDocumentValidation = true; // bypass document validation
     const result = await collection.insertOne(doc);
 
     console.log(
