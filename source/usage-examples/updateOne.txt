@@ -9,8 +9,7 @@ You can update a single document using the `updateOne()
 method. ``updateOne()`` takes a filter for a document, and updates the
 first document that matches the filter using an update document. The
 update document uses the :manual:`$set operator
-<reference/operator/update/set/>` to replace the value of a
-field with the specified value.
+<reference/operator/update/set/>` to set the value of a field in a document
 
 Create an `Object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
