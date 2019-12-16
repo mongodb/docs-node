@@ -1,0 +1,57 @@
+=======================
+Find Multiple Documents
+=======================
+
+.. default-domain:: mongodb
+
+Overview
+--------
+
+You can
+`query <https://docs.mongodb.com/manual/tutorial/query-documents/#read-operations-query-argument>`_
+for multiple documents in a collection with ``collection.find()``.
+The ``find()`` method uses a query document that you provide to match
+only the subset of the documents in the collection that match the query.
+If you don't provide a query document (or if you provide an empty document),
+MongoDB returns all documents in the collection.
+
+
+You can also define additional query options such as
+`sort <https://docs.mongodb.com/manual/reference/bson-type-comparison-order/index.html>`_
+and
+`projection <https://docs.mongodb.com/manual/tutorial/project-fields-from-query-results/>`_
+to configure the result set. You should specify these options using the
+cursor methods
+`sort() <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html#sort>`_
+and
+`project() <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html#project>`_.
+For detailed reference documentation, see
+`collection.find() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#find>`_.
+
+``find()`` returns a
+`Cursor <https://mongodb.github.io/node-mongodb-native/3.3/api/Cursor.html>`_
+that provides the results of your query. Iterate through the cursor
+using cursor methods like ``next()``, ``toArray()``, or ``forEach()`` to
+fetch and work with the returned documents. If no documents match the
+query, ``find()`` returns an empty cursor.
+
+Example
+-------
+
+The following snippet finds documents from the ``movies``
+collection. It uses the following:
+
+- A **query document** that configures the query to return only
+  movies with a runtime of less than 15 minutes.
+
+- A **sort** that organizes returned documents in ascending order by
+  title (A->Z)
+
+- A **projection** that explicitly excludes the ``_id`` field from
+  returned documents and explicitly includes only the ``title`` and
+  ``imdb`` object (and its embedded fields).
+
+.. literalinclude:: /code-snippets/usage-examples/find.js
+  :language: javascript
+  :emphasize-lines: 18
+  :linenos:
