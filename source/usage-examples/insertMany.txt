@@ -6,15 +6,16 @@ Create Many Documents
 
 You can create multiple documents using the `insertMany()
 <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#insertMany>`_
-method. The ``insertMany()`` method inserts multiple documents in the specified collection 
-by taking in an array of documents. 
+method. The ``insertMany()`` takes an array of documents to insert into
+the specified collection.
 
 Create an `Object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
-to specify additional options.  Set the ``bypassDocumentValidation`` field to bypass
-:manual:`schema validation <core/schema-validation/>` rules in MongoDB 3.2 or higher. 
-Specify ``ordered:true`` to prevent inserting the remaining documents if a 
-previous document in the array fails to be inserted.
+to specify additional options.  Set the ``bypassDocumentValidation``
+field to bypass :manual:`schema validation <core/schema-validation/>`
+rules in MongoDB 3.2 or higher. Specify ``ordered:true`` to prevent
+inserting the remaining documents if the insertion failed for a previous
+document in the array.
 
 The ``insertMany()`` method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
