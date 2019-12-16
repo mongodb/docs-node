@@ -9,7 +9,7 @@ You can create multiple documents using the `insertMany()
 method. The ``insertMany()`` takes an array of documents to insert into
 the specified collection.
 
-Create an `Object
+You can create an `Object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
 to specify additional options. Specify ``ordered:true`` to prevent
 inserting the remaining documents if the insertion failed for a previous
