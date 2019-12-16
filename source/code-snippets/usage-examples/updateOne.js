@@ -5,10 +5,7 @@ const { MongoClient } = require("mongodb");
 const uri =
   "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const client = new MongoClient(uri);
 
 async function run() {
   try {
