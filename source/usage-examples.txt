@@ -7,6 +7,7 @@ Usage Examples
 :doc:`findOne </usage-examples/findOne>`
 :doc:`find </usage-examples/find>`
 :doc:`updateOne</usage-examples/updateOne>`
+:doc:`deleteMany </usage-examples/deleteMany>`
 
 .. toctree::
    :caption: Examples
@@ -14,3 +15,5 @@ Usage Examples
    /usage-examples/findOne
    /usage-examples/find
    /usage-examples/updateOne
+   /usage-examples/deleteMany
+   /usage-examples/deleteOne
