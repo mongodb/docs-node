@@ -19,9 +19,10 @@ document in the array.
 
 The ``insertMany()`` method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-that resolves to an object. The ``insertedIds`` field of this object is an object 
-contains the ``_id`` of each inserted document. The ``insertedCount`` field of this object
-contains the amount of documents inserted into the collection.
+that resolves to an object. The ``insertedIds`` field of this object is
+an object that contains the ``_id`` of each inserted document. The
+``insertedCount`` field of this object is the number of documents
+inserted into the collection.
 
 Specifying incorrect parameters for your ``insertMany()`` operation can
 cause problems. Attempting to insert a field to a value that would violate
