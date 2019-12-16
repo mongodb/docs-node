@@ -17,21 +17,16 @@ async function run() {
 
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
+    // Query for all movies with the title "Santa Claus"
+    const query = { title: "Santa Claus" };
 
-    // Query for a movie that has the title 'The Room'
-    const query = { title: "The Room" };
-
-    const options = {
-      // sort matched documents in descending order by rating
-      sort: { rating: -1 },
-      // Include only the `title` and `imdb` fields in the returned document
-      projection: { _id: 0, title: 1, imdb: 1 },
-    };
-
-    const movie = await collection.findOne(query, options);
-
-    // since this method returns the matched document, not a cursor, print it directly
-    console.log(movie);
+    collection.deleteMany(query, options, function(err, r) {
+      if (err) {
+        console.log("Error: " + err.errmsg);
+      } else {
+        console.log("Deleted " + r.deletedCount + " documents");
+      }
+    });
   } finally {
     await client.close();
   }
