@@ -8,7 +8,7 @@ You can update a single document using the `updateOne()
 <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#updateOne>`_
 method. ``updateOne()`` accepts a filter document, and updates the first
 document that matches the filter using a provided update document. The
-update document requires an :manual`Update
+update document requires an :manual:`Update
 Operator<reference/operator/update/#update-operators`_ to modify a field in a document.
 
 Create an `Object
