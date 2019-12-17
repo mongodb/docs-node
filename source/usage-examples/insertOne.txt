@@ -4,10 +4,9 @@ Create a Document
 
 .. default-domain:: mongodb
 
-To create a document, define an object variable with the fields and values that you want to specify. You can insert this document using the `insertOne()
+To create a document, define an object variable with the fields and values that you want to specify. You can insert this document into a collection using the `insertOne()
 <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#insertOne>`_
-method. The ``insertOne()`` method inserts a document into the specified
-collection. If the specified collection does not exist, the
+method. If the specified collection does not exist, the
 ``insertOne()`` method creates the collection. 
 
 The ``insertOne()`` method returns a `Promise
