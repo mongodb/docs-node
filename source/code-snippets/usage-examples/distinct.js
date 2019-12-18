@@ -2,8 +2,7 @@
 const { MongoClient } = require("mongodb");
 
 const uri =
-  "mongodb+srv://ccho:ccho1@cluster0-wwze1.mongodb.net/test?retryWrites=true&w=majority";
-  //"mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
+  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri);
 
@@ -16,12 +15,12 @@ async function run() {
     const collection = database.collection("movies");
 
     // specify the document field
-    const field = "year";
+    const fieldName = "year";
 
     // specify an optional query document
-    const query = { directors: "Barbra Streisand"};
+    const query = { directors: "Barbra Streisand" };
 
-    const distinctValues = await collection.distinct(field, { directors: "Barbra Streisand"});
+    const distinctValues = await collection.distinct(fieldName, query);
     console.log(distinctValues);
 
   } finally {

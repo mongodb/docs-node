@@ -5,8 +5,9 @@ Distinct Values of a Field in a Collection
 .. default-domain:: mongodb
 
 You can retrieve a list of distinct values for a field across a collection
-by using the :nodejs-api-latest:`distinct() </Collection.html#distinct>`
-method. The``distinct()`` method is called on a collection object and
+by using the
+`distinct() <https://mongodb.github.io/node-mongodb-native/3.4/api/Collection.html#distinct>`
+method. The ``distinct()`` method is called on a collection object and
 requires a document field name parameter. When called on a collection,
 ``distinct()`` produces a list that contains one of each of the different
 values found in the specified document field.
@@ -14,7 +15,7 @@ values found in the specified document field.
 You can provide an optional query document to narrow the set of documents that
 are searched and an optional Object to specify additional query parameters.
 For details on the optional parameters, see the
-:nodejs-api-latest:`distinct() </Collection.html#distinct>` API documentation.
+`distinct() <https://mongodb.github.io/node-mongodb-native/3.4/api/Collection.html#distinct>` API documentation.
 
 The ``distinct()`` method returns a
 `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
