@@ -7,7 +7,7 @@ Count the Number of Documents in a Collection
 Overview
 --------
 
-The Node.js driver provides two methods for counting the number of
+The Node.js driver provides two methods for counting
 documents in a collection:
 
 - :node-api:`collection.countDocuments()
@@ -28,22 +28,21 @@ the collection. In contrast,
 **accurate** count of the number of documents and supports specifying a
 filter. Choose the appropriate method for your workload.
 
-``countDocuments()`` accepts a :manual:`query
-</tutorial/query-documents>` parameter. ``countDocuments()`` will only
-count the documents that match the specified query.
+To specify which documents you wish to count, ``countDocuments()``
+accepts a :manual:`query </tutorial/query-documents>` parameter.
+``countDocuments()`` will only count the documents that match the
+specified query.
 
 ``countDocuments()`` and ``estimatedDocumentCount()`` support optional
 settings that affect the method's execution. Refer to the reference
 documentation for each method for more information.
 
-``countDocuments()`` and ``estimatedDocumentCount()`` behave in two
-different ways depending on whether you specify a callback method:
+Depending on whether you specify a Callback method, ``countDocuments()`` and ``estimatedDocumentCount()`` behave in two
+different ways:
 
 - If you do not specify a callback method, ``countDocuments()`` and
-  ``estimatedDocumentCount()`` return a `Promise
-  <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-  that resolves to an `Object
-  <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_.
+  ``estimatedDocumentCount()`` return a Promise that resolves to a
+  number.
 
 - If you do specify a callback, ``countDocuments()`` and
   ``estimatedDocumentCount`` return a :node-api:`countCallback
