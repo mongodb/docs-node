@@ -16,9 +16,8 @@ values found in the specified document field.
 You can provide an optional query document to narrow the set of documents that
 are searched and an optional Object to specify additional query parameters.
 For details on the optional parameters, see the
-`distinct()
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Collection.html#distinct>`_
-API documentation.
+`distinct() method in the API documentation
+<https://mongodb.github.io/node-mongodb-native/3.4/api/Collection.html#distinct>`_.
 
 The ``distinct()`` method returns a
 `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
@@ -41,7 +40,7 @@ Example
 -------
 
 The following snippet retrieves a list of distinct values for the ``year``
-document field from the ``movies`` collection. It uses a query document to 
+document field from the ``movies`` collection. It uses a query document to
 match only movies that include "Barbara Streisand" as a ``director``.
 
 .. literalinclude:: /code-snippets/usage-examples/distinct.js
