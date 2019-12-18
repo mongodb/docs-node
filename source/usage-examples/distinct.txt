@@ -6,7 +6,8 @@ Distinct Values of a Field in a Collection
 
 You can retrieve a list of distinct values for a field across a collection
 by using the
-`distinct() <https://mongodb.github.io/node-mongodb-native/3.4/api/Collection.html#distinct>`
+`distinct()
+<https://mongodb.github.io/node-mongodb-native/3.4/api/Collection.html#distinct>`_
 method. The ``distinct()`` method is called on a collection object and
 requires a document field name parameter. When called on a collection,
 ``distinct()`` produces a list that contains one of each of the different
@@ -15,7 +16,9 @@ values found in the specified document field.
 You can provide an optional query document to narrow the set of documents that
 are searched and an optional Object to specify additional query parameters.
 For details on the optional parameters, see the
-`distinct() <https://mongodb.github.io/node-mongodb-native/3.4/api/Collection.html#distinct>` API documentation.
+`distinct()
+<https://mongodb.github.io/node-mongodb-native/3.4/api/Collection.html#distinct>`_
+API documentation.
 
 The ``distinct()`` method returns a
 `Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
@@ -32,6 +35,14 @@ returns a TypeMismatch error with a message that resembles the following:
 ::
 
    "key" had the wrong type. Expected string, found <non-string type>
+
+
+Example
+-------
+
+The following snippet retrieves a list of distinct values for the ``year``
+document field from the ``movies`` collection. It uses a query document to 
+match only movies that include "Barbara Streisand" as a ``director``.
 
 .. literalinclude:: /code-snippets/usage-examples/distinct.js
   :language: javascript
