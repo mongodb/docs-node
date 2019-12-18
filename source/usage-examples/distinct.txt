@@ -28,7 +28,9 @@ If you specify a value for the document field name that is not a String such
 as a document, array, number, or null, the method does not execute and
 returns a TypeMismatch error with a message that resembles the following:
 
-> "key" had the wrong type. Expected string, found <non-string type>
+::
+
+   "key" had the wrong type. Expected string, found <non-string type>
 
 .. literalinclude:: /code-snippets/usage-examples/distinct.js
   :language: javascript
