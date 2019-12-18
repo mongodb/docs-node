@@ -1,0 +1,35 @@
+==========================================
+Distinct Values of a Field in a Collection
+==========================================
+
+.. default-domain:: mongodb
+
+You can retrieve a list of distinct values for a field across a collection
+by using the :nodejs-api-latest:`distinct() </Collection.html#distinct>`
+method. The``distinct()`` method is called on a collection object and
+requires a document field name parameter. When called on a collection,
+``distinct()`` produces a list that contains one of each of the different
+values found in the specified document field.
+
+You can provide an optional query document to narrow the set of documents that
+are searched and an optional Object to specify additional query parameters.
+For details on the optional parameters, see the
+:nodejs-api-latest:`distinct() </Collection.html#distinct>` API documentation.
+
+The ``distinct()`` method returns a
+`Promise <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to an
+`Array <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array>`_
+that contains each of the different values. If none of the documents in the
+collection contain the field specified in the method call, it returns an
+empty Array.
+
+If you specify a value for the document field name that is not a String such
+as a document, array, number, or null, the method does not execute and
+returns a TypeMismatch error with a message that resembles the following:
+
+> "key" had the wrong type. Expected string, found <non-string type>
+
+.. literalinclude:: /code-snippets/usage-examples/distinct.js
+  :language: javascript
+  :linenos:
