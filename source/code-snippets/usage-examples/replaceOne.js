@@ -14,10 +14,10 @@ async function run() {
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
 
-    // create a filter for a movie to update
-    const filter = { title: "Blacksmith Scene" };
+    // create a query for a movie to update
+    const query = { title: "Blacksmith Scene" };
     const options = {
-      // create a document if no documents match the filter
+      // create a document if no documents match the query
       upsert: true,
     };
     // create a new document that will be used to replace the existing document
@@ -27,7 +27,7 @@ async function run() {
         "Robin Sparkles mourns for a relationship with a mall rat at an idyllic beach.",
     };
 
-    const result = await collection.replaceOne(filter, replacement, options);
+    const result = await collection.replaceOne(query, replacement, options);
 
     if (result.modifiedCount === 0 && result.upsertedCount === 0) {
       console.log("No changes made to the collection.");
