@@ -7,8 +7,11 @@ Replace a Document
 You can replace a single document using the `replaceOne()
 <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#replaceOne>`_
 method. ``replaceOne()`` accepts a query document and a replacement
-document, and replaces the first document that matches the filter with
-the provided replacement document.
+document, and fully replaces the first document that matches the query
+with the provided replacement document. The replacement document retains
+the original document's ``_id`` value unless you explicitly specify a
+new value for ``_id`` in the replacement document; all other
+fields and values from the original document are removed.
 
 You can specify additional options, such as ``upsert``, using the
 optional ``options`` parameter. Configuring the ``upsert`` field to
@@ -18,8 +21,8 @@ document if no document matches the query.
 The ``replaceOne()`` method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 that resolves to an `updateWriteOpResult
-<https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#~updateWriteOpResult>`_.
-You can use the ``modifiedCount`` field of this
+<https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#~updateWriteOpResult>`_
+object. You can use the ``modifiedCount`` field of this
 object to determine whether or not a document was modified. If the
 operation was configured to upsert a document, the ``upsertedCount``
 field indicates the number of newly inserted documents. Use the
@@ -27,20 +30,18 @@ field indicates the number of newly inserted documents. Use the
 document.
 
 The ``replaceOne()`` method will throw an exception if an error occurs
-during execution. For example, attempting to update a field to a value
-that would violate unique index rules will throw a
-``duplicate key error``.
+during execution. For example, if you specify a value that violates a
+unique index rule, ``replaceOne()`` throws a ``duplicate key error``.
 
 .. note::
 
   If your application requires the document after updating,
-  consider using the
-  `collection.findOneAndReplace() <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndReplace>`_.
-  method, which has a similar interface to ``replaceOne()`` but also
-  returns the original or updated document.
+  use the `collection.findOneAndReplace()
+  <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndReplace>`_
+  method, which has a similar interface to ``replaceOne()``.
+  You can configure ``findOneAndReplace()`` to return either the
+  original matched document or the replacement document.
 
 .. literalinclude:: /code-snippets/usage-examples/replaceOne.js
   :language: javascript
   :linenos:
-
-
