@@ -38,7 +38,7 @@ unique index rule, ``replaceOne()`` throws a ``duplicate key error``.
   If your application requires the document after updating,
   use the `collection.findOneAndReplace()
   <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#findOneAndReplace>`_
-  method, which has a similar interface to ``replaceOne()``.
+  method which has a similar interface to ``replaceOne()``.
   You can configure ``findOneAndReplace()`` to return either the
   original matched document or the replacement document.
 
