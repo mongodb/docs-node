@@ -8,10 +8,10 @@ You can replace a single document using the `replaceOne()
 <https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#replaceOne>`_
 method. ``replaceOne()`` accepts a query document and a replacement
 document, and fully replaces the first document that matches the query
-with the provided replacement document. The replacement document retains
-the original document's ``_id`` value unless you explicitly specify a
-new value for ``_id`` in the replacement document; all other
-fields and values from the original document are removed.
+with the provided replacement document. All fields and values in the
+original document are removed with the exception of the ``_id`` value,
+which remains the same unless you explicitly specify a new value for
+``_id`` in the replacement document.
 
 You can specify additional options, such as ``upsert``, using the
 optional ``options`` parameter. Configuring the ``upsert`` field to
