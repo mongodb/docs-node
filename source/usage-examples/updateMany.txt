@@ -3,3 +3,9 @@ Update Many Documents
 =====================
 
 .. default-domain:: mongodb
+
+
+
+.. literalinclude:: /code-snippets/usage-examples/updateMany.js
+  :language: javascript
+  :linenos:
