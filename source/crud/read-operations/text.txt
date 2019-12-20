@@ -3,3 +3,7 @@ Search Text
 ===========
 
 .. default-domain:: mongodb
+
+Sometimes you want to search text for non-exact matches. Use ``$text``
+for this operation. Remember that ``$text`` requires a text index for
+certain behaviour.

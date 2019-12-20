@@ -4,3 +4,5 @@ Update Arrays in a Document
 
 .. default-domain:: mongodb
 
+Sometimes you need to add, remove, or insert items into an array within
+a document. ``arrayFilters`` allows this kind of operation.

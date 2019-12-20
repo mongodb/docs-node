@@ -40,12 +40,58 @@ operation:
      { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
    ]);
 
+Literal Value Queries
+---------------------
 
-The following operation uses the comparison operator ``$gt`` to search for
+Literal value queries allow you to query for data that exactly matches
+a value you provide in the query document. A literal value query has two
+parts: a field name and a value. Documents returned from such a query
+must contain a field that has exactly the same name as the provided name
+and a value for that field that is exactly the same as the provided
+value. The following operation uses a literal query to search for
+documents containing a field called "name" that has a value of "apples":
+
+.. code-block:: javascript
+
+   // $gt means "greater than"
+   const query = { "name": "apples" };
+   const cursor = collection.find(query);
+   await cursor.forEach(console.dir);
+
+This will print out the following results:
+
+.. code-block:: javascript
+
+   { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
+
+.. note::
+
+  Literal value queries are equivalent to the ``$eq`` comparison
+  operator. As a result, the following two queries are equivalent:
+
+  .. code-block:: javascript
+
+      collection.find({
+         rating: { $eq: 5 }
+      }
+
+  .. code-block:: javascript
+
+      collection.find({
+         rating: 5 
+      }
+
+Comparison Operators
+--------------------
+
+Comparison operators allow you to query for data based on comparisons
+with values in a collection. Common comparison operators include
+``$gt`` for "greater than" comparisons, ``$lt`` for "less than or equal
+to" comparisons, and ``$ne`` for "not equal to " comparisons. The
+following operation uses the comparison operator ``$gt`` to search for
 documents with a quantity value greater than 5 and prints them out:
 
 .. code-block:: javascript
-   :emphasize-lines: 2
 
    // $gt means "greater than"
    const query = { qty: { $gt : 5 } };
@@ -59,12 +105,17 @@ This will print out the following results:
    { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 }
    { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 }
 
-The following operation uses the logical operator ``$not`` to search for
-documents with a quantity value that is not greater than 5 and prints
-them out:
+Logical Operators
+-----------------
+
+Logical operators allow you to query for data using logic applied to the
+results of field-level operators. For instance, you can use the ``$or``
+method to query for documents that match either a ``$gt`` comparison
+operators or a literal value query. The following operation uses the
+logical operator ``$not`` to search for documents with a quantity value
+that is not greater than 5 and prints them out:
 
 .. code-block:: javascript
-   :emphasize-lines: 2
 
    // $gt means "greater than"
    const query = { qty: { $not { { $gt : 5 } } };
@@ -78,11 +129,38 @@ This will print out the following results:
    { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
    { "_id": 1, "name": "apples", "qty": 5, "rating": 3 }
 
-The following operation uses the element operator ``$exists`` to search
-for documents containing the ``microsieverts`` field:
+.. note::
+
+  Whenever a query document contains multiple elements, those elements
+  are combined together with an implicit ``$and`` logical operator to
+  figure out which documents match the query. As a result, the following
+  two queries are equivalent:
+
+  .. code-block:: javascript
+
+    collection.find({
+      rating: { $eq: 5 },
+      qty: { $gt: 4 }
+    }
+
+  .. code-block:: javascript
+
+    collection.find({
+      $and : [
+         rating: { $eq: 5 },
+         qty: { $gt: 4 }
+      ]
+    }
+
+Element Operators
+-----------------
+
+Element operators allow you to query based on the presence, absence, or
+type of a field. The following operation uses the element operator
+``$exists`` to search for documents containing the ``microsieverts``
+field:
 
 .. code-block:: javascript
-   :emphasize-lines: 2
 
    // $gt means "greater than"
    const query = { microsieverts: { $exists : true } };
@@ -95,11 +173,16 @@ This will print out the following results:
 
    { "_id": 2, "name": "bananas", "qty": 7, "rating": 1, "microsieverts": 0.1 }
 
+Evaluation Operators
+--------------------
+
+Evaluation operators allow you to execute higher level logic, like
+regex and text searches, when querying for documents in a collection.
+Common evaluation operators include ``$regex`` and ``$text``.
 The following operation uses the evaluation operator ``$mod`` to search
 for documents with a quantity value that is divisible by 3:
 
 .. code-block:: javascript
-   :emphasize-lines: 2
 
    // $gt means "greater than"
    const query = { microsieverts: { $mod : 3, 0 } };

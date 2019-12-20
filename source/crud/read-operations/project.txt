@@ -19,7 +19,7 @@ explicitly include fields, you cannot explicitly exclude fields, and
 vice versa.
 
 Consider a collection containing documents that describe varieties of
-beer. To insert this data into a collection, run the following
+fruit. To insert this data into a collection, run the following
 operation:
 
 .. code-block:: javascript

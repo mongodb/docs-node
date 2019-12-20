@@ -36,10 +36,12 @@ transformations and filters to data before returning a resulting
 emphemeral collection.
 
 - If you want to view documents already in a collection, you can use
-  ``find()`` and ``findOne()``. These methods accept a query document
-  that describes the documents you would like to view. While
-  ``findOne()`` returns a single document, ``find()`` returns a cursor
-  that can be used to navigate matched documents.
+  :doc:`find() </usage-examples/find>` and
+  :doc:`findOne() </usage-examples/findOne>`. These methods accept a
+  query document that describes the documents you would like to view.
+  While ``findOne()`` returns a single document, ``find()`` returns a
+  :doc:`cursor </crud/read-operations/cursor>` that you can use to
+  navigate matched documents.
 
 - If you want to transform materialized views of documents in a
   collection, you can use ``aggregate()``. This method accepts a
@@ -66,7 +68,7 @@ Create
 
 If you want to add new documents to a collection, you can use
 :doc:`insertOne() </usage-examples/insertOne>` or
-:doc:`insertMany() </usage-examples/insertMany`. These methods accept a
+:doc:`insertMany() </usage-examples/insertMany>`. These methods accept a
 single document or a collection of documents respectively. Note that the
 driver will generate a unique ``_id`` field automatically for any
 inserted documents that lack such a field.
@@ -75,7 +77,9 @@ Update
 ~~~~~~
 
 If you want to alter existing documents in a collection, you can use
-``updateOne()``, ``replaceOne()``, or ``updateMany()``. These methods
+:doc:`updateOne() </usage-examples/updateOne>`,
+:doc:`replaceOne() </usage-examples/replaceOne>`, or
+``updateMany()``. These methods
 accept a query document that describes the documents you would like to
 change and an update document that describes the changes you would
 like to apply to matched documents. In the case of ``replaceOne()``,
@@ -85,5 +89,6 @@ Delete
 ~~~~~~
 
 If you want to remove existing documents from a collection, you can
-use ``deleteOne()`` or ``deleteMany()``. These methods accept a query
-document that describes the documents you would like to delete.
+use :doc:`deleteOne() </usage-examples/deleteOne>` or
+:doc:`deleteMany() </usage-examples/deleteMany>`. These methods accept a
+query document that describes the documents you would like to delete.

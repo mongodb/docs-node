@@ -16,6 +16,19 @@ documents.
 If the value of skip exceeds the number of matched documents for your
 query, your query will return no documents.
 
+Consider a collection containing documents that describe varieties of
+fruit. To insert this data into a collection, run the following
+operation:
+
+.. code-block:: javascript
+
+   await collection.insertMany([
+      { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
+      { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 },
+      { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },
+      { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
+   ]);
+
 Pass the following sort document to a read operation to ensure that the
 operation returns fruit documents with higher ratings before fruit
 documents with lower ratings:
