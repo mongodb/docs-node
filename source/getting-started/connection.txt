@@ -33,9 +33,11 @@ MongoDB server using the following connection mechanisms:
 - :ref:`SCRAM-SHA-1`
 - :ref:`MONGODB-CR`
 - :ref:`X509`
-- :ref`Kerberos (GSSAPI/SSPI)` *(MongoDB Enterprise only)*
+- :ref:`Kerberos (GSSAPI/SSPI)` *(MongoDB Enterprise only)*
 - :ref:`LDAP (PLAIN)` *(MongoDB Enterprise only)*
 
+
+.. _DEFAULT:
 
 DEFAULT
 -------
@@ -78,6 +80,8 @@ In the following example, the connection string specifies the user ``dave``\ , p
    // Runs your code
    run();
 
+.. _SCRAM-SHA-256:
+
 SCRAM-SHA-256
 -------------
 
@@ -114,6 +118,8 @@ In the following example, the connection string specifies the user ``dave``\ , p
 
    // Runs your code
    run();
+
+.. _SCRAM-SHA-1:
 
 SCRAM-SHA-1
 -----------
@@ -152,12 +158,13 @@ In the following example, the connection string specifies the user ``dave``\ , p
    // Runs your code
    run();
 
+.. _MONGODB-CR
+
 MONGODB-CR
 ----------
 
 .. warning::
    MONGODB-CR was deprecated starting in MongoDB 3.6, and is no longer supported as of MongoDB 4.0
-
 
 To explicitly connect to MongoDB using ``MONGODB-CR`` , specify ``MONGODB-CR`` as the mechanism in the :manual:`URI ConnectionString </reference/connection-string/>` .
 
@@ -192,6 +199,8 @@ In the following example, the connection string specifies the user ``dave``\ , p
 
 .. important::
    If you have :manual:`upgraded the authentication schema </release-notes/3.0-scram/>` from ``MONGODB-CR`` to ``SCRAM-SHA-1``\ , ``MONGODB-CR`` credentials will fail to authenticate.
+
+.. _X509:
 
 X509
 ----
@@ -238,6 +247,8 @@ For more information on connecting to MongoDB instance, replica set, and sharded
 For more information, refer to the MongoDB manual
 :manual:`X.509 tutorial </tutorial/configure-x509-client-authentication/#add-x-509-certificate-subject-as-a-user>` for more information about determining the subject name from the certificate.
 
+.. _Kerberos:
+
 Kerberos (GSSAPI/SSPI)
 ----------------------
 
@@ -277,6 +288,8 @@ The following example connects to MongoDB using Kerberos for UNIX.
 
 .. note::
    The method refers to the ``GSSAPI`` authentication mechanism instead of ``Kerberos`` because technically the driver authenticates via the :rfc:`GSSAPI <4752>` SASL mechanism.
+
+.. _LDAP:
 
 LDAP (PLAIN)
 ------------
