@@ -28,13 +28,13 @@ supported by either MongoDB Community or Enterprise edition.
 The following sections describe and provide example code for connecting to a
 MongoDB server using the following connection mechanisms:
 
-- `Default <DEFAULT>`
-- `SCRAM-SHA-256 <SCRAM-SHA-256>`
-- `SCRAM-SHA-1 <SCRAM-SHA-1>`
-- `MONGODB-CR <MONGODB-CR>`
-- `X509 <X509>`
-- `Kerberos GSSAPI/SSPI <Kerberos (GSSAPI/SSPI)>` *(MongoDB Enterprise only)*
-- `LDAP <LDAP (PLAIN)>` *(MongoDB Enterprise only)*
+- :ref:`DEFAULT`
+- :ref:`SCRAM-SHA-256`
+- :ref:`SCRAM-SHA-1`
+- :ref:`MONGODB-CR`
+- :ref:`X509`
+- :ref`Kerberos (GSSAPI/SSPI)` *(MongoDB Enterprise only)*
+- :ref:`LDAP (PLAIN)` *(MongoDB Enterprise only)*
 
 
 DEFAULT
