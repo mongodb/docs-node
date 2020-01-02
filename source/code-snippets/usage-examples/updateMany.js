@@ -16,6 +16,9 @@ async function run() {
 
     // create a filter for movies to update
     const filter = { rated: "G" };
+    const options = {};
+    options.upsert = true; // create a document if no documents match the filter
+    // create a document that sets the plot of the movie
 
     // increment every document matching the filter with 2 more comments
     const updateDoc = {
@@ -23,7 +26,7 @@ async function run() {
         num_mflix_comments: 2,
       },
     };
-    const result = await collection.updateMany(filter, updateDoc);
+    const result = await collection.updateMany(filter, updateDoc, options);
     console.log(result);
   } finally {
     await client.close();
