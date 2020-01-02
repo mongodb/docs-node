@@ -7,11 +7,11 @@ Connection Guide
 Overview
 --------
 
-This guide shows you how to connect to MongoDB with the Node.js driver using 
+This guide shows you how to connect to MongoDB with the Node.js driver using
 different connection mechanisms and configure the connection settings.
 
-When you connect to a MongoDB server, you send your credentials along with a 
-specific connection mechanism. The server verifies your identity and grants 
+When you connect to a MongoDB server, you send your credentials along with a
+specific connection mechanism. The server verifies your identity and grants
 you access appropriate to your user’s permissions.
 
 To configure a new user on your MongoDB server, follow the server manual
@@ -21,12 +21,10 @@ define user permissions using roles, follow the server manual instructions
 on `Role-Based Access Control
 <https://docs.mongodb.com/manual/core/authorization/>`_.
 
-The Node.js driver can connect to MongoDB using any of the `authentication 
+The Node.js driver can connect to MongoDB using any of the `authentication
 mechanisms <https://docs.mongodb.com/manual/core/authentication/#authentication-mechanisms>`_
-supported by either MongoDB Community or Enterprise edition. 
-
-The following sections describe and provide example code for connecting to a
-MongoDB server using the following connection mechanisms:
+supported by either MongoDB Community or Enterprise edition which
+includes:
 
 - ``DEFAULT``
 - ``SCRAM-SHA-256``
@@ -36,6 +34,9 @@ MongoDB server using the following connection mechanisms:
 - ``Kerberos (GSSAPI/SSPI)`` *(MongoDB Enterprise only)*
 - ``LDAP (PLAIN)`` *(MongoDB Enterprise only)*
 
+The following sections describe and provide example code for connecting to a
+MongoDB server using each of these connection mechanisms.
+
 DEFAULT
 -------
 
@@ -43,12 +44,12 @@ To use the default mechanism, either omit the authentication mechanism
 specification or specify ``DEFAULT`` as the mechanism in the `URI
 ConnectionString
 <https://docs.mongodb.com/manual/reference/connection-string/>`_.
-The driver will attempt to authenticate using the `SCRAM-SHA-256 
+The driver will attempt to authenticate using the `SCRAM-SHA-256
 authentication <https://docs.mongodb.com/manual/core/security-scram/>`_ method
-if it is available on the MongoDB server. If the server does not support 
-``SCRAM-SHA-256``, but does support `SCRAM-SHA-1``, the driver will 
-authenticate with ``SCRAM-SHA-1``. If neither ``SCRAM-SHA-256`` nor 
-``SCRAM-SHA-1`` are supported on the server, the driver will authenticate 
+if it is available on the MongoDB server. If the server does not support
+``SCRAM-SHA-256``, but does support `SCRAM-SHA-1``, the driver will
+authenticate with ``SCRAM-SHA-1``. If neither ``SCRAM-SHA-256`` nor
+``SCRAM-SHA-1`` are supported on the server, the driver will authenticate
 using ``MONGODB-CR`` .
 
 Include the name and password and the `authentication database
@@ -99,16 +100,16 @@ SCRAM-SHA-256
    in version 4.0
 
 To explicitly connect to MongoDB using `SCRAM-SHA-256
-<https://docs.mongodb.com/server/core/security-scram/>`_ , specify 
+<https://docs.mongodb.com/manual/core/security-scram/>`_ , specify
 ``SCRAM-SHA-256`` as the mechanism in the `URI ConnectionString
-<https://docs.mongodb.com/server/reference/connection-string/>` .
+<https://docs.mongodb.com/manual/reference/connection-string/>` .
 
 Include the name and password and the `authentication database
-<https://docs.mongodb.com/server/core/security-users/#user-authentication-database>`_
+<https://docs.mongodb.com/manual/core/security-users/#user-authentication-database>`_
 (\ ``authSource``\ ) in the connection string.
 
 In the following example, the connection string specifies the user ``dave``\ ,
-password ``abc123``\ , authentication mechanism ``SCRAM-SHA-256``\ , and 
+password ``abc123``\ , authentication mechanism ``SCRAM-SHA-256``\ , and
 authentication database ``myprojectdb``
 
 .. code-block:: js
@@ -143,11 +144,12 @@ SCRAM-SHA-1
    ``SCRAM-SHA-1`` is the default authentication method for MongoDB versions 3.0, 3.2, 3.4, and 3.6.
 
 To explicitly connect to MongoDB using `SCRAM-SHA-1
-<https://docs.mongodb.com/server/core/security-scram/>`_ , specify 
+<https://docs.mongodb.com/manual/core/security-scram/>`_ , specify
 ``SCRAM-SHA-1`` as the mechanism in the `URI ConnectionString
-<httsp://docs.mongodb.com/server/reference/connection-string/>`_.
+<https://docs.mongodb.com/manual/reference/connection-string/>`_.
 
-Include the name and password and the :manual:`authentication database </core/security-users/#user-authentication-database>` (\ ``authSource``\ ) in the connection string.
+Include the name and password and the `authentication database
+<https://docs.mongodb.com/manual/core/security-users/#user-authentication-database>`_ (\ ``authSource``\ ) in the connection string.
 
 In the following example, the connection string specifies the user ``dave``\ , password ``abc123``\ , authentication mechanism ``SCRAM-SHA-1``\ , and authentication database ``myprojectdb``
 
@@ -182,11 +184,17 @@ MONGODB-CR
 .. warning::
    MONGODB-CR was deprecated starting in MongoDB 3.6, and is no longer supported as of MongoDB 4.0
 
-To explicitly connect to MongoDB using ``MONGODB-CR`` , specify ``MONGODB-CR`` as the mechanism in the :manual:`URI ConnectionString </reference/connection-string/>` .
+To explicitly connect to MongoDB using ``MONGODB-CR`` , specify
+``MONGODB-CR`` as the mechanism in the `URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_.
 
-Include the name and password and the :manual:`authentication database </core/security-users/#user-authentication-database>` (\ ``authSource``\ ) in the connection string.
+Include the name and password and the `authentication database
+<https://docs.mongodb.com/manual/core/security-users/#user-authentication-database>`_
+(\ ``authSource``\ ) in the connection string.
 
-In the following example, the connection string specifies the user ``dave``\ , password ``abc123``\ , authentication mechanism ``MONGODB-CR``\ , and authentication database ``myprojectdb``.
+In the following example, the connection string specifies the user ``dave``\ ,
+password ``abc123``\ , authentication mechanism ``MONGODB-CR``\ , and
+authentication database ``myprojectdb``.
 
 .. code-block:: js
 
@@ -214,18 +222,29 @@ In the following example, the connection string specifies the user ``dave``\ , p
    run();
 
 .. important::
-   If you have :manual:`upgraded the authentication schema </release-notes/3.0-scram/>` from ``MONGODB-CR`` to ``SCRAM-SHA-1``\ , ``MONGODB-CR`` credentials will fail to authenticate.
+   If you have `upgraded the authentication schema
+   <https://docs.mongodb.com/manual/release-notes/3.0-scram/>`_ from ``MONGODB-CR`` to ``SCRAM-SHA-1``\ , ``MONGODB-CR`` credentials will fail to authenticate.
 
 X509
 ----
 
-With  :manual:`X.509 </core/security-x.509>` mechanism, MongoDB uses the X.509 certificate presented during TLS negotiation to authenticate a user whose name is derived from the distinguished name of the X.509 certificate.
+With  `X.509 <https://docs.mongodb.com/manual/core/security-x.509>`_
+mechanism, MongoDB uses the X.509 certificate presented during TLS
+negotiation to authenticate a user whose name is derived from the
+distinguished name of the X.509 certificate.
 
 X.509 authentication requires the use of TLS connections with certificate validation and is available in MongoDB 2.6 and newer.
 
-To connect using the X.509 authentication mechanism, specify ``MONGODB-X509`` as the mechanism in the :manual:`URI ConnectionString </reference/connection-string/>` , ``tls=true``\ , and the username. Use ``enodeURIComponent`` to encode the username string.
+To connect using the X.509 authentication mechanism, specify
+``MONGODB-X509`` as the mechanism in the `URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_,
+``tls=true``\ , and the username. Use ``enodeURIComponent`` to encode the username string.
 
-In addition to the connection string, pass to the new ``MongoClient`` a connections options for the ``server`` with the X.509 certificate and other :doc:`TLS/SSL connections </tutorials/connect/tls>` options.
+In addition to the connection string, pass to the new ``MongoClient`` a
+connections options for the ``server`` with the X.509 certificate and other
+`TLS/SSL connections
+<https://mongodb.github.io/node-mongodb-native/3.4/tutorials/connect/tls/>`_
+options.
 
 .. code-block:: js
 
