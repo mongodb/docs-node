@@ -42,11 +42,24 @@ MongoDB server using the following connection mechanisms:
 DEFAULT
 -------
 
-To use the default mechanism, either omit the authentication mechanism specification or specify ``DEFAULT`` as the mechanism in the :manual:`URI ConnectionString </reference/connection-string/>` . The driver will attempt to authenticate using the :manual:`SCRAM-SHA-256 authentication </core/security-scram/>` method if it is available on the MongoDB server. If the server does not support ``SCRAM-SHA-256``, but does support `SCRAM-SHA-1``, the driver will authenticate with ``SCRAM-SHA-1``. If neither ``SCRAM-SHA-256`` or ``SCRAM-SHA-1`` are supported on the server, the driver will authenticate using ``MONGODB-CR`` .
+To use the default mechanism, either omit the authentication mechanism
+specification or specify ``DEFAULT`` as the mechanism in the `URI
+ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_.
+The driver will attempt to authenticate using the `SCRAM-SHA-256 
+authentication <https://docs.mongodb.com/manual/core/security-scram/>`_ method
+if it is available on the MongoDB server. If the server does not support 
+``SCRAM-SHA-256``, but does support `SCRAM-SHA-1``, the driver will 
+authenticate with ``SCRAM-SHA-1``. If neither ``SCRAM-SHA-256`` nor 
+``SCRAM-SHA-1`` are supported on the server, the driver will authenticate 
+using ``MONGODB-CR`` .
 
-Include the name and password and the :manual:`authentication database </core/security-users/#user-authentication-database>` (\ ``authSource``\ ) in the connection string.
+Include the name and password and the `authentication database
+<https://docs.mongodb.com/server/core/security-users/#user-authentication-database>`_
+(\ ``authSource``\ ) in the connection string.
 
-In the following example, the connection string specifies the user ``dave``\ , password ``abc123``\ , and authentication mechanism ``DEFAULT``.
+In the following example, the connection string specifies the user ``dave``\ ,
+password ``abc123``\ , and authentication mechanism ``DEFAULT``.
 
 .. important::
    The user and password should always be **URI** encoded using ``encodeURIComponent`` to ensure any non URI compliant user or password characters are correctly parsed.
@@ -86,13 +99,22 @@ SCRAM-SHA-256
 -------------
 
 .. note::
-   ``SCRAM-SHA-256`` is the default authentication method for MongoDB starting in version 4.0
 
-To explicitly connect to MongoDB using :manual:`SCRAM-SHA-256 </core/security-scram/>` , specify ``SCRAM-SHA-256`` as the mechanism in the :manual:`URI ConnectionString </reference/connection-string/>` .
+   ``SCRAM-SHA-256`` is the default authentication method for MongoDB starting
+   in version 4.0
 
-Include the name and password and the :manual:`authentication database </core/security-users/#user-authentication-database>` (\ ``authSource``\ ) in the connection string.
+To explicitly connect to MongoDB using `SCRAM-SHA-256
+<https://docs.mongodb.com/server/core/security-scram/>`_ , specify 
+``SCRAM-SHA-256`` as the mechanism in the `URI ConnectionString
+<https://docs.mongodb.com/server/reference/connection-string/>` .
 
-In the following example, the connection string specifies the user ``dave``\ , password ``abc123``\ , authentication mechanism ``SCRAM-SHA-256``\ , and authentication database ``myprojectdb``
+Include the name and password and the `authentication database
+<https://docs.mongodb.com/server/core/security-users/#user-authentication-database>`_
+(\ ``authSource``\ ) in the connection string.
+
+In the following example, the connection string specifies the user ``dave``\ ,
+password ``abc123``\ , authentication mechanism ``SCRAM-SHA-256``\ , and 
+authentication database ``myprojectdb``
 
 .. code-block:: js
 
@@ -127,7 +149,10 @@ SCRAM-SHA-1
 .. note::
    ``SCRAM-SHA-1`` is the default authentication method for MongoDB versions 3.0, 3.2, 3.4, and 3.6.
 
-To explicitly connect to MongoDB using :manual:`SCRAM-SHA-1 </core/security-scram/>` , specify ``SCRAM-SHA-1`` as the mechanism in the :manual:`URI ConnectionString </reference/connection-string/>` .
+To explicitly connect to MongoDB using `SCRAM-SHA-1
+<https://docs.mongodb.com/server/core/security-scram/>`_ , specify 
+``SCRAM-SHA-1`` as the mechanism in the `URI ConnectionString
+<httsp://docs.mongodb.com/server/reference/connection-string/>`_.
 
 Include the name and password and the :manual:`authentication database </core/security-users/#user-authentication-database>` (\ ``authSource``\ ) in the connection string.
 
@@ -158,7 +183,7 @@ In the following example, the connection string specifies the user ``dave``\ , p
    // Runs your code
    run();
 
-.. _MONGODB-CR
+.. _MONGODB-CR:
 
 MONGODB-CR
 ----------
