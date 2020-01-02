@@ -1,0 +1,73 @@
+================
+Connection Guide
+================
+
+.. default-domain:: mongodb
+
+Overview
+--------
+
+This guide shows you how to connect to MongoDB with the Node.js driver using 
+different connection mechanisms and configure the connection settings.
+
+When you connect to a MongoDB server, you send your credentials along with a 
+specific connection mechanism. The server verifies your identity and grants 
+you access appropriate to your user’s permissions.
+
+To configure a new user on your MongoDB server, follow the server manual
+instructions on how to `Enable Access Control
+<https://docs.mongodb.com/manual/tutorial/enable-authentication/>`_. To
+define user permissions using roles, follow the server manual instructions
+on `Role-Based Access Control
+<https://docs.mongodb.com/manual/core/authorization/>`_.
+
+The Node.js driver can connect to MongoDB using any of the `authentication 
+mechanisms <https://docs.mongodb.com/manual/core/authentication/#authentication-mechanisms>`_
+supported by either MongoDB Community or Enterprise edition. 
+
+The following sections describe and provide example code for connecting to a MongoDB server using each type of connection mechanism.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Connection mechanism
+     - Setting value
+     - Description
+
+   * - Default
+     - ``Default`` or omitted
+     - Attempts to use SCRAM-SHA-256 and falls back to SCRAM-SHA-1 if 
+       unsupported by server.
+
+   * - SCRAM-SHA-256
+     - SCRAM-SHA-256
+     - Salted Challenge Response Authentication Mechanism (SCRAM). Default
+       connection mechanism for MongoDB server 4.0.
+
+   * - SCRAM-SHA-1
+     - SCRAM-SHA-1
+     - Salted Challenge Response Authentication Mechanism (SCRAM). Default
+       connection mechanism for MongoDB 3.0, 3.2, 3.4, and 3.6. Requires
+       Node.js driver 1.4.29 or later
+
+   * - MONGODB-CR
+     - MONGODB-CR
+     - Challenge-response. *Unsupported as of MongoDB 4.0.*
+
+   * - X509
+     - MONGODB-X509
+     - Requires MongoDB server 2.6 or newer. (what version of driver?). Requires X.509 client certificate issued by same authority as server certificate.
+
+   * - Kerberos (GSSAPI/SSPI)
+     - GSSAPI
+     - Only available in MongoDB Enterprise. (What version MongoDB server and Node driver?)
+
+   * - LDAP
+     - PLAIN
+     - Requires MongoDB server 3.4 or newer. Uses the SASL (simple authentication and security layer) mechanism 
+
+
+
+
+
+

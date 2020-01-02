@@ -10,4 +10,5 @@ Getting Started
 .. toctree::
    :caption: Examples
 
+   /getting-started/connection
    /getting-started/crud-guide
