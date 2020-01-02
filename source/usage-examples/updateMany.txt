@@ -10,9 +10,17 @@ that matches the filter using a provided update document. The update
 document requires an :manual:`Update Operator
 </reference/operator/update>` to modify a field in a document.
 
+Create an `Object
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
+to specify additional options. Set the ``upsert`` option to ``true`` to create a new
+document if no documents match the filter.
+
+The ``updateOne()`` method returns a `Promise
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to an object. The ``modifiedCount`` field of this object
+shows how many documents were modified. The ``upsertedId`` field contains the ``_id``
+of the new document if a document was ``upserted``.
+
 .. literalinclude:: /code-snippets/usage-examples/updateMany.js
   :language: javascript
   :linenos:
-
-
-  https://docs.mongodb.com/manual/reference/operator/update/
