@@ -7,8 +7,12 @@ Update Many Documents
 You can update multiple documents using the ``updateMany()`` method. 
 ``updateMany()`` accepts a filter object, and updates the first document
 that matches the filter using a provided update document. The update
-document requires an Update Operator to modify a field in a document.
+document requires an :manual:`Update Operator
+</reference/operator/update>` to modify a field in a document.
 
 .. literalinclude:: /code-snippets/usage-examples/updateMany.js
   :language: javascript
   :linenos:
+
+
+  https://docs.mongodb.com/manual/reference/operator/update/
