@@ -10,21 +10,18 @@ Overview
 This guide shows you how to connect to MongoDB with the Node.js driver using
 different connection mechanisms and configure the connection settings.
 
-When you connect to a MongoDB server, you send your credentials along with a
-specific connection mechanism. The server verifies your identity and grants
-you access appropriate to your user’s permissions.
-
-To configure a new user on your MongoDB server, follow the server manual
-instructions on how to `Enable Access Control
-<https://docs.mongodb.com/manual/tutorial/enable-authentication/>`_. To
-define user permissions using roles, follow the server manual instructions
-on `Role-Based Access Control
-<https://docs.mongodb.com/manual/core/authorization/>`_.
+When you connect to a MongoDB server, you provide your credentials and
+specific connection mechanism to the driver. The driver negotiates with the
+server to verify your identity, and the server grants you permissions
+appropriate to your user. If you need to set up a new user or user 
+permissions on your MongoDB server, see the **Authentication** and
+ **Authorization** sections in the 
+ `Security <https://docs.mongodb.com/manual/security/>`_ server manual.
 
 The Node.js driver can connect to MongoDB using any of the `authentication
-mechanisms <https://docs.mongodb.com/manual/core/authentication/#authentication-mechanisms>`_
-supported by either MongoDB Community or Enterprise edition which
-includes:
+mechanisms 
+<https://docs.mongodb.com/manual/core/authentication/#authentication-mechanisms>`_
+supported by either MongoDB Community or Enterprise edition which includes:
 
 - ``DEFAULT``
 - ``SCRAM-SHA-256``
@@ -34,35 +31,42 @@ includes:
 - ``Kerberos (GSSAPI/SSPI)`` *(MongoDB Enterprise only)*
 - ``LDAP (PLAIN)`` *(MongoDB Enterprise only)*
 
-The following sections describe and provide example code for connecting to a
-MongoDB server using each of these connection mechanisms.
+Connection Mechanisms
+---------------------
+
+In this section, you can find descriptions and sample code for connecting to
+a MongoDB server using each of the connection mechanism settings.
 
 DEFAULT
--------
+~~~~~~~
 
-To use the default mechanism, either omit the authentication mechanism
-specification or specify ``DEFAULT`` as the mechanism in the `URI
-ConnectionString
-<https://docs.mongodb.com/manual/reference/connection-string/>`_.
-The driver will attempt to authenticate using the `SCRAM-SHA-256
-authentication <https://docs.mongodb.com/manual/core/security-scram/>`_ method
-if it is available on the MongoDB server. If the server does not support
-``SCRAM-SHA-256``, but does support `SCRAM-SHA-1``, the driver will
-authenticate with ``SCRAM-SHA-1``. If neither ``SCRAM-SHA-256`` nor
-``SCRAM-SHA-1`` are supported on the server, the driver will authenticate
-using ``MONGODB-CR`` .
+The ``DEFAULT`` option is a fallback setting that attempts to authenticate
+a user and password using one of the challenge-response authentication 
+mechanisms in the following order:
 
-Include the name and password and the `authentication database
-<https://docs.mongodb.com/server/core/security-users/#user-authentication-database>`_
-(\ ``authSource``\ ) in the connection string.
+#. ``SCRAM-SHA-256``
+#. ``SCRAM-SHA-1``
+#. ``MONGODB-CR``
 
-In the following example, the connection string specifies the user ``dave``\ ,
-password ``abc123``\ , and authentication mechanism ``DEFAULT``.
+For example, if the ``DEFAULT`` option is specified, the driver attempts to 
+authenticate using ``SCRAM-SHA-256``. If the server does not support
+that mechanism, the driver attempts to authenticate using
+``SCRAM-SHA-1``. If the server does not support that mechanism either, the 
+driver attempts to authenticate using ``MONGODB-CR``.  For more information on
+the challenge-response authentication mechanisms that MongoDB supports, see the
+ `SCRAM <https://docs.mongodb.com/manual/core/security-scram/>`_
+section of the server manual.
+
+You can specify this option by omitting the ``authMechanism`` parameter of the
+`URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_ or by setting
+it to the value ``DEFAULT`` as shown in the following sample code.
 
 .. important::
    The user and password should always be **URI** encoded using ``encodeURIComponent`` to ensure any non URI compliant user or password characters are correctly parsed.
 
 .. code-block:: js
+   :emphasize-lines: 5
 
    const { MongoClient } = require('mongodb');
 
@@ -71,7 +75,7 @@ password ``abc123``\ , and authentication mechanism ``DEFAULT``.
    const authMechanism = 'DEFAULT';
 
    // Connection URL
-   const url = `mongodb://${user}:${password}@localhost:27017/?authMechanism=${authMechanism}`;
+   const url = `mongodb+srv://${user}:${password}@localhost:27017/?authMechanism=${authMechanism}`;
 
    // Create a new MongoClient
    const client = new MongoClient(url);
@@ -92,7 +96,9 @@ password ``abc123``\ , and authentication mechanism ``DEFAULT``.
    run();
 
 SCRAM-SHA-256
--------------
+~~~~~~~~~~~~~
+
+https://docs.mongodb.com/manual/core/security-scram/#scram-mechanisms
 
 .. note::
 
@@ -117,7 +123,7 @@ authentication database ``myprojectdb``
    const { MongoClient } = require('mongodb');
 
    // Connection URL
-   const url = 'mongodb://dave:abc123@localhost:27017/?authMechanism=SCRAM-SHA-256&authSource=myprojectdb';
+   const url = 'mongodb+srv://dave:abc123@localhost:27017/?authMechanism=SCRAM-SHA-256&authSource=myprojectdb';
 
    // Create a new MongoClient
    const client = new MongoClient(url);
@@ -138,7 +144,7 @@ authentication database ``myprojectdb``
    run();
 
 SCRAM-SHA-1
------------
+~~~~~~~~~~~
 
 .. note::
    ``SCRAM-SHA-1`` is the default authentication method for MongoDB versions 3.0, 3.2, 3.4, and 3.6.
@@ -158,7 +164,7 @@ In the following example, the connection string specifies the user ``dave``\ , p
    const { MongoClient } = require('mongodb');
 
    // Connection URL
-   const url = 'mongodb://dave:abc123@localhost:27017/?authMechanism=SCRAM-SHA-1&authSource=myprojectdb';
+   const url = 'mongodb+srv://dave:abc123@localhost:27017/?authMechanism=SCRAM-SHA-1&authSource=myprojectdb';
 
    // Create a new MongoClient
    const client = new MongoClient(url);
@@ -179,7 +185,7 @@ In the following example, the connection string specifies the user ``dave``\ , p
    run();
 
 MONGODB-CR
-----------
+~~~~~~~~~~
 
 .. warning::
    MONGODB-CR was deprecated starting in MongoDB 3.6, and is no longer supported as of MongoDB 4.0
@@ -201,7 +207,7 @@ authentication database ``myprojectdb``.
    const { MongoClient } = require('mongodb');
 
    // Connection URL
-   const url = 'mongodb://dave:abc123@localhost:27017/?authMechanism=MONGODB-CR&authSource=myprojectdb';
+   const url = 'mongodb+srv://dave:abc123@localhost:27017/?authMechanism=MONGODB-CR&authSource=myprojectdb';
 
    // Create a new MongoClient
    const client = new MongoClient(url);
@@ -226,7 +232,7 @@ authentication database ``myprojectdb``.
    <https://docs.mongodb.com/manual/release-notes/3.0-scram/>`_ from ``MONGODB-CR`` to ``SCRAM-SHA-1``\ , ``MONGODB-CR`` credentials will fail to authenticate.
 
 X509
-----
+~~~~
 
 With  `X.509 <https://docs.mongodb.com/manual/core/security-x.509>`_
 mechanism, MongoDB uses the X.509 certificate presented during TLS
@@ -253,7 +259,7 @@ options.
 
    // User name
    const userName = encodeURIComponent('CN=client,OU=kerneluser,O=10Gen,L=New York City,ST=New York,C=US');
-   const url = `mongodb://${userName}:${password}@server:27017?authMechanism=MONGODB-X509&tls=true`;
+   const url = `mongodb+srv://${userName}:${password}@server:27017?authMechanism=MONGODB-X509&tls=true`;
 
    // Create a new MongoClient
    const client = new MongoClient(url, {
@@ -275,17 +281,28 @@ options.
    // Runs your code
    run();
 
-For more information on connecting to MongoDB instance, replica set, and sharded cluster with TLS/SSL options, see :doc:`TLS/SSL connections </tutorials/connect/tls>` .
+For more information on connecting to MongoDB instance, replica set, and
+sharded cluster with TLS/SSL options, see `TLS/SSL connections
+<https://mongodb.github.io/node-mongodb-native/3.4/tutorials/connect/tls/>`_.
 
-For more information, refer to the MongoDB manual
-:manual:`X.509 tutorial </tutorial/configure-x509-client-authentication/#add-x-509-certificate-subject-as-a-user>` for more information about determining the subject name from the certificate.
+For more information on determining the *subject* name from the X.509
+certificate, see the MongoDB manual
+`X.509 tutorial
+<https://docs.mongodb.com/manual/tutorial/configure-x509-client-authentication/#add-x-509-certificate-subject-as-a-user>`_.
 
 Kerberos (GSSAPI/SSPI)
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
-`MongoDB Enterprise <http://www.mongodb.com/products/mongodb-enterprise>`_  supports proxy authentication through a Kerberos service. The Node.js driver supports Kerberos on UNIX via the MIT Kerberos library and on Windows via the SSPI API.
+`MongoDB Enterprise <http://www.mongodb.com/products/mongodb-enterprise>`_ 
+supports proxy authentication through a Kerberos service. The Node.js driver
+supports Kerberos on UNIX via the MIT Kerberos library and on Windows via the
+SSPI API.
 
-To connect using the GSSAPI authentication mechanism, specify ``authMechanism=GSSAPI`` as the mechanism in the :manual:`URI ConnectionString </reference/connection-string/>` . Specify the user principal and the service name in the connection string.  Use ``enodeURIComponent`` to encode the user principal string.
+To connect using the GSSAPI authentication mechanism, specify
+``authMechanism=GSSAPI`` as the mechanism in the `URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_. Specify the user principal and the service
+name in the connection string.  Use ``encodeURIComponent`` to encode the user
+principal string.
 
 The following example connects to MongoDB using Kerberos for UNIX.
 
@@ -298,7 +315,7 @@ The following example connects to MongoDB using Kerberos for UNIX.
    const principal = 'drivers@KERBEROS.EXAMPLE.COM';
    const urlEncodedPrincipal = encodeURIComponent(principal);
 
-   const url = `mongodb://${urlEncodedPrincipal}@${server}/?authMechanism=GSSAPI&gssapiServiceName=mongodb`;
+   const url = `mongodb+srv://${urlEncodedPrincipal}@${server}/?authMechanism=GSSAPI&gssapiServiceName=mongodb`;
 
    const client = new MongoClient(url);
 
@@ -321,11 +338,15 @@ The following example connects to MongoDB using Kerberos for UNIX.
    The method refers to the ``GSSAPI`` authentication mechanism instead of ``Kerberos`` because technically the driver authenticates via the :rfc:`GSSAPI <4752>` SASL mechanism.
 
 LDAP (PLAIN)
-------------
+~~~~~~~~~~~~
 
-`MongoDB Enterprise <http://www.mongodb.com/products/mongodb-enterprise>`_ supports proxy authentication through a Lightweight Directory Access Protocol (LDAP) service.
+`MongoDB Enterprise <http://www.mongodb.com/products/mongodb-enterprise>`_
+supports proxy authentication through a Lightweight Directory Access Protocol
+(LDAP) service.
 
-To connect using the LDAP authentication mechanism, specify ``authMechanism=PLAIN`` as the mechanism in the :manual:`URI ConnectionString </reference/connection-string/>` .
+To connect using the LDAP authentication mechanism, specify
+``authMechanism=PLAIN`` as the mechanism in the `URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_.
 
 .. code-block:: js
 
@@ -337,7 +358,7 @@ To connect using the LDAP authentication mechanism, specify ``authMechanism=PLAI
    const pass = 'ldap-password';
 
    // Url
-   const url = `mongodb://${user}:${pass}@${server}?authMechanism=PLAIN&maxPoolSize=1`;
+   const url = `mongodb+srv://${user}:${pass}@${server}?authMechanism=PLAIN&maxPoolSize=1`;
 
    // Client
    const client = new MongoClient(url);
@@ -358,4 +379,6 @@ To connect using the LDAP authentication mechanism, specify ``authMechanism=PLAI
    run();
 
 .. note::
-   The method refers to the ``PLAIN`` authentication mechanism instead of ``LDAP`` because technically the driver authenticates via the :rfc:`PLAIN <4616>` SASL mechanism.
+   The method refers to the ``PLAIN`` authentication mechanism instead of
+   ``LDAP`` because technically the driver authenticates via the :rfc:`PLAIN
+   <4616>` SASL mechanism.
