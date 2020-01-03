@@ -15,7 +15,7 @@ Usage Examples
 :doc:`updateOne</usage-examples/updateOne>`
 :doc:`replaceOne</usage-examples/replaceOne>`
 :doc:`distinct</usage-examples/distinct>`
-:doc:`commands</usage-examples/commands>`
+:doc:`command</usage-examples/command>`
 
 .. toctree::
    :caption: Examples
@@ -32,4 +32,4 @@ Usage Examples
    /usage-examples/updateOne
    /usage-examples/replaceOne
    /usage-examples/distinct
-   /usage-examples/commands
+   /usage-examples/command
