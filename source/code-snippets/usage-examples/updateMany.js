@@ -18,7 +18,6 @@ async function run() {
     const filter = { rated: "G" };
     const options = {};
     options.upsert = true; // create a document if no documents match the filter
-    // create a document that sets the plot of the movie
 
     // increment every document matching the filter with 2 more comments
     const updateDoc = {
