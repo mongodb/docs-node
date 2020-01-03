@@ -27,7 +27,7 @@ supported by either MongoDB Community or Enterprise edition which includes:
 - ``SCRAM-SHA-256``
 - ``SCRAM-SHA-1``
 - ``MONGODB-CR``
-- ``X509``
+- ``X.509``
 - ``Kerberos (GSSAPI/SSPI)`` *(MongoDB Enterprise only)*
 - ``LDAP (PLAIN)`` *(MongoDB Enterprise only)*
 
@@ -40,9 +40,9 @@ a MongoDB server using each of the connection mechanism settings.
 DEFAULT
 ~~~~~~~
 
-The ``DEFAULT`` option is a fallback setting that attempts to authenticate
-a user and password using one of the challenge-response authentication 
-mechanisms in the following order:
+The ``DEFAULT`` option is a fallback setting that instructs the driver to
+attempt to authenticate a user and password using the first 
+authentication mechanism supported by the server in the following order:
 
 #. ``SCRAM-SHA-256``
 #. ``SCRAM-SHA-1``
@@ -53,9 +53,10 @@ authenticate using ``SCRAM-SHA-256``. If the server does not support
 that mechanism, the driver attempts to authenticate using
 ``SCRAM-SHA-1``. If the server does not support that mechanism either, the 
 driver attempts to authenticate using ``MONGODB-CR``.  For more information on
-the challenge-response authentication mechanisms that MongoDB supports, see the
- `SCRAM <https://docs.mongodb.com/manual/core/security-scram/>`_
-section of the server manual.
+the challenge-response (CR) and salted challenge-response authentication 
+mechanisms (SCRAM) that MongoDB supports, see the `SCRAM 
+<https://docs.mongodb.com/manual/core/security-scram/>`_ section in the server
+manual.
 
 You can specify this option by omitting the ``authMechanism`` parameter of the
 `URI ConnectionString
@@ -63,24 +64,22 @@ You can specify this option by omitting the ``authMechanism`` parameter of the
 it to the value ``DEFAULT`` as shown in the following sample code.
 
 .. important::
-   The user and password should always be **URI** encoded using ``encodeURIComponent`` to ensure any non URI compliant user or password characters are correctly parsed.
-
+   Always **URI encode** the username and password using ``encodeURIComponent``
+   to ensure they are correctly parsed.
+   
 .. code-block:: js
-   :emphasize-lines: 5
 
    const { MongoClient } = require('mongodb');
 
-   const user = encodeURIComponent('dave');
+   const usernanme = encodeURIComponent('dave');
    const password = encodeURIComponent('abc123');
    const authMechanism = 'DEFAULT';
 
    // Connection URL
-   const url = `mongodb+srv://${user}:${password}@localhost:27017/?authMechanism=${authMechanism}`;
+   const url = `mongodb+srv://${username}:${password}@localhost:27017/?authMechanism=${authMechanism}`;
 
-   // Create a new MongoClient
    const client = new MongoClient(url);
 
-   // Function to connect to the server
    async function run() {
      try {
        // Connect the client to the server
@@ -91,44 +90,45 @@ it to the value ``DEFAULT`` as shown in the following sample code.
        await client.close();
      }
    }
-
-   // Runs your code
-   run();
-
+   run().catch(console.dir);
+   
 SCRAM-SHA-256
 ~~~~~~~~~~~~~
-
-https://docs.mongodb.com/manual/core/security-scram/#scram-mechanisms
 
 .. note::
 
    ``SCRAM-SHA-256`` is the default authentication method for MongoDB starting
    in version 4.0
 
-To explicitly connect to MongoDB using `SCRAM-SHA-256
-<https://docs.mongodb.com/manual/core/security-scram/>`_ , specify
-``SCRAM-SHA-256`` as the mechanism in the `URI ConnectionString
-<https://docs.mongodb.com/manual/reference/connection-string/>` .
+The ``SCRAM-SHA-256`` option instructs the driver to attempt to authenticate
+a user and password using the ``SCRAM-SHA-256`` connection mechanism.
 
-Include the name and password and the `authentication database
-<https://docs.mongodb.com/manual/core/security-users/#user-authentication-database>`_
-(\ ``authSource``\ ) in the connection string.
+For more information on the salted challenge-response authentication 
+mechanisms (SCRAM) that MongoDB supports, see the `SCRAM 
+<https://docs.mongodb.com/manual/core/security-scram/>`_ section in the server
+manual.
 
-In the following example, the connection string specifies the user ``dave``\ ,
-password ``abc123``\ , authentication mechanism ``SCRAM-SHA-256``\ , and
-authentication database ``myprojectdb``
+<explain what happens if it is unsupported>
+
+You can specify this option by setting the `authMechanism`` parameter of the 
+`URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_ to the value
+``SCRAM-SHA-256`` as shown in the following sample code.
 
 .. code-block:: js
 
    const { MongoClient } = require('mongodb');
 
+   const usernanme = encodeURIComponent('dave');
+   const password = encodeURIComponent('abc123');
+   const authMechanism = 'SCRAM-SHA-256';
+
    // Connection URL
-   const url = 'mongodb+srv://dave:abc123@localhost:27017/?authMechanism=SCRAM-SHA-256&authSource=myprojectdb';
+   const url = `mongodb+srv://${username}:${password}@localhost:27017/?authMechanism=${authMechanism}`;
 
    // Create a new MongoClient
    const client = new MongoClient(url);
 
-   // Function to connect to the server
    async function run() {
      try {
        // Connect the client to the server
@@ -139,9 +139,7 @@ authentication database ``myprojectdb``
        await client.close();
      }
    }
-
-   // Runs your code
-   run();
+   run().catch(console.dir);
 
 SCRAM-SHA-1
 ~~~~~~~~~~~
@@ -149,27 +147,35 @@ SCRAM-SHA-1
 .. note::
    ``SCRAM-SHA-1`` is the default authentication method for MongoDB versions 3.0, 3.2, 3.4, and 3.6.
 
-To explicitly connect to MongoDB using `SCRAM-SHA-1
-<https://docs.mongodb.com/manual/core/security-scram/>`_ , specify
-``SCRAM-SHA-1`` as the mechanism in the `URI ConnectionString
-<https://docs.mongodb.com/manual/reference/connection-string/>`_.
+The ``SCRAM-SHA-1`` option instructs the driver to attempt to authenticate
+a user and password using the ``SCRAM-SHA-1`` connection mechanism.
 
-Include the name and password and the `authentication database
-<https://docs.mongodb.com/manual/core/security-users/#user-authentication-database>`_ (\ ``authSource``\ ) in the connection string.
+For more information on the salted challenge-response authentication 
+mechanisms (SCRAM) that MongoDB supports, see the `SCRAM 
+<https://docs.mongodb.com/manual/core/security-scram/>`_ section in the server
+manual.
 
-In the following example, the connection string specifies the user ``dave``\ , password ``abc123``\ , authentication mechanism ``SCRAM-SHA-1``\ , and authentication database ``myprojectdb``
+<explain what happens if it is unsupported>
+
+You can specify this option by setting the `authMechanism`` parameter of the 
+`URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_ to the value
+``SCRAM-SHA-1`` as shown in the following sample code.
 
 .. code-block:: js
 
    const { MongoClient } = require('mongodb');
 
+   const usernanme = encodeURIComponent('dave');
+   const password = encodeURIComponent('abc123');
+   const authMechanism = 'SCRAM-SHA-1';
+
    // Connection URL
-   const url = 'mongodb+srv://dave:abc123@localhost:27017/?authMechanism=SCRAM-SHA-1&authSource=myprojectdb';
+   const url = `mongodb+srv://${username}:${password}@localhost:27017/?authMechanism=${authMechanism}`;
 
    // Create a new MongoClient
    const client = new MongoClient(url);
 
-   // Function to connect to the server
    async function run() {
      try {
        // Connect the client to the server
@@ -180,9 +186,7 @@ In the following example, the connection string specifies the user ``dave``\ , p
        await client.close();
      }
    }
-
-   // Runs your code
-   run();
+   run().catch(console.dir);
 
 MONGODB-CR
 ~~~~~~~~~~
@@ -190,24 +194,24 @@ MONGODB-CR
 .. warning::
    MONGODB-CR was deprecated starting in MongoDB 3.6, and is no longer supported as of MongoDB 4.0
 
-To explicitly connect to MongoDB using ``MONGODB-CR`` , specify
-``MONGODB-CR`` as the mechanism in the `URI ConnectionString
-<https://docs.mongodb.com/manual/reference/connection-string/>`_.
+The ``MONGODB-CR`` option instructs the driver to attempt to authenticate
+a user and password using the ``MONGODB-CR`` connection mechanism.
 
-Include the name and password and the `authentication database
-<https://docs.mongodb.com/manual/core/security-users/#user-authentication-database>`_
-(\ ``authSource``\ ) in the connection string.
-
-In the following example, the connection string specifies the user ``dave``\ ,
-password ``abc123``\ , authentication mechanism ``MONGODB-CR``\ , and
-authentication database ``myprojectdb``.
+You can specify this option by setting the `authMechanism`` parameter of the 
+`URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_ to the value
+``MONGODB-CR`` as shown in the following sample code.
 
 .. code-block:: js
 
    const { MongoClient } = require('mongodb');
 
+   const usernanme = encodeURIComponent('dave');
+   const password = encodeURIComponent('abc123');
+   const authMechanism = 'MONGODB-CR';
+
    // Connection URL
-   const url = 'mongodb+srv://dave:abc123@localhost:27017/?authMechanism=MONGODB-CR&authSource=myprojectdb';
+   const url = `mongodb+srv://${username}:${password}@localhost:27017/?authMechanism=MONGODB-CR`;
 
    // Create a new MongoClient
    const client = new MongoClient(url);
@@ -223,34 +227,32 @@ authentication database ``myprojectdb``.
        await client.close();
      }
    }
-
-   // Runs your code
-   run();
+   run().catch(console.dir);
 
 .. important::
    If you have `upgraded the authentication schema
-   <https://docs.mongodb.com/manual/release-notes/3.0-scram/>`_ from ``MONGODB-CR`` to ``SCRAM-SHA-1``\ , ``MONGODB-CR`` credentials will fail to authenticate.
+   <https://docs.mongodb.com/manual/release-notes/3.0-scram/>`_ to ``SCRAM-SHA-1``\ , ``MONGODB-CR`` credentials will fail to authenticate.
 
-X509
-~~~~
+X.509
+~~~~~
 
-With  `X.509 <https://docs.mongodb.com/manual/core/security-x.509>`_
-mechanism, MongoDB uses the X.509 certificate presented during TLS
-negotiation to authenticate a user whose name is derived from the
-distinguished name of the X.509 certificate.
+The ``MONGODB-X509`` option instructs the driver to attempt to authenticate 
+using an X.509 certificate and a value derived from the distinguished name (DN)
+of the certificate. X.509 authentication requires the use of TLS connections
+with certificate validation and is available in MongoDB 2.6 and newer.
 
-X.509 authentication requires the use of TLS connections with certificate validation and is available in MongoDB 2.6 and newer.
+You can specify this option by setting the following parameters of the 
+`URI ConnectionString
+<https://docs.mongodb.com/manual/reference/connection-string/>`_:
 
-To connect using the X.509 authentication mechanism, specify
-``MONGODB-X509`` as the mechanism in the `URI ConnectionString
-<https://docs.mongodb.com/manual/reference/connection-string/>`_,
-``tls=true``\ , and the username. Use ``enodeURIComponent`` to encode the username string.
+- Set the ``authMechanism`` parameter to ``MONGODB-X509``
+- Set the ``tls`` parameter to ``true``
+- Set the ``authSource`` to ``$external``
 
-In addition to the connection string, pass to the new ``MongoClient`` a
-connections options for the ``server`` with the X.509 certificate and other
-`TLS/SSL connections
+In addition to setting the connection string parameters, pass any
+`TLS/SSL connection options
 <https://mongodb.github.io/node-mongodb-native/3.4/tutorials/connect/tls/>`_
-options.
+specific to your use case to the constructor of the new ``MongoClient``.
 
 .. code-block:: js
 
@@ -258,8 +260,10 @@ options.
    const fs = require('fs');
 
    // User name
-   const userName = encodeURIComponent('CN=client,OU=kerneluser,O=10Gen,L=New York City,ST=New York,C=US');
-   const url = `mongodb+srv://${userName}:${password}@server:27017?authMechanism=MONGODB-X509&tls=true`;
+   const username = encodeURIComponent('CN=client,OU=kerneluser,O=10Gen,L=New York City,ST=New York,C=US');
+   const authSource = "$external";
+   const authMechanism = 'SCRAM-SHA-1';
+   const url = `mongodb+srv://${username}:${password}@server:27017?authMechanism=${authMechanism}&tls=true&authSource=${authSource}`;
 
    // Create a new MongoClient
    const client = new MongoClient(url, {
