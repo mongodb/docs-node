@@ -12,6 +12,7 @@ You can run all ``non-CRUD`` database operations using the
 for diagnostic and administrative tasks, such as fetching server stats
 or initializing a replica set. 
 
-::note:: Using ``collection methods`` instead of raw database commands
-through the ``command()`` is recommended for beginner users, since
-``collection methods`` are wrappers that abstract some configuration. 
+.. note::
+    Using ``collection methods`` instead of raw database commands
+    through the ``command()`` is recommended for beginner users, since
+    ``collection methods`` are wrappers that abstract some configuration. 
