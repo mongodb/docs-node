@@ -7,8 +7,8 @@ Run A Command
 Overview
 --------
 
-You can run all :manual:`non-CRUD </crud/>` database operations using the
-``db.commands()`` method. Typically ``the command interface`` is used
+You can run all :manual:`non CRUD </crud/>` database operations using the
+:node-api:`command </Admin.html#~command>` method. Typically ``the command interface`` is used
 for diagnostic and administrative tasks, such as fetching server stats
 or initializing a replica set. 
 
@@ -16,3 +16,4 @@ or initializing a replica set.
     Using ``collection methods`` instead of raw database commands
     through the ``command()`` is recommended for beginner users, since
     ``collection methods`` are wrappers that abstract some configuration. 
+
