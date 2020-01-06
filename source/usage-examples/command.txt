@@ -7,7 +7,7 @@ Run A Command
 Overview
 --------
 
-You can run all ``non-CRUD`` database operations using the
+You can run all :manual:`non-CRUD </crud/>` database operations using the
 ``db.commands()`` method. Typically ``the command interface`` is used
 for diagnostic and administrative tasks, such as fetching server stats
 or initializing a replica set. 
