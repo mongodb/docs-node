@@ -9,9 +9,29 @@ Overview
 
 You can run a wide-range of diagnostic and administrative tasks using the ``db.commands``
 
+You can run various diagnostic and administrative operations using the `commands()
+<https://mongodb.github.io/node-mongodb-native/3.4/tutorials/commands/>`_ method.
+
+You can run many different operations using the ``.d 
+
+You can update a single document using the `updateOne()
+<https://mongodb.github.io/node-mongodb-native/3.3/api/Collection.html#updateOne>`_
+method. ``updateOne()`` accepts a filter document, and updates the first
+document that matches the filter using a provided update document. The
+update document requires an :manual:`Update
+Operator</reference/operator/update/#update-operators>`
+to modify a field in a document.
+
+
+
+
+
 
 Database commands allow you to perform a wide range of diagnostic and administrative
 tasks with the Node.js driver. For example, the
 :manual:`dbStats </reference/command/dbStats/>` command returns
 storage statistics for a given database. Use the ``command`` function to access
 database commands.
+
+
+https://mongodb.github.io/node-mongodb-native/3.3/api/Admin.html#command
