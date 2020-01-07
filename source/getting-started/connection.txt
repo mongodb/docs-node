@@ -287,7 +287,7 @@ the sample code below.
    // specify the placeholder values for your environment in the following lines
    const username = encodeURIComponent('<client certificate distinguished name>');
    const clusterUrl = '<MongoDB cluster url>';
-   const clientPEMFile = '<path to the client pem certificate file>
+   const clientPEMFile = '<path to the client pem certificate file>';
    const authMechanism = 'MONGODB-X509';
 
    // Connection URI
