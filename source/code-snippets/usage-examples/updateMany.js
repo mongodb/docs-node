@@ -14,10 +14,10 @@ async function run() {
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
 
-    // create a filter for movies to update
+    // create a filter to update all movies with a 'G' rating
     const filter = { rated: "G" };
     const options = {};
-    options.upsert = true; // create a document if no documents match the filter
+    options.upsert = true; // create a document if no documents have a 'G' rating
 
     // increment every document matching the filter with 2 more comments
     const updateDoc = {
