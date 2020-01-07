@@ -3,3 +3,76 @@ Search Geospatially
 ===================
 
 .. default-domain:: mongodb
+
+
+You can query against geospatial indexes in several ways with
+`geospatial query operators
+<https://docs.mongodb.com/manual/geospatial-queries/index.html>`_. Full
+functionality for geospatial queries relies upon geospatial indexes,
+which you can create by passing the value '2dsphere' for a field in the
+``createIndex`` method.
+
+The following examples assume that a database called test has a
+collection called restaurants, with a 2d sphere index index on the
+address.coord field. A sample dataset is available for download.
+
+Query by Proximity
+------------------
+
+The ``$near`` operator specifies a set of longitude-latitude coordinates
+and returns documents from nearest to farthest.
+
+.. code-block:: javascript
+
+   { 'address.coord':
+      { $near :
+         { $geometry:
+            { type: "Point",  coordinates: [ -73.9667, 40.78 ] },
+            $maxDistance: 1000
+         }
+      }
+   }
+
+   collection.find(
+      { 'address.coord':
+         { $near :
+            { $geometry:
+               { type: "Point",  coordinates: [ -73.9667, 40.78 ] },
+               $maxDistance: 1000
+            }
+         }
+      }
+   ).toArray(function(err, docs) {
+      console.log("Found the following records");
+      console.log(docs);
+      callback(docs);
+   });
+
+To limit the results to a maximum distance in meters, use the
+``$maxDistance`` option. For a complete list of options, see the
+`reference documentation for $near <>`.
+
+Query Within a Range
+--------------------
+
+The ``$geoWithin`` operator selects documents with geospatial data that
+exist within a specified shape.
+
+.. code-block:: javascript
+
+  collection.find(
+    { 'address.coord':
+      { $geoWithin:
+ 	   { $geometry:
+ 	     { type : "Polygon" ,
+            coordinates: [ [ [ -73, 40 ], [ -74, 41 ], [ -72, 39 ], [ -73, 40 ] ] ]
+          }
+        }
+      }
+    }
+  ).toArray(function(err, docs) {
+    assert.equal(err, null);
+    console.log("Found the following records");
+    console.log(docs);
+    callback(docs);
+  });

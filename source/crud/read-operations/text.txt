@@ -4,6 +4,228 @@ Search Text
 
 .. default-domain:: mongodb
 
-Sometimes you want to search text for non-exact matches. Use ``$text``
-for this operation. Remember that ``$text`` requires a text index for
-certain behaviour.
+Use the `$text
+<https://docs.mongodb.com/manual/reference/operator/query/text/>`_
+operator to perform text searches on fields which have a
+`text index <https://docs.mongodb.com/manual/core/index-text/>`_.
+
+Text searches let you search a collection of strings for words or
+phrases, instead of matching substrings like
+`regular expresssions
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions>`_,
+also known as RegEx. While regex is very powerful, and MongoDB even
+offers a `$regex <>` operator, text searches work particularly well when
+applied to unstructured text, like transcripts, essays, or even web
+pages. Because MongoDB's text indexes are aware of concepts like
+plurality, case sensitivity, stop words, whitespace, and punctuation in
+multiple languages, all you have to do is query with a search term to
+find documents that contain your term.
+
+.. note::
+
+  Text search requires a text index. To create a text index for the
+  ``title`` field of the ``movies`` collection of the ``sample_mflix``
+  database, use the following command on the sample_mflix database:
+
+  .. code-block:: javascript
+
+     db.movies.createIndex({title: "text"})
+
+The following example uses the ``sample_mflix`` database's ``movies``
+collection. Once a text index has been created for the ``title`` field,
+we can text search for users by name. In this example, you'll see a
+query for that searches for Star Trek movies by searching for a title
+containing the word "trek".
+
+.. code-block:: javascript
+
+   const database = client.db("sample_mflix");
+   const collection = database.collection("movies");
+
+   const query = { $text: { $search: "trek" } };
+
+   // Return only the `title` of each matched document
+   const projection = {
+      _id: 0,
+      title: 1
+   };
+
+   // find documents based on our query, sort and projection
+   const cursor = collection
+      .find(query)
+      .project(projection);
+
+   // print a message if no documents were found
+   if ((await cursor.count()) == 0) {
+      console.log("No documents found!");
+   }
+   await cursor.forEach(console.dir);
+
+This operation returns the following documents:
+
+.. code-block:: javascript
+
+   { title: 'Trek Nation' }
+   { title: 'Star Trek' }
+   { title: 'Star Trek Into Darkness' }
+   { title: 'Star Trek: Nemesis' }
+   { title: 'Star Trek: Insurrection' }
+   { title: 'Star Trek: Generations' }
+   { title: 'Star Trek: First Contact' }
+   { title: 'Star Trek: The Motion Picture' }
+   { title: 'Star Trek VI: The Undiscovered Country' }
+   { title: 'Star Trek V: The Final Frontier' }
+   { title: 'Star Trek IV: The Voyage Home' }
+   { title: 'Star Trek III: The Search for Spock' }
+   { title: 'Star Trek II: The Wrath of Khan' }
+
+Success! The query found every document in the ``movies`` collection
+with a title including the word "trek". Unfortunately, it looks like the
+search included one unintended item: "Trek Nation," which is a movie
+about Star Trek and not a Star Trek movie. To make the query more
+specific, try using the phrase "star trek" instead of just the word
+"trek". To search by phrase, surround your multi-word phrase with
+escaped quotes (``\"<term>\"``):
+
+.. code-block:: javascript
+
+   const database = client.db("sample_mflix");
+   const collection = database.collection("movies");
+
+   const query = { $text: { $search: "\"star trek\"" } };
+
+   // Return only the `title` of each matched document
+   const projection = {
+      _id: 0,
+      title: 1
+   };
+
+   // find documents based on our query, sort and projection
+   const cursor = collection
+      .find(query)
+   { title: 'Star Trek', score: 1.5 }   .project(projection);
+{ title: 'Star Trek', score: 1.5 }
+   { title: 'Star Trek', score: 1.5 }// print a message if no documents were found
+   { title: 'Star Trek', score: 1.5 }if ((await cursor.count()) == 0) {
+   { title: 'Star Trek', score: 1.5 }   console.log("No documents found!");
+   { title: 'Star Trek', score: 1.5 }}
+   { title: 'Star Trek', score: 1.5 }await cursor.forEach(console.dir);
+
+Querying by the phrase "star trek" instead of just the term "trek"
+matches the following documents:
+
+.. code-block:: javascript
+
+   { title: 'Star Trek' }
+   { title: 'Star Trek Into Darkness' }
+   { title: 'Star Trek: Nemesis' }
+   { title: 'Star Trek: Insurrection' }
+   { title: 'Star Trek: Generations' }
+   { title: 'Star Trek: First Contact' }
+   { title: 'Star Trek: The Motion Picture' }
+   { title: 'Star Trek VI: The Undiscovered Country' }
+   { title: 'Star Trek V: The Final Frontier' }
+   { title: 'Star Trek IV: The Voyage Home' }
+   { title: 'Star Trek III: The Search for Spock' }
+   { title: 'Star Trek II: The Wrath of Khan' }
+
+These results look pretty good. Unfortunately, though, this query
+returned "Star Trek Into Darkness", a movie that nobody liked much.
+Because you probably don't want to be associated with such an unpopular
+movie, you can choose to exclude it from the results set using a negated
+term. To use a negated term, place a negative sign (``-``) in front of
+the term you'd like to omit from the result set. Since this query
+includes two terms, separate the terms with spaces.
+
+.. code-block:: javascript
+
+   const database = client.db("sample_mflix");
+   const collection = database.collection("movies");
+
+   const query = { $text: { $search: "\"star trek\" -\"into darkness\"" } };
+
+   // Return only the `title` of each matched document
+   const projection = {
+      _id: 0,
+      title: 1
+   };
+
+   // find documents based on our query, sort and projection
+   const cursor = collection
+      .find(query)
+      .project(projection);
+
+   // print a message if no documents were found
+   if ((await cursor.count()) == 0) {
+      console.log("No documents found!");
+   }
+   await cursor.forEach(console.dir);
+
+Querying with the negated term yields the following documents:
+
+.. code-block:: javascript
+
+   { title: 'Star Trek' }
+   { title: 'Star Trek: Nemesis' }
+   { title: 'Star Trek: Insurrection' }
+   { title: 'Star Trek: Generations' }
+   { title: 'Star Trek: First Contact' }
+   { title: 'Star Trek: The Motion Picture' }
+   { title: 'Star Trek VI: The Undiscovered Country' }
+   { title: 'Star Trek V: The Final Frontier' }
+   { title: 'Star Trek IV: The Voyage Home' }
+   { title: 'Star Trek III: The Search for Spock' }
+   { title: 'Star Trek II: The Wrath of Khan' }
+
+Now that the result set reflects the desired results, you can use the
+text search ``textScore``, accessed using the ``$meta`` operator in the
+query projection, to order the results by relevence:
+
+.. code-block:: javascript
+
+   const database = client.db("sample_mflix");
+   const collection = database.collection("movies");
+
+   const query = { $text: { $search: "\"star trek\"  -\"into darkness\"" } };
+
+   // sort returned documents by descending text relevence score
+   const sort = { score: { $meta: "textScore" } };
+   // Include only the `title` and `score` fields in each returned document
+   const projection = {
+      _id: 0,
+      title: 1,
+      score: { $meta: "textScore" },
+   };
+
+   // find documents based on our query, sort, and projection
+   const cursor = collection
+      .find(query)
+      .sort(sort)
+      .project(projection);
+
+   // print a message if no documents were found
+   if ((await cursor.count()) == 0) {
+      console.log("No documents found!");
+   }
+   await cursor.forEach(console.dir);
+
+Querying in this way returns the following documents in the following
+order. In general, text relevence increases as a string matches more
+terms and decreases as the unmatched portion of the string increases.
+
+.. code-block:: javascript
+
+   { title: 'Star Trek', score: 1.5 }
+   { title: 'Star Trek: Generations', score: 1.3333333333333333 }
+   { title: 'Star Trek: Insurrection', score: 1.3333333333333333 }
+   { title: 'Star Trek: Nemesis', score: 1.3333333333333333 }
+   { title: 'Star Trek: The Motion Picture', score: 1.25 }
+   { title: 'Star Trek: First Contact', score: 1.25 }
+   { title: 'Star Trek II: The Wrath of Khan', score: 1.2 }
+   { title: 'Star Trek III: The Search for Spock', score: 1.2 }
+   { title: 'Star Trek IV: The Voyage Home', score: 1.2 }
+   { title: 'Star Trek V: The Final Frontier', score: 1.2 }
+   { title: 'Star Trek VI: The Undiscovered Country', score: 1.2 }
+
+For more information about the $text operator and its options, see the
+`manual entry <https://docs.mongodb.com/manual/reference/operator/query/text/>`_.
