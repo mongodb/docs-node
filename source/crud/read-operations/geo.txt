@@ -4,75 +4,160 @@ Search Geospatially
 
 .. default-domain:: mongodb
 
-
 You can query against geospatial indexes in several ways with
 `geospatial query operators
-<https://docs.mongodb.com/manual/geospatial-queries/index.html>`_. Full
-functionality for geospatial queries relies upon geospatial indexes,
-which you can create by passing the value '2dsphere' for a field in the
-``createIndex`` method.
+<https://docs.mongodb.com/manual/geospatial-queries/index.html>`_.
 
-The following examples assume that a database called test has a
-collection called restaurants, with a 2d sphere index index on the
-address.coord field. A sample dataset is available for download.
+Overview
+--------
+
+Geospatial queries work with two different formats depending on your use
+case.
+
+Coordinates on an Earth-like Sphere
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For geospatial queries using longitude and latitude coordinates
+on an Earth-like sphere, use the `GeoJSON
+<https://docs.mongodb.com/manual/geospatial-queries/index.html#geospatial-geojson>`_
+format. While GeoJSON has `multiple types
+<https://docs.mongodb.com/manual/reference/geojson/>`_, GeoJSON data
+generally looks like this:
+
+.. code-block:: javascript
+
+   <field> : {
+      type: <GeoJSON type>,
+      coordinates: [
+         [longitude1, latitude1],
+         ...
+         [longitudeN, latitudeN]
+      ]
+   }
+
+The number of coordinates depends upon the object type; a Point requires
+only one coordinate: a longitude and a latitude. A Line requires
+two coordinates: a longitude and a latitude for each end. Polygons
+consist of a list of coordinates in which the first and last coordinate
+are the same, effectively closing the polygon. To learn more about
+the GeoJSON shapes you can use in MongoDB, consult the
+`GeoJSON manual entry
+<https://docs.mongodb.com/manual/reference/geojson/>`_. To geospatially
+query GeoJSON data, add your GeoJSON data to a ``2dsphere`` index. You
+can create a ``2dsphere`` index by passing the value ``2dsphere`` for a
+field in the ``createIndex()`` method.
+
+Coordinates on a 2D Plane
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Geospatial queries can also use x and y coordinates in a two dimensional
+Euclidean plane. To express data in this way, use the
+`legacy coordinate pair
+<https://docs.mongodb.com/manual/geospatial-queries/index.html#legacy-coordinate-pairs>`_
+format. Legacy coordinate pairs generally look like this:
+
+.. code-block:: javascript
+
+   <field> : [ x, y ]
+
+The indexed field should contain an array in which the first value
+represents an ``x`` axis value and the second value represents a ``y``
+coordinate value. You can create a ``2d`` index by passing the value
+``2d`` for a field in the ``createIndex()`` method.
+
+.. note::
+
+   Spherical (``2dsphere``) and flat (``2d``) indexes support some, but
+   not all, of the same query operators. For a full list of operators
+   and their index compatibility, consult the
+   `manual entry for geospatial queries
+   <https://docs.mongodb.com/manual/geospatial-queries/index.html#geospatial-models>`_.
+
+Examples
+--------
+
+The following examples use the ``theaters`` collection of the
+``sample_mflix`` sample database available in MongoDB Atlas, with a
+``2dsphere`` index on the ``location.geo`` field.
+
+.. note::
+
+  Geo searches require a geospatial index. To create a ``2dsphere``
+  index on the ``location.geo`` field of the ``theaters`` collection of
+  the ``sample_mflix`` database, use the following command on the
+  sample_mflix database:
+
+  .. code-block:: javascript
+
+     db.movies.createIndex({location.geo: "2dsphere"})
 
 Query by Proximity
 ------------------
 
-The ``$near`` operator specifies a set of longitude-latitude coordinates
-and returns documents from nearest to farthest.
+The `$near
+<https://docs.mongodb.com/manual/reference/operator/query/near/#op._S_near>`_
+operator accepts a set of longitude-latitude coordinates and returns
+documents ordered from nearest to farthest. To limit the results to a
+maximum distance in meters, use the ``$maxDistance`` option. For a
+complete list of options, see the reference documentation for ``$near``.
+The following example queries for theaters within ``10,000`` meters of
+``[ -73.9667, 40.78 ]``.
 
 .. code-block:: javascript
 
-   { 'address.coord':
-      { $near :
-         { $geometry:
-            { type: "Point",  coordinates: [ -73.9667, 40.78 ] },
-            $maxDistance: 1000
-         }
-      }
+   const database = client.db("sample_mflix");
+   const collection = database.collection("theaters");
+
+   const query = {
+      "location.geo": {
+         $near: {
+            $geometry: { type: "Point", coordinates: [-73.9667, 40.78] },
+            $maxDistance: 10000,
+         },
+      },
+   };
+
+   // find documents based on our query, sort, and projection
+   const cursor = collection.find(query);
+
+   // print a message if no documents were found
+   if ((await cursor.count()) == 0) {
+      console.log("No documents found!");
    }
-
-   collection.find(
-      { 'address.coord':
-         { $near :
-            { $geometry:
-               { type: "Point",  coordinates: [ -73.9667, 40.78 ] },
-               $maxDistance: 1000
-            }
-         }
-      }
-   ).toArray(function(err, docs) {
-      console.log("Found the following records");
-      console.log(docs);
-      callback(docs);
-   });
-
-To limit the results to a maximum distance in meters, use the
-``$maxDistance`` option. For a complete list of options, see the
-`reference documentation for $near <>`.
+   await cursor.forEach(console.dir);
 
 Query Within a Range
 --------------------
 
 The ``$geoWithin`` operator selects documents with geospatial data that
-exist within a specified shape.
+exist within a specified shape. The following example searches for
+movie theaters in the new england area:
 
 .. code-block:: javascript
 
-  collection.find(
-    { 'address.coord':
-      { $geoWithin:
- 	   { $geometry:
- 	     { type : "Polygon" ,
-            coordinates: [ [ [ -73, 40 ], [ -74, 41 ], [ -72, 39 ], [ -73, 40 ] ] ]
-          }
-        }
-      }
-    }
-  ).toArray(function(err, docs) {
-    assert.equal(err, null);
-    console.log("Found the following records");
-    console.log(docs);
-    callback(docs);
-  });
+   const query = {
+      "location.geo": {
+         $geoWithin: {
+            $geometry: {
+            type: "Polygon",
+            coordinates: [
+               [
+                  [-72, 40],
+                  [-74, 41],
+                  [-72, 39],
+                  [-72, 40],
+               ],
+            ],
+            },
+         },
+      },
+   };
+
+   // find documents based on our query, sort, and projection
+   const cursor = collection.find(query);
+
+   // print a message if no documents were found
+   if ((await cursor.count()) == 0) {
+      console.log("No documents found!");
+   }
+   await cursor.forEach(console.dir);
