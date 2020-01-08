@@ -8,7 +8,7 @@ Overview
 --------
 
 This guide shows you how to connect to MongoDB with the Node.js driver using
-different connection mechanisms and how to configure them.
+different connection mechanisms as well as how to configure them.
 
 When you connect to a MongoDB server, you provide your credentials and
 specific connection mechanism to the driver. The driver negotiates with the
@@ -433,264 +433,190 @@ code.
 Connection Settings 
 -------------------
 
-In this section, you can find all the available MongoDB client connection 
-settings. Pass them into the ``MongoClient`` constructor within an optional 
-parameter.
+This section describes common MongoDB client connection settings for the
+Node.js driver. These settings provide additional control over the behavior
+of the connection established by the client, and may specify required
+information for certain connection mechanisms.
+
+The connection settings are passed as an optional parameter to the
+``MongoClient`` as shown in the code sample below:
 
 .. code-block:: js
 
-   const { MongoClient } = require('mongodb');
+   const { MongoClient } = require("mongodb");
 
-   // Connection URL
-   // define hosts explicitly if you do not want to use SRV
-   const url = 'mongodb://localhost:50000,localhost:50001';
+   // Connection URI
+   const uri = `mongodb+srv://<username>:<password>@<clusterUrl>`;
 
-   // create a client, passing in additional options
-   const client = new MongoClient(url, {
-     poolSize: 10, tls: true
-   });
+   // Replace this with your constructor options
+   const opts = { 
+     loggerLevel: "info",
+     useUnifiedTopology: true,
+   };
 
-   // Function to connect to the server and run your code
+   // Create a new MongoClient
+   const client = new MongoClient(uri, opts);
+
    async function run() {
      try {
        // Connect the client to the server
        await client.connect();
-       console.log('Connected successfully to server');
+
+       // Establish and verify connection
+       await client.db("admin").command({ ping: 1 });
+       console.log("Connected successfully to server");
      } finally {
        // Ensures that the client will close when you finish/error
        await client.close();
      }
    }
+   run().catch(console.dir);
 
-   // Runs your code
-   run();
-
-The table below shows all settings and what topology they affect.
+The following table describes several common connection options that can be
+passed to the ``MongoClient`` constructor.
 
 .. list-table::
    :header-rows: 1
 
-   * - Option
-     - Affects
+   * - Option Name
      - Type
-     - Default
+     - Default Value
      - Description
-   * - **useNewUrlParser**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - false
-     - | Opt-in to the new MongoDB URI parser, which conforms to the common cross-driver URI parser specification. The new URI parser will become the only URI parser in the next major version of the driver.
-       | Type: boolean
    * - **useUnifiedTopology**
-     - Server, ReplicaSet, Mongos
      - boolean
-     - false
-     - Opt-in to the new Server Discovery and Monitoring engine that is more stable and aligns with other drivers. This engine will become the only SDAM engine in the next major version of the driver.
+     - **false**
+     - Specifies whether to opt into the new Server Discovery and Monitoring 
+       (SDAM) engine. The next major driver release removes the old engine and
+       deprecates this option.
    * - **validateOptions**
-     - Server, ReplicaSet, Mongos
      - boolean
-     - false
-     - If true, the driver will error if it detects an option that it does not recognize. If false, the driver will merely warn.
+     - **false**
+     - Specifies whether to error when instantiating the client the constructor
+       is passed an unknown option. If ``false``, the driver produces warnings
+       only.
    * - **poolSize**
-     - Server, ReplicaSet, Mongos
      - integer
-     - 5
-     - Is an alias to :manual:`maxPoolSize </reference/connection-string/#urioption.maxPoolSize>`
+     - **5**
+     - Specifies the maximum size of the individual server connection pool.
    * - **minSize**
-     - Server, ReplicaSet, Mongos
      - integer
-     - 0
-     - Is an alias to :manual:`maxPoolSize </reference/connection-string/#urioption.minPoolSize>`
-   * - **sslValidate**
-     - Server, ReplicaSet, Mongos
+     - **0**
+     - Specifies the minimum size of connections to maintain in the individual
+       server pool.
+   * - **tlsInsecure**
      - boolean
-     - false
-     - Validate mongod server certificate against ca. Is equivalent to :manual:`tlsInsecure </reference/connection-string/#urioption.tlsInsecure>`
+     - **false**
+     - Specifies whether to skip validation of the server certificate with the
+       Certificate Authority.
    * - **family**
-     - Server, ReplicaSet, Mongos
      - number
-     - 0
-     - Version of IP stack. Can be 4, 6, 0 or null (default). If 0 or null, will attempt to connect with IPv6, and will fall back to IPv4 on failure.
-   * - **sslCA**
-     - Server, ReplicaSet, Mongos
-     - Array
-     - null
-     - Array of valid certificates either as Buffers or Strings
-   * - **sslCert**
-     - Server, ReplicaSet, Mongos
-     - Buffer/String
-     - null
-     - String or buffer containing the certificate we wish to present
-   * - **sslKey**
-     - Server, ReplicaSet, Mongos
-     - Buffer/String
-     - null
-     - String or buffer containing the certificate private key we wish to present
-   * - **sslPass**
-     - Server, ReplicaSet, Mongos
-     - Buffer/String
-     - null
-     - String or buffer containing the certificate password
-   * - **sslCRL**
-     - Server, ReplicaSet, Mongos
-     - Buffer[]/Buffer/string[]/string
-     - null
-     - Certificate Revocation Lists. See `tls.createSecureContext <https://nodejs.org/dist/latest-v10.x/docs/api/tls.html#tls_tls_createsecurecontext_options>`_
-   * - **checkServerIdentity**
-     - Server, ReplicaSet, Mongos
-     - function/boolean
-     - true
-     - If a function, overrides built-in `tls.checkServerIdentity <https://nodejs.org/dist/latest-v10.x/docs/api/tls.html#tls_tls_checkserveridentity_hostname_cert>`_. See `tls.connect <https://nodejs.org/dist/latest-v10.x/docs/api/tls.html#tls_tls_connect_options_callback>`_. If ``false``, automatically verifies all certificates and servernames.
-   * - **noDelay**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - true
-     - TCP Socket NoDelay option. See `socket.setNoDelay <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setnodelay_nodelay>`_
-   * - **keepAlive**
-     - Server, ReplicaSet, Mongos
-     - integer
-     - 30000
-     - Enables ``keepAlive`` on the TCP socket. See `the first parameter of socket.setKeepAlive <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_
-   * - **keepAliveInitialDelay**
-     - Server, ReplicaSet, Mongos
-     - integer
-     - 30000
-     - The number of milliseconds to wait before initiating keepAlive on the TCP socket. See `the second parameter of socket.setKeepAlive <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_
-   * - **connectTimeoutMS**
-     - Server, ReplicaSet, Mongos
-     - integer
-     - 30000
-     - TCP Connection timeout setting. The same as :manual:`connectTimeoutMS </reference/connection-string/#urioption.connectTimeoutMS>`
-   * - **socketTimeoutMS**
-     - Server, ReplicaSet, Mongos
-     - integer
-     - 360000
-     - TCP Socket timeout setting. The same as :manual:`socketTimeoutMS </reference/connection-string/#urioption.socketTimeoutMS>`
-   * - **acceptableLatencyMS**
-     - Mongos
-     - integer
-     - 15
-     - Deprecated alias to :manual:`localThresholdMS </reference/connection-string/#urioption.heartbeatFrequencyMS>`
-   * - **w**
-     - Server, ReplicaSet, Mongos
-     - string, integer
-     - null
-     - The write concern.
-   * - **wtimeout**
-     - Server, ReplicaSet, Mongos
-     - integer
-     - null
-     - Deprecated alias to :manual:`wtimeoutMS </reference/connection-string/#urioption.wtimeoutMS>`
-   * - **j**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - false
-     - Deprecated alias to :manual:`journal <https://docs.mongodb.com/manual/reference/connection-string/#urioption.journal>`
-   * - **forceServerObjectId**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - false
-     - Force server to assign _id values instead of driver.
-   * - **serializeFunctions**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - false
-     - Serialize functions on any object.
-   * - **ignoreUndefined**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - false
-     - Specify if the BSON serializer should ignore undefined fields.
-   * - **raw**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - false
-     - Return document results as raw BSON buffers.
-   * - **promoteLongs**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - true
-     - Promotes Long values to number if they fit inside the 53 bits resolution.
-   * - **promoteBuffers**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - false
-     - Promotes Binary BSON values to native Node Buffers.
-   * - **promoteValues**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - true
-     - Promotes BSON values to native types where possible, set to false to only receive wrapper types.
-   * - **domainsEnabled**
-     - Server, ReplicaSet, Mongos
-     - boolean
-     - false
-     - Deprecated. Enable the wrapping of the callback in the current domain, disabled by default to avoid perf hit.
-   * - **pkFactory**
-     - Server, ReplicaSet, Mongos
-     - object
-     - null
-     - A primary key factory object for generation of custom _id keys.
-   * - **promiseLibrary**
-     - Server, ReplicaSet, Mongos
-     - object
-     - null
-     - A Promise library class the application wishes to use such as Bluebird, must be ES6 compatible.
-   * - **loggerLevel**
-     - Server, Replicaset, Mongos
+     - **null**
+     - Specifies the version of the IP stack. Possible values include: **4**,
+       **6**, **0**, or **null**. The **0** and **null** settings attempt to
+       connect with IPv6 and fall back to IPv4 upon failure.
+   * - **tlsCAFile**
+     - string 
+     - **null**
+     - Specifies the path to a file containing one or more certificate
+       authorities to trust when establishing a TLS connection.
+   * - **tlsCertificateFile**
      - string
-     - null
-     - Specify the log level used by the driver logger (error/warn/info/debug)
-   * - **logger**
-     - Server, Replicaset, Mongos
+     - **null**
+     - Specifies the path to the client certificate file or the client private 
+       key file. If both are required, the two files should be concatenated.
+   * - **tlsCertificateKeyFilePassword**
+     - string
+     - **null**
+     - Specifies the password to decrypt client private key used for TLS
+       connections.
+   * - **noDelay**
+     - boolean
+     - **true**
+     - Specifies whether to use the TCP socket no delay option. For more
+       information, see the documentation for `Node.js socket.setNoDelay 
+       <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setnodelay_nodelay>`_.
+   * - **keepAlive**
+     - boolean
+     - **true**
+     - Specifies whether ``keepAlive`` is enabled on the TCP socket. For more
+       information, see the documentation for `Node.js socket.setKeepAlive
+       <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_.
+   * - **keepAliveInitialDelay**
+     - integer
+     - **30000**
+     - Specifies the number of milliseconds to wait before initiating
+       ``keepAlive`` on the TCP socket. For more information, see the
+       documentation for `Node.js socket.setKeepAlive
+       <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_.
+   * - **connectTimeoutMS**
+     - integer
+     - **30000**
+     - Specifies the number of milliseconds to wait before timeout on a TCP
+       connection.
+   * - **socketTimeoutMS**
+     - integer
+     - **360000**
+     - Specifies the number of milliseconds to wait before timeout on a TCP
+       socket.
+   * - **w**
+     - string or integer
+     - **null**
+     - Specifies the write concern. For more information on values, see the 
+       server documentation on the `w Option 
+       <https://docs.mongodb.com/manual/reference/write-concern/#w-option>`_.
+   * - **forceServerObjectId**
+     - boolean
+     - **false**
+     - Specifies whether to force the server to assign ``_id`` values to
+       documents instead of the driver.
+   * - **serializeFunctions**
+     - boolean
+     - **false**
+     - Specifies whether to serialize functions on any object passed to the
+       server. 
+   * - **ignoreUndefined**
+     - boolean
+     - **false**
+     - Specifies whether the BSON serializer should ignore undefined fields.
+   * - **raw**
+     - boolean
+     - **false**
+     - Specifies whether to return document results as raw BSON buffers.
+   * - **promoteLongs**
+     - boolean
+     - **true**
+     - Specifies whether to convert ``Long`` values to a number if they fit
+       inside 53 bits of resolution.
+   * - **promoteBuffers**
+     - boolean
+     - **false**
+     - Specifies whether to promote Binary BSON values to native Node.js 
+       ``Buffer`` type data.
+   * - **promoteValues**
+     - boolean
+     - **true**
+     - Specifies whether to promote BSON values to Node.js native types when
+       possible. When set to false, BSON values are presented as wrapper types.
+   * - **pkFactory**
      - object
-     - null
-     - Specify a customer logger mechanism, can be used to log using your app level logger
+     - **null**
+     - Specifies a primary key factory object that generates custom ``_id`` 
+       keys.
+   * - **promiseLibrary**
+     - object
+     - **null**
+     - Specifies the Promise library class the application uses (e.g. Bluebird).
+       This library must be compatible with ES6.
+   * - **loggerLevel**
+     - string
+     - **null**
+     - Specifies the logger level used by the driver. Valid choices are: 
+       ``error``, ``warn``, ``info``, and ``debug``.
+   * - **logger**
+     - object
+     - **null**
+     - Specifies a custom logger to be used by the client.
 
-The following options do not work with ``useUnifiedTopology: true`` and are consider deprecated:
-
-
-.. list-table::
-   :header-rows: 1
-
-   * - Option
-     - Affects
-     - Type
-     - Default
-     - Description
-   * - **autoReconnect**
-     - Server
-     - boolean
-     - true
-     - Enables autoReconnecting when using a standalone server in the legacy topology setup
-   * - **reconnectTries**
-     - Server
-     - integer
-     - 30
-     - When ``autoReconnect`` is enabled, the server attempt to reconnect #times.
-   * - **reconnectInterval**
-     - Server
-     - integer
-     - 1000
-     - When ``autoReconnect`` is enabled, the server will wait # milliseconds between retries.
-   * - **haInterval**
-     - ReplicaSet, Mongos
-     - integer
-     - 10000,5000
-     - Time between each replicaset status check.
-   * - **secondaryAcceptableLatencyMS**
-     - ReplicaSet
-     - integer
-     - 15
-     - Sets the range of servers to pick when using NEAREST (lowest ping ms + the latency fence, ex: range of 1 to (1 + 15) ms).
-   * - **connectWithNoPrimary**
-     - ReplicaSet
-     - boolean
-     - false
-     - Sets if the driver should connect even if no primary is available.
-   * - **bufferMaxEntries**
-     - Server, ReplicaSet, Mongos
-     - integer
-     - -1
-     - Sets a cap on how many operations the driver will buffer up before giving up on getting a working connection, default is -1 which is unlimited.
-
+For a complete list of options, see the `MongoClient 
+<https://mongodb.github.io/node-mongodb-native/3.4/api/MongoClient.html>`_
+API reference page.
