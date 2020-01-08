@@ -1,12 +1,34 @@
 =================
-Update a Document
+Change a Document
 =================
 
 .. default-domain:: mongodb
+
+Overview
+--------
 
 Update operations require a description of how to change matched
 documents. The update document gives us a way of communicating such a
 description.
 
+
+
 link to $set etc. operators
 talk about explicit value setting
+
+.. _updateDocuments:
+
+Update Documents
+----------------
+
+Use `update operators
+<https://docs.mongodb.com/manual/reference/operator/update/>`_ to alter
+matched documents.
+
+
+.. _replacementDocuments:
+
+Replacement Documents
+---------------------
+
+
