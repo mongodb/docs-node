@@ -2,27 +2,25 @@
 Authentication Mechanisms
 =========================
 
-In this section, you can find descriptions and sample code for connection to
-MongoDB with each authentication mechanism.
+In this section, you can find sample code for connection to MongoDB with each 
+authentication mechanism available in the MongoDB Community Edition.
 
 ``DEFAULT``
-~~~~~~~~~~~
+-----------
 
-Specify the ``DEFAULT`` authentication mechanism to the driver in order to
-authenticate to the server using a username and password. This option is a
-fallback setting that instructs the driver to negotiate the first
-authentication mechanism supported by the server in the following order of
-preference:
+The ``DEFAULT`` authentication mechanism is a fallback setting that instructs 
+the driver to negotiate the first authentication mechanism supported by the 
+server in the following order of preference:
 
-#. ``SCRAM-SHA-256``
-#. ``SCRAM-SHA-1``
-#. ``MONGODB-CR``
+#. `SCRAM-SHA-256`_
+#. `SCRAM-SHA-1`_
+#. `MONGODB-CR`_
 
 If the ``DEFAULT`` option is specified, the driver first attempts to
-authenticate using ``SCRAM-SHA-256``. If the server does not support that
-mechanism, the driver attempts to authenticate using ``SCRAM-SHA-1``. If the
-server does not support that mechanism either, the driver attempts to
-authenticate using ``MONGODB-CR``.
+authenticate using ``SCRAM-SHA-256``. If the version of the MongoDB instance 
+does not support that mechanism, the driver attempts to authenticate using 
+``SCRAM-SHA-1``. If the instance does not support that mechanism either, 
+the driver attempts to authenticate using ``MONGODB-CR``.
 
 You can specify this authentication mechanism by setting the ``authMechanism``
 parameter to ``DEFAULT`` in the
@@ -68,7 +66,7 @@ challenge-response authentication mechanisms (SCRAM) that MongoDB supports,
 see the :manual:`SCRAM </core/security-scram/>` section of the manual.
 
 ``SCRAM-SHA-256``
-~~~~~~~~~~~~~~~~~
+-----------------
 
 .. note::
 
@@ -117,7 +115,7 @@ following sample code.
    run().catch(console.dir);
 
 ``SCRAM-SHA-1``
-~~~~~~~~~~~~~~~
+---------------
 
 .. note::
    ``SCRAM-SHA-1`` is the default authentication method for MongoDB versions
@@ -164,7 +162,7 @@ in the following sample code.
    run().catch(console.dir);
 
 ``MONGODB-CR``
-~~~~~~~~~~~~~~
+--------------
 
 .. warning::
    MONGODB-CR was deprecated starting in MongoDB 3.6, and is no longer supported as of MongoDB 4.0
@@ -216,7 +214,7 @@ in the following sample code.
    authentication requests fail.
 
 ``X.509``
-~~~~~~~~~
+---------
 
 .. note::
    The X.509 authentication mechanism is only available in MongoDB versions
