@@ -1,14 +1,14 @@
-================
-Connection Guide
-================
+====================
+Authentication Guide
+====================
 
 .. default-domain:: mongodb
 
 .. toctree::
    :caption: Authentication Mechanisms 
 
-   /usage-examples/connection
-   /usage-examples/enterprise-connection
+   /usage-examples/authentication-mechanisms
+   /usage-examples/enterprise-authentication-mechanisms
 
 Overview
 --------
