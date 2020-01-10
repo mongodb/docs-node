@@ -4,15 +4,14 @@ CRUD Operations Guide
 
 .. default-domain:: mongodb
 
-.. hidden::
-   .. toctree::
-      :caption: CRUD Operations
+.. toctree::
+   :caption: CRUD Operations
 
-      /crud/read-operations
-      /crud/write-operations
-      /crud/query-document
-      /crud/returned-data
-      /crud/compound-operations
+   /crud/read-operations
+   /crud/write-operations
+   /crud/query-document
+   /crud/returned-data
+   /crud/compound-operations
 
 Overview
 --------
