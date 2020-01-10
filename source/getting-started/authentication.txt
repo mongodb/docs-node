@@ -7,8 +7,8 @@ Authentication Guide
 .. toctree::
    :caption: Authentication Mechanisms 
 
-   /usage-examples/authentication-mechanisms
-   /usage-examples/enterprise-authentication-mechanisms
+   /authentication-mechanisms
+   /authentication-mechanisms-enterprise
 
 Overview
 --------
