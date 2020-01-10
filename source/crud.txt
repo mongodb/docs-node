@@ -4,14 +4,15 @@ CRUD Operations Guide
 
 .. default-domain:: mongodb
 
-.. toctree::
-   :caption: CRUD Operations
+.. hidden::
+   .. toctree::
+      :caption: CRUD Operations
 
-   /crud/read-operations
-   /crud/write-operations
-   /crud/query-document
-   /crud/returned-data
-   /crud/compound-operations
+      /crud/read-operations
+      /crud/write-operations
+      /crud/query-document
+      /crud/returned-data
+      /crud/compound-operations
 
 Overview
 --------
@@ -20,36 +21,15 @@ CRUD (Create, Read, Update, Delete) operations allow you to work with
 the data stored inside of MongoDB. CRUD operations fall into two
 categories: read operations and write operations.
 
-Customization
-~~~~~~~~~~~~~
+.. note::
 
-All CRUD operations offer customizable options to tailor behavior for
-your application's specific needs. You can customize read operations to
-:doc:`skip </crud/read-operations/skip>` a certain number of documents
-at the beginning of the collection of matched documents,
-:doc:`limit </crud/read-operations/limit>` the number of returned
-documents, and :doc:`sort <crud/read-operations/sort>` returned
-documents in a particular order. You can customize write operations to
-:doc:`upsert </crud/write-operations/upsert>` instead of update, time
-out if the method fails to complete within a certain period of time,
-and write with varying levels of resilience in a replica set.
-
-Asynchronicity
-~~~~~~~~~~~~~~
-
-CRUD operations execute *asynchronously*: that is, you call a method,
-and instead of waiting for it to return, that method executes
-`separately <https://nodejs.org/de/docs/guides/blocking-vs-non-blocking/>`_
-in the background of your application while your program continues to
-execute subsequent statements *before that method finishes execution*.
-"But wait," You might say, "this method returns the results!" And yes,
-it does. But instead of just returning a collection of documents or a
-result summary, each method in the driver returns an object called a
-Promise that serves as a place where you can get the result of your
-operation once it finishes executing. You can use the ``await`` keyword
-on a Promise to halt execution until the operation finishes executing,
-but keep in mind that you can only use ``await`` in an ``async`` scope,
-so you must declare the containing method ``async``.
+   CRUD operations execute **asynchronously** because the driver
+   communicates with MongoDB over the network, which is subject to
+   latency, timeouts, and other complications that can delay execution
+   during synchronous communication. As a result, each CRUD
+   method returns a Promise that resolves to the output of that
+   operation. A common method of Promise resolution uses
+   ``async``/``await`` syntax.
 
 Read Operations
 ---------------
@@ -85,7 +65,6 @@ navigate matched documents.
       :language: javascript
       :start-after: start find crud example
       :end-before: end find crud example
-
 
 Aggregate
 ~~~~~~~~~
@@ -205,8 +184,22 @@ match the query.
       :end-before: end delete crud example
 
 Compound operations
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 Some operations combine aspects of read and write operations. Consult
 :doc:`compound operations </crud/compound-operations>` to learn more
 about these hybrid methods.
+
+Customization
+-------------
+
+All CRUD operations offer customizable options to tailor behavior for
+your application's specific needs. You can customize read operations to
+:doc:`skip </crud/read-operations/skip>` a certain number of documents
+at the beginning of the collection of matched documents,
+:doc:`limit </crud/read-operations/limit>` the number of returned
+documents, and :doc:`sort <crud/read-operations/sort>` returned
+documents in a particular order. You can customize write operations to
+:doc:`upsert </crud/write-operations/upsert>` instead of update, time
+out if the method fails to complete within a certain period of time,
+and write with varying levels of resilience in a replica set.

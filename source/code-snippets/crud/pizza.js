@@ -66,13 +66,8 @@ async function run() {
       },
     ]);
     changeStream.on("change", function(change) {
-      console.log(
-        "New order for " +
-          change.fullDocument.name +
-          " at " +
-          change.fullDocument.address +
-          ".",
-      );
+      const { name, address } = change.fullDocument;
+      console.log(`New order for ${name} at ${address}.`);
     });
     // end watch crud example
 
