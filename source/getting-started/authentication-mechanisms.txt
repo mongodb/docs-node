@@ -12,9 +12,9 @@ The ``DEFAULT`` authentication mechanism is a fallback setting that instructs
 the driver to negotiate the first authentication mechanism supported by the 
 server in the following order of preference:
 
-#. `SCRAM-SHA-256`_
-#. `SCRAM-SHA-1`_
-#. `MONGODB-CR`_
+#. `<SCRAM-SHA-256>`_
+#. `<SCRAM-SHA-1>`_
+#. `<MONGODB-CR>`_
 
 If the ``DEFAULT`` option is specified, the driver first attempts to
 authenticate using ``SCRAM-SHA-256``. If the version of the MongoDB instance 
