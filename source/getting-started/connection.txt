@@ -4,6 +4,11 @@ Connection Guide
 
 .. default-domain:: mongodb
 
+.. toctree::
+   :caption: Examples
+
+   /usage-examples/bulkWrite
+
 Overview
 --------
 
@@ -214,7 +219,7 @@ in the following sample code.
 username and password to authenticate your user.
 
 You can specify this option by setting the ``authMechanism`` parameter to value
-``MONGODB-CR` in the
+``MONGODB-CR`` in the
 :manual:`URI ConnectionString </manual/reference/connection-string/>` as shown
 in the following sample code.
 
@@ -559,8 +564,8 @@ passed to the ``MongoClient`` constructor.
      - string or integer
      - **null**
      - Specifies the write concern. For more information on values, see the
-       server documentation on the :manual:`w Option
-       </reference/write-concern/#w-option>`_.
+       server documentation on the 
+       :manual:`w Option </reference/write-concern/#w-option>`.
    * - **forceServerObjectId**
      - boolean
      - **false**
