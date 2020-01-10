@@ -10,3 +10,38 @@ Authentication Guide
 
    /getting-started/authentication-mechanisms
    /getting-started/authentication-mechanisms-enterprise
+
+Overview
+--------
+
+When you connect to a MongoDB instance or deployment, you provide your
+credentials and a specific authentication mechanism to the driver. The driver
+negotiates with MongoDB to verify your identity using the authentication
+mechanism. Once successfully connected, you can perform MongoDB commands that
+your user is permissioned for.
+
+These guides show you how to connect with the Node.js driver to a MongoDB
+instance using each authentication mechanism.
+
+The `Authentication Mechanisms <authentication-mechanisms>`_ guide contains 
+sample connection code using each of the authentication mechanisms supported in
+the MongoDB Community Edition which includes:
+
+- ``DEFAULT``
+- ``SCRAM-SHA-256``
+- ``SCRAM-SHA-1``
+- ``MONGODB-CR``
+- ``X.509``
+
+The 
+`Enterprise Authentication Mechanisms <authentication-mechanisms-enterprise>`_
+guide contains sample connection code using authentication mechanisms
+available only in MongoDB Enterprise Edition which includes:
+
+- ``Kerberos (GSSAPI/SSPI)``
+- ``LDAP (PLAIN)``
+
+.. note::
+   For instructions on MongoDB driver installation and deployment setup, see
+   our :guides:`Connect to MongoDB guide </server/drivers/>`. Select your
+   deployment type and the NodeJS client.
