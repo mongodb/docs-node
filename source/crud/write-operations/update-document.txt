@@ -7,9 +7,12 @@ Change a Document
 Overview
 --------
 
+You can alter documents in MongoDB in two different ways.
+
 Update operations require a description of how to change matched
 documents. The update document gives us a way of communicating such a
 description.
+
 
 
 
@@ -31,4 +34,8 @@ matched documents.
 Replacement Documents
 ---------------------
 
-
+Methods that replace, rather than update, documents accept a
+**replacement document**. This document consists of fields with literal
+values that correspond one-to-one with the fields and values in the
+resulting altered document. For instance, consider a collection
+containing the 

@@ -6,7 +6,6 @@ CRUD Operations Guide
 
 .. toctree::
    :caption: CRUD Operations
-   :hidden:
 
    /crud/read-operations
    /crud/write-operations
@@ -19,9 +18,38 @@ Overview
 
 CRUD (Create, Read, Update, Delete) operations allow you to work with
 the data stored inside of MongoDB. CRUD operations fall into two
-categories: read operations and write operations. All CRUD operations
-offer customizable options to tailor behavior for your application's
-specific needs. CRUD operations are all asynchronous.
+categories: read operations and write operations.
+
+Customization
+~~~~~~~~~~~~~
+
+All CRUD operations offer customizable options to tailor behavior for
+your application's specific needs. You can customize read operations to
+:doc:`skip </crud/read-operations/skip>` a certain number of documents
+at the beginning of the collection of matched documents,
+:doc:`limit </crud/read-operations/limit>` the number of returned
+documents, and :doc:`sort <crud/read-operations/sort>` returned
+documents in a particular order. You can customize write operations to
+:doc:`upsert </crud/write-operations/upsert>` instead of update, time
+out if the method fails to complete within a certain period of time,
+and write with varying levels of resilience in a replica set.
+
+Asynchronicity
+~~~~~~~~~~~~~~
+
+CRUD operations execute *asynchronously*: that is, you call a method,
+and instead of waiting for it to return, that method executes
+`separately <https://nodejs.org/de/docs/guides/blocking-vs-non-blocking/>`_
+in the background of your application while your program continues to
+execute subsequent statements *before that method finishes execution*.
+"But wait," You might say, "this method returns the results!" And yes,
+it does. But instead of just returning a collection of documents or a
+result summary, each method in the driver returns an object called a
+Promise that serves as a place where you can get the result of your
+operation once it finishes executing. You can use the ``await`` keyword
+on a Promise to halt execution until the operation finishes executing,
+but keep in mind that you can only use ``await`` in an ``async`` scope,
+so you must declare the containing method ``async``.
 
 Read Operations
 ---------------
@@ -47,6 +75,18 @@ While ``findOne()`` returns a single document, ``find()`` returns a
 :doc:`cursor </crud/read-operations/cursor>` that you can use to
 navigate matched documents.
 
+.. example::
+
+   A pizza restaurant wants to find all pizzas ordered by Lemony Snicket
+   yesterday. They run the following ``find()`` query on the
+   ``orders`` collection:
+
+   .. literalinclude:: /code-snippets/crud/pizza.js
+      :language: javascript
+      :start-after: start find crud example
+      :end-before: end find crud example
+
+
 Aggregate
 ~~~~~~~~~
 
@@ -55,6 +95,17 @@ collection, you can use ``aggregate()``. This method accepts a
 pipeline of aggregation commands that are run in sequence. These
 commands let you filter, summarize, and augment documents in a
 collection into a result set for viewing.
+
+.. example::
+
+   A pizza restaurant wants to run a status report on-demand to
+   summarize pizza orders over the past week. They run the following
+   ``aggregate()`` query on the ``orders`` collection:
+
+   .. literalinclude:: /code-snippets/crud/pizza.js
+      :language: javascript
+      :start-after: start aggregate crud example
+      :end-before: end aggregate crud example
 
 Watch / Subscribe
 ~~~~~~~~~~~~~~~~~
@@ -65,6 +116,17 @@ deleted documents that match a certain criteria, you can use
 are run in sequence on new data whenever write operations are run on
 the collection.
 
+.. example::
+
+   A pizza restaurant wants to get a notification whenever a new pizza
+   order comes in. They run the following ``watch()`` query on the
+   ``orders`` collection:
+
+   .. literalinclude:: /code-snippets/crud/pizza.js
+      :language: javascript
+      :start-after: start watch crud example
+      :end-before: end watch crud example
+
 Write Operations
 ----------------
 
@@ -74,7 +136,7 @@ it involves changing data that already exists, or even removing it
 entirely. There are three distinct write operations: create, update, and
 delete. The driver offers methojds for each variant of write operation:
 
-Create
+Insert
 ~~~~~~
 
 If you want to add new documents to a collection, you can use
@@ -84,8 +146,19 @@ single document or a collection of documents respectively. Note that the
 driver will generate a unique ``_id`` field automatically for any
 inserted documents that lack such a field.
 
-Update
-~~~~~~
+.. example::
+
+   A pizza restaurant creates an order every time a customer requests
+   a pizza. They run the following ``insertOne()`` query on the
+   ``orders`` collection:
+
+   .. literalinclude:: /code-snippets/crud/pizza.js
+      :language: javascript
+      :start-after: start insert crud example
+      :end-before: end insert crud example
+
+Update / Replace
+~~~~~~~~~~~~~~~~
 
 If you want to alter existing documents in a collection, you can use
 :doc:`updateOne() </usage-examples/updateOne>`,
@@ -99,6 +172,17 @@ that describes an entirely new document instead of an update document.
 You can configure any update operation to behave as an
 :doc:`upsert </crud/write-operations/upsert>` instead of an update.
 
+.. example::
+
+   A pizza restaurant wants to modify the delivery address for an order
+   that already exists. They run the following ``updateOne()`` query on
+   the ``orders`` collection:
+
+   .. literalinclude:: /code-snippets/crud/pizza.js
+      :language: javascript
+      :start-after: start update crud example
+      :end-before: end update crud example
+
 Delete
 ~~~~~~
 
@@ -109,6 +193,16 @@ query document that describes the documents you would like to delete.
 Delete operations will delete either one (in the case of
 ``deleteOne()``) or all (in the case of ``deleteMany()``) documents that
 match the query.
+
+.. example::
+
+   A pizza restaurant wants to delete a cancelled order. They run the
+   following ``deleteOne()`` query on the ``orders`` collection:
+
+   .. literalinclude:: /code-snippets/crud/pizza.js
+      :language: javascript
+      :start-after: start delete crud example
+      :end-before: end delete crud example
 
 Compound operations
 ~~~~~~~~~~~~~~~~~~~
