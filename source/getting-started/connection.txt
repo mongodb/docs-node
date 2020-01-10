@@ -264,9 +264,9 @@ in the following sample code.
    2.6 and later.
 
 The ``X.509`` authentication mechanism uses
-:wiki:`TLS </Transport_Layer_Security>` with X.509 certificates to authenticate
-your user, identified by the distinguished name (DN) of your client
-certificate.
+:wikipedia:`TLS </Transport_Layer_Security>` with X.509 certificates to
+authenticate your user, identified by the distinguished name (DN) of your
+client certificate.
 
 You can specify this authentication mechanism by setting the following
 parameters of your
@@ -386,15 +386,10 @@ LDAP (PLAIN)
 The ``PLAIN`` authentication mechanism uses your username and password to
 authenticate to a Lightweight Directory Access Protocol (LDAP) server.
 
-Specify the ``PLAIN`` option to the driver to authenticate using the
-Lightweight Directory Access Protocol (LDAP). This authentication mechanism
-verifies your username and password with an external LDAP server to determine
-your user permissions.
-
 You can specify this authentication mechanism by setting the ``authMechanism``
-parameter of the :manual:`URI ConnectionString
-</reference/connection-string/>` to ``PLAIN`` along with the LDAP username
-and password as shown in the following sample code.
+parameter to ``PLAIN`` and including your LDAP username and password in the
+:manual:`URI ConnectionString </reference/connection-string/>` as shown
+in the following sample code.
 
 .. code-block:: js
 
@@ -402,14 +397,12 @@ and password as shown in the following sample code.
 
    // specify the placeholder values for your environment in the following lines
    const clusterUrl = "<MongoDB cluster URL>";
-   const principal = encodeURIComponent("<Kerberos principal and realm>");
-   const serviceRealm = "<Kerberos service realm>";
-   const authMechanismProperties = `SERVICE_REALM:${serviceRealm}`;
-
-   const authMechanism = "GSSAPI";
+   const ldapUsername = "<LDAP username>";
+   const ldapPassword = "<LDAP password>";
+   const authMechanism = "PLAIN";
 
    // Connection URI
-   const uri = `mongodb+srv://${principal}@${clusterUrl}/?authMechanism=${authMechanism}&authMechanismProperties=${authMechanismProperties}`;
+   const uri = `mongodb+srv://${ldapUsername}:${ldapPassword}@${clusterUrl}/?authMechanism=${authMechanism}`;
 
    const client = new MongoClient(uri);
 
