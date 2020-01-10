@@ -2,30 +2,32 @@
 Authentication Mechanisms
 =========================
 
-In this section, you can find sample code for connection to MongoDB with each 
-authentication mechanism available in the MongoDB Community Edition.
+In this section, you can find sample code for connection to MongoDB with each
+authentication mechanism available in the MongoDB Community Edition:
+``DEFAULT``, ``SCRAM-SHA-256``, ``SCRAM-SHA-1``, ``MONGODB-CR``, and ``X.509``.
 
 ``DEFAULT``
 -----------
 
-The ``DEFAULT`` authentication mechanism is a fallback setting that instructs 
-the driver to negotiate the first authentication mechanism supported by the 
+The ``DEFAULT`` authentication mechanism is a fallback setting that instructs
+the driver to negotiate the first authentication mechanism supported by the
 server in the following order of preference:
 
-#. `<SCRAM-SHA-256>`_
-#. `<SCRAM-SHA-1>`_
-#. `<MONGODB-CR>`_
+#. ``SCRAM-SHA-256``
+#. ``SCRAM-SHA-1``
+#. ``MONGODB-CR``
 
 If the ``DEFAULT`` option is specified, the driver first attempts to
-authenticate using ``SCRAM-SHA-256``. If the version of the MongoDB instance 
-does not support that mechanism, the driver attempts to authenticate using 
-``SCRAM-SHA-1``. If the instance does not support that mechanism either, 
+authenticate using ``SCRAM-SHA-256``. If the version of the MongoDB instance
+does not support that mechanism, the driver attempts to authenticate using
+``SCRAM-SHA-1``. If the instance does not support that mechanism either,
 the driver attempts to authenticate using ``MONGODB-CR``.
 
 You can specify this authentication mechanism by setting the ``authMechanism``
 parameter to ``DEFAULT`` in the
-:manual:`URI ConnectionString </reference/connection-string/>` as shown in the
-following code, or by omitting the parameter since it is the default value.
+:manual:`URI ConnectionString </reference/connection-string/>`, or by omitting
+the parameter since it is the default value. Also include your username and
+password as shown in the code below.
 
 .. important::
    Always **URI encode** the username and password using the

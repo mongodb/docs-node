@@ -2,8 +2,12 @@
 Enterprise Authentication Mechanisms
 ====================================
 
-Kerberos (GSSAPI/SSPI)
-~~~~~~~~~~~~~~~~~~~~~~
+In this section, you can find sample code for connection to MongoDB with each
+authentication mechanism available in the MongoDB Enterprise Edition:
+``Kerberos (GSSAPI/SSPI)`` and  ``LDAP (PLAIN)``.
+
+``Kerberos (GSSAPI/SSPI)``
+--------------------------
 
 .. note::
    The Node.js driver supports Kerberos on UNIX using the MIT Kerberos library
@@ -21,7 +25,7 @@ parameters of the
 - Specify a ``SERVICE_REALM`` value in the ``authMechanismProperties``
   parameter if a custom service realm is required.
 
-The following code sample authenticates to Kerberos for UNIX using GSSAPI.
+The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
 
 .. code-block:: js
 
@@ -62,8 +66,8 @@ The following code sample authenticates to Kerberos for UNIX using GSSAPI.
    `GSSAPI RFC-4652 <https://tools.ietf.org/html/rfc4752>`_ the SASL
    mechanism.
 
-LDAP (PLAIN)
-~~~~~~~~~~~~
+``LDAP (PLAIN)``
+----------------
 
 The ``PLAIN`` authentication mechanism uses your username and password to
 authenticate to a Lightweight Directory Access Protocol (LDAP) server.
