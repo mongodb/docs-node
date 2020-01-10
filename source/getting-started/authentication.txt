@@ -4,6 +4,12 @@ Authentication Guide
 
 .. default-domain:: mongodb
 
+.. toctree::
+   :caption: Authentication Mechanisms 
+
+   authentication-mechanisms
+   authentication-mechanisms-enterprise
+
 Overview
 --------
 
