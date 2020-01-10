@@ -9,7 +9,6 @@ Getting Started
 
 .. toctree::
    :caption: Examples
-   :max-depth: 2
 
    /getting-started/connection
    /getting-started/crud-guide

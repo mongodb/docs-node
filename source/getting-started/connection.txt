@@ -5,9 +5,10 @@ Connection Guide
 .. default-domain:: mongodb
 
 .. toctree::
-   :caption: Examples
+   :caption: Authentication Mechanisms 
 
-   /usage-examples/bulkWrite
+   /usage-examples/connection
+   /usage-examples/enterprise-connection
 
 Overview
 --------
