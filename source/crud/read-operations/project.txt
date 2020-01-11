@@ -5,8 +5,9 @@ Specify Which Fields to Return
 .. default-domain:: mongodb
 
 Use a projection to control which fields appear in the documents
-returned by read operations. You can accomplish this in two
-ways:
+returned by read operations. Many requests only require certain fields,
+so projections can help you limit unnecessary network bandwidth usage.
+Projections work in two ways:
 
 - Explicitly include fields with a value of ``1``. This has the
   side-effect of implicitly excluding all unspecified fields.
@@ -24,7 +25,7 @@ operation:
 
 .. code-block:: javascript
 
-   await collection.insertMany([
+   await fruits.insertMany([
       { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
       { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 },
       { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },

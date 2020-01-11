@@ -1,12 +1,14 @@
-===========================
-Work With Operation Results
-===========================
+=========================
+Access Data From a Cursor
+=========================
 
 .. default-domain:: mongodb
 
 Read operations that return multiple documents do not immediately return
-all values matching the query. Instead, these operations rely upon an
-object called a **cursor** that fetches documents in batches. Cursors
+all values matching the query. Because a query can potentially match
+very large sets of documents, these operations rely upon an
+object called a **cursor** that fetches documents in batches to reduce
+both memory consumption and network bandwidth usage. Cursors
 are highly configurable and offer multiple interaction paradigms for
 different use cases.
 
@@ -26,8 +28,9 @@ Other methods, like ``Collection.findOne()`` and ``Collection.watch()``
 use cursors to generate results, but do not directly expose those
 cursors to the method caller.
 
-.. warning:: Do not combine different cursor paradigms on a single cursor
+.. warning::
 
+   Do not combine different cusor paradigms on a single cursor.
    Cursors are designed under the assumption that users will use only
    **one** of the following paradigms to access data. Failure to use
    just one of these paradigms will lead to undefined behavior. For
@@ -35,8 +38,9 @@ cursors to the method caller.
    ``hasNext()`` and ``forEach()`` on the same cursor will likely lead
    to an error.
 
-.. warning:: Do not execute multiple async methods on a single cursor in parallel
+.. warning::
 
+   Do not execute multiple async methods on a single cursor in parallel.
    Only perform one async operation at a time on a single cursor.
    Attempting multiple async operations in parallel on a single cursor
    will result in undefined behavior. For example,

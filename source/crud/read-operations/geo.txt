@@ -4,9 +4,10 @@ Search Geospatially
 
 .. default-domain:: mongodb
 
-You can query against geospatial indexes in several ways with
+You can query data based on geographical location using
 `geospatial query operators
 <https://docs.mongodb.com/manual/geospatial-queries/index.html>`_.
+Geospatial queries require a geospatial index.
 
 Overview
 --------
@@ -43,9 +44,9 @@ are the same, effectively closing the polygon. To learn more about
 the GeoJSON shapes you can use in MongoDB, consult the
 `GeoJSON manual entry
 <https://docs.mongodb.com/manual/reference/geojson/>`_. To geospatially
-query GeoJSON data, add your GeoJSON data to a ``2dsphere`` index. You
-can create a ``2dsphere`` index by passing the value ``2dsphere`` for a
-field in the ``createIndex()`` method.
+query GeoJSON data, you must first add your GeoJSON data to a
+``2dsphere`` index. You can create a ``2dsphere`` index by passing the
+value ``2dsphere`` for a field in the ``createIndex()`` method.
 
 Coordinates on a 2D Plane
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -92,7 +93,7 @@ The following examples use the ``theaters`` collection of the
      db.movies.createIndex({location.geo: "2dsphere"})
 
 Query by Proximity
-------------------
+~~~~~~~~~~~~~~~~~~
 
 The `$near
 <https://docs.mongodb.com/manual/reference/operator/query/near/#op._S_near>`_
@@ -103,61 +104,21 @@ complete list of options, see the reference documentation for ``$near``.
 The following example queries for theaters within ``10,000`` meters of
 ``[ -73.9667, 40.78 ]``.
 
-.. code-block:: javascript
-
-   const database = client.db("sample_mflix");
-   const collection = database.collection("theaters");
-
-   const query = {
-      "location.geo": {
-         $near: {
-            $geometry: { type: "Point", coordinates: [-73.9667, 40.78] },
-            $maxDistance: 10000,
-         },
-      },
-   };
-
-   // find documents based on our query, sort, and projection
-   const cursor = collection.find(query);
-
-   // print a message if no documents were found
-   if ((await cursor.count()) == 0) {
-      console.log("No documents found!");
-   }
-   await cursor.forEach(console.dir);
+.. literalinclude:: /code-snippets/crud/theaters.js
+   :language: javascript
+   :start-after: start proximity geo example
+   :end-before: end proximity geo example
+   :dedent: 4
 
 Query Within a Range
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 The ``$geoWithin`` operator selects documents with geospatial data that
 exist within a specified shape. The following example searches for
 movie theaters in the new england area:
 
-.. code-block:: javascript
-
-   const query = {
-      "location.geo": {
-         $geoWithin: {
-            $geometry: {
-            type: "Polygon",
-            coordinates: [
-               [
-                  [-72, 40],
-                  [-74, 41],
-                  [-72, 39],
-                  [-72, 40],
-               ],
-            ],
-            },
-         },
-      },
-   };
-
-   // find documents based on our query, sort, and projection
-   const cursor = collection.find(query);
-
-   // print a message if no documents were found
-   if ((await cursor.count()) == 0) {
-      console.log("No documents found!");
-   }
-   await cursor.forEach(console.dir);
+.. literalinclude:: /code-snippets/crud/theaters.js
+   :language: javascript
+   :start-after: start range geo example
+   :end-before: end range geo example
+   :dedent: 4

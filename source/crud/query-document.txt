@@ -4,13 +4,13 @@ Specify a Query
 
 .. default-domain:: mongodb
 
-Specify a Query
-~~~~~~~~~~~~~~~
+Overview
+~~~~~~~~
 
-All CRUD operations apply to a set of matched documents in a collection.
-By default, these operations match **all** documents in a collection.
-Sometimes, however, you want to match only certain items in a
-collection; the query document allows you to make your searches more
+Most CRUD operations apply to a set of matched documents in a
+collection. By default, these operations match **all** documents in a
+collection. Sometimes, however, you want to match only certain items in
+a collection; the query document allows you to make your searches more
 specific. Query documents contain one or more field-level expressions
 that determine which documents to include in the result set. You can
 match fields against literal values (e.g. ``{title:'The Room'}``) or
