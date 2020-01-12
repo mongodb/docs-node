@@ -7,13 +7,22 @@ Run A Command
 Overview
 --------
 
-You can run all :manual:`non CRUD </crud/>` database operations using the
+You can run all :manual:`non CRUD </crud/>` database operations using the 
 :node-api:`command </Admin.html#~command>` method. Typically ``the command interface`` is used
 for diagnostic and administrative tasks, such as fetching server stats
 or initializing a replica set. 
 
 .. note::
-    Using ``collection methods`` instead of raw database commands
-    through the ``command()`` is recommended for beginner users, since
-    ``collection methods`` are wrappers that abstract some configuration. 
+    Using :manual:`collection methods </reference/method/js-collection>`
+    instead of raw database commands through the ``command()`` is
+    recommended for beginner users, since ``collection methods`` are
+    wrappers that abstract some configuration. 
 
+Create an `Object
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
+to specify additional options. Set the ``maxTimeMS`` field of this object to state 
+the number of milliseconds to wait before aborting the query.
+
+The ``command()`` method returns a `Promise
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to an object containing the return object of the operation that was run.
