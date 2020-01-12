@@ -26,3 +26,8 @@ the number of milliseconds to wait before aborting the query.
 The ``command()`` method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 that resolves to an object containing the return object of the operation that was run.
+
+
+.. literalinclude:: /code-snippets/usage-examples/command.js
+  :language: javascript
+  :linenos:
