@@ -1,4 +1,5 @@
 name = "node"
+toc_landing_pages = ["/crud"]
 
 [constants]
 version = 4.0

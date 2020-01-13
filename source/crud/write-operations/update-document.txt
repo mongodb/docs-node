@@ -13,6 +13,9 @@ Update operations require a description of how to change matched
 documents. The update document gives us a way of communicating such a
 description.
 
+Replace operations insert an entirely new document in the place of the
+matched document with the same ``_id`` value.
+
 
 
 
