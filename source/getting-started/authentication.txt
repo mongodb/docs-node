@@ -4,11 +4,11 @@ Authentication Guide
 
 .. default-domain:: mongodb
 
-.. toctree::
-   :hidden:
+.. class:: hidden
+   .. toctree::
 
-   /getting-started/authentication-mechanisms
-   /getting-started/authentication-mechanisms-enterprise
+      /getting-started/authentication-mechanisms
+      /getting-started/authentication-mechanisms-enterprise
 
 Overview
 --------
