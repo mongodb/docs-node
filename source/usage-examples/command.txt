@@ -8,9 +8,7 @@ Overview
 --------
 
 You can run all :manual:`non CRUD </crud/>` database operations using the 
-:node-api:`command </Admin.html#~command>` method. Typically ``the command interface`` is used
-for diagnostic and administrative tasks, such as fetching server stats
-or initializing a replica set. 
+:node-api:`command() </Admin.html#~command>` method. Typically ``command()`` is used for diagnostic and administrative tasks, such as fetching server stats or initializing a replica set. 
 
 .. note::
     Using :manual:`collection methods </reference/method/js-collection>`
