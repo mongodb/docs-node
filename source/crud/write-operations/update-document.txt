@@ -7,38 +7,179 @@ Change a Document
 Overview
 --------
 
-You can alter documents in MongoDB in two different ways.
+You can alter documents in a MongoDB collection with two distinct
+operation types: update and replace. Update operations mutate specified
+fields in altered documents, but leave other fields and values
+unchanged. Replace operations remove all existing fields in altered
+documents and substitute the specified fields and values instead.
 
-Update operations require a description of how to change matched
-documents. The update document gives us a way of communicating such a
-description.
+Update
+------
 
-Replace operations insert an entirely new document in the place of the
-matched document with the same ``_id`` value.
+Create an **update document** using `update operators
+<https://docs.mongodb.com/manual/reference/operator/update/>`_ to
+describe the changes you would like to make via an **update** operation.
+Update documents use the following form:
 
+.. code-block:: javascript
 
+   {
+      <update operator>: {
+         <field> : {
+            ...
+         },
+         <field> : {
+         }
+      },
+      <update operator>: {
+         ...
+      }
+   }
 
+The top level of an update document contains exclusively update
+operators. Update operators allow you to `set the value of a field to a
+literal value
+<https://docs.mongodb.com/manual/reference/operator/update/set/#up._S_set>`_,
+`increment or decrement field values
+<https://docs.mongodb.com/manual/reference/operator/update/inc/#up._S_inc>`_,
+`rename fields
+<https://docs.mongodb.com/manual/reference/operator/update/rename/#up._S_rename>`_,
+`remove fields
+<https://docs.mongodb.com/manual/reference/operator/update/unset/#up._S_unset>`_,
+and `multiply a field value
+<https://docs.mongodb.com/manual/reference/operator/update/mul/#up._S_mul>`_,
+`among others <https://docs.mongodb.com/manual/reference/operator/update/#id1>`_.
 
-link to $set etc. operators
-talk about explicit value setting
+Update operators alter only the fields specified in your update
+document.
 
-.. _updateDocuments:
+Example
+~~~~~~~
 
-Update Documents
-----------------
+Consider a document containing fields containing the english
+alphabet of lowercase letters ``a`` through ``z``:
 
-Use `update operators
-<https://docs.mongodb.com/manual/reference/operator/update/>`_ to alter
-matched documents.
+.. code-block:: javascript
 
+   {
+      _id: 465,
+      a: 1,
+      b: 2,
+      c: 3,
+      ...
+      y: 25,
+      z: 26,
+   }
 
-.. _replacementDocuments:
+Updating this document with the following code snippet only alters
+the ``z`` field, leaving all other fields in place:
 
-Replacement Documents
----------------------
+.. code-block:: javascript
 
-Methods that replace, rather than update, documents accept a
-**replacement document**. This document consists of fields with literal
-values that correspond one-to-one with the fields and values in the
-resulting altered document. For instance, consider a collection
-containing the 
+   // match only documents containing a field named 'a' with value 1
+   const filter = { 'a': 1 };
+   // update the value of the 'z' field to 42
+   const updateDocument = {
+      $set: {
+         z: 42,
+      },
+   };
+   const result = await collection.updateOne(filter, updateDocument);
+
+This operation produces the following altered document, with an updated
+``z`` field value and all other fields left unchanged:
+
+.. code-block:: javascript
+
+   {
+      _id: 465,
+      a: 1,
+      b: 2,
+      c: 3,
+      ...
+      y: 25,
+      z: 42,
+   }
+
+If an update operation fails to match any documents in a collection, it
+will do nothing by default. However, update operations can be configured
+to :doc:`upsert </crud/write-operations/upsert>`, or "update or insert",
+which changes this behavior to instead insert a new document if no
+matching document is found. Update operations cannot change the ``_id``
+field of a document. Update operations fail if the updated document
+violates a `unique index
+<https://docs.mongodb.com/manual/core/index-unique/>`_.
+
+Replace
+-------
+
+Create a **replacement document** using literal values to describe the
+new document you would like to insert via a **replace** operation.
+Replacement documents use the following form:
+
+.. code-block:: javascript
+
+   {
+      <field>: {
+         <value>
+      },
+      <field>: {
+         ...
+      }
+   }
+
+Replacement documents contain field names and the values you would like
+to assign to those fields. The altered document contains only the
+fields listed in the replacement document after a replacement operation.
+
+Example
+~~~~~~~
+
+Consider a document containing fields containing the english
+alphabet of lowercase letters ``a`` through ``z``:
+
+.. code-block:: javascript
+
+   {
+      _id: 465,
+      a: 1,
+      b: 2,
+      c: 3,
+      ...
+      y: 25,
+      z: 26,
+   }
+
+Replacing this document with the following code snippet removes all
+fields besides the ``z`` field, including the ``a`` field matched by
+the filter:
+
+.. code-block:: javascript
+
+   // match only documents containing a field named 'a' with value 1
+   const filter = { 'a': 1 };
+   // replace the matched document with a document containing only
+   // the field 'z' with value 42
+   const replacementDocument = {
+      z: 42,
+   };
+   const result = await collection.replaceOne(filter, replacementDocument);
+
+This produces the following document. Note that only the ``z`` field,
+which was present in the replacement document, and the immutable ``_id``
+field, which cannot be changed by any operation, remain:
+
+.. code-block:: javascript
+
+   {
+      _id: 465,
+      z: 42,
+   }
+
+If a replace operation fails to match any documents in a collection, it
+will do nothing by default. However, replace operations can be configured
+to :doc:`upsert </crud/write-operations/upsert>`, or "update or insert",
+which changes this behavior to instead insert a new document if no
+matching document is found. Replace operations fail if the updated
+document violates a `unique index
+<https://docs.mongodb.com/manual/core/index-unique/>`_.

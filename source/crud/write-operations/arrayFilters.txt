@@ -4,5 +4,56 @@ Update Arrays in a Document
 
 .. default-domain:: mongodb
 
-Sometimes you need to add, remove, or insert items into an array within
-a document. ``arrayFilters`` allows this kind of operation.
+Sometimes you need to modify arrays within a document. ``arrayFilters``,
+a collection of variables indicating positions in arrays, allows this
+kind of operation. Use the
+`filtered position operator
+<https://docs.mongodb.com/manual/reference/operator/update/positional-filtered/index.html>`_
+to access the values of the variables stored within ``arrayFilters``,
+which represent positions in an array that match query filter
+criteria.
+
+Example
+~~~~~~~
+
+Consider a collection of finalists in hot dog eating contests by year:
+
+.. code-block:: javascript
+
+   {
+      {
+         year: 1989,
+         finalists: [
+            "Steve Jobs",
+            "Ford Anglia",
+            "Beth Atkins",
+         ]
+      },
+      {
+         year: 1990,
+         finalists: [
+            "Cat Stevens",
+            "Reggie Mole",
+            "Anis Kollal",
+         ]
+      }
+      {
+         year: 1991,
+         finalists: [
+            "Steve Jobs",
+            "Cat Stevens",
+            "Beth Atkins",
+         ]
+      }
+   }
+
+If "Steve Jobs" changed his name, and we wanted to update his name in
+multiple arrays across years, we could use ``arrayFilters``. See below.
+
+Example
+
+result
+
+yada yada yada
+
+done
