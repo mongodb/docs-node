@@ -7,7 +7,8 @@ Search Geospatially
 You can query data based on geographical location using
 `geospatial query operators
 <https://docs.mongodb.com/manual/geospatial-queries/index.html>`_.
-Geospatial queries require a geospatial index.
+Geospatial queries require a `geospatial index
+<https://docs.mongodb.com/manual/geospatial-queries/#geospatial-indexes>`_.
 
 Overview
 --------
@@ -22,8 +23,8 @@ For geospatial queries using longitude and latitude coordinates
 on an Earth-like sphere, use the `GeoJSON
 <https://docs.mongodb.com/manual/geospatial-queries/index.html#geospatial-geojson>`_
 format. While GeoJSON has `multiple types
-<https://docs.mongodb.com/manual/reference/geojson/>`_, GeoJSON data
-generally looks like this:
+<https://docs.mongodb.com/manual/reference/geojson/>`_, all GeoJSON data
+types use some form of the following structure:
 
 .. code-block:: javascript
 
@@ -36,12 +37,12 @@ generally looks like this:
       ]
    }
 
-The number of coordinates depends upon the object type; a Point requires
-only one coordinate: a longitude and a latitude. A Line requires
-two coordinates: a longitude and a latitude for each end. Polygons
-consist of a list of coordinates in which the first and last coordinate
-are the same, effectively closing the polygon. To learn more about
-the GeoJSON shapes you can use in MongoDB, consult the
+The object type determines the number of coordinates. For instance, a
+Point requires only one coordinate: a longitude and a latitude. A Line
+uses two coordinates: a longitude and a latitude for each end.
+Polygons consist of a list of coordinates in which the first and last
+coordinate are the same, effectively closing the polygon. To learn more
+about the GeoJSON shapes you can use in MongoDB, consult the
 `GeoJSON manual entry
 <https://docs.mongodb.com/manual/reference/geojson/>`_. To geospatially
 query GeoJSON data, you must first add your GeoJSON data to a
@@ -55,7 +56,8 @@ Geospatial queries can also use x and y coordinates in a two dimensional
 Euclidean plane. To express data in this way, use the
 `legacy coordinate pair
 <https://docs.mongodb.com/manual/geospatial-queries/index.html#legacy-coordinate-pairs>`_
-format. Legacy coordinate pairs generally look like this:
+format. Legacy coordinate pairs use some form of the following
+structure:
 
 .. code-block:: javascript
 
@@ -115,7 +117,7 @@ Query Within a Range
 
 The ``$geoWithin`` operator selects documents with geospatial data that
 exist within a specified shape. The following example searches for
-movie theaters in the new england area:
+movie theaters in the New England area:
 
 .. literalinclude:: /code-snippets/crud/theaters.js
    :language: javascript
