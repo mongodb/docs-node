@@ -6,7 +6,7 @@ Update Multiple Documents
 
 You can update multiple documents using the ``updateMany()`` method. 
 ``updateMany()`` accepts a filter object, and updates the documents
-that matches the filter using a provided update document. The update
+that match the filter using a provided update document. The update
 document requires an :manual:`Update Operator
 </reference/operator/update>` to modify a field in a document.
 
