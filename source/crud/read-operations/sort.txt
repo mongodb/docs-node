@@ -10,7 +10,8 @@ more fields in a certain direction. To sort returned documents by a
 field in ascending (lowest first) order, use a value of ``1``. To sort
 in descending (greatest first) order instead, use ``-1``. If you do not
 specify a sort, the order of documents returned is
-`not guaranteed <https://docs.mongodb.com/manual/reference/method/cursor.sort/#result-ordering>`_.
+:manual:`not guaranteed
+</reference/method/cursor.sort/#result-ordering>`.
 
 Consider a collection containing documents that describe books. To
 insert this data into a collection, run the following operation:

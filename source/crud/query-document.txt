@@ -15,17 +15,16 @@ specific. Query documents contain one or more field-level expressions
 that determine which documents to include in the result set. You can
 match fields against literal values (e.g. ``{title:'The Room'}``) or
 compose query operators to express more complex queries. MongoDB
-supports multiple types of
-`query operators <https://docs.mongodb.com/manual/reference/operator/query/>`_,
-including:
+supports multiple types of :manual:`query operators
+</reference/operator/query/>`, including:
 
-- `Comparison Operators <https://docs.mongodb.com/manual/reference/operator/query-comparison/>`_
+- :manual:`Comparison Operators </reference/operator/query-comparison/>`
 
-- `Logical Operators <https://docs.mongodb.com/manual/reference/operator/query-logical/>`_
+- :manual:`Logical Operators </reference/operator/query-logical/>`
 
-- `Element Operators <https://docs.mongodb.com/manual/reference/operator/query-element/>`_
+- :manual:`Element Operators </reference/operator/query-element/>`
 
-- `Evaluation Operators <https://docs.mongodb.com/manual/reference/operator/query-evaluation/>`_
+- :manual:`Evaluation Operators </reference/operator/query-evaluation/>`
 
 Consider a collection containing documents that describe an inventory of
 fruit. To insert this data into a collection, run the following

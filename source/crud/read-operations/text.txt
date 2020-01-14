@@ -4,18 +4,18 @@ Search Text
 
 .. default-domain:: mongodb
 
-Use the `$text
-<https://docs.mongodb.com/manual/reference/operator/query/text/>`_
+Use the :manual:`$text
+</reference/operator/query/text/>`
 operator to perform text searches on fields which have a
-`text index <https://docs.mongodb.com/manual/core/index-text/>`_.
+:manual:`text index </core/index-text/>`.
 
 Overview
 --------
 
 Text searches let you search a collection of string-valued fields for
 words or phrases, instead of matching substrings like
-`regular expresssions
-<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions>`_,
+:mdn:`regular expresssions
+</Web/JavaScript/Guide/Regular_Expressions>`,
 also known as RegEx. While regex is very powerful, and MongoDB even
 offers a `$regex <>` operator, text searches work particularly well when
 applied to unstructured text, like transcripts, essays, or even web
@@ -186,4 +186,4 @@ terms and decreases as the unmatched portion of the string lengthens.
    { title: 'Star Trek VI: The Undiscovered Country', score: 1.2 }
 
 For more information about the $text operator and its options, see the
-`manual entry <https://docs.mongodb.com/manual/reference/operator/query/text/>`_.
+:manual:`manual entry </reference/operator/query/text/>`.

@@ -6,7 +6,6 @@ Read Operations
 
 .. toctree::
    :caption: Read Operations
-   :hidden:
 
    /crud/read-operations/sort
    /crud/read-operations/limit

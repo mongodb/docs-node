@@ -7,8 +7,8 @@ Update Arrays in a Document
 Sometimes you need to modify arrays within a document. ``arrayFilters``,
 a collection of variables indicating positions in arrays, allows this
 kind of operation. Use the
-`filtered position operator
-<https://docs.mongodb.com/manual/reference/operator/update/positional-filtered/index.html>`_
+:manual:`filtered position operator
+</reference/operator/update/positional-filtered/index.html>`
 to access the values of the variables stored within ``arrayFilters``,
 which represent positions in an array that match query filter
 criteria.

@@ -13,11 +13,13 @@ fields in altered documents, but leave other fields and values
 unchanged. Replace operations remove all existing fields in altered
 documents and substitute the specified fields and values instead.
 
+.. _updateDocuments:
+
 Update
 ------
 
-Create an **update document** using `update operators
-<https://docs.mongodb.com/manual/reference/operator/update/>`_ to
+Create an **update document** using :manual:`update operators
+</reference/operator/update/>` to
 describe the changes you would like to make via an **update** operation.
 Update documents use the following form:
 
@@ -37,18 +39,18 @@ Update documents use the following form:
    }
 
 The top level of an update document contains exclusively update
-operators. Update operators allow you to `set the value of a field to a
-literal value
-<https://docs.mongodb.com/manual/reference/operator/update/set/#up._S_set>`_,
-`increment or decrement field values
-<https://docs.mongodb.com/manual/reference/operator/update/inc/#up._S_inc>`_,
-`rename fields
-<https://docs.mongodb.com/manual/reference/operator/update/rename/#up._S_rename>`_,
-`remove fields
-<https://docs.mongodb.com/manual/reference/operator/update/unset/#up._S_unset>`_,
-and `multiply a field value
-<https://docs.mongodb.com/manual/reference/operator/update/mul/#up._S_mul>`_,
-`among others <https://docs.mongodb.com/manual/reference/operator/update/#id1>`_.
+operators. Update operators allow you to
+:manual:`set the value of a field to a literal value
+</reference/operator/update/set/#up._S_set>`,
+:manual:`increment or decrement field values
+</reference/operator/update/inc/#up._S_inc>`,
+:manual:`rename fields
+</reference/operator/update/rename/#up._S_rename>`,
+:manual:`remove fields
+</reference/operator/update/unset/#up._S_unset>`,
+and :manual:`multiply a field value
+</reference/operator/update/mul/#up._S_mul>`,
+:manual:`among others </reference/operator/update/#id1>`.
 
 Update operators alter only the fields specified in your update
 document.
@@ -107,8 +109,9 @@ to :doc:`upsert </crud/write-operations/upsert>`, or "update or insert",
 which changes this behavior to instead insert a new document if no
 matching document is found. Update operations cannot change the ``_id``
 field of a document. Update operations fail if the updated document
-violates a `unique index
-<https://docs.mongodb.com/manual/core/index-unique/>`_.
+violates a :manual:`unique index </core/index-unique/>`.
+
+.. _replacementDocument:
 
 Replace
 -------
@@ -181,5 +184,4 @@ will do nothing by default. However, replace operations can be configured
 to :doc:`upsert </crud/write-operations/upsert>`, or "update or insert",
 which changes this behavior to instead insert a new document if no
 matching document is found. Replace operations fail if the updated
-document violates a `unique index
-<https://docs.mongodb.com/manual/core/index-unique/>`_.
+document violates a :manual:`unique index </core/index-unique/>`.

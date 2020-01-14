@@ -7,8 +7,7 @@ Access Data From a Cursor
 Read operations that return multiple documents do not immediately return
 all values matching the query. Because a query can potentially match
 very large sets of documents, these operations rely upon an
-object called a `cursor
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Cursor.html>`_
+object called a :node-docs:`cursor <api/Cursor.html>`
 that fetches documents in batches to reduce both memory consumption and
 network bandwidth usage. Cursors are highly configurable and offer
 multiple interaction paradigms for different use cases.
@@ -57,10 +56,9 @@ exist for those needs as well.
 For Each Functional Iteration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can pass a function to the `forEach()
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Cursor.html#forEach>`_
-method of any cursor to iterate through cursor results in a functional
-style:
+You can pass a function to the :node-docs:`forEach()
+<api/Cursor.html#forEach>` method of any cursor to iterate through
+cursor results in a functional style:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
@@ -83,11 +81,9 @@ use Cursors in more traditional ``for``...``await`` loops:
 Manual Iteration
 ~~~~~~~~~~~~~~~~
 
-You can use the `hasNext()
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Cursor.html#hasNext>`_
+You can use the :node-docs:`hasNext() <api/Cursor.html#hasNext>`
 method to check if a cursor can provide additional data, and then use
-the `next()
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Cursor.html#next>`_
+the :node-docs:`next() <api/Cursor.html#next>`
 method to retrieve the subsequent element of the cursor:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
@@ -124,9 +120,8 @@ Fetch All Documents At Once
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For use cases that require all documents matched by a query to be held
-in memory at the same time, use `toArray()
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Cursor.html#toArray>`_.
-Note that large sets of
+in memory at the same time, use :node-docs:`toArray()
+<api/Cursor.html#toArray>`. Note that large sets of
 matched documents can cause performance issues or even failures due to
 exceeding memory constraints.
 
@@ -143,8 +138,7 @@ Count
 ~~~~~
 
 For an estimated count of the number of documents referenced by the
-cursor, use `count()
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Cursor.html#count>`_:
+cursor, use :node-docs:`count() <api/Cursor.html#count>`:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
@@ -156,8 +150,7 @@ Rewind
 ~~~~~~
 
 To reset a cursor to its initial position in the set of returned
-documents, use `rewind()
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Cursor.html#rewind>`_.
+documents, use :node-docs:`rewind() <api/Cursor.html#rewind>`.
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
@@ -169,8 +162,8 @@ Close
 ~~~~~
 
 Cursors consume memory and network resources both in the client
-application and in the connected instance of MongoDB. Use `close()
-<https://mongodb.github.io/node-mongodb-native/3.4/api/Cursor.html#close>`_
+application and in the connected instance of MongoDB. Use
+:node-docs:`close() <api/Cursor.html#close>`
 to free up a cursor's resources in both the client application
 and the MongoDB server:
 

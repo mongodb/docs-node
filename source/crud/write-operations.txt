@@ -6,7 +6,6 @@ Write Operations
 
 .. toctree::
    :caption: Write Operations
-   :hidden:
 
    /crud/write-operations/update-document
    /crud/write-operations/upsert
