@@ -1,0 +1,14 @@
+===============
+Getting Started
+===============
+
+
+.. default-domain:: mongodb
+
+.. toctree::
+   :caption: Examples
+   :maxdepth: 2
+
+   /getting-started/quickstart
+   /getting-started/authentication
+
