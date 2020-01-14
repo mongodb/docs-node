@@ -13,8 +13,6 @@ method. Typically ``command()`` is used for diagnostic and
 administrative tasks, such as fetching server stats or initializing a
 replica set. 
 
-
-
 .. note::
     Use :manual:`collection methods </reference/method/js-collection>` instead of raw db commands whenever possible
 
