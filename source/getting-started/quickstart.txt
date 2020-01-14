@@ -1,0 +1,19 @@
+===========
+Quick Start
+===========
+
+.. default-domain:: mongodb
+
+.. toctree::
+
+  /getting-started/quickstart/setup
+  /getting-started/quickstart/read
+  /getting-started/quickstart/write_and_update
+  /getting-started/quickstart/delete
+
+Overview
+--------
+
+This guide will show you how to set up a simple application using Node.js and
+MongoDB. Its scope is limited to setting up the driver to connect to a free-tier
+`Atlas <https://mongodb.com/cloud/atlas?tck=docs_node>`_ cluster
