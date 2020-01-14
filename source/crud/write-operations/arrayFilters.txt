@@ -21,39 +21,66 @@ Consider a collection of finalists in hot dog eating contests by year:
 .. code-block:: javascript
 
    {
-      {
-         year: 1989,
-         finalists: [
-            "Steve Jobs",
-            "Ford Anglia",
-            "Beth Atkins",
-         ]
-      },
-      {
-         year: 1990,
-         finalists: [
-            "Cat Stevens",
-            "Reggie Mole",
-            "Anis Kollal",
-         ]
-      }
-      {
-         year: 1991,
-         finalists: [
-            "Steve Jobs",
-            "Cat Stevens",
-            "Beth Atkins",
-         ]
-      }
+      year: 1989,
+      finalists: [
+         { name : "Steve Jobs" },
+         { name : "Ford Anglia" },
+         { name : "Beth Atkins" },
+      ]
+   },
+   {
+      year: 1990,
+      finalists: [
+         { name : "Cat Stevens" },
+         { name : "Reg Cattermole" },
+         { name : "Anis Kollal" },
+      ]
+   },
+   {
+      year: 1991,
+      finalists: [
+         { name : "Steve Jobs" },
+         { name : "Cat Stevens" },
+         { name : "Beth Atkins" },
+      ]
    }
 
-If "Steve Jobs" changed his name, and we wanted to update his name in
-multiple arrays across years, we could use ``arrayFilters``. See below.
+If "Steve Jobs" changed his name, we might want to update his name
+across all years where "Steve Jobs" made the hot dog eating finals.
+To accomplish this, we could use ``arrayFilters`` to find and update
+all instances of the name "Steve Jobs" to "Steve Lobster":
 
-Example
+.. literalinclude:: /code-snippets/crud/arrayFilters.js
+   :language: javascript
+   :start-after: start arrayFilters example
+   :end-before: end arrayFilters example
+   :dedent: 4
 
-result
+This operation produces the following collection:
 
-yada yada yada
+.. code-block:: javascript
 
-done
+   {
+      year: 1989,
+      finalists: [
+         { name : "Steve Lobster" },
+         { name : "Ford Anglia" },
+         { name : "Beth Atkins" },
+      ]
+   },
+   {
+      year: 1990,
+      finalists: [
+         { name : "Cat Stevens" },
+         { name : "Reg Cattermole" },
+         { name : "Anis Kollal" },
+      ]
+   },
+   {
+      year: 1991,
+      finalists: [
+         { name : "Steve Lobster" },
+         { name : "Cat Stevens" },
+         { name : "Beth Atkins" },
+      ]
+   }
