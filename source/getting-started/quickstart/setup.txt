@@ -5,8 +5,9 @@ Setup
 Ensure Node and NPM are Installed
 ---------------------------------
 
-Ensure your system has Node >= 8 and NPM installed. If you need to install Node
-and NPM, refer to `nodejs.org <https://nodejs.org>`_ for installation instructions.
+Ensure your system has Node >= 8 and NPM (Node Package Manager) installed. If
+you need to install Node and NPM, refer to `nodejs.org <https://nodejs.org>`_
+for installation instructions.
 
 NPM Init
 --------
@@ -20,10 +21,10 @@ to a new directory and initialize a new project.
    cd node_quickstart
    npm init -y
 
-.. admonition:: Why the ``-y``?
+.. admonition:: Why the -y?
    :class: note
 
-   Specifying ``-y`` tells **NPM** to use defaults from your system.
+   Specifying ``-y`` tells NPM to use defaults from your system.
 
 
 Add MongoDB as a Dependency
@@ -37,4 +38,14 @@ in the previous step.
 
    npm install -s mongodb
 
+NPM will download dependencies and output information to your terminal. After
+installing, you should have a ``node_modules`` directory added to your workspace.
 
+Atlas
+-----
+
+The easiest way to get started with MongoDB is by using `MongoDB Atlas <https://mongodb.com/cloud/atlas>`_.
+Atlas doesn't require a credit card to sign up, and offers free-tier deployments that are free for life.
+Follow along with our :ref:`Getting Started with Atlas <_atlas-getting-started>` guide
+to create a free account and deploy a free-tier cluster, then :ref:`load sample data <_load-sample-data>` to
+get the data necessary for the rest of this guide.
