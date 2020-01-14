@@ -1,3 +1,40 @@
 =====
 Setup
 =====
+
+Ensure Node and NPM are Installed
+---------------------------------
+
+Ensure your system has Node >= 8 and NPM installed. If you need to install Node
+and NPM, refer to `nodejs.org <https://nodejs.org>`_ for installation instructions.
+
+NPM Init
+--------
+
+The starting point for any Node application is initializing your project. Navigate
+to a new directory and initialize a new project.
+
+.. code-block:: js
+
+   mkdir node_quickstart
+   cd node_quickstart
+   npm init -y
+
+.. admonition:: Why the ``-y``?
+   :class: note
+
+   Specifying ``-y`` tells **NPM** to use defaults from your system.
+
+
+Add MongoDB as a Dependency
+---------------------------
+
+Next, we need to add the driver as a project dependency. We'll use the ``-s`` flag
+to save the dependency to our ``package.json`` file that was automatically generated
+in the previous step.
+
+.. code-block:: js
+
+   npm install -s mongodb
+
+
