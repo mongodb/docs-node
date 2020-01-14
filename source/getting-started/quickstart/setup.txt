@@ -46,6 +46,6 @@ Atlas
 
 The easiest way to get started with MongoDB is by using `MongoDB Atlas <https://mongodb.com/cloud/atlas>`_.
 Atlas doesn't require a credit card to sign up, and offers free-tier deployments that are free for life.
-Follow along with our :atlas:`Getting Started with Atlas <_atlas-getting-started>` guide
-to create a free account and deploy a free-tier cluster, then :atlas:`load sample data <_load-sample-data>` to
+Follow along with our :atlas:`Getting Started with Atlas <atlas-getting-started>` guide
+to create a free account and deploy a free-tier cluster, then :atlas:`load sample data <load-sample-data>` to
 get the data necessary for the rest of this guide.
