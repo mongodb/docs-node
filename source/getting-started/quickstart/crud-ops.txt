@@ -78,10 +78,10 @@ query filter, or something definite we want to find. We then log out the result
 of this new find operation, which is the document we just inserted. Since we did
 not specify an ``_id``, MongoDB automatically created on for us.
 
-.. admonition:: Never Store Passwords in Plaintext
+.. admonition:: Never Store Passwords in Cleartext
    :class: warning
 
-   Never store passwords in plaintext. Plaintext is used in this quick start
+   Never store passwords in cleartext. Cleartext is used in this quick start
    for demonstration purposes only.
 
 Execute the script to see the write results.
