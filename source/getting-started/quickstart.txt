@@ -7,9 +7,7 @@ Quick Start
 .. toctree::
 
   /getting-started/quickstart/setup
-  /getting-started/quickstart/read
-  /getting-started/quickstart/write_and_update
-  /getting-started/quickstart/delete
+  /getting-started/quickstart/crud-ops
 
 Overview
 --------
@@ -19,4 +17,5 @@ MongoDB. Its scope is limited to setting up the driver to connect to a free-tier
 `Atlas <https://mongodb.com/cloud/atlas?tck=docs_node>`_ cluster.
 
 If you are new to MongoDB, reading our `CRUD Guide </crud-guide>`_ is an excellent next step.
+
 To view common operations, refer to our `usage examples </usage-examples>`_ section.

@@ -5,12 +5,27 @@ Setup
 Ensure Node and NPM are Installed
 ---------------------------------
 
-Ensure your system has Node >= 8 and NPM (Node Package Manager) installed. If
-you need to install Node and NPM, refer to `nodejs.org <https://nodejs.org>`_
+Ensure your system has Node >= 8 and NPM (Node Package Manager) installed. You
+can verify whether you have Node and NPM installed by executing the following in
+your terminal.
+
+.. code-block:: sh
+
+   node -v
+   npm -v
+
+You should see output similar to the following:
+
+.. code-block:: sh
+
+   v12.14.1
+   6.13.4
+
+If you need to install Node and NPM, refer to `nodejs.org <https://nodejs.org>`_
 for installation instructions.
 
-NPM Init
---------
+Project Initialization
+----------------------
 
 The starting point for any Node application is initializing your project. Navigate
 to a new directory and initialize a new project.
@@ -24,7 +39,9 @@ to a new directory and initialize a new project.
 .. admonition:: Why the -y?
    :class: note
 
-   Specifying ``-y`` tells NPM to use defaults from your system.
+   Specifying ``-y`` tells NPM to use default values. You can omit the ``-y``
+   flag to proceed through an interactive selection process for common project
+   settings.
 
 
 Add MongoDB as a Dependency
@@ -53,14 +70,14 @@ get the data necessary for the rest of this guide.
 Connect to your Cluster
 -----------------------
 
-Create a file in your project directory called ``index.js``.
+The next step is to create a file in your project directory called ``index.js``.
 
-.. code-block:: js
+.. code-block:: sh
 
    touch index.js
 
-Open this file in your preferred editor, and paste in the following code. This
-will serve as the base for other operations in this guide.
+Open this file in your preferred editor such as `Visual Studio Code <https://code.visualstudio.com/Download>`_, and
+paste in the following code. This will serve as the base for other steps in this guide.
 
 .. code-block:: js
 
@@ -69,7 +86,7 @@ will serve as the base for other operations in this guide.
    // specify the placeholder values for your environment in the following line
    const username = encodeURIComponent("<username>");
    const password = encodeURIComponent("<password>");
-   const clusterUrl = "<MongoDB cluster url>";
+   const clusterUrl = "<MongoDB cluster url after @>";
 
    // Connection URI
    const uri = `mongodb+srv://${username}:${password}@${clusterUrl}`;
@@ -83,14 +100,27 @@ will serve as the base for other operations in this guide.
      try {
        // Connect the client to the server
        await client.connect();
+       // Establish and verify connection
+       await client.db("admin").command({ ping: 1 });
+       console.log("Successfully connected to Atlas.");
 
+       let insertedId = null;
+       const database = client.db("sample_mflix");
+       const collection = database.collection("users");
        // your code after this comment
 
        // your code before this comment
-
-       // Establish and verify connection
-       await client.db("admin").command({ ping: 1 });
-       console.log("Connected successfully to MongoDB, ready for the next step.");
+       // begin delete op
+       if (insertedId) {
+         const deleteResult = await collection.deleteOne({ _id: insertedId });
+         console.log(`deleted ${deleteResult.deletedCount} documents`);
+         const readDelete = await collection.findOne({ _id: insertedId });
+         console.log(
+           "attempted to find document, should have found null, found",
+           readDelete,
+         );
+       }
+       // end delete op
      } finally {
        // Ensures that the client will close when you finish/error
        await client.close();
@@ -101,7 +131,7 @@ will serve as the base for other operations in this guide.
 Ensure you replace the ``username`` and ``password`` variables with your username and password
 you set up in the previous step. Replace the ``clusterUrl`` variable with your cluster url
 obtained from the ``CONNECT`` modal in the Atlas UI. Only supply the information after the
-``@`` sign, as the rest is combined together.
+``@`` sign as the rest is combined together in the declaration of the ``uri`` variable.
 
 Once you have updated the variables, run the script with the following command
 
@@ -109,11 +139,22 @@ Once you have updated the variables, run the script with the following command
 
    node index.js
 
-You should see the output **Connected successfully MongoDB, ready for the next step.**
+You should see the output **Successfully connected to Atlas**
 
 Summary
 -------
 
 At this point you've got code to connect to your Atlas cluster. The code is
 responsible, and ensures the client connection is closed before exiting, releasing
-resources back to the system.
+resources back to the system. If there's an error it will be logged out to the console.
+
+We've also included variables to reference a database and collection within
+Atlas, as well as a variable that we'll use to track the ``_id`` value of a
+document we insert in a later step.
+
+Lastly, we've included a delete operation. This is to ensure that subsequent
+runs of this script delete the document we insert, allowing us to run
+the script multiple times. We have to do this because the collection has a
+`unique index <https://docs.mongodb.com/manual/core/index-unique/>`_ on the
+``email`` field.
+
