@@ -15,7 +15,7 @@ NPM Init
 The starting point for any Node application is initializing your project. Navigate
 to a new directory and initialize a new project.
 
-.. code-block:: js
+.. code-block:: sh
 
    mkdir node_quickstart
    cd node_quickstart
@@ -30,22 +30,90 @@ to a new directory and initialize a new project.
 Add MongoDB as a Dependency
 ---------------------------
 
-Next, we need to add the driver as a project dependency. We'll use the ``-s`` flag
-to save the dependency to our ``package.json`` file that was automatically generated
-in the previous step.
+Next, we need to add the driver as a project dependency. We'll use the ``--save``
+flag to save the dependency to our ``package.json`` file that was automatically
+generated in the previous step.
 
-.. code-block:: js
+.. code-block:: sh
 
-   npm install -s mongodb
+   npm install --save mongodb
 
 NPM will download dependencies and output information to your terminal. After
 installing, you should have a ``node_modules`` directory added to your workspace.
 
-Atlas
------
+MongoDB Atlas
+-------------
 
 The easiest way to get started with MongoDB is by using `MongoDB Atlas <https://mongodb.com/cloud/atlas>`_.
 Atlas doesn't require a credit card to sign up, and offers free-tier deployments that are free for life.
 Follow along with our :atlas:`Getting Started with Atlas <getting-started>` guide
 to create a free account and deploy a free-tier cluster, then :atlas:`load sample data <sample-data/load-sample-data/>` to
 get the data necessary for the rest of this guide.
+
+Connect to your Cluster
+-----------------------
+
+Create a file in your project directory called ``index.js``.
+
+.. code-block:: js
+
+   touch index.js
+
+Open this file in your preferred editor, and paste in the following code. This
+will serve as the base for other operations in this guide.
+
+.. code-block:: js
+
+   const { MongoClient } = require("mongodb");
+
+   // specify the placeholder values for your environment in the following line
+   const username = encodeURIComponent("<username>");
+   const password = encodeURIComponent("<password>");
+   const clusterUrl = "<MongoDB cluster url>";
+
+   // Connection URI
+   const uri = `mongodb+srv://${username}:${password}@${clusterUrl}`;
+
+   const client = new MongoClient(uri, {
+     useNewUrlParser: true,
+     useUnifiedTopology: true
+   });
+
+   async function run() {
+     try {
+       // Connect the client to the server
+       await client.connect();
+
+       // your code after this comment
+
+       // your code before this comment
+
+       // Establish and verify connection
+       await client.db("admin").command({ ping: 1 });
+       console.log("Connected successfully to MongoDB, ready for the next step.");
+     } finally {
+       // Ensures that the client will close when you finish/error
+       await client.close();
+     }
+   }
+   run().catch(console.dir);
+
+Ensure you replace the ``username`` and ``password`` variables with your username and password
+you set up in the previous step. Replace the ``clusterUrl`` variable with your cluster url
+obtained from the ``CONNECT`` modal in the Atlas UI. Only supply the information after the
+``@`` sign, as the rest is combined together.
+
+Once you have updated the variables, run the script with the following command
+
+.. code-block:: sh
+
+   node index.js
+
+You should see the output **Connected successfully MongoDB, ready for the next step.**
+
+Summary
+-------
+
+At this point you've got code to connect to your Atlas cluster. The code is
+responsible, and ensures the client connection is closed before exiting, releasing
+resources back to the system.
