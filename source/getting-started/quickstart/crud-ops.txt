@@ -1,0 +1,241 @@
+===============
+CRUD Operations
+===============
+
+Reading Data
+------------
+
+Now that you've successfully connected to your Atlas cluster, it's time to perform
+a read operation. Since you've already loaded your cluster with sample data, we'll
+read from one of these existing databases and collections.
+
+We'll perform a ``findOne`` read operation, which finds a single document and
+returns it to us. A full :doc:`findOne usage example </usage-examples/findOne>`
+is demonstrated here.
+
+Add the following code to your ``index.js`` file, between the comments stating
+where your code should go.
+
+.. code-block:: js
+
+   // your code after this comment
+
+   // begin first read op
+   // find a single document, no query specified
+   const found = await collection.findOne();
+   console.log("found", found);
+   // end first read op
+
+   // your code before this comment
+
+We use the ``sample_mflix`` database and the ``users`` collection` in this example.
+There are quite a few documents in the database already, and you should receive
+something similar to the following:
+
+.. code-block:: sh
+
+  found {
+    _id: 59b99db4cfa9a34dcd7885b6,
+    name: 'Ned Stark',
+    email: 'sean_bean@gameofthron.es',
+    password: '$2b$12$UREFwsRUoyF0CRqGNK0LzO0HM/jLhgUCNNIJ9RJAqMUQ74crlJ1Vu'
+  }
+
+
+Writing Data
+------------
+
+Now that you've verified you can connect to your Atlas instance and read data,
+it's time to perform your first write operation. Let's insert a new user into
+the ``users`` collection. Add the following code after the comment ``end first read op``
+
+.. code-block:: js
+
+    // begin write up
+    const insertResult = await collection.insertOne({
+      name: "Baby Yoda",
+      email: "with_the_mando@sw.com",
+      password: "usetheforce",
+    });
+
+    console.log("inserted", insertResult.insertedId);
+    const readInsert = await collection.findOne({
+      _id: insertResult.insertedId,
+    });
+    console.log("document just inserted in database is", readInsert);
+    // end write op
+
+This inserts a document into the ``users`` collection. The ``insertOne`` method
+returned an object with many properties, one of which is the ``insertedId``. We
+then use that ``insertedId`` to perform another find operation, this time with a
+query filter, or something definite we want to find. We then log out the result
+of this new find operation, which is the document we just inserted. Since we did
+not specify an ``_id``, MongoDB automatically created on for us.
+
+.. admonition:: Never Store Passwords in Plaintext
+   :class: warning
+
+   Never store passwords in plaintext. Plaintext is used in this quick start
+   for demonstration purposes only.
+
+Updating Data
+-------------
+
+Let's update our newly inserted record. They grow up so fast, and now Baby Yoda
+is a toddler. We'll update the name in the document to reflect this change. Add
+the following code to your ``index.js`` file, immediately after the ``// end write op``
+comment.
+
+.. code-block:: js
+
+    // begin update op
+    const updateResult = await collection.updateOne(
+      { name: "Baby Yoda" },
+      { $set: { name: "Toddler Yoda" } },
+    );
+
+    console.log(
+      `Found ${updateResult.matchedCount} candidate documents to update, and updated ${updateResult.modifiedCount}.`,
+    );
+    const readUpdate = await collection.findOne({
+      name: "Toddler Yoda",
+    });
+    console.log("document after update", readUpdate);
+    // end update op
+
+To update a document, we must specify a query to find a document to update, and
+then the update operation. Here, we specify we want to find a document with a
+``name`` field with the value **Baby Yoda**, and we want to **set** the value of
+the ``name`` field in that document to **Toddler Yoda**.
+
+We then take advantage of some of the properties on the returned UpdateResult
+object, then perform a read operation using the new name as the query filter.
+
+Lastly, we print out the found document, which should be the same as the inserted
+document except for the name.
+
+Deleting Data
+-------------
+
+The delete operation was already provided for you, but let's discuss it.
+
+.. code-block:: js
+
+    // begin delete op
+    if (insertedId) {
+      const deleteResult = await collection.deleteOne({ _id: insertedId });
+      console.log(`deleted ${deleteResult.deletedCount} documents`);
+      const readDelete = await collection.findOne({ _id: insertedId });
+      console.log(
+        "attempted to find document, should have found null, found",
+        readDelete,
+      );
+    }
+    // end delete op
+
+First, we check to see if ``insertedId`` is set to a value. Initially we defined
+it to be ``null`` so this delete operation wouldn't happen if there was no insert
+operation.
+
+We then perform the delete. The ``deleteOne`` method accepts a query filter, and
+we specify that ``_id`` of the inserted document from the insert operation. This
+returns a DeleteResult object with several properties, one of which is ``deletedCount``
+which is used here as part of an informational message.
+
+Lastly, we attempt to find the document in the database and log the result of the
+find operation. It should be ``null`` since we just deleted the document.
+
+Summary
+-------
+
+This was a very brief quick start to the Node Driver for MongoDB, showcasing the
+most basic operations. You've successfully connected to your own Atlas cluster,
+performed reads from the database, performed writes and updates, and performed
+deletes.
+
+If you are new to MongoDB, excellent next steps are to read our :doc:`crud guide </getting-started/crud-guide>`
+and to refer to the `manual <https://docs.mongodb.com/manual`_ to become more
+familiar with critical concepts.
+
+Your final code should resemble the following:
+
+.. code-block:: js
+
+   const { MongoClient } = require("mongodb");
+
+   // specify the placeholder values for your environment in the following line
+   const username = encodeURIComponent("<username>");
+   const password = encodeURIComponent("<password>");
+   const clusterUrl = "<MongoDB cluster url after @>";
+
+   // Connection URI
+   const uri = `mongodb+srv://${username}:${password}@${clusterUrl}`;
+
+   const client = new MongoClient(uri, {
+     useNewUrlParser: true,
+     useUnifiedTopology: true,
+   });
+
+   async function run() {
+     try {
+       // Connect the client to the server
+       await client.connect();
+       // Establish and verify connection
+       await client.db("admin").command({ ping: 1 });
+       console.log("Successfully connected to Atlas");
+
+       // your code after this comment
+       let insertedId = null;
+       const database = client.db("sample_mflix");
+       const collection = database.collection("users");
+
+       // begin first read op
+       const found = await collection.findOne();
+       console.log("found", found);
+       // end first read op
+       // begin write up
+       const insertResult = await collection.insertOne({
+         name: "Baby Yoda",
+         email: "with_the_mando@sw.com",
+         password: "usetheforce",
+       });
+
+       console.log("inserted", insertResult.insertedId);
+       insertedId = insertResult.insertedId;
+       const readInsert = await collection.findOne({
+         _id: insertedId,
+       });
+       console.log("document just inserted in database is", readInsert);
+       // end write op
+       // begin update op
+       const updateResult = await collection.updateOne(
+         { name: "Baby Yoda" },
+         { $set: { name: "Toddler Yoda" } },
+       );
+
+       console.log(
+         `Found ${updateResult.matchedCount} candidate documents to update, and updated ${updateResult.modifiedCount}.`,
+       );
+       const readUpdate = await collection.findOne({
+         name: "Toddler Yoda",
+       });
+       console.log("document after update", readUpdate);
+       // end update op
+       // your code before this comment
+       // begin delete op
+       if (insertedId) {
+         const deleteResult = await collection.deleteOne({ _id: insertedId });
+         console.log(`deleted ${deleteResult.deletedCount} documents`);
+         const readDelete = await collection.findOne({ _id: insertedId });
+         console.log(
+           "attempted to find document, should have found null, found",
+           readDelete,
+         );
+       }
+       // end delete op
+     } finally {
+       // Ensures that the client will close when you finish/error
+       await client.close();
+     }
+   }
+   run().catch(console.dir);
