@@ -4,51 +4,69 @@ Update Arrays in a Document
 
 .. default-domain:: mongodb
 
-Sometimes you need to modify arrays within a document. ``arrayFilters``,
-a collection of variables indicating positions in arrays, allows this
-kind of operation. Use the
-:manual:`filtered position operator
-</reference/operator/update/positional-filtered/index.html>`
-to access the values of the variables stored within ``arrayFilters``,
-which represent positions in an array that match query filter
-criteria.
+To modify arrays nested within a document, use the
+:manual:`filtered positional operator
+</reference/operator/update/positional-filtered/index.html>`. You can
+use this operator in any :doc:`update document
+</crud/write-operations/update-document` to modify positions in an array
+matched by conditions passed to the query via the ``arrayFilters``
+option.
+
+You can think of ``arrayFilters`` as an additional query level applied
+only to documents already matched by the update operation's query filter
+(the first parameter for ``updateOne()`` and ``updateMany()``). This
+query finds all positions in the referenced array that match your
+criteria, and you can use the returned position values to modify only
+those positions.
 
 Example
 ~~~~~~~
 
-Consider a collection of finalists in hot dog eating contests by year:
+The following example demonstrates how you can use the filtered
+position operator with ``arrayFilters`` to modify only certain
+array positions for fields within documents matched by the query.
+Consider a pizza shop's order collection containing the following order:
 
 .. code-block:: javascript
 
    {
-      year: 1989,
-      finalists: [
-         { name : "Steve Jobs" },
-         { name : "Ford Anglia" },
-         { name : "Beth Atkins" },
-      ]
-   },
-   {
-      year: 1990,
-      finalists: [
-         { name : "Cat Stevens" },
-         { name : "Reg Cattermole" },
-         { name : "Anis Kollal" },
-      ]
-   },
-   {
-      year: 1991,
-      finalists: [
-         { name : "Steve Jobs" },
-         { name : "Cat Stevens" },
-         { name : "Beth Atkins" },
-      ]
-   }
+      name: "Steve Lobsters",
+      address: "731 Yexington Avenue",
+      items: [
+        {
+          type: "pizza",
+          size: "large",
+          toppings: ["pepperoni"],
+        },
+        {
+          type: "pizza",
+          size: "medium",
+          toppings: ["mushrooms", "sausage", "green peppers"],
+          comment: "Extra green peppers please!",
+        },
+        {
+          type: "pizza",
+          size: "large",
+          toppings: ["pineapple, ham"],
+          comment: "red pepper flakes on top",
+        },
+        {
+          type: "calzone",
+          fillings: ["canadian bacon", "sausage", "onion"],
+        },
+        {
+          type: "beverage",
+          name: "Diet Pepsi",
+          size: "16oz",
+        },
+      ],
+    }
 
-If "Steve Jobs" changed his name, we might want to update his name
-across all years where "Steve Jobs" made the hot dog eating finals.
-To accomplish this, we could use ``arrayFilters`` to find and update
-all instances of the name "Steve Jobs" to "Steve Lobster":
+If the customer calls back a few minutes later to adjust their order,
+the pizza shop can use the filtered positional operator to update only
+certain ``items`` in the order that match criteria specified in
+``arrayFilters``. In this case, the shop needs to add salami to *only*
+the large pepperoni pizza in Steve Lobsters' order:
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -56,31 +74,39 @@ all instances of the name "Steve Jobs" to "Steve Lobster":
    :end-before: end arrayFilters example
    :dedent: 4
 
-This operation produces the following collection:
+This operation produces the following modified order:
 
 .. code-block:: javascript
 
    {
-      year: 1989,
-      finalists: [
-         { name : "Steve Lobster" },
-         { name : "Ford Anglia" },
-         { name : "Beth Atkins" },
-      ]
-   },
-   {
-      year: 1990,
-      finalists: [
-         { name : "Cat Stevens" },
-         { name : "Reg Cattermole" },
-         { name : "Anis Kollal" },
-      ]
-   },
-   {
-      year: 1991,
-      finalists: [
-         { name : "Steve Lobster" },
-         { name : "Cat Stevens" },
-         { name : "Beth Atkins" },
-      ]
-   }
+      name: "Steve Lobsters",
+      address: "731 Yexington Avenue",
+      items: [
+        {
+          type: "pizza",
+          size: "large",
+          toppings: ["pepperoni", "salami"],
+        },
+        {
+          type: "pizza",
+          size: "medium",
+          toppings: ["mushrooms", "sausage", "green peppers"],
+          comment: "Extra green peppers please!",
+        },
+        {
+          type: "pizza",
+          size: "large",
+          toppings: ["pineapple, ham"],
+          comment: "red pepper flakes on top",
+        },
+        {
+          type: "calzone",
+          fillings: ["canadian bacon", "sausage", "onion"],
+        },
+        {
+          type: "beverage",
+          name: "Diet Pepsi",
+          size: "16oz",
+        },
+      ],
+    }
