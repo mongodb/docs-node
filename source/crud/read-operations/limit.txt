@@ -4,17 +4,20 @@ Limit the Number of Returned Results
 
 .. default-domain:: mongodb
 
-Use limit to cap the number of documents that can be returned from a
-read operation. Limit functions as a cap on the maximum number of
+Use ``limit`` to cap the number of documents that can be returned from a
+read operation. ``limit`` functions as a cap on the maximum number of
 documents that the operation can return, but the operation can return
 a smaller number of documents if there are not enough documents present
-to reach the limit. If limit is used with the
+to reach the limit. If ``limit`` is used with the
 :doc:`skip </crud/read-operations/skip>` method, the skip applies
-first and the caponly applies to the documents left over after
+first and the limit only applies to the documents left over after
 the skip.
 
-Consider a collection containing documents that describe books. To
-insert this data into a collection, run the following operation:
+Follow the instructions in the examples below to insert data into
+a collection and return only certain results from a query using a sort,
+a skip, and a limit. Consider a collection containing documents that
+describe books. To insert this data into a collection, run the following
+operation:
 
 .. code-block:: javascript
 
@@ -29,8 +32,8 @@ insert this data into a collection, run the following operation:
 
 Pass the following sort document to a read operation to ensure that the
 operation returns books with longer lengths before books with shorter
-lengths. Applying a limit of 3 to this operation causes this operation
-to return only the 3 longest books:
+lengths. Apply a limit of ``3`` causes this operation to return only the
+``3`` longest books:
 
 .. code-block:: javascript
    :emphasize-lines: 4
@@ -53,7 +56,7 @@ to shortest length:
    { "_id": 4, "title": "Infinite Jest", "author": "Wallace", "length": 1104 }
 
 To see the next three longest books, combine the previous operation with
-a skip of 3:
+a skip of ``3``:
 
 .. code-block:: javascript
    :emphasize-lines: 4

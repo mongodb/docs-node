@@ -25,18 +25,17 @@ The following functions directly return cursors:
 - ``Db.listCollections()``
 
 Other methods, like ``Collection.findOne()`` and ``Collection.watch()``,
-use cursors to generate results but do not directly expose those
+use cursors to return results but do not directly expose those
 cursors to the method caller.
 
 Cursor Paradigms
 ----------------
 
 You can work with cursors using a number of **cursor paradigms**.
-Many use cases only require one document at a time, so many of these
-cursor paradigms take advantage of this by abstracting away network
-accesses and caching behind individual document accesses. Some use cases
-require all documents at once or only a count of documents, so paradigms
-exist for those needs as well.
+Most cursor paradigms allow you to access query results one document at
+a time, abstracting away network and caching logic. However, since use
+cases differ, other paradigms offer different access patterns, like
+pulling all matching documents into a collection in process memory.
 
 .. warning::
 
@@ -49,16 +48,15 @@ exist for those needs as well.
 
    Because asynchronous calls directly modify the cursor, executing
    asynchronous calls on a single cursor simultaneously can also cause
-   undefined behaviour. As a result, always wait for the previous
-   asynchronous operation to complete before running another
-   asynchronous operation.
+   undefined behaviour. Always wait for the previous
+   asynchronous operation to complete before running another.
 
 For Each Functional Iteration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can pass a function to the :node-docs:`forEach()
 <api/Cursor.html#forEach>` method of any cursor to iterate through
-cursor results in a functional style:
+results in a functional style:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
@@ -69,8 +67,9 @@ cursor results in a functional style:
 Asynchronous Iteration
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Cursors implement the AsyncIterator interface, which allows you to
-use Cursors in more traditional ``for``...``await`` loops:
+Cursors implement the :mdn:`AsyncIterator
+</Web/JavaScript/Reference/Statements/for-await...of>` interface, which
+allows you to use cursors in ``for``...``await`` loops:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
@@ -107,7 +106,7 @@ will work with most Node stream APIs:
 Event API
 ~~~~~~~~~
 
-As Readable Streams, Cursors also support the Event API's
+As Readable Streams, cursors also support the Event API's
 ``close``, ``data``, ``end`` and ``readable`` events:
 
 .. literalinclude:: /code-snippets/crud/cursor.js

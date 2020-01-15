@@ -19,6 +19,8 @@ These two methods of projection are mutually exclusive: if you
 explicitly include fields, you cannot explicitly exclude fields, and
 vice versa.
 
+Follow the instructions in the examples below to insert data into
+a collection and use a projection to return only specific fields.
 Consider a collection containing documents that describe varieties of
 fruit. To insert this data into a collection, run the following
 operation:

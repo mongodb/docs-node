@@ -14,9 +14,9 @@ a collection; the query document allows you to make your searches more
 specific. Query documents contain one or more field-level expressions
 that determine which documents to include in the result set. You can
 match fields against literal values (e.g. ``{title:'The Room'}``) or
-compose query operators to express more complex queries. MongoDB
-supports multiple types of :manual:`query operators
-</reference/operator/query/>`, including:
+compose :manual:`query operators </reference/operator/query/>` to
+express more complex queries. MongoDB
+supports multiple types of query operator, including:
 
 - :manual:`Comparison Operators </reference/operator/query-comparison/>`
 
@@ -52,7 +52,6 @@ documents containing a field called "name" that has a value of "apples":
 
 .. code-block:: javascript
 
-   // $gt means "greater than"
    const query = { "name": "apples" };
    const cursor = collection.find(query);
    await cursor.forEach(console.dir);
@@ -116,7 +115,6 @@ that is not greater than 5 and prints them out:
 
 .. code-block:: javascript
 
-   // $gt means "greater than"
    const query = { qty: { $not { { $gt : 5 } } };
    const cursor = collection.find(query);
    await cursor.forEach(console.dir);
@@ -161,7 +159,6 @@ field:
 
 .. code-block:: javascript
 
-   // $gt means "greater than"
    const query = { microsieverts: { $exists : true } };
    const cursor = collection.find(query);
    await cursor.forEach(console.dir);
@@ -183,7 +180,7 @@ for documents with a quantity value that is divisible by 3:
 
 .. code-block:: javascript
 
-   // $gt means "greater than"
+   // $mod means "modulo" and returns the remainder after division
    const query = { microsieverts: { $mod : 3, 0 } };
    const cursor = collection.find(query);
    await cursor.forEach(console.dir);
