@@ -33,6 +33,7 @@ There are quite a few documents in the database already, and you should receive
 something similar to the following:
 
 .. code-block:: sh
+
   Successfully connected to Atlas
   found {
     _id: 59b99db4cfa9a34dcd7885b6,
@@ -250,10 +251,10 @@ Your final code should resemble the following:
        await client.db("admin").command({ ping: 1 });
        console.log("Successfully connected to Atlas");
 
-       // your code after this comment
        let insertedId = null;
        const database = client.db("sample_mflix");
        const collection = database.collection("users");
+       // your code after this comment
 
        // begin first read op
        const found = await collection.findOne();
