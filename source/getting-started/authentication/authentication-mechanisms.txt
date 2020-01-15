@@ -46,7 +46,7 @@ password as shown in the code below.
    // Connection URI
    const uri = `mongodb+srv://${username}:${password}@${clusterUrl}/?authMechanism=${authMechanism}`;
 
-   const client = new MongoClient(url);
+   const client = new MongoClient(uri);
 
    async function run() {
      try {
