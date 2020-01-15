@@ -4,15 +4,15 @@ Update Arrays in a Document
 
 .. default-domain:: mongodb
 
-To modify arrays nested within a document, use the
+To modify arrays embedded within a document, use the
 :manual:`filtered positional operator
 </reference/operator/update/positional-filtered/index.html>`. You can
 use this operator in any :doc:`update document
-</crud/write-operations/update-document` to modify positions in an array
-matched by conditions passed to the query via the ``arrayFilters``
-option.
+</crud/write-operations/update-document` to modify specific elements in
+an array matched by conditions passed to the query via the
+``arrayFilters`` option.
 
-You can think of ``arrayFilters`` as an additional query level applied
+You can think of ``arrayFilters`` as an subquery applied
 only to documents already matched by the update operation's query filter
 (the first parameter for ``updateOne()`` and ``updateMany()``). This
 query finds all positions in the referenced array that match your
@@ -23,8 +23,8 @@ Example
 ~~~~~~~
 
 The following example demonstrates how you can use the filtered
-position operator with ``arrayFilters`` to modify only certain
-array positions for fields within documents matched by the query.
+position operator with ``arrayFilters`` to modify only specific
+elements of arrays embedded within documents matched by the query.
 Consider a pizza shop's order collection containing the following order:
 
 .. code-block:: javascript
