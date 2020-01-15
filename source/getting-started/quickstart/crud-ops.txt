@@ -13,12 +13,9 @@ We'll perform a ``findOne`` read operation, which finds a single document and
 returns it to us. A full :doc:`findOne usage example </usage-examples/findOne>`
 is demonstrated here.
 
-Add the following code to your ``index.js`` file, between the comments stating
-where your code should go.
+Add the following code to your ``index.js`` file, after the comment ``// your code after this comment``.
 
 .. code-block:: js
-
-   // your code after this comment
 
    // begin first read op
    // find a single document, no query specified
@@ -26,14 +23,17 @@ where your code should go.
    console.log("found", found);
    // end first read op
 
-   // your code before this comment
+In your terminal, execute the script.
 
-We use the ``sample_mflix`` database and the ``users`` collection` in this example.
+.. code-block:: sh
+
+   node index.js
+
 There are quite a few documents in the database already, and you should receive
 something similar to the following:
 
 .. code-block:: sh
-
+  Successfully connected to Atlas
   found {
     _id: 59b99db4cfa9a34dcd7885b6,
     name: 'Ned Stark',
@@ -41,6 +41,11 @@ something similar to the following:
     password: '$2b$12$UREFwsRUoyF0CRqGNK0LzO0HM/jLhgUCNNIJ9RJAqMUQ74crlJ1Vu'
   }
 
+.. admonition:: _id Fields May Differ
+   :class: note
+
+   ``_id`` fields are unique per instance of MongoDB. The ``_id`` fields you
+   see during this guide may differ from what are printed.
 
 Writing Data
 ------------
@@ -78,6 +83,33 @@ not specify an ``_id``, MongoDB automatically created on for us.
    Never store passwords in plaintext. Plaintext is used in this quick start
    for demonstration purposes only.
 
+Execute the script to see the write results.
+
+.. code-block:: sh
+
+   node index.js
+
+You should get output similar to the following:
+
+.. code-block:: sh
+
+   Successfully connected to Atlas
+   found {
+     _id: 59b99db4cfa9a34dcd7885b6,
+     name: 'Ned Stark',
+     email: 'sean_bean@gameofthron.es',
+     password: '$2b$12$UREFwsRUoyF0CRqGNK0LzO0HM/jLhgUCNNIJ9RJAqMUQ74crlJ1Vu'
+   }
+   inserted 5e1f94a1701b3bbb59d490a7
+   document just inserted in database is {
+     _id: 5e1f94a1701b3bbb59d490a7,
+     name: 'Baby Yoda',
+     email: 'with_the_mando@sw.com',
+     password: 'usetheforce'
+   }
+   deleted 1 documents
+   attempted to find document, should have found null, found null
+
 Updating Data
 -------------
 
@@ -113,6 +145,40 @@ object, then perform a read operation using the new name as the query filter.
 
 Lastly, we print out the found document, which should be the same as the inserted
 document except for the name.
+
+Again, execute the script with:
+
+.. code-block:: sh
+
+   node index.js
+
+You should see output similar to the following:
+
+.. code-block:: sh
+
+   Successfully connected to Atlas
+   found {
+     _id: 59b99db4cfa9a34dcd7885b6,
+     name: 'Ned Stark',
+     email: 'sean_bean@gameofthron.es',
+     password: '$2b$12$UREFwsRUoyF0CRqGNK0LzO0HM/jLhgUCNNIJ9RJAqMUQ74crlJ1Vu'
+   }
+   inserted 5e1f95af227222be4d6219dc
+   document just inserted in database is {
+     _id: 5e1f95af227222be4d6219dc,
+     name: 'Baby Yoda',
+     email: 'with_the_mando@sw.com',
+     password: 'usetheforce'
+   }
+   Found 1 candidate documents to update, and updated 1.
+   document after update {
+     _id: 5e1f95af227222be4d6219dc,
+     name: 'Toddler Yoda',
+     email: 'with_the_mando@sw.com',
+     password: 'usetheforce'
+   }
+   deleted 1 documents
+   attempted to find document, should have found null, found null
 
 Deleting Data
 -------------
