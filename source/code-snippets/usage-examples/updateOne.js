@@ -17,7 +17,7 @@ async function run() {
     // create a filter for a movie to update
     const filter = { title: "Blacksmith Scene" };
     const options = {};
-
+    options.upsert = true; // create a document if no documents match the filter
     // create a document that sets the plot of the movie
     const updateDoc = {
       $set: {
