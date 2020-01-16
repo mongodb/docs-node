@@ -18,7 +18,6 @@ Usage Examples
 :doc:`distinct</usage-examples/distinct>`
 :doc:`command</usage-examples/command>`
 
-
 .. toctree::
    :caption: Examples
 
