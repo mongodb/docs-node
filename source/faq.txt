@@ -4,5 +4,4 @@ FAQ
 
 .. default-domain:: mongodb
 
-.. toctree::
-   :caption: Frequently Asked Questions
+Frequently Asked Questions

@@ -8,3 +8,4 @@ Fundamentals
    :caption: CRUD Operations
 
    /fundamentals/crud
+   /fundamentals/authentication

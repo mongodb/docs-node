@@ -1,6 +1,6 @@
-=====================
-CRUD Operations Guide
-=====================
+===============
+CRUD Operations
+===============
 
 .. default-domain:: mongodb
 
@@ -114,7 +114,7 @@ the collection.
 
    You can customize read operations to
    :doc:`skip </fundamentals/crud/read-operations/skip>` a certain
-   number of document at the beginning of the collection of matched
+   number of documents at the beginning of the collection of matched
    documents, :doc:`limit </fundamentals/crud/read-operations/limit>`
    the number of returned documents, and :doc:`sort
    </fundamentals/crud/read-operations/sort>` returned documents in a

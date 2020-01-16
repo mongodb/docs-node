@@ -3,6 +3,3 @@ Issues & Help
 =============
 
 .. default-domain:: mongodb
-
-.. toctree::
-   :caption: Issues & Help
