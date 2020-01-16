@@ -16,7 +16,6 @@ async function run() {
 
     // create a filter to update all movies with a 'G' rating
     const filter = { rated: "G" };
-    const options = {};
 
     // increment every document matching the filter with 2 more comments
     const updateDoc = {
@@ -24,7 +23,7 @@ async function run() {
         num_mflix_comments: 2,
       },
     };
-    const result = await collection.updateMany(filter, updateDoc, options);
+    const result = await collection.updateMany(filter, updateDoc);
     console.log(result);
   } finally {
     await client.close();
