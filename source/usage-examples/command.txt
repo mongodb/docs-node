@@ -1,5 +1,5 @@
 =============
-Run A Command
+Run a Command
 =============
 
 .. default-domain:: mongodb
