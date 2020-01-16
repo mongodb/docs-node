@@ -17,11 +17,12 @@ The Node driver documentation is organized as follows:
   :maxdepth: 1
 
   /introduction
-  /getting-started
-  /crud
+  /quick-start
+  /fundamentals
   /usage-examples
-  /tutorials
   /api-documentation
+  /faq
+  /issues-and-help
 
 Compatibility
 -------------
