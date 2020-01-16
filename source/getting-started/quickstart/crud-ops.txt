@@ -229,19 +229,16 @@ Your final code should resemble the following:
 .. code-block:: js
 
    const { MongoClient } = require("mongodb");
+   require("dotenv").config();
 
-   // specify the placeholder values for your environment in the following line
-   const username = encodeURIComponent("<username>");
-   const password = encodeURIComponent("<password>");
-   const clusterUrl = "<MongoDB cluster url after @>";
+   if (!process.env.MONGODB_URI) {
+     throw Error("MONGODB_URI not defined in a .env file. Did you set it up?");
+   }
 
-   // Connection URI
-   const uri = `mongodb+srv://${username}:${password}@${clusterUrl}`;
-
-   const client = new MongoClient(uri, {
+   const client = new MongoClient(process.env.MONGODB_URI, {
      useNewUrlParser: true,
-     useUnifiedTopology: true,
-   });
+     useUnifiedTopology: true
+   })
 
    async function run() {
      try {

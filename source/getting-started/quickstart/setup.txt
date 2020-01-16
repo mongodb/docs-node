@@ -67,6 +67,33 @@ Follow along with our :atlas:`Getting Started with Atlas <getting-started>` guid
 to create a free account and deploy a free-tier cluster, then :atlas:`load sample data <sample-data/load-sample-data/>` to
 get the data necessary for the rest of this guide.
 
+Security Matters
+----------------
+
+Security matters, even in this quick start. We'll use an NPM module called ``dotenv``
+to help us hide our secrets. ``dotenv`` allows us to easily read in environmental variables
+that we define in a local file called ``.env``. We'll add this file to a ``.gitignore``
+to ensure we don't accidentally commit secrets, in this case our connection information,
+to our version control system.
+
+To add ``dotenv`` to our project and create the necessary files, enter the following
+in your terminal:
+
+.. code-block:: sh
+
+   npm install --save dotenv
+   touch .env
+   echo ".env" >> .gitignore
+   echo "MONGODB_URI=<your_atlas_uri>" >> .env
+
+Provide Your Atlas Information
+------------------------------
+
+Open your newly created ``.env`` file. You may have to set your system to display
+hidden files. Once your ``.env`` is open, copy and paste your connection string
+from Atlas, replacing ``<your_atlas_uri``. Ensure you update ``<username>`` and
+``<password>`` in your connection string.
+
 Connect to your Cluster
 -----------------------
 
@@ -76,22 +103,19 @@ The next step is to create a file in your project directory called ``index.js``.
 
    touch index.js
 
-Open this file in your preferred editor such as `Visual Studio Code <https://code.visualstudio.com/Download>`_, and
+Open this file in your preferred editor, such as `Visual Studio Code <https://code.visualstudio.com/Download>`_, and
 paste in the following code. This will serve as the base for other steps in this guide.
 
 .. code-block:: js
 
    const { MongoClient } = require("mongodb");
+   require("dotenv").config();
 
-   // specify the placeholder values for your environment in the following line
-   const username = encodeURIComponent("<username>");
-   const password = encodeURIComponent("<password>");
-   const clusterUrl = "<MongoDB cluster url after @>";
+   if (!process.env.MONGODB_URI) {
+     throw Error("MONGODB_URI not defined in a .env file. Did you set it up?");
+   }
 
-   // Connection URI
-   const uri = `mongodb+srv://${username}:${password}@${clusterUrl}`;
-
-   const client = new MongoClient(uri, {
+   const client = new MongoClient(process.env.MONGODB_URI, {
      useNewUrlParser: true,
      useUnifiedTopology: true
    });
@@ -128,12 +152,7 @@ paste in the following code. This will serve as the base for other steps in this
    }
    run().catch(console.dir);
 
-Ensure you replace the ``username`` and ``password`` variables with your username and password
-you set up in the previous step. Replace the ``clusterUrl`` variable with your cluster url
-obtained from the ``CONNECT`` modal in the Atlas UI. Only supply the information after the
-``@`` sign as the rest is combined together in the declaration of the ``uri`` variable.
-
-Once you have updated the variables, run the script with the following command
+Run the script with the following command from your terminal:
 
 .. code-block:: sh
 
