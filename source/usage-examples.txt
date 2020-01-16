@@ -16,6 +16,7 @@ Usage Examples
 :doc:`updateMany</usage-examples/updateMany>`
 :doc:`replaceOne</usage-examples/replaceOne>`
 :doc:`distinct</usage-examples/distinct>`
+:doc:`command</usage-examples/command>`
 
 
 .. toctree::
@@ -34,3 +35,4 @@ Usage Examples
    /usage-examples/updateMany
    /usage-examples/replaceOne
    /usage-examples/distinct
+   /usage-examples/command
