@@ -15,8 +15,7 @@ You can define additional query options using the options object passed as the t
 The ``updateMany()`` method returns a `Promise
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
 that resolves to an object. The ``modifiedCount`` field of this object
-shows how many documents were modified. The ``upsertedId`` field contains the ``_id``
-of the new document if a document was upserted.
+shows how many documents were modified.
 
 .. literalinclude:: /code-snippets/usage-examples/updateMany.js
   :language: javascript
