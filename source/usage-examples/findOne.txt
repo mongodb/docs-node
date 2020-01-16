@@ -1,6 +1,6 @@
-=================
-Find One Document
-=================
+===============
+Find a Document
+===============
 
 .. default-domain:: mongodb
 
