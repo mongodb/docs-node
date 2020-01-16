@@ -32,7 +32,7 @@ async function run() {
       .project(projection);
 
     // print a message if no documents were found
-    if ((await cursor.count()) == 0) {
+    if ((await cursor.count()) === 0) {
       console.log("No documents found!");
     }
 
