@@ -5,7 +5,7 @@ Overview
 .. default-domain:: mongodb
 
 Usage examples provide convenient starting points for popular MongoDB
-operations. In each example you will find:
+operations. Each example provides:
 
 - an explanation of the operation in the example that explains the
   purpose of the method
@@ -27,11 +27,11 @@ of MongoDB Atlas by following the :atlas:`Get Started with Atlas
 </import/>`.
 
 Once you have imported the dataset, just copy and paste a usage example
-into a file on your computer. You can follow the
+into your development environment of choice. You can follow the
 :doc:`quick start guide </quick-start` to learn more about getting
-Node.js, npm, and the Node.js driver running locally. Once you've copied
+started with Node.js, npm, and the Node.js driver. Once you've copied
 a usage example, you'll have to edit one line to get the example running
-with your instance of mongodb.
+with your instance of mongodb:
 
 .. code-block:: javascript
 
