@@ -4,50 +4,77 @@ Logging
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecols
+
 Overview
 --------
 
-This guide shows you how to ...
+This guide shows you how to configure the driver logger which is responsible
+for reporting events that occur while your application is running. You can
+set the logger level, specify logging settings for individual classes, and
+provide a custom logger implementation.
 
-*(Who should read this guide)*
+You should read this guide if you need to customize the default behavior of the
+driver logger or want to explore the information provided by the logger.
 
-You can change the log level, filter on classes to allow only specific classes
-to log, and provide your own logger implementation.
+Log Levels
+----------
 
-Setting Log level
------------------
+You can configure the driver to report logger messages at three different
+levels as shown in the table below:
 
-The driver allows logging at three different levels: ``debug``,
-``info`` and ``error``. The default level is ``error``.
-The following example demonstrates how to set the logger to ``debug``.
+.. list-table::
+   :header-rows: 1
+
+   * - Logger Level
+     - Description
+
+   * - ``debug``
+     - The most verbose logger level which shows all logger messages reported
+       by the driver including those reported in the ``info`` and ``error``
+       levels.
+
+   * - ``info``
+     - Include informational messages reported by the driver including those
+       reported in the ``error`` level.
+
+   * - ``error``
+     - Only include error messages reported by the driver. This is the default
+       setting.
+
+The following example demonstrates how to set the logger to the ``debug``
+level:
 
 .. code-block:: js
 
-   const { MongoClient, Logger } = require('mongodb');
+   const { MongoClient, Logger } = require("mongodb");
 
-   // Connection URL
-   const url = 'mongodb://localhost:27017';
-   // Database Name
-   const dbName = 'myproject';
+   const uri =
+     "mongodb+srv://<user>:<password>@<cluster-url>";
 
-   const client = new MongoClient(url);
+   const client = new MongoClient(uri);
 
    async function main(client) {
      // Set debug level
-     Logger.setLevel('debug');
+     Logger.setLevel("debug");
 
-     const db = client.db('myproject');
+     const db = client.db("sample_mflix");
 
-     // Execute command { isMaster: true } against db
+     // Run a command to produce logger messages
      await db.command({ isMaster: true });
    }
 
-   // Function to connect to the server and run your code
    async function run() {
      try {
-       // Connect the client to the server
        await client.connect();
-       console.log('Connected successfully to server');
+
+       // Establish and verify connection
+       await client.db("admin").command({ ping: 1 });
+       console.log("Connected successfully to server");
 
        await main(client);
      } finally {
@@ -55,58 +82,77 @@ The following example demonstrates how to set the logger to ``debug``.
        await client.close();
      }
    }
+   run().catch(console.dir);
 
-   // Runs your code
-   run();
+Filter on a Specific Class
+--------------------------
 
-Filtering On specific classes
------------------------------
-
-You can set the Logger to only log specific class names. The following example
-demonstrates how to log only the ``Db`` class.
+You can set the Logger to only produce log messages that are reported by
+specific classes. The following example demonstrates how to log messages only
+the ``Db`` class.
 
 .. code-block:: js
 
    async function main(client) {
      // Set debug level
-     Logger.setLevel('debug');
-     // Only log statements on 'Db' class
-     Logger.filter('class', ['Db']);
+     Logger.setLevel("debug");
+     // Only log statements on "Db" class
+     Logger.filter("class", ["Db"]);
 
-     const db = client.db('myproject');
+     const db = client.db("sample_mflix");
 
      // Execute command { isMaster: true } against db
      await db.command({ isMaster: true });
    }
 
-Driver classes available for filtering:
+The driver classes that can be specified for filtering are as follows:
 
+.. list-table::
+   :header-rows: 1
 
-* ``Db``\ : The Db instance log statements
-* ``Server``\ : A server instance (either standalone, a mongos or replica set 
-  member)
-* ``ReplSet``\ : Replica set related log statements
-* ``Mongos``\ : Mongos related log statements
-* ``Cursor``\ : Cursor log statements
-* ``Pool``\ : Connection Pool specific log statements
-* ``Connection``\ : Singular connection specific log statements
-* ``Ping``\ : Replica set ping inquiry log statements
+   * - Class name
+     - Description
 
-You can add your own classes to the logger by creating your own logger 
-instances.
+   * - ``Db``
+     - Information related to calls on a db instance
+
+   * - ``Server``
+     - Information related to a server instance (standalone instance,
+       ``mongos`` instance, or replica set member).
+
+   * - ``ReplSet``
+     - Information related to a replica set.
+
+   * - ``Mongos``
+     - Information related to a ``mongos`` instance.
+
+   * - ``Cursor``
+     - Information related to a cursor.
+
+   * - ``Pool``
+     - Information related to a connection pool.
+
+   * - ``Connection``
+     - Information related to a single-instance connection.
+
+   * ``Ping``
+     - Information related to a replica set ping operation.
+
+You can add your own classes to the logger filter by creating your own logger
+instances as shown in the following sample code.
 
 .. code-block:: js
 
-   const { Logger } = require('mongodb');
+   const { Logger } = require("mongodb");
 
    class A {
      constructor() {
-       this.logger = new Logger('A');
+       this.logger = new Logger("A");
      }
 
      doSomething() {
        if (this.logger.isInfo()) {
-         this.logger.info('logging A', {});
+         this.logger.info("logging A", {});
        }
      }
    }
@@ -115,8 +161,14 @@ instances.
    const a = new A();
    a.doSomething();
 
-Custom logger
+Custom Logger
 -------------
+
+You can configure the behavior and format of the messages reported by the
+logger by passing in a
+:node-api:`logger callback function <Logger.html#~loggerCallback>` which
+allows you to access and modify the message and metadata of the logger
+message.
 
 The following example demonstrates how to define a custom logger.
 
@@ -124,15 +176,19 @@ The following example demonstrates how to define a custom logger.
 
    async function main(client) {
      // Set debug level
-     Logger.setLevel('debug');
+     Logger.setLevel("debug");
 
      // Set our own logger
      Logger.setCurrentLogger(function(msg, context) {
+       // Add your custom logic here
        console.log(msg, context);
      });
 
-     const db = client.db('myproject');
+     const db = client.db("sample_mflix");
 
-     // Execute command { isMaster: true } against db
+     // Execute command { isMaster: true } against db to produce log messages
      await db.command({ isMaster: true });
    }
+
+For more information on the methods available on the ``Logger``, see the
+:node-api:`Logger API documentation <Logger.html>`.

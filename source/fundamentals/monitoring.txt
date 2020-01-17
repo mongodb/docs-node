@@ -16,14 +16,12 @@ Overview
 This guide shows you how to monitor topology events in a MongoDB instance,
 replica set, or sharded cluster. Topology events, also known as Server
 Discovery and Monitoring (SDAM) events, are created by the driver when there is
-a change in the state of the instance or cluster that you are connected to. 
-For example, when a new connection is established or a new primary is elected, 
+a change in the state of the instance or cluster that you are connected to.
+For example, when a new connection is established or a new primary is elected,
 an event is created.
 
 Read this guide if you need to record topology changes in your application or
 want to explore the information provided in these events.
-
-
 
 Event Descriptions
 ------------------
@@ -44,7 +42,7 @@ application by the driver:
      - Created when a connection to an instance is closed.
 
    * - ``serverDescriptionChanged``
-     - Created when an instance state changes (such as from secondary to 
+     - Created when an instance state changes (such as from secondary to
        primary).
 
    * - ``topologyOpening``
@@ -54,7 +52,7 @@ application by the driver:
      - Created after all instance connections in the topology are closed.
 
    * - ``topologyDescriptionChanged``
-     - Created when the topology changes, such as a new primary being 
+     - Created when the topology changes, such as a new primary being
        elected or a **mongos** proxy disconnecting.
 
        *Not applicable to a single instance.*
@@ -212,7 +210,7 @@ one of the following possible values:
    * - Type
      - Description
    * - ``Unknown``
-     - Unknown instance 
+     - Unknown instance
    * - ``Standalone``
      - Standalone instance
    * - ``Mongos``
@@ -221,7 +219,7 @@ one of the following possible values:
      - At least one server recognizes this as the primary, but still needs to
        be verified
    * - ``RSPrimary``
-     - Primary instance 
+     - Primary instance
    * - ``RSSecondary``
      - Secondary instance
    * - ``RSArbiter``
@@ -230,7 +228,7 @@ one of the following possible values:
      - See the `RSGhost specification <https://github.com/mongodb/specifications/blob/master/source/server-discovery-and-monitoring/server-discovery-and-monitoring.rst#rsghost-and-rsother>`_
        for more details
    * - ``RSGhost``
-     - See the `RSOther specification <https://github.com/mongodb/specifications/blob/master/source/server-discovery-and-monitoring/server-discovery-and-monitoring.rst#rsghost-and-rsother>`_ 
+     - See the `RSOther specification <https://github.com/mongodb/specifications/blob/master/source/server-discovery-and-monitoring/server-discovery-and-monitoring.rst#rsghost-and-rsother>`_
        for more details
 
 serverHeartbeatStarted
@@ -373,7 +371,7 @@ topologyDescriptionChanged
      }
    }
 
-The ``type`` field of the ``TopologyDescription`` object in this event contains 
+The ``type`` field of the ``TopologyDescription`` object in this event contains
 one of the following possible values:
 
 .. list-table::
@@ -383,8 +381,8 @@ one of the following possible values:
      - Description
 
    * - ``Single``
-     - Single standalone instance 
-     
+     - Single standalone instance
+
    * - ``ReplicaSetWithPrimary``
      - Replica set with a primary
 
