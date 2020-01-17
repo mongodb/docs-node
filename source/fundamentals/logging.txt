@@ -135,7 +135,7 @@ The driver classes that can be specified for filtering are as follows:
    * - ``Connection``
      - Information related to a single-instance connection.
 
-   * ``Ping``
+   * - ``Ping``
      - Information related to a replica set ping operation.
 
 You can add your own classes to the logger filter by creating your own logger
