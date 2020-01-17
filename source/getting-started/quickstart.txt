@@ -2,22 +2,26 @@
 Quick Start
 ===========
 
-.. default-domain:: mongodb
+.. guide::
 
-.. toctree::
+   title: Quick Start
+   type: Getting Started
+   level: beginner
+   author: MongoDB Documentation Team
+   product_version: 4.2
+   result_description:
+     This quick start will get you up and running with the Node driver and a
+     connection to Atlas quickly.
+   time: 10
+   prerequisites:
+     - None
+   procedure:
+     .. include:: /includes/steps/quickstart.rst
+   summary:
 
-  /getting-started/quickstart/setup
-  /getting-started/quickstart/crud-ops
+     You've got code to connect to your Atlas cluster and begin working with MongoDB. The code is
+     responsible, ensuring the client connection is closed before exiting, and you are using ``dotenv``
+     to ensure your credentials aren't accidentally leaked.
 
-Overview
---------
-
-This guide will show you how to set up a simple application using Node.js and
-MongoDB. Its scope is limited to setting up the driver to connect to a free-tier
-`Atlas <https://mongodb.com/cloud/atlas?tck=docs_node>`_ cluster.
-
-If you are new to MongoDB, reading our `CRUD Guide </crud-guide>`_ is an excellent next step.
-
-To view common operations, refer to our `usage examples </usage-examples>`_ section.
-
-:doc:`Let's get started </getting-started/quickstart/setup>`
+   whats_next:
+     Leet Code for days
