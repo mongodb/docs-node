@@ -29,7 +29,7 @@ scanning the collection. In contrast,
 filter. Choose the appropriate method for your workload.
 
 To specify which documents you wish to count, ``countDocuments()``
-accepts a :manual:`query </tutorial/query-documents>` parameter.
+accepts a :doc:`query </fundamentals/crud/query-document>` parameter.
 ``countDocuments()`` will only count the documents that match the
 specified query.
 

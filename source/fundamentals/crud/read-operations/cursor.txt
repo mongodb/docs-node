@@ -69,7 +69,7 @@ Asynchronous Iteration
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Cursors implement the :mdn:`AsyncIterator
-</Web/JavaScript/Reference/Statements/for-await...of>` interface, which
+<Web/JavaScript/Reference/Statements/for-await...of>` interface, which
 allows you to use cursors in ``for``...``await`` loops:
 
 .. literalinclude:: /code-snippets/crud/cursor.js

@@ -17,9 +17,9 @@ MongoDB returns all documents in the collection.
 
 
 You can also define additional query options such as
-:doc:`sort </crud/read-operations/sort>`
+:doc:`sort </fundamentals/crud/read-operations/sort>`
 and
-:doc:`projection </crud/read-operations/project>`
+:doc:`projection </fundamentals/crud/read-operations/project>`
 to configure the result set. You should specify these options using the
 cursor methods
 :node-api:`sort() <Cursor.html#sort>`
