@@ -17,6 +17,7 @@ Usage Examples
 :doc:`replaceOne</usage-examples/replaceOne>`
 :doc:`distinct</usage-examples/distinct>`
 :doc:`command</usage-examples/command>`
+:doc:`changeStream</usage-examples/changeStream>`
 
 .. toctree::
    :caption: Examples
@@ -35,3 +36,4 @@ Usage Examples
    /usage-examples/replaceOne
    /usage-examples/distinct
    /usage-examples/command
+   /usage-examples/changeStream
