@@ -4,9 +4,19 @@ Usage Examples
 
 .. default-domain:: mongodb
 
-- :doc:`Read Operation Usage Examples </usage-examples/read>`
+- :doc:`Find Operations </usage-examples/find>`
 
-- :doc:`Write Operation Usage Examples </usage-examples/write>`
+- :doc:`Insert Operations </usage-examples/insert>`
+
+- :doc:`Update Operations </usage-examples/update>`
+
+- :doc:`Replace Operations </usage-examples/replace>`
+
+- :doc:`Delete Operations </usage-examples/delete>`
+
+- :doc:`Count Documents </usage-examples/count>`
+
+- :doc:`Retrieve Distinct Values of  Field </usage-examples/distinct>`
 
 - :doc:`Run a Command </usage-examples/command>`
 
@@ -15,7 +25,12 @@ Usage Examples
 .. toctree::
    :caption: Examples
 
-   /usage-examples/read
-   /usage-examples/write
+   /usage-examples/find-operations
+   /usage-examples/insert-operations
+   /usage-examples/update-operations
+   /usage-examples/replace-operations
+   /usage-examples/delete-operations
+   /usage-examples/count
+   /usage-examples/distinct
    /usage-examples/command
    /usage-examples/bulkWrite
