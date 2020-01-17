@@ -4,24 +4,21 @@ Usage Examples
 
 .. default-domain:: mongodb
 
-- :doc:`Find Operations </usage-examples/find>`
+.. toctree::
+   :caption: Examples
 
-- :doc:`Insert Operations </usage-examples/insert>`
+   /usage-examples/find-operations
+   /usage-examples/insert-operations
+   /usage-examples/update-and-replace-operations
+   /usage-examples/replace-operations
+   /usage-examples/delete-operations
+   /usage-examples/count
+   /usage-examples/distinct
+   /usage-examples/command
+   /usage-examples/bulkWrite
 
-- :doc:`Update Operations </usage-examples/update>`
-
-- :doc:`Replace Operations </usage-examples/replace>`
-
-- :doc:`Delete Operations </usage-examples/delete>`
-
-- :doc:`Count Documents </usage-examples/count>`
-
-- :doc:`Retrieve Distinct Values of  Field </usage-examples/distinct>`
-
-- :doc:`Run a Command </usage-examples/command>`
-
-- :doc:`Perform Bulk Operations </usage-examples/bulkWrite>`
-
+Overview
+--------
 
 Usage examples provide convenient starting points for popular MongoDB
 operations. In each example you will find:
@@ -70,15 +67,23 @@ address or URL of your instance. Consult the :doc:`authentication guide
 </fundamentals/authentication>` for more information about getting
 connected to your MongoDB instance.
 
-.. toctree::
-   :caption: Examples
+Usage Examples
+--------------
 
-   /usage-examples/find-operations
-   /usage-examples/insert-operations
-   /usage-examples/update-and-replace-operations
-   /usage-examples/replace-operations
-   /usage-examples/delete-operations
-   /usage-examples/count
-   /usage-examples/distinct
-   /usage-examples/command
-   /usage-examples/bulkWrite
+- :doc:`Find Operations </usage-examples/find>`
+
+- :doc:`Insert Operations </usage-examples/insert>`
+
+- :doc:`Update Operations </usage-examples/update>`
+
+- :doc:`Replace Operations </usage-examples/replace>`
+
+- :doc:`Delete Operations </usage-examples/delete>`
+
+- :doc:`Count Documents </usage-examples/count>`
+
+- :doc:`Retrieve Distinct Values of  Field </usage-examples/distinct>`
+
+- :doc:`Run a Command </usage-examples/command>`
+
+- :doc:`Perform Bulk Operations </usage-examples/bulkWrite>`
