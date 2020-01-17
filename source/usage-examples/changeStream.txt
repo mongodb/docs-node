@@ -6,4 +6,4 @@ Watch for Changes
 
 You can watch for changes in MongoDB by using the `watch()
 <https://mongodb.github.io/node-mongodb-native/3.5/api/Collection.html#watch>`_ method. ``watch()`` opens a :manual:`Change Stream</changeStreams/>`, that allows applications to watch for changes to data and react to those changes. After opening a ``Change Stream`` you can process the change events using the `changeStream.next()
-<http://mongodb.github.io/node-mongodb-native/3.5/api/ChangeStream.html#next>`_ method. ``watch()`` takes an optional ``pipeline`` paramater that is an array of :manual:`stages </reference/operator/aggregation-pipeline>` to filter the change events output. 
+<http://mongodb.github.io/node-mongodb-native/3.5/api/ChangeStream.html#next>`_ method. ``watch()`` takes an optional ``pipeline`` paramater that is an array of :manual:`stages </reference/operator/aggregation-pipeline/#stages>` to filter the change events output. 
