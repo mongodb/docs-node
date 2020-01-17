@@ -1,14 +1,14 @@
-==============
+========
 Overview
-==============
+========
 
 .. default-domain:: mongodb
 
 Usage examples provide convenient starting points for popular MongoDB
 operations. Each example provides:
 
-- an explanation of the operation in the example that explains the
-  purpose of the method
+- an explanation of the operation in the example showing the
+  purpose and a sample use case for the method
 
 - an explanation of how to use the operation, including parameters,
   return values, and common exceptions you might encounter
@@ -26,8 +26,8 @@ of MongoDB Atlas by following the :atlas:`Get Started with Atlas
 :manual:`import the sample dataset into a local MongoDB instance
 </import/>`.
 
-Once you have imported the dataset, just copy and paste a usage example
-into your development environment of choice. You can follow the
+Once you have imported the dataset, you can copy and paste a usage
+example into your development environment of choice. You can follow the
 :doc:`quick start guide </quick-start` to learn more about getting
 started with Node.js, npm, and the Node.js driver. Once you've copied
 a usage example, you'll have to edit one line to get the example running
