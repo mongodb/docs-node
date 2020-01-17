@@ -158,8 +158,9 @@ Sort by Relevance
 ~~~~~~~~~~~~~~~~~
 
 Now that the result set reflects the desired results, you can use the
-text search ``textScore``, accessed using the ``$meta`` operator in the
-query projection, to order the results by relevance:
+text search ``textScore``, accessed using the :manual:`$meta
+</operator/projection/meta/>` operator in the query projection, to order
+the results by relevance:
 
 .. literalinclude:: /code-snippets/crud/startrek.js
    :language: javascript
