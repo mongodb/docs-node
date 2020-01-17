@@ -1,6 +1,3 @@
-=====
-Setup
-=====
 
 Ensure Node and NPM are Installed
 ---------------------------------
@@ -66,6 +63,117 @@ Atlas doesn't require a credit card to sign up, and offers free-tier deployments
 Follow along with our :atlas:`Getting Started with Atlas <getting-started>` guide
 to create a free account and deploy a free-tier cluster, then :atlas:`load sample data <sample-data/load-sample-data/>` to
 get the data necessary for the rest of this guide.
+
+Security Matters
+----------------
+
+Security matters, even in this quick start. We'll use an NPM module called ``dotenv``
+to help us hide our secrets. ``dotenv`` allows us to easily read in environmental variables
+that we define in a local file called ``.env``. We'll add this file to a ``.gitignore``
+to ensure we don't accidentally commit secrets, in this case our connection information,
+to our version control system.
+
+To add ``dotenv`` to our project and create the necessary files, enter the following
+in your terminal:
+
+.. code-block:: sh
+
+   npm install --save dotenv
+   touch .env
+   echo ".env" >> .gitignore
+   echo "MONGODB_URI=<your_atlas_uri>" >> .env
+
+Provide Your Atlas Information
+------------------------------
+
+Open your newly created ``.env`` file. You may have to set your system to display
+hidden files. Once your ``.env`` is open, copy and paste your connection string
+from Atlas, replacing ``<your_atlas_uri``. Ensure you update ``<username>`` and
+``<password>`` in your connection string.
+
+Connect to your Cluster
+-----------------------
+
+The next step is to create a file in your project directory called ``index.js``.
+
+.. code-block:: sh
+
+   touch index.js
+
+Open this file in your preferred editor, such as `Visual Studio Code <https://code.visualstudio.com/Download>`_, and
+paste in the following code. This will serve as the base for other steps in this guide.
+
+.. code-block:: js
+
+   const { MongoClient } = require("mongodb");
+   require("dotenv").config();
+
+   if (!process.env.MONGODB_URI) {
+     throw Error("MONGODB_URI not defined in a .env file. Did you set it up?");
+   }
+
+   const client = new MongoClient(process.env.MONGODB_URI, {
+     useNewUrlParser: true,
+     useUnifiedTopology: true
+   });
+
+   async function run() {
+     try {
+       // Connect the client to the server
+       await client.connect();
+       // Establish and verify connection
+       await client.db("admin").command({ ping: 1 });
+       console.log("Successfully connected to Atlas.");
+
+       let insertedId = null;
+       const database = client.db("sample_mflix");
+       const collection = database.collection("users");
+       // your code after this comment
+
+       // your code before this comment
+       // begin delete op
+       if (insertedId) {
+         const deleteResult = await collection.deleteOne({ _id: insertedId });
+         console.log(`deleted ${deleteResult.deletedCount} documents`);
+         const readDelete = await collection.findOne({ _id: insertedId });
+         console.log(
+           "attempted to find document, should have found null, found",
+           readDelete,
+         );
+       }
+       // end delete op
+     } finally {
+       // Ensures that the client will close when you finish/error
+       await client.close();
+     }
+   }
+   run().catch(console.dir);
+
+Run the script with the following command from your terminal:
+
+.. code-block:: sh
+
+   node index.js
+
+You should see the output **Successfully connected to Atlas**
+
+Summary
+-------
+
+At this point you've got code to connect to your Atlas cluster. The code is
+responsible, and ensures the client connection is closed before exiting, releasing
+resources back to the system. If there's an error it will be logged out to the console.
+
+We've also included variables to reference a database and collection within
+Atlas, as well as a variable that we'll use to track the ``_id`` value of a
+document we insert in a later step.
+
+Lastly, we've included a delete operation. This is to ensure that subsequent
+runs of this script delete the document we insert, allowing us to run
+the script multiple times. We have to do this because the collection has a
+`unique index <https://docs.mongodb.com/manual/core/index-unique/>`_ on the
+``email`` field.
+
 
 Security Matters
 ----------------
