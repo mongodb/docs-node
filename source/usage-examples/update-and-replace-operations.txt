@@ -1,6 +1,6 @@
-=================
-Update Operations
-=================
+===========================
+Update & Replace Operations
+===========================
 
 .. default-domain:: mongodb
 
@@ -8,8 +8,11 @@ Update Operations
 
 - :doc:`Update Multiple Documents </usage-examples/updateMany>`
 
+- :doc:`Replace a Document </usage-examples/replaceOne>`
+
 .. toctree::
    :caption: Examples
 
    /usage-examples/updateOne
    /usage-examples/updateMany
+   /usage-examples/replaceOne
