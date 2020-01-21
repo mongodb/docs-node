@@ -88,8 +88,8 @@ Filter on a Specific Class
 --------------------------
 
 You can set the Logger to only produce log messages that are reported by
-specific classes. The following example demonstrates how to log messages only
-the ``Db`` class.
+specific classes. The following example demonstrates how to log messages from
+only the ``Db`` class.
 
 .. code-block:: js
 

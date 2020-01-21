@@ -23,6 +23,18 @@ an event is created.
 Read this guide if you need to record topology changes in your application or
 want to explore the information provided in these events.
 
+Event Subscription Example
+--------------------------
+
+You can access one or more SDAM events using the driver by subscribing to them
+in your application. The following example demonstrates connecting to a
+replica set and subscribing to one of the SDAM events created by the MongoDB
+deployment:
+
+.. literalinclude:: /code-snippets/monitoring/subscribe.js
+   :language: javascript
+   :dedent: 4
+
 Event Descriptions
 ------------------
 
@@ -73,78 +85,6 @@ application by the driver:
        instance fails to return a successful response
 
        *Not applicable to a single instance.*
-
-
-Event Subscription Example
---------------------------
-
-You can access SDAM events through the driver by subscribing to the event
-in your application. The following example demonstrates connecting to a
-replica set and subscribing to all the SDAM events created by the MongoDB
-deployment:
-
-.. code-block:: js
-
-   const { MongoClient } = require("mongodb");
-
-   // Connection URI
-   const uri = "mongodb+srv://<clusterUrl>/?replicaSet=rs";
-   const client = new MongoClient(uri);
-
-   client.on("serverDescriptionChanged", event => {
-     printEvent("serverDescriptionChanged", event);
-   });
-
-   client.on("serverHeartbeatStarted", event => {
-     printEvent("serverHeartbeatStarted", event);
-   });
-
-   client.on("serverHeartbeatSucceeded", event => {
-     printEvent("serverHeartbeatSucceeded", event);
-   });
-
-   client.on("serverHeartbeatFailed", event => {
-     printEvent("serverHeartbeatFailed", event);
-   });
-
-   client.on("serverOpening", event => {
-     printEvent("serverOpening", event);
-   });
-
-   client.on("serverClosed", event => {
-     printEvent("serverClosed", event);
-   });
-
-   client.on("topologyOpening", event => {
-     printEvent("topologyOpening", event);
-   });
-
-   client.on("topologyClosed", event => {
-     printEvent("topologyClosed", event);
-   });
-
-   client.on("topologyDescriptionChanged", event => {
-     printEvent("topologyDescriptionChanged", event);
-   });
-
-   // helper function that prints the event
-   function printEvent(name, event) {
-     console.log(`received ${name}: ${JSON.stringify(event, null, 2)}`);
-   }
-
-   async function run() {
-     try {
-       await client.connect();
-
-       // Establish and verify connection
-       await client.db("admin").command({ ping: 1 });
-       console.log("Connected successfully");
-     } finally {
-       // Ensures that the client will close when you finish/error
-       await client.close();
-     }
-   }
-   run().catch(console.dir);
 
 Example Event Documents
 -----------------------
