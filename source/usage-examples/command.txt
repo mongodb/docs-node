@@ -4,12 +4,9 @@ Run a Command
 
 .. default-domain:: mongodb
 
-Overview
---------
-
 You can run all raw database operations, not including
 :manual:`CRUD </crud/>` operations, using the :node-api:`command()
-</Admin.html#~command>` method. Typically ``command()`` is used for
+<Admin.html#~command>` method. Typically ``command()`` is used for
 diagnostic and administrative tasks, such as fetching server stats or
 initializing a replica set.
 
@@ -28,6 +25,8 @@ The ``command()`` method returns a :mdn:`Promise
 that resolves to an object containing the return object of the operation
 that was run.
 
+Example
+-------
 
 .. literalinclude:: /code-snippets/usage-examples/command.js
   :language: javascript
