@@ -133,7 +133,6 @@ are often misconfigured, and are overly aggressive in their culling of
 socket connections. If you experience unexpected network behavior, here
 are some things to check:
 
-
 #. The firewall should send a FIN packet when closing a socket,
    allowing the driver to detect that the socket is closed.
 #. The firewall should allow keepAlive probes.
