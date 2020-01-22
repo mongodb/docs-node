@@ -84,10 +84,10 @@ Follow along with our :atlas:`steps to create and set up a free-tier cluster <tu
 to get the data necessary for the rest of this guide.
 
 
-Security Matters
-----------------
+Store Configuration Separately
+------------------------------
 
-Security should be taken seriously, and a tenet of modern applications is to `store
+A tenet of modern applications is to `store
 configuration data in the environment <https://12factor.net/config>`_.
 
 We'll use an NPM module called ``dotenv`` to help us hide our sensitive data and
@@ -167,3 +167,12 @@ Run the script with the following command from your terminal:
   node index.js
 
 You should see the output **Successfully connected to Atlas**
+
+Next Steps
+----------
+
+Check out our :doc:`CRUD fundamentals </fundamentals/crud>` guide, or see our
+:doc:`usage examples </usage-examples/overview>` to see how to perform the most
+common operations.
+
+
