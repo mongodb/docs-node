@@ -78,9 +78,9 @@ installing, you will have a ``node_modules`` directory added to your workspace.
 Create a Free Tier Cluster in Atlas
 -----------------------------------
 
-The easiest way to get started with MongoDB is by using `MongoDB Atlas <https://mongodb.com/cloud/atlas>`_.
+The easiest way to get started with MongoDB is by using MongoDB Atlas.
 Atlas doesn't require a credit card to sign up, and offers free-tier deployments that are free for life.
-Follow along with our :atlas:`Getting Started with Atlas <getting-started>` guide
+Follow along with our :atlas:`Getting Started with Atlas <tutorial/create-atlas-account/>` guide
 to create a free account and deploy a free-tier cluster, then :atlas:`load sample data <sample-data/load-sample-data/>` to
 get the data necessary for the rest of this guide.
 
