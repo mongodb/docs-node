@@ -87,13 +87,17 @@ to get the data necessary for the rest of this guide.
 Security Matters
 ----------------
 
-Security matters, even in this quick start. We'll use an NPM module called ``dotenv``
-to help us hide our secrets. ``dotenv`` allows us to easily read in environmental variables
-that we define in a local file called ``.env``. We'll add this file to our ``.gitignore``
-to ensure we don't accidentally commit secrets, in this case our connection information,
-to our version control system.
+Security should be taken seriously, and a tenet of modern applications is to `store
+configuration data in the environment <https://12factor.net/config>`_.
 
-To add ``dotenv`` to our project and create the necessary files, enter the following
+We'll use an NPM module called ``dotenv`` to help us hide our sensitive data and
+put it in an environmental variable. ``dotenv`` allows us to easily read in
+environmental variables that we define in a local file called ``.env``. We'll
+add this file to our ``.gitignore`` to ensure we don't accidentally commit our
+sensitive data, in this case our database credentials, to our version control
+system.
+
+Add ``dotenv`` to your project and create the necessary files. Enter the following
 in your terminal:
 
 .. code-block:: sh
@@ -107,7 +111,6 @@ in your terminal:
 
 Add your Atlas Connection String
 --------------------------------
-
 
 Open your newly created ``.env`` file. You may have to set your system to display
 hidden files. Once your ``.env`` is open, copy and paste your connection string
@@ -124,7 +127,7 @@ The final step is to create a file in your project directory called ``index.js``
   touch index.js
 
 Open this file in your preferred editor, such as `Visual Studio Code <https://code.visualstudio.com/Download>`_, and
-paste in the following code. This will serve as the base for other steps in this guide.
+paste in the following code.
 
 .. code-block:: js
 
