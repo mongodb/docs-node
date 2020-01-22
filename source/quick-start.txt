@@ -4,27 +4,39 @@ Quick Start
 
 .. default-domain:: mongodb
 
-Ensure Node and NPM are Installed
----------------------------------
+Check for Node and NPM
+----------------------
 
-Ensure your system has Node >= 8 and NPM (Node Package Manager) installed. You
-can verify whether you have Node and NPM installed by executing the following in
-your terminal.
+Ensure your system has Node greater than or equal to version 8 and
+NPM (Node Package Manager) installed. You can verify whether you have Node and
+NPM installed by executing the following in your terminal.
+
+First, check the version of Node
 
 .. code-block:: sh
 
-  node -v
-  npm -v
+   node -v
 
 You should see output similar to the following:
 
 .. code-block:: sh
 
-  v12.14.1
-  6.13.4
+   v12.14.1
 
-If you need to install Node and NPM, refer to `nodejs.org <https://nodejs.org>`_
-for installation instructions.
+Next, check the version of NPM
+
+.. code-block:: sh
+
+   npm -v
+
+You should see output similar to the following:
+
+.. code-block:: sh
+
+   6.13.4
+
+If you do not see any output, you will need to install Node and NPM.
+Refer to `nodejs.org <https://nodejs.org>`_ for installation instructions.
 
 
 Initialize the Project
@@ -51,8 +63,8 @@ to a new directory and initialize a new project.
 Add MongoDB as a Dependency
 ---------------------------
 
-Next, we need to add the driver as a project dependency. We'll use the ``--save``
-flag to save the dependency to our ``package.json`` file that was automatically
+Next, add the Node MongoDB driver as a project dependency. Use the ``--save``
+flag to save the dependency to ``package.json`` file that was automatically
 generated in the previous step.
 
 .. code-block:: sh
@@ -60,8 +72,7 @@ generated in the previous step.
   npm install --save mongodb
 
 NPM will download dependencies and output information to your terminal. After
-installing, you should have a ``node_modules`` directory added to your workspace.
-
+installing, you will have a ``node_modules`` directory added to your workspace.
 
 
 Create a Free Tier Cluster in Atlas
@@ -79,7 +90,7 @@ Security Matters
 
 Security matters, even in this quick start. We'll use an NPM module called ``dotenv``
 to help us hide our secrets. ``dotenv`` allows us to easily read in environmental variables
-that we define in a local file called ``.env``. We'll add this file to a ``.gitignore``
+that we define in a local file called ``.env``. We'll add this file to our ``.gitignore``
 to ensure we don't accidentally commit secrets, in this case our connection information,
 to our version control system.
 
