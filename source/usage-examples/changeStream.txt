@@ -24,12 +24,11 @@ to receive an event that contains the changes to the document as well as
 the entire altered document.
 
 The ``watch()`` command returns a ``Change Stream`` instance. The
-``changeStream.next()`` method returns a
-  `Promise
-  <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-  that resolves to an
-object with the change events. The ``documentKey`` field of this object
-is an object that contains the ``_id`` of the changed document.
+``changeStream.next()`` method returns a `Promise
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
+that resolves to an object with the change events. The ``documentKey``
+field of this object is an object that contains the ``_id`` of the
+changed document.
 
 .. literalinclude:: /code-snippets/usage-examples/changeStream.js
   :language: javascript
