@@ -15,7 +15,7 @@ async function run() {
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
 
-    // create a change stream on the movies collection
+    // create a Change Stream on the movies collection
     const changeStream = await collection.watch();
     // use the next() function on the changeStream iterator to access the next event
     const next = await changeStream.next();
