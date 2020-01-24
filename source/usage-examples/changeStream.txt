@@ -9,13 +9,14 @@ database, or deployment, by using the :node-api:`watch()
 </Collection.html#watch>` method. ``watch()`` opens a :manual:`Change
 Stream</changeStreams/>`, that allows applications to watch for changes
 to data and react to those changes. After opening a ``Change Stream``,
-you can process the change events using the
-:node-api:`changeStream.next() </ChangeStream.html#next>` method.
+you can process the change events using the :node-api:`next()
+</ChangeStream.html#next>` method on an instance of a ``Change Stream``.
 ``watch()`` takes an optional ``pipeline`` parameter that is an array of
 :manual:`stages </reference/operator/aggregation-pipeline/#stages>` to
 filter the change events output. You can stop watching for changes and
 free resources by closing the ``Change Stream`` using the
-:node-api:`changeStream.close() </ChangeStream.html#close>` method.
+:node-api:`close() </ChangeStream.html#close>` method on an instance of
+a ``Change Stream.
 
 Create an `Object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
