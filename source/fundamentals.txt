@@ -1,0 +1,13 @@
+=====================
+Fundamentals
+=====================
+
+.. default-domain:: mongodb
+
+.. toctree::
+   :caption: CRUD Operations
+
+   /fundamentals/crud
+   /fundamentals/authentication
+   /fundamentals/logging
+   /fundamentals/monitoring

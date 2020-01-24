@@ -22,18 +22,13 @@ Usage Examples
 .. toctree::
    :caption: Examples
 
-   /usage-examples/bulkWrite
+   /usage-examples/overview
+   /usage-examples/find-operations
+   /usage-examples/insert-operations
+   /usage-examples/update-and-replace-operations
+   /usage-examples/delete-operations
    /usage-examples/count
-   /usage-examples/deleteMany
-   /usage-examples/deleteOne
-   /usage-examples/insertOne
-   /usage-examples/find
-   /usage-examples/findOne
-   /usage-examples/findOneAndUpdate
-   /usage-examples/insertMany
-   /usage-examples/updateOne
-   /usage-examples/updateMany
-   /usage-examples/replaceOne
    /usage-examples/distinct
    /usage-examples/command
    /usage-examples/changeStream
+   /usage-examples/bulkWrite

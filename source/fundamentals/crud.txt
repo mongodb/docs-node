@@ -1,24 +1,24 @@
-=====================
-CRUD Operations Guide
-=====================
+===============
+CRUD Operations
+===============
 
 .. default-domain:: mongodb
 
 .. toctree::
    :caption: CRUD Operations
 
-   /crud/read-operations
-   /crud/write-operations
-   /crud/query-document
-   /crud/compound-operations
+   /fundamentals/crud/read-operations
+   /fundamentals/crud/write-operations
+   /fundamentals/crud/query-document
+   /fundamentals/crud/compound-operations
 
 Overview
 --------
 
 CRUD (Create, Read, Update, Delete) operations allow you to work with
 the data stored inside of MongoDB. CRUD operations fall into two
-categories: :ref:`read operations <crud-read-operations>` and
-:ref:`write operations <crud-write-operations>`.
+categories: `read operations <crud-read-operations>`_ and
+`write operations <crud-write-operations>`_.
 
 .. note::
 
@@ -53,8 +53,8 @@ If you want to view documents already in a collection, you can use
 :doc:`findOne() </usage-examples/findOne>`. These methods accept a
 query document that describes the documents you would like to view.
 While ``findOne()`` returns a single document, ``find()`` returns a
-:doc:`cursor </crud/read-operations/cursor>` that you can use to
-navigate matched documents.
+:doc:`cursor </fundamentals/crud/read-operations/cursor>` that you can
+use to navigate matched documents.
 
 .. example::
 
@@ -113,11 +113,12 @@ the collection.
 .. note::
 
    You can customize read operations to
-   :doc:`skip </crud/read-operations/skip>` a certain number of
-   document at the beginning of the collection of matched documents,
-   :doc:`limit </crud/read-operations/limit>` the number of returned
-   documents, and :doc:`sort <crud/read-operations/sort>` returned
-   documents in a particular order.
+   :doc:`skip </fundamentals/crud/read-operations/skip>` a certain
+   number of documents at the beginning of the collection of matched
+   documents, :doc:`limit </fundamentals/crud/read-operations/limit>`
+   the number of returned documents, and :doc:`sort
+   </fundamentals/crud/read-operations/sort>` returned documents in a
+   particular order.
 
 .. _crud-write-operations:
 
@@ -158,15 +159,15 @@ Update / Replace
 If you want to alter existing documents in a collection, you can use
 :doc:`updateOne() </usage-examples/updateOne>`,
 :doc:`replaceOne() </usage-examples/replaceOne>`, or
-``updateMany()``. These methods
+:doc:`updateMany() </usage-examples/updateMany>`. These methods
 accept a query document that describes the documents you would like to
-change and an :ref:`update document <updateDocument>` that describes
+change and an `update document <updateDocument>`_ that describes
 the changes you would like to apply to matched documents.
-``replaceOne()`` uses a :ref:`replacement document
-<replacementDocument>` that describes an entirely new document instead
+``replaceOne()`` uses a `replacement document
+<replacementDocument>`_ that describes an entirely new document instead
 of an update document. You can configure any update operation to behave
-as an :doc:`upsert </crud/write-operations/upsert>` instead of an
-update.
+as an :doc:`upsert </fundamentals/crud/write-operations/upsert>` instead
+of an update.
 
 .. example::
 
@@ -205,13 +206,14 @@ match the query.
 .. note::
 
    You can customize write operations to
-   :doc:`upsert </crud/write-operations/upsert>` instead of update, time
-   out if the method fails to complete within a certain period of time,
-   and write with varying levels of resilience in a replica set.
+   :doc:`upsert </fundamentals/crud/write-operations/upsert>` instead of
+   update, time out if the method fails to complete within a certain
+   period of time, and write with varying levels of resilience in a
+   replica set.
 
 Compound operations
 -------------------
 
 Some operations combine aspects of read and write operations. Consult
-:doc:`compound operations </crud/compound-operations>` to learn more
-about these hybrid methods. 
+:doc:`compound operations </fundamentals/crud/compound-operations>` to
+learn more about these hybrid methods.
