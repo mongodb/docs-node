@@ -19,7 +19,7 @@ free resources by closing the ``Change Stream`` using the
 
 Create an `Object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
-to specify additional options. Set ``fullDocument`` to ``updateLookup``
+to specify additional options. Set ``fullDocument`` to ``'updateLookup'``
 to receive an event that contains the changes to the document as well as
 the entire altered document.
 
