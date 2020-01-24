@@ -7,7 +7,7 @@ Watch for Changes
 You can watch for changes in MongoDB, such as changes to a collection,
 database, or deployment, by using the :node-api:`watch()
 </Collection.html#watch>` method. The ``watch()`` method opens a :manual:`Change
-Stream</changeStreams/>`, that allows applications to watch for changes
+Stream</changeStreams/>` that allows applications to watch for changes
 to data and react to those changes. After opening a ``Change Stream``,
 you can process the change events using the :node-api:`next()
 </ChangeStream.html#next>` method on an instance of a ``Change Stream``.
