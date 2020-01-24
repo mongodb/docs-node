@@ -3,7 +3,7 @@ Connection Guide
 ================
 
 This guide shows you how to connect to a MongoDB instance or replica set
-deployment using the Node.js driver. 
+deployment using the Node.js driver.
 
 --------------
 Connection URI
@@ -22,17 +22,17 @@ The following snippet is an example connection URI string.
 
 The first part identifies the connection string format. In the example above,
 we use ``mongodb+srv`` which specifies the :manual:`DNS Seedlist Connection
-Format </reference/connection-string/#dns-seedlist-connection-format>` which 
+Format </reference/connection-string/#dns-seedlist-connection-format>` which
 indicates that the hostname following it corresponds to the DNS SRV record of
 your MongoDB instance or deployment. If your instance of deployment does not
-have a DNS SRV record, use ``mongodb`` to specify the 
+have a DNS SRV record, use ``mongodb`` to specify the
 :manual:`Standard Connection Format
 </reference/connection-string/#standard-connection-string-format>`.
 
 .. note::
-   
-   If your deployment is on MongoDB Atlas, follow the 
-   :atlas:`Atlas driver connection guide <driver-connection>` to retrieve your 
+
+   If your deployment is on MongoDB Atlas, follow the
+   :atlas:`Atlas driver connection guide <driver-connection>` to retrieve your
    connection string.
 
 The next part of the connection string specifies the hostname or IP address and
@@ -47,31 +47,9 @@ options as parameters. In the example above, we set two connection options:
 The code below shows how the sample connection URI could be used in a client to
 connect to MongoDB.
 
-.. code-block:: js
-
-   const { MongoClient } = require("mongodb");
-
-   // Connection URI
-   const uri = 
-     "mongodb+srv://sample-hostname:27017/?poolSize=20&useUnifiedTopology=true";
-
-   // Create a new MongoClient
-   const client = new MongoClient(uri);
-
-   async function run() {
-     try {
-       // Connect the client to the server
-       await client.connect();
-
-       // Establish and verify connection
-       await client.db("admin").command({ ping: 1 });
-       console.log("Connected successfully to server");
-     } finally {
-       // Ensures that the client will close when you finish/error
-       await client.close();
-     }
-   }
-   run().catch(console.dir);
+.. literalinclude:: /code-snippets/connection/srv.js
+   :language: javascript
+   :dedent: 4
 
 ------------------------
 Connect to a Replica Set
@@ -81,7 +59,7 @@ A MongoDB replica set deployment is a group of connected instances that
 store the same set of data. This configuration of instances provides data
 redundancy and high data availability.
 
-To connect to a replica set deployment, specify the host and port numbers of 
+To connect to a replica set deployment, specify the host and port numbers of
 each instance, separated by a comma, and the replica set name as the value of
 the ``replicaSet`` parameter.
 
@@ -90,7 +68,7 @@ the ``replicaSet`` parameter.
    mongodb+srv://host1:27017,host2:27017,host3:27017/?replicaSet=myRs
 
 .. note::
-  
+
    Although it is possible to connect to a replica set deployment by
    providing only a single host, you should provide the driver with the
    full list to ensure that it is able to connect even if one host fails.
@@ -100,7 +78,7 @@ Connection Options
 ------------------
 
 This section explains several common MongoDB connection and authentication
-options. You can pass the connection options as parameters of the connection 
+options. You can pass the connection options as parameters of the connection
 URI to specify the behavior of the client.
 
 .. list-table::
@@ -113,51 +91,51 @@ URI to specify the behavior of the client.
 
    * - **useUnifiedTopology**
      - boolean
-     - **false**
+     - ``false``
      - Specifies whether to opt into the new Server Discovery and Monitoring
        (SDAM) engine. The next major driver release removes the old engine and
        deprecates this option.
 
    * - **validateOptions**
      - boolean
-     - **false**
+     - ``false``
      - Specifies whether to error when an unknown or incorrect option is
        provided. If ``false``, the driver produces warnings only.
 
    * - **poolSize**
      - integer
-     - **5**
+     - ``5``
      - Specifies the maximum size of the instance connection pool.
 
    * - **minSize**
      - integer
-     - **0**
+     - ``0``
      - Specifies the minimum size of the instance connection pool.
 
    * - **family**
      - number
-     - **null**
-     - Specifies the version of the Internet Protocol (IP). The valid values 
-       are: **4**, **6**, **0**, or **null**. The **0** and **null** settings 
+     - ``null``
+     - Specifies the version of the Internet Protocol (IP). The valid values
+       are: ``4``, ``6``, ``0``, or ``null``. The ``0`` and ``null`` settings
        attempt to connect with IPv6 and fall back to IPv4 upon failure.
 
    * - **noDelay**
      - boolean
-     - **true**
+     - ``true``
      - Specifies whether to use the TCP socket no-delay option. For more
        information, see the documentation for `Node.js socket.setNoDelay
        <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setnodelay_nodelay>`_.
 
    * - **keepAlive**
      - boolean
-     - **true**
+     - ``true``
      - Specifies whether ``keepAlive`` is enabled on the TCP socket. For more
        information, see the documentation for `Node.js socket.setKeepAlive
        <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_.
 
    * - **keepAliveInitialDelay**
      - integer
-     - **30000**
+     - ``30000``
      - Specifies the number of milliseconds to wait before initiating
        ``keepAlive`` on the TCP socket. For more information, see the
        documentation for `Node.js socket.setKeepAlive
@@ -165,93 +143,93 @@ URI to specify the behavior of the client.
 
    * - **connectTimeoutMS**
      - integer
-     - **30000**
+     - ``30000``
      - Specifies the number of milliseconds to wait before timeout on a TCP
        connection.
 
    * - **socketTimeoutMS**
      - integer
-     - **360000**
+     - ``360000``
      - Specifies the number of milliseconds to wait before timeout on a TCP
        socket.
 
    * - **w**
      - string or integer
-     - **null**
+     - ``null``
      - Specifies the write concern. For more information on values, see the
-       server documentation on the 
+       server documentation on the
        :manual:`w Option </reference/write-concern/#w-option>`.
 
    * - **forceServerObjectId**
      - boolean
-     - **false**
+     - ``false``
      - Specifies whether to force the server to assign ``_id`` values to
        documents instead of the driver.
 
    * - **serializeFunctions**
      - boolean
-     - **false**
+     - ``false``
      - Specifies whether to serialize functions on any object passed to the
        server.
 
    * - **ignoreUndefined**
      - boolean
-     - **false**
+     - ``false``
      - Specifies whether the BSON serializer should ignore undefined fields.
 
    * - **raw**
      - boolean
-     - **false**
+     - ``false``
      - Specifies whether to return document results as raw BSON buffers.
 
    * - **promoteLongs**
      - boolean
-     - **true**
+     - ``true``
      - Specifies whether to convert ``Long`` values to a number if they fit
        inside 53 bits of resolution.
 
    * - **promoteBuffers**
      - boolean
-     - **false**
+     - ``false``
      - Specifies whether to promote Binary BSON values to native Node.js
        ``Buffer`` type data.
 
    * - **promoteValues**
      - boolean
-     - **true**
+     - ``true``
      - Specifies whether to promote BSON values to Node.js native types when
        possible. When set to false, BSON values are presented as wrapper types.
 
    * - **pkFactory**
      - object
-     - **null**
+     - ``null``
      - Specifies a primary key factory object that generates custom ``_id``
        keys.
 
    * - **promiseLibrary**
      - object
-     - **null**
+     - ``null``
      - Specifies the Promise library class the application uses (e.g. Bluebird).
        This library must be compatible with ES6.
 
    * - **loggerLevel**
      - string
-     - **null**
+     - ``null``
      - Specifies the logger level used by the driver. Valid choices are:
        ``error``, ``warn``, ``info``, and ``debug``.
 
    * - **logger**
      - object
-     - **null**
+     - ``null``
      - Specifies a custom logger to be used by the client.
 
    * - **tls**
      - boolean
-     - **false**
+     - ``false``
      - Specifies whether to establish a Transport Layer Security (TLS)
-       connection with the instance. This is automatically set to **true**
+       connection with the instance. This is automatically set to ``true``
        when using a DNS seedlist (SRV) in the connection string. You can
-       override this behavor by setting the value to **false**.
+       override this behavor by setting the value to ``false``.
 
 For a complete list of options, see the :node-api:`MongoClient
 <MongoClient.html>` API reference page.
