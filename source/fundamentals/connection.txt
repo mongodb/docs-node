@@ -1,21 +1,55 @@
-===================
-Connection Settings
-===================
+================
+Connection Guide
+================
 
-This section describes common MongoDB client connection settings for the
-Node.js driver. These settings provide additional control over the negotiation
-of the connection and the behavior of the client, once a connection is
-established.
+This guide shows you how to connect to a MongoDB instance or replica set
+deployment using the Node.js driver. 
 
-The connection settings are passed as an optional parameter to the
-``MongoClient`` as shown in the code sample below:
+--------------
+Connection URI
+--------------
+
+The **connection URI** is the set of instructions that the driver uses to
+connect to a MongoDB instance or replica set deployment. It instructs the
+driver on how it should connect to MongoDB, how it should behave while
+connected, and provides authentication information.
+
+The following snippet is an example connection URI string.
+
+.. code-block::
+
+     mongodb+srv://sample-hostname:27017/?poolSize=20&useUnifiedTopology=true
+
+The first part of the connection URI identifies the connection string format. 
+In the example above, we use ``mongodb+srv`` which specifies the 
+:manual:`DNS Seedlist Connection Format
+</reference/connection-string/#dns-seedlist-connection-format>` which indicates
+that the hostname following it corresponds to the DNS SRV record of your
+MongoDB instance or deployment. If your instance of deployment does not have
+a DNS SRV record, use the :manual:`Standard Connection Format
+</reference/connection-string/#standard-connection-string-format>`.
+
+.. note::
+   
+   If your deployment is on MongoDB Atlas, follow the 
+   :atlas:`driver connection guide <driver-connection>` to retrieve your 
+   connection string.
+
+Next, specify the hostname or IP address and port. In the example above, we use
+``sample-hostname`` as the hostname and ``27017`` as the port. Replace these
+ values with the hostname and port of your MongoDB instance.
+
+Finally, add any connection and authentication options as parameters to the
+end. In the example above, we set two connection options: ``poolSize=20`` and 
+``useUnifiedTopology=true``.
 
 .. code-block:: js
 
    const { MongoClient } = require("mongodb");
 
    // Connection URI
-   const uri = `mongodb+srv://<username>:<password>@<clusterUrl>`;
+   const uri = 
+     "mongodb+srv://sample-hostname:27017/?poolSize=20&useUnifiedTopology=true";
 
    // Replace this with your constructor options
    const opts = {
@@ -41,8 +75,45 @@ The connection settings are passed as an optional parameter to the
    }
    run().catch(console.dir);
 
-The following table describes several common connection options that can be
-passed to the ``MongoClient`` constructor.
+------------------------
+Connect to a Replica Set
+------------------------
+
+A MongoDB replica set deployment is a group of connected instances that
+store the same set of data. This configuration of instances provides data
+redundancy and high data availability.
+
+To connect to a replica set deployment, specify the host and port numbers of 
+each instance, separated by a comma, and the replica set name as the value of
+the ``replicaSet`` parameter.
+
+.. code-block:: js
+   
+   const uri =
+     "mongodb+srv://host1:27017,host2:27017,host3:27017/?replicaSet=myRs";
+    
+The driver can negotiate 
+and add a parameter name with the replica set name
+While this is not 
+In the prior section, we explained the parts of the connection string and
+showed an 
+In this section, 
+Specify each host and port separated by a command and include the option
+for replicaset name.
+
+
+
+
+
+------------------
+Connection Options
+------------------
+
+This section explains several common MongoDB connection and authentication
+options. These settings provide you with additional control over the 
+negotiation of the connection and the behavior of the client. The following 
+table describes several common connection options that you can pass as 
+parameters in the connection URI.
 
 .. list-table::
    :header-rows: 1
@@ -51,65 +122,51 @@ passed to the ``MongoClient`` constructor.
      - Type
      - Default Value
      - Description
+
    * - **useUnifiedTopology**
      - boolean
      - **false**
      - Specifies whether to opt into the new Server Discovery and Monitoring
        (SDAM) engine. The next major driver release removes the old engine and
        deprecates this option.
+
    * - **validateOptions**
      - boolean
      - **false**
-     - Specifies whether to error when instantiating the client the constructor
-       is passed an unknown option. If ``false``, the driver produces warnings
-       only.
+     - Specifies whether to error when an unknown or incorrect option is
+       provided. If ``false``, the driver produces warnings only.
+
    * - **poolSize**
      - integer
      - **5**
-     - Specifies the maximum size of the individual server connection pool.
+     - Specifies the maximum size of the instance connection pool.
+
    * - **minSize**
      - integer
      - **0**
-     - Specifies the minimum size of connections to maintain in the individual
-       server pool.
-   * - **tlsInsecure**
-     - boolean
-     - **false**
-     - Specifies whether to skip validation of the server certificate with the
-       Certificate Authority.
+     - Specifies the minimum size of the instance connection pool.
+
    * - **family**
      - number
      - **null**
-     - Specifies the version of the IP stack. Possible values include: **4**,
-       **6**, **0**, or **null**. The **0** and **null** settings attempt to
-       connect with IPv6 and fall back to IPv4 upon failure.
-   * - **tlsCAFile**
-     - string
-     - **null**
-     - Specifies the path to a file containing one or more certificate
-       authorities to trust when establishing a TLS connection.
-   * - **tlsCertificateFile**
-     - string
-     - **null**
-     - Specifies the path to the client certificate file or the client private
-       key file. If both are required, the two files should be concatenated.
-   * - **tlsCertificateKeyFilePassword**
-     - string
-     - **null**
-     - Specifies the password to decrypt client private key used for TLS
-       connections.
+     - Specifies the version of the Internet Protocol (IP). The valid values 
+       are: **4**, **6**, **0**, or **null**. The **0** and **null** settings 
+       attempt to connect with IPv6 and fall back to IPv4 upon failure.
+
    * - **noDelay**
      - boolean
      - **true**
-     - Specifies whether to use the TCP socket no delay option. For more
+     - Specifies whether to use the TCP socket no-delay option. For more
        information, see the documentation for `Node.js socket.setNoDelay
        <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setnodelay_nodelay>`_.
+
    * - **keepAlive**
      - boolean
      - **true**
      - Specifies whether ``keepAlive`` is enabled on the TCP socket. For more
        information, see the documentation for `Node.js socket.setKeepAlive
        <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_.
+
    * - **keepAliveInitialDelay**
      - integer
      - **30000**
@@ -117,74 +174,96 @@ passed to the ``MongoClient`` constructor.
        ``keepAlive`` on the TCP socket. For more information, see the
        documentation for `Node.js socket.setKeepAlive
        <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_.
+
    * - **connectTimeoutMS**
      - integer
      - **30000**
      - Specifies the number of milliseconds to wait before timeout on a TCP
        connection.
+
    * - **socketTimeoutMS**
      - integer
      - **360000**
      - Specifies the number of milliseconds to wait before timeout on a TCP
        socket.
+
    * - **w**
      - string or integer
      - **null**
      - Specifies the write concern. For more information on values, see the
        server documentation on the 
        :manual:`w Option </reference/write-concern/#w-option>`.
+
    * - **forceServerObjectId**
      - boolean
      - **false**
      - Specifies whether to force the server to assign ``_id`` values to
        documents instead of the driver.
+
    * - **serializeFunctions**
      - boolean
      - **false**
      - Specifies whether to serialize functions on any object passed to the
        server.
+
    * - **ignoreUndefined**
      - boolean
      - **false**
      - Specifies whether the BSON serializer should ignore undefined fields.
+
    * - **raw**
      - boolean
      - **false**
      - Specifies whether to return document results as raw BSON buffers.
+
    * - **promoteLongs**
      - boolean
      - **true**
      - Specifies whether to convert ``Long`` values to a number if they fit
        inside 53 bits of resolution.
+
    * - **promoteBuffers**
      - boolean
      - **false**
      - Specifies whether to promote Binary BSON values to native Node.js
        ``Buffer`` type data.
+
    * - **promoteValues**
      - boolean
      - **true**
      - Specifies whether to promote BSON values to Node.js native types when
        possible. When set to false, BSON values are presented as wrapper types.
+
    * - **pkFactory**
      - object
      - **null**
      - Specifies a primary key factory object that generates custom ``_id``
        keys.
+
    * - **promiseLibrary**
      - object
      - **null**
      - Specifies the Promise library class the application uses (e.g. Bluebird).
        This library must be compatible with ES6.
+
    * - **loggerLevel**
      - string
      - **null**
      - Specifies the logger level used by the driver. Valid choices are:
        ``error``, ``warn``, ``info``, and ``debug``.
+
    * - **logger**
      - object
      - **null**
      - Specifies a custom logger to be used by the client.
+
+   * - **tls**
+     - boolean
+     - **false**
+     - Specifies whether to establish a Transport Layer Security (TLS)
+       connection with the instance. This is automatically set to **true**
+       when using a DNS seedlist (SRV) in the connection string. You can
+       override this behavor by setting the value to **false**.
 
 For a complete list of options, see the :node-api:`MongoClient
 <MongoClient.html>` API reference page.

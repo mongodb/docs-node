@@ -2,7 +2,15 @@
 Authentication Mechanisms
 =========================
 
-In this section, you can find sample code for connection to MongoDB with each
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+In this guide, you can find sample code for connection to MongoDB with each
 authentication mechanism available in the MongoDB Community Edition:
 ``DEFAULT``, ``SCRAM-SHA-256``, ``SCRAM-SHA-1``, ``MONGODB-CR``, and ``X.509``.
 
@@ -132,6 +140,9 @@ Pass the location of your client certificate file as the value of
 .. literalinclude:: /code-snippets/authentication/x509.js
    :language: javascript
    :dedent: 4
+
+TLS/SSL Options
+~~~~~~~~~~~~~~~
 
 The following table describes each of the TLS/SSL options that can be passed
 as a parameter in the connection URI.
