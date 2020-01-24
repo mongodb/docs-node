@@ -17,10 +17,10 @@ async function run() {
 
     // create a change stream on the movies collection
     const changeStream = await collection.watch();
-    // use the '.next()' iterator to see the change events
+    // use the next() function on the changeStream iterator to access the next event
     const next = await changeStream.next();
     console.log("a change to the collection happened: \t", next);
-    // process the document ...
+    // Add your logic to process the document here
 
     // close the changeStream
     changeStream.close();
