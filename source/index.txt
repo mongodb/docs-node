@@ -6,6 +6,53 @@ MongoDB Node Driver
 
 .. include:: /includes/unicode-checkmark.rst
 
+
+Introduction
+------------
+The official MongoDB Node.js driver allows Node applications to connect and perform queries with MongoDB.
+
+Quick Start
+-----------
+<to fill out later>
+
+Fundamentals
+------------
+The Fundamentals section defines essential concepts to use the MongoDB
+Node.js driver. The CRUD operations subsection illustrates how to read
+and write data to MongoDB using Node.js. The authentication subsection
+explains the various enterprise and community methods for
+authentication. The Logging subsection is a guide showing the
+configuration of the driver logger that is responsible for reporting
+application events. Finally, the monitoring subsection shows how to
+monitor topology events, also known as Server Discovery and Monitoring
+(SDAM) events,  in a MongoDB instance, replica set, or sharded cluster.
+All users of the MongoDB Node.js driver should understand the concepts
+in the Fundamentals section.
+
+Usage Examples
+--------------
+The Usage Example section illustrates how to use commonly used methods
+through brief explanations and opinionated code snippets. This section
+is best suited for users who have limited familiarity with the Node.js
+driver and want to learn to implement common driver methods quickly. 
+
+API
+---
+The API section provides API reference and is recommended for users
+looking to see the parameters and return values of specific methods.
+
+FAQ 
+---
+The Frequently Asked Questions (FAQ) section provides answers to the
+most commonly asked questions about the MongoDB Node.js Driver. 
+
+Issues & Help
+-------------
+The Issues & Help Section explains how to report bugs, contribute to the
+driver, and find additional resources for asking questions and receiving
+help. 
+
+
 The MongoDB Node driver documentation contains documentation specific to
 the Node driver. For the main MongoDB documentation, see the
 :manual:`MongoDB Manual </>`.
