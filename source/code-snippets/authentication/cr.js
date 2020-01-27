@@ -11,7 +11,7 @@ const clusterUrl = "<MongoDB cluster url>";
 // Replace the following with your MongoDB deployment's connection
 // string.
 const uri = 
-  `mongodb+srv://${username}@${clusterUrl}/?authMechanism=${authMechanism}&tls=true&tlsCertificateKeyFile=${clientPEMFile}`;
+  `mongodb+srv://${username}:${password}@${clusterUrl}/?authMechanism=${authMechanism}&tls=true&tlsCertificateKeyFile=${clientPEMFile}`;
 
 // Create a new MongoClient
 const client = new MongoClient(uri);
