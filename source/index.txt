@@ -52,24 +52,6 @@ The Issues & Help Section explains how to report bugs, contribute to the
 driver, and find additional resources for asking questions and receiving
 help. 
 
-
-The MongoDB Node driver documentation contains documentation specific to
-the Node driver. For the main MongoDB documentation, see the
-:manual:`MongoDB Manual </>`.
-
-The Node driver documentation is organized as follows:
-
-.. toctree::
-  :titlesonly:
-  :maxdepth: 1
-
-  /quick-start
-  /fundamentals
-  /usage-examples
-  /api-documentation
-  /faq
-  /issues-and-help
-
 Compatibility
 -------------
 
