@@ -27,23 +27,23 @@ The official MongoDB Node.js driver allows Node.js applications to connect and p
    
    These docs are for version 3.5 of the MongoDB Node.js driver. If
    you're looking for an older version of the MongoDB Node.js driver
-   docs, `see the GitHub pages
+   docs, `see the Legacy Node.js driver documentation
    <https://mongodb.github.io/node-mongodb-native/>`_. For the main
    MongoDB documentation, see the :manual:`MongoDB Manual </>`.
 
 Quick Start
 -----------
-Learn how to quickly get a Node.js application working with MongoDB Atlas through the `Quick Start </quick-start/>`_ section
+Learn how to quickly get a Node.js application working with MongoDB Atlas through the `Quick Start </quick-start/>`_ section.
 
 Fundamentals
 ------------
-The `Fundamentals </fundamentals>`_ section defines the following core concepts involved with using the MongoDB
+The `Fundamentals </fundamentals>`_ defines the following core concepts involved with using the MongoDB
 Node.js driver: 
 
 * CRUD: Learn how to read and write data to MongoDB using Node.js
-* Authentication: Learn how to log a user in through various community and enterprise mechanisms
+* Authentication: Learn how to configure authentication and log a user in using the MongoDB Node.js driver
 * Logs: Learn how MongoDB logs operations and how to work with them
-* Monitoring: Learn how to monitor server events
+* Monitoring: Learn how to monitor MongoDB server events 
 
 Usage Examples
 --------------
@@ -54,8 +54,8 @@ implement common driver methods quickly.
 
 API
 ---
-See the `API </api-documentation/>`_  section if you are looking for the API
-reference for MongoDB Node.js driver methods. 
+See the `API </api-documentation/>`_  section if you are looking for
+technical information for classes, methods, and configuration objects
 
 
 FAQ 
