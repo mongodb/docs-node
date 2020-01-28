@@ -16,7 +16,9 @@ The official MongoDB Node.js driver allows Node applications to connect and perf
 .. note::
    
    These docs are for version 3.5 of the MongoDB Node.js driver. If
-   you're looking for an `older version of the MongoDB Node.js driver docs <https://mongodb.github.io/node-mongodb-native/>`_.
+   you're looking for an `older version of the MongoDB Node.js driver
+   docs <https://mongodb.github.io/node-mongodb-native/>`_. For the main
+   MongoDB documentation, see the :manual:`MongoDB Manual </>`.
 
 Quick Start
 -----------
