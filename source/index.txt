@@ -4,11 +4,7 @@ MongoDB Node Driver
 
 .. default-domain:: mongodb
 
-.. contents:: On this page
-   :local:
-   :backlinks: none
-   :depth: 1
-   :class: singlecols
+
 
 .. include:: /includes/unicode-checkmark.rst
 
@@ -16,6 +12,11 @@ MongoDB Node Driver
 Introduction
 ------------
 The official MongoDB Node.js driver allows Node applications to connect and perform queries with MongoDB.
+
+.. note::
+   
+   These docs are for version 3.5 of the MongoDB Node.js driver. If
+   you're looking for an `older version of the MongoDB Node.js driver docs <https://mongodb.github.io/node-mongodb-native/>`_.
 
 Quick Start
 -----------
