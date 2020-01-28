@@ -23,21 +23,17 @@ The official MongoDB Node.js driver allows Node applications to connect and perf
 
 Quick Start
 -----------
-<to fill out later>
+Learn how to quickly get a Node.js application working with MongoDB Atlas. 
 
 Fundamentals
 ------------
 The Fundamentals section defines essential concepts to use the MongoDB
-Node.js driver. The CRUD operations subsection illustrates how to read
-and write data to MongoDB using Node.js. The authentication subsection
-explains the various enterprise and community methods for
-authentication. The Logging subsection is a guide showing the
-configuration of the driver logger that is responsible for reporting
-application events. Finally, the monitoring subsection shows how to
-monitor topology events, also known as Server Discovery and Monitoring
-(SDAM) events,  in a MongoDB instance, replica set, or sharded cluster.
-All users of the MongoDB Node.js driver should understand the concepts
-in the Fundamentals section.
+Node.js driver. You can learn about the following core ideas:
+
+* CRUD: Learn how to read and write data to MongoDB using Node.js
+* Authentication: Learn how to log a user in through various community and enterprise mechanisms
+* Logs: Learn how MongoDB logs operations and how to work with them
+* Monitoring: Learn how to monitor server events
 
 Usage Examples
 --------------
@@ -61,16 +57,3 @@ Issues & Help
 The Issues & Help Section explains how to report bugs, contribute to the
 driver, and find additional resources for asking questions and receiving
 help. 
-
-Compatibility
--------------
-
-MongoDB Compatibility
-~~~~~~~~~~~~~~~~~~~~~
-
-.. include:: /includes/mongodb-compatibility-table-node.rst
-
-Language Compatibility
-~~~~~~~~~~~~~~~~~~~~~~
-
-.. include:: /includes/language-compatibility-table-node.rst
