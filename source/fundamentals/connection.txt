@@ -12,28 +12,30 @@ Connection URI
 The **connection URI** is the set of instructions that the driver uses to
 connect to a MongoDB instance or replica set deployment. It instructs the
 driver on how it should connect to MongoDB and how it should behave while
-connected.
+connected. The following example shows each part of the connection URI:
 
-The following snippet is an example connection URI string.
+.. figure:: includes/figures/connection_string_parts.png
 
-.. code-block::
 
-     mongodb+srv://sample-hostname:27017/?poolSize=20&useUnifiedTopology=true
-
-The first part identifies the connection string format. In the example above,
-we use ``mongodb+srv`` which specifies the :manual:`DNS Seedlist Connection
-Format </reference/connection-string/#dns-seedlist-connection-format>` which
-indicates that the hostname following it corresponds to the DNS SRV record of
-your MongoDB instance or deployment. If your instance of deployment does not
-have a DNS SRV record, use ``mongodb`` to specify the
-:manual:`Standard Connection Format
-</reference/connection-string/#standard-connection-string-format>`.
+In this example, for the connection string format, we use ``mongodb+srv`` which
+specifies the :manual:`DNS Seedlist Connection Format
+</reference/connection-string/#dns-seedlist-connection-format>`. This indicates
+that the hostname following it corresponds to the DNS SRV record of your
+MongoDB instance or deployment. If your instance or deployment does not have a
+DNS SRV record, use ``mongodb`` to specify the :manual:`Standard Connection
+Format </reference/connection-string/#standard-connection-string-format>`.
 
 .. note::
 
    If your deployment is on MongoDB Atlas, follow the
    :atlas:`Atlas driver connection guide <driver-connection>` to retrieve your
    connection string.
+
+The next part of the connection string contains your username and password
+if you are using password-based authentication. Replace the value of ``user``
+with your username and ``pass`` with your password. If you are using an
+authentication mechanism that does not require a username and password, omit
+this part of the connection URI.
 
 The next part of the connection string specifies the hostname or IP address and
 port of your MongoDB instance. In the example above, we use ``sample-hostname``
