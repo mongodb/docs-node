@@ -54,16 +54,16 @@ implement common driver methods quickly.
 
 API
 ---
-The API section provides API reference and is recommended for users
+The `API </api-documentation/`_ section provides API reference and is recommended for users
 looking to see the parameters and return values of specific methods.
 
 FAQ 
 ---
-The Frequently Asked Questions (FAQ) section provides answers to the
+The `Frequently Asked Questions (FAQ) </faq>`_ section provides answers to the
 most commonly asked questions about the MongoDB Node.js Driver. 
 
 Issues & Help
 -------------
-The Issues & Help Section explains how to report bugs, contribute to the
+The `Issues & Help </issues-and-help>`_ Section explains how to report bugs, contribute to the
 driver, and find additional resources for asking questions and receiving
 help. 
