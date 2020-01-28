@@ -33,12 +33,12 @@ The official MongoDB Node.js driver allows Node applications to connect and perf
 
 Quick Start
 -----------
-Learn how to quickly get a Node.js application working with MongoDB Atlas. 
+Learn how to quickly get a Node.js application working with MongoDB Atlas through the `Quick Start </quick-start/>`_ section
 
 Fundamentals
 ------------
-The Fundamentals section defines essential concepts to use the MongoDB
-Node.js driver. You can learn about the following core ideas:
+The `Fundamentals </fundamentals>`_ section defines the following core concepts involved with using the MongoDB
+Node.js driver: 
 
 * CRUD: Learn how to read and write data to MongoDB using Node.js
 * Authentication: Learn how to log a user in through various community and enterprise mechanisms
@@ -47,10 +47,10 @@ Node.js driver. You can learn about the following core ideas:
 
 Usage Examples
 --------------
-The Usage Example section illustrates how to use commonly used methods
-through brief explanations and opinionated code snippets. This section
-is best suited for users who have limited familiarity with the Node.js
-driver and want to learn to implement common driver methods quickly. 
+Learn how to use common MongoDB Node.js driver methods through brief
+explanation and opinionated code snippets in the `Usage Examples </usage-examples/overview>`_ section.
+This section is best suited for new users to the driver who want to
+implement common driver methods quickly. 
 
 API
 ---
