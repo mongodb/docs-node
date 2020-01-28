@@ -14,7 +14,7 @@ connect to a MongoDB instance or replica set deployment. It instructs the
 driver on how it should connect to MongoDB and how it should behave while
 connected. The following example shows each part of the connection URI:
 
-.. figure:: includes/figures/connection_string_parts.png
+.. figure:: /includes/figures/connection_string_parts.png
 
 
 In this example, for the connection string format, we use ``mongodb+srv`` which
