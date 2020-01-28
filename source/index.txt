@@ -71,5 +71,5 @@ help.
 
 Compatibility
 -------------
-The `Compatibility </compatibility>`_ section shows compatability charts
-with the Node.js language and the MongoDB server versions. 
+The `Compatibility </compatibility>`_ section shows compatibility charts
+with the Node.js language and the MongoDB server versions.
