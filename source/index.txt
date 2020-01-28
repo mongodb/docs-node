@@ -54,7 +54,7 @@ implement common driver methods quickly.
 
 API
 ---
-The `API </api-documentation/`_ section provides API reference and is recommended for users
+The `API </api-documentation/>`_ section provides API reference and is recommended for users
 looking to see the parameters and return values of specific methods.
 
 FAQ 
@@ -67,3 +67,8 @@ Issues & Help
 The `Issues & Help </issues-and-help>`_ Section explains how to report bugs, contribute to the
 driver, and find additional resources for asking questions and receiving
 help. 
+
+Compatability
+-------------
+The `Compatability </compatability>`_ section shows compatability charts
+with the Node.js language and the MongoDB server versions. 
