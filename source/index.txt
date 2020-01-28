@@ -21,13 +21,13 @@ MongoDB Node Driver
 
 Introduction
 ------------
-The official MongoDB Node.js driver allows Node applications to connect and perform queries with MongoDB.
+The official MongoDB Node.js driver allows Node.js applications to connect and perform queries with MongoDB.
 
 .. note::
    
    These docs are for version 3.5 of the MongoDB Node.js driver. If
    you're looking for an older version of the MongoDB Node.js driver
-   docs, `see the github pages
+   docs, `see the GitHub pages
    <https://mongodb.github.io/node-mongodb-native/>`_. For the main
    MongoDB documentation, see the :manual:`MongoDB Manual </>`.
 
@@ -54,7 +54,7 @@ implement common driver methods quickly.
 
 API
 ---
-See the `API </api-documentation/>`_  section if you are looking for API
+See the `API </api-documentation/>`_  section if you are looking for the API
 reference for MongoDB Node.js driver methods. 
 
 
@@ -63,7 +63,7 @@ FAQ
 The `Frequently Asked Questions (FAQ) </faq>`_ section provides answers to the
 most commonly asked questions about the MongoDB Node.js Driver. 
 
-Issues and Help
+Issues & Help
 -------------
 The `Issues & Help </issues-and-help>`_ Section explains how to report bugs, contribute to the
 driver, and find additional resources for asking questions and receiving
