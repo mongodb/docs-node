@@ -39,8 +39,9 @@ establish a connection to MongoDB Atlas and begin to work with data
 
 Fundamentals
 ------------
-The `Fundamentals </fundamentals>`_ defines the following core concepts
-involved with using the MongoDB Node.js driver: 
+Whether you're a brand new MongoDB developer,  or just want to brush up
+on the core concepts then check out the `Fundamentals </fundamentals>`_
+section that defines the following core concepts:
 
 * CRUD: Learn how to read and write data to MongoDB using Node.js
 * Authentication: Learn how to configure authentication and log a user
