@@ -18,6 +18,7 @@ Usage Examples
 :doc:`distinct</usage-examples/distinct>`
 :doc:`command</usage-examples/command>`
 :doc:`changeStream</usage-examples/changeStream>`
+:doc:`changeStream</usage-examples/changeStreamsTwo>`
 
 .. toctree::
    :caption: Examples
@@ -32,3 +33,4 @@ Usage Examples
    /usage-examples/command
    /usage-examples/changeStream
    /usage-examples/bulkWrite
+   /usage-examples/changeStreamsTwo
