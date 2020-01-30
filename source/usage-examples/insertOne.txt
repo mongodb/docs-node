@@ -13,9 +13,9 @@ does not exist, the ``insertOne()`` method creates the collection.
 The ``insertOne()`` method returns a :mdn:`Promise
 <Web/JavaScript/Reference/Global_Objects/Promise>` that resolves to an
 object. The ``insertedId`` field of this object is the ``_id`` of the
-inserted document. The ``insertedCount`` field of this object has a
-value of ``0`` if a document was not created, and a value of ``1`` if a
-document was created.
+inserted document. If a document is not created, the ``insertedCount`` field
+of this object has a value of ``0``. If a document is created, the 
+``insertedCount`` field of this object has a value of ``1``.
 
 Example
 -------

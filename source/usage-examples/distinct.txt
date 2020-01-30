@@ -15,7 +15,7 @@ You can specify a document field within an *embedded document* using
 :manual:`dot
 notation </core/document/#embedded-documents>`. If
 you call ``distinct()`` on an document field that contains an array,
-each element of the array is treated as a separate value.
+the method treats each element as a separate value.
 
 You can provide an optional query document to narrow the set of
 documents that are searched and an optional Object to specify additional
@@ -44,7 +44,7 @@ Example
 
 The following snippet retrieves a list of distinct values for the ``year``
 document field from the ``movies`` collection. It uses a query document to
-match only movies that include "Barbara Streisand" as a ``director``.
+match movies that include "Barbara Streisand" as a ``director``.
 
 .. literalinclude:: /code-snippets/usage-examples/distinct.js
   :language: javascript

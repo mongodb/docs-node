@@ -4,13 +4,13 @@ Update a Document
 
 .. default-domain:: mongodb
 
-You can update a single document using the :node-api:`updateOne()
-<Collection.html#updateOne>`
-method. ``updateOne()`` accepts a filter document, and updates the first
-document that matches the filter using a provided update document. The
-update document requires an :manual:`Update Operator
-</reference/operator/update/#update-operators>` to modify a field in a
-document.
+You can update a single document using the :node-api:`collection.updateOne()
+<Collection.html#updateOne>` method. ``updateOne()`` accepts a filter
+document and a replacement document. If the query matches documents in the
+collection, it replaces the matches with the replacement document. The
+update document requires an
+:manual:`Update Operator </reference/operator/update/#update-operators>`
+to modify a field in a document.
 
 Create an :mdn:`Object
 <Web/JavaScript/Reference/Global_Objects/Object>` to specify additional
@@ -19,14 +19,16 @@ if no documents match the filter.
 
 The ``updateOne()`` method returns a :mdn:`Promise
 <Web/JavaScript/Reference/Global_Objects/Promise>`
-that resolves to an object. The ``modifiedCount`` field of this object
-has a value of ``0`` if no documents were updated, and a value of ``1``
-if a document was updated.
+that resolves to an object. You can use the ``modifiedCount`` field of this
+object to determine whether a document was updated. If a document is
+updated, the ``modifiedCount`` field contains a value of ``1``. If no
+documents are updated, the field contains a value of ``0``.
 
-Specifying incorrect parameters for your ``updateOne()`` operation can
-cause problems. Attempting to modify the immutable field ``_id`` will
-result in an error. Additionally, trying to update a field to value that
-would violate unique index rules will throw a ``duplicate key error``.
+``updateOne()`` throws an exception if an error occurs
+during execution. For example, an exception is thrown if you specify
+the immutable field ``_id``. A ``duplicate key error`` exception
+is thrown if your update document contains a value that violates
+unique index rules.
 
 .. note::
 

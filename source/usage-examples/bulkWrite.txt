@@ -15,7 +15,7 @@ documentation for full details.
 ``bulkWrite()`` accepts the following parameters:
 
 - ``operations``: specifies the bulk operations to
-  perform. Each operation is passed to ``bulkWrite()`` as an object in
+  perform. Pass each operation to ``bulkWrite()`` as an object in
   an array.
 
 - ``options``: *optional* settings that affect the execution
