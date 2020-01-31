@@ -20,15 +20,15 @@ if no documents match the filter.
 The ``updateOne()`` method returns a :mdn:`Promise
 <Web/JavaScript/Reference/Global_Objects/Promise>`
 that resolves to an object. You can use the ``modifiedCount`` field of this
-object to determine whether a document was updated. If a document is
-updated, the ``modifiedCount`` field contains a value of ``1``. If no
-documents are updated, the field contains a value of ``0``.
+object to check the number of documents updated by the operation. Since
+``updateOne()`` can only update a single document, ``modifiedCount`` can
+have a value of either ``0`` or ``1``.
 
-``updateOne()`` throws an exception if an error occurs
-during execution. For example, an exception is thrown if you specify
-the immutable field ``_id``. A ``duplicate key error`` exception
-is thrown if your update document contains a value that violates
-unique index rules.
+``updateOne()`` throws an exception if an error occurs during execution.
+If you specify a value in your update document for the immutable field
+``_id``, the method throws an exception. If your update document contains
+a value that violates unique index rules, the method throws a ``duplicate
+key error`` exception.
 
 .. note::
 
