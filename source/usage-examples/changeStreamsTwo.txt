@@ -6,22 +6,23 @@ Watch for Changes Two
 
 
 You can keep track of changes in MongoDB, such as changes to a
-collection, database, or deployment by opening a Change Stream. A Change
-Stream allows applications to watch for changes to data and react to
-those changes. You can open a change stream by calling the watch()
-method on a collection, database, or deployment. The watch() method
-takes an optional pipeline parameter that is an array of stages to
-filter the change events output. 
+collection, database, or deployment by opening a :manual:`Change
+Stream</changeStreams/>`. A ``Change Stream`` allows applications to
+watch for changes to data and react to those changes. You can open a
+change stream by calling the :node-api:`watch()
+</Collection.html#watch>` method on a collection, database, or
+deployment. The ``watch()`` method takes an optional pipeline parameter
+that is an array of stages to filter the change events output. 
 
-The watch() method can take in additional options. Set fullDocument to
-'updateLookup' to receive an event that contains the changes to the
+The ``watch()`` method can take in additional options. Set ``fullDocument`` to
+``'updateLookup'`` to receive an event that contains the changes to the
 document as well as the entire altered document.
 
-The watch() command returns a Change Stream instance. You can use a
+The ``watch()`` command returns a Change Stream instance. You can use a
 stream to process the change events by calling
 ``changeStream.on('change', callback)``. To free up resources after
-processing the change events, you can call the close() method to stop
-watching for changes. 
+processing the change events, you can call the ``close()`` method to
+stop watching for changes. 
 
 .. literalinclude:: /code-snippets/usage-examples/changeStreamsTwo.js
   :language: javascript
