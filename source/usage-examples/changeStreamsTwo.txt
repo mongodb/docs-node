@@ -4,33 +4,25 @@ Watch for Changes Two
 
 .. default-domain:: mongodb
 
-You can watch for changes in MongoDB, such as changes to a collection,
-database, or deployment, by using the :node-api:`watch()
-</Collection.html#watch>` method. The ``watch()`` method opens a :manual:`Change
-Stream</changeStreams/>` that allows applications to watch for changes
-to data and react to those changes. After opening a ``Change Stream``,
-you can process the change events using the :node-api:`next()
-</ChangeStream.html#next>` method on an instance of a ``Change Stream``.
-The ``watch()`` method takes an optional ``pipeline`` parameter that is an array of
-:manual:`stages </reference/operator/aggregation-pipeline/#stages>` to
-filter the change events output. You can stop watching for changes and
-free resources by closing the ``Change Stream`` using the
-:node-api:`close() </ChangeStream.html#close>` method on an instance of
-a ``Change Stream``.
 
-Create an `Object
-<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
-to specify additional options. Set ``fullDocument`` to ``'updateLookup'``
-to receive an event that contains the changes to the document as well as
-the entire altered document.
+You can keep track of changes in MongoDB, such as changes to a
+collection, database, or deployment by opening a Change Stream. A Change
+Stream allows applications to watch for changes to data and react to
+those changes. You can open a change stream by calling the watch()
+method on a collection, database, or deployment. The watch() method
+takes an optional pipeline parameter that is an array of stages to
+filter the change events output. 
 
-The ``watch()`` command returns a ``Change Stream`` instance. The
-``changeStream.next()`` method returns a `Promise
-<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise>`_
-that resolves to an object with the change events. The ``documentKey``
-field of this object is an object that contains the ``_id`` of the
-changed document.
+The watch() method can take in additional options. Set fullDocument to
+'updateLookup' to receive an event that contains the changes to the
+document as well as the entire altered document.
 
-.. literalinclude:: /code-snippets/usage-examples/changeStream.js
+The watch() command returns a Change Stream instance. You can use a
+stream to process the change events by calling
+``changeStream.on('change', callback)``. To free up resources after
+processing the change events, you can call the close() method to stop
+watching for changes. 
+
+.. literalinclude:: /code-snippets/usage-examples/changeStreamsTwo.js
   :language: javascript
   :linenos:
