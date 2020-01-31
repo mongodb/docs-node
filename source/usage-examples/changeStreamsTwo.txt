@@ -30,8 +30,8 @@ Example
 -------
 
 The following example opens a ``Change Stream`` on the ``movies``
-collection. We simulate two real-world events, an ``insertOne`and a
-``deleteOne``operation on the collection, that trigger the change event.
+collection. We simulate two real-world events, an ``insertOne`` and a
+``deleteOne`` operation on the collection, that trigger the change event.
 After the two change events are logged, we close the ``Change Stream``
 and the client. 
 
