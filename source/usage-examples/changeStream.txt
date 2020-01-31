@@ -4,6 +4,9 @@ Watch for Changes
 
 .. default-domain:: mongodb
 
+Open a Change Stream
+--------------------
+
 You can watch for changes in MongoDB, such as changes to a collection,
 database, or deployment, by using the :node-api:`watch()
 </Collection.html#watch>` method. The ``watch()`` method opens a :manual:`Change
@@ -23,6 +26,34 @@ Create an `Object
 to specify additional options. Set ``fullDocument`` to ``'updateLookup'``
 to receive an event that contains the changes to the document as well as
 the entire altered document.
+
+Process the Change Stream Events
+--------------------------------
+
+The watch() command returns a ``change stream`` instance. Use the
+``on()`` method on the ``change stream`` instance to add a listener
+function. The ``changeStream.on()`` method will take the string
+``'change' `` as the first parameter and a callback as the second
+parameter. The callback will trigger when a ``change event`` occurs,
+providing the next available document. You can use the callback to
+specify logic to process the document when the event is received. 
+
+To free up resources once you are done processing the change events,
+call the close() method to close the change stream instance and stop
+watching for changes.
+
+The watch() command returns a ``change stream`` instance. Use the
+``on()`` method on the ``change stream`` instance to add a listener
+function. The ``changeStream.on()`` method will take the string
+``'change' `` as the first parameter and a callback as the second
+parameter. The callback will trigger when a ``change event`` occurs,
+providing the next available document. You can use the callback to
+specify logic to process the document when the event is received. 
+
+To free up resources once you are done processing the change events,
+call the close() method to close the change stream instance and stop
+watching for changes.
+
 
 The ``watch()`` command returns a ``Change Stream`` instance. The
 ``changeStream.next()`` method returns a `Promise
