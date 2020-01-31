@@ -14,15 +14,27 @@ change stream by calling the :node-api:`watch()
 deployment. The ``watch()`` method takes an optional pipeline parameter
 that is an array of stages to filter the change events output. 
 
-The ``watch()`` method can take in additional options. Set ``fullDocument`` to
+The ``watch()`` method can take in additional options. Create an `Object
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
+to specify additional options. Set ``fullDocument`` to
 ``'updateLookup'`` to receive an event that contains the changes to the
 document as well as the entire altered document.
 
-The ``watch()`` command returns a Change Stream instance. You can use a
+The ``watch()`` command returns a ``Change Stream`` instance. You can use a
 stream to process the change events by calling
 ``changeStream.on('change', callback)``. To free up resources after
 processing the change events, you can call the ``close()`` method to
 stop watching for changes. 
+
+Example
+-------
+
+The following example opens a ``Change Stream`` on the ``movies``
+collection. We simulate two real-world events, an ``insertOne`and a
+``deleteOne``operation on the collection, that trigger the change event.
+After the two change events are logged, we close the ``Change Stream``
+and the client. 
+
 
 .. literalinclude:: /code-snippets/usage-examples/changeStreamsTwo.js
   :language: javascript
