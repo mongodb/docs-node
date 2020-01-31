@@ -12,10 +12,11 @@ update document requires an
 :manual:`Update Operator </reference/operator/update/#update-operators>`
 to modify a field in a document.
 
-Create an :mdn:`Object
-<Web/JavaScript/Reference/Global_Objects/Object>` to specify additional
-options. Set the ``upsert`` option to ``true`` to create a new document
-if no documents match the filter.
+You can specify additional query options using the ``options`` object
+passed as the second parameter of the ``updateOne()`` method.
+Set the ``upsert`` option to ``true`` to create a new document
+if no documents match the filter. For additional information, see the
+:node-api:`updateOne() API documentation <Collection.html#updateOne>`.
 
 The ``updateOne()`` method returns a :mdn:`Promise
 <Web/JavaScript/Reference/Global_Objects/Promise>`

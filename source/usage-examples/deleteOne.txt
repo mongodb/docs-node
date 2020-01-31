@@ -17,7 +17,7 @@ You can specify additional query options using the
 ``deleteOne`` method. You can also pass a
 :node-api:`callback method <Collection.html#~deleteWriteOpCallback>`
 as an optional third parameter. For detailed reference documentation,
-see :node-api:`collection.deleteOne() <Collection.html#deleteOne>`.
+see :node-api:`deleteOne() <Collection.html#deleteOne>`.
 
 ``deleteOne()`` behaves in two different ways depending on
 whether you provide a callback method:
