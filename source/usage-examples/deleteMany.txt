@@ -4,33 +4,28 @@ Delete Multiple Documents
 
 .. default-domain:: mongodb
 
-You can delete several documents in a collection at once with
-:node-api:`collection.deleteMany() <Collection.html#deleteMany>`.
-
+You can delete several documents in a collection at once using the
+:node-api:`collection.deleteMany() <Collection.html#deleteMany>` method.
 Pass a query document to the ``deleteMany()`` method to specify a subset
-of documents in a collection to delete. If you do not provide a query
+of documents in the collection to delete. If you do not provide a query
 document (or if you provide an empty document), MongoDB matches all documents
 in the collection and deletes them. While you can use ``deleteMany()``
 to delete all documents in a collection, consider using
 :node-api:`drop() <Collection.html#drop>` instead for better performance
 and clearer code.
 
-You can define additional query options using the ``options``
-object passed as the second parameter of the ``deleteMany()`` method.
-You can also pass a
-:node-api:`callback method
-<Collection.html#~deleteWriteOpCallback>`
-as an optional third parameter. For detailed reference documentation,
-see
-:node-api:`collection.deleteMany() <Collection.html#deleteMany>`.
+You can specify additional options in the ``options`` object passed in
+the second parameter of the ``deleteMany()`` method. You can also pass a
+:node-api:`callback method <Collection.html#~deleteWriteOpCallback>`
+as an optional third parameter. For more detailed information, see
+:node-api:`the deleteMany() API documentation <Collection.html#deleteMany>`.
 
 ``deleteMany()`` behaves in two different ways depending on whether you
 provide a callback method:
 
 - if you do not specify a callback method, ``deleteMany()`` returns a
   :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
-  that resolves to an
-  :mdn:`Object <Web/JavaScript/Reference/Global_Objects/Object>`
+  that resolves to an object
 
 - if you specify a callback method, ``deleteMany()`` returns
   nothing, and instead passes the result or error object to the

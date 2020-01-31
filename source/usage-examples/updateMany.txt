@@ -11,8 +11,10 @@ replaces documents that match the filter with the update
 document. The update document requires an :manual:`update operator
 </reference/operator/update>` to modify a field in a document.
 
-You can define additional query options using the options object passed
-as the third parameter of the ``updateMany()`` method.
+You can specify additional options in the ``options`` object passed in
+the third parameter of the ``updateMany()`` method. For more detailed
+information, see :node-api:`the updateMany() API documentation
+<Collection.html#updateMany>`.
 
 The ``updateMany()`` method returns a :mdn:`Promise
 <Web/JavaScript/Reference/Global_Objects/Promise>`

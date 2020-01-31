@@ -57,7 +57,7 @@ same email address.
 
    Error during bulkWrite, BulkWriteError: E11000 duplicate key error collection: sample_mflix.users index: email_1 dup key: { : "rita_91@example.com" }
 
-Similarly, if you attempt to perform a bulk write against a  collection
+Similarly, if you attempt to perform a bulk write against a collection
 that uses :manual:`schema validation </core/schema-validation>`, you may
 encounter warnings or errors related to the formatting of inserted or
 modified documents.

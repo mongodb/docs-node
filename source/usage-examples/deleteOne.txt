@@ -12,7 +12,7 @@ the query. If you do not provide a query document (or if you provide an
 empty document), MongoDB matches all documents in the collection and
 deletes the first match.
 
-You can define additional query options using the
+You can specify additional query options using the
 ``options`` object passed as the second parameter of the
 ``deleteOne`` method. You can also pass a
 :node-api:`callback method <Collection.html#~deleteWriteOpCallback>`
@@ -24,8 +24,7 @@ whether you provide a callback method:
 
 - if you do not specify a callback method, ``deleteOne()`` returns a
   :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
-  that resolves to an
-  :mdn:`Object <Web/JavaScript/Reference/Global_Objects/Object>`
+  that resolves to an object
 
 - if you specify a callback method, ``deleteOne()`` returns
   nothing, and instead passes the result object or error object to the

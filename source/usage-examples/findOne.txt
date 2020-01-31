@@ -23,9 +23,8 @@ through the ``options`` object passed as the second parameter of the
 
 ``findOne()`` returns a
 :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
-that resolves to an
-:mdn:`Object <Web/JavaScript/Reference/Global_Objects/Object>`,
-which, if no documents match your query, has a value of ``null``.
+that resolves to an object which, if no documents match your query,
+has a value of ``null``.
 
 Example
 -------
