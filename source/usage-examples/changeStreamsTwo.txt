@@ -7,7 +7,7 @@ Watch for Changes Two
 Open a Change Stream
 --------------------
 
-You can keep track of changes in MongoDB, such as changes to a
+You can keep track of changes of data in MongoDB, such as changes to a
 collection, database, or deployment by opening a :manual:`Change
 Stream</changeStreams/>`. A ``Change Stream`` allows applications to
 watch for changes to data and react to those changes. You can open a
@@ -30,19 +30,15 @@ Process the Change Stream Events
 The ``watch()`` command returns a ``Change Stream`` instance. Use the
 ``on()`` method on the ``Change Stream`` instance to add a listener
 function. The ``changeStream.on()`` method will take the string
-``'change'`` as the first parameter and a callback as the second
-parameter. The callback will trigger when a ``change event`` occurs,
-providing the next available document. You can use the callback to
-specify logic to process the document when the event is received. 
+``'change'`` as the first parameter and a :mdn:`callback function
+<Glossary/Callback_function>` as the second parameter. The callback will
+trigger when a ``change event`` occurs, providing the next available
+document. You can use the callback to specify logic to process the
+document when the event is received. 
 
 To free up resources once you are done processing the change events,
 call the :node-api:`close() </ChangeStream.html#close>` method to close
 the change stream instance and stop watching for changes.
-
-:mdn:`callback function
-<Glossary/Callback_function>`,
-
-https://developer.mozilla.org/en-US/docs/Glossary/Callback_function
 
 Example
 -------
