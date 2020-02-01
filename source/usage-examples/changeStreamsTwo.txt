@@ -13,11 +13,12 @@ Stream</changeStreams/>`. A ``Change Stream`` allows applications to
 watch for changes to data and react to those changes. You can open a
 change stream by calling the :node-api:`watch()
 </Collection.html#watch>` method on a collection, database, or
-deployment. The ``watch()`` method takes an optional pipeline parameter
-that is an array of stages to filter the :manual:`change events
-</reference/change-events/>` output. 
+deployment. The ``watch()`` method takes an optional pipeline as it's
+first parameter that is an array of stages to filter the :manual:`change
+events </reference/change-events/>` output. 
 
-The ``watch()`` method can take in additional options. Create an `Object
+The ``watch()`` method can take in additional options as it's second
+parameter. Create an `Object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
 to specify additional options. Set ``fullDocument`` to
 ``'updateLookup'`` to receive an event that contains the changes to the
@@ -29,7 +30,7 @@ Process the Change Stream Events
 The watch() command returns a ``change stream`` instance. Use the
 ``on()`` method on the ``change stream`` instance to add a listener
 function. The ``changeStream.on()`` method will take the string
-``'change' `` as the first parameter and a callback as the second
+``'change'`` as the first parameter and a callback as the second
 parameter. The callback will trigger when a ``change event`` occurs,
 providing the next available document. You can use the callback to
 specify logic to process the document when the event is received. 
