@@ -6,7 +6,7 @@ const uri =
   "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, { useUnifiedTopology: true });
-let changeStream, interval;
+let changeStream;
 async function run() {
   try {
     await client.connect();
@@ -29,7 +29,6 @@ async function run() {
     }, 1000);
   } finally {
     setTimeout(async () => {
-      clearInterval(interval);
       await changeStream.close();
       await client.close();
     }, 2500);
