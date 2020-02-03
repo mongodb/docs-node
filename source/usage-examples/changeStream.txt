@@ -38,7 +38,7 @@ trigger when a ``change event`` is emitted, providing the next available
 document. You can use the callback to specify logic to process the
 document when the event is received. 
 
-Call the :node-api:`close() </ChangeStream.html#close>` method on the change stream instance to stop processing change events. This method closes the change stream and frees resources
+Call the :node-api:`close() </ChangeStream.html#close>` method on the change stream instance to stop processing change events. This method closes the change stream and frees resources.
 
 Example
 -------
