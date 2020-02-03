@@ -101,8 +101,9 @@ URI to specify the behavior of the client.
    * - **validateOptions**
      - boolean
      - ``false``
-     - Specifies whether to error when it is passed an unknown or incorrect
-       option. If ``false``, the driver produces warnings only.
+     - Specifies whether to error when the method parameters contain an
+       unknown or incorrect option. If ``false``, the driver produces warnings
+       only.
 
    * - **poolSize**
      - integer

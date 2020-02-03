@@ -38,8 +38,7 @@ deployment:
 Event Descriptions
 ------------------
 
-The following table lists all the SDAM events that are available to your
-application by the driver:
+You can subscribe to any of the following SDAM events:
 
 .. list-table::
    :header-rows: 1

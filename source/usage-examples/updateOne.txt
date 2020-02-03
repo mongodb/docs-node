@@ -6,11 +6,11 @@ Update a Document
 
 You can update a single document using the :node-api:`collection.updateOne()
 <Collection.html#updateOne>` method. ``updateOne()`` accepts a filter
-document and a replacement document. If the query matches documents in the
-collection, it replaces the matches with the replacement document. The
-update document requires an
-:manual:`Update Operator </reference/operator/update/#update-operators>`
-to modify a field in a document.
+document and an update document. If the query matches documents in the
+collection, the method applies the updates from the update document to fields
+and values of them. The update document contains :manual:`update operators
+</reference/operator/update/#update-operators>` that instruct the method
+on the changes to make to the matches.
 
 You can specify additional query options using the ``options`` object
 passed as the second parameter of the ``updateOne()`` method.
@@ -42,7 +42,11 @@ key error`` exception.
 Example
 -------
 
+The following example uses the ``$set`` update operator which specifies
+update values for document fields. For more information on update operators,
+see the :manual:`MongoDB update operator reference documentation
+</reference/operator/update/#update-operators>`.
+
 .. literalinclude:: /code-snippets/usage-examples/updateOne.js
   :language: javascript
   :linenos:
-
