@@ -114,14 +114,14 @@ operation:
   :linenos:
 
 
-What does the keepAlive setting do?
------------------------------------
+What does the ``keepAlive`` setting do?
+---------------------------------------
 
-``keepAlive`` is a socket setting available from Node.js that in theory
-will keep a socket alive by sending periodic probes to MongoDB.
-However, this only works if the operating system supports
-``SO_KEEPALIVE``\ , and still might not work if a firewalls
-ignores or drops the ``keepAlive`` packets.
+``keepAlive`` is a ``connection-setting`` that sets the number of milliseconds to wait before initiating a :wikipedia:`TLS keepAlive <Keepalive#TCP_keepalive>` on a TCP Socket. 
+The ``keepAlive`` option will keep a socket alive by sending periodic probes to MongoDB. However, this only works if the operating system supports ``SO_KEEPALIVE``\ .
+
+.. warning::
+    If a firewall ignores or drops the ``keepAlive`` packets this may not work
 
 What can I do if I'm experiencing unexpected network behavior?
 --------------------------------------------------------------
