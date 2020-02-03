@@ -19,7 +19,7 @@ operations. Each example provides:
 How to Use the Usage Examples
 -----------------------------
 
-These examples use the :atlas:`MongoDB Atlas sample data <sample-data>` 
+These examples use the :atlas:`MongoDB Atlas sample data <sample-data>`
 database. You can use this sample data on the free tier
 of MongoDB Atlas by following the :atlas:`Get Started with Atlas
 <getting-started/#atlas-getting-started>` guide or you can

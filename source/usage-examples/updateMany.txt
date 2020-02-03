@@ -4,10 +4,10 @@ Update Multiple Documents
 
 .. default-domain:: mongodb
 
-You can update multiple documents using the 
+You can update multiple documents using the
 :node-api:`updateMany() <Collection.html#updateMany>` method.
 ``updateMany()`` accepts a filter object and update document, and
-replaces documents that match the filter with the update
+replaces documents in a collection that match the filter with the update
 document. The update document requires an :manual:`update operator
 </reference/operator/update>` to modify a field in a document.
 

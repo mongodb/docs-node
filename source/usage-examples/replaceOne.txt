@@ -8,20 +8,18 @@ You can replace a single document using the
 :node-api:`collection.replaceOne() <Collection.html#replaceOne>` method.
 ``replaceOne()`` accepts a query document and a replacement document. If
 the query matches a document in the collection, it replaces the first
-match with the replacement document. The operation replaces all fields and values in the original document
-with the replacement document. The value of the ``_id`` field remains the
-same unless you explicitly specify a new value for ``_id`` in the
-replacement document.
+match with the replacement document. The operation replaces all fields and
+values in the original document with the replacement document. The value of
+the ``_id`` field remains the same unless you explicitly specify a new value
+for ``_id`` in the replacement document.
 
 You can specify additional options, such as ``upsert``, using the
-optional ``options`` parameter. Configuring the ``upsert`` field to
-``true`` in the options object causes the operation to insert a new
-document if no document matches the query.
+optional ``options`` parameter. If you set the ``upsert`` option field to
+``true`` the method inserts a new document if no document matches the query.
 
 The ``replaceOne()`` method returns a :mdn:`Promise
-<Web/JavaScript/Reference/Global_Objects/Promise>`
-that resolves to an :node-api:`updateWriteOpResult
-<Collection.html#~updateWriteOpResult>`
+<Web/JavaScript/Reference/Global_Objects/Promise>` that resolves to an
+:node-api:`updateWriteOpResult <Collection.html#~updateWriteOpResult>`
 object. You can use the ``modifiedCount`` field in the
 ``updateWriteOpResult`` object to check the number of documents replaced
 by the operation. Since ``replaceOne`` can only replace a single document

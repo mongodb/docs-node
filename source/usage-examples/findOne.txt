@@ -16,9 +16,9 @@ only returns the first matched document.
 You can also define additional query options such as
 :doc:`sort </fundamentals/crud/read-operations/sort>`
 and :doc:`projection </fundamentals/crud/read-operations/project>`
-to configure the returned document. You should specify these options
-through the ``options`` object passed as the second parameter of the
-``findOne`` method. For detailed reference documentation, see
+to configure the returned document. Pass them in the ``options`` object as the
+second parameter of the ``findOne`` method. For detailed reference
+documentation, see
 :node-api:`collection.findOne() <Collection.html#findOne>`.
 
 ``findOne()`` returns a
