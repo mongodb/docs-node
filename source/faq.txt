@@ -145,7 +145,6 @@ Consider the following operation:
 
 .. literalinclude:: /code-snippets/faq/econnresetWithClientConnect-example.js
   :language: javascript
-  :linenos:
 
 If this operation causes an ``ECONNRESET`` error, you may have run into
 the ``file descriptor`` limit for your Node.js process. In that case you
