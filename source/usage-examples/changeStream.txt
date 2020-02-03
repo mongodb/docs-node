@@ -40,16 +40,16 @@ document when the event is received.
 
 To free up resources once you are done processing the change events,
 call the :node-api:`close() </ChangeStream.html#close>` method to close
-the change stream instance and stop watching for changes.
+the ``Change Stream`` instance and stop watching for changes.
 
 Example
 -------
 
 The following example opens a ``Change Stream`` on the ``movies``
 collection. We simulate two events, an ``insertOne()`` and a
-``deleteOne()`` operation on the collection, that trigger the change event.
-After the two ``change events`` are logged, we close the ``Change Stream``
-and the client. 
+``deleteOne()`` operation on the collection, that trigger the change
+event. After the two ``change events`` are logged, we close the ``Change
+Stream`` instance and the connection to the ``db``. 
 
 
 .. literalinclude:: /code-snippets/usage-examples/changeStream.js
