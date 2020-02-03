@@ -94,29 +94,25 @@ Reduce the ``poolSize`` in the connection settings to fix the problem.
 What does a value of ``0`` do for ``connectTimeoutMS`` and ``socketTimeoutMS``?
 -------------------------------------------------------------------------------
 
-Setting ``connectTimeoutMS`` and ``socketTimeoutMS`` to the value 0 has
-a special meaning. It causes the application to use the operating
-system's default socket timeout value.
+Setting ``connectTimeoutMS`` and ``socketTimeoutMS`` to the value ``0`` has
+causes the application to use the operating system's default socket timeout value.
 
-How can I prevent long running operations from slowing down the server?
+How can I prevent long-running operations from slowing down the server?
 -----------------------------------------------------------------------
 
-Many developers set a low ``socketTimeoutMS`` value, intending
-to prevent long-running server operations from slowing down
-the application. ``maxTimeMS`` is usually a better choice; it allows
-MongoDB itself to cancel operations which run for more than ``maxTimeMS``
-milliseconds.
+By using ``maxTimeMS()`` you can prevent long-running operations from
+slowing down the server. This method allows the MongoDB server to cancel
+operations that run for more than the set value of ``maxTimeMS``.  
 
-The following example demonstrates how to use ``MaxTimeMS`` with a ``find``
-operation.
+The following example demonstrates how to use MaxTimeMS with a find
+operation:
 
 .. code-block:: js
 
-   // Execute a find command
-   col.find({"$where": "sleep(100) || true"})
-     .maxTimeMS(50)
-     .count(function(err, count) {
-   });
+.. literalinclude:: /code-snippets/faq/maxTimeMS-example.js
+  :language: javascript
+  :linenos:
+
 
 What does the keepAlive setting do?
 -----------------------------------
