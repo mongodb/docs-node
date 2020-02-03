@@ -64,8 +64,9 @@ inconsistencies if the application retries the operation on failure.
 
 However, there are important use cases for ``socketTimeoutMS`` -
 consider the following cases: 
-* A MongoDB process erroring out 
-* A misconfigured firewall causing a socket connection without sending a
+
+- A MongoDB process erroring out 
+- A misconfigured firewall causing a socket connection without sending a
 ``FIN`` packet 
 
 In those cases, there is no way to detect that the connection has died.
