@@ -28,11 +28,13 @@ Process the Change Stream Events
 --------------------------------
 
 The ``watch()`` command returns a ``Change Stream`` instance. Use the
-``on()`` method on the ``Change Stream`` instance to add a listener
-function. The ``changeStream.on()`` method will take the string
-``'change'`` as the first parameter and a :mdn:`callback function
+`EventEmitter.on()
+<https://nodejs.org/api/events.html#events_emitter_on_eventname_listener>`_.
+method on the ``Change Stream`` instance to add a listener function. The
+``changeStream.on()`` method will take the string ``'change'`` as the
+first parameter and a :mdn:`callback function
 <Glossary/Callback_function>` as the second parameter. The callback will
-trigger when a ``change event`` occurs, providing the next available
+trigger when a ``change event`` is emitted, providing the next available
 document. You can use the callback to specify logic to process the
 document when the event is received. 
 
