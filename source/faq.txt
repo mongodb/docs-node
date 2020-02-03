@@ -15,25 +15,21 @@ Frequently Asked Questions
 What Can I Do If I'm Getting ``ECONNRESET`` When Calling ``client.connect()``?
 ------------------------------------------------------------------------------
 
-This can occur if the connection pool is too large.
+In most operating systems, each connection is associated with a file descriptor. There is typically a limit set by the operating system on the number of file descriptors used by a single process. An ``ECONNRESET`` error can occur if the connection pool size surpasses the limit of ``file descriptors``.
+
+Consider the following operation:
 
 .. code-block:: js
 
-   const client = new MongoClient('mongodb://localhost:27017/test?maxPoolSize=5000');
-   client.connect(function(err) {
-       // connection
-   });
+ const client = new MongoClient('mongodb://localhost:27017/test?maxPoolSize=5000');
+ client.connect(function(err) {
+ // connection
+ });
 
 If this operation causes an ``ECONNRESET`` error, you may have run into
-the file descriptor limit for your Node.js process.
-
-In most operating systems, each socket connection is associated with a
-file descriptor. Many operating systems have a limit on how many such
-file descriptors can be used by a single process.
-
-The way to fix the descriptor limit issue is to increase the number of
-file descriptors for the Node.js process. On Mac OS and Linux you do
-this with the ``ulimit`` shell command.
+the file descriptor limit for your Node.js process. In that case you
+must increase the number of file descriptors for the Node.js process. On
+Mac OS and Linux you do this with the ulimit shell command. 
 
 .. code-block:: sh
 
