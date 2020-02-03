@@ -12,8 +12,8 @@ Frequently Asked Questions
    :depth: 2
    :class: singlecol
 
-What can I do if I'm getting ``ECONNRESET`` when calling client.connect?
-------------------------------------------------------------------------
+What Can I Do If I'm Getting ``ECONNRESET`` When Calling ``client.connect()``?
+------------------------------------------------------------------------------
 
 This can occur if the connection pool is too large.
 
@@ -42,19 +42,25 @@ this with the ``ulimit`` shell command.
 This sets the maximum number of file descriptors for the process to
 6000, allowing Node.js to connect with a pool size of 5000 sockets.
 
-How can I prevent a slow operation from delaying other operations?
+How Can I Prevent a Slow Operation From Delaying Other Operations?
 ------------------------------------------------------------------
 
+A slow operation may delay your other operations that occur after it if
+the ``poolSize`` has not been set. While Node.js is asynchronous,
+MongoDB is not. MongoDB uses a single execution thread per socket,
+meaning that MongoDB will execute one single operation per socket at any
+point in time. Any other operation sent to that socket will have to wait
+until the current operation is finished. If you have a slow-running
+operation that holds up other operations, the best solution is to create
+a separate connection pool for the slow operation, isolating it from
+other, faster operations.
+
 .. note::
-    The driver is only affected by the slow train operations if the number of slow operations is larger than the max pool size.
+    If the number of operations is greater than the set ``poolSize`` and
+    a slow operation occurs, subsequent operations will be delayed. 
 
-
-While Node.js is asynchronous, MongoDB is not. Currently, MongoDB uses a single execution thread per socket. This means that it will only execute a single operation on a socket at any given point in time. Any other operations sent to that socket will have to wait until the current operation is finished. If you have a slow-running operation which holds up other operations,
-the best solution is to create a separate connection pool for the slow operation, isolating it from other, faster
-operations.
-
-Ensure your connection string is valid for Replica Set
-------------------------------------------------------
+How Can I Ensure My Connection String Is Valid for a Replica Set?
+-----------------------------------------------------------------
 
 The connection string passed to the driver **MUST** use the fully qualified host names for the servers as set in the replicaset config. Given the following configuration settings for your replicaset.
 
