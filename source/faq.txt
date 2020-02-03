@@ -32,15 +32,16 @@ Consider the following operation:
  });
 
 If this operation causes an ``ECONNRESET`` error, you may have run into
-the file descriptor limit for your Node.js process. In that case you
-must increase the number of file descriptors for the Node.js process. On
-Mac OS and Linux you do this with the ulimit shell command. 
+the ``file descriptor`` limit for your Node.js process. In that case you
+must increase the number of ``file descriptors`` for the Node.js process. On
+MacOS and Linux you do this with the `ulimit
+<https://ss64.com/bash/ulimit.html>`_ shell command. 
 
 .. code-block:: sh
 
    ulimit -n 6000
 
-This sets the maximum number of file descriptors for the process to
+This sets the maximum number of ``file descriptors`` for the process to
 6000, allowing Node.js to connect with a pool size of 5000 sockets.
 
 How Can I Prevent a Slow Operation From Delaying Other Operations?
