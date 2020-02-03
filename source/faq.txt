@@ -145,6 +145,7 @@ Consider the following operation:
 
 .. literalinclude:: /code-snippets/faq/econnresetWithClientConnect-example.js
   :language: javascript
+  :linenos:
 
 If this operation causes an ``ECONNRESET`` error, you may have run into
 the ``file descriptor`` limit for your Node.js process. In that case you
@@ -187,5 +188,24 @@ order for the `Replica Set` discovery and :manual:`failover
 </reference/glossary/#term-failover>` to work the driver should be able
 to reach ``server1``, ``server2``, and ``server3``. 
 
-.. literalinclude:: /code-snippets/faq/replicaConfiguration-example.json
-  :language: json
+  .. code-block:: JSON
+
+    {
+      "_id": "testSet",
+      "version": 1,
+      "protocolVersion": 1,
+      "members": [
+        {
+          "_id": 1,
+          "host": "server1:31000"
+        },
+        {
+          "_id": 2,
+          "host": "server2:31001"
+        },
+        {
+          "_id": 3,
+          "host": "server3:31002"
+        }
+      ]
+    }
