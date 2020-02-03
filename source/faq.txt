@@ -65,9 +65,9 @@ How Can I Ensure My Connection String Is Valid for a Replica Set?
 
 The connection string passed to the driver must use exact hostnames for
 the servers as set in the :manual:`Replica Set Config
-</reference/replica-configuration/>`_. Given the following configuration
+ </reference/replica-configuration/>`_. Given the following configuration
 settings for your `Replica Set`, in order for the `Replica Set`
-discovery and :manual:`failover</reference/glossary/#term-failover>`_ to
+discovery and :manual:`failover </reference/glossary/#term-failover>`_ to
 work the driver should be able to reach ``server1``, ``server2``, and
 ``server3``. 
 
