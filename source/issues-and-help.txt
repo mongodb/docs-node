@@ -4,7 +4,7 @@ Issues & Help
 
 .. default-domain:: mongodb
 
-Our developer community is vibrant and highly engaged, with wide experience using Node.js with MongoDB.
+Our developer community is vibrant and highly engaged, with extensive experience using Node.js with MongoDB.
 Often, the quickest way to get support for
 general questions is through the `mongodb-user google group <http://groups.google.com/group/mongodb-user>`_
 or through `stackoverflow <http://stackoverflow.com/questions/tagged/mongodb+nodejs>`_.
@@ -20,7 +20,7 @@ please open a case in our issue management tool, JIRA:
 
 * `Create an account and login <https://jira.mongodb.org>`_.
 * Navigate to `the NODE project <https://jira.mongodb.org/browse/NODE>`_.
-* Click **Create Issue**. Provide as much information as possible about the
+* Click **Create Issue**. Please provide as much information as possible about the
   issue and the steps to reproduce it.
 
 Bug reports in JIRA for the Node.js driver and the Core Server (i.e. SERVER) project are **public**.
@@ -33,7 +33,7 @@ Pull Requests
 
 We are happy to accept contributions to help improve the driver.
 We will review user contributions to ensure they meet the standards of the codebase.
-Pull requests must pass the travis.ci checks as well as include documentation
+Pull requests must pass the ``travis.ci`` checks as well as include documentation
 and tests.
 
 To get started check out the source and work on a branch:
@@ -45,7 +45,7 @@ To get started check out the source and work on a branch:
    npm install
    git checkout -b myNewFeature
 
-To run the test suite, you must have a server topology running, and provide the URI to the command.
+To run the test suite, you must have a server topology running and provide the URI to the command.
 For example, if you have a single server running at ``"mongodb://localhost:27017"``, you can run the following:
 
 .. code-block:: bash
