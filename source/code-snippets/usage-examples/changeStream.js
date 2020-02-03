@@ -12,7 +12,7 @@ async function run() {
     await client.connect();
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
-    // create a change stream on the movies collection
+    // open a change stream on the movies collection
     changeStream = collection.watch();
     // set up an action on each change event
     changeStream.on("change", next => {
