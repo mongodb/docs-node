@@ -12,6 +12,130 @@ Frequently Asked Questions
    :depth: 2
    :class: singlecol
 
+
+What is the difference between ``connectTimeoutMS``, ``socketTimeoutMS`` and ``maxTimeMS`` ?
+--------------------------------------------------------------------------------------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Setting
+     - Default Value
+     - Description
+   * - connectTimeoutMS
+     - 30000
+     - ``connectTimeoutMS`` is a `connection-setting <https://mongodb.github.io/node-mongodb-native/3.5/reference/connecting/connection-settings/>`_ option that sets the time in milliseconds to establish a connection to the MongoDB server before timing out. 
+   * - socketTimeoutMS
+     - 360000
+     - ``socketTimeoutMS`` is a ``connection-settings`` option that sets the number of milliseconds a socket stays inactive after the driver has successfully connected before closing the connection.
+   * - maxTimeMS
+     - N/A
+     - :node-api:`maxTimeMS() </Cursor.html#maxTimeMS>` is a :manual:`cursor method </reference/method/js-cursor>` that specifies the max time limit for processing an operation on a cursor. If an operation runs over the time alloted it will return a timeout error.  
+
+
+How can I prevent the driver from hanging during connection or from spending too long trying to reach unreachable replica sets?
+-------------------------------------------------------------------------------------------------------------------------------
+
+In this scenario, the developer wants to ensure that the driver does not
+hang during the connection phase or spend an unnecessarily long time
+attempting to connect to replica set members who are not reachable.
+
+As a general rule you should ensure that the ``connectTimeoutMS`` setting
+is not lower than the longest network latency you have to a member of
+the set. If one of the ``secondary`` members is on the other side of the
+planet and has a latency of 10000 milliseconds, setting the
+``connectTimeoutMS`` to anything lower will prevent the driver from ever
+connecting to that member.
+
+Should I use ``socketTimeoutMS`` as a way to prevent long running operations from slowing down the server?
+----------------------------------------------------------------------------------------------------------
+
+Developers sometimes try to use ``socketTimeoutMS``
+to end operations which may run for too long and slow
+down the application, but doing so may not achieve the intended result.
+
+Closing the socket forces a reconnect of the driver's connection pool
+and introduces latency to any other operations which are queued up.
+Chronically slow operations will therefore cause a large number of
+reconnect requests, negatively impacting throughput and performance.
+
+Also, closing the socket does not terminate the operation; it will continue
+to run on the MongoDB server, which could cause data inconsistencies
+if the application retries the operation on failure.
+
+That said, there are some important use cases for ``socketTimeoutMS``. It's
+possible that a MongoDB process may error out, or that a misconfigured
+firewall may close a socket connection without sending a ``FIN`` packet.
+In these cases there is no way for the driver to detect that the
+connection has died, and ``socketTimeoutMS`` is essential to ensure that the
+sockets are closed correctly.
+
+A good rule of thumb is to set ``socketTimeoutMS`` to two to three times the
+length of the slowest operation which runs through the driver.
+
+How can I prevent sockets from timing out before they become active?
+--------------------------------------------------------------------
+Having a large connection pool does not always reduce reconnection
+requests. Consider the following example: an application has
+a connection pool size of 5 sockets and has ``socketTimeoutMS`` set
+to 5000 milliseconds. Operations occur, on average, every 3000
+milliseconds, and reconnection requests are frequent.
+Each socket times out after 5000 milliseconds, which means that all
+sockets must do something during that 5000 millisecond period to
+avoid closing. One message every 3000 milliseconds is not enough to
+keep the sockets active, so several of the sockets will time out
+after 5000 milliseconds.
+
+Reducing the pool size to 1 will fix the problem.
+
+What does a value of ``0`` do for ``connectTimeoutMS`` and ``socketTimeoutMS``?
+-------------------------------------------------------------------------------
+
+Setting ``connectTimeoutMS`` and ``socketTimeoutMS`` to the value 0 has
+a special meaning. It causes the application to use the operating
+system's default socket timeout value.
+
+How can I prevent long running operations from slowing down the server?
+-----------------------------------------------------------------------
+
+Many developers set a low ``socketTimeoutMS`` value, intending
+to prevent long-running server operations from slowing down
+the application. ``maxTimeMS`` is usually a better choice; it allows
+MongoDB itself to cancel operations which run for more than ``maxTimeMS``
+milliseconds.
+
+The following example demonstrates how to use ``MaxTimeMS`` with a ``find``
+operation.
+
+.. code-block:: js
+
+   // Execute a find command
+   col.find({"$where": "sleep(100) || true"})
+     .maxTimeMS(50)
+     .count(function(err, count) {
+   });
+
+What does the keepAlive setting do?
+-----------------------------------
+
+``keepAlive`` is a socket setting available from Node.js that in theory
+will keep a socket alive by sending periodic probes to MongoDB.
+However, this only works if the operating system supports
+``SO_KEEPALIVE``\ , and still might not work if a firewalls
+ignores or drops the ``keepAlive`` packets.
+
+What can I do if I'm experiencing unexpected network behavior?
+--------------------------------------------------------------
+Internal firewalls which exist between application servers and MongoDB
+are often misconfigured, and are overly aggressive in their culling of
+socket connections. If you experience unexpected network behavior, here
+are some things to check:
+
+
+#. The firewall should send a FIN packet when closing a socket,
+   allowing the driver to detect that the socket is closed.
+#. The firewall should allow keepAlive probes.
+
 What Can I Do If I'm Getting ``ECONNRESET`` When Calling ``client.connect()``?
 ------------------------------------------------------------------------------
 
