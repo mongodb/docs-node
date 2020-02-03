@@ -107,8 +107,6 @@ operations that run for more than the set value of ``maxTimeMS``.
 The following example demonstrates how to use MaxTimeMS with a find
 operation:
 
-.. code-block:: js
-
 .. literalinclude:: /code-snippets/faq/maxTimeMS-example.js
   :language: javascript
   :linenos:
@@ -125,15 +123,14 @@ The ``keepAlive`` option will keep a socket alive by sending periodic probes to 
 
 What can I do if I'm experiencing unexpected network behavior?
 --------------------------------------------------------------
-Internal firewalls which exist between application servers and MongoDB
-are often misconfigured, and are overly aggressive in their culling of
+Internal firewalls that exist between application servers and MongoDB
+are often misconfigured and are overly aggressive in their removal of
 socket connections. If you experience unexpected network behavior, here
 are some things to check:
 
-
-#. The firewall should send a FIN packet when closing a socket,
-   allowing the driver to detect that the socket is closed.
-#. The firewall should allow keepAlive probes.
+#. The firewall should send a ``FIN packet`` when closing a socket,
+allowing the driver to detect that the socket is closed. 
+#. The firewall should allow ``keepAlive`` probes.
 
 What Can I Do If I'm Getting ``ECONNRESET`` When Calling ``client.connect()``?
 ------------------------------------------------------------------------------
