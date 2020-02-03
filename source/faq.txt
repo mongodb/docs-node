@@ -12,6 +12,27 @@ Frequently Asked Questions
    :depth: 2
    :class: singlecol
 
+
+What is the difference between ``connectTimeoutMS``, ``socketTimeoutMS`` and ``maxTimeMS`` ?
+--------------------------------------------------------------------------------
+
+.. list-table::
+   :header-rows: 1
+
+   * - Setting
+     - Default Value client.connect
+     - Description
+   * - connectTimeoutMS
+     - 30000
+     - ``connectTimeoutMS`` is a `connection-setting <https://mongodb.github.io/node-mongodb-native/3.5/reference/connecting/connection-settings/>`_ option that sets the time in milliseconds to establish a connection to the MongoDB server before timing out. 
+   * - socketTimeoutMS
+     - 360000
+     - ``socketTimeoutMS`` is a ``connection-settings`` option that sets the number of milliseconds a socket stays inactive after the driver has successfully connected before closing the connection.
+   * - maxTimeMS
+     - N/A
+     - :node-api:`maxTimeMS() </Cursor.html#maxTimeMS>` is a :manual:`cursor method </reference/method/js-cursor>` that specifies the max time limit for processing an operation on a cursor. If an operation runs over the time alloted it will return a timeout error.  
+
+
 What Can I Do If I'm Getting ``ECONNRESET`` When Calling ``client.connect()``?
 ------------------------------------------------------------------------------
 
