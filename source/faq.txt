@@ -63,13 +63,16 @@ continue to run on the MongoDB server, which could cause data
 inconsistencies if the application retries the operation on failure.
 
 However, there are important use cases for ``socketTimeoutMS`` -
-consider the following cases: A MongoDB process erroring out A
-misconfigured firewall causing a socket connection without sending a
-``FIN`` packet In those cases, there is no way to detect that the
-connection has died. Setting the ``socketTimeoutMS`` is essential to
-ensure that the sockets are closed correctly. A good rule of thumb is to
-set ``socketTimeoutMS`` to two to three times the length of the slowest
-operation that runs through the driver.
+consider the following cases: 
+* A MongoDB process erroring out 
+* A misconfigured firewall causing a socket connection without sending a
+``FIN`` packet 
+
+In those cases, there is no way to detect that the connection has died.
+Setting the ``socketTimeoutMS`` is essential to ensure that the sockets
+are closed correctly. A good rule of thumb is to set ``socketTimeoutMS``
+to two to three times the length of the slowest operation that runs
+through the driver.
 
 How can I prevent sockets from timing out before they become active?
 --------------------------------------------------------------------
