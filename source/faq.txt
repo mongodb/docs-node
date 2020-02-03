@@ -47,7 +47,7 @@ How Can I Prevent a Slow Operation From Delaying Other Operations?
 
 A slow operation may delay your other operations that occur after it if
 the ``poolSize`` has not been set in the `connection
-settings<https://mongodb.github.io/node-mongodb-native/3.5/reference/connecting/connection-settings/>`_.
+settings <https://mongodb.github.io/node-mongodb-native/3.5/reference/connecting/connection-settings/>`_.
 While Node.js is asynchronous, MongoDB is not. MongoDB uses a single
 execution thread per socket, meaning that MongoDB will execute one
 single operation per socket at any point in time. Any other operation
