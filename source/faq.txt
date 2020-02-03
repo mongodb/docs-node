@@ -125,11 +125,12 @@ What can I do if I'm experiencing unexpected network behavior?
 --------------------------------------------------------------
 Internal firewalls that exist between application servers and MongoDB
 are often misconfigured and are overly aggressive in their removal of
-socket connections. If you experience unexpected network behavior, here
+socket connections. 
+
+If you experience unexpected network behavior, here
 are some things to check:
 
-#. The firewall should send a ``FIN packet`` when closing a socket,
-allowing the driver to detect that the socket is closed. 
+#. The firewall should send a ``FIN packet`` when closing a socket,allowing the driver to detect that the socket is closed. 
 #. The firewall should allow ``keepAlive`` probes.
 
 What Can I Do If I'm Getting ``ECONNRESET`` When Calling ``client.connect()``?
