@@ -13,11 +13,11 @@ Stream</changeStreams/>`. A ``Change Stream`` allows applications to
 watch for changes to data and react to those changes. You can open a
 ``Change Stream`` by calling the :node-api:`watch()
 </Collection.html#watch>` method on a collection, database, or
-deployment. The ``watch()`` method takes an optional pipeline as it's
+deployment. The ``watch()`` method takes an optional pipeline as the
 first parameter that is an array of stages to filter the :manual:`change
 events </reference/change-events/>` output. 
 
-The ``watch()`` method can take in additional options as it's second
+The ``watch()`` method can take in additional options as the second
 parameter. Create an `Object
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>`_
 to specify additional options. Set ``fullDocument`` to
@@ -46,8 +46,8 @@ Example
 -------
 
 The following example opens a ``Change Stream`` on the ``movies``
-collection. We simulate two real-world events, an ``insertOne`` and a
-``deleteOne`` operation on the collection, that trigger the change event.
+collection. We simulate two real-world events, an ``insertOne()`` and a
+``deleteOne()`` operation on the collection, that trigger the change event.
 After the two ``change events`` are logged, we close the ``Change Stream``
 and the client. 
 
