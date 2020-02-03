@@ -15,7 +15,12 @@ Frequently Asked Questions
 What Can I Do If I'm Getting ``ECONNRESET`` When Calling ``client.connect()``?
 ------------------------------------------------------------------------------
 
-In most operating systems, each connection is associated with a file descriptor. There is typically a limit set by the operating system on the number of file descriptors used by a single process. An ``ECONNRESET`` error can occur if the connection pool size surpasses the limit of ``file descriptors``.
+In most operating systems, each connection is associated with a `file
+descriptor
+<https://www.computerhope.com/jargon/f/file-descriptor.htm>`_. There is
+typically a limit set by the operating system on the number of file
+descriptors used by a single process. An ``ECONNRESET`` error can occur
+if the connection pool size surpasses the limit of ``file descriptors``.
 
 Consider the following operation:
 
