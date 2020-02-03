@@ -6,7 +6,7 @@ Update a Document
 
 You can update a single document using the :node-api:`collection.updateOne()
 <Collection.html#updateOne>` method. ``updateOne()`` accepts a filter
-document and a replacement document. If the query matches documents in the
+document and a update document. If the query matches documents in the
 collection, it replaces the matches with the replacement document. The
 update document requires an
 :manual:`Update Operator </reference/operator/update/#update-operators>`
@@ -45,4 +45,3 @@ Example
 .. literalinclude:: /code-snippets/usage-examples/updateOne.js
   :language: javascript
   :linenos:
-
