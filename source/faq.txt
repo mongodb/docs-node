@@ -77,17 +77,19 @@ through the driver.
 How can I prevent sockets from timing out before they become active?
 --------------------------------------------------------------------
 Having a large connection pool does not always reduce reconnection
-requests. Consider the following example: an application has
-a connection pool size of 5 sockets and has ``socketTimeoutMS`` set
-to 5000 milliseconds. Operations occur, on average, every 3000
-milliseconds, and reconnection requests are frequent.
-Each socket times out after 5000 milliseconds, which means that all
-sockets must do something during that 5000 millisecond period to
-avoid closing. One message every 3000 milliseconds is not enough to
-keep the sockets active, so several of the sockets will time out
-after 5000 milliseconds.
+requests.  Consider the following example: 
 
-Reducing the pool size to 1 will fix the problem.
+An application has a connection pool size of 5 sockets and has the
+``socketTimeoutMS`` option set to 5000 milliseconds. Operations occur,
+on average, every 3000 milliseconds, and reconnection requests are
+frequent. Each socket times out after 5000 milliseconds, which means
+that all sockets must do something during those 5000 milliseconds to
+avoid closing. 
+
+One message every 3000 milliseconds is not enough to keep the sockets
+active, so several of the sockets will time out after 5000 milliseconds.
+Reduce the ``poolSize`` in the connection settings to fix the problem. 
+
 
 What does a value of ``0`` do for ``connectTimeoutMS`` and ``socketTimeoutMS``?
 -------------------------------------------------------------------------------
