@@ -188,5 +188,4 @@ order for the `Replica Set` discovery and :manual:`failover
 to reach ``server1``, ``server2``, and ``server3``. 
 
 .. literalinclude:: /code-snippets/faq/replicaConfiguration-example.json
-  :language: javascript
-  :linenos:
+  :language: json
