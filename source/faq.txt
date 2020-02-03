@@ -46,14 +46,15 @@ How Can I Prevent a Slow Operation From Delaying Other Operations?
 ------------------------------------------------------------------
 
 A slow operation may delay your other operations that occur after it if
-the ``poolSize`` has not been set. While Node.js is asynchronous,
-MongoDB is not. MongoDB uses a single execution thread per socket,
-meaning that MongoDB will execute one single operation per socket at any
-point in time. Any other operation sent to that socket will have to wait
-until the current operation is finished. If you have a slow-running
-operation that holds up other operations, the best solution is to create
-a separate connection pool for the slow operation, isolating it from
-other, faster operations.
+the ``poolSize`` has not been set in the `connection
+settings<https://mongodb.github.io/node-mongodb-native/3.5/reference/connecting/connection-settings/>`_.
+While Node.js is asynchronous, MongoDB is not. MongoDB uses a single
+execution thread per socket, meaning that MongoDB will execute one
+single operation per socket at any point in time. Any other operation
+sent to that socket will have to wait until the current operation is
+finished. If you have a slow-running operation that holds up other
+operations, the best solution is to create a separate connection pool
+for the slow operation, isolating it from other, faster operations.
 
 .. note::
     If the number of operations is greater than the set ``poolSize`` and
@@ -62,7 +63,11 @@ other, faster operations.
 How Can I Ensure My Connection String Is Valid for a Replica Set?
 -----------------------------------------------------------------
 
-The connection string passed to the driver **MUST** use the fully qualified host names for the servers as set in the replicaset config. Given the following configuration settings for your replicaset.
+The connection string passed to the driver must use the fully qualified
+host names for the servers as set in the replicaset config. Given the
+following configuration settings for your replicaset, in order for the
+Replicaset discovery and failover to work the driver should be able to
+reach ``server1``, ``server2``, and ``server3``. 
 
 .. code-block:: js
 
@@ -85,5 +90,3 @@ The connection string passed to the driver **MUST** use the fully qualified host
            }
        ]
    }
-
-You must ensure ``server1``\ , ``server2`` and ``server3`` are resolvable from the driver for the Replicaset discovery and failover to work correctly.
