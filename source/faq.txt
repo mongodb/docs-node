@@ -46,31 +46,30 @@ is on the other side of the planet and has a latency of 10000
 milliseconds, setting the ``connectTimeoutMS`` to anything lower will
 prevent the driver from ever connecting to that member.
 
-Should I use ``socketTimeoutMS`` as a way to prevent long running operations from slowing down the server?
+Should I use ``socketTimeoutMS`` as a way to prevent long-running operations from slowing down the server?
 ----------------------------------------------------------------------------------------------------------
 
-Developers sometimes try to use ``socketTimeoutMS``
-to end operations which may run for too long and slow
-down the application, but doing so may not achieve the intended result.
+No, you should **not** use ``socketTimeoutMS`` to end operations that
+may run for too long and slow down the application. Attempting to do so
+may not achieve the intended result.
 
-Closing the socket forces a reconnect of the driver's connection pool
-and introduces latency to any other operations which are queued up.
-Chronically slow operations will therefore cause a large number of
-reconnect requests, negatively impacting throughput and performance.
+Closing the socket causes a reconnect of the driver's connection pool,
+introducing latency to any other queued up operations. Chronically slow
+operations will, therefore, cause a large number of reconnect requests,
+negatively impacting throughput and performance.
 
-Also, closing the socket does not terminate the operation; it will continue
-to run on the MongoDB server, which could cause data inconsistencies
-if the application retries the operation on failure.
+Also, closing the socket does not terminate the operation; it will
+continue to run on the MongoDB server, which could cause data
+inconsistencies if the application retries the operation on failure.
 
-That said, there are some important use cases for ``socketTimeoutMS``. It's
-possible that a MongoDB process may error out, or that a misconfigured
-firewall may close a socket connection without sending a ``FIN`` packet.
-In these cases there is no way for the driver to detect that the
-connection has died, and ``socketTimeoutMS`` is essential to ensure that the
-sockets are closed correctly.
-
-A good rule of thumb is to set ``socketTimeoutMS`` to two to three times the
-length of the slowest operation which runs through the driver.
+However, there are important use cases for ``socketTimeoutMS`` -
+consider the following cases: A MongoDB process erroring out A
+misconfigured firewall causing a socket connection without sending a
+``FIN`` packet In those cases, there is no way to detect that the
+connection has died. Setting the ``socketTimeoutMS`` is essential to
+ensure that the sockets are closed correctly. A good rule of thumb is to
+set ``socketTimeoutMS`` to two to three times the length of the slowest
+operation that runs through the driver.
 
 How can I prevent sockets from timing out before they become active?
 --------------------------------------------------------------------
