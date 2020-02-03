@@ -122,7 +122,7 @@ What does the keepAlive setting do?
 ``keepAlive`` is a socket setting available from Node.js that in theory
 will keep a socket alive by sending periodic probes to MongoDB.
 However, this only works if the operating system supports
-``SO_KEEPALIVE``\ , and still might not work if a firewalls
+``SO_KEEPALIVE``, and still might not work if a firewalls
 ignores or drops the ``keepAlive`` packets.
 
 On misconfigured firewalls
