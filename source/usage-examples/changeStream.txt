@@ -26,16 +26,16 @@ altered document. Alternatively, you can leave  ``fullDocument`` or set it to th
 Process the Change Stream Events
 --------------------------------
 
-The ``watch()`` command returns a ``Change Stream`` instance. Use the
-`EventEmitter.on()
-<https://nodejs.org/api/events.html#events_emitter_on_eventname_listener>`_.
-method on the ``Change Stream`` instance to add a listener function. Call
-``changeStream.on()`` with the string ``'change'`` as the
-first parameter and a :mdn:`callback function
-<Glossary/Callback_function>` as the second parameter. The callback will
-trigger when a ``change event`` is emitted, providing the next available
-document. You can use the callback to specify logic to process the
-document when the event is received. 
+You can capture events from a change stream instance by using a listener
+function. Call the watch() command to get a Change Stream instance. Add
+your listener function by calling the `EventEmitter.on()
+<https://nodejs.org/api/events.html#events_emitter_on_eventname_listener>`_
+method on that instance. Set the value of the first parameter to the
+string 'change' and add your :mdn:`callback function
+<Glossary/Callback_function>` function as the second parameter.  The
+callback will trigger when a change event is emitted, providing the next
+available document. You can use the callback to specify logic to process
+the document when the event is received.
 
 Call the :node-api:`close() </ChangeStream.html#close>` method on the change stream instance to stop processing change events. This method closes the change stream and frees resources.
 
