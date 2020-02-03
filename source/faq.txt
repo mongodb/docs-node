@@ -13,7 +13,7 @@ Frequently Asked Questions
    :class: singlecol
 
 
-What is the difference between ``connectTimeoutMS``, ``socketTimeoutMS`` and ``maxTimeMS`` ?
+What Is the Difference Between ``connectTimeoutMS``, ``socketTimeoutMS`` and ``maxTimeMS`` ?
 --------------------------------------------------------------------------------------------
 
 .. list-table::
@@ -33,7 +33,7 @@ What is the difference between ``connectTimeoutMS``, ``socketTimeoutMS`` and ``m
      - :node-api:`maxTimeMS() </Cursor.html#maxTimeMS>` is a :manual:`cursor method </reference/method/js-cursor>` that specifies the max time limit for processing an operation on a cursor. If an operation runs over the time allotted it will return a timeout error.  
 
 
-How can I prevent the driver from hanging during connection or from spending too long trying to reach unreachable replica sets?
+How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?
 -------------------------------------------------------------------------------------------------------------------------------
 
 To prevent the driver from hanging during connection or to prevent the
@@ -46,8 +46,8 @@ is on the other side of the planet and has a latency of 10000
 milliseconds, setting the ``connectTimeoutMS`` to anything lower will
 prevent the driver from ever connecting to that member.
 
-Should I use ``socketTimeoutMS`` as a way to prevent long-running operations from slowing down the server?
-----------------------------------------------------------------------------------------------------------
+Should I Use ``socketTimeoutMS`` as a Way of Preventing Long-Running Operations From Slowing Down the Server?
+-------------------------------------------------------------------------------------------------------------
 
 No, you should **not** use ``socketTimeoutMS`` to end operations that
 may run for too long and slow down the application. Attempting to do so
@@ -74,7 +74,7 @@ are closed correctly. A good rule of thumb is to set ``socketTimeoutMS``
 to two to three times the length of the slowest operation that runs
 through the driver.
 
-How can I prevent sockets from timing out before they become active?
+How Can I Prevent Sockets From Timing out Before They Become Active?
 --------------------------------------------------------------------
 Having a large connection pool does not always reduce reconnection
 requests.  Consider the following example: 
@@ -90,14 +90,13 @@ One message every 3000 milliseconds is not enough to keep the sockets
 active, so several of the sockets will time out after 5000 milliseconds.
 Reduce the ``poolSize`` in the connection settings to fix the problem. 
 
-
-What does a value of ``0`` do for ``connectTimeoutMS`` and ``socketTimeoutMS``?
+What Does a Value of ``0`` Do for ``connectTimeoutMS`` and ``socketTimeoutMS``?
 -------------------------------------------------------------------------------
 
 Setting ``connectTimeoutMS`` and ``socketTimeoutMS`` to the value ``0`` has
 causes the application to use the operating system's default socket timeout value.
 
-How can I prevent long-running operations from slowing down the server?
+How Can I Prevent Long-Running Operations From Slowing Down the Server?
 -----------------------------------------------------------------------
 
 By using ``maxTimeMS()`` you can prevent long-running operations from
@@ -111,8 +110,7 @@ operation:
   :language: javascript
   :linenos:
 
-
-What does the ``keepAlive`` setting do?
+What Does the ``keepAlive`` Setting Do?
 ---------------------------------------
 
 ``keepAlive`` is a ``connection-setting`` that sets the number of milliseconds to wait before initiating a :wikipedia:`TLS keepAlive <Keepalive#TCP_keepalive>` on a TCP Socket. 
@@ -121,7 +119,7 @@ The ``keepAlive`` option will keep a socket alive by sending periodic probes to 
 .. warning::
     If a firewall ignores or drops the ``keepAlive`` packets this may not work
 
-What can I do if I'm experiencing unexpected network behavior?
+What Can I Do If I'm Experiencing Unexpected Network Behavior?
 --------------------------------------------------------------
 Internal firewalls that exist between application servers and MongoDB
 are often misconfigured and are overly aggressive in their removal of
@@ -145,12 +143,9 @@ if the connection pool size surpasses the limit of ``file descriptors``.
 
 Consider the following operation:
 
-.. code-block:: js
-
- const client = new MongoClient('mongodb://localhost:27017/test?maxPoolSize=5000');
- client.connect(function(err) {
- // connection
- });
+.. literalinclude:: /code-snippets/faq/econnresetWithClientConnect-example.js
+  :language: javascript
+  :linenos:
 
 If this operation causes an ``ECONNRESET`` error, you may have run into
 the ``file descriptor`` limit for your Node.js process. In that case you
@@ -193,24 +188,6 @@ order for the `Replica Set` discovery and :manual:`failover
 </reference/glossary/#term-failover>` to work the driver should be able
 to reach ``server1``, ``server2``, and ``server3``. 
 
-.. code-block:: js
-
-   {
-       "_id" : "testSet",
-       "version" : 1,
-       "protocolVersion" : 1,
-       "members" : [
-           {
-               "_id" : 1,
-               "host" : "server1:31000",
-           },
-           {
-               "_id" : 2,
-               "host" : "server2:31001",
-           },
-           {
-               "_id" : 3,
-               "host" : "server3:31002",
-           }
-       ]
-   }
+.. literalinclude:: /code-snippets/faq/replicaConfiguration-example.json
+  :language: javascript
+  :linenos:

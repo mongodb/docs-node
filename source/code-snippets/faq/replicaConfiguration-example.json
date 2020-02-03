@@ -1,0 +1,19 @@
+{
+  "_id": "testSet",
+  "version": 1,
+  "protocolVersion": 1,
+  "members": [
+    {
+      "_id": 1,
+      "host": "server1:31000"
+    },
+    {
+      "_id": 2,
+      "host": "server2:31001"
+    },
+    {
+      "_id": 3,
+      "host": "server3:31002"
+    }
+  ]
+}
