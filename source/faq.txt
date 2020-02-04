@@ -33,6 +33,15 @@ What Is the Difference Between ``connectTimeoutMS``, ``socketTimeoutMS`` and ``m
      - :node-api:`maxTimeMS() </Cursor.html#maxTimeMS>` is a :manual:`cursor method </reference/method/js-cursor>` that specifies the max time limit for processing an operation on a cursor. If an operation runs over the time allotted it will return a timeout error.  
 
 
+
+Designed for mobile development:
+  Mobile app developers must deal with unreliable networks,
+  limited bandwith, and finite power. Users expect a
+  responsive app experience in which they can read and write
+  data regardless of connectivity. Realm is specifically
+  designed to meet these challenges.
+
+
 How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?
 -------------------------------------------------------------------------------------------------------------------------------
 
