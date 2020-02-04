@@ -4,12 +4,9 @@ const { MongoClient } = require("mongodb");
 // Replace the following with your MongoDB deployment's connection
 // string.
 const uri =
-  "mongodb+srv://admin:admin@mflix-2sp0m.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://<user>:<password>@<cluster-url>/test?retryWrites=true&w=majority&useUnifiedTopology=true";
 
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const client = new MongoClient(uri);
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

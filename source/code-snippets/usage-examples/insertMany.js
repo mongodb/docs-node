@@ -2,7 +2,7 @@
 const { MongoClient } = require("mongodb");
 
 const uri =
-  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
+  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
 
 const client = new MongoClient(uri);
 
