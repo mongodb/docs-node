@@ -7,7 +7,7 @@ Watch for Changes
 Open a Change Stream
 --------------------
 
-You can keep track of changes of data in MongoDB, such as changes to a
+You can keep track of changes to data in MongoDB, such as changes to a
 collection, database, or deployment by opening a :manual:`Change
 Stream</changeStreams/>`. A ``Change Stream`` allows applications to
 watch for changes to data and react to those changes. You can open a
@@ -17,11 +17,13 @@ deployment.
 
 The ``watch()`` method takes an optional pipeline as the first parameter
 that is an array of stages to filter the :manual:`change events
-</reference/change-events/>` output. Also, ``watch()`` can take in
-additional options object as the second parameter. Set ``fullDocument``
+</reference/change-events/>` output. Also, ``watch()`` can take an
+additional options object as the second parameter. Set the ``fullDocument``
 field of the additional options object to ``'updateLookup'`` to receive
 an event that contains the changes to the document as well as the entire
-altered document. Alternatively, you can leave  ``fullDocument`` or set it to the string ``'default'`` to only receive the altered document, but not the changes to the document. 
+altered document. Alternatively, you can set ``fullDocument`` to the
+string ``'default'`` to only receive the altered document, but not the
+changes to the document. 
 
 Process the Change Stream Events
 --------------------------------
@@ -32,10 +34,10 @@ your listener function by calling the `EventEmitter.on()
 <https://nodejs.org/api/events.html#events_emitter_on_eventname_listener>`_
 method on that instance. Set the value of the first parameter to the
 string ``'change'`` and add your :mdn:`callback function
-<Glossary/Callback_function>` function as the second parameter.  The
-callback will trigger when a change event is emitted, providing the next
-available document. You can use the callback to specify logic to process
-the document when the event is received.
+<Glossary/Callback_function>` as the second parameter.  The callback
+triggers when a change event is emitted, providing the next available
+document. You can specify logic in the callback to process the event
+document when it is received. 
 
 Call the :node-api:`close() </ChangeStream.html#close>` method on the
 change stream instance to stop processing change events. This method
