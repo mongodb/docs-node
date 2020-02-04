@@ -42,6 +42,18 @@ Designed for mobile development:
   designed to meet these challenges.
 
 
+How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?:
+  To prevent the driver from hanging during connection or to prevent the
+  driver from spending too long trying to reach unreachable replica sets,
+  you can set the ``connectTimeoutMS`` option of your
+  ``connection-settings``. Generally, you should ensure that the
+  ``connectTimeoutMS`` setting is not lower than the longest network
+  latency you have to a member of the set. If one of the secondary members
+  is on the other side of the planet and has a latency of 10000
+  milliseconds, setting the ``connectTimeoutMS`` to anything lower will
+  prevent the driver from ever connecting to that member.
+
+
 How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?
 -------------------------------------------------------------------------------------------------------------------------------
 
