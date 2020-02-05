@@ -13,7 +13,7 @@ Frequently Asked Questions
    :class: singlecol
 
 
-What Is the Difference Between ``connectTimeoutMS``, ``socketTimeoutMS`` and ``maxTimeMS`` ?
+What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTimeMS" ?
 --------------------------------------------------------------------------------------------
 
 .. list-table::
@@ -45,7 +45,7 @@ is on the other side of the planet and has a latency of 10000
 milliseconds, setting the ``connectTimeoutMS`` to anything lower will
 prevent the driver from ever connecting to that member.
 
-Should I Use ``socketTimeoutMS`` as a Way of Preventing Long-Running Operations From Slowing Down the Server?
+Should I Use "socketTimeoutMS" as a Way of Preventing Long-Running Operations From Slowing Down the Server?
 -------------------------------------------------------------------------------------------------------------
 
 No, you should **not** use ``socketTimeoutMS`` to end operations that
@@ -89,8 +89,8 @@ One message every 3000 milliseconds is not enough to keep the sockets
 active, so several of the sockets will time out after 5000 milliseconds.
 Reduce the ``poolSize`` in the connection settings to fix the problem. 
 
-What Does a Value of ``0`` Do for ``connectTimeoutMS`` and ``socketTimeoutMS``?
--------------------------------------------------------------------------------
+What Does a Value of "0" mean for "connectTimeoutMS" and "socketTimeoutMS"?
+---------------------------------------------------------------------------
 
 Setting ``connectTimeoutMS`` and ``socketTimeoutMS`` to the value ``0`` has
 causes the application to use the operating system's default socket timeout value.
@@ -109,11 +109,14 @@ operation:
   :language: javascript
   :linenos:
 
-What Does the ``keepAlive`` Setting Do?
+What Does the "keepAlive" Setting Do?
 ---------------------------------------
 
-``keepAlive`` is a ``connection-setting`` that sets the number of milliseconds to wait before initiating a :wikipedia:`TLS keepAlive <Keepalive#TCP_keepalive>` on a TCP Socket. 
-The ``keepAlive`` option will keep a socket alive by sending periodic probes to MongoDB. However, this only works if the operating system supports ``SO_KEEPALIVE``\ .
+``keepAlive`` is a ``connection-setting`` that sets the number of
+milliseconds to wait before initiating a :wikipedia:`TLS keepAlive
+<Keepalive#TCP_keepalive>` on a TCP Socket. The ``keepAlive`` option
+will keep a socket alive by sending periodic probes to MongoDB. However,
+this only works if the operating system supports ``SO_KEEPALIVE``\ .
 
 .. warning::
     If a firewall ignores or drops the ``keepAlive`` packets this may not work
@@ -130,7 +133,7 @@ are some things to check:
 #. The firewall should send a ``FIN packet`` when closing a socket,allowing the driver to detect that the socket is closed. 
 #. The firewall should allow ``keepAlive`` probes.
 
-What Can I Do If I'm Getting ``ECONNRESET`` When Calling ``client.connect()``?
+What Can I Do If I'm Getting "ECONNRESET" When Calling "client.connect()"?
 ------------------------------------------------------------------------------
 
 In most operating systems, each connection is associated with a `file
