@@ -1,0 +1,28 @@
+================
+Collations Guide
+================
+
+This guide shows you how to use collations, sorting rules for strings, to 
+conform to the ordering of specific languages and locales.
+
+
+----
+TODO
+----
+
+Collation Parameters
+~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: javascript
+
+   collation: {
+     locale: <string>,
+     caseLevel: <bool>,
+     caseFirst: <string>,
+     strength: <int>,
+     numericOrdering: <bool>,
+     alternate: <string>,
+     maxVariable: <string>,
+     backwards: <bool>
+   }
+

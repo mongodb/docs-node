@@ -12,3 +12,4 @@ Fundamentals
    /fundamentals/authentication
    /fundamentals/logging
    /fundamentals/monitoring
+   /fundamentals/collations
