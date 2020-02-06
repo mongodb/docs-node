@@ -23,6 +23,10 @@ The ``command()`` method returns a :mdn:`Promise
 <Web/JavaScript/Reference/Global_Objects/Promise>`. The Promise returns
 the results of the command operation when it completes.
 
+
+.. note::
+    This example connects to an instance of MongoDB using a :manual:`connection-string </reference/connection-string/>`. To learn more about connecting to your instance of MongoDB, see the `connection guide </fundamentals/connection-guide>`_
+
 Example
 -------
 
