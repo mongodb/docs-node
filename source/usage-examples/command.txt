@@ -24,7 +24,7 @@ The ``command()`` method returns a :mdn:`Promise
 the results of the command operation when it completes.
 
 
-.. literalinclude:: /includes/connect-guide-note.txt
+.. literalinclude:: /includes/connect-guide-note.rst
 
 Example
 -------
