@@ -174,5 +174,3 @@ Next Steps
 Check out our :doc:`CRUD fundamentals </fundamentals/crud>` guide, or see our
 :doc:`usage examples </usage-examples/overview>` to see how to perform the most
 common operations.
-
-

@@ -10,6 +10,7 @@ MongoDB Node Driver
   :titlesonly:
   :maxdepth: 1
 
+  /getting-started
   /fundamentals
   /usage-examples
   /api-documentation
@@ -21,19 +22,19 @@ MongoDB Node Driver
 Introduction
 ------------
 The official MongoDB Node.js driver allows Node.js applications to
-connect to MongoDB and work with data. 
+connect to MongoDB and work with data.
 
 .. note::
-   
+
    These docs are for version 3.5 of the MongoDB Node.js driver. If
    you're looking for an older version of the MongoDB Node.js driver
-   docs, `see the Legacy Node.js driver documentation
-   <https://mongodb.github.io/node-mongodb-native/>`_. For the main
-   MongoDB documentation, see the :manual:`MongoDB Manual </>`.
+   docs, :node-docs:`see the Legacy Node.js driver documentation </>`.
+   For the main MongoDB documentation, see the :manual:`MongoDB Manual
+   </>`.
 
 Quick Start
 -----------
-Jump right in with the `Quick Start </quick-start/>`_ to learn how to
+Jump right in with the :doc:`Quick Start </getting-started/quick-start>` to learn how to
 establish a connection to MongoDB Atlas and begin to work with data
 
 Fundamentals
