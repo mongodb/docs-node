@@ -1,42 +1,50 @@
+// ignored first line
 const { MongoClient } = require("mongodb");
-// Replace the following with your MongoDB deployment's connection
-// string.
+
+// Replace the uri string with your MongoDB deployment's connection string.
 const uri =
-  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
+  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
 
 const client = new MongoClient(uri);
 
-let changeStream, interval;
+let changeStream;
 async function run() {
   try {
     await client.connect();
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
-    // open a change stream on the movies collection
+
+    // open a Change Stream on the "movies" collection
     changeStream = collection.watch();
-    // set up an action on each change event
+
+    // set up a listener when change events are emitted
     changeStream.on("change", next => {
-      // process a change event
+      // process any change event
       console.log("a change to the collection happened: \t", next);
     });
-    let actions = 0;
-    interval = setInterval(async () => {
-      if (actions === 0) {
-        actions++;
-        console.log("inserting");
-        return await collection.insertOne({ test: "change stream" });
-      }
-      if (actions === 1) {
-        console.log("deleting");
-        return await collection.deleteOne({ test: "change stream" });
-      }
-    }, 1000);
+
+    /*
+
+     wrap the setTimeout methods in a new Promise otherwise the try
+     block will finish executing and the finally block will be run
+     before the setTimeout methods have time to run
+
+    */
+    await new Promise(resolve => {
+      // wait 1s for the event listener to register before emitting a change event
+      setTimeout(async () => {
+        // insert a document into the collection to emit an event
+        await collection.insertOne({
+          test: "sample movie document insertion",
+        });
+        // wait 1s to close `changeStream` after the event listener's execution
+        setTimeout(async () => {
+          resolve(await changeStream.close());
+        }, 1000);
+      }, 1000);
+    });
   } finally {
-    setTimeout(async () => {
-      clearInterval(interval);
-      await changeStream.close();
-      await client.close();
-    }, 2500);
+    await client.close();
   }
 }
 run().catch(console.dir);
