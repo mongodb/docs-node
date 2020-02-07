@@ -27,7 +27,6 @@ that resolves to an object which, if no documents match your query,
 has a value of ``null``.
 
 
-.. include:: /includes/connect-guide-note.rst
 
 Example
 -------
@@ -45,6 +44,8 @@ collection. It uses the following:
 - A **projection** that explicitly excludes the ``_id`` field from
   returned documents and explicitly includes only the ``title`` and
   ``imdb`` object (and its embedded fields).
+
+.. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/findOne.js
   :language: javascript
