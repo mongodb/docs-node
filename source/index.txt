@@ -10,7 +10,7 @@ MongoDB Node Driver
   :titlesonly:
   :maxdepth: 1
 
-  /quickstart
+  /quick-start
   /fundamentals
   /usage-examples
   /api-documentation
@@ -34,7 +34,7 @@ connect to MongoDB and work with data.
 
 Quick Start
 -----------
-Jump right in with the :doc:`Quick Start </quickstart>`
+Jump right in with the :doc:`Quick Start </quick-start>`
 to learn how to establish a connection to MongoDB Atlas and begin to
 work with data.
 
