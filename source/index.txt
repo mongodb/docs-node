@@ -10,7 +10,7 @@ MongoDB Node Driver
   :titlesonly:
   :maxdepth: 1
 
-  /getting-started
+  /quickstart
   /fundamentals
   /usage-examples
   /api-documentation
