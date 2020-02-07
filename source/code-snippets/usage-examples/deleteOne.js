@@ -3,9 +3,9 @@ const { MongoClient } = require("mongodb");
 
 // Replace the following string with your MongoDB deployment's connection string.
 const uri =
-  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
+  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, { useUnifiedTopology: true });
 
 async function run() {
   try {
