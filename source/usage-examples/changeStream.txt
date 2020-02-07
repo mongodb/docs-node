@@ -12,8 +12,8 @@ collection, database, or deployment by opening a :manual:`Change
 Stream</changeStreams/>`. A ``Change Stream`` allows applications to
 watch for changes to data and react to those changes. You can open a
 ``Change Stream`` by calling the :node-api:`watch()
-</Collection.html#watch>` method on a collection, database, or
-deployment. 
+</Collection.html#watch>` method on a collection, or the equivalent
+``watch()`` method on a database, or deployment. 
 
 The ``watch()`` method takes an optional pipeline as the first parameter
 that is an array of stages to filter the :manual:`change events
