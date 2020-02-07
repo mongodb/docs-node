@@ -1,5 +1,5 @@
 // ignored first line
-cconst { MongoClient } = require("mongodb");
+const { MongoClient } = require("mongodb");
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
@@ -23,22 +23,15 @@ async function run() {
       console.log("a change to the collection happened: \t", next);
     });
 
-    /*
-
-     wrap the setTimeout methods in a new Promise otherwise the try
-     block will finish executing and the finally block will be run
-     before the setTimeout methods have time to run
-
-    */
-
+    // wrap the setTimeout methods in a new Promise to wait for the timers to run
     await new Promise(resolve => {
-      // wait 1s for the event listener to register before emitting a change event
+      // wait for the event listener to register before emitting a change event
       const outerTimer = setTimeout(async () => {
-        // insert a document into the collection to emit an event
+        // insert a document to emit an event
         await collection.insertOne({
-          test: "sample movie document insertion 1"
+          test: "sample movie document",
         });
-        // wait 1s to close `changeStream` after the event listener's execution
+        // wait to close `changeStream` after changeListener receives the event
         const innerTimer = setTimeout(async () => {
           resolve(await changeStream.close());
         }, 1000);
