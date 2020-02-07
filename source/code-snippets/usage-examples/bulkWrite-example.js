@@ -40,7 +40,7 @@ async function run() {
           console.log("Number of documents inserted: " + result.nInserted);
         } else {
           console.log(
-            "No documents were inserted during the bulk write operation",
+            "No documents were inserted during the bulk write operation"
           );
         }
 
