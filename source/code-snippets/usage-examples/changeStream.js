@@ -1,5 +1,5 @@
 // ignored first line
-const { MongoClient } = require("mongodb");
+cconst { MongoClient } = require("mongodb");
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
@@ -18,7 +18,7 @@ async function run() {
     changeStream = collection.watch();
 
     // set up a listener when change events are emitted
-    changeStream.on("change", next => {
+    const changeListener = changeStream.on("change", next => {
       // process any change event
       console.log("a change to the collection happened: \t", next);
     });
@@ -30,15 +30,16 @@ async function run() {
      before the setTimeout methods have time to run
 
     */
+
     await new Promise(resolve => {
       // wait 1s for the event listener to register before emitting a change event
-      setTimeout(async () => {
+      const outerTimer = setTimeout(async () => {
         // insert a document into the collection to emit an event
         await collection.insertOne({
-          test: "sample movie document insertion",
+          test: "sample movie document insertion 1"
         });
         // wait 1s to close `changeStream` after the event listener's execution
-        setTimeout(async () => {
+        const innerTimer = setTimeout(async () => {
           resolve(await changeStream.close());
         }, 1000);
       }, 1000);
