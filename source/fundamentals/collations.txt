@@ -1,14 +1,50 @@
-================
-Collations Guide
-================
+==========
+Collations
+==========
 
-This guide shows you how to use collations, sorting rules for strings, to 
-conform to the ordering of specific languages and locales.
+✓
+This guide shows you how to use collations, a set of sorting rules, to 
+run operations using string ordering for specific languages and locales.
+
+MongoDB sorts strings using *binary collation* by default. This collation uses
+the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_ character values
+to compare strings.
+
+Many languages and the locales that use them have ordering conventions that 
+are not ASCII.
+
+For example, in Canadian French, the right-most accented character determines
+the ordering for strings when the other characters are the same.
+
+Consider the following French words: **cote**, **coté**, **côte**, and
+**côté**. The order in which they would appear using the *binary collation* is:
+
+.. blockquote::
+
+   cote < coté < côte < côté
+
+If we apply the Canadian French collation, the order is:
+
+.. blockquote::
+
+   cote < côte < coté < côté
+
+-----
+Usage
+-----
+
+You can specify collations on a collection or in an index.
+
+Read the following sections for an explanation of and usage examples.
+examples
 
 
-----
-TODO
-----
+by setting them on a collection
+or in an index.
+
+
+A collation can be added to a collection or index
+Here is a list of operations that support collation
 
 Collation Parameters
 ~~~~~~~~~~~~~~~~~~~~
@@ -25,4 +61,46 @@ Collation Parameters
      maxVariable: <string>,
      backwards: <bool>
    }
+
+You must provide the ``locale`` field when you specify a collation.
+See `Supported Languages and Locales <https://docs.mongodb.com/manual/reference/collation-locales-defaults/#supported-languages-and-locales>`_
+for a complete list of locales and variants.
+
+When you specify a collation
+
+The only required parameter is locale, which the server parses as an ICU format locale ID. For example, use en_US to represent US English and fr_CA to represent Canadian French.
+
+For descriptions of the parameters, see the `Collation Document MongoDB manual entry <https://docs.mongodb.com/manual/reference/collation/#collation-document>`
+_.
+
+For case insensitive string searches, create a case insensitive index
+https://docs.mongodb.com/manual/core/index-case-insensitive/
+
+
+
+Collation on a Collection
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Collation on an Index
+~~~~~~~~~~~~~~~~~~~~~
+
+
+Collation Examples
+~~~~~~~~~~~~~~~~~~
+
+-info
+-link to chart of collations
+
+find() and sort() Example
+`````````````````````````
+
+findOneAndUpdate() Example
+``````````````````````````
+
+findOneAndDelete() Example
+``````````````````````````
+
+Aggregation Example
+```````````````````
 
