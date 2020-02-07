@@ -15,7 +15,7 @@ documentation for full details.
 ``bulkWrite()`` accepts the following parameters:
 
 - ``operations``: specifies the bulk operations to
-  perform. Each operation is passed to ``bulkWrite()`` as an object in
+  perform. Pass each operation to ``bulkWrite()`` as an object in
   an array.
 
 - ``options``: *optional* settings that affect the execution
@@ -57,7 +57,7 @@ same email address.
 
    Error during bulkWrite, BulkWriteError: E11000 duplicate key error collection: sample_mflix.users index: email_1 dup key: { : "rita_91@example.com" }
 
-Similarly, if you attempt to perform a bulk write against a  collection
+Similarly, if you attempt to perform a bulk write against a collection
 that uses :manual:`schema validation </core/schema-validation>`, you may
 encounter warnings or errors related to the formatting of inserted or
 modified documents.
@@ -84,6 +84,8 @@ existing fields in the collection, as in the following:
      "password" : "450f6704710dcf8033157978f7fbdfde",
      "name" : "Marie Conrad"
    }
+
+.. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/bulkWrite-example.js
    :language: javascript
