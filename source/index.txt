@@ -67,7 +67,7 @@ technical information about classes, methods, and configuration objects
 within the MongoDB Node.js driver.
 
 
-FAQ 
+FAQ
 ---
 The :doc:`Frequently Asked Questions (FAQ) </faq>` section provides answers
 to the most commonly asked questions about the MongoDB Node.js Driver.
@@ -80,5 +80,5 @@ questions and receiving help.
 
 Compatibility
 -------------
-The `Compatibility </compatibility>`_ section shows compatibility charts
+The :doc:`Compatibility </compatibility>` section shows compatibility charts
 with the Node.js language and the MongoDB server versions.
