@@ -48,8 +48,8 @@ section that defines the following core concepts:
   MongoDB using Node.js
 
 * :doc:`Authentication </fundamentals/authentication>`: Learn how to
-  configure authentication and log a user
-  in using the MongoDB Node.js driver
+  configure authentication and log a user in using the MongoDB Node.js
+  driver
 
 * :doc:`Logs </fundamentals/logging>`: Learn how MongoDB logs operations
   and how to work with them
