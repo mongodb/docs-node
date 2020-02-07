@@ -22,6 +22,8 @@ inserted document. If the operation fails to create a document, the
 operation creates a document, the ``insertedCount`` field of this object
 has a value of ``1``.
 
+.. include:: /includes/connect-guide-note.rst
+
 Example
 -------
 

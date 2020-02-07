@@ -49,6 +49,9 @@ what caused the operation to fail.
   method, which has a similar interface to ``deleteOne()`` but also
   returns the deleted document.
 
+
+.. include:: /includes/connect-guide-note.rst
+
 Example
 -------
 

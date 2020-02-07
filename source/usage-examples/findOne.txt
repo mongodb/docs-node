@@ -26,6 +26,9 @@ in the ``options`` object passed as the second parameter of the
 that resolves to an object which, if no documents match your query,
 has a value of ``null``.
 
+
+.. include:: /includes/connect-guide-note.rst
+
 Example
 -------
 

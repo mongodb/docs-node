@@ -21,6 +21,8 @@ The ``updateMany()`` method returns a :mdn:`Promise
 that resolves to an object. The ``modifiedCount`` field of this object
 shows the number of modified documents.
 
+.. include:: /includes/connect-guide-note.rst
+
 Example
 -------
 

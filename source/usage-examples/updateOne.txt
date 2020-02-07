@@ -39,6 +39,8 @@ key error`` exception.
   interface to ``updateOne()`` but also returns the original or updated
   document.
 
+.. include:: /includes/connect-guide-note.rst
+
 Example
 -------
 

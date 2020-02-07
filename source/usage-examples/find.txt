@@ -33,6 +33,9 @@ methods like ``next()``, ``toArray()``, or ``forEach()`` to
 fetch and work with the returned documents. If no documents match the
 query, ``find()`` returns an empty cursor.
 
+
+.. include:: /includes/connect-guide-note.rst
+
 Example
 -------
 

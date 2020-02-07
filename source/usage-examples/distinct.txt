@@ -39,6 +39,9 @@ message that resembles the following:
 
    "key" had the wrong type. Expected string, found <non-string type>
 
+
+.. include:: /includes/connect-guide-note.rst
+
 Example
 -------
 

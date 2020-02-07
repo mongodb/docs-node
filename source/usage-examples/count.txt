@@ -43,6 +43,9 @@ and ``estimatedDocumentCount()`` behave in two different ways:
   ``estimatedDocumentCount`` return a :node-api:`countCallback
   <Collection.html#~countCallback>` object.
 
+
+.. include:: /includes/connect-guide-note.rst
+
 Example
 -------
 
