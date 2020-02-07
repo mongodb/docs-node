@@ -40,15 +40,14 @@ of documents deleted by the operation.
 The error object contains ``errmsg``, a human-readable explanation of
 what caused the operation to fail.
 
-
-.. include:: /includes/connect-guide-note.rst
-
 Example
 -------
 
 The following snippet deletes multiple documents from the ``movies``
 collection. It uses a **query document** that configures the query to
 match and delete movies with the title "Santa Claus".
+
+.. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/deleteMany.js
   :language: javascript

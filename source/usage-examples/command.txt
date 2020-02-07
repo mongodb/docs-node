@@ -23,11 +23,10 @@ The ``command()`` method returns a :mdn:`Promise
 <Web/JavaScript/Reference/Global_Objects/Promise>`. The Promise returns
 the results of the command operation when it completes.
 
-.. include:: /includes/connect-guide-note.rst
-
-
 Example
 -------
+
+.. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/command.js
   :language: javascript

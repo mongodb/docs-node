@@ -39,15 +39,14 @@ message that resembles the following:
 
    "key" had the wrong type. Expected string, found <non-string type>
 
-
-.. include:: /includes/connect-guide-note.rst
-
 Example
 -------
 
 The following snippet retrieves a list of distinct values for the ``year``
 document field from the ``movies`` collection. It uses a query document to
 match movies that include "Barbara Streisand" as a ``director``.
+
+.. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/distinct.js
   :language: javascript

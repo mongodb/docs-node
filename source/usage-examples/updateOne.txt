@@ -39,8 +39,6 @@ key error`` exception.
   interface to ``updateOne()`` but also returns the original or updated
   document.
 
-.. include:: /includes/connect-guide-note.rst
-
 Example
 -------
 
@@ -48,6 +46,8 @@ The following example uses the ``$set`` update operator which specifies
 update values for document fields. For more information on update operators,
 see the :manual:`MongoDB update operator reference documentation
 </reference/operator/update/#update-operators>`.
+
+.. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/updateOne.js
   :language: javascript

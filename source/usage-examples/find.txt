@@ -33,9 +33,6 @@ methods like ``next()``, ``toArray()``, or ``forEach()`` to
 fetch and work with the returned documents. If no documents match the
 query, ``find()`` returns an empty cursor.
 
-
-.. include:: /includes/connect-guide-note.rst
-
 Example
 -------
 
@@ -51,6 +48,8 @@ collection. It uses the following:
 - A **projection** that explicitly excludes the ``_id`` field from
   returned documents and explicitly includes only the ``title`` and
   ``imdb`` object (and its embedded fields).
+
+.. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/find.js
   :language: javascript

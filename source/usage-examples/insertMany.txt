@@ -24,10 +24,10 @@ Specifying incorrect parameters for your ``insertMany()`` operation can
 cause problems. Attempting to insert a field to a value that would violate
 unique index rules will throw a ``duplicate key error``.
 
-.. include:: /includes/connect-guide-note.rst
-
 Example
 -------
+
+.. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/insertMany.js
   :language: javascript
