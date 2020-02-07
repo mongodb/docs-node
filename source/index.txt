@@ -16,7 +16,6 @@ The Node driver documentation is organized as follows:
   :titlesonly:
   :maxdepth: 1
 
-  /quick-start
   /fundamentals
   /usage-examples
   /api-documentation
