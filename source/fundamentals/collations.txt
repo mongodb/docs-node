@@ -138,19 +138,37 @@ Collation Query Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 Operations that read, update, and delete documents from a collection support
-collation. This section includes examples of several of these operations.
+collation. This section includes examples of most of these operations.
 See the MongoDB manual for a full list of :manual:`operations that support
 collation </reference/collation/#operations-that-support-collation>`.
 
 find() and sort() Example
 `````````````````````````
 
-The following example calls both ``find()`` and ``sort`` uses
+The following example calls both ``find()`` and ``sort()`` on a collection
+using a German collation with the ``locale`` parameter set to ``de``. 
 
 findOneAndUpdate() Example
 ``````````````````````````
 
+The following example uses a collection called ``names`` which contains the
+following documents:
+
+::
+
+  { "_id" : 1, "first_name" : "Hans" }
+  { "_id" : 2, "first_name" : "Gunter" }
+  { "_id" : 3, "first_name" : "Günter" }
+  { "_id" : 4, "first_name" : "Jürgen" }
+
+The code below does not specify a collation
+
+[ code here ]
+
+[TODO]
+
 findOneAndDelete() Example
+
 ``````````````````````````
 
 Aggregation Example
@@ -160,3 +178,11 @@ To use collation with the :node-api:`aggregate </Collection.html#aggregate>`
 operation, pass the collation document in the options field, after the
 array of pipeline stages.
 
+
+The following aggregation example uses the ``movies`` collection from the
+``sample_mflix`` database and groups the ``name`` field.
+Then, it counts the total number of results in each group, and sorts the results
+by the German phonebook order with the ``locale`` parameter set to 
+``de@collation=phonebook``.
+
+[ Code here ] 

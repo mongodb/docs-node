@@ -1,5 +1,4 @@
 const { MongoClient } = require("mongodb");
-const assert = require('assert');
 
 // Connection URI
 const uri =
@@ -20,10 +19,10 @@ async function run() {
       [ 
         { '$group': { '_id': "$directors", 'nameCount': { '$sum': 1 } } },
         { '$sort' : { '_id' : 1 } }
-      ], { collation : { locale : 'de@collation=phonebook' } },
+      ], { collation : { locale : "de@collation=phonebook" } },
     );
 
-    // TODO: print results
+    console.log(await cursor.toArray());
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();

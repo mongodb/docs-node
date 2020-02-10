@@ -14,7 +14,10 @@ async function run() {
     // Connect the client to the server
     await client.connect();
 
-    const db = client.db(dbName);
+    const db = client.db("sample_mflix");
+    const collection = db.collection("movies");
+
+    collection.find({ 'city' : 'New York' }, { '_id' : 0 }, { 'collation' : {'locale' : 'de' } }).sort({ 'name': 1 }).toArray(function(err, docs) {
   
     findDocuments(db, function() {
       client.close();
@@ -26,13 +29,3 @@ async function run() {
   }
 }
 run().catch(console.dir);
-
-function findDocuments(db, callback) {
-  const collection = db.collection( 'contacts' );
-  collection.find({ 'city' : 'New York' }, { '_id' : 0 }, { 'collation' : {'locale' : 'de' } }).sort({ 'name': 1 }).toArray(function(err, docs) {
-      assert.equal(err, null);
-      console.log("Found the following records");
-      console.log(docs)
-      callback(docs);
-  });
-}

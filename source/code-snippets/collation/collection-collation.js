@@ -15,31 +15,17 @@ async function run() {
     // Connect the client to the server
     await client.connect();
 
-    const db = client.db(dbName);
-  
-    createCollated(db, function() {
-      client.close();
-    });
+    const db = client.db("sample_mflix");
 
+    // Create the collection with a collation
+    await db.createCollection("souvenirs",
+    {
+      "collation" :
+        { "locale": "fr_CA" }
+    } 
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
   }
 }
 run().catch(console.dir);
-
-// Create the collection and collation
-function createCollated(db, callback) {
-  db.createCollection('souvenirs',
-    {
-      'collation' :
-        { 'locale': 'fr_CA' }
-    },
-
-    function(err, results) {
-      assert(err, null);
-      console.log("Created collection with collation: " + results);
-      callback();
-    }
-  );
-};
