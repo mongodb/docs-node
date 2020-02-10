@@ -31,7 +31,7 @@ Process the Change Stream Events
 --------------------------------
 
 You can capture events from a ``Change Stream`` instance by using a listener
-function. Call the watch() command to get a ``Change Stream`` instance. Add
+function. Call the ``watch()`` command to get a ``Change Stream`` instance. Add
 your listener function by calling the `EventEmitter.on()
 <https://nodejs.org/api/events.html#events_emitter_on_eventname_listener>`_
 method on that instance. Set the value of the first parameter to the
