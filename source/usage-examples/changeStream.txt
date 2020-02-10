@@ -47,20 +47,19 @@ Example
 -------
 
 The following example opens a ``Change Stream`` on the ``movies``
-collection. We create a ``changeListener`` variable that is listener
-function to receive and print change events that occur. 
+collection. We create a listener function to receive and print change
+events that occur. 
 
-To emit a change event, we want to perform a change to the collection, such as insertion
-with ``insertOne()``. To prevent the ``insertOne()`` from executing
-before ``changeListener`` can register, we create a ``firstTimer``
-variable that uses :mdn:`setTimeout
+To emit a change event, we want to perform a change to the collection,
+such as insertion with ``insertOne()``. To prevent ``insertOne()`` from
+executing before the listener function can register, we create a timer
+that uses :mdn:`setTimeout
 <Web/API/WindowOrWorkerGlobalScope/setTimeout>` to wait 1 second. After
 the insertion of the document, the listener should receive this event.
 
-After that, we want to close the ``Change Stream`` instance.  We can do
-this by creating a ``secondTimer`` variable  that uses ``setTimeout()``
-to wait for an additional second after the insertion of the document to
-call ``changeStream.close()``. 
+After that, we want to close the ``Change Stream`` instance. We can do
+this by creating a second timer to wait for an additional second after
+the insertion of the document to call ``changeStream.close()``. 
 
 .. literalinclude:: /code-snippets/usage-examples/changeStream.js
   :language: javascript :linenos:
