@@ -72,7 +72,7 @@ within the MongoDB Node.js driver.
 
 FAQ
 ---
-The `Frequently Asked Questions (FAQ) </faq>`_ section provides answers
+The :doc:`Frequently Asked Questions (FAQ) </faq>` section provides answers
 to the most commonly asked questions about the MongoDB Node.js Driver.
 
 Issues & Help
