@@ -8,10 +8,10 @@ Check for Node and NPM
 ----------------------
 
 Ensure your system has Node version 8 or later and NPM (Node Package
-Manager) installed. Run the following commands to check thatr you meet
+Manager) installed. Run the following commands to check that you meet
 these requirements:
 
-First, check the version of Node
+First, check the version of Node:
 
 .. code-block:: sh
 
@@ -23,7 +23,7 @@ You should see output similar to the following:
 
    v12.14.1
 
-Next, check the version of NPM
+Next, check the version of NPM:
 
 .. code-block:: sh
 

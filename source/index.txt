@@ -34,9 +34,9 @@ connect to MongoDB and work with data.
 
 Quick Start
 -----------
-Jump right in with the :doc:`Quick Start </quick-start>`
-to learn how to establish a connection to MongoDB Atlas and begin to
-work with data.
+To get up and running quickly, take a look at the :doc:`Quick Start
+</quick-start>` to learn how to establish a connection to MongoDB Atlas
+and begin to work with data.
 
 Fundamentals
 ------------
@@ -66,7 +66,7 @@ common driver methods.
 
 API
 ---
-See the :doc:`API </api-documentation/>`  section if you are looking for
+See the :doc:`API </api-documentation/>` section if you are looking for
 technical information about classes, methods, and configuration objects
 within the MongoDB Node.js driver.
 
