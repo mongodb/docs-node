@@ -18,7 +18,7 @@ async function run() {
     changeStream = collection.watch();
 
     // set up a listener when change events are emitted
-    const changeListener = changeStream.on("change", next => {
+    changeStream.on("change", next => {
       // process any change event
       console.log("received a change to the collection: \t", next);
     });
@@ -26,12 +26,12 @@ async function run() {
     // wrap the setTimeout methods in a new Promise to wait for the timers to run
     await new Promise(resolve => {
       // wait for the event listener to register before inserting a document
-      const outerTimer = setTimeout(async () => {
+      setTimeout(async () => {
         await collection.insertOne({
           test: "sample movie document",
         });
-        // wait to close `changeStream` after changeListener receives the event
-        const innerTimer = setTimeout(async () => {
+        // wait to close `changeStream` after the listener receives the event
+        setTimeout(async () => {
           resolve(await changeStream.close());
         }, 1000);
       }, 1000);
