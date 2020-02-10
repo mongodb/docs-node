@@ -7,9 +7,9 @@ Quick Start
 Check for Node and NPM
 ----------------------
 
-Ensure your system has Node greater than or equal to version 8 and
-NPM (Node Package Manager) installed. You can verify whether you have Node and
-NPM installed by executing the following in your terminal.
+Ensure your system has Node version 8 or later and NPM (Node Package
+Manager) installed. Run the following commands to check thatr you meet
+these requirements:
 
 First, check the version of Node
 
@@ -35,15 +35,14 @@ You should see output similar to the following:
 
    6.13.4
 
-If you do not see any output, you will need to install Node and NPM.
-Refer to `nodejs.org <https://nodejs.org>`_ for installation instructions.
-
+If you do not see any output or encounter an error, you will need to
+install Node and NPM. Visit `nodejs.org <https://nodejs.org>`_ for
+installation instructions.
 
 Initialize the Project
 ----------------------
 
-The starting point for any Node application is initializing your project. Navigate
-to a new directory and initialize a new project.
+Navigate to a new directory and initialize a new project:
 
 .. code-block:: sh
 
@@ -54,80 +53,80 @@ to a new directory and initialize a new project.
 .. admonition:: Why the -y?
   :class: note
 
-  Specifying ``-y`` tells NPM to use default values. You can omit the ``-y``
-  flag to proceed through an interactive selection process for common project
-  settings.
-
-
+  Specifying ``-y`` tells NPM to use default values. You can omit the
+  ``-y`` flag to proceed through an interactive selection process for
+  common project settings.
 
 Add MongoDB as a Dependency
 ---------------------------
 
-Next, add the Node MongoDB driver as a project dependency. Use the ``--save``
-flag to save the dependency to ``package.json`` file that was automatically
-generated in the previous step.
+Next, add the Node MongoDB driver as a project dependency. Use the
+``--save`` flag to save the dependency to the ``package.json`` file that
+was automatically generated in the previous step.
 
 .. code-block:: sh
 
   npm install --save mongodb
 
-NPM will download dependencies and output information to your terminal. After
-installing, you will have a ``node_modules`` directory added to your workspace.
-
+NPM downloads the dependencies required for installation and saves them
+into a directory called ``node_modules`` in your project directory.
 
 Create a Free Tier Cluster in Atlas
 -----------------------------------
 
-The easiest way to get started with MongoDB is by using MongoDB Atlas.
-Atlas doesn't require a credit card to sign up, and offers free-tier deployments that are free for life.
-Follow along with our :atlas:`steps to create and set up a free-tier cluster <tutorial/create-atlas-account/>`, then :atlas:`load sample data <sample-data/load-sample-data/>`
-to get the data necessary for the rest of this guide.
-
+You can easily get started with MongoDB with :atlas:`MongoDB Atlas
+<tutorial/create-atlas-account>`, which offers instances of MongoDB
+hosted in the cloud. Atlas doesn't require a credit card to
+sign up, and offers free-tier deployments that are free for life. Follow
+along with our :atlas:`steps to create and set up a free-tier cluster
+<tutorial/create-atlas-account/>`, then :atlas:`load sample data
+<sample-data/load-sample-data/>` to run the examples in this guide.
 
 Store Configuration Separately
 ------------------------------
 
-A tenet of modern applications is to `store
-configuration data in the environment <https://12factor.net/config>`_.
+You can store your application configuration separately for security
+and convenience. We use the `dotenv
+<https://www.npmjs.com/package/dotenv>`_ NPM module to store our
+configuration data in a separate local file called ``.env``. If you are
+using git source control, add the ``.env`` file to your ``.gitignore``
+entries to prevent accidentally sharing contents such as database
+credentials.
 
-We'll use an NPM module called ``dotenv`` to help us hide our sensitive data and
-put it in an environmental variable. ``dotenv`` allows us to easily read in
-environmental variables that we define in a local file called ``.env``. We'll
-add this file to our ``.gitignore`` to ensure we don't accidentally commit our
-sensitive data, in this case our database credentials, to our version control
-system.
-
-Add ``dotenv`` to your project and create the necessary files. Enter the following
-in your terminal:
+First, add ``dotenv`` to your project:
 
 .. code-block:: sh
 
   npm install --save dotenv
+
+Next, create the ``.env`` file and add a variable called
+``MONGODB_URI``:
+
+.. code-block:: sh
+
   touch .env
-  echo ".env" >> .gitignore
-  echo "MONGODB_URI=<your_atlas_uri>" >> .env
-
-
+  echo "MONGODB_URI=<connection_uri>" >> .env
 
 Add your Atlas Connection String
 --------------------------------
 
-Open your newly created ``.env`` file. You may have to set your system to display
-hidden files. Once your ``.env`` is open, copy and paste your connection string
-from Atlas, replacing ``<your_atlas_uri>``. Ensure you update ``<username>`` and
-``<password>`` in your connection string.
+Open your newly created ``.env`` file. If you are unable to locate this
+file in your project directory, you may need to set your system to
+display hidden files. Once your ``.env`` is open replace
+``<connection_uri>`` with your connection string from Atlas. Ensure you
+update ``<username>`` and ``<password>`` in your connection string.
 
 Connect to your Cluster
 -----------------------
 
-The final step is to create a file in your project directory called ``index.js``.
+The final step is to create a file in your project directory called
+``index.js``:
 
 .. code-block:: sh
 
   touch index.js
 
-Open this file in your preferred editor, such as `Visual Studio Code <https://code.visualstudio.com/Download>`_, and
-paste in the following code.
+Open this file  and paste in the following code:
 
 .. code-block:: js
 
@@ -139,7 +138,6 @@ paste in the following code.
   }
 
   const client = new MongoClient(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
     useUnifiedTopology: true
   });
 
@@ -171,6 +169,6 @@ You should see the output **Successfully connected to Atlas**
 Next Steps
 ----------
 
-Check out our :doc:`CRUD fundamentals </fundamentals/crud>` guide, or see our
-:doc:`usage examples </usage-examples/overview>` to see how to perform the most
-common operations.
+Learn how to read and modify data in our :doc:`CRUD fundamentals
+</fundamentals/crud>` guide, or how to perform common operations in our
+:doc:`usage examples </usage-examples/overview>`.
