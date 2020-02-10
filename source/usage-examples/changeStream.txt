@@ -30,20 +30,20 @@ altered document, but not the changes to the document.
 Process the Change Stream Events
 --------------------------------
 
-You can capture events from a change stream instance by using a listener
-function. Call the watch() command to get a Change Stream instance. Add
+You can capture events from a ``Change Stream`` instance by using a listener
+function. Call the watch() command to get a ``Change Stream`` instance. Add
 your listener function by calling the `EventEmitter.on()
 <https://nodejs.org/api/events.html#events_emitter_on_eventname_listener>`_
 method on that instance. Set the value of the first parameter to the
 string ``'change'`` and add your :mdn:`callback function
 <Glossary/Callback_function>` as the second parameter.  The callback
-triggers when a change event is emitted, providing the next available
+triggers when a ``change event`` is emitted, providing the next available
 document. You can specify logic in the callback to process the event
 document when it is received. 
 
 Call the :node-api:`close() </ChangeStream.html#close>` method on the
-change stream instance to stop processing change events. This method
-closes the change stream and frees resources.
+``Change Stream`` instance to stop processing ``change events``. This method
+closes the ``Change Stream`` and frees resources.
 
 Example
 -------
@@ -52,7 +52,7 @@ The following example opens a ``Change Stream`` on the ``movies``
 collection. We create a listener function to receive and print change
 events that occur. 
 
-To emit a change event, we perform a change to the collection, such as
+To emit a ``change event``, we perform a change to the collection, such as
 insertion with ``insertOne()``. To prevent ``insertOne()`` from
 executing before the listener function can register, we create a timer
 that uses :mdn:`setTimeout
