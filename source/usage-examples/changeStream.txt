@@ -58,7 +58,7 @@ that uses :mdn:`setTimeout
 the insertion of the document, the listener should receive this event.
 
 After that, we want to close the ``Change Stream`` instance. We can do
-this by creating a second timer to wait for an additional second after
+this by creating a second timer to wait an additional second after
 the insertion of the document to call ``changeStream.close()``. 
 
 .. literalinclude:: /code-snippets/usage-examples/changeStream.js
