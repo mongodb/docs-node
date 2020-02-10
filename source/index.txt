@@ -70,7 +70,6 @@ See the :doc:`API </api-documentation/>` section if you are looking for
 technical information about classes, methods, and configuration objects
 within the MongoDB Node.js driver.
 
-
 FAQ
 ---
 The :doc:`Frequently Asked Questions (FAQ) </faq>` section provides answers
