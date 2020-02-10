@@ -15,16 +15,16 @@ watch for changes to data and react to those changes. You can open a
 </Collection.html#watch>` method on a collection or the equivalent
 ``watch()`` method on a database, or deployment. 
 
-
-
-The ``watch()`` method  optionally takes a pipeline, an array of stages,
-as the first parameter to filter the :manual:`change events
+The ``watch()`` method  optionally takes a :manual:`pipeline
+</reference/operator/aggregation-pipeline/>`, an array of
+:manual:`stages </changeStreams/#modify-change-stream-output>`, as the
+first parameter to filter the :manual:`change events
 </reference/change-events/>` output. Also, ``watch()`` can take an
 additional options object as the second parameter. Set the
 ``fullDocument`` field of the additional options object to
 ``'updateLookup'`` to receive an event that contains the changes to the
 document as well as the entire altered document. Alternatively, you can
-set ``fullDocument`` to the string ``'default'`` to only receive the
+set ``fullDocument`` to the string ``"default"`` to only receive the
 altered document, but not the changes to the document. 
 
 Process the Change Stream Events
