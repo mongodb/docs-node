@@ -14,7 +14,7 @@ async function run() {
     const database = client.db("sample_mflix");
     const collection = database.collection("movies");
 
-    // open a Change Stream on the "movies" collection so the driver can emit events
+    // open a Change Stream on the "movies" collection
     changeStream = collection.watch();
 
     // set up a listener when change events are emitted
@@ -25,7 +25,7 @@ async function run() {
 
     // wrap the setTimeout methods in a new Promise to wait for the timers to run
     await new Promise(resolve => {
-      // wait for the event listener to register before emitting a change event
+      // wait for the event listener to register before inserting a document
       const outerTimer = setTimeout(async () => {
         await collection.insertOne({
           test: "sample movie document",
