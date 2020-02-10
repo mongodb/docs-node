@@ -42,12 +42,26 @@ installation instructions.
 Initialize the Project
 ----------------------
 
-Navigate to a new directory and initialize a new project:
+Now that our system meets the Node driver's requirements, we can
+create a new project.
+
+First, create a directory for your project:
 
 .. code-block:: sh
 
   mkdir node_quickstart
+
+Then, navigate into that directory so you can work directly with your
+project's files:
+
+.. code-block:: sh
+
   cd node_quickstart
+
+Finally, initialize npm:
+
+.. code-block:: sh
+
   npm init -y
 
 .. admonition:: Why the -y?
@@ -112,21 +126,23 @@ Add your Atlas Connection String
 
 Open your newly created ``.env`` file. If you are unable to locate this
 file in your project directory, you may need to set your system to
-display hidden files. Once your ``.env`` is open replace
+display hidden files. Once your ``.env`` is open, replace
 ``<connection_uri>`` with your connection string from Atlas. Ensure you
 update ``<username>`` and ``<password>`` in your connection string.
 
 Connect to your Cluster
 -----------------------
 
-The final step is to create a file in your project directory called
-``index.js``:
+For the final step, we'll write some code that tests your environment's
+connection to your instance of MongoDB.
+
+Create a file in your project directory called ``index.js``:
 
 .. code-block:: sh
 
   touch index.js
 
-Open this file  and paste in the following code:
+Open this file and paste in the following code:
 
 .. code-block:: js
 
@@ -164,7 +180,7 @@ Run the script with the following command from your terminal:
 
   node index.js
 
-You should see the output **Successfully connected to Atlas**
+You should see the output **Successfully connected to Atlas.**
 
 Next Steps
 ----------
