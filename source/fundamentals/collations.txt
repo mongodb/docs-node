@@ -2,52 +2,71 @@
 Collations
 ==========
 
-✓
+
 This guide shows you how to use collations, a set of sorting rules, to 
-run operations using string ordering for specific languages and locales.
+run operations using string ordering for specific languages and locales (a 
+community or region that shares common language idioms).
 
-MongoDB sorts strings using *binary collation* by default. This collation uses
-the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_ character values
-to compare strings.
-
-Many languages and the locales that use them have ordering conventions that 
-are not ASCII.
+MongoDB sorts strings using *binary collation* by default. This collation
+method uses the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_ 
+character values to compare and order strings. Many languages and locales have
+character ordering conventions that are different from the ASCII standard.
 
 For example, in Canadian French, the right-most accented character determines
-the ordering for strings when the other characters are the same.
+the ordering for strings when the other characters are the same. Consider the
+following French words: **cote**, **coté**, **côte**, and **côté**. 
 
-Consider the following French words: **cote**, **coté**, **côte**, and
-**côté**. The order in which they would appear using the *binary collation* is:
+The order in which they would appear using the default *binary
+collation* is:
 
-.. blockquote::
+::
 
-   cote < coté < côte < côté
+   cote
+   coté
+   côte
+   côté
 
 If we apply the Canadian French collation, the order is:
 
-.. blockquote::
+::
 
-   cote < côte < coté < côté
+   cote
+   côte
+   coté
+   côté
 
 -----
 Usage
 -----
 
-You can specify collations on a collection or in an index.
+.. note::
 
-Read the following sections for an explanation of and usage examples.
-examples
+   Collations are available in MongoDB 3.4 and later.
 
+You can specify a collation when you create a **new collection** or 
+**new index**.
 
-by setting them on a collection
-or in an index.
+When you create a collection with a collation, you define the default collation
+for any of the :manual:`operations that support collation 
+</reference/collation/#operations-that-support-collation>` called on that 
+collection. You can override the collation for an operation by specifying a 
+different one.
 
+When you create an index with a collation, you specify the sort order for
+operations that use that index. To use the collation in the index, you must
+provide a matching collation in the operation, and the operation must use
+the index.
 
-A collation can be added to a collection or index
-Here is a list of operations that support collation
+.. note::
+   
+   Currently, you cannot create a collation on an existing collection. To use
+   collations with an existing collection, create an index with the collation
+   and specify the same collation in all your operations on that collection.
 
 Collation Parameters
 ~~~~~~~~~~~~~~~~~~~~
+
+The collation object contains the following parameters:
 
 .. code-block:: javascript
 
@@ -62,38 +81,71 @@ Collation Parameters
      backwards: <bool>
    }
 
-You must provide the ``locale`` field when you specify a collation.
-See `Supported Languages and Locales <https://docs.mongodb.com/manual/reference/collation-locales-defaults/#supported-languages-and-locales>`_
-for a complete list of locales and variants.
-
-When you specify a collation
-
-The only required parameter is locale, which the server parses as an ICU format locale ID. For example, use en_US to represent US English and fr_CA to represent Canadian French.
-
-For descriptions of the parameters, see the `Collation Document MongoDB manual entry <https://docs.mongodb.com/manual/reference/collation/#collation-document>`
-_.
-
-For case insensitive string searches, create a case insensitive index
-https://docs.mongodb.com/manual/core/index-case-insensitive/
-
-
-
-Collation on a Collection
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-Collation on an Index
-~~~~~~~~~~~~~~~~~~~~~
-
+You must specify the ICU Locale ID in the ``locale`` field in the collation.
+For a complete list of locales and variants, see :manual:`Supported Languages 
+and Locales
+</reference/collation-locales-defaults/#supported-languages-and-locales>`.
+All the other collation fields are optional. For descriptions of each 
+field, see the :manual:`Collation Document MongoDB manual entry 
+</reference/collation/#collation-document>`.
 
 Collation Examples
-~~~~~~~~~~~~~~~~~~
+------------------
 
--info
--link to chart of collations
+Assign a Default Collation on a Collection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the following example, we create a new collection called ``souvenirs`` on 
+the ``sample_mflix`` database and assign a default collation with the 
+``fr_CA`` locale. The collation applies to all of the :manual:`operations that 
+support collation </reference/collation/#operations-that-support-collation>`
+performed on that collection.
+
+.. literalinclude:: /code-snippets/collation/collection-collation.js
+   :language: javascript
+   :dedent: 4
+
+Assign a Collation to an Index
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the following example, we create a new index on the ``title`` field of
+the ``movies`` collection in the ``sample_mflix`` database with a collation
+set to the ``en_US`` locale. 
+
+.. literalinclude:: /code-snippets/collation/index-collation.js
+   :language: javascript
+   :dedent: 4
+
+The following query uses the index we created.
+
+.. literalinclude:: /code-snippets/collation/query-index-collation.js
+   :language: javascript
+   :start-after: start query index collation 
+   :end-before: end query index collation
+   :dedent: 4
+
+The following queries **do not** use the index that we created.  The first 
+example does not include a collation and the second contains a different
+strength value than the collation on the index.
+
+.. literalinclude:: /code-snippets/collation/query-index-collation.js
+   :language: javascript
+   :start-after: start query without index collation
+   :end-before: end query without index collation
+   :dedent: 4
+
+Collation Query Examples
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Operations that read, update, and delete documents from a collection support
+collation. This section includes examples of several of these operations.
+See the MongoDB manual for a full list of :manual:`operations that support
+collation </reference/collation/#operations-that-support-collation>`.
 
 find() and sort() Example
 `````````````````````````
+
+The following example calls both ``find()`` and ``sort`` uses
 
 findOneAndUpdate() Example
 ``````````````````````````
@@ -103,4 +155,8 @@ findOneAndDelete() Example
 
 Aggregation Example
 ```````````````````
+
+To use collation with the :node-api:`aggregate </Collection.html#aggregate>`
+operation, pass the collation document in the options field, after the
+array of pipeline stages.
 
