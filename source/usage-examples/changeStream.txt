@@ -22,7 +22,7 @@ first parameter to filter the :manual:`change events
 </reference/change-events/>` output. Also, ``watch()`` can take an
 additional options object as the second parameter. Set the
 ``fullDocument`` field of the additional options object to
-``'updateLookup'`` to receive an event that contains the changes to the
+``"updateLookup"`` to receive an event that contains the changes to the
 document as well as the entire altered document. Alternatively, you can
 set ``fullDocument`` to the string ``"default"`` to only receive the
 altered document, but not the changes to the document. 
