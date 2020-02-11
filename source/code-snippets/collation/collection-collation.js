@@ -16,11 +16,9 @@ async function run() {
     const db = client.db("sample_mflix");
 
     // Create the collection with a collation
-    await db.createCollection("souvenirs",
-    {
-      "collation" :
-        { "locale": "fr_CA" }
-    }
+    await db.createCollection("souvenirs", {
+      collation: { locale: "fr_CA" },
+    });
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
