@@ -1,9 +1,6 @@
 name = "node"
 toc_landing_pages = [ 
-   "/usage-examples/find-operations",
-   "/usage-examples/delete-operations",
-   "/usage-examples/update-and-replace-operations",
-   "/usage-examples/insert-operations"
+   "/fundamentals"
    ]
 
 [constants]
