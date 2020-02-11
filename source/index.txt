@@ -13,7 +13,7 @@ MongoDB Node Driver
   /quick-start
   /fundamentals
   /usage-examples
-  API Documentation :node-api:`API <>`
+  MongoDB Stitch <https://docs.mongodb.com/stitch/>
   /faq
   /issues-and-help
   /compatibility
