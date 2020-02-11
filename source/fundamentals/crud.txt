@@ -17,8 +17,8 @@ Overview
 
 CRUD (Create, Read, Update, Delete) operations allow you to work with
 the data stored inside of MongoDB. CRUD operations fall into two
-categories: `read operations <crud-read-operations>`_ and
-`write operations <crud-write-operations>`_.
+categories: :ref:`read operations <crud-read-operations>` and
+:ref:`write operations <crud-write-operations>`.
 
 .. note::
 
