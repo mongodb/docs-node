@@ -16,8 +16,9 @@ community or region that shares common language idioms).
 
 MongoDB sorts strings using *binary collation* by default. This collation
 method uses the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_ 
-character values to compare and order strings. Many languages and locales have
-character ordering conventions that are different from the ASCII standard.
+character values to compare and order strings. Languages and locales 
+have specific character ordering conventions that differ from the ASCII 
+standard.
 
 For example, in Canadian French, the right-most accented character determines
 the ordering for strings when the other characters are the same. Consider the
@@ -211,7 +212,6 @@ document:
     ok: 1 }
 
 findOneAndDelete() Example
-
 ``````````````````````````
 
 The following example calls the ``findOneAndDelete()`` operation on a 
@@ -270,11 +270,11 @@ To use collation with the :node-api:`aggregate </Collection.html#aggregate>`
 operation, pass the collation document in the options field, after the
 array of pipeline stages.
 
+The following aggregation example uses the ``names`` collection from the
+``myproject`` database, groups the ``first_name`` field, counts the total
+number of results in each group, and sorts the results by the German
+phonebook (``de@collation=phonebook`` locale) order.
 
-The following aggregation example uses the ``movies`` collection from the
-``sample_mflix`` database and groups the ``name`` field.
-Then, it counts the total number of results in each group, and sorts the results
-by the German phonebook order with the ``locale`` parameter set to 
-``de@collation=phonebook``.
-
-[ Code here ] 
+.. literalinclude:: /code-snippets/collation/aggregation-collation.js
+   :language: javascript
+   :dedent: 4

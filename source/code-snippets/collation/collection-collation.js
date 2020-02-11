@@ -2,10 +2,9 @@
 const { MongoClient } = require("mongodb");
 const assert = require('assert');
 
-// Replace the following with your MongoDB deployment's connection
-// string
+// Replace the uri string with your MongoDB deployment's connection string.
 const uri =
-  "mongodb+srv://sample-hostname:27017/?poolSize=20&useUnifiedTopology=true";
+  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
 
 // Create a new MongoClient
 const client = new MongoClient(uri);
