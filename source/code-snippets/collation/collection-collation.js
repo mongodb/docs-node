@@ -1,6 +1,5 @@
 // ignored first line
 const { MongoClient } = require("mongodb");
-const assert = require('assert');
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
