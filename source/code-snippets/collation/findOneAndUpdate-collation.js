@@ -2,7 +2,7 @@
 
 // start findOneAndUpdate without collation
 collection.findOneAndUpdate(
-  { first_name : { $lt: "Gunter" } }, 
+  { first_name : { $lt: "Gunter" } },
   { $set: { verified: true } }
 );
 // end findOneAndUpdate without collation

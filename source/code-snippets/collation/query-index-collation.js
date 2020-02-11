@@ -13,7 +13,7 @@ const db = client.db("sample_mflix");
 const collection = db.collection("movies");
 
 // no collation specified
-collection.find({"year": 1980}) 
+collection.find({"year": 1980})
   .sort({"title": -1});
 
 // collation differs from the one on the index

@@ -21,7 +21,7 @@ async function run() {
     {
       "collation" :
         { "locale": "fr_CA" }
-    } 
+    }
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
