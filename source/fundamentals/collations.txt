@@ -10,6 +10,8 @@ Collations
    :depth: 2
    :class: singlecol
 
+*Collations are available in MongoDB 3.4 and later.*
+
 This guide shows you how to use **collations**, a set of sorting rules, to
 run operations using string ordering for specific languages and locales (a
 community or region that shares common language idioms).
@@ -24,8 +26,7 @@ For example, in Canadian French, the right-most accented character determines
 the ordering for strings when the other characters are the same. Consider the
 following French words: **cote**, **coté**, **côte**, and **côté**.
 
-The order in which they would appear using the default *binary
-collation* is:
+MongoDB sorts them in the following order using the default binary collation:
 
 ::
 
@@ -34,7 +35,7 @@ collation* is:
    côte
    côté
 
-If we apply the Canadian French collation, the order is:
+MongoDB sorts them in the following order using the Canadian French collation:
 
 ::
 
@@ -42,39 +43,36 @@ If we apply the Canadian French collation, the order is:
    côte
    coté
    côté
-
-.. note::
-
-   Collations are available in MongoDB 3.4 and later.
 
 -----
 Usage
 -----
 
-You can specify a collation when you create a **new collection** or
-**new index**. You can also specify a collation for :doc:`CRUD operations
-</fundamentals/crud>` and aggregations.
+You can specify a collation when you create a new collection or new index. You
+can also specify a collation for :doc:`CRUD operations </fundamentals/crud>`
+and aggregations.
 
-When you create a **new collection** with a collation, you define the default
+When you create a new collection with a collation, you define the default
 collation for any of the :manual:`operations that support collation
 </reference/collation/#operations-that-support-collation>` called on that
 collection. You can override the collation for an operation by specifying a
 different one.
-
-When you create a **new index** with a collation, you specify the sort order
-for operations that use that index. To use the collation in the index, you
-must provide a matching collation in the operation, and the operation must
-use the index. While most index types support collation, the following
-types support only binary comparison:
-- :manual:`text </reference/method/db.collection.createIndex/#options-for-text-indexes>`
-- :manual:`2d </reference/method/db.collection.createIndex/#options-for-2dsphere-indexes>`
-- :manual:`geoHaystack </reference/method/db.collection.createIndex/#options-for-geohaystack-indexes>`
 
 .. note::
 
    Currently, you cannot create a collation on an existing collection. To use
    collations with an existing collection, create an index with the collation
    and specify the same collation in your operations on it.
+
+When you create an index with a collation, you specify the sort order for
+operations that use that index. To use the collation in the index, you
+must provide a matching collation in the operation, and the operation must
+use the index. While most index types support collation, the following
+types support only binary comparison:
+
+- :manual:`text </reference/method/db.collection.createIndex/#options-for-text-indexes>`
+- :manual:`2d </reference/method/db.collection.createIndex/#options-for-2dsphere-indexes>`
+- :manual:`geoHaystack </reference/method/db.collection.createIndex/#options-for-geohaystack-indexes>`
 
 Collation Parameters
 ~~~~~~~~~~~~~~~~~~~~
@@ -108,22 +106,43 @@ Collation Examples
 Set a Default Collation on a Collection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the following example, we create a new collection called ``souvenirs`` on
-the ``sample_mflix`` database and assign a default collation with the
-"``fr_CA``" locale. The collation applies to all :manual:`operations that
-support collation </reference/collation/#operations-that-support-collation>`
-performed on that collection.
+In the following example, we create a new collection called ``souvenirs`` and
+assign a default collation with the "``fr_CA``" locale. The collation applies
+to all :manual:`operations that support collation
+</reference/collation/#operations-that-support-collation>` performed on that
+collection.
 
 .. literalinclude:: /code-snippets/collation/collection-collation.js
    :language: javascript
+   :start-after: start create collection with collation
+   :end-before: end create collection with collation
+   :dedent: 4
+
+Any of the operations that support collations automatically apply the collation
+defined on the collection. The query below searches the ``souvenirs``
+collection and applies the "``fr_CA``" locale collation:
+
+.. literalinclude:: /code-snippets/collation/collection-collation.js
+   :language: javascript
+   :start-after: start collection query without collation
+   :end-before: end collection query without collation
+   :dedent: 4
+
+You can specify a different collation as a parameter in an operation that
+supports collations. The following query specifies the "``is``" Iceland locale
+and ``caseFirst`` optional parameter with the value "``upper``":
+
+.. literalinclude:: /code-snippets/collation/collection-collation.js
+   :language: javascript
+   :start-after: start collection query with collation
+   :end-before: end collection query with collation
    :dedent: 4
 
 Assign a Collation to an Index
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the following example, we create a new index on the ``title`` field of
-the ``movies`` collection in the ``sample_mflix`` database with a collation
-set to the "``en_US``" locale.
+a collection with a collation set to the "``en_US``" locale.
 
 .. literalinclude:: /code-snippets/collation/index-collation.js
    :language: javascript
@@ -159,8 +178,8 @@ find() and sort() Example
 `````````````````````````
 
 The following example calls both ``find()`` and ``sort()`` on a collection
-called ``contacts`` in a database called ``myproject`` using a German collation
-with the ``locale`` parameter set to ``de``.
+that uses the default binary collation. We use the German collation by
+setting the value of the ``locale`` parameter to ``de``.
 
 .. literalinclude:: /code-snippets/collation/find-sort-collation.js
    :language: javascript
@@ -170,7 +189,8 @@ findOneAndUpdate() Example
 ``````````````````````````
 
 The following example calls the ``findOneAndUpdate()`` operation on a
-collection called ``names`` in which contains the following documents:
+collection that uses the default binary collation. The collection contains the
+following documents:
 
 ::
 
@@ -188,13 +208,17 @@ which **does not** specify a collation:
    :end-before: end findOneAndUpdate without collation
    :dedent: 4
 
-Since "Gunter" is the first result in the sorted results when using a binary
-collation, the operation does not update any documents. Consider the same
-operation with a collation specified with the locale set to
+Since "Gunter" is the first sorted result when using a binary collation, none
+of the documents come lexically before and match the ``$lt`` comparison
+operator in the query document. As a result, the operation does not update any
+documents.
+
+Consider the same operation with a collation specified with the locale set to
 ``de@collation=phonebook``. This locale specifies the ``collation=phonebook``
-option which contains rules for prioritizing proper nouns. The
-``de@collation=phonebook`` locale and option sorts characters with umlauts
-before the same characters without umlauts.
+option which contains rules for prioritizing proper nouns, identified by
+capitalization of the first letter. The ``de@collation=phonebook`` locale and
+option sorts characters with umlauts before the same characters without
+umlauts.
 
 .. literalinclude:: /code-snippets/collation/findOneAndUpdate-collation.js
    :language: javascript
@@ -202,8 +226,9 @@ before the same characters without umlauts.
    :end-before: end findOneAndUpdate with collation
    :dedent: 4
 
-The ``findOneAndUpdate()`` operation above returns the following updated
-document:
+Since "Günter" lexically comes before "Gunter" using the
+``de@collation=phonebook`` collation specified in ``findOneAndUpdate()``,
+the operation returns the following updated document:
 
 ::
 
@@ -215,7 +240,8 @@ findOneAndDelete() Example
 ``````````````````````````
 
 The following example calls the ``findOneAndDelete()`` operation on a
-collection named ``numbers`` which contains the following documents:
+collection that uses the default binary collation and contains the following
+documents:
 
 ::
 
@@ -243,7 +269,8 @@ documents:
 
 If you perform the same operation without collation on the original
 collection of three documents, the server deletes the first document it
-finds in which the lexical value of "``a``" is greater than the lexical value
+finds in which the lexical value in the "``a``" field is greater than the
+lexical value
 of "``100``".
 
 .. literalinclude:: /code-snippets/collation/findOneAndDelete-collation.js
@@ -270,10 +297,14 @@ To use collation with the :node-api:`aggregate </Collection.html#aggregate>`
 operation, pass the collation document in the options field, after the
 array of pipeline stages.
 
-The following aggregation example uses the ``names`` collection from the
-``myproject`` database, groups the ``first_name`` field, counts the total
-number of results in each group, and sorts the results by the German
-phonebook (``de@collation=phonebook`` locale) order.
+The following example shows an aggregation pipeline on a collection that uses
+the default binary collation. The aggregation groups the ``first_name`` field,
+counts the total number of results in each group, and sorts the results by
+the German phonebook (``de@collation=phonebook`` locale) order.
+
+.. note::
+
+   You can specify only one collation on an aggregation.
 
 .. literalinclude:: /code-snippets/collation/aggregation-collation.js
    :language: javascript

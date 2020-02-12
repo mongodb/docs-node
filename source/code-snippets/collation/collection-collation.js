@@ -1,27 +1,18 @@
 // ignored first line
-const { MongoClient } = require("mongodb");
 
-// Replace the uri string with your MongoDB deployment's connection string.
-const uri =
-  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
+// start create collection with collation
+// Create the collection with a collation
+db.createCollection("souvenirs", {
+  collation: { locale: "fr_CA" },
+});
+// end create collection with collation
 
-// Create a new MongoClient
-const client = new MongoClient(uri);
+// start collection query without collation
+collection.find({type: "photograph"});
+// end collection query without collation
 
-async function run() {
-  try {
-    // Connect the client to the server
-    await client.connect();
-
-    const db = client.db("sample_mflix");
-
-    // Create the collection with a collation
-    await db.createCollection("souvenirs", {
-      collation: { locale: "fr_CA" },
-    });
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
+ // start collection query with collation
+ collection.find({type: "photograph"},
+   { collation: { locale: "is", caseFirst: "upper" } }
+ );
+ // end collection query with collation
