@@ -268,10 +268,9 @@ documents:
   { "_id" : 2, "a" : "84" }
 
 If you perform the same operation without collation on the original
-collection of three documents, the server deletes the first document it
-finds in which the lexical value in the "``a``" field is greater than the
-lexical value
-of "``100``".
+collection of three documents, it matches documents based on the lexical value
+of the strings ("``16``", "``84``", and "``179``"), and deletes the first
+document it finds that matches the query criteria.
 
 .. literalinclude:: /code-snippets/collation/findOneAndDelete-collation.js
    :language: javascript
@@ -279,8 +278,8 @@ of "``100``".
    :end-before: end findOneAndDelete example without collation
    :dedent: 4
 
-Since lexical value of all the values of ``a`` ("``16``", "``84``", and
-"``179``") are greater than the lexical value of "``100``", the operation
+Since all the documents contain lexical values in the ``a`` field that
+match the criteria (greater than the lexical value of "``100``"), the operation
 removes the first result. After you run the operation above, the collection
 contains the following documents:
 
@@ -288,7 +287,6 @@ contains the following documents:
 
    { "_id" : 2, "a" : "84" }
    { "_id" : 3, "a" : "179" }
-
 
 Aggregation Example
 ```````````````````
