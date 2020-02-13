@@ -52,19 +52,27 @@ and begin to work with data.
 
 Fundamentals
 ------------
-Whether you're a brand new MongoDB developer,  or just want to brush up
-on the core concepts then check out the :doc:`Fundamentals </fundamentals>`
-section that defines the following core concepts:
+Whether you are new to MongoDB or you just want to brush up on the core
+concepts, you can check out the **Fundamentals** section which features
+material on using the Node.js driver for the following:
 
-* :doc:`CRUD </fundamentals/crud>`: Learn how to read and write data to
-  MongoDB using Node.js
+* :doc:`Connection Guide </fundamentals/connection>`: Learn how to connect
+  to a MongoDB instance or replica set
 
 * :doc:`Authentication </fundamentals/authentication>`: Learn how to
-  configure authentication and log a user in using the MongoDB Node.js
-  driver
+  configure authentication and log a user in
 
-* :doc:`Logs </fundamentals/logging>`: Learn how MongoDB logs operations
-  and how to work with them
+* :doc:`CRUD Operations </fundamentals/crud>`: Learn how to read and write
+  data to MongoDB
+
+* :doc:`Indexes </fundamentals/indexes>`: Learn how to create and design
+  indexes to make your queries efficient
+
+* :doc:`Collations </fundamentals/indexes>`: Learn how to apply
+  language-specific sorting rules to your query results
+
+* :doc:`Logging </fundamentals/logging>`: Learn how the driver logs
+  MongoDB operations
 
 * :doc:`Monitoring </fundamentals/monitoring>`: Learn how to monitor
   MongoDB server events
