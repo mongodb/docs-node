@@ -47,8 +47,8 @@ Take the free online course taught by MongoDB
 Quick Start
 -----------
 To get up and running quickly, take a look at the :doc:`Quick Start
-</quick-start>` to learn how to establish a connection to :atlas:`MongoDB
-Atlas <>` and begin to work with data.
+</quick-start>` to learn how to establish a connection to MongoDB Atlas
+and begin to work with data.
 
 Fundamentals
 ------------
