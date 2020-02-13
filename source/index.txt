@@ -22,21 +22,33 @@ MongoDB Node Driver
 Introduction
 ------------
 The official MongoDB Node.js driver allows Node.js applications to
-connect to MongoDB and work with data.
+connect to MongoDB and work with data. The driver features both
+callback-based and Promise-based interaction with MongoDB.
 
 .. note::
 
    These docs are for version 3.5 of the MongoDB Node.js driver. If
-   you're looking for an older version of the MongoDB Node.js driver
+   you are looking for an older version of the MongoDB Node.js driver
    docs, :node-docs:`see the Legacy Node.js driver documentation <>`.
    For the main MongoDB documentation, see the :manual:`MongoDB Manual
    </>`.
 
+Take the free online course taught by MongoDB
+---------------------------------------------
+
+.. list-table::
+
+   * - .. cssclass:: bordered-figure
+       .. figure:: /figures/M220JS_hero.jpg
+
+     - `M220JS: MongoDB for JavaScript Developers <https://university.mongodb.com/courses/M220JS/about>`_
+        Learn the essentials of Node.js application development with MongoDB.
+
 Quick Start
 -----------
 To get up and running quickly, take a look at the :doc:`Quick Start
-</quick-start>` to learn how to establish a connection to MongoDB Atlas
-and begin to work with data.
+</quick-start>` to learn how to establish a connection to :atlas:`MongoDB
+Atlas <>` and begin to work with data.
 
 Fundamentals
 ------------
