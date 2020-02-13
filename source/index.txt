@@ -79,9 +79,8 @@ material on using the Node.js driver for the following:
 Usage Examples
 --------------
 The :doc:`Usage Examples </usage-examples/overview>` section provides
-runnable code snippets and explanation for the common methods, best
-suited for new users to the MongoDB Node.js driver who want to implement
-common driver methods.
+runnable code snippets and explanations for common methods. We recommend
+this section for users that are new to the MongoDB Node.js driver.
 
 API
 ---
@@ -92,11 +91,11 @@ within the MongoDB Node.js driver.
 FAQ
 ---
 The :doc:`Frequently Asked Questions (FAQ) </faq>` section provides answers
-to the most commonly asked questions about the MongoDB Node.js Driver.
+to commonly asked questions about the MongoDB Node.js Driver.
 
 Issues & Help
 -------------
-The :doc:`Issues & Help </issues-and-help>` Section explains how to report
+The :doc:`Issues & Help </issues-and-help>` section explains how to report
 bugs, contribute to the driver, and find additional resources for asking
 questions and receiving help.
 
