@@ -70,10 +70,10 @@ material on using the Node.js driver for the following:
 * :doc:`Collations </fundamentals/indexes>`: Apply
   language-specific sorting rules to your query results
 
-* :doc:`Logging </fundamentals/logging>`: configure the driver to log
+* :doc:`Logging </fundamentals/logging>`: Configure the driver to log
   MongoDB operations
 
-* :doc:`Monitoring </fundamentals/monitoring>`: configure the driver to
+* :doc:`Monitoring </fundamentals/monitoring>`: Configure the driver to
   monitor MongoDB server events
 
 Usage Examples
