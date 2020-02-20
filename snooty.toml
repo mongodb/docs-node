@@ -1,4 +1,5 @@
 name = "node"
+title = "NodeJS"
 
 toc_landing_pages = ["/crud", "/crud/read-operations", "/crud/write-operations"]
 
