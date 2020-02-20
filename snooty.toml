@@ -1,7 +1,7 @@
 name = "node"
 title = "NodeJS"
 
-toc_landing_pages = ["/crud", "/crud/read-operations", "/crud/write-operations"]
+toc_landing_pages = ["/crud", "/crud/read-operations", "/crud/write-operations", "/usage-examples/find-operations", "/usage-examples/insert-operations", "/usage-examples/update-and-replace-operations", "/usage-examples/delete-operations"]
 
 [constants]
 version = 4.0
