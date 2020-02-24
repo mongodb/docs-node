@@ -7,143 +7,128 @@ Quick Start
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
-*Estimated time to complete this guide: 20 minutes.*
+*Estimated time to complete this guide: 35 minutes.*
 
 This guide shows you how to create an application that uses the Node.js
 driver to connect to a MongoDB Atlas cluster.
 
-Requirements
-------------
+TODO: What is Node and what is a driver.
+TODO: Explain what the steps are below.
 
-Node and NPM
-~~~~~~~~~~~~
+Set up Your Development Environment
+-----------------------------------
 
-Ensure your system has Node version 8 or later and NPM (Node Package
-Manager) installed. Run the following commands to check that you meet
-these requirements:
+Install Node and NPM
+~~~~~~~~~~~~~~~~~~~~
 
-Check your versions of Node and NPM by running the following commands in
-your local shell:
-
-.. code-block:: sh
-
-   node -v
-   npm -v
-
-These commands should print the version of Node and NPM that you have
-installed. If you encounter any errors or do not see any output, you need to 
-install Node and NPM. Visit `nodejs.org <https://nodejs.org>`_ for 
-installation instructions.
+Ensure your system has Node version 8 or later and a compatible version of
+NPM (Node Package Manager) installed. For more information on how to check
+your version of Node and NPM and installation instructions for your
+system, see `downloading and installing Node.js and npm
+<https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`_.
 
 Initialize the Project
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Once you have verified that you have installed both the minimum version of
-Node and NPM, create a new project.
+After you verify that you installed the required version of Node and a
+compatible version of NPM, create a new project.
 
-Now that our system meets the Node driver's requirements, we can
-create a new project.
+First, create a directory for your project in your command line interface:
 
-First, create a directory for your project:
+.. code-block:: none 
 
-
-.. tab::
-
-   :tabid: bash::
-    
-   .. code-block:: sh
-
-      mkdir node_quickstart
-
-   :tabid: powershell::
-
-   .. code-block:: none
-      
-      md node_quickstart
-
+   mkdir node_quickstart
 
 Then, navigate into that directory so you can work directly with your
 project's files:
 
-.. code-block:: sh
+.. code-block:: none 
 
   cd node_quickstart
 
-Finally, initialize npm:
+Next, set up NPM for your project by running the following command.
+This command creates a file called ``package.json``:
 
-.. code-block:: sh
+.. code-block:: none 
 
   npm init -y
 
 .. admonition:: Why the -y?
   :class: note
 
-  Specifying ``-y`` tells NPM to use default values. You can omit the
-  ``-y`` flag to proceed through an interactive selection process for
-  common project settings.
+  If you specify the ``-y`` option in the command, NPM automatically
+  accepts the default values for the command. Omit the ``-y`` flag to
+  interactively select your project settings.
 
 Add MongoDB as a Dependency
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Next, add the Node MongoDB driver as a project dependency. Use the
-``--save`` flag to save the dependency to the ``package.json`` file that
-was automatically generated in the previous step.
+Next, add the offical Node MongoDB driver to your project dependencies. Use
+NPM to download and install the ``mongodb`` package and provide the ``--save``
+option as shown below to save the dependency to the ``package.json`` file 
+that you generated in the previous step.
 
 .. code-block:: sh
 
   npm install --save mongodb
 
-NPM downloads the dependencies required for installation and saves them
-into a directory called ``node_modules`` in your project directory.
+This command downloads ``mongodb`` package and dependencies required for its
+installation and saves them into a directory called ``node_modules`` in
+your project directory.
 
-Create a Free Tier Cluster in Atlas
------------------------------------
+Create a MongoDB Cluster
+------------------------
 
-You can easily get started with MongoDB with :atlas:`MongoDB Atlas
-<tutorial/create-atlas-account>`, which offers instances of MongoDB
-hosted in the cloud. Atlas doesn't require a credit card to
-sign up, and offers free-tier deployments that are free for life. Follow
-along with our :atlas:`steps to create and set up a free-tier cluster
-<tutorial/create-atlas-account/>`, then :atlas:`load sample data
-<sample-data/load-sample-data/>` to run the examples in this guide.
+Set up a Free Tier Cluster in Atlas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After installing the Node MongoDB driver, create a MongoDB instance to store
+and manage your data. You can get started with a free one on MongoDB Atlas,
+no credit card required. Go through the 
+:atlas:`Get Started with Atlas <getting-started>` guide to set up a new
+Atlas account, free tier cluster (MongoDB instance), load datasets, and 
+interact with the data.
+
+The next step demonstrates how to query your instance using the Node driver.
 
 Connect to your Cluster
 -----------------------
 
-For the final step, we'll write some code that tests your environment's
-connection to your instance of MongoDB.
+In this step, we run a code snippet to test your environment's connection
+to your instance of MongoDB and run a query on the sample data. For more
+examples on how to interact with the sample data, see the 
+:doc:`Usage Examples <usage-examples>` section.
 
-Create a file in your project directory called ``index.js``:
+To connect to Atlas using the Node driver, we provide the driver with 
+instructions on where to connect and authentication credentials. We provide
+the driver with this information in the *connection string*. Follow the
+:atlas:`Connect via Driver <driver-connection>` guide for instructions on
+how to set up a user and retrieve your connection string.
 
-.. code-block:: sh
-
-  touch index.js
-
-Open this file and paste in the following code:
+Once you have your connection string, create a file in your 
+``node_quickstart`` directory called ``index.js`` and add the following code:
 
 .. code-block:: js
 
   const { MongoClient } = require("mongodb");
 
+  // Replace the uri string with your MongoDB deployment's connection string.
   const uri =
     "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
-   
+
   const client = new MongoClient(uri);
 
   async function run() {
     try {
       // Connect the client to the server
       await client.connect();
+
       // Establish connection and run a query on your sample data
+      // TODO: add a query here
 
-
-      console.log("Successfully connected to MongoDB.");
-      // your code after this comment
-
-      // your code before this comment
     } finally {
       // Ensures that the client will close when you finish/error
       await client.close();
@@ -151,13 +136,13 @@ Open this file and paste in the following code:
   }
   run().catch(console.dir);
 
-Run the script with the following command from your terminal:
+Run the sample code with the following command from your command line:
 
 .. code-block:: sh
 
   node index.js
 
-You should see the output **Successfully connected to Atlas.**
+TODO: what should it print
 
 Next Steps
 ----------
