@@ -10,55 +10,60 @@ Quick Start
    :depth: 1
    :class: singlecol
 
+*Estimated time to complete this guide: 20 minutes.*
+
 This guide shows you how to create an application that uses the Node.js
 driver to connect to a MongoDB Atlas cluster.
 
-Check for Node and NPM
-----------------------
+Requirements
+------------
+
+Node and NPM
+~~~~~~~~~~~~
 
 Ensure your system has Node version 8 or later and NPM (Node Package
 Manager) installed. Run the following commands to check that you meet
 these requirements:
 
-First, check the version of Node:
+Check your versions of Node and NPM by running the following commands in
+your local shell:
 
 .. code-block:: sh
 
    node -v
-
-You should see output similar to the following:
-
-.. code-block:: sh
-
-   v12.14.1
-
-Next, check the version of NPM:
-
-.. code-block:: sh
-
    npm -v
 
-You should see output similar to the following:
-
-.. code-block:: sh
-
-   6.13.4
-
-If you do not see any output or encounter an error, you will need to
-install Node and NPM. Visit `nodejs.org <https://nodejs.org>`_ for
+These commands should print the version of Node and NPM that you have
+installed. If you encounter any errors or do not see any output, you need to 
+install Node and NPM. Visit `nodejs.org <https://nodejs.org>`_ for 
 installation instructions.
 
 Initialize the Project
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
+
+Once you have verified that you have installed both the minimum version of
+Node and NPM, create a new project.
 
 Now that our system meets the Node driver's requirements, we can
 create a new project.
 
 First, create a directory for your project:
 
-.. code-block:: sh
 
-  mkdir node_quickstart
+.. tab::
+
+   :tabid: bash::
+    
+   .. code-block:: sh
+
+      mkdir node_quickstart
+
+   :tabid: powershell::
+
+   .. code-block:: none
+      
+      md node_quickstart
+
 
 Then, navigate into that directory so you can work directly with your
 project's files:
@@ -105,40 +110,6 @@ along with our :atlas:`steps to create and set up a free-tier cluster
 <tutorial/create-atlas-account/>`, then :atlas:`load sample data
 <sample-data/load-sample-data/>` to run the examples in this guide.
 
-Store Configuration Separately
-------------------------------
-
-You can store your application configuration separately for security
-and convenience. We use the `dotenv
-<https://www.npmjs.com/package/dotenv>`_ NPM module to store our
-configuration data in a separate local file called ``.env``. If you are
-using git source control, add the ``.env`` file to your ``.gitignore``
-entries to prevent accidentally sharing contents such as database
-credentials.
-
-First, add ``dotenv`` to your project:
-
-.. code-block:: sh
-
-  npm install --save dotenv
-
-Next, create the ``.env`` file and add a variable called
-``MONGODB_URI``:
-
-.. code-block:: sh
-
-  touch .env
-  echo "MONGODB_URI=<connection_uri>" >> .env
-
-Add your Atlas Connection String
---------------------------------
-
-Open your newly created ``.env`` file. If you are unable to locate this
-file in your project directory, you may need to set your system to
-display hidden files. Once your ``.env`` is open, replace
-``<connection_uri>`` with your connection string from Atlas. Ensure you
-update ``<username>`` and ``<password>`` in your connection string.
-
 Connect to your Cluster
 -----------------------
 
@@ -156,23 +127,20 @@ Open this file and paste in the following code:
 .. code-block:: js
 
   const { MongoClient } = require("mongodb");
-  require("dotenv").config();
 
-  if (!process.env.MONGODB_URI) {
-    throw Error("MONGODB_URI not defined in a .env file. Did you set it up?");
-  }
-
-  const client = new MongoClient(process.env.MONGODB_URI, {
-    useUnifiedTopology: true
-  });
+  const uri =
+    "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
+   
+  const client = new MongoClient(uri);
 
   async function run() {
     try {
       // Connect the client to the server
       await client.connect();
-      // Establish and verify connection
-      await client.db("admin").command({ ping: 1 });
-      console.log("Successfully connected to Atlas.");
+      // Establish connection and run a query on your sample data
+
+
+      console.log("Successfully connected to MongoDB.");
       // your code after this comment
 
       // your code before this comment
