@@ -62,5 +62,5 @@ usage example. If your instance uses :manual:`SCRAM authentication
 </core/security-scram/>`, you can replace ``<user>`` with your username,
 ``<password>`` with your password, and ``<cluster-url>`` with the IP
 address or URL of your instance. Consult the 
-:doc:`Authentication </fundamentals/authentication>` Guide for more 
-information about getting connected to your MongoDB instance.
+:doc:`Connection Guide </fundamentals/connection>` for more information 
+about getting connected to your MongoDB instance.
