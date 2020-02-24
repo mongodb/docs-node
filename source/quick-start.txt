@@ -38,21 +38,21 @@ compatible version of NPM, create a new project.
 
 First, create a directory for your project in your command line interface:
 
-.. code-block:: none 
+.. code-block:: none
 
    mkdir node_quickstart
 
 Then, navigate into that directory so you can work directly with your
 project's files:
 
-.. code-block:: none 
+.. code-block:: none
 
   cd node_quickstart
 
 Next, set up NPM for your project by running the following command.
 This command creates a file called ``package.json``:
 
-.. code-block:: none 
+.. code-block:: none
 
   npm init -y
 
@@ -68,7 +68,7 @@ Add MongoDB as a Dependency
 
 Next, add the offical Node MongoDB driver to your project dependencies. Use
 NPM to download and install the ``mongodb`` package and provide the ``--save``
-option as shown below to save the dependency to the ``package.json`` file 
+option as shown below to save the dependency to the ``package.json`` file
 that you generated in the previous step.
 
 .. code-block:: sh
@@ -87,9 +87,9 @@ Set up a Free Tier Cluster in Atlas
 
 After installing the Node MongoDB driver, create a MongoDB instance to store
 and manage your data. You can get started with a free one on MongoDB Atlas,
-no credit card required. Go through the 
+no credit card required. Go through the
 :atlas:`Get Started with Atlas <getting-started>` guide to set up a new
-Atlas account, free tier cluster (MongoDB instance), load datasets, and 
+Atlas account, free tier cluster (MongoDB instance), load datasets, and
 interact with the data.
 
 The next step demonstrates how to query your instance using the Node driver.
@@ -98,17 +98,15 @@ Connect to your Cluster
 -----------------------
 
 In this step, we run a code snippet to test your environment's connection
-to your instance of MongoDB and run a query on the sample data. For more
-examples on how to interact with the sample data, see the 
-:doc:`Usage Examples <usage-examples>` section.
+to your instance of MongoDB and run a query on the sample data.
 
-To connect to Atlas using the Node driver, we provide the driver with 
+To connect to Atlas using the Node driver, we provide the driver with
 instructions on where to connect and authentication credentials. We provide
 the driver with this information in the *connection string*. Follow the
 :atlas:`Connect via Driver <driver-connection>` guide for instructions on
 how to set up a user and retrieve your connection string.
 
-Once you have your connection string, create a file in your 
+Once you have your connection string, create a file in your
 ``node_quickstart`` directory called ``index.js`` and add the following code:
 
 .. code-block:: js
@@ -126,9 +124,14 @@ Once you have your connection string, create a file in your
       // Connect the client to the server
       await client.connect();
 
-      // Establish connection and run a query on your sample data
-      // TODO: add a query here
+      const database = client.db('sample_mflix');
+      const collection = database.collection('movies');
 
+      // Query for a movie that has the title 'Sweet Smell of Success'
+      const query = { title: 'Sweet Smell of Success' };
+      const movie = await collection.findOne(query);
+
+      console.log(movie);
     } finally {
       // Ensures that the client will close when you finish/error
       await client.close();
@@ -142,7 +145,8 @@ Run the sample code with the following command from your command line:
 
   node index.js
 
-TODO: what should it print
+When you run the command, the sample code should output the details of the
+movie with the title: "Sweet Smell of Success".
 
 Next Steps
 ----------
