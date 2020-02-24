@@ -4,14 +4,14 @@ Find a Document
 
 .. default-domain:: mongodb
 
-You can
-:manual:`query </tutorial/query-documents/#read-operations-query-argument>`
-for a single document in a collection with ``collection.findOne()``.
-The ``findOne()`` method uses a query document that you provide to match
-only the subset of the documents in the collection that match the query.
-If you don't provide a query document (or if you provide an empty document),
-MongoDB matches all documents in the collection. However, the operation
-only returns the first matched document.
+You can query for a single document in a collection with
+the ``collection.findOne()`` method. The ``findOne()`` method uses a query
+document that you provide to match only the subset of the documents in the
+collection that match the query. If you don't provide a query document (or if
+you provide an empty document), MongoDB matches all documents in the
+collection. However, the operation only returns the first matched document.
+For more information on querying MongoDB, see our
+:doc:`documentation on query documents </fundamentals/crud/query-document>`.
 
 You can also define additional query options such as
 :doc:`sort </fundamentals/crud/read-operations/sort>`
@@ -21,10 +21,16 @@ in the ``options`` object passed as the second parameter of the
 ``findOne`` method. For detailed reference documentation, see
 :node-api:`collection.findOne() <Collection.html#findOne>`.
 
-``findOne()`` returns a
-:mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
-that resolves to an object which, if no documents match your query,
-has a value of ``null``.
+``findOne()`` behaves in two different ways depending on whether you
+provide a callback method:
+
+- If you specify a callback method, ``findOne()`` returns nothing, and
+  instead passes the result or error object to the callback method.
+
+- If you do not specify a callback method, ``findOne()`` returns and
+  :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
+  that resolves to an object which, if no documents match your query,
+  has a value of ``null`` and otherwise contains the matched document.
 
 Example
 -------

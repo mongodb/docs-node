@@ -12,11 +12,30 @@ you want to store. If the specified collection does not exist, the
 
 You can specify additional query options using the ``options`` parameter.
 For more information on the method parameters, see the
+:node-api:`insertOne() API documentation <Collection.html#insertOne>`. You
+can also pass a callback method as an optional third parameter.
+For more information on this method, see the
 :node-api:`insertOne() API documentation <Collection.html#insertOne>`.
 
-The ``insertOne()`` method returns a :mdn:`Promise
-<Web/JavaScript/Reference/Global_Objects/Promise>` that resolves to an
-object. The ``insertedId`` field of this object is the ``_id`` of the
+You can access the return value of ``insertOne()`` one of two ways:
+
+- If you specify a callback method, ``insertOne()`` returns nothing,
+  and instead passes the result object or error object to the callback
+  method.
+
+- If you do not specify a callback method, ``insertOne()`` returns a
+  :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
+  that resolves to an object.
+
+The result object contains information about the operation including the
+total number of documents inserted and the id of the document. You can check
+whether the call was successful by checking the result object field for an
+``ok`` value equal to ``1``.
+
+For more information on the result object, see the API documentation for
+:node-api:`insertOneWriteOpResult <Collection.html#~insertOneWriteOpResult>`.
+
+The ``insertedId`` field of this object is the ``_id`` of the
 inserted document. If the operation fails to create a document, the
 ``insertedCount`` field of this object has a value of ``0``. If the
 operation creates a document, the ``insertedCount`` field of this object

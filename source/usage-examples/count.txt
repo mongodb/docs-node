@@ -13,7 +13,7 @@ documents in a collection:
   query document, ``countDocuments()`` returns the total number of
   documents in the collection.
 
-- :node-api:`collection.estimatedDocumentCount
+- :node-api:`collection.estimatedDocumentCount()
   <Collection.html#estimatedDocumentCount>` returns an
   **estimation** of the number of documents in the collection based on
   collection metadata.
@@ -35,13 +35,12 @@ documentation for each method for more information.
 Depending on whether you specify a callback method, ``countDocuments()``
 and ``estimatedDocumentCount()`` behave in two different ways:
 
-- If you do not specify a callback method, ``countDocuments()`` and
-  ``estimatedDocumentCount()`` return a Promise that resolves to a
-  number.
+- If you specify a callback, the method call returns nothing, and
+  instead passes the result or error object to the
+  :node-api:`countCallback() <Collection.html#~countCallback>` method.
 
-- If you do specify a callback, ``countDocuments()`` and
-  ``estimatedDocumentCount`` return a :node-api:`countCallback
-  <Collection.html#~countCallback>` object.
+- If you do not specify a callback method, the method call returns a
+  Promise that resolves to the number of documents matched.
 
 Example
 -------

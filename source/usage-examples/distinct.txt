@@ -23,12 +23,19 @@ query parameters by passing an optional ``Object``. For details on the
 query parameters, see the :node-api:`distinct() method in the API
 documentation <Collection.html#distinct>`.
 
-The ``distinct()`` method returns a
-:mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>` that
-resolves to an :mdn:`Array
-<Web/JavaScript/Reference/Global_Objects/Array>` that contains each of
-the different values. If none of the documents in the collection contain
-the field specified in the method call, it returns an empty Array.
+The ``distinct()`` method behaves in two different ways depending on
+whether you provide a callback method as an optional fourth parameter:
+
+- If you specify a callback method, ``distinct()`` returns nothing,
+  and instead passes the result or error object to the callback method.
+
+- If you do not specify a callback method, ``distinct()`` returns a
+  :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
+  that resolves to an
+  :mdn:`Array <Web/JavaScript/Reference/Global_Objects/Array>` that
+  contains each of the different values. If none of the documents in
+  the collection contain the field specified in the method call, it
+  returns an empty Array.
 
 If you specify a value for the document field name that is not of type
 ``String`` such as a ``Document``, ``Array``, ``Number``, or ``null``,

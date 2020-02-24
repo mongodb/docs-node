@@ -16,10 +16,21 @@ the third parameter of the ``updateMany()`` method. For more detailed
 information, see :node-api:`the updateMany() API documentation
 <Collection.html#updateMany>`.
 
-The ``updateMany()`` method returns a :mdn:`Promise
-<Web/JavaScript/Reference/Global_Objects/Promise>`
-that resolves to an object. The ``modifiedCount`` field of this object
-shows the number of modified documents.
+The ``updateMany()`` method behaves in two different ways depending on whether
+you provide a callback method as an optional fourth parameter:
+
+- If you specify a callback method, ``updateMany()`` returns nothing,
+  and instead passes the result or error object to the callback method.
+
+- If you do not specify a callback method, ``updateMany()`` returns a
+  :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
+  that resolves to an object.
+
+You can use the ``modifiedCount`` field of the result object to check the
+number of documents updated by the operation. Since ``updateOne()`` can only
+update a single document, ``modifiedCount`` can have a value of either ``0``
+or ``1``. For more information on the result object, see the API documentation
+for :node-api:`updateWriteOpResult <Collection.html#~updateWriteOpResult>`.
 
 Example
 -------
