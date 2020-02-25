@@ -33,8 +33,8 @@ Set up Your Project
 Install Node and NPM
 ~~~~~~~~~~~~~~~~~~~~
 
-Ensure your system has Node.js version 8 or later and a compatible version of
-NPM (Node Package Manager) installed. For more information on how to check
+Ensure your system has Node.js version 8 or later and NPM (Node Package
+Manager) version 5 or later installed. For more information on how to check
 your version of Node and NPM and installation instructions for your
 system, see `downloading and installing Node.js and npm
 <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`_.
@@ -42,8 +42,8 @@ system, see `downloading and installing Node.js and npm
 Initialize the Project
 ~~~~~~~~~~~~~~~~~~~~~~
 
-After you verify that you installed the required version of Node and a
-compatible version of NPM, create a new project.
+After you verify that you installed the required versions of Node and NPM,
+create a new project.
 
 First, create a directory for your project in your command line interface:
 
@@ -75,18 +75,18 @@ This command creates a file called ``package.json``:
 Add MongoDB as a Dependency
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Next, add the offical Node.js MongoDB driver to your project dependencies. Use
-NPM to download and install the ``mongodb`` package and provide the ``--save``
-option as shown below to save the dependency to the ``package.json`` file
-that you generated in the previous step.
+Next, add the official Node.js MongoDB driver to your project dependencies.
+Use the following command to instruct NPM to download and install the
+``mongodb`` package.
 
 .. code-block:: none
 
-  npm install --save mongodb
+  npm install mongodb
 
 This command downloads ``mongodb`` package and dependencies required for its
 installation and saves them into a directory called ``node_modules`` in
-your project directory.
+your project directory, and records the dependency information in the
+``package.json`` file you generated in the previous step.
 
 At this point, you should have appropriate versions of Node.js and NPM
 installed as well as a project directory that contains the dependencies you
