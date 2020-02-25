@@ -12,19 +12,28 @@ Quick Start
 
 *Estimated time to complete this guide: 35 minutes.*
 
-This guide shows you how to create an application that uses the Node.js
-driver to connect to a MongoDB Atlas cluster.
+This guide shows you how to create an application that uses the
+**Node.js driver** to connect to a **MongoDB Atlas cluster**.
 
-TODO: What is Node and what is a driver.
-TODO: Explain what the steps are below.
+The Node.js driver is an interface through which you can connect to and
+communicate with MongoDB instances. If you prefer to connect to MongoDB using
+a different programming language, select from the ones on our
+:driver:`drivers documentation page <>`.
 
-Set up Your Development Environment
------------------------------------
+MongoDB Atlas is a fully-managed cloud database service that hosts your data
+on MongoDB instances. We show you how to get started with your own free (no
+credit card required) instance in this guide.
+
+Follow the steps below to connect your Node.js application with a MongoDB
+instance.
+
+Set up Your Project
+-------------------
 
 Install Node and NPM
 ~~~~~~~~~~~~~~~~~~~~
 
-Ensure your system has Node version 8 or later and a compatible version of
+Ensure your system has Node.js version 8 or later and a compatible version of
 NPM (Node Package Manager) installed. For more information on how to check
 your version of Node and NPM and installation instructions for your
 system, see `downloading and installing Node.js and npm
@@ -66,18 +75,22 @@ This command creates a file called ``package.json``:
 Add MongoDB as a Dependency
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Next, add the offical Node MongoDB driver to your project dependencies. Use
+Next, add the offical Node.js MongoDB driver to your project dependencies. Use
 NPM to download and install the ``mongodb`` package and provide the ``--save``
 option as shown below to save the dependency to the ``package.json`` file
 that you generated in the previous step.
 
-.. code-block:: sh
+.. code-block:: none
 
   npm install --save mongodb
 
 This command downloads ``mongodb`` package and dependencies required for its
 installation and saves them into a directory called ``node_modules`` in
 your project directory.
+
+At this point, you should have appropriate versions of Node.js and NPM
+installed as well as a project directory that contains the dependencies you
+need to use the Node.js MongoDB driver.
 
 Create a MongoDB Cluster
 ------------------------
@@ -86,28 +99,33 @@ Set up a Free Tier Cluster in Atlas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After installing the Node MongoDB driver, create a MongoDB instance to store
-and manage your data. You can get started with a free one on MongoDB Atlas,
-no credit card required. Go through the
+and manage your data. Go through the
 :atlas:`Get Started with Atlas <getting-started>` guide to set up a new
 Atlas account, free tier cluster (MongoDB instance), load datasets, and
 interact with the data.
 
-The next step demonstrates how to query your instance using the Node driver.
+After completing the steps in the Atlas guide, you should have a new MongoDB
+cluster deployed in Atlas, a new database user, and sample datasets loaded
+into your cluster.
 
 Connect to your Cluster
 -----------------------
 
-In this step, we run a code snippet to test your environment's connection
-to your instance of MongoDB and run a query on the sample data.
+In this step, we create and run an application that uses the Node.js MongoDB
+driver to connect to your instance of MongoDB and run a query on the sample
+data.
 
-To connect to Atlas using the Node driver, we provide the driver with
-instructions on where to connect and authentication credentials. We provide
-the driver with this information in the *connection string*. Follow the
+To connect to Atlas using the Node.js driver, we provide instructions to the
+driver on where and how to connect to your instance in a string called the
+*connection string*.
+
+Follow the
 :atlas:`Connect via Driver <driver-connection>` guide for instructions on
 how to set up a user and retrieve your connection string.
 
-Once you have your connection string, create a file in your
-``node_quickstart`` directory called ``index.js`` and add the following code:
+Once you have your connection string, create a file called ``index.js`` in
+your ``node_quickstart`` directory. Add the following code, replacing the
+``uri`` variable with your connection string.
 
 .. code-block:: js
 
@@ -121,14 +139,13 @@ Once you have your connection string, create a file in your
 
   async function run() {
     try {
-      // Connect the client to the server
       await client.connect();
 
       const database = client.db('sample_mflix');
       const collection = database.collection('movies');
 
-      // Query for a movie that has the title 'Sweet Smell of Success'
-      const query = { title: 'Sweet Smell of Success' };
+      // Query for a movie that has the title 'Back to the Future'
+      const query = { title: 'Back to the Future' };
       const movie = await collection.findOne(query);
 
       console.log(movie);
@@ -141,16 +158,31 @@ Once you have your connection string, create a file in your
 
 Run the sample code with the following command from your command line:
 
-.. code-block:: sh
+.. code-block:: none
 
   node index.js
 
 When you run the command, the sample code should output the details of the
-movie with the title: "Sweet Smell of Success".
+movie which resembles the following:
+
+::
+
+   {
+     _id: ...,
+     plot: 'A young man is accidentally sent 30 years into the past...',
+     genres: [ 'Adventure', 'Comedy', 'Sci-Fi' ],
+     ...
+     title: 'Back to the Future',
+     ...
+   }
+
+After completing this step, you should have a working application that uses
+the Node.js driver to connect to your MongoDB instance, run a query on the
+sample data, and prints out the result.
 
 Next Steps
 ----------
 
-Learn how to read and modify data in our :doc:`CRUD fundamentals
-</fundamentals/crud>` guide, or how to perform common operations in our
-:doc:`usage examples </usage-examples>`.
+Learn how to read and modify data using the Node.js driver in our
+:doc:`CRUD fundamentals </fundamentals/crud>` guide, or how to perform common
+operations from our :doc:`usage examples </usage-examples>`.
