@@ -16,8 +16,8 @@ Overview
 --------
 
 CRUD (Create, Read, Update, Delete) operations allow you to work with
-the data stored inside of MongoDB. CRUD operations fall into two
-categories: :ref:`read operations` and :ref:`write operations`.
+the data stored inside of MongoDB. We categorized the CRUD operations into
+two sections: :ref:`crud-read-operations` and :ref:`crud-write-operations`.
 
 .. note::
 
@@ -30,6 +30,8 @@ categories: :ref:`read operations` and :ref:`write operations`.
    :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>` that
    resolves to the output of the operation. We use the ``async``/``await``
    syntax for Promise resolution in our examples.
+
+.. _crud-read-operations:
 
 Read Operations
 ---------------
@@ -117,6 +119,8 @@ sequentially run on new data whenever write operations run on the collection.
    the number of returned documents, and :doc:`sort
    </fundamentals/crud/read-operations/sort>` returned documents in a
    particular order.
+
+.. _crud-write-operations:
 
 Write Operations
 ----------------
