@@ -37,9 +37,6 @@ contains multiple keys in the event of a successful
 execution. You can use the ``deletedCount`` key to determine the number
 of documents deleted by the operation.
 
-The error object contains ``errmsg``, a human-readable explanation of
-what caused the operation to fail.
-
 Example
 -------
 

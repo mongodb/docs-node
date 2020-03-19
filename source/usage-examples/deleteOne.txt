@@ -37,9 +37,6 @@ use the ``deletedCount`` key to check the number of documents deleted by
 the operation. Since ``deleteOne()`` can only delete a single document,
 ``deletedCount`` can have a value of either ``0`` or ``1``.
 
-The error object contains ``errmsg``, a human-readable explanation of
-what caused the operation to fail.
-
 .. note::
 
   If your application requires the deleted document after deletion,
