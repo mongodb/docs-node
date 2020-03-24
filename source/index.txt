@@ -67,8 +67,8 @@ material on using the Node.js driver for the following:
 * :doc:`Indexes </fundamentals/indexes>`: create and design indexes to make
   your queries efficient
 
-* :doc:`Collations </fundamentals/indexes>`: apply
-  language-specific sorting rules to your query results
+* :doc:`Collations </fundamentals/collations>`: apply language-specific 
+  sorting rules to your query results
 
 * :doc:`Logging </fundamentals/logging>`: configure the driver to log
   MongoDB operations
@@ -78,13 +78,13 @@ material on using the Node.js driver for the following:
 
 Usage Examples
 --------------
-The :doc:`Usage Examples </usage-examples/overview>` section provides
+The :doc:`Usage Examples </usage-examples>` section provides
 runnable code snippets and explanations for common methods. We recommend
 this section for users that are new to the MongoDB Node.js driver.
 
 API
 ---
-See the :doc:`API </api-documentation/>` section if you are looking for
+See the :node-api:`API documentation <>` if you are looking for
 technical information about classes, methods, and configuration objects
 within the MongoDB Node.js driver.
 
