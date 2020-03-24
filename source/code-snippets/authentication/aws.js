@@ -1,17 +1,18 @@
 // ignored first line
 const { MongoClient } = require("mongodb");
+const fs = require("fs");
 
 // specify the placeholder values for your environment in the following lines
-const username = encodeURIComponent("<username>");
-const password = encodeURIComponent("<password>");
+const accessKeyId = encodeURIComponent("<AWS_ACCESS_KEY_ID>");
+const secretAccessKey = encodeURIComponent("<AWS_SECRET_ACCESS_KEY>");
 const clusterUrl = "<MongoDB cluster url>";
 
-const authMechanism = "SCRAM-SHA-1";
+const authMechanism = "MONGODB-AWS";
 
 // Replace the following with your MongoDB deployment's connection
 // string.
 const uri =
-  `mongodb+srv://${username}:${password}@${clusterUrl}/?authMechanism=${authMechanism}`;
+  `mongodb+srv://${accessKeyId}:${secretAccessKey}@${clusterUrl}/?authMechanism=${authMechanism}`;
 
 // Create a new MongoClient
 const client = new MongoClient(uri);
