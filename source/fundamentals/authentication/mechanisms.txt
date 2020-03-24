@@ -135,14 +135,15 @@ in the following sample code.
 
 The ``MONGODB-AWS`` authentication mechanism uses your Amazon Web Services
 Identity and Access Management (AWS IAM) credentials to authenticate your
-user. To connect to a MongoDB instance with ``MONGODB-AWS`` authentication
-enabled, you need to specify the ``MONGODB-AWS`` authentication mechanism
-and pass your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` to the
+user.
+
+To connect to a MongoDB instance with ``MONGODB-AWS`` authentication
+enabled, specify the ``MONGODB-AWS`` authentication mechanism and pass
+your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` credentials to the
 driver when you attempt to connect. If your AWS login requires a session
 token, you must include your ``AWS_SESSION_TOKEN`` as well.
 
-When you specify ``authMechanism=MONGODB-AWS`` in your connection string,
-the driver checks the following sources for your credentials in order:
+The driver checks the following sources for your credentials in order:
 
 1. Connection string
 2. Environment variables
