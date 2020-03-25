@@ -64,9 +64,7 @@ redundancy and high data availability.
 
 To connect to a replica set deployment, specify the hostname and port numbers
 of each instance, separated by a comma, and the replica set name as the value
-of the ``replicaSet`` parameter in the connection string. You must use the
-protocol ``mongodb`` instead of ``mongodb+srv`` when you specify multiple
-hostnames because the SRV protocol option is not supported.
+of the ``replicaSet`` parameter in the connection string. 
 
 .. code-block:: none
 
