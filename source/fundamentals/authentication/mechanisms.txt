@@ -148,7 +148,7 @@ The driver checks the following sources for your credentials in order:
 1. Connection string
 2. Environment variables
 3. AWS ECS endpoint specified in ``AWS_CONTAINER_CREDENTIALS_RELATIVE_URI``
-4. AWS EC2 endpoint. For more information see `IAM Roles for Tasks
+4. AWS EC2 endpoint. For more information, see `IAM Roles for Tasks
    <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html>`_.
 
 The following code shows an example of specifying the ``MONGODB-AWS``
