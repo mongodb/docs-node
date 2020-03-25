@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
-  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
+  "mongodb+srv://<user>:<password>@<cluster-url>?w=majority";
 
 const client = new MongoClient(uri);
 
@@ -40,7 +40,7 @@ async function run() {
       }
       if (result.upsertedCount === 1) {
         console.log(
-          "Inserted one new document with an _id of " + result.upsertedId._id,
+          "Inserted one new document with an _id of " + result.upsertedId._id
         );
       }
     }

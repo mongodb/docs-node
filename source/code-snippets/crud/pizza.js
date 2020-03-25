@@ -3,7 +3,7 @@ const { MongoClient } = require("mongodb");
 
 // Replace the following string with your MongoDB deployment's connection string.
 const uri =
-  "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority&useUnifiedTopology=true";
+  "mongodb+srv://<user>:<password>@<cluster-url>?w=majority";
 const client = new MongoClient(uri);
 
 function sleep(ms) {
@@ -60,7 +60,7 @@ async function run() {
         },
       },
     ]);
-    changeStream.on("change", function(change) {
+    changeStream.on("change", change => {
       const { name, address } = change.fullDocument;
       console.log(`New order for ${name} at ${address}.`);
     });

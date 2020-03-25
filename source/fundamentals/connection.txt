@@ -92,13 +92,6 @@ URI to specify the behavior of the client.
      - Default Value
      - Description
 
-   * - **useUnifiedTopology**
-     - boolean
-     - ``false``
-     - Specifies whether to opt into the new Server Discovery and Monitoring
-       (SDAM) engine. The next major driver release removes the old engine and
-       deprecates this option.
-
    * - **validateOptions**
      - boolean
      - ``false``
