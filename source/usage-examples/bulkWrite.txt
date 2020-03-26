@@ -49,17 +49,6 @@ documentation for full details.
   <Collection.html#~bulkWriteOpCallback>` object containing the
   result of the operation.
 
-If you omit the callback parameter, ``bulkWrite()`` returns a
-:mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>` that
-resolves to a ``BulkWriteResult`` object that contains:
-
-- the number of updated or inserted documents
-- the ``_id`` of each document
-- any ``writeError`` or ``writeConcernErrors``
-
-Refer to the documentation for :node-api:`BulkWriteResult </BulkWriteResult>`
-for more information.
-
 If you create an index with a :manual:`unique constraint
 </core/index-unique>`, you might encounter a duplicate key write error
 during an operation. The following example shows a duplicate key error

@@ -4,6 +4,14 @@ Delete Multiple Documents
 
 .. default-domain:: mongodb
 
+.. note::
+   If you specify a callback method, ``deleteMany()`` returns nothing. If you 
+   do not specify one, this method returns a
+   :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>` that
+   resolves to the result object when it completes. For more information on
+   the result object type, see the 
+   :node-api:`API documentation <Collection.html#~deleteWriteOpResult>`.
+
 You can delete several documents in a collection at once using the
 :node-api:`collection.deleteMany() <Collection.html#deleteMany>` method.
 Pass a query document to the ``deleteMany()`` method to specify a subset
@@ -19,23 +27,6 @@ the second parameter of the ``deleteMany()`` method. You can also pass a
 callback method as the optional third parameter. For more detailed 
 information, see the 
 :node-api:`deleteMany() API documentation <Collection.html#deleteMany>`.
-
-``deleteMany()`` behaves in two different ways depending on whether you
-provide a callback method:
-
-- If you specify a callback method, ``deleteMany()`` returns
-  nothing, and instead passes the result or error object to the
-  callback method.
-
-- If you do not specify a callback method, ``deleteMany()`` returns a
-  :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
-  that resolves to an object.
-
-The result object contains multiple keys in the event of a successful
-execution. You can use the ``deletedCount`` field to determine the number
-of documents deleted by the operation. For more information on the result
-object, refer to the API documentation on
-:node-api:`deleteWriteOpResult <Collection.html#~deleteWriteOpResult>`.
 
 The error object contains ``errmsg``, a human-readable explanation of
 what caused the operation to fail.

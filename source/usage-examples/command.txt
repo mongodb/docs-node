@@ -4,6 +4,14 @@ Run a Command
 
 .. default-domain:: mongodb
 
+.. note::
+   If you specify a callback method, ``command()`` returns nothing. If you do
+   not specify one, this method returns a
+   :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>` that
+   resolves to the result object when it completes. For more information on
+   the result object type, see the
+   :node-api:`API documentation <Db.html#~resultCallback>`.
+
 You can run all raw database operations, not including
 :manual:`CRUD </crud/>` operations, using the :node-api:`db.command()
 <Db.html#~command>` method. Call the ``command()`` method with
@@ -21,17 +29,6 @@ on the options you can pass, see the
 :node-api:`bb.command() API documentation <Db.html#~command>`. You can
 also pass a :node-api:`callback method <Admin.html#~resultCallback>` as an
 optional third parameter.
-
-The ``command()`` method behaves in two different ways depending on whether
-you provide a callback method:
-
-- If you specify a callback method, ``command()`` returns
-  nothing, and instead passes the result or error object to the
-  :node-api:`resultCallback <Db.html#~resultCallback>` callback method.
-
-- If you do not specify a callback method, ``command()`` returns a
-  :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
-  that resolves to the result object when it completes.
 
 Example
 -------

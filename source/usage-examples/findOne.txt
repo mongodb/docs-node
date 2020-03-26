@@ -4,6 +4,14 @@ Find a Document
 
 .. default-domain:: mongodb
 
+.. note::
+   If you specify a callback method, ``findOne()`` returns nothing. If you do
+   not specify one, this method returns a
+   :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>` that
+   resolves to the result object when it completes. For more information on
+   the result object type, see the
+   :node-api:`API documentation <Collection.html#~resultCallback>`.
+
 You can query for a single document in a collection with
 the ``collection.findOne()`` method. The ``findOne()`` method uses a query
 document that you provide to match only the subset of the documents in the
@@ -20,17 +28,6 @@ to configure the returned document. You can specify the additional options
 in the ``options`` object passed as the second parameter of the
 ``findOne`` method. For detailed reference documentation, see
 :node-api:`collection.findOne() <Collection.html#findOne>`.
-
-``findOne()`` behaves in two different ways depending on whether you
-provide a callback method:
-
-- If you specify a callback method, ``findOne()`` returns nothing, and
-  instead passes the result or error object to the callback method.
-
-- If you do not specify a callback method, ``findOne()`` returns and
-  :mdn:`Promise <Web/JavaScript/Reference/Global_Objects/Promise>`
-  that resolves to an object which, if no documents match your query,
-  has a value of ``null`` and otherwise contains the matched document.
 
 Example
 -------
