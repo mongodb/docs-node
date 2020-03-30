@@ -13,8 +13,8 @@ Frequently Asked Questions
    :class: singlecol
 
 
-What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTimeMS" ?
---------------------------------------------------------------------------------------------
+What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTimeMS"?
+-------------------------------------------------------------------------------------
 
 .. list-table::
    :header-rows: 1
@@ -26,8 +26,11 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
      - 30000
      - ``connectTimeoutMS`` is a :doc:`connection option
        </fundamentals/connection#connection-options>` that sets the time in
-       milliseconds to establish a connection to the MongoDB server before
-       timing out.
+       milliseconds for an individual connection from your connection pool to
+       establish a TCP connection to the MongoDB server before timing out.
+       Use the ``serverSelectionTimeoutMS`` option instead to fail when
+       :node-api:``MongoClient.connect <MongoClient.html#.connect>` is unable
+       to establish a connection with the MongoDB server.
    * - socketTimeoutMS
      - 360000
      - ``socketTimeoutMS`` is a :doc:`connection option
