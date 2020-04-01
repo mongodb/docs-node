@@ -33,16 +33,16 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
        to establish a connection with the MongoDB server.
    * - socketTimeoutMS
      - 360000
-     - ``socketTimeoutMS`` is a :doc:`connection option
-       </fundamentals/connection#connection-options>` that sets the number of
-       milliseconds a socket stays inactive after the driver has successfully
-       connected before closing the connection.
+     - ``socketTimeoutMS`` specifies the amount of time the driver waits
+       for an inactive socket before closing it. 
+       TODO: provide information about default here.
+       This option applies only to sockets that have already been connected.
    * - maxTimeMS
      - N/A
-     - :node-api:`maxTimeMS() </Cursor.html#maxTimeMS>` is a method that
-       specifies the max time limit for processing an operation on a cursor.
-       If an operation runs over the time allotted it will return a timeout
-       error.
+     - :node-api:`maxTimeMS </Cursor.html#maxTimeMS>` is the maximum
+       amount of time the server should wait for an operation to complete
+       after it has reached the server. If an operation runs over the
+       specified time limit, it returns a timeout error.
 
 How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?
 -------------------------------------------------------------------------------------------------------------------------------
