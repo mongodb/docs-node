@@ -202,5 +202,5 @@ Next Steps
 ----------
 
 Learn how to read and modify data using the Node.js driver in our
-:doc:`CRUD Operations guide </fundamentals/crud>`, or how to perform common
+:doc:`CRUD Operations guide </fundamentals/crud>` or how to perform common
 operations in our :doc:`usage examples </usage-examples>`.
