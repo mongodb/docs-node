@@ -32,11 +32,11 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
        :node-api:``MongoClient.connect <MongoClient.html#.connect>` is unable
        to establish a connection with the MongoDB server.
    * - socketTimeoutMS
-     - 360000
+     - N/A
      - ``socketTimeoutMS`` specifies the amount of time the driver waits
-       for an inactive socket before closing it. 
-       TODO: provide information about default here.
-       This option applies only to sockets that have already been connected.
+       for an inactive socket before closing it. The default value is to
+       never time out the socket. This option applies only to sockets that
+       have already been connected.
    * - maxTimeMS
      - N/A
      - :node-api:`maxTimeMS </Cursor.html#maxTimeMS>` is the maximum
