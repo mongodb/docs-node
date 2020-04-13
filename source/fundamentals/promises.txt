@@ -81,16 +81,61 @@ Operational Considerations
 
 When using ``async`` methods, make sure to use ``await`` when you call methods
 that return Promises to ensure they complete before executing any other
-logic that depends on the result. One common mistake is to forget to use
-``await`` when iterating over a Cursor.
+logic that depends on the result. Consider the following example in which
+we iterate over a cursor using ``hasNext()``, which returns a Promise that
+resolves to a boolean that indicates whether additional results exist, and
+``next()`` which returns a Promise that resolves to the next entry the
+cursor is pointing to.
+
+One common mistake is to forget to use ``await`` to get the value of the
+result rather than the Promise object. Consider the following code:
+
+.. code-block:: js
+
+   // WARNING: this snippet may cause an infinite loop 
+   const cursor = collection.find();
+
+   while (cursor.hasNext()) {
+      console.log(cursor.next());
+   }
+
+Since the call to ``hasNext()`` returns a ``Promise``, the conditional
+statement returns ``true`` regardless of the value that it resolves to.
+
+If we alter the code to ``await`` the call to ``next()`` only as in the 
+following code snippet, it throws the following error: ``MongoError: Cursor 
+is closed``.
 
 .. code-block:: js
 
    const cursor = collection.find();
 
    while (cursor.hasNext()) {
+      // await to get the result of the Promise
+      console.log(await cursor.next());
+   }
+
+While ``hasNext()`` is not called until after the result of ``next()`` returns,
+the call to ``hasNext()`` returns a Promise which evalutes to ``true`` rather
+than the value it resolves to, similar to the prior example. The code
+attempts to call ``next()`` on a Cursor that has already returned its results
+and closed as a result.
+
+If we alter the code to only ``await`` the call to ``hasNext()`` as shown in
+the following example, the console prints Promise objects which may contain 
+the returned documents.
+
+.. code-block:: js
+
+   const cursor = collection.find();
+
+   while (await cursor.hasNext()) {
+      // print the Promises rather than the types they resolve to
       console.log(cursor.next());
    }
+
+Use ``await`` before both the ``hasNext()`` and ``next()`` method calls to
+ensure that you are operating on the correct return values.
 
 For additional information on using Promises and Callbacks with the MongoDB
 NodeJS driver, see this
