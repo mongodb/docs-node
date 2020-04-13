@@ -104,11 +104,11 @@ in the following code snippet, it throws the following error:
 ``MongoError: Cursor is closed``.
 
 .. code-block:: js
-
+   
+   // WARNING: this snippet throws a MongoError
    const cursor = collection.find();
 
    while (cursor.hasNext()) {
-      // await to get the result of the Promise
       console.log(await cursor.next());
    }
 
@@ -124,15 +124,24 @@ document objects.
 
 .. code-block:: js
 
+   // WARNING: this snippet prints Promises instead of the objects they resolve to
    const cursor = collection.find();
 
    while (await cursor.hasNext()) {
-      // print the Promises rather than the types they resolve to
       console.log(cursor.next());
    }
 
 Use ``await`` before both the ``hasNext()`` and ``next()`` method calls to
-ensure that you are operating on the correct return values.
+ensure that you are operating on the correct return values as demonstrated
+in the following code:
+
+.. code-block:: js
+
+   const cursor = collection.find();
+
+   while (await cursor.hasNext()) {
+      console.log(await cursor.next());
+   } 
 
 .. note::
 
