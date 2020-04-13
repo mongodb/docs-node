@@ -13,8 +13,8 @@ Promises and Callbacks
 Overview
 --------
 
-NodeJS driver uses the asynchronous Javascript API
-to execute the methods on your MongoDB cluster.
+NodeJS driver uses the asynchronous Javascript API to communicate with
+your MongoDB cluster.
 
 Asynchronous Javascript allows you to execute operations without waiting for 
 the processing thread to become free. This helps prevent your application
