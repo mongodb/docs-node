@@ -26,12 +26,9 @@ For more information about asynchronous Javascript, see
 the MDN web documentation on 
 `Asynchronous Javascript <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous>`_.
 
-
 This section describes two features of asynchronous Javascript -- 
 `Promises`_ and `Callbacks`_ -- that you can use with the NodeJS driver to
 access the results of your method calls to your MongoDB cluster.
-
-Async programming and NodeJS driver
 
 Promises
 --------
@@ -74,7 +71,7 @@ The callback method you provide should match the method signature of the
 
  .. note::
  
-    If you specify a callback the method *does not* return a Promise.
+    If you specify a callback, the method *does not* return a Promise.
 
 Operational Considerations
 --------------------------
@@ -102,9 +99,9 @@ result rather than the Promise object. Consider the following code:
 Since the call to ``hasNext()`` returns a ``Promise``, the conditional
 statement returns ``true`` regardless of the value that it resolves to.
 
-If we alter the code to ``await`` the call to ``next()`` only as in the 
-following code snippet, it throws the following error: ``MongoError: Cursor 
-is closed``.
+If we alter the code to ``await`` the call to ``next()`` only, as demonstrated
+in the following code snippet, it throws the following error: 
+``MongoError: Cursor is closed``.
 
 .. code-block:: js
 
@@ -116,14 +113,14 @@ is closed``.
    }
 
 While ``hasNext()`` is not called until after the result of ``next()`` returns,
-the call to ``hasNext()`` returns a Promise which evalutes to ``true`` rather
+the call to ``hasNext()`` returns a Promise which evaluates to ``true`` rather
 than the value it resolves to, similar to the prior example. The code
 attempts to call ``next()`` on a Cursor that has already returned its results
 and closed as a result.
 
 If we alter the code to only ``await`` the call to ``hasNext()`` as shown in
-the following example, the console prints Promise objects which may contain 
-the returned documents.
+the following example, the console prints Promise objects rather than the
+document objects. 
 
 .. code-block:: js
 
@@ -137,6 +134,8 @@ the returned documents.
 Use ``await`` before both the ``hasNext()`` and ``next()`` method calls to
 ensure that you are operating on the correct return values.
 
-For additional information on using Promises and Callbacks with the MongoDB
-NodeJS driver, see this
-`MongoDB University m220js course video <https://youtu.be/R4AEyKehpss>`_.
+.. note::
+
+   For additional information on using Promises and Callbacks with the MongoDB
+   NodeJS driver, see this
+   `MongoDB University m220js course video <https://youtu.be/R4AEyKehpss>`_.
