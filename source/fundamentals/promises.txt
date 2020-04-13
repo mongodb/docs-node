@@ -1,0 +1,97 @@
+======================
+Promises and Callbacks
+======================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecols
+
+Overview
+--------
+
+NodeJS driver uses the asynchronous Javascript API
+to execute the methods on your MongoDB cluster.
+
+Asynchronous Javascript allows you to execute operations without waiting for 
+the processing thread to become free.
+This is beneficial when your application logic contains
+long-running operations that may block other operations such
+as rendering a web UI or responding to network requests.
+
+For more information about asynchronous Javascript, see 
+the MDN web documentation on 
+`Asynchronous Javascript <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous>`_.
+
+
+This section describes two features of asynchronous Javascript -- 
+`Promises`_ and `Callbacks`_ -- that you can use with the NodeJS driver to
+access the results of your method calls to your MongoDB cluster.
+
+Async programming and NodeJS driver
+
+Promises
+--------
+
+A Promise is an object returned by the asynchronous method call that allows
+you to access information on the eventual success or failure of the operation.
+For more information on Promises and related terminology, see the MDN
+documentation on 
+:mdn:`Promises <Web/JavaScript/Reference/Global_Objects/Promise>`.
+
+If you call a method such as ``findOneAndModify()``, ``countDocuments()``, 
+or ``update()``, the NodeJS driver returns a Promise.
+
+You can use the ``await`` operator on the Promise to
+cause the enclosing ``async`` method to pause until the Promise reaches
+either the **Fulfilled** or **Rejected** state. If it reaches the **Fulfilled**
+state, the reference contains the operation result as an object or value.
+
+.. note::
+
+   Certain methods in the driver such as ``find()`` return a ``Cursor``
+   instead of a Promise. To determine what type each method returns, refer to
+   the :node-api:`NodeJS API documentation <>`.
+
+Callbacks
+---------
+
+A callback is a method that gets called after another method has
+finished executing. This allows the enclosing method to continue to execute 
+other commands until the original operation completes. Callbacks are often 
+used to enforce the order of processing commands.
+
+In the MongoDB NodeJS driver, you can optionally declare a callback method to
+async operations that normally return Promises such as ``findOneAndModify()``,
+``countDocuments()``, or ``update()``. Once the operation completes execution,
+the callback method executes.
+
+The callback method you provide should match the method signature of the 
+**type** specified in the :node-api:`API documentation <>`.
+
+ .. note::
+ 
+    If you specify a callback the method *does not* return a Promise.
+
+Operational Considerations
+--------------------------
+
+When using ``async`` methods, make sure to use ``await`` when you call methods
+that return Promises to ensure they complete before executing any other
+logic that depends on the result. One common mistake is to forget to use
+``await`` when iterating over a Cursor.
+
+.. code-block:: js
+
+   const cursor = collection.find();
+
+   while (cursor.hasNext()) {
+      console.log(cursor.next());
+   }
+
+For additional information on using Promises and Callbacks with the MongoDB
+NodeJS driver, see this
+`MongoDB University m220js course video <https://youtu.be/R4AEyKehpss>`_.
