@@ -17,13 +17,10 @@ NodeJS driver uses the asynchronous Javascript API
 to execute the methods on your MongoDB cluster.
 
 Asynchronous Javascript allows you to execute operations without waiting for 
-the processing thread to become free.
-This is beneficial when your application logic contains
-long-running operations that may block other operations such
-as rendering a web UI or responding to network requests.
-
-For more information about asynchronous Javascript, see 
-the MDN web documentation on 
+the processing thread to become free. This helps prevent your application
+from becoming unresponsive to web UI rendering or network requests when
+executing long-running operations. For more information about asynchronous 
+Javascript, see the MDN web documentation on 
 `Asynchronous Javascript <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous>`_.
 
 This section describes two features of asynchronous Javascript -- 
