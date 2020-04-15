@@ -13,17 +13,17 @@ Promises and Callbacks
 Overview
 --------
 
-NodeJS driver uses the asynchronous Javascript API to communicate with
+The NodeJS driver uses the asynchronous Javascript API to communicate with
 your MongoDB cluster.
 
-Asynchronous Javascript allows you to execute operations without waiting for 
+Asynchronous Javascript allows you to execute operations without waiting for
 the processing thread to become free. This helps prevent your application
 from becoming unresponsive to web UI rendering or network requests when
-executing long-running operations. For more information about asynchronous 
-Javascript, see the MDN web documentation on 
+executing long-running operations. For more information about asynchronous
+Javascript, see the MDN web documentation on
 `Asynchronous Javascript <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous>`_.
 
-This section describes two features of asynchronous Javascript -- 
+This section describes two features of asynchronous Javascript --
 `Promises`_ and `Callbacks`_ -- that you can use with the NodeJS driver to
 access the results of your method calls to your MongoDB cluster.
 
@@ -32,17 +32,53 @@ Promises
 
 A Promise is an object returned by the asynchronous method call that allows
 you to access information on the eventual success or failure of the operation.
-For more information on Promises and related terminology, see the MDN
-documentation on 
+They are often used to execute operations that take some time and have
+when you want to notify once it's completed. For more information on Promises
+and related terminology, see the MDN documentation on
 :mdn:`Promises <Web/JavaScript/Reference/Global_Objects/Promise>`.
 
-If you call a method such as ``findOneAndModify()``, ``countDocuments()``, 
-or ``update()``, the NodeJS driver returns a Promise.
+If you call a driver method such as ``findOneAndModify()``,
+``countDocuments()``, or ``update()``, the NodeJS driver returns a Promise.
 
-You can use the ``await`` operator on the Promise to
-cause the enclosing ``async`` method to pause until the Promise reaches
+You can use the ``await`` operator inside of an ``async`` method on the
+Promise to cause the enclosing method to pause until the Promise reaches
 either the **Fulfilled** or **Rejected** state. If it reaches the **Fulfilled**
 state, the reference contains the operation result as an object or value.
+
+.. code-block:: js
+
+   async function run() {
+     ...
+     const result = await collection.insertOne({ name: "Mount Everest", meters: 8848 });
+
+     // print the result of the insertOne() call
+     console.log(result);
+   }
+
+If you want to execute logic once the Promise reaches the **Fulfilled**
+or **Rejected** state, you can append the ``then()`` method to the Promise.
+The first parameter is the method that gets called when the Promise reaches
+the **Fulfilled** state and the optional second parameter is the method that
+gets called when it reaches the **Rejected** state. These methods are called
+**callbacks** because they execute only after the Promise completes.
+
+.. code-block:: js
+
+   ...
+   collection.updateOne({ name: "Mount McKinley" }, { meters: 6190 })
+     .then(
+       res => console.log(`Updated ${res.result.n} documents`),
+       err => console.error(`Something went wrong: ${err}`)
+     );
+
+If you only need to handle transitions to the **Rejected** state, use the
+``catch()`` method which accepts a single callback, executed when the Promise
+transitions to the **Rejected** state.
+
+.. code-block:: js
+
+     const deleteResult = await collection.deleteOne({ name: "Mount Doom" })
+       .catch(err => console.error(`Fatal error occurred: ${err}`));
 
 .. note::
 
@@ -54,26 +90,37 @@ Callbacks
 ---------
 
 A callback is a method that gets called after another method has
-finished executing. This allows the enclosing method to continue to execute 
-other commands until the original operation completes. Callbacks are often 
+finished executing. This allows the enclosing method to continue to execute
+other commands until the original operation completes. Callbacks are often
 used to enforce the order of processing commands.
 
 In the MongoDB NodeJS driver, you can optionally declare a callback method to
-async operations that normally return Promises such as ``findOneAndModify()``,
+async operations that normally return Promises such as ``findOneAndUpdate()``,
 ``countDocuments()``, or ``update()``. Once the operation completes execution,
-the callback method executes.
+the callback method executes as shown in the following code snippet:
 
-The callback method you provide should match the method signature of the 
-**type** specified in the :node-api:`API documentation <>`.
+.. code-block:: js
+
+   collection.findOneAndUpdate({ name: "Barronette Peak" }, { name: "Baronette Peak" },
+     function(error, result) {
+       if (!error) {
+         console.log(`Operation completed successfully: ${result.ok}`);
+       } else {
+         console.log(`An error occurred: ${error}`);
+       }
+    });
+
+For more information on the callback method signature for the specific
+driver method, see the :node-api:`API documentation <>`.
 
  .. note::
- 
+
     If you specify a callback, the method *does not* return a Promise.
 
 Operational Considerations
 --------------------------
 
-When using ``async`` methods, make sure to use ``await`` when you call methods
+When using ``async`` methods, use ``await`` when you call methods
 that return Promises to ensure they complete before executing any other
 logic that depends on the result. Consider the following example in which
 we iterate over a cursor using ``hasNext()``, which returns a Promise that
@@ -86,7 +133,7 @@ result rather than the Promise object. Consider the following code:
 
 .. code-block:: js
 
-   // WARNING: this snippet may cause an infinite loop 
+   // WARNING: this snippet may cause an infinite loop
    const cursor = collection.find();
 
    while (cursor.hasNext()) {
@@ -97,11 +144,11 @@ Since the call to ``hasNext()`` returns a ``Promise``, the conditional
 statement returns ``true`` regardless of the value that it resolves to.
 
 If we alter the code to ``await`` the call to ``next()`` only, as demonstrated
-in the following code snippet, it throws the following error: 
+in the following code snippet, it throws the following error:
 ``MongoError: Cursor is closed``.
 
 .. code-block:: js
-   
+
    // WARNING: this snippet throws a MongoError
    const cursor = collection.find();
 
@@ -117,7 +164,7 @@ and closed as a result.
 
 If we alter the code to only ``await`` the call to ``hasNext()`` as shown in
 the following example, the console prints Promise objects rather than the
-document objects. 
+document objects.
 
 .. code-block:: js
 
@@ -138,10 +185,10 @@ in the following code:
 
    while (await cursor.hasNext()) {
       console.log(await cursor.next());
-   } 
+   }
 
 .. note::
 
    For additional information on using Promises and Callbacks with the MongoDB
-   NodeJS driver, see this
-   `MongoDB University m220js course video <https://youtu.be/R4AEyKehpss>`_.
+   NodeJS driver, see this MongoDB University course video on `asynchronous
+   Javascript programming <https://youtu.be/R4AEyKehpss>`_.
