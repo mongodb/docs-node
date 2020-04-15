@@ -37,7 +37,7 @@ when you want to notify once it's completed. For more information on Promises
 and related terminology, see the MDN documentation on
 :mdn:`Promises <Web/JavaScript/Reference/Global_Objects/Promise>`.
 
-If you call a driver method such as ``findOneAndModify()``,
+If you call a driver method such as ``findOneAndUpdate()``,
 ``countDocuments()``, or ``update()``, the NodeJS driver returns a Promise.
 
 You can use the ``await`` operator inside of an ``async`` method on the
