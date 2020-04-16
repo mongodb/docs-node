@@ -39,7 +39,7 @@ Promises and related terminology, see the MDN documentation on
 :mdn:`Promises <Web/JavaScript/Reference/Global_Objects/Promise>`.
 
 Most driver methods that communicate with your MongoDB cluster such as
-``findOneAndUpdate()``, ``countDocuments()``, or ``update()`` return Promise
+``findOneAndUpdate()``, ``countDocuments()``, and ``update()`` return Promise
 objects and already contain logic to handle the success or failure of the
 operation.
 
@@ -126,9 +126,9 @@ other commands until the original operation completes. Callbacks are often
 used to enforce the order of processing commands.
 
 In the MongoDB NodeJS driver, you can optionally declare a callback method to
-async operations that normally return Promises such as ``findOneAndUpdate()``,
-``countDocuments()``, or ``update()``. Once the operation completes execution,
-the callback method executes as shown in the following code snippet:
+async operations that normally return Promises. Once the operation completes
+execution, the callback method executes as shown in the following code
+snippet:
 
 .. code-block:: js
 
