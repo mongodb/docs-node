@@ -58,10 +58,11 @@ chaining by appending a single ``then()`` method.
 
 .. code-block:: js
 
-   collection.updateOne({ name: "Mount McKinley" }, { $set: { meters: 6190 }})
+   collection
+     .updateOne({ name: "Mount McKinley" }, { $set: { meters: 6190 } })
      .then(
        res => console.log(`Updated ${res.result.n} documents`),
-       err => console.error(`Something went wrong: ${err}`)
+       err => console.error(`Something went wrong: ${err}`),
      );
 
 If you only need to handle Promise transitions to the **Rejected** state,
@@ -107,11 +108,15 @@ chaining example.
    async function run() {
      ...
      try {
-       res = await collection.updateOne({ name: "Mount McKinley" }, { $set: { meters: 6190 }});
+       res = await collection.updateOne(
+         { name: "Mount McKinley" },
+         { $set: { meters: 6190 } },
+       );
        console.log(`Updated ${res.result.n} documents`);
-     } catch(err) {
+     } catch (err) {
        console.error(`Something went wrong: ${err}`);
      }
+   }
 
 For additional information, see the MDN documentation on
 :mdn:`await <Web/JavaScript/Reference/Operators/await>`.
@@ -132,7 +137,8 @@ snippet:
 
 .. code-block:: js
 
-   collection.findOneAndUpdate({ name: "Barronette Peak" },
+   collection.findOneAndUpdate(
+     { name: "Barronette Peak" },
      { $set: { name: "Baronette Peak" } },
      {},
      function(error, result) {
@@ -141,7 +147,8 @@ snippet:
        } else {
          console.log(`An error occurred: ${error}`);
        }
-    });
+     },
+   );
 
 For more information on the callback method signature for the specific
 driver method, see the :node-api:`API documentation <>`.
@@ -168,7 +175,7 @@ Promise that resolves to the next entry the cursor is pointing to.
      const cursor = collection.find();
 
      while (cursor.hasNext()) {
-        console.log(cursor.next());
+       console.log(cursor.next());
      }
    }
 
@@ -187,7 +194,7 @@ in the following code snippet, it throws the following error:
      const cursor = collection.find();
 
      while (cursor.hasNext()) {
-        console.log(await cursor.next());
+       console.log(await cursor.next());
      }
    }
 
@@ -209,7 +216,7 @@ document objects.
      const cursor = collection.find();
 
      while (await cursor.hasNext()) {
-        console.log(cursor.next());
+       console.log(cursor.next());
      }
    }
 
@@ -224,7 +231,7 @@ in the following code:
      const cursor = collection.find();
 
      while (await cursor.hasNext()) {
-        console.log(await cursor.next());
+       console.log(await cursor.next());
      }
    }
 
