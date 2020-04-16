@@ -24,67 +24,98 @@ Javascript, see the MDN web documentation on
 `Asynchronous Javascript <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous>`_.
 
 This section describes two features of asynchronous Javascript --
-`Promises`_ and `Callbacks`_ -- that you can use with the NodeJS driver to
+``Promises`` and ``Callbacks`` -- that you can use with the NodeJS driver to
 access the results of your method calls to your MongoDB cluster.
 
 Promises
 --------
 
 A Promise is an object returned by the asynchronous method call that allows
-you to access information on the eventual success or failure of the operation.
-They are often used to execute operations that take some time and have
-when you want to notify once it's completed. For more information on Promises
-and related terminology, see the MDN documentation on
+you to access information on the eventual success or failure of the operation
+that they wrap. The Promise is in the **Pending** state if the operation is
+still running, **Fulfilled** if the operation completed successfully, and
+**Rejected** if the operation threw an exception. For more information on
+Promises and related terminology, see the MDN documentation on
 :mdn:`Promises <Web/JavaScript/Reference/Global_Objects/Promise>`.
 
-If you call a driver method such as ``findOneAndUpdate()``,
-``countDocuments()``, or ``update()``, the NodeJS driver returns a Promise.
+Most driver methods that communicate with your MongoDB cluster such as
+``findOneAndUpdate()``, ``countDocuments()``, or ``update()`` return Promise
+objects and already contain logic to handle the success or failure of the
+operation.
 
-You can use the ``await`` operator inside of an ``async`` method on the
-Promise to cause the enclosing method to pause until the Promise reaches
-either the **Fulfilled** or **Rejected** state. If it reaches the **Fulfilled**
-state, the reference contains the operation result as an object or value.
+You can define your own logic that executes once the Promise reaches the
+**Fulfilled** or **Rejected** state by appending the ``then()``method.
+The first parameter of ``then()`` is the method that gets called when the
+Promise reaches the **Fulfilled** state and the optional second parameter is
+the method that gets called when it reaches the **Rejected** state. The
+``then()`` method returns a Promise to which you can append additional
+``then()`` methods.
 
-.. code-block:: js
-
-   async function run() {
-     ...
-     const result = await collection.insertOne({ name: "Mount Everest", meters: 8848 });
-
-     // print the result of the insertOne() call
-     console.log(result);
-   }
-
-If you want to execute logic once the Promise reaches the **Fulfilled**
-or **Rejected** state, you can append the ``then()`` method to the Promise.
-The first parameter is the method that gets called when the Promise reaches
-the **Fulfilled** state and the optional second parameter is the method that
-gets called when it reaches the **Rejected** state. These methods are called
-**callbacks** because they execute only after the Promise completes.
+When you append one or more ``then()`` methods to a Promise, each call passes
+its execution result to the next one. This pattern is called
+**Promise chaining**. The following code snippet shows an example of Promise
+chaining by appending a single ``then()`` method.
 
 .. code-block:: js
 
-   ...
-   collection.updateOne({ name: "Mount McKinley" }, { meters: 6190 })
+   collection.updateOne({ name: "Mount McKinley" }, { $set: { meters: 6190 }})
      .then(
        res => console.log(`Updated ${res.result.n} documents`),
        err => console.error(`Something went wrong: ${err}`)
      );
 
-If you only need to handle transitions to the **Rejected** state, use the
-``catch()`` method which accepts a single callback, executed when the Promise
-transitions to the **Rejected** state.
+If you only need to handle Promise transitions to the **Rejected** state,
+rather than passing a ``null`` first parameter to ``then()``, you can instead
+use the ``catch()`` method which accepts a single callback, executed when the
+Promise transitions to the **Rejected** state.
+
+The ``catch()`` method is often appended at the end of a Promise chain to
+handle any exceptions thrown. The following code snippet demonstrates appending
+a ``catch()`` method to the end of a Promise chain.
 
 .. code-block:: js
 
-     const deleteResult = await collection.deleteOne({ name: "Mount Doom" })
-       .catch(err => console.error(`Fatal error occurred: ${err}`));
+   deleteOne({ name: "Mount Doom" })
+     .then(result => {
+       if (result.deletedCount !== 1) {
+         throw "Could not find Mount Doom!";
+       }
+       return incinerateNazgul();
+     })
+     .then(result => console.log(`Vanquished ${result.quantity} Nazgul`))
+     .catch(err => console.error(`Fatal error occurred: ${err}`));
 
 .. note::
 
    Certain methods in the driver such as ``find()`` return a ``Cursor``
    instead of a Promise. To determine what type each method returns, refer to
    the :node-api:`NodeJS API documentation <>`.
+
+Await
+~~~~~
+
+If you are using ``async`` functions, you can use the ``await`` operator on
+a Promise to pause further execution until the Promise reaches either the
+**Fulfilled** or **Rejected** state and returns. Since the ``await`` operator
+waits for the resolution of the Promise, you can use it in place of
+Promise chaining to sequentially execute your logic. The following code
+snippet uses ``await`` to execute the same logic as the first Promise
+chaining example.
+
+.. code-block:: js
+
+   async function run() {
+     ...
+     try {
+       result = await collection.updateOne({ name: "Mount McKinley" }, { $set: { meters: 6190 }});
+       console.log(`Updated ${res.result.n} documents`);
+     } catch(err) {
+       console.error(`Something went wrong: ${err}`);
+     }
+
+For additional information, see the MDN documentation on
+:mdn:`await <Web/JavaScript/Reference/Operators/await>`.
+
 
 Callbacks
 ---------
@@ -101,7 +132,9 @@ the callback method executes as shown in the following code snippet:
 
 .. code-block:: js
 
-   collection.findOneAndUpdate({ name: "Barronette Peak" }, { name: "Baronette Peak" },
+   collection.findOneAndUpdate({ name: "Barronette Peak" },
+     { $set: { name: "Baronette Peak" } },
+     {},
      function(error, result) {
        if (!error) {
          console.log(`Operation completed successfully: ${result.ok}`);
@@ -120,24 +153,23 @@ driver method, see the :node-api:`API documentation <>`.
 Operational Considerations
 --------------------------
 
-When using ``async`` methods, use ``await`` when you call methods
-that return Promises to ensure they complete before executing any other
-logic that depends on the result. Consider the following example in which
-we iterate over a cursor using ``hasNext()``, which returns a Promise that
-resolves to a boolean that indicates whether additional results exist, and
-``next()`` which returns a Promise that resolves to the next entry the
-cursor is pointing to.
-
-One common mistake is to forget to use ``await`` to get the value of the
-result rather than the Promise object. Consider the following code:
+One common mistake when using ``async`` methods is to forget to use ``await``
+operator on Promises to get the value of the result rather than the Promise
+object. Consider the following example in which we iterate over a cursor
+using ``hasNext()``, which returns a Promise that resolves to a boolean that
+indicates whether additional results exist, and ``next()`` which returns a
+Promise that resolves to the next entry the cursor is pointing to.
 
 .. code-block:: js
 
-   // WARNING: this snippet may cause an infinite loop
-   const cursor = collection.find();
+   async function run() {
+     ...
+     // WARNING: this snippet may cause an infinite loop
+     const cursor = collection.find();
 
-   while (cursor.hasNext()) {
-      console.log(cursor.next());
+     while (cursor.hasNext()) {
+        console.log(cursor.next());
+     }
    }
 
 Since the call to ``hasNext()`` returns a ``Promise``, the conditional
@@ -149,11 +181,14 @@ in the following code snippet, it throws the following error:
 
 .. code-block:: js
 
-   // WARNING: this snippet throws a MongoError
-   const cursor = collection.find();
+   async function run() {
+     ...
+     // WARNING: this snippet throws a MongoError
+     const cursor = collection.find();
 
-   while (cursor.hasNext()) {
-      console.log(await cursor.next());
+     while (cursor.hasNext()) {
+        console.log(await cursor.next());
+     }
    }
 
 While ``hasNext()`` is not called until after the result of ``next()`` returns,
@@ -168,11 +203,14 @@ document objects.
 
 .. code-block:: js
 
-   // WARNING: this snippet prints Promises instead of the objects they resolve to
-   const cursor = collection.find();
+   async function run() {
+     ...
+     // WARNING: this snippet prints Promises instead of the objects they resolve to
+     const cursor = collection.find();
 
-   while (await cursor.hasNext()) {
-      console.log(cursor.next());
+     while (await cursor.hasNext()) {
+        console.log(cursor.next());
+     }
    }
 
 Use ``await`` before both the ``hasNext()`` and ``next()`` method calls to
@@ -181,10 +219,13 @@ in the following code:
 
 .. code-block:: js
 
-   const cursor = collection.find();
+   async function run() {
+     ...
+     const cursor = collection.find();
 
-   while (await cursor.hasNext()) {
-      console.log(await cursor.next());
+     while (await cursor.hasNext()) {
+        console.log(await cursor.next());
+     }
    }
 
 .. note::
