@@ -44,7 +44,7 @@ objects and already contain logic to handle the success or failure of the
 operation.
 
 You can define your own logic that executes once the Promise reaches the
-**Fulfilled** or **Rejected** state by appending the ``then()``method.
+**Fulfilled** or **Rejected** state by appending the ``then()`` method.
 The first parameter of ``then()`` is the method that gets called when the
 Promise reaches the **Fulfilled** state and the optional second parameter is
 the method that gets called when it reaches the **Rejected** state. The
@@ -107,7 +107,7 @@ chaining example.
    async function run() {
      ...
      try {
-       result = await collection.updateOne({ name: "Mount McKinley" }, { $set: { meters: 6190 }});
+       res = await collection.updateOne({ name: "Mount McKinley" }, { $set: { meters: 6190 }});
        console.log(`Updated ${res.result.n} documents`);
      } catch(err) {
        console.error(`Something went wrong: ${err}`);
