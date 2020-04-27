@@ -13,7 +13,7 @@ Promises and Callbacks
 Overview
 --------
 
-The NodeJS driver uses the asynchronous Javascript API to communicate with
+The Node.js driver uses the asynchronous Javascript API to communicate with
 your MongoDB cluster.
 
 Asynchronous Javascript allows you to execute operations without waiting for
@@ -24,7 +24,7 @@ Javascript, see the MDN web documentation on
 `Asynchronous Javascript <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous>`_.
 
 This section describes two features of asynchronous Javascript --
-``Promises`` and ``Callbacks`` -- that you can use with the NodeJS driver to
+``Promises`` and ``Callbacks`` -- that you can use with the Node.js driver to
 access the results of your method calls to your MongoDB cluster.
 
 Promises
@@ -81,7 +81,9 @@ a ``catch()`` method to the end of a Promise chain.
        if (result.deletedCount !== 1) {
          throw "Could not find Mount Doom!";
        }
-       return incinerateNazgul();
+       return new Promise((resolve, reject) => {
+         ...
+       });
      })
      .then(result => console.log(`Vanquished ${result.quantity} Nazgul`))
      .catch(err => console.error(`Fatal error occurred: ${err}`));
@@ -90,7 +92,7 @@ a ``catch()`` method to the end of a Promise chain.
 
    Certain methods in the driver such as ``find()`` return a ``Cursor``
    instead of a Promise. To determine what type each method returns, refer to
-   the :node-api:`NodeJS API documentation <>`.
+   the :node-api:`Node.js API documentation <>`.
 
 Await
 ~~~~~
@@ -130,7 +132,7 @@ finished executing. This allows the enclosing method to continue to execute
 other commands until the original operation completes. Callbacks are often
 used to enforce the order of processing commands.
 
-In the MongoDB NodeJS driver, you can optionally declare a callback method to
+In the MongoDB Node.js driver, you can optionally declare a callback method to
 async operations that normally return Promises. Once the operation completes
 execution, the callback method executes as shown in the following code
 snippet:
@@ -238,5 +240,5 @@ in the following code:
 .. note::
 
    For additional information on using Promises and Callbacks with the MongoDB
-   NodeJS driver, see this MongoDB University course video on `asynchronous
+   Node.js driver, see this MongoDB University course video on `asynchronous
    Javascript programming <https://youtu.be/R4AEyKehpss>`_.
