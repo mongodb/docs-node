@@ -45,7 +45,7 @@ your MongoDB instance.
 The last part of the connection string contains connection and authentication
 options as parameters. In the example above, we set two connection options:
 ``poolSize=20`` and ``w=majority``. For more information on connection
-options, skip to the :ref:`connection-options` seciton.
+options, skip to the :ref:`connection-options` section.
 
 The code below shows how you can use the sample connection URI in a client to
 connect to MongoDB.
