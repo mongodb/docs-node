@@ -52,6 +52,9 @@ omitted from the result:
    const cursor = collection.find(query, options);
    await cursor.forEach(console.dir);
 
+Since we specified that the first ``2`` documents should be skipped, the
+third and fourth highest rating documents are printed by the code snippet
+above:
 
 .. code-block:: javascript
 
@@ -66,6 +69,3 @@ the ``find`` method. The following two commands are equivalent:
 
    collection.find(query, { sort: { rating: -1}, skip: 2});
    collection.find(query).sort({rating: -1}).skip(2);
-
- For more information on the ``sort`` method, see our documentation on
- :doc:`sorting results </fundamentals/crud/read-operations/sort>`.
