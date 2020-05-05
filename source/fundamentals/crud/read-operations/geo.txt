@@ -14,7 +14,7 @@ coordinate systems:
 - :ref:`Coordinates on an Earth-like Sphere <sphere>`
 - :ref:`Coordinates on a 2D Plane <plane>`
 
-This section also contains examples of geospatial queries using different
+This section contains examples of geospatial queries using different
 query operators that you can run against your Atlas sample dataset.
 
 .. _sphere:
@@ -43,7 +43,7 @@ types use some form of the following structure:
 The object type determines the number of coordinates. For instance, a
 ``Point`` requires only one coordinate: a longitude and a latitude.
 A ``Line`` uses two coordinates: a longitude and a latitude for each end.
-``Polygons`` consist of a list of coordinates in which the first and last
+A ``Polygon`` consists of a list of coordinates in which the first and last
 coordinate are the same, effectively closing the polygon. To learn more
 about the GeoJSON shapes you can use in MongoDB, consult the
 :manual:`GeoJSON manual entry </reference/geojson/>`. 
@@ -56,7 +56,7 @@ the ``movies`` collection using the ``createIndex()`` method:
 
    db.movies.createIndex({location.geo: "2dsphere"})
 
-.. _sphere:
+.. _plane:
 
 Coordinates on a 2D Plane
 ~~~~~~~~~~~~~~~~~~~~~~~~~
