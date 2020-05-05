@@ -4,10 +4,6 @@ Search Text
 
 .. default-domain:: mongodb
 
-:manual:`text index </core/index-text/>`.
-:manual:`$text </reference/operator/query/text/>`
-
-
 Overview
 --------
 
