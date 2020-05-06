@@ -52,9 +52,11 @@ pulling all matching documents into a collection in process memory.
    undefined behaviour. Always wait for the previous
    asynchronous operation to complete before running another.
 
-When you reach the last result through iteration or through an at-once
-fetch, the cursor is exhausted which means it ceases to respond to methods
-that access the results.
+.. note::
+
+   When you reach the last result through iteration or through an at-once
+   fetch, the cursor is exhausted which means it ceases to respond to methods
+   that access the results.
    
 For Each Functional Iteration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
