@@ -4,7 +4,68 @@ Update Arrays in a Document
 
 .. default-domain:: mongodb
 
-To modify arrays embedded within a document, use the
+.. here's a comment
+
+If you need to modify an array embedded within a document, you can use an
+array update operator in your update method call.
+
+In this guide, we explain how to use several of these operators including:
+
+- First array element match operator: ``$``
+- All array element match operator: ``$[]``
+- The filtered positional operator: ``$[<identifier>]``
+- Add an item to the array: ``$push``
+- Add a unique item to the array: ``$addToSet``
+
+See the MongoDB server guide on 
+:manual:`Update Operators </reference/operator/update-array/#update-operators>`
+for a complete list.
+
+
+Examples
+~~~~~~~~
+
+The following examples use a database called ``test`` and collection
+called ``pizza`` which contains documents that describe customers and
+their pizza orders as array elements in field called ``items``.
+
+Match the First Array Element
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To perform the update on only the first array element of each document
+that matches your query document in your update operation, use the ``$`` 
+operator.
+
+
+Match All Array Elements
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+TODO
+
+Filtered Positional Operator
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To modify arrays embedded within a document, use the filtered positional
+operator, ``$[<identifier>]``.
+
+You can append this operator to the array field name in your collection to 
+identify which elements in the array to modify. 
+Use this identifier
+
+Assign the update value to
+this to specify the new value as shown in .
+
+Pass it to an update
+operation to execute the changes.
+
+For more information on 
+use this operator in an :doc:`update document
+</fundamentals/crud/write-operations/change-a-document>` to identify which
+elements in the array to modify.
+
+modify
+
+
 :manual:`filtered positional operator
 </reference/operator/update/positional-filtered/index.html>`. You can
 use this operator in an :doc:`update document
@@ -13,15 +74,15 @@ specific elements in an array. The operator determines which elements
 to modify based on a query filter that you define in the
 ``arrayFilters`` option.
 
-You can think of ``arrayFilters`` as an subquery applied
+You can think of ``arrayFilters`` as a subquery applied
 only to documents already matched by the update operation's query filter
 (the first parameter for ``updateOne()`` and ``updateMany()``). This
 query finds all positions in the referenced array that match your
 criteria, and you can use the returned position values to modify only
 those positions.
 
-Example
-~~~~~~~
+Examples
+~~~~~~~~
 
 The following example demonstrates how you can use the filtered
 position operator with ``arrayFilters`` to modify only specific
