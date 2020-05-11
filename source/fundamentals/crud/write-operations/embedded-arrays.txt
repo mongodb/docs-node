@@ -8,9 +8,9 @@ If you need to modify an array embedded within a document, you can use an
 array update operator in your update method call. In this guide, we
 explain and show examples on usage of these operators including:
 
-- First array element match positional operator: ``$``
-- All array element match operator: ``$[]``
-- The filtered positional operator: ``$[<identifier>]``
+- :ref:`First array element match positional operator <first-match-operator>`: ``$``
+- :ref:`All array element match operator <all-match-operator>`: ``$[]``
+- :ref:`The filtered positional operator <filtered-positional-operator>: ``$[<identifier>]``
 
 See the MongoDB server guide on
 :manual:`Update Operators </reference/operator/update-array/#update-operators>`
@@ -81,6 +81,8 @@ the following sample document to follow the example queries:
     }]
 
 
+.. _first-match-operator:
+
 Match the First Array Element
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -135,6 +137,7 @@ in our update, we encounter the following error:
    Do not use the ``$`` operator in an ``upsert`` call because the ``$``
    is treated as a field name in the insert document.
 
+.. _all-match-operator:
 
 Match All Array Elements
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -227,8 +230,6 @@ following ``arrayFilters``:
    ]
 
 The following snippet shows the complete update method for this example:
-
-.. code-block:: javascript
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
