@@ -10,12 +10,11 @@ explain and show examples on usage of these operators including:
 
 - :ref:`First array element match positional operator <first-match-operator>`: ``$``
 - :ref:`All array element match operator <all-match-operator>`: ``$[]``
-- :ref:`The filtered positional operator <filtered-positional-operator>`: ``$[<identifier>]``
+- :ref:`Filtered positional operator <filtered-positional-operator>`: ``$[<identifier>]``
 
 See the MongoDB server guide on
 :manual:`Update Operators </reference/operator/update-array/#update-operators>`
 for a complete list.
-
 
 Examples
 ~~~~~~~~
@@ -274,34 +273,34 @@ After we run the update method, the document resembles the following:
 .. code-block:: javascript
 
    {
-      name: "Steve Lobsters",
-      address: "731 Yexington Avenue",
-      items: [
-        {
-          type: "pizza",
-          size: "large",
-          toppings: ["pepperoni", "salami"],
-        },
-        {
-          type: "pizza",
-          size: "medium",
-          toppings: ["mushrooms", "sausage", "green peppers"],
-          comment: "Extra green peppers please!",
-        },
-        {
-          type: "pizza",
-          size: "large",
-          toppings: ["pineapple, ham"],
-          comment: "red pepper flakes on top",
-        },
-        {
-          type: "calzone",
-          fillings: ["canadian bacon", "sausage", "onion"],
-        },
-        {
-          type: "beverage",
-          name: "Diet Pepsi",
-          size: "16oz",
-        },
-      ],
-    }
+     name: "Steve Lobsters",
+     address: "731 Yexington Avenue",
+     items: [
+       {
+         type: "pizza",
+         size: "large",
+         toppings: ["pepperoni", "salami"],
+       },
+       {
+         type: "pizza",
+         size: "medium",
+         toppings: ["mushrooms", "sausage", "green peppers"],
+         comment: "Extra green peppers please!",
+       },
+       {
+         type: "pizza",
+         size: "large",
+         toppings: ["pineapple, ham"],
+         comment: "red pepper flakes on top",
+       },
+       {
+         type: "calzone",
+         fillings: ["canadian bacon", "sausage", "onion"],
+       },
+       {
+         type: "beverage",
+         name: "Diet Pepsi",
+         size: "16oz",
+       },
+     ],
+   }
