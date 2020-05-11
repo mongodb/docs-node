@@ -10,7 +10,7 @@ explain and show examples on usage of these operators including:
 
 - :ref:`First array element match positional operator <first-match-operator>`: ``$``
 - :ref:`All array element match operator <all-match-operator>`: ``$[]``
-- :ref:`The filtered positional operator <filtered-positional-operator>: ``$[<identifier>]``
+- :ref:`The filtered positional operator <filtered-positional-operator>`: ``$[<identifier>]``
 
 See the MongoDB server guide on
 :manual:`Update Operators </reference/operator/update-array/#update-operators>`
@@ -184,7 +184,7 @@ Filtered Positional Operator
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the previous sections, we used the ``$`` operator to match the first
-array element andthe ``$[]`` operator to match all array elements. In this
+array element and the ``$[]`` operator to match all array elements. In this
 section, we use the filtered positional operator to match all embedded
 array elements that match our specified criteria.
 
