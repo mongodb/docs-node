@@ -41,16 +41,16 @@ documents use the following format:
 The top level of an update document contains one or more of the following
 update operators:
 
-- set the value of a field to a literal value: ``$set``
-- increment or decrement field values: ``$inc``
-- rename fields: ``$rename``
-- remove fields: ``$unset``
-- multiply a field value: ``$mul``
+- ``$set`` - replaces the value of a field with a specified one
+- ``$inc`` - increment or decrement field values
+- ``$rename`` - rename fields
+- ``$unset`` - remove fields
+- ``$mul`` - multiply a field value
 
 See the MongoDB server manual for a :manual:`complete list of update operators
 and their usage </reference/operator/update-field/>`.
 
-The update operators apply only to the fields associated with it in your
+The update operators apply only to the fields associated with them in your
 update document.
 
 Example
@@ -71,8 +71,8 @@ letters ``a`` through ``z`` and their ordinal values:
       z: 26,
    }
 
-If you apply the ``$set`` update operator with a new value for ``z``, your
-update operation might resemble the following:
+If you apply the ``$set`` update operator with a specified value for ``z``, 
+your update operation might resemble the following:
 
 .. code-block:: javascript
 
