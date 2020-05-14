@@ -175,8 +175,8 @@ contain sort order.
 
 .. literalinclude:: /code-snippets/indexes/text.js
    :language: js
-   :start-after: begin-idx
-   :end-before: end-idx
+   :start-after: begin-query
+   :end-before: end-query
 
 For a full explanation of text search with MongoDB, refer to
 :manual:`Text Indexes </core/index-text>` in the MongoDB manual.
