@@ -226,15 +226,13 @@ collection in the ``sample_mflix`` database to enable geospatial searches.
 
 .. literalinclude:: /code-snippets/indexes/geo.js
    :language: js
-   :start-after: begin-ex
-   :end-before: end-ex
+   :start-after: begin-idx
+   :end-before: end-idx
 
-MongoDB also supports ``2d indexes`` for calculating distances on a
+MongoDB also supports ``2d`` indexes for calculating distances on a
 Euclidean plane and for working with the "legacy coordinate pairs" syntax
-used in MongoDB 2.2 and earlier. Use the :manual:`2d index </core/index-2d>`
-if you need to calculate distances on a 2D plane.
-
-See the :manual:`Geospatial Queries page </geospatial-queries>` in the MongoDB
+used in MongoDB 2.2 and earlier. See the
+:manual:`Geospatial Queries page </geospatial-queries>` in the MongoDB
 server manual for more further information.
 
 Unique Indexes
