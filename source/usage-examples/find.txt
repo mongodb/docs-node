@@ -16,17 +16,13 @@ You can also define additional query options such as
 :doc:`sort </fundamentals/crud/read-operations/sort>`
 and
 :doc:`projection </fundamentals/crud/read-operations/project>`
-to configure the result set. You should specify these options using the
-cursor methods
-:node-api:`sort() <Cursor.html#sort>`
-and
-:node-api:`project() <Cursor.html#project>`.
-For detailed reference documentation, see
-:node-api:`collection.find() <Collection.html#find>`.
+to configure the result set. You can specify these in the options
+parameter in your ``find()`` method call in ``sort`` and ``projection``
+objects. See :node-api:`collection.find() <Collection.html#find>` for more
+information on the parameters you can pass to the method.
 
-``find()`` returns a
-:node-api:`Cursor <Cursor.html>`
-that provides the results of your query. Iterate through the
+The ``find()`` method returns a :node-api:`Cursor <Cursor.html>` that
+manages the results of your query. Iterate through the
 :doc:`cursor </fundamentals/crud/read-operations/cursor>` using cursor
 methods like ``next()``, ``toArray()``, or ``forEach()`` to
 fetch and work with the returned documents. If no documents match the
