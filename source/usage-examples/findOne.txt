@@ -49,8 +49,8 @@ collection. It uses the following parameters:
 .. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/findOne.js
-  :language: javascript
-  :dedent: 4
+   :language: javascript
+   :dedent: 4
 
 If you run the example above, you should see a result that resembles the
 following:
