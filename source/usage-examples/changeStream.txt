@@ -16,13 +16,11 @@ returns **change event** documents when they occur.
 
 The ``watch()`` method optionally takes an **aggregation pipeline**  which
 consists of an array of **stages** as the first parameter to filter and
-transform the change events output.
+transform the change events output as follows:. 
 
 .. code-block:: javascript
 
-   const pipeline = [
-     { $match: { runtime: { $lt: 15 } },
-   ];
+   const pipeline = [ { $match: { runtime: { $lt: 15 } }, ];
    const changeStream = await collection.watch(pipeline);
 
 The ``watch()`` method accepts an additional ``options`` object as the second
@@ -120,3 +118,18 @@ callback process the event before exiting.
 .. literalinclude:: /code-snippets/usage-examples/changeStream.js
   :language: javascript
 
+If you run the example above, you should see output similar to the
+following:
+
+.. code-block:: javascript
+
+   received a change to the collection: 	 {
+     _id: {
+       _data: '825EC...'
+     },
+     operationType: 'insert',
+     clusterTime: Timestamp { ... },
+     fullDocument: { _id: 5ec3..., test: 'sample movie document' },
+     ns: { db: 'sample_mflix', coll: 'movies' },
+     documentKey: { _id: 5ec3... },
+   }
