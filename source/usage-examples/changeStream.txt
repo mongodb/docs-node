@@ -14,19 +14,29 @@ You can open a change stream by calling ``watch()`` method on
 a ``Collection``, ``Db``, or ``MongoClient`` object. The change stream
 returns ``change event`` documents when they occur.
 
-The ``watch()`` method optionally takes an ``aggregation pipeline`` which
-consists of an array of ``stages`` as the first parameter to filter and
-transform the change events output. The ``watch()`` method accepts an
-additional ``options`` object as the second parameter.
+The ``watch()`` method optionally takes an **aggregation pipeline**  which
+consists of an array of **stages** as the first parameter to filter and
+transform the change events output.
+
+.. code-block:: javascript
+
+   const pipeline = [
+     { $match: { runtime: { $lt: 15 } },
+   ];
+   const changeStream = await collection.watch(pipeline);
+
+The ``watch()`` method accepts an additional ``options`` object as the second
+parameter. Refer to the links at the end of this section for more
+information on the settings you can configure in this object.
 
 The ``watch()`` method returns an instance of a ``ChangeStream``. You can
 call methods on the ChangeStream such as ``hasNext()`` to check for remaining
 documents in the stream, ``next()`` to request the next document in the
-stream, ``resumeToken()`` to request a token that you can use to resume
-listening to the change stream, and ``close()`` to close the ChangeStream.
-You can also attach listener functions by calling the ``on()`` method on the
-instance. See the link to the ``ChangeStream`` API documentation below for
-more details on the available methods.
+stream, ``pause()`` to stop emitting events, ``resume()`` to continue to
+emit events, and ``close()`` to close the ChangeStream. You can also attach
+listener functions by calling the ``on()`` method on the instance. See the
+link to the ``ChangeStream`` API documentation below for more details on the
+available methods.
 
 Visit the following resources for additional material on the classes and
 methods presented above:
