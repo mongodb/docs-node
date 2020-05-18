@@ -8,11 +8,11 @@ Open a Change Stream
 --------------------
 
 You can keep track of changes to data in MongoDB, such as changes to a
-collection, database, or deployment, by opening a ``change stream``. A change
+collection, database, or deployment, by opening a **change stream**. A change
 stream allows applications to watch for changes to data and react to them.
 You can open a change stream by calling ``watch()`` method on
 a ``Collection``, ``Db``, or ``MongoClient`` object. The change stream
-returns ``change event`` documents when they occur.
+returns **change event** documents when they occur.
 
 The ``watch()`` method optionally takes an **aggregation pipeline**  which
 consists of an array of **stages** as the first parameter to filter and
@@ -111,11 +111,9 @@ the document to provide ample time for the change event to be received and
 the for the callback to complete its execution before closing the
 ``ChangeStream`` instance using the ``close()`` method.
 
-.. note::
-
-   The timers are only necessary for this example to ensure sufficient
-   time to register the listener and have the callback process the event
-   before exiting.
+The timers used in this example are only necessary for this demonstration
+to make sure there is enough time to register listener and have the
+callback process the event before exiting.
 
 .. include:: /includes/connect-guide-note.rst
 
