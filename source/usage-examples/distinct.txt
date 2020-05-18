@@ -19,15 +19,21 @@ on a ``Collection`` object with a document field name parameter as a
 ``String`` to produce a list that contains one of each of the different
 values found in the specified document field.
 
-You can specify a document field within an *embedded document* using
-:manual:`dot
-notation </core/document/#embedded-documents>`. If
-you call ``distinct()`` on an document field that contains an array,
-the method treats each element as a separate value.
+.. code-block:: javascript
 
-You can provide an optional query document to apply the ``distinct()``
-method to the results that match the query. You can specify additional
-query parameters by passing an optional ``Object``. For details on the
+   const distinctValues = collection.distinct("countries", query);
+
+You can specify a document field within an *embedded document* using
+:manual:`dot notation </core/document/#embedded-documents>`. If you call
+``distinct()`` on an document field that contains an array, the method
+treats each element as a separate value.
+
+.. code-block:: javascript
+
+   const distinctValues = collection.distinct("awards.wins", query);
+
+You can specify additional query options using the ``options`` object passed
+as the third parameter to the ``distinct()`` method. For details on the
 query parameters, see the :node-api:`distinct() method in the API
 documentation <Collection.html#distinct>`.
 
