@@ -109,10 +109,11 @@ Reduce the ``poolSize`` in the connection settings to fix the problem.
 
 To specify the optional ``poolSize`` setting for your ``MongoClient``, declare
 it in the ``options`` object of the constructor as follows:
+
 .. code-block:: javascript
 
    const client = new MongoClient(uri, {
-     poolSize: <integer value>
+     poolSize: <integer value>,
    });
 
 
@@ -144,8 +145,8 @@ declare it in the ``options`` object of the constructor as follows:
    });
 
 
-The following example shows how you can the ``maxTimeMS()`` method to an
-operation that returns a ``Cursor``:
+The following example shows how you can chain the ``maxTimeMS()`` method
+to an operation that returns a ``Cursor``:
 
 .. literalinclude:: /code-snippets/faq/maxTimeMS-example.js
   :language: javascript
