@@ -18,9 +18,9 @@ You can also further specify the information you are requesting by
 including additional parameters or by chaining other methods such as:
 
 - :doc:`Sort Results </fundamentals/crud/read-operations/sort>`
-- :doc:`Specify Which Fields to Return </fundamentals/crud/read-operations/project>`
 - :doc:`Skip Returned Results </fundamentals/crud/read-operations/skip>`
 - :doc:`Limit the Number of Returned Results </fundamentals/crud/read-operations/limit>`
+- :doc:`Specify Which Fields to Return </fundamentals/crud/read-operations/project>`
 
 You can also use an :ref:`aggregation operation <aggregation>` to retrieve
 data. This type of operation allows you to apply an ordered pipeline of
