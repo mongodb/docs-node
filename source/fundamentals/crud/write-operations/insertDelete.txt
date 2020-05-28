@@ -79,5 +79,6 @@ match the query.
    const deleteManyResult = await collection.deleteMany({ views: { $gt: 32678 }});
 
 For fully runnable examples and additional information on the available
-options, see our usage examples for :doc:`delete() </usage-examples/deleteOne>`
-and :doc:`delete() </usage-examples/deleteMany>`.
+options, see our usage examples for
+:doc:`deleteOne() </usage-examples/deleteOne>` and 
+:doc:`deleteMany() </usage-examples/deleteMany>`.
