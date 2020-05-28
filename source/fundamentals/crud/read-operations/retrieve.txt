@@ -35,6 +35,7 @@ If you want to monitor the database for incoming data that matches a set of
 criteria, you can use the :ref:`watch operation <watch>` to be notified in
 real-time when matching data is inserted.
 
+.. _watch:
 
 Find
 ----
