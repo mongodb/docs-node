@@ -72,12 +72,10 @@ Delete
 ~~~~~~
 
 If you want to remove existing documents from a collection, you can
-use :doc:`deleteOne() </usage-examples/deleteOne>` or
-:doc:`deleteMany() </usage-examples/deleteMany>`. These methods accept a
-query document that describes the documents you would like to delete.
-Delete operations will delete either one (in the case of
-``deleteOne()``) or all (in the case of ``deleteMany()``) documents that
-match the query.
+use ``deleteOne()`` to remove one document or ``deleteMany()`` for one or
+more documents. These methods accept a query document that matches the
+documents you want to delete. See the following code snippet for the
+syntax of each method:
 
 .. code-block:: javascript
 
