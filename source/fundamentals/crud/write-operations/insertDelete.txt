@@ -4,6 +4,12 @@ Insert or Delete a Document
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
 Overview
 --------
 
@@ -80,5 +86,5 @@ match the query.
 
 For fully runnable examples and additional information on the available
 options, see our usage examples for
-:doc:`deleteOne() </usage-examples/deleteOne>` and 
+:doc:`deleteOne() </usage-examples/deleteOne>` and
 :doc:`deleteMany() </usage-examples/deleteMany>`.
