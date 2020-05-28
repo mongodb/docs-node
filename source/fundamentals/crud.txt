@@ -12,9 +12,6 @@ CRUD Operations
    /fundamentals/crud/query-document
    /fundamentals/crud/compound-operations
 
-Overview
---------
-
 CRUD (Create, Read, Update, Delete) operations allow you to work with
 the data stored in MongoDB.
 

@@ -4,6 +4,11 @@ Retrieve Data
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
 
 Overview
 --------
@@ -93,7 +98,7 @@ for more information on how to construct an aggregation pipeline.
 .. _watch:
 
 Watch / Subscribe
-~~~~~~~~~~~~~~~~~
+-----------------
 
 You can use the ``watch()`` method to monitor a collection for changes to
 a collection that match certain criteria. These changes include inserted,
