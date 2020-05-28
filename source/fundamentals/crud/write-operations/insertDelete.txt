@@ -69,7 +69,7 @@ For a runnable example, see the :doc:`insertMany() </usage-examples/insertMany>`
 usage example.
 
 Delete
-~~~~~~
+------
 
 If you want to remove existing documents from a collection, you can
 use ``deleteOne()`` to remove one document or ``deleteMany()`` for one or
