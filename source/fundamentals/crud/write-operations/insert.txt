@@ -1,20 +1,14 @@
-===========================
-Insert or Delete a Document
-===========================
+=================
+Insert a Document
+=================
 
 .. default-domain:: mongodb
-
-.. contents:: On this page
-   :local:
-   :backlinks: none
-   :depth: 2
-   :class: singlecol
 
 Overview
 --------
 
-In this section, we show you how to call the write operations to
-**insert** or **remove** documents from a collection in your MongoDB database.
+In this section, we show you how to call the write operations to **insert**
+documents from a collection in your MongoDB database.
 
 Insert
 ------
@@ -67,22 +61,3 @@ to the ``insertMany()`` method as shown below:
 
 For a runnable example, see the :doc:`insertMany() </usage-examples/insertMany>`
 usage example.
-
-Delete
-------
-
-If you want to remove existing documents from a collection, you can
-use ``deleteOne()`` to remove one document or ``deleteMany()`` for one or
-more documents. These methods accept a query document that matches the
-documents you want to delete. See the following code snippet for the
-syntax of each method:
-
-.. code-block:: javascript
-
-   const deleteResult = await collection.deleteOne({ views: 0 });
-   const deleteManyResult = await collection.deleteMany({ views: { $gt: 32678 }});
-
-For fully runnable examples and additional information on the available
-options, see our usage examples for
-:doc:`deleteOne() </usage-examples/deleteOne>` and
-:doc:`deleteMany() </usage-examples/deleteMany>`.
