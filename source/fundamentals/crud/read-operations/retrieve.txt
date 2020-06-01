@@ -66,6 +66,24 @@ matching document or ``null`` if there are no matches.
       :end-before: end find crud example
       :dedent: 4
 
+   Once the operation returns, the ``findResult`` variable references a 
+   ``Cursor``. You can print the documents retrieved using the ``forEach()``
+   method as shown below:
+
+   .. code-block:: javascript
+      
+      await cursor.forEach(console.dir);
+   
+   The output might resemble the following:
+
+   .. code-block:: none
+
+      [
+        { name: "Lemony Snicket", type: "horseradish pizza", qty: 1, status: "delivered", date: ... },
+        { name: "Lemony Snicket", type: "coal-fired oven pizza", qty: 3, status: "canceled", date: ...},
+        ...
+      ]
+
 See the :doc:`find() </usage-examples/find>` and :doc:`findOne()
 </usage-examples/findOne>` for fully-runnable examples.
 
@@ -81,7 +99,8 @@ group, and arrange the result data from a collection.
 
    A pizza restaurant wants to run a status report on-demand to
    summarize pizza orders over the past week. They run the following
-   ``aggregate()`` query on the ``orders`` collection:
+   ``aggregate()`` query on the ``orders`` collection to fetch the
+   totals for each distinct "status" field:
 
    .. literalinclude:: /code-snippets/crud/pizza.js
       :language: javascript
@@ -89,7 +108,25 @@ group, and arrange the result data from a collection.
       :end-before: end aggregate crud example
       :dedent: 4
 
-See the MongoDB server manual pages on :manual:`aggregation <aggregation>`
+   Once the operation returns, the ``aggregateResult`` variable references a 
+   ``Cursor``. You can print the documents retrieved using the ``forEach()``
+   method as shown below:
+
+   .. code-block:: javascript
+      
+      await cursor.forEach(console.dir);
+   
+   The output might resemble the following:
+
+   .. code-block:: none
+
+      [
+        { _id: 'delivering', count: 5 },
+        { _id: 'delivered', count: 37 },
+        { _id: 'created', count: 9 },
+      ]
+
+See the MongoDB server manual pages on :manual:`aggregation </aggregation>`
 for more information on how to construct an aggregation pipeline.
 
 Watch / Subscribe

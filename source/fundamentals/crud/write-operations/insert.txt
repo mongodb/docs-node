@@ -35,7 +35,14 @@ specify the document as the first parameter of your call to the
 
 .. code-block:: javascript
 
-   pizzaCollection.insertOne(pizzaDocument);
+   const result = await pizzaCollection.insertOne(pizzaDocument);
+
+You can print the number of documents inserted by accessing the
+``insertedCount`` field of the operation result as follows:
+
+.. code-block:: javascript
+
+   console.dir(result.insertedCount); // should print 1 on successful insert
 
 For a runnable example, see the :doc:`insertOne() </usage-examples/insertOne>`
 usage example.
@@ -57,7 +64,14 @@ to the ``insertMany()`` method as shown below:
 
 .. code-block:: javascript
 
-   pizzaCollection.insertMany(pizzaDocuments);
+   const result = pizzaCollection.insertMany(pizzaDocuments);
+
+You can print the number of documents inserted by accessing the
+``insertedCount`` field of the operation result as follows:
+
+.. code-block:: javascript
+
+   console.dir(result.insertedCount); // should print 3 on successful insert
 
 For a runnable example, see the :doc:`insertMany() </usage-examples/insertMany>`
 usage example.
