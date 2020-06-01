@@ -66,6 +66,7 @@ matching document or ``null`` if there are no matches.
       :end-before: end find crud example
       :dedent: 4
 
+
    Once the operation returns, the ``findResult`` variable references a 
    ``Cursor``. You can print the documents retrieved using the ``forEach()``
    method as shown below:
@@ -73,7 +74,8 @@ matching document or ``null`` if there are no matches.
    .. code-block:: javascript
       
       await cursor.forEach(console.dir);
-   
+
+
    The output might resemble the following:
 
    .. code-block:: none
@@ -108,6 +110,7 @@ group, and arrange the result data from a collection.
       :end-before: end aggregate crud example
       :dedent: 4
 
+
    Once the operation returns, the ``aggregateResult`` variable references a 
    ``Cursor``. You can print the documents retrieved using the ``forEach()``
    method as shown below:
@@ -115,7 +118,8 @@ group, and arrange the result data from a collection.
    .. code-block:: javascript
       
       await cursor.forEach(console.dir);
-   
+
+
    The output might resemble the following:
 
    .. code-block:: none
