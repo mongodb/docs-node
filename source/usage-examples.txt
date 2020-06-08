@@ -34,11 +34,12 @@ operations. Each example provides:
 How to Use the Usage Examples
 -----------------------------
 
-These examples use the :atlas:`MongoDB Atlas sample data <sample-data>`
+These examples use the 
+:atlas:`MongoDB Atlas sample data <sample-data?tck=driver_docs_search>`
 database. You can use this sample data on the free tier
 of MongoDB Atlas by following the :atlas:`Get Started with Atlas
-<getting-started/#atlas-getting-started>` guide or you can
-:guides:`import the sample dataset into a local MongoDB instance
+<getting-started/#atlas-getting-started?tck=driver_docs_search>` guide or you
+can :guides:`import the sample dataset into a local MongoDB instance
 </server/import>`.
 
 Once you have imported the dataset, you can copy and paste a usage
