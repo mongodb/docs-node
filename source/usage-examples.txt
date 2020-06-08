@@ -34,7 +34,7 @@ operations. Each example provides:
 How to Use the Usage Examples
 -----------------------------
 
-These examples use the 
+These examples use the
 :atlas:`MongoDB Atlas sample data <sample-data?tck=driver_docs_search>`
 database. You can use this sample data on the free tier
 of MongoDB Atlas by following the :atlas:`Get Started with Atlas
@@ -62,6 +62,6 @@ Atlas and find the :manual:`connection string
 usage example. If your instance uses :manual:`SCRAM authentication
 </core/security-scram/>`, you can replace ``<user>`` with your username,
 ``<password>`` with your password, and ``<cluster-url>`` with the IP
-address or URL of your instance. Consult the 
-:doc:`Connection Guide </fundamentals/connection>` for more information 
+address or URL of your instance. Consult the
+:doc:`Connection Guide </fundamentals/connection>` for more information
 about getting connected to your MongoDB instance.
