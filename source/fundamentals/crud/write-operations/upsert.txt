@@ -36,6 +36,7 @@ location and want to apply the update. This update might resemble the
 following:
 
 .. code-block:: javascript
+   :emphasize-ines: 2
 
    const query = { name: "Deli Llama" };
    const update = { $set: { name: "Deli Llama", address: "3 Nassau St" }};
