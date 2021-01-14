@@ -9,7 +9,7 @@ Overview
 
 Most CRUD operations allow you to narrow the set of matched documents by
 specifying matching criteria in a **query document**. Query documents contain
-one or more expressions that apply to specific fields which  determine which
+one or more query operators that apply to specific fields which  determine which
 documents to include in the result set.
 
 In a query document, you can match fields against literal values
@@ -206,4 +206,3 @@ This code snippet returns the following results:
 
 For more information on this operator, see the reference manual entry for
 the :manual:`$mod operator </reference/operator/query/mod/>`.
-
