@@ -26,10 +26,12 @@ parameters of the
 - Specify a ``SERVICE_REALM`` value in the ``authMechanismProperties``
   parameter if a custom service realm is required.
 
-.. note::
-
-   The ``gssapiServiceName`` parameter, although still supported by the MongoDB Node driver,
-   is a *deprecated* alias for ``authMechanismProperties=SERVICE_NAME:<your service name>``.
+.. important::
+   
+   The ``gssapiServiceName`` parameter is deprecated and may be removed
+   in future versions of the driver. Use
+   ``authMechanismProperties=SERVICE_NAME:<your service name>`` in the
+   connection URI instead.
    See the
    :manual:`authMechanismProperties </reference/connection-string/#urioption.authMechanismProperties>`
    parameter documentation for more information.
