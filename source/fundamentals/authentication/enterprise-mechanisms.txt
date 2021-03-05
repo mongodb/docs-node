@@ -20,8 +20,9 @@ You can specify this authentication mechanism by setting the following
 parameters of the
 :manual:`connection string </reference/connection-string/>`:
 
-- Set the ``authMechanism`` parameter to ``GSSAPI``
-- Set the ``gssapiServiceName`` if using a value other than ``mongodb``
+- Set the ``authMechanism`` parameter to ``GSSAPI``.
+- Set the ``gssapiServiceName`` value in the ``authMechanismProperties``
+  parameter if using a service name other than ``mongodb``.
 - Specify a ``SERVICE_REALM`` value in the ``authMechanismProperties``
   parameter if a custom service realm is required.
 
