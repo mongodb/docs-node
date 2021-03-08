@@ -5,7 +5,10 @@ const uri =
   "mongodb+srv://sample-hostname:27017/?poolSize=20&writeConcern=majority";
 
 // Create a new MongoClient
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, {
+  useNewUrlParser: true
+  useUnifiedTopology: true,
+});
 
 async function run() {
   try {

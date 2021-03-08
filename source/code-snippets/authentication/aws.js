@@ -12,7 +12,10 @@ const uri =
   `mongodb+srv://${accessKeyId}:${secretAccessKey}@${clusterUrl}/?authMechanism=${authMechanism}`;
 
 // Create a new MongoClient
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, {
+  useNewUrlParser: true
+  useUnifiedTopology: true,
+});
 
 // Function to connect to the server
 async function run() {
