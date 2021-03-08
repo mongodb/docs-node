@@ -47,7 +47,10 @@ The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
    // Connection URI
    const uri = `mongodb+srv://${principal}@${clusterUrl}/?authMechanism=${authMechanism}&authMechanismProperties=${authMechanismProperties}`;
 
-   const client = new MongoClient(uri);
+   const client = new MongoClient(uri, {
+     useNewUrlParser: true,
+     useUnifiedTopology: true,
+   });
 
    // Function to connect to the server
    async function run() {
@@ -95,7 +98,10 @@ in the following sample code.
    // Connection URI
    const uri = `mongodb+srv://${ldapUsername}:${ldapPassword}@${clusterUrl}/?authMechanism=${authMechanism}`;
 
-   const client = new MongoClient(uri);
+   const client = new MongoClient(uri, {
+     useNewUrlParser: true,
+     useUnifiedTopology: true,
+   });
 
    // Function to connect to the server
    async function run() {
