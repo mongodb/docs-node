@@ -5,7 +5,10 @@ const { MongoClient } = require("mongodb");
 const uri =
   "mongodb+srv://<clusterUrl>/?replicaSet=rs&writeConcern=majority";
 
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, {
+  useNewUrlParser: true
+  useUnifiedTopology: true,
+});
 
 // Replace <event name> with the name of the event you are subscribing to.
 const eventName = "<event name>";

@@ -5,7 +5,10 @@ const { MongoClient, Logger } = require("mongodb");
 const uri =
   "mongodb+srv://<clusterUrl>/?replicaSet=rs&writeConcern=majority";
 
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, {
+  useNewUrlParser: true
+  useUnifiedTopology: true,
+});
 
 async function main(client) {
   // Set debug level
