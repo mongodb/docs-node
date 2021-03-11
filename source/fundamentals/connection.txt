@@ -235,7 +235,7 @@ URI to specify the behavior of the client.
      - Specifies whether to establish a Transport Layer Security (TLS)
        connection with the instance. This is automatically set to ``true``
        when using a DNS seedlist (SRV) in the connection string. You can
-       override this behavor by setting the value to ``false``.
+       override this behavior by setting the value to ``false``.
 
    * - **useUnifiedTopology** 
      - boolean 
