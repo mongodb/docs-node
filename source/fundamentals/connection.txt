@@ -242,8 +242,7 @@ URI to specify the behavior of the client.
      - ``true``
      - Specifies whether to use the **unified topology** layer. To
        learn what the unified topology layer is and why it was introduced,
-       see `this document <https://github.com/mongodb/node-mongodb-native/blob/3.6/docs/reference/content/reference/unified-topology/index.md>`__
-       produced by the MongoDB Node driver engineering team. 
+       see `this document <https://github.com/mongodb/node-mongodb-native/blob/3.6/docs/reference/content/reference/unified-topology/index.md>`__. 
 
    * - **validateOptions**
      - boolean
