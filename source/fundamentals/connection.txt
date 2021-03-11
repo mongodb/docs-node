@@ -146,16 +146,16 @@ URI to specify the behavior of the client.
    * - **maxPoolSize**
      - integer
      - ``10``
-     - **This option requires that you set the useUnifiedTopology option to true**.
-       Specifies the maximum number of connections that a connection pool may
-       have at a given time.
+     - You must set the ``useUnifiedTopology`` option to **true** to use this
+       option. Specifies the maximum number of connections that a connection
+       pool may have at a given time.
 
    * - **maxIdleTimeMS**
      - integer
      - ``∞``
-     - **This option requires that you set the useUnifiedTopology option to true**.
-       Specifies the maximum amount of time a connection can remain idle in the
-       connection pool before being removed and closed.
+     - You must set the ``useUnifiedTopology`` option to **true** to use this
+       option. Specifies the maximum amount of time a connection can remain idle
+       in the connection pool before being removed and closed.
 
    * - **minSize**
      - integer
@@ -165,9 +165,9 @@ URI to specify the behavior of the client.
    * - **minPoolSize**
      - integer
      - ``0``
-     - **This option requires that you set the useUnifiedTopology option to true**.
-       Specifies the minimum number of connections that must exist at any moment
-       in a single connection pool. 
+     - You must set the ``useUnifiedTopology`` option to **true** to use this
+       option. Specifies the minimum number of connections that must exist at
+       any moment in a single connection pool. 
 
    * - **noDelay**
      - boolean
@@ -254,9 +254,9 @@ URI to specify the behavior of the client.
    * - **waitQueueTimeoutMS**
      - integer
      - ``0``
-     - **This option requires that you set the useUnifiedTopology option to true**. 
-       Specifies the maximum amount of time in milliseconds that operation
-       execution can wait for a connection to become available.
+     - You must set the ``useUnifiedTopology`` option to **true** to use this
+       option. Specifies the maximum amount of time in milliseconds that
+       operation execution can wait for a connection to become available.
 
    * - **writeConcern**
      - string or integer
