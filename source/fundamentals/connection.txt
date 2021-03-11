@@ -146,15 +146,13 @@ URI to specify the behavior of the client.
    * - **maxPoolSize**
      - integer
      - ``10``
-     - **This option requires that the useUnifiedTopology option is set to true**. 
-       Specifies the maximum number of connections that a connection pool may
+     - Specifies the maximum number of connections that a connection pool may
        have at a given time.
 
    * - **maxIdleTimeMS**
      - integer
      - ``∞``
-     - **This option requires that the useUnifiedTopology option is set to true**.
-       Specifies the maximum amount of time a connection can remain idle in the
+     - Specifies the maximum amount of time a connection can remain idle in the
        connection pool before being removed and closed.
 
    * - **minSize**
@@ -165,8 +163,7 @@ URI to specify the behavior of the client.
    * - **minPoolSize**
      - integer
      - ``0``
-     - **This option requires that the useUnifiedTopology option is set to true**. 
-       Specifies the minimum number of connections that must exist at any moment
+     - Specifies the minimum number of connections that must exist at any moment
        in a single connection pool. 
 
    * - **noDelay**
@@ -237,14 +234,6 @@ URI to specify the behavior of the client.
        when using a DNS seedlist (SRV) in the connection string. You can
        override this behavor by setting the value to ``false``.
 
-   * - **useUnifiedTopology** 
-     - boolean 
-     - ``true``
-     - Specifies whether to use the **unified topology** layer. To
-       learn what the unified topology layer is and why it was introduced,
-       see `this document <https://github.com/mongodb/node-mongodb-native/blob/3.6/docs/reference/content/reference/unified-topology/index.md>`__
-       produced by the MongoDB Node driver engineering team. 
-
    * - **validateOptions**
      - boolean
      - ``false``
@@ -255,8 +244,7 @@ URI to specify the behavior of the client.
    * - **waitQueueTimeoutMS**
      - integer
      - ``0``
-     - **This option requires that the useUnifiedTopology option is set to true**. 
-       Specifies the maximum amount of time in milliseconds that operation
+     - Specifies the maximum amount of time in milliseconds that operation
        execution can wait for a connection to become available.
 
    * - **writeConcern**
