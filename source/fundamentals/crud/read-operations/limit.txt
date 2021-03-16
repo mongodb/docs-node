@@ -79,7 +79,7 @@ method, see the
 :node-api:`API documentation on find() <Collection.html#find>`.
 
 To see the next three books in the results, append the ``skip()`` method,
-passing the number of documents to skim over as shown below:
+passing the number of documents to bypass as shown below:
 
 .. code-block:: javascript
    :emphasize-lines: 6,7
