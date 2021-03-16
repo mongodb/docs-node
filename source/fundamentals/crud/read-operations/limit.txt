@@ -78,17 +78,17 @@ For more information on the ``options`` settings for the ``find()``
 method, see the
 :node-api:`API documentation on find() <Collection.html#find>`.
 
-To see the next three longest books, append the ``skip()`` method, passing
+To see the next three shortest books, append the ``skip()`` method, passing
 the number of documents to skim over to the previous code snippet's call to
 ``find()``:
 
 .. code-block:: javascript
-   :emphasize-lines: 4
+   :emphasize-lines: 6
 
    // define an empty query document
    const query = {};
-   // sort in ascending (1) order by length
-   const sort = { length: 1 };
+   // sort in descending (-1) order by length
+   const sort = { length: -1 };
    const limit = 3;
    const skip = 3;
    const cursor = collection.find(query).sort(sort).limit(limit).skip(skip);
