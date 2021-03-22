@@ -6,7 +6,7 @@ const uri =
 
 // Create a new MongoClient
 const client = new MongoClient(uri, {
-  useNewUrlParser: true
+  userNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
