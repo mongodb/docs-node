@@ -152,7 +152,7 @@ that has **atlasAdmin** permissions.
     "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&writeConcern=majority";
 
   const client = new MongoClient(uri, {
-    useNewUrlParser: true
+    userNewUrlParser: true,
     useUnifiedTopology: true,
   });
 

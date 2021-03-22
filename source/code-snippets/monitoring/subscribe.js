@@ -6,7 +6,7 @@ const uri =
   "mongodb+srv://<clusterUrl>/?replicaSet=rs&writeConcern=majority";
 
 const client = new MongoClient(uri, {
-  useNewUrlParser: true
+  userNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
