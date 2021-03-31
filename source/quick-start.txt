@@ -102,7 +102,7 @@ to set up a new Atlas account and a free tier cluster (MongoDB instance).
 Then, complete the :atlas:`Load Sample Data into Your Atlas Cluster </sample-data/?tck=docs_driver_nodejs>`
 guide to insert sample data into your cluster.
 
-After completing the steps these Atlas guides, you should have a new MongoDB
+After completing the steps in these Atlas guides, you should have a new MongoDB
 cluster deployed in Atlas, a new database user, and sample datasets loaded
 into your cluster.
 
