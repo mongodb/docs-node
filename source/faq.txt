@@ -17,7 +17,7 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
 -------------------------------------------------------------------------------------
 
 .. list-table::
-   :widths: 25 75
+   :widths: 22 78
    :header-rows: 1
 
    * - Setting

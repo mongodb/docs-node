@@ -40,7 +40,7 @@ Event Descriptions
 You can subscribe to any of the following SDAM events:
 
 .. list-table::
-   :widths: 30 70 
+   :widths: 33 67 
    :header-rows: 1
 
    * - Event Name
@@ -136,6 +136,7 @@ The ``type`` field of the ``ServerDescription`` object in this event contains
 one of the following possible values:
 
 .. list-table::
+   :widths: 30 70
    :header-rows: 1
 
    * - Type
