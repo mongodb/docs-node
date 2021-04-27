@@ -18,5 +18,8 @@
 * :doc:`Logging </fundamentals/logging>`: configure the driver to log
   MongoDB operations
 
-* :doc:`Monitoring </fundamentals/monitoring>`: configure the driver to
-  monitor MongoDB server events
+* :doc:`Cluster Monitoring </fundamentals/cluster-monitoring>`: configure the driver to
+  monitor MongoDB server discovery and monitoring events
+
+* :doc:`Command Monitoring </fundamentals/command-monitoring>`: configure the driver to
+  monitor all executed commands
