@@ -102,6 +102,8 @@ The following examples use the ``theaters`` collection of the
 ``sample_mflix`` sample database available in MongoDB Atlas, with a
 ``2dsphere`` index on the ``location.geo`` field.
 
+.. include:: /includes/sample-data-note-plural.rst
+
 Query by Proximity
 ~~~~~~~~~~~~~~~~~~
 
