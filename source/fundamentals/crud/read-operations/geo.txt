@@ -85,7 +85,7 @@ the field on the collection. The following snippet creats an index on the
    db.shipwrecks({coordinates: "2d"})
 
 See the 
-:manual:`MongoDB server manual page on legacy coordinate pairs </geospatial-queries/#geospatial-query-operators>`
+:manual:`MongoDB server manual page on legacy coordinate pairs </geospatial-queries/#legacy-coordinate-pairs>`
 for more information.
 
 .. note::
@@ -93,7 +93,7 @@ for more information.
    Spherical (``2dsphere``) and flat (``2d``) indexes support some, but
    not all, of the same query operators. For a full list of operators
    and their index compatibility, consult the
-   :manual:`manual entry for geospatial queries </geospatial-queries/index.html#geospatial-models>`.
+   :manual:`manual entry for geospatial queries </geospatial-queries/#geospatial-query-operators>`.
 
 Examples
 --------
@@ -105,7 +105,7 @@ The following examples use the ``theaters`` collection of the
 Query by Proximity
 ~~~~~~~~~~~~~~~~~~
 
-The :manual:`$near </operator/query/near/#mongodb-query-op.-near>`
+The :manual:`$near </reference/operator/query/near/#mongodb-query-op.-near>`
 operator accepts a set of longitude-latitude coordinates and returns
 documents ordered from nearest to farthest. To limit the results to a
 maximum distance in meters, use the ``$maxDistance`` option. For a
