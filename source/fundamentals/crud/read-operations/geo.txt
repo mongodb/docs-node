@@ -50,11 +50,11 @@ about the GeoJSON shapes you can use in MongoDB, consult the
 
 To enable querying GeoJSON data, you must add the field to a ``2dsphere`` 
 index. The following snippet creates an index on the ``location.geo`` field in
-the ``movies`` collection using the ``createIndex()`` method:
+the ``theaters`` collection using the ``createIndex()`` method:
 
 .. code-block:: javascript
 
-   db.movies.createIndex({location.geo: "2dsphere"})
+   db.theaters.createIndex({location.geo: "2dsphere"})
 
 .. _plane:
 
