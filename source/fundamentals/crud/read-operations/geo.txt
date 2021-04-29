@@ -8,7 +8,7 @@ Overview
 --------
 
 You can query data based on geographical location using geospatial query
-operators. Geospatial queries can be formatted using one of the following
+operators. You can format geospatial queries using one of the following
 coordinate systems:
 
 - :ref:`Coordinates on an Earth-like Sphere <sphere>`
@@ -76,7 +76,7 @@ The field should contain an array of two values in which the first represents
 the ``x`` axis value and the second represents the ``y`` axis value. 
 
 To enable querying using legacy coordinate pairs, create a ``2d`` index on
-the field on the collection. The following snippet creats an index on the
+the field on the collection. The following snippet creates an index on the
 ``coordinates`` field in the ``shipwrecks`` collection using the
 ``createIndex()`` method:
 
