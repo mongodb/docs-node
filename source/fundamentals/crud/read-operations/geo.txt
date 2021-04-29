@@ -24,7 +24,7 @@ Coordinates on an Earth-like Sphere
 
 For geospatial queries using longitude and latitude coordinates
 on an Earth-like sphere, use the :manual:`GeoJSON
-</geospatial-queries/index.html#geospatial-geojson>`
+</geospatial-queries/#geojson-objects>`
 query format. While GeoJSON has :manual:`multiple types
 </reference/geojson/>`, all GeoJSON data
 types use some form of the following structure:
@@ -85,7 +85,7 @@ the field on the collection. The following snippet creats an index on the
    db.shipwrecks({coordinates: "2d"})
 
 See the 
-:manual:`MongoDB server manual page on legacy coordinate pairs </geospatial-queries/index.html#legacy-coordinate-pairs>`
+:manual:`MongoDB server manual page on legacy coordinate pairs </geospatial-queries/#geospatial-query-operators>`
 for more information.
 
 .. note::
@@ -105,7 +105,7 @@ The following examples use the ``theaters`` collection of the
 Query by Proximity
 ~~~~~~~~~~~~~~~~~~
 
-The :manual:`$near </reference/operator/query/near/#op._S_near>`
+The :manual:`$near </operator/query/near/#mongodb-query-op.-near>`
 operator accepts a set of longitude-latitude coordinates and returns
 documents ordered from nearest to farthest. To limit the results to a
 maximum distance in meters, use the ``$maxDistance`` option. For a
