@@ -107,7 +107,7 @@ Examples
 The following examples use the MongoDB Atlas sample dataset. If you want to run
 the examples with the sample dataset, you can learn how to set up a free-tier Atlas
 cluster with the sample dataset by following our 
-:doc:`quickstart guide </quick-start>`.
+:doc:`quick start guide </quick-start>`.
 
 The examples use the ``theaters`` collection of the ``sample_mflix`` database
 from the sample dataset. The ``theaters`` collection has a ``2dsphere`` index
