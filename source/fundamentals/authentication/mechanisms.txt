@@ -49,6 +49,8 @@ For more information on the challenge-response (CR) and salted
 challenge-response authentication mechanisms (SCRAM) that MongoDB supports,
 see the :manual:`SCRAM </core/security-scram/>` section of the manual.
 
+.. _mechanism-scram:
+
 ``SCRAM-SHA-256``
 -----------------
 
@@ -122,6 +124,7 @@ in the following sample code.
    SCRAM </release-notes/3.0-scram/>`, any ``MONGODB-CR`` user
    authentication requests fail.
 
+.. _mongosb-aws: 
 
 ``MONGODB-AWS``
 ---------------
