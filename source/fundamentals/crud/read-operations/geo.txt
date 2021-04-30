@@ -109,7 +109,7 @@ the examples with the sample dataset, you can learn how to set up a free-tier At
 cluster with the sample dataset by following our 
 :doc:`quick start guide </quick-start>`.
 
-The examples use the ``theaters`` collection of the ``sample_mflix`` database
+The examples use the ``theaters`` collection in the ``sample_mflix`` database
 from the sample dataset. The ``theaters`` collection has a ``2dsphere`` index
 on the ``location.geo`` field.
 
