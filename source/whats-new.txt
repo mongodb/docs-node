@@ -38,4 +38,4 @@ New features of the 3.6 Node.js driver release include:
 - Authentication requires fewer round trips to the server, resulting in faster connection setup
 - Shorter Salted Challenge Response Authentication Mechanism (SCRAM) conversations
 - Ability to create collections and indexes for multiple document transactions
-- Validation for a collection to run in the background 
+- Running validation for a collection in the background 
