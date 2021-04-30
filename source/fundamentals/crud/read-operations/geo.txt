@@ -110,7 +110,7 @@ cluster with the sample dataset by following our
 :doc:`quick start guide </quick-start>`.
 
 The examples use the ``theaters`` collection in the ``sample_mflix`` database
-from the sample dataset. The ``theaters`` collection has a ``2dsphere`` index
+from the sample dataset. The ``theaters`` collection contains a ``2dsphere`` index
 on the ``location.geo`` field.
 
 Query by Proximity
