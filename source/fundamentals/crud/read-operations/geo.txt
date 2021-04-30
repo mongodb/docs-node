@@ -104,9 +104,7 @@ for more information.
 Examples
 --------
 
-The following examples use the MongoDB Atlas sample dataset. If you want to run
-the examples with the sample dataset, you can learn how to set up a free-tier Atlas
-cluster with the sample dataset by following our 
+The following examples use the MongoDB Atlas sample dataset. You can learn how to set up your own free-tier Atlas cluster and how to load the sample dataset in our
 :doc:`quick start guide </quick-start>`.
 
 The examples use the ``theaters`` collection in the ``sample_mflix`` database
