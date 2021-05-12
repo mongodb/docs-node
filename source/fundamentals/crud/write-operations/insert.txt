@@ -13,10 +13,13 @@ documents from a collection in your MongoDB database.
 Insert
 ------
 
-If you want to add new documents to a collection, you can use
+To add new documents to a collection, you can use
 the ``insertOne()`` or the ``insertMany()`` methods. These methods accept
 single or multiple documents, respectively. The driver automatically
 generates a unique ``_id`` field for documents unless specified.
+
+The following examples use a collection called ``pizzaCollection``,
+which contains documents with the name and shape of a pizza.
 
 Insert a Document Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -27,13 +30,11 @@ You can specify a document in a JSON object as follows:
 
    const pizzaDocument = {
      name: "Neapolitan pizza",
-     shape: "round",
-     toppings: [ "San Marzano tomatoes", "mozzarella di bufala cheese" ],
+     shape: "round"
    };
 
-To insert this document into a collection called ``pizzaCollection``,
-pass ``pizzaDocument`` as the first parameter to the ``insertOne()``
-method as shown below: 
+To insert this document into ``pizzaCollection``, pass ``pizzaDocument``
+as the first parameter to the ``insertOne()`` method as shown below: 
 
 .. code-block:: javascript
 
@@ -59,12 +60,12 @@ You can specify multiple documents in an array of JSON objects as follows:
    const pizzaDocuments = [
      { name: "Sicilian pizza", shape: "square" },
      { name: "New York pizza", shape: "round" },
-     { name: "Grandma pizza", shape: "square" },
+     { name: "Grandma pizza", shape: "square" }
    ];
 
-To insert these documents into a collection called ``pizzaCollection``,
-pass ``pizzaDocuments`` as the first parameter to the ``insertMany()``
-method as shown below:
+To insert these documents into ``pizzaCollection``, pass
+``pizzaDocuments`` as the first parameter to the ``insertMany()`` method
+as shown below: 
 
 .. code-block:: javascript
 
