@@ -155,6 +155,7 @@ that has **atlasAdmin** permissions.
 
       const MongoClient = require("mongodb").MongoClient;
 
+
 .. code-block:: js
 
   const { MongoClient } = require("mongodb");
