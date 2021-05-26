@@ -4,13 +4,16 @@ Find Multiple Documents
 
 .. default-domain:: mongodb
 
-You can query for multiple documents in a collection with
-``collection.find()``. The ``find()`` method uses a query document that you
-provide to match the subset of the documents in the collection that match the
-query. If you don't provide a query document (or if you provide an empty
-document), MongoDB returns all documents in the collection. For more
-information on querying MongoDB, see our
-:doc:`documentation on query documents </fundamentals/crud/query-document>`.
+You can query for multiple documents in a collection by passing a
+query document to the ``collection.find()`` method. A query document
+contains one or more query operators that apply to specific fields which
+determine the documents to include in the result set. For more
+information, see our :doc:`documentation on query documents </fundamentals/crud/query-document>`.
+
+.. note::
+
+  If you don't provide a query document (or if you provide an empty
+  document), MongoDB returns all documents in the collection. 
 
 You can also define additional query options such as
 :doc:`sort </fundamentals/crud/read-operations/sort>`
@@ -58,11 +61,11 @@ following:
 
 .. code-block:: javascript
 
-   { title: '10 Minutes', imdb: { rating: 7.9, votes: 743, id: 339976 } }
-   { title: '3x3', imdb: { rating: 6.9, votes: 206, id: 1654725 } }
-   { title: '7:35 in the Morning', imdb: { rating: 7.3, votes: 1555, id: 406501 } }
-   { title: '8', imdb: { rating: 7.8, votes: 883, id: 1592502 } }
-   ...
+  { title: '10 Minutes', imdb: { rating: 7.9, votes: 743, id: 339976 } }
+  { title: '3x3', imdb: { rating: 6.9, votes: 206, id: 1654725 } }
+  { title: '7:35 in the Morning', imdb: { rating: 7.3, votes: 1555, id: 406501 } }
+  { title: '8', imdb: { rating: 7.8, votes: 883, id: 1592502 } }
+  ...
 
 The ``sort`` and ``projection`` options can also be specified as methods
 (``sort()`` and ``project()``, respectively) chained to the ``findOne`` method.
@@ -70,5 +73,5 @@ The following two commands are equivalent:
 
 .. code-block:: javascript
 
-   collection.find({ runtime: { $lt: 15 } }, { sort: { title: 1 }, projection: { _id: 0, title: 1, imdb: 1 }});
-   collection.find({ runtime: { $lt: 15 } }).sort({ title: 1}).project({ _id: 0, title: 1, imdb: 1 });
+  collection.find({ runtime: { $lt: 15 } }, { sort: { title: 1 }, projection: { _id: 0, title: 1, imdb: 1 }});
+  collection.find({ runtime: { $lt: 15 } }).sort({ title: 1}).project({ _id: 0, title: 1, imdb: 1 });

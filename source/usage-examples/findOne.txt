@@ -5,21 +5,24 @@ Find a Document
 .. default-domain:: mongodb
 
 .. note::
-   If you specify a callback method, ``findOne()`` returns nothing. If you do
-   not specify one, this method returns a ``Promise`` that resolves to the
-   result object when it completes. See our guide on :doc:`Promises and
-   Callbacks </fundamentals/promises>` for more information, or the
-   :node-api:`API documentation <Collection.html#~resultCallback>` for
-   information on the result object.
+  If you specify a callback method, ``findOne()`` returns nothing. If you do
+  not specify one, this method returns a ``Promise`` that resolves to the
+  result object when it completes. See our guide on :doc:`Promises and
+  Callbacks </fundamentals/promises>` for more information, or the
+  :node-api:`API documentation <Collection.html#~resultCallback>` for
+  information on the result object.
 
-You can query for a single document in a collection with the
-``collection.findOne()`` method. The ``findOne()`` method uses a query
-document that you provide to match only the subset of the documents in the
-collection that match the query. If you don't provide a query document or if
-you provide an empty document, MongoDB matches all documents in the
-collection. The ``findOne()`` operation only returns the first matched
-document. For more information on querying MongoDB, see our
-:doc:`documentation on query documents </fundamentals/crud/query-document>`.
+You can query for a single document in a collection by passing a
+query document to the ``collection.findOne()`` method. A query document
+contains one or more query operators that apply to specific fields which
+determine the document to include in the result set. For more
+information, see our :doc:`documentation on query documents </fundamentals/crud/query-document>`.
+
+.. note::
+
+  If you don't provide a query document (or if you provide an empty
+  document), MongoDB returns the first document in the collection. 
+
 
 You can also define additional query options such as
 :doc:`sort </fundamentals/crud/read-operations/sort>`
@@ -49,12 +52,12 @@ collection. It uses the following parameters:
 .. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/findOne.js
-   :language: javascript
+  :language: javascript
 
 If you run the example above, you should see a result that resembles the
 following:
 
 .. code-block:: javascript
 
-   { title: 'The Room', imdb: { rating: 3.5, votes: 25673, id: 368226 } }
+  { title: 'The Room', imdb: { rating: 3.5, votes: 25673, id: 368226 } }
 
