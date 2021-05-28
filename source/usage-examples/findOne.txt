@@ -16,9 +16,9 @@ You can query for a single document in a collection with the
 ``collection.findOne()`` method. The ``findOne()`` method uses a query
 document that contains one or more query operators to determine the
 document to include in the result set. If you don't provide a query
-document or if you provide an empty document, MongoDB returns all
-documents in the collection. For more information on how to 
-specify query operators in a query document, see our
+document or if you provide an empty document, MongoDB returns the first
+matched document. For more information on how to specify query
+operators in a query document, see our 
 :doc:`documentation on query documents
 </fundamentals/crud/query-document>`. 
 
