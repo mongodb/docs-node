@@ -6,7 +6,7 @@ Find Multiple Documents
 
 You can query for multiple documents in a collection with the
 ``collection.find()`` method. The ``find()`` method uses a query
-document to determine what to include in the result set. Your query
+document to determine what to include in the result set. A query
 document can contain query operators. Query operators are keywords that
 begin with a ``$`` that let you specify complex query behavior. If you
 don't provide a query document or if you provide an empty document,
