@@ -33,8 +33,7 @@ unique index rule, ``replaceOne()`` throws a ``duplicate key error``.
 .. note::
 
   If your application requires the document after updating,
-  use the :node-api:`collection.findOneAndReplace()
-  <Collection.html#findOneAndReplace>`
+  use the :node-api:`collection.findOneAndReplace() </classes/collection.html#findoneandreplace>`
   method which has a similar interface to ``replaceOne()``.
   You can configure ``findOneAndReplace()`` to return either the
   original matched document or the replacement document.

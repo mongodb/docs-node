@@ -12,8 +12,8 @@ Run a Command
    :node-api:`API documentation </classes/db.html#~resultcallback>` for
    information on the result object.
 
-You can run all raw database operations using the :node-api:`db.command()
-<Db.html#~command>` method. Call the ``command()`` method with
+You can run all raw database operations using the
+:node-api:`db.command() </classes/db.html#~command>` method. Call the ``command()`` method with
 your command object on an instance of a database for diagnostic and
 administrative tasks such as fetching server stats or initializing a replica
 set.
