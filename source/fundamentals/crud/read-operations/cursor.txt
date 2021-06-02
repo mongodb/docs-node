@@ -63,8 +63,7 @@ pulling all matching documents into a collection in process memory.
 For Each Functional Iteration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can pass a function to the :node-api:`forEach()
-<Cursor.html#forEach>` method of any cursor to iterate through
+You can pass a function to the :node-api:`forEach() </classes/findcursor.html#foreach>` method of any cursor to iterate through
 results in a functional style:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
@@ -123,10 +122,9 @@ Fetch All Documents At Once
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For use cases that require all documents matched by a query to be held
-in memory at the same time, use :node-api:`toArray()
-<Cursor.html#toArray>`. Note that large sets of
-matched documents can cause performance issues or even failures due to
-exceeding memory constraints.
+in memory at the same time, use :node-api:`toArray() </classes/findcursor.html#toarray>`. 
+Note that large sets of matched documents can cause performance issues or even
+failures due to exceeding memory constraints.
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
