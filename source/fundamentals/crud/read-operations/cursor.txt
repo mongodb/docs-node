@@ -7,7 +7,7 @@ Access Data From a Cursor
 Read operations that return multiple documents do not immediately return
 all values matching the query. Because a query can potentially match
 very large sets of documents, these operations rely upon an
-object called a :node-api:`cursor <Cursor.html>`
+object called a :node-api:`cursor </classes/findcursor.html>`
 that fetches documents in batches to reduce both memory consumption and
 network bandwidth usage. Cursors are highly configurable and offer
 multiple interaction paradigms for different use cases.
@@ -87,9 +87,9 @@ allows you to use cursors in ``for``...``await`` loops:
 Manual Iteration
 ~~~~~~~~~~~~~~~~
 
-You can use the :node-api:`hasNext() <Cursor.html#hasNext>`
+You can use the :node-api:`hasNext() </classes/findcursor.html#hasnext>`
 method to check if a cursor can provide additional data, and then use
-the :node-api:`next() <Cursor.html#next>`
+the :node-api:`next() </classes/findcursor.html#next>`
 method to retrieve the subsequent element of the cursor:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
@@ -141,7 +141,7 @@ Count
 ~~~~~
 
 For an estimated count of the number of documents referenced by the
-cursor, use :node-api:`count() <Cursor.html#count>`:
+cursor, use :node-api:`count() </classes/findcursor.html#count>`:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
@@ -152,7 +152,7 @@ Rewind
 ~~~~~~
 
 To reset a cursor to its initial position in the set of returned
-documents, use :node-api:`rewind() <Cursor.html#rewind>`.
+documents, use :node-api:`rewind() </classes/findcursor.html#rewind>`.
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
@@ -164,7 +164,7 @@ Close
 
 Cursors consume memory and network resources both in the client
 application and in the connected instance of MongoDB. Use
-:node-api:`close() <Cursor.html#close>`
+:node-api:`close() </classes/findcursor.html#close>`
 to free up a cursor's resources in both the client application
 and the MongoDB server:
 

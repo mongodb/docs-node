@@ -76,7 +76,7 @@ calls are equivalent:
 
 For more information on the ``options`` settings for the ``find()``
 method, see the
-:node-api:`API documentation on find() <Collection.html#find>`.
+:node-api:`API documentation on find() </classes/collection.html#find>`.
 
 To see the next three books in the results, append the ``skip()`` method,
 passing the number of documents to bypass as shown below:
