@@ -32,8 +32,7 @@ see the
 
   If your application requires the deleted document after deletion,
   consider using the
-  :node-api:`collection.findOneAndDelete()
-  <Collection.html#findOneAndDelete>`.
+  :node-api:`collection.findOneAndDelete() </classes/collection.html#findoneanddelete>`.
   method, which has a similar interface to ``deleteOne()`` but also
   returns the deleted document.
 

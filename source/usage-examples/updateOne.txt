@@ -12,8 +12,9 @@ Update a Document
    :node-api:`API documentation </classes/collection.html#~updatewriteopresult>` for
    information on the result object.
 
-You can update a single document using the :node-api:`collection.updateOne()
-<Collection.html#updateOne>` method. ``updateOne()`` accepts a filter
+You can update a single document using the 
+:node-api:`collection.updateOne() </classes/collection.html#updateone>`
+method. ``updateOne()`` accepts a filter
 document and an update document. If the query matches documents in the
 collection, the method applies the updates from the update document to fields
 and values of them. The update document contains :manual:`update operators
@@ -35,8 +36,9 @@ key error`` exception.
 .. note::
 
   If your application requires the document after updating,
-  consider using the :node-api:`collection.findOneAndUpdate()
-  <Collection.html#findOneAndUpdate>`. method, which has a similar
+  consider using the 
+  :node-api:`collection.findOneAndUpdate() </classes/collection.html#findoneandupdate>`. 
+  method, which has a similar
   interface to ``updateOne()`` but also returns the original or updated
   document.
 

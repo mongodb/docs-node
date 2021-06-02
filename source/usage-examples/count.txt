@@ -16,14 +16,12 @@ Count Documents
 The Node.js driver provides two methods for counting documents in a
 collection:
 
-- :node-api:`collection.countDocuments()
-  <Collection.html#countDocuments>` returns the number of documents in
+- :node-api:`collection.countDocuments() </classes/collection.html#countdocuments>` returns the number of documents in
   the collection that match the specified query. If you specify an empty
   query document, ``countDocuments()`` returns the total number of
   documents in the collection.
 
-- :node-api:`collection.estimatedDocumentCount()
-  <Collection.html#estimatedDocumentCount>` returns an
+- :node-api:`collection.estimatedDocumentCount() </classes/collection.html#estimateddocumentcount>` returns an
   **estimation** of the number of documents in the collection based on
   collection metadata.
 
