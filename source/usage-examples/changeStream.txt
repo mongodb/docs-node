@@ -77,10 +77,10 @@ methods presented above:
 - :manual:`Change events </reference/change-events/>`
 - :manual:`Aggregation pipeline </reference/operator/aggregation-pipeline/>`
 - :manual:`Aggregation stages </changeStreams/#modify-change-stream-output>`
-- :node-api-3.6:`ChangeStream class API documentation </ChangeStream.html>`
-- :node-api-3.6:`Collection.watch() </Collection.html#watch>`,
-- :node-api-3.6:`Db.watch() </Db.html#watch>`,
-- :node-api-3.6:`MongoClient.watch() API documentation </MongoClient.html#watch>`
+- :node-api-3.6:`ChangeStream class API documentation <ChangeStream.html>`
+- :node-api-3.6:`Collection.watch() <Collection.html#watch>`,
+- :node-api-3.6:`Db.watch() <Db.html#watch>`,
+- :node-api-3.6:`MongoClient.watch() API documentation <MongoClient.html#watch>`
 
 .. note::
 

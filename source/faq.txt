@@ -39,7 +39,7 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
        never time out the socket. This option applies only to sockets that
        have already been connected.
    * - maxTimeMS
-     - :node-api:`maxTimeMS </Cursor.html#maxTimeMS>` is the maximum
+     - :node-api-3.6:`maxTimeMS <Cursor.html#maxTimeMS>` is the maximum
        amount of time the server should wait for an operation to complete
        after it has reached the server. If an operation runs over the
        specified time limit, it returns a timeout error.
