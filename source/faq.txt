@@ -29,7 +29,7 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
 
        .. tip::
 
-          To modify the allowed time for :node-api:`MongoClient.connect </classes/mongoclient.html#.connect>` to establish a
+          To modify the allowed time for :node-api-4.0:`MongoClient.connect </classes/mongoclient.html#.connect>` to establish a
           connection to a MongoDB server, use the ``serverSelectionTimeoutMS`` option instead.
 
        **Default:** 10000
