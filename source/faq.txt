@@ -56,9 +56,10 @@ more available options in the ``options`` object of the constructor as follows:
 
 .. note::
 
-  ``maxTimeMS`` is not an available option in MongoClientOptions. To see
-  the available options, see the :node-api-4.0:`MongoClientOptions
-  <interfaces/mongoclientoptions.html>` API Documentation. 
+  ``maxTimeMS`` is not an available option for your ``MongoClient``
+  settings. To see the available options, see the
+  :node-api-3.6:`MongoClientOptions <global.html#MongoClientOptions>`
+  API Documentation. 
 
 How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?
 -------------------------------------------------------------------------------------------------------------------------------
