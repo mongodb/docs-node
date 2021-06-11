@@ -45,15 +45,20 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
        specified time limit, it returns a timeout error.
 
 To specify the optional settings for your ``MongoClient``, declare one or
-more of them in the ``options`` object of the constructor as follows:
+more available options in the ``options`` object of the constructor as follows:
 
 .. code-block:: javascript
 
    const client = new MongoClient(uri, {
      connectTimeoutMS: <integer value>,
-     socketTimeoutMS: <integer value>,
-     maxTimeMS: <integer value>,
+     socketTimeoutMS: <integer value>
    });
+
+.. note::
+
+  ``maxTimeMS`` is not an available option in MongoClientOptions. To see
+  the available options, see the :node-api-3.6:`MongoClientOptions
+  <global.html#MongoClientOptions>` API Documentation. 
 
 
 How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?
