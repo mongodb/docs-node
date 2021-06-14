@@ -8,7 +8,7 @@ MongoDB Node Driver
 
 .. toctree::
   :titlesonly:
-  :maxdepth: 1
+  :maxdepth: 2
 
   /quick-start
   /fundamentals
@@ -37,9 +37,30 @@ specify callbacks to access them when communicating with MongoDB.
    For the main MongoDB documentation, see the :manual:`MongoDB Manual
    </>`.
 
+Learn
+-----
+
+The Developer Hub and MongoDB University for resources related to
+the Node.js driver.
+
+Developer Hub
+~~~~~~~~~~~~~
+
+The Developer Hub contains developer related content, resources,
+community, and social engagement. 
+
+For Node.js articles, see the `How To's and Articles page
+<https://developer.mongodb.com/learn/?content=Articles&languages=JavaScript>`_.
+
+MongoDB University
+~~~~~~~~~~~~~~~~~~
+
+MongoDB University contains free courses to inspire and educate everyone
+to learn MongoDB with the best-in-class training and empower them to be
+successful. 
 
 Take the free online course taught by MongoDB
----------------------------------------------
+`````````````````````````````````````````````
 
 .. list-table::
 
