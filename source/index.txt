@@ -51,7 +51,7 @@ MongoDB University
 
 MongoDB University contains free courses to inspire and educate everyone
 to learn MongoDB. It has the best-in-class training and empowers
-everyone to be successful. 
+everyone to be successful.
 
 Take the free online course taught by MongoDB
 `````````````````````````````````````````````
