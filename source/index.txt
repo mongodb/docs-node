@@ -46,11 +46,11 @@ the Node.js driver.
 Developer Hub
 ~~~~~~~~~~~~~
 
-The Developer Hub contains developer related content, resources,
-community, and social engagement. 
+The Developer Hub contains content, resources, community, and social
+engagement for developers.
 
 To view articles on Node.js, see the `How To's and Articles page
-<https://developer.mongodb.com/learn/?content=Articles&languages=JavaScript>`_.
+<https://developer.mongodb.com/learn/?content=Articles&text=Node.js`_.
 
 To view the forum on Node.js, see the `forums page
 <https://developer.mongodb.com/community/forums/tag/node-js>`_. 
