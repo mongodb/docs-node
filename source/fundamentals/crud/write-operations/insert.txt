@@ -18,14 +18,14 @@ In this guide, you can learn how to insert documents into MongoDB.
 You can use MongoDB to retrieve, update and delete information. To
 perform any of those operations, that information, such as user profiles
 and orders, needs to exist in MongoDB. For that information to exist,
-you need to first perform an insert operation. 
+you need to first perform an **insert operation**. 
 
 An insert operation inserts a single or multiple documents in MongoDB
 using the ``insertOne()``, ``insertMany()`` and ``bulkWrite()`` methods.
 
 The following sections focus on ``insertOne()`` and ``insertMany()``. For an
-example on how to use the ``bulkWrite()`` method, see our :doc:`Bulk
-Operations </usage-examples/bulkWrite>` page. 
+example on how to use the ``bulkWrite()`` method, see our runnable :doc:`Bulk
+Operations Example </usage-examples/bulkWrite>`. 
 
 A Note About ``_id``
 --------------------
@@ -58,7 +58,7 @@ document.
 
 On successful insertion, the method returns an
 ``insertOneWriteOpResultObject`` instance representing the number of
-documents inserted and the``_id`` of the new document. 
+documents inserted and the ``_id`` of the new document. 
 
 Example
 ~~~~~~~
@@ -86,7 +86,7 @@ section, see the following resources:
 
 - API Documentation on :node-api-3.6:`insertOne() <Collection.html#insertOne>` 
 - API Documentation on :node-api-3.6:`insertOneWriteOpResultObject <Collection.html#~insertOneWriteOpResult>`
-- Manual Explanation on :manual:`insertOne() </reference/method/db.collection.insertOne/>`
+- Server Manual Entry on :manual:`insertOne() </reference/method/db.collection.insertOne/>`
 - Runnable :doc:`Insert a Document Example </usage-examples/insertOne>`
 
 Insert Multiple Documents
@@ -99,6 +99,7 @@ exception occurs, if any.
 For example, assume you want to insert the following documents:
 
 .. code-block:: json
+   :copyable: false
 
    { "_id": 1, "color": "red" }
    { "_id": 2, "color": "purple" }
@@ -127,7 +128,7 @@ your collection.
         const insertManyresult = await collection.insertMany(docs);
     
         console.log(`${insertManyresult.insertedCount} documents were inserted with the _ids: ${insertManyresult.insertedIds}`);
-      } catch(e){
+      } catch(e) {
         console.log(`A MongoBulkWriteException occurred, but there are successfully processed documents with the following ids:`);
         console.log(e.result.result.insertedIds);
         console.log(`Number of documents inserted: ${e.result.result.nInserted}`);
@@ -139,7 +140,8 @@ your collection.
    .. code-block:: 
       :copyable: false
       
-      A MongoBulkWriteException occurred, but there are successfully processed documents with the following ids:
+      A MongoBulkWriteException occurred, but there are successfully 
+      processed documents with the following ids:
       [
          { index: 0, _id: 1 },
          { index: 1, _id: 2 },
@@ -151,13 +153,14 @@ your collection.
    If you look inside your collection, you see the following documents:
    
    .. code-block:: json
+      :copyable: false
 
       { "_id": 1, "color": "red" }
       { "_id": 2, "color": "purple" }
 
 On successful insertion, the method returns an
 ``insertWriteOpResult`` instance representing the number of
-documents inserted and the``_id`` of the new document. 
+documents inserted and the ``_id`` of the new document. 
 
 Example
 ~~~~~~~
@@ -195,5 +198,5 @@ section, see the following resources:
 
 - API Documentation on :node-api-3.6:`insertMany() <Collection.html#insertMany>`
 - API Documentation on :node-api-3.6:`insertWriteOpResult <Collection.html#~insertWriteOpResult>`
-- :manual:`Manual Explanation on insertMany() </reference/method/db.collection.insertMany/>`
-- :doc:`Runnable Insert Multiple Documents Example </usage-examples/insertMany>`
+- Server Manual Entry on :manual:`insertMany() </reference/method/db.collection.insertMany/>`
+- Runnable :doc:`Insert Multiple Documents Example </usage-examples/insertMany>`
