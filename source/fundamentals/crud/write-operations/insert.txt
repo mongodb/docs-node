@@ -118,20 +118,27 @@ your collection.
    .. code-block:: javascript
       
       try {
-        const docs = [
-            { "_id": 1, "color": "red"},
-            { "_id": 2, "color": "purple"},
-            { "_id": 1, "color": "yellow"},
-            { "_id": 3, "color": "blue"}
-        ];
+         const docs = [
+               { "_id": 1, "color": "red"},
+               { "_id": 2, "color": "purple"},
+               { "_id": 1, "color": "yellow"},
+               { "_id": 3, "color": "blue"}
+         ];
         
-        const insertManyresult = await collection.insertMany(docs);
-    
-        console.log(`${insertManyresult.insertedCount} documents were inserted with the _ids: ${insertManyresult.insertedIds}`);
+         const insertManyresult = await collection.insertMany(docs);
+         let ids = insertManyresult.insertedIds;
+
+         console.log(`${insertManyresult.insertedCount} documents were inserted.`);
+         for (let id of Object.values(ids)) {
+          console.log(`Inserted a document with id ${id}`);
+         }
       } catch(e) {
-        console.log(`A MongoBulkWriteException occurred, but there are successfully processed documents with the following ids:`);
-        console.log(e.result.result.insertedIds);
-        console.log(`Number of documents inserted: ${e.result.result.nInserted}`);
+         console.log(`A MongoBulkWriteException occurred, but there are successfully processed documents.`);
+         let ids = e.result.result.insertedIds;
+         for (let id of Object.values(ids)) {
+            console.log(`Processed a document with id ${id._id}`);
+         }
+         console.log(`Number of documents inserted: ${e.result.result.nInserted}`);
       }
    
    The output consists of documents MongoDB can process and should look
@@ -140,14 +147,11 @@ your collection.
    .. code-block:: 
       :copyable: false
       
-      A MongoBulkWriteException occurred, but there are successfully 
-      processed documents with the following ids:
-      [
-         { index: 0, _id: 1 },
-         { index: 1, _id: 2 },
-         { index: 2, _id: 1 },
-         { index: 3, _id: 3 }
-      ]
+      A MongoBulkWriteException occurred, but there are successfully processed documents. 
+      Processed a document with id 1
+      Processed a document with id 2
+      Processed a document with id 1
+      Processed a document with id 3
       Number of documents inserted: 2
    
    If you look inside your collection, you see the following documents:
@@ -177,21 +181,23 @@ The following example creates and adds three documents using the
     ];
     
     const insertManyresult = await collection.insertMany(docs);
+    let ids = insertManyresult.insertedIds;
 
-    console.log(`${insertManyresult.insertedCount} documents were inserted with the _ids:`);
-    console.log(insertManyresult.insertedIds);
+    console.log(`${insertManyresult.insertedCount} documents were inserted.`);
+    
+    for (let id of Object.values(ids)) {
+      console.log(`Inserted a document with id ${id}`);
+    }
 
 Your output should look something like this:
 
 .. code-block:: json
    :copyable: false
 
-   3 documents were inserted with the _ids:
-   {
-   '0': 60c7ab27294e5a70d3ca43a5,
-   '1': 60c7ab27294e5a70d3ca43a6,
-   '2': 60c7ab27294e5a70d3ca43a7
-   }
+   3 documents were inserted.
+   Inserted a document with id 60ca09f4a40cf1d1afcd93a2
+   Inserted a document with id 60ca09f4a40cf1d1afcd93a3
+   Inserted a document with id 60ca09f4a40cf1d1afcd93a4
 
 For additional information on the classes and methods mentioned in this
 section, see the following resources: 
