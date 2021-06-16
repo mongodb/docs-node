@@ -85,7 +85,7 @@ For additional information on the classes and methods mentioned in this
 section, see the following resources: 
 
 - API Documentation on :node-api-4.0:`insertOne() </classes/collection.html#insertone>` 
-- API Documentation on :node-api-4.:`InsertOneResult </interfaces/insertoneresult.html>`
+- API Documentation on :node-api-4.0:`InsertOneResult </interfaces/insertoneresult.html>`
 - Server Manual Entry on :manual:`insertOne() </reference/method/db.collection.insertOne/>`
 - Runnable :doc:`Insert a Document Example </usage-examples/insertOne>`
 
