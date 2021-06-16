@@ -76,7 +76,7 @@ The following example creates and inserts a document using the
 
 Your output should look something like this:
 
-.. code-block:: json
+.. code-block:: 
    :copyable: false
 
    1 document was inserted with the _id: 60c79c0f4cc72b6bb31e3836
@@ -119,10 +119,10 @@ your collection.
       
       try {
          const docs = [
-               { "_id": 1, "color": "red"},
-               { "_id": 2, "color": "purple"},
-               { "_id": 1, "color": "yellow"},
-               { "_id": 3, "color": "blue"}
+            { "_id": 1, "color": "red"},
+            { "_id": 2, "color": "purple"},
+            { "_id": 1, "color": "yellow"},
+            { "_id": 3, "color": "blue"}
          ];
         
          const insertManyresult = await collection.insertMany(docs);
@@ -130,7 +130,7 @@ your collection.
 
          console.log(`${insertManyresult.insertedCount} documents were inserted.`);
          for (let id of Object.values(ids)) {
-          console.log(`Inserted a document with id ${id}`);
+            console.log(`Inserted a document with id ${id}`);
          }
       } catch(e) {
          console.log(`A MongoBulkWriteException occurred, but there are successfully processed documents.`);
@@ -175,23 +175,23 @@ The following example creates and adds three documents using the
 .. code-block:: javascript
 
    const docs = [
-        { name: "Sicilian pizza", shape: "square" },
-        { name: "New York pizza", shape: "round" },
-        { name: "Grandma pizza", shape: "square" }
-    ];
+      { name: "Sicilian pizza", shape: "square" },
+      { name: "New York pizza", shape: "round" },
+      { name: "Grandma pizza", shape: "square" }
+   ];
     
-    const insertManyresult = await collection.insertMany(docs);
-    let ids = insertManyresult.insertedIds;
+   const insertManyresult = await collection.insertMany(docs);
+   let ids = insertManyresult.insertedIds;
 
-    console.log(`${insertManyresult.insertedCount} documents were inserted.`);
+   console.log(`${insertManyresult.insertedCount} documents were inserted.`);
     
-    for (let id of Object.values(ids)) {
+   for (let id of Object.values(ids)) {
       console.log(`Inserted a document with id ${id}`);
-    }
+   }
 
 Your output should look something like this:
 
-.. code-block:: json
+.. code-block::
    :copyable: false
 
    3 documents were inserted.
