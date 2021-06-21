@@ -212,6 +212,20 @@ After completing this step, you should have a working application that uses
 the Node.js driver to connect to your MongoDB instance, run a query on the
 sample data, and prints out the result.
 
+Connect to ``localhost``
+------------------------
+
+To connect to a database running locally on its default port, change the
+connection string to ``"mongodb://localhost"``. 
+
+To connect to a database running locally, change the connection string
+to ``"mongodb://localhost:<port>"``.
+
+Your ``mongod`` instance must be running to successfully connect to your
+database. For information on how to start your ``mongod`` instance,
+see the :manual:`Manage mongod Processes
+</tutorial/manage-mongodb-processes/#start-mongod-processes>` Server Manual Entry.
+
 Next Steps
 ----------
 
