@@ -117,7 +117,9 @@ for more information on :manual:`unique indexes </core/index-unique/>`.
 .. note:: Aggregation Pipelines in Update Operations
 
    If you are using MongoDB Version 4.2 or later, you can use aggregation
-   pipelines in update operations. For more information, see manual entry on
+   pipelines made up of a subset of aggregation stages in update operations. For
+   more information, including what aggregation stages MongoDB supports in
+   aggregation pipelines used in update operations, see this tutorial on building
    :manual:`updates with aggregation pipelines </tutorial/update-documents-with-aggregation-pipeline/>`. 
 
 .. _replacementDocument:
