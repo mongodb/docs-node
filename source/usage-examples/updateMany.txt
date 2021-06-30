@@ -14,7 +14,7 @@ Update Multiple Documents
 
 You can update multiple documents using the
 :node-api-4.0:`collection.updateMany() </classes/collection.html#updatemany>` method.
-The ``updateMany()`` method accepts a filter object and update document, and
+The ``updateMany()`` method accepts a filter object and update document and
 replaces documents in a collection that match the filter with the update
 document. The update document requires an :manual:`update operator
 </reference/operator/update>` to modify a field in a document.
