@@ -63,7 +63,7 @@ update document.
 
    If you are using MongoDB Version 4.2 or later, you can use aggregation
    pipelines made up of a subset of aggregation stages in update operations. For
-   more information, including what aggregation stages MongoDB supports in
+   more information on the aggregation stages MongoDB supports in
    aggregation pipelines used in update operations, see our tutorial on building
    :manual:`updates with aggregation pipelines </tutorial/update-documents-with-aggregation-pipeline/>`. 
 
