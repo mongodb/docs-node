@@ -128,7 +128,7 @@ following:
      documentKey: { _id: 5ec3... },
    }
 
-.. note:: Retrieve Full Documents During Updates
+.. note:: Receive Full Documents From Updates
 
    Change events that contain information on update operations only return the modified
    fields by default rather than the full updated document. You can configure
