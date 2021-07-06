@@ -54,6 +54,8 @@ a reference to a ``Cursor`` with which you can navigate matched documents.
 If you resolve the ``Promise`` returned by ``findOne()``, you receive the
 matching document or ``null`` if there are no matches.
 
+.. include:: /includes/access-cursor-note.rst
+
 .. example::
 
    A pizza restaurant wants to find all pizzas ordered by Lemony Snicket
