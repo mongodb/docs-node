@@ -13,6 +13,17 @@ What's New
 Learn what's new in:
 
 * :ref:`Version 3.6 <version-3.6>`
+* :ref:`Version 3.7 <version-3.7>`
+
+.. _version-3.7:
+
+What's New in 3.7
+-----------------
+
+New features of the 3.7 Node.js driver release include:
+
+- Added support for load balancer mode while enabling the ``useUnifiedTopology`` option
+- Added support for :doc:`Versioned API </fundamentals/versioned-api>` while enabling the ``useUnifiedTopology`` option
 
 .. _version-3.6:
 
