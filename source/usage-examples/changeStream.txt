@@ -91,10 +91,13 @@ methods presented above:
    ``"updateLookup"`` as follows:
 
    .. code-block:: javascript
+      :emphasize-lines: 1, 5
 
-      const changeStream = collection.watch();
       const options = { fullDocument: "updateLookup" };
-      changeStream.on("change", callbackFunction, options);
+      // This could be any pipeline.
+      const pipeline = [];
+
+      const changeStream = collection.watch(pipeline, options);
 
 Example
 -------
