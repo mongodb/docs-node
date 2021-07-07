@@ -1,0 +1,20 @@
+==========
+Monitoring
+==========
+
+.. default-domain:: mongodb
+
+.. toctree::
+   :caption: Monitoring
+
+   /fundamentals/monitoring/cluster-monitoring
+   /fundamentals/monitoring/command-monitoring
+
+The **Monitoring** section contains detailed information to enable you
+to observe driver operations for telemetry use-cases.
+
+* :doc:`Cluster Monitoring </fundamentals/monitoring/cluster-monitoring>`: configure the driver to
+  monitor MongoDB server discovery and monitoring events
+
+* :doc:`Command Monitoring </fundamentals/monitoring/command-monitoring>`: configure the driver to
+  monitor all executed commands
