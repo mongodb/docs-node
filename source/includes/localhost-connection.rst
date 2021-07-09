@@ -1,5 +1,5 @@
 To connect to a ``mongod`` running locally, change the connection string
-to ``"mongodb://localhost:<port>"``, e.g. ``"mongodb://localhost:27107"``.
+to ``"mongodb://localhost:<port>"``, e.g. ``"mongodb://localhost:27017"``.
 
 Your ``mongod`` instance must be running to successfully connect to your
 database. For information on how to start your ``mongod`` instance,
