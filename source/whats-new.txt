@@ -7,7 +7,7 @@ What's New
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 3
    :class: singlecol
 
 Learn what's new in:
@@ -21,6 +21,305 @@ What's New in 4.0
 -----------------
 
 New features of the 4.0 Node.js driver release include:
+
+TypeScript
+~~~~~~~~~~
+
+- We've migrated the driver to TypeScript. You can now harness the type
+  hinting and intellisense features in editors that support it to develop
+  your MongoDB applications. Enjoy the benefits of this work in pure JavaScript
+  projects as well.
+
+- The underlying BSON library used by this version is now migrated to
+  TypeScript.
+
+- Inline documentation is now consistenly formatted to improve display
+  in editors.
+
+- If you are a user of the community types ``@types/mongodb``, there will
+  **likely be issues** adopting the types from our codebase. We could not
+  achieve a one to one match in types due to the details of writing the
+  codebase in TypeScript.
+
+We'd love to hear your TypeScript related feature requests. Please submit
+ideas on our `JIRA project here <https://jira.mongodb.org/projects/NODE>`__.
+
+Key Changes
+~~~~~~~~~~~
+
+Node.js Version
++++++++++++++++
+
+The minimum supported version of Node.js is now v12.9 or greater for
+version 4 of the driver. Support for our 3.x branches will continue
+until summer 2022 to allow time to upgrade.
+
+.. note::
+
+   3.x supports back to Node.js v4.
+
+
+Cursor Improvements
++++++++++++++++++++
+
+Our Cursor implentation is now updated to make it clear what is possible
+before and after execution of an operation.
+
+.. example::
+
+   .. code-block:: js
+      :copyable: False
+
+      const fc = collection.find({a: 2.3}).skip(1)
+      for await (const doc of fc) {
+        console.log(doc)
+        fc.limit(1) // incorrect usage, cursor already executing
+      }
+
+There was inconsistency surrounding how the cursor would error if a
+setting was applied after cursor execution began. Now, the cursor will
+throw an error when attempting to apply operations in an invalid state,
+similar to the following:
+
+``MongoError: Cursor is already initialized``
+
+- Affected classes:
+
+  - ``AbstractCursor``
+  - ``FindCursor``
+  - ``AggregationCursor``
+  - ``ChangeStreamCursor`` (This is the underlying cursor for ``ChangeStream``)
+  - ``ListCollectionsCursor``
+
+Cursor Stream API
+^^^^^^^^^^^^^^^^^
+
+Our Cursor types no longer extend ``Readable`` directly. They must be
+transformed into a stream by calling ``cursor.stream()``.
+
+.. example::
+
+   .. code-block:: js
+      :copyable: False
+
+      const cursor = collection.find({})
+      const stream = cursor.stream()
+      stream.on("data", data => console.log)
+      stream.on("error", () => client.close())
+
+Use ``hasNext()`` and ``next()`` for manual iteration.
+Use ``for await of`` syntax or any ``Promise`` helpers for
+asynchronous iteration.
+
+``MongoClientOptions`` Interface
++++++++++++++++++++++++++++++++++
+
+With type hinting, you should find that options passed to a ``MongoClient``
+are enumerated and discoverable. We've made a large effort to process
+all options in the driver to give early warnings about incompatible settings
+to get your app up and running in a correct state quickly.
+
+- ``checkServerIdentity`` is no longer checked before being passed to the
+  underlying Node API. Previously, accepted values were ``false``, or
+  a function. Now, the argument must be a function. Specifying a
+  boolean will result in an error being thrown.
+
+- It is longer required to specify ``useUnifiedTopology`` or ``useNewUrlParser``.
+
+``createCollection()``
+++++++++++++++++++++++
+
+This method no longer supports a ``strict`` option, which returned
+an error if the collection did not exist. To assert the existence of
+a collection, use the ``listCollections()`` method instead.
+
+.. example::
+
+   .. code-block:: js
+
+      const collections = (await db.listCollections({}, { nameOnly: true })
+        .toArray()).map(
+          ({name}) => name
+        );
+      if (!collections.includes(myNewCollectionName)) {
+        throw new Error(`${myNewCollectionName} doesn't exist`);
+      }
+
+``BulkWriteError`` → ``MongoBulkWriteError``
+++++++++++++++++++++++++++++++++++++++++++++
+
+``BulkWriteError`` is now renamed to ``MongoBulkWriteError``.
+
+When running bulk operations that make writes you can encounter errors
+depending on your settings. Import the new class name ``MongoBulkWriteError``
+when testing for errors in bulk operations.
+
+``DB``
+++++++
+
+``DB`` is no longer an ``EventEmitter``. Listen for events directly from your
+``MongoClient`` instance.
+
+``Collection.group()``
+++++++++++++++++++++++
+
+The ``Collection.group()`` helper, deprecated since MongoDB 3.4,
+is now removed. Use the aggregation pipeline :manual:`$group </reference/operator/aggregation/group/#pipe._S_group>`
+operator instead.
+
+Authentication
+++++++++++++++
+
+- ``gssapiServiceName`` is now removed. Use :node-api-4.0:`authMechanismProperties.SERVICE_NAME` in the URI
+  or as an option on ``MongoClientOptions``.
+
+  .. example::
+
+     .. code-block:: js
+
+        ?authMechanismProperties.SERVICE_NAME
+        // or
+        new MongoClient(url, { SERVICE_NAME: "alternateServiceName" })
+
+- Specifying username and password as options is only supported in the URI
+  or as an option on ``MongoClientOptions``.
+
+  .. example::
+
+     .. code-block:: js
+
+        new MongoClient("mongodb://username:password@<host><port>")
+        // or
+        new MongoClient(url, { auth: { username: "<>", password: "<>" } })
+
+``GridStore`` Removal
++++++++++++++++++++++
+
+The GridStore API (already deprecated in 3.x) is now replaced with ``GridFSBucket``.
+For more information on ``GridFS``, see the :manual:`mongodb manual </core/gridfs>`.
+
+Below are some snippets that represent equivalent operations.
+
+Construction
+^^^^^^^^^^^^
+
+.. example::
+
+   .. code-block:: javascript
+
+      // old way
+      const gs = new GridStore(db, filename, mode[, options])
+      // new way
+      const bucket = new GridFSBucket(client.db('test')[,options])
+
+File Seeking
+^^^^^^^^^^^^
+
+GridFSBucket uses the Node.js Stream API. You can replicate file seeking
+by using the ``start`` and ``end`` options, creating a download stream
+from your ``GridFSBucket``.
+
+.. example::
+
+   .. code-block:: js
+
+      bucket.openDownloadStreamByName(filename, { start: 0, end: 100 })
+
+File Upload & Download
+^^^^^^^^^^^^^^^^^^^^^^
+
+.. example::
+
+   .. code-block:: language
+
+      await client.connect();
+      const filename = 'test.txt'; // whatever local file name you want
+      const db = client.db();
+      const bucket = new GridFSBucket(db);
+
+      fs.createReadStream(filename)
+        .pipe(bucket.openUploadStream(filename))
+        .on('error', console.error)
+        .on('finish', () => {
+          console.log('done writing to db!');
+
+          bucket
+            .find()
+            .toArray()
+            .then(files => {
+              console.log(files);
+
+              bucket
+                .openDownloadStreamByName(filename)
+                .pipe(fs.createWriteStream('downloaded_' + filename))
+                .on('error', console.error)
+                .on('finish', () => {
+                  console.log('done downloading!');
+                  client.close();
+                });
+            });
+        });
+
+.. note::
+
+   ``GridFSBucket`` does not need to be closed like ``GridStore``.
+
+File Deletion
+^^^^^^^^^^^^^
+
+.. example::
+
+   .. code-block:: js
+
+      // old way
+      GridStore.unlink(db, name, callback);
+      // new way
+      bucket.delete(file_id);
+
+Finding File Metadata
+^^^^^^^^^^^^^^^^^^^^^
+
+File metadata that used to be accessible on the ``GridStore`` instance can be
+found by querying the bucket.
+
+.. example::
+
+   .. code-block:: js
+
+      const fileMetaDataList: GridFSFile[] = bucket.find({}).toArray();
+
+Unified Topology
+++++++++++++++++
+
+- We internally now only manage a ``unifiedTopology`` when you connect
+  to a ``mongod``. The differences between this and previous versions
+  is `detailed here <https://mongodb.github.io/node-mongodb-native/3.6/reference/unified-topology/>`__.
+
+- It is longer required to specify ``useUnifiedTopology`` or ``useNewUrlParser``.
+
+- You must use the new ``directConnection`` :node-api-4.0:`option </mongoclientoptions.html#directconnection>`
+  to connect to unitiliazed replica set members.
+
+Explain
++++++++
+
+Support is now added for fine-grained verbosity modes. You can learn more
+about each mode :manual:`here </reference/method/cursor.explain/#behavior/>`.
+
+Command Monitoring
+++++++++++++++++++
+
+The ``instrument()`` method is now removed. Use command monitoring instead.
+See our guide on :doc:`command monitoring </fundamentals/monitoring/command-monitoring>`
+for more information.
+
+
+Detailed List
+~~~~~~~~~~~~~
+
+For a detailed list of breaking changes, removals, and associated JIRA tickets,
+see the detailed `list here <https://github.com/mongodb/node-mongodb-native/blob/4.0/docs/CHANGES_4.0.0.md>`__.
+
 
 .. _version-3.6:
 
@@ -38,4 +337,4 @@ New features of the 3.6 Node.js driver release include:
 - Authentication requires fewer round trips to the server, resulting in faster connection setup
 - Shorter Salted Challenge Response Authentication Mechanism (:manual:`SCRAM </core/security-scram/>`) conversations
 - Ability to create collections and indexes for multiple document transactions
-- Running validation for a collection in the background 
+- Running validation for a collection in the background
