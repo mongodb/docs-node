@@ -57,7 +57,7 @@ pieces, each represented by a separate document in the ``chunks`` collection.
 It also creates a document in the ``files`` collection that contains
 a file id, file name, and other file metadata. You can upload the file from
 memory or from a stream. The following diagram describes how GridFS splits
-files for storage in a bucket.
+files for storage in a bucket:
 
 .. figure:: /includes/figures/GridFS-upload.png
    :alt: A diagram that shows how GridFS uploads a file to a bucket
@@ -90,7 +90,7 @@ create() method as shown below:
 
    var bucket = new mongodb.GridFSBucket(db, { bucketName: 'myCustomBucket' });
 
-For more information, see the :node-api-4.0:`GridFSBucket API documentation </classes/gridfsbucket.html>`.
+For more information, see the :node-api-4.0:`GridFSBucket API documentation <classes/gridfsbucket.html>`.
 
 .. _gridfs-upload-files:
 
@@ -102,7 +102,7 @@ stream for a given file name. You can use the ``pipe()`` method to
 connect a Node.js ``fs`` read stream to the upload stream. The
 ``openUploadStream()`` method allows you to specify configuration information
 such as file chunk size and other field/value pairs to store as metadata. Set
-these options as a parameter of ``openUploadStream()`` as shown in the
+these options as parameters of ``openUploadStream()`` as shown in the
 following code snippet:
 
 .. code-block:: javascript
@@ -113,7 +113,7 @@ following code snippet:
             metadata: { field: 'myField', value: 'myValue' }
         });
 
-See the :node-api-4.0:`openUploadStream() API documentation </classes/gridfsbucket.html#openuploadstream>` for more information.
+See the :node-api-4.0:`openUploadStream() API documentation <classes/gridfsbucket.html#openuploadstream>` for more information.
 
 .. _gridfs-retrieve-file-info:
 
@@ -150,11 +150,9 @@ combined with other methods such as ``sort()``, ``limit()``, and ``project()``.
 For more information on the classes and methods mentioned in this section,
 see the following resources:
 
-- :node-api-4.0:`GridFSBucket.find() API documentation </classes/gridfsbucket.html#find>`
-- :node-api-4.0:`FindCursor API documentation
-</classes/findcursor.html>`
-- :doc:`Cursor Fundamentals page
-</fundamentals/crud/read-operations/cursor>`
+- :node-api-4.0:`find() API documentation <classes/gridfsbucket.html#find>`
+- :node-api-4.0:`FindCursor API documentation <classes/findcursor.html>`
+- :doc:`Cursor Fundamentals page </fundamentals/crud/read-operations/cursor>`
 - :doc:`Read Operations page </fundamentals/crud/read-operations/>`
 
 .. _gridfs-download-files:
@@ -177,7 +175,7 @@ determined by the ``uploadDate`` field).
 .. code-block:: javascript
 
    bucket.openDownloadStreamByName('myFile').
-        pipe(fs.createWriteStream('./outputFile'))
+        pipe(fs.createWriteStream('./outputFile'));
 
 .. note::
 
@@ -188,7 +186,7 @@ determined by the ``uploadDate`` field).
    overhead.
 
 For more information on the ``openDownloadStreamByName()`` method, see
-its :node-api-4.0:`API documentation </classes/gridfsbucket.html#opendownloadstreambyname>`.
+its :node-api-4.0:`API documentation <classes/gridfsbucket.html#opendownloadstreambyname>`.
 
 .. _gridfs-rename-files:
 
@@ -228,7 +226,7 @@ You can use the ``rename()`` method to update the ``filename`` field to
    bucket.rename(ObjectId("60edece5e06275bf0463aaf3"), "newFileName");
 
 For more information on this method, see the :node-api-4.0:`rename() API
-documentation </classes/gridfsbucket.html#rename>`.
+documentation <classes/gridfsbucket.html#rename>`.
 
 .. _gridfs-delete-files:
 
@@ -245,7 +243,7 @@ method. You must specify the file by its ``_id`` field rather than its file name
    the file id values from the files you want to delete, and pass each file id
    in separate calls to the ``delete()`` method.
 
-Using the same document included abovem this code example below shows
+Using the same document as before, the code example below shows
 you how to delete the file referenced by its ``_id`` field:
  
 .. code-block:: javascript
@@ -253,7 +251,7 @@ you how to delete the file referenced by its ``_id`` field:
    bucket.delete(ObjectId("60edece5e06275bf0463aaf3"));
 
 For more information on this method, see the :node-api-4.0:`delete() API
-documentation </classes/gridfsbucket.html#delete>`.
+documentation <classes/gridfsbucket.html#delete>`.
 
 .. _gridfs-delete-bucket:
 
