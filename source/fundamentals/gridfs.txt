@@ -75,7 +75,7 @@ Create a GridFS Bucket
 To store or retrieve files from GridFS, create a bucket or get a reference
 to an existing one on a MongoDB database. Create a ``GridFSBucket``
 instance, passing a ``db`` instance as the parameter. You can use the ``GridFSBucket`` instance to
-call read and write operations on the files in your bucket.
+call read and write operations on the files in your bucket:
 
 .. code-block:: javascript
 
@@ -260,7 +260,7 @@ Delete a GridFS Bucket
 
 The ``drop()`` method removes a bucket's files collection, followed
 by its chunks collection, effectively deleting the bucket. The code example below shows you how to delete
-a GridFS bucket.
+a GridFS bucket:
 
 .. code-block:: javascript
 
