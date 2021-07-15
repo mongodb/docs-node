@@ -13,7 +13,7 @@ GridFS
 Overview
 --------
 
-Using this guide, you can learn how to store and retrieve large files in
+In this guide, you can learn how to store and retrieve large files in
 MongoDB using **GridFS**. GridFS is a specification that describes how
 to split files into chunks during storage
 and reassemble them during retrieval. The driver implementation of
@@ -38,7 +38,7 @@ and implementation:
 How GridFS Works
 ----------------
 
-GridFS organizes files in a **bucket**, which contains the following collections, named using the convention
+GridFS organizes files in a **bucket**, a container for the following collections, named using the convention
 defined in the GridFS specification:
 
 - The ``chunks`` collection stores the binary file chunks.
@@ -57,7 +57,7 @@ pieces, each represented by a separate document in the ``chunks`` collection.
 It also creates a document in the ``files`` collection that contains
 a file id, file name, and other file metadata. You can upload the file from
 memory or from a stream. The following diagram describes how GridFS splits
-files for storage in a bucket:
+files when uploading to a bucket:
 
 .. figure:: /includes/figures/GridFS-upload.png
    :alt: A diagram that shows how GridFS uploads a file to a bucket
@@ -74,7 +74,7 @@ Create a GridFS Bucket
 
 To store or retrieve files from GridFS, create a bucket or get a reference
 to an existing one on a MongoDB database. Create a ``GridFSBucket``
-instance, passing a ``db`` instance as the parameter. You can use the ``GridFSBucket`` instance to
+instance, passing a database as the parameter. You can use the ``GridFSBucket`` instance to
 call read and write operations on the files in your bucket:
 
 .. code-block:: javascript
@@ -84,7 +84,7 @@ call read and write operations on the files in your bucket:
 
 To create or reference a bucket with a custom name other than the
 default name ``fs``, pass your bucket name as the second parameter to the
-create() method as shown below:
+``create()`` method as shown below:
 
 .. code-block:: javascript
 
@@ -95,9 +95,9 @@ For more information, see the :node-api-4.0:`GridFSBucket API documentation <cla
 .. _gridfs-upload-files:
 
 Upload Files
------------
+------------
 
-``GridFSBucket`` has an ``openUploadStream()`` method that creates an upload
+Use the ``openUploadStream()`` method from ``GridFSBucket`` to create an upload
 stream for a given file name. You can use the ``pipe()`` method to
 connect a Node.js ``fs`` read stream to the upload stream. The
 ``openUploadStream()`` method allows you to specify configuration information
@@ -160,22 +160,26 @@ see the following resources:
 Download Files
 --------------
 
-You can download files from your MongoDB database using a download
-stream. ``GridFSBucket`` contains the ``openDownloadStreamByName()``
-method which creates a download stream. 
+You can download files from your MongoDB database using the
+``openDownloadStreamByName()`` method from ``GridFSBucket`` to create a download stream. 
 
-The example below shows you how to download a file referenced
+The following example shows you how to download a file referenced
 by the file name, stored in the ``filename`` field, into your working
-directory. Alternatively, you can use the ``openDownloadStream()``
-method, which takes the ``_id`` field of a file as a parameter. Note
-that if there are multiple documents with the same ``filename`` value,
-GridFS will stream the most recent file with the given name (as
-determined by the ``uploadDate`` field).
+directory:
 
 .. code-block:: javascript
 
    bucket.openDownloadStreamByName('myFile').
         pipe(fs.createWriteStream('./outputFile'));
+
+.. note::
+   
+   If there are multiple documents with the same ``filename`` value,
+   GridFS will stream the most recent file with the given name (as
+   determined by the ``uploadDate`` field).
+
+Alternatively, you can use the ``openDownloadStream()``
+method, which takes the ``_id`` field of a file as a parameter.
 
 .. note::
 
@@ -201,25 +205,12 @@ rather than its file name.
 
    The ``rename()`` method only supports updating the name of one file at
    a time. To rename multiple files, retrieve a list of files matching the
-   file name from the bucket, extract the file id values from the files you
-   want to rename, and pass each file id in separate calls to the ``rename()``
+   file name from the bucket, extract the ``_id`` field from the files you
+   want to rename, and pass each value in separate calls to the ``rename()``
    method.
 
-The code example will show you how to update the name of the file
-referenced in this document:
-
-.. code-block:: javascript
-
-   {
-     _id: new ObjectId("60edece5e06275bf0463aaf3"),
-     length: 31851832,
-     chunkSize: 261120,
-     uploadDate: 2021-07-13T19:43:34.237Z,
-     filename: 'myFile',
-   }
-
-You can use the ``rename()`` method to update the ``filename`` field to
-"newFileName" by referencing the document's ``_id`` field:
+The following example shows how to update the ``filename`` field to
+"newFileName" by referencing a document's ``_id`` field:
 
 .. code-block:: javascript
 
@@ -240,7 +231,7 @@ method. You must specify the file by its ``_id`` field rather than its file name
 
    The ``delete()`` method only supports deleting one file at a time. To
    delete multiple files, retrieve the files from the bucket, extract
-   the file id values from the files you want to delete, and pass each file id
+   the ``_id`` field from the files you want to delete, and pass each value
    in separate calls to the ``delete()`` method.
 
 Using the same document as before, the code example below shows
