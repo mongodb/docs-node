@@ -234,8 +234,7 @@ method. You must specify the file by its ``_id`` field rather than its file name
    the ``_id`` field from the files you want to delete, and pass each value
    in separate calls to the ``delete()`` method.
 
-Using the same document as before, the code example below shows
-you how to delete the file referenced by its ``_id`` field:
+The example below shows you how to delete a file by referencing its ``_id`` field:
  
 .. code-block:: javascript
 
