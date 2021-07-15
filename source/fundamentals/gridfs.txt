@@ -80,7 +80,7 @@ call read and write operations on the files in your bucket:
 .. code-block:: javascript
 
    const db = client.db(dbName);
-   var bucket = new mongodb.GridFSBucket(db);
+   const bucket = new mongodb.GridFSBucket(db);
 
 To create or reference a bucket with a custom name other than the
 default name ``fs``, pass your bucket name as the second parameter to the
@@ -88,7 +88,7 @@ default name ``fs``, pass your bucket name as the second parameter to the
 
 .. code-block:: javascript
 
-   var bucket = new mongodb.GridFSBucket(db, { bucketName: 'myCustomBucket' });
+   const bucket = new mongodb.GridFSBucket(db, { bucketName: 'myCustomBucket' });
 
 For more information, see the :node-api-4.0:`GridFSBucket API documentation <classes/gridfsbucket.html>`.
 
