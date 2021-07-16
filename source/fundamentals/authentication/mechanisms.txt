@@ -163,7 +163,7 @@ authentication mechanism and credentials in the connection string:
 
 If your AWS login requires a session token, you must include your
 ``AWS_SESSION_TOKEN`` in your connection string. The following example
-connection string provides a guide for defining and inserting your ``AWS_SESSION_TOKEN``:
+provides a guide for defining and inserting your ``AWS_SESSION_TOKEN``:
 
 .. code-block:: javascript
 
