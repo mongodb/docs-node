@@ -39,7 +39,7 @@ How GridFS Works
 ----------------
 
 GridFS organizes files in a **bucket**, a group of MongoDB collections
-that contain the chunks of files and descriptive information about the chunks.
+that contain the chunks of files and descriptive information.
 Buckets contain the following collections, named using the convention
 defined in the GridFS specification:
 
