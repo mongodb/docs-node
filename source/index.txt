@@ -14,12 +14,12 @@ MongoDB Node Driver
   /usage-examples
   /fundamentals
   API Documentation <https://mongodb.github.io/node-mongodb-native/4.0/>
-  Release Notes <https://github.com/mongodb/node-mongodb-native/releases/>
-  View the Source <https://github.com/mongodb/node-mongodb-native/>
   /faq
   /issues-and-help
   /compatibility
   /whats-new
+  Release Notes <https://github.com/mongodb/node-mongodb-native/releases/>
+  View the Source <https://github.com/mongodb/node-mongodb-native/>
 
 Introduction
 ------------
