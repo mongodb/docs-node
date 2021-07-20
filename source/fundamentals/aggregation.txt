@@ -16,8 +16,8 @@ Overview
 In this guide, you can learn how to use **aggregation operations** in
 the MongoDB Node.js driver.
 
-Aggregation operations are expressions that you can execute against data in your MongoDB
-collections to return summarized and computed results. MongoDB's aggregation framework
+Aggregation operations are expressions you can use to produce summarized
+and computed results in MongoDB. MongoDB's aggregation framework
 allows you to create a pipeline that consists of one or more stages,
 each of which performs a specific operation on your data.
 
@@ -30,10 +30,10 @@ assembles the initial parts and materials into finished products.
 The **aggregation pipeline** is the assembly line, **aggregation stages** are the assembly stations, and
 **operator expressions** are the specialized tools.
 
-Aggregation vs. Query Operators
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Aggregation vs. Query Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Using ``find`` operations, you can:
+Using query operations, such as the ``find()`` method, you can:
 
 - select *which documents* to return
 - select *which fields* to return
@@ -46,10 +46,6 @@ Using ``aggregation`` operations, you can:
 - calculate fields
 - summarize data
 - group values
-
-The aggregation framework uses a variety of :manual:`expression
-operators </reference/operator/aggregation/>` that 
-allow you to group and modify data to produce a single result.
 
 Aggregation operations have some :manual:`limitations </core/aggregation-pipeline-limits/>`:
 
@@ -70,6 +66,7 @@ Aggregation operations have some :manual:`limitations </core/aggregation-pipelin
 Useful References
 ~~~~~~~~~~~~~~~~~
 
+- :manual:`Expression operators </reference/operator/aggregation/>`
 - :manual:`Aggregation pipeline </core/aggregation-pipeline/>`
 - :manual:`Aggregation stages </meta/aggregation-quick-reference/#stages>`
 - :manual:`Operator expressions </meta/aggregation-quick-reference/#operator-expressions>`
@@ -77,8 +74,8 @@ Useful References
 Runnable Examples
 -----------------
 
-Create a new Node.js file called ``AggTour.js`` and connect to your
-MongoDB deployment to follow this example.
+Create a new file and connect to your MongoDB deployment to follow this
+example.
 
 .. tip::
 
@@ -87,32 +84,14 @@ MongoDB deployment to follow this example.
 Insert Sample Data
 ~~~~~~~~~~~~~~~~~~
 
-The example uses a collection of documents corresponding
-to information about 10 dining establishments. Insert the sample data
-into the ``restaurants`` collection of the ``aggregationTest`` database:
+The example uses sample data about restaurants. The following code
+inserts the data into the ``restaurants`` collection of the ``aggregation`` database:
 
-.. code-block:: javascript
-
-   const db = client.db("aggregationTest");
-   const coll = db.collection("restaurants");
-   
-   const docs = [
-        { "name": "Sun Bakery Trattoria", "stars": 4, "categories": ["Pizza", "Pasta", "Italian"] },
-        { "name": "Blue Bagels Grill", "stars": 3, "categories": ["Bagels", "Cookies", "Sandwiches"] },
-        { "name": "Hot Fresh Bagels", "stars": 4, "categories": ["Bagels", "Sandwiches", "Coffee"] },
-        { "name": "Cafe au Late", "stars": 4, "categories": ["Bakery", "Cafe", "Coffee", "Dessert"] },
-        { "name": "Green Feast Pizzeria", "stars": 2, "categories": ["Pizza", "Italian"] },
-        { "name": "Go Pasta", "stars": 0, "categories": ["Pasta", "Italian", "Cafeteria"] },
-        { "name": "Liz's Coffee Bar", "stars": 5, "categories": ["Coffee", "Cafe", "Bakery"] },
-        { "name": "Oak Steakhouse", "stars": 0, "categories": ["Steak", "Seafood"] },
-        { "name": "Petit Cookie", "stars": 4, "categories": ["Bakery", "Cookies", "Cake", "Coffee"] },
-        { "name": "Modern Eats", "stars": 3, "categories": ["Steak", "Salad", "American"] }
-    ];
-
-    // This option prevents additional documents from being inserted if one fails.
-    const options = { ordered: true };
-
-    const result = await coll.insertMany(docs, options);
+.. literalinclude:: /code-snippets/aggregation/agg.js
+   :start-after: begin data insertion
+   :end-before: end data insertion
+   :language: javascript
+   :dedent:
 
 Aggregation Example
 ~~~~~~~~~~~~~~~~~~~
@@ -120,8 +99,7 @@ Aggregation Example
 To perform an aggregation, pass a list of aggregation stages to the 
 ``collection.aggregate()`` method.
 
-In the following example, the aggregation pipeline makes use of the
-following aggregation stages:
+In the following example, the aggregation pipeline uses the following aggregation stages:
 
 - A :manual:`$match </reference/operator/aggregation/match/>` stage to filter for documents whose
   ``categories`` array field contains the element ``Bakery``.
@@ -129,33 +107,20 @@ following aggregation stages:
 - A :manual:`$group </reference/operator/aggregation/group/>` stage to group the matching documents by the ``stars``
   field, accumulating a count of documents for each distinct value of ``stars``.
 
-.. code-block:: javascript
-   
-   const pipeline = [
-       {
-           '$match': {
-               'categories': 'Bakery'
-           }
-       }, {
-           '$group': {
-               '_id': '$stars',
-               'count': {
-                   '$sum': 1
-               }
-           }
-       }
-   ];
+.. literalinclude:: /code-snippets/aggregation/agg.js
+   :start-after: begin aggregation
+   :end-before: end aggregation
+   :language: javascript
+   :dedent:
 
-   const aggCursor = coll.aggregate(pipeline);
-   await aggCursor.forEach(doc => console.log(doc));
-
-This operation should produce the following results:
+This example should produce the following output:
 
 .. code-block:: json
    :copyable: false
 
-   {"_id": 5, "count": 1}
-   {"_id": 4, "count": 2}
+   { _id: 4, count: 2 }
+   { _id: 3, count: 1 }
+   { _id: 5, count: 1 }
    
 For more information, see the :node-api-4.0:`aggregate() API documentation <classes/collection.html#aggregate>`.
 
