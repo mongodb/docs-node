@@ -138,7 +138,8 @@ user.
 To connect to a MongoDB instance with ``MONGODB-AWS`` authentication
 enabled, specify the ``MONGODB-AWS`` authentication mechanism and pass
 your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` credentials to the
-driver when you attempt to connect.
+driver when you attempt to connect. If your AWS login requires a session
+token, you must include your ``AWS_SESSION_TOKEN`` as well. 
 
 The driver checks the following sources for your credentials in order:
 
@@ -160,16 +161,6 @@ authentication mechanism and credentials in the connection string:
 
 .. literalinclude:: /code-snippets/authentication/aws.js
    :language: javascript
-
-If your AWS login requires a session token, you must include your
-``AWS_SESSION_TOKEN`` in your connection string. The following example
-provides a guide for defining and inserting your ``AWS_SESSION_TOKEN``:
-
-.. code-block:: javascript
-
-   const sessionToken = encodeURIComponent("<AWS_SESSION_TOKEN>");
-   const uri = `mongodb+srv://${accessKeyId}:${secretAccessKey}@${clusterUrl}/?authMechanism=${authMechanism}&authMechanismProperties=${sessionToken}`;
-
 
 ``X.509``
 ---------

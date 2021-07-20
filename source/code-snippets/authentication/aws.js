@@ -5,11 +5,16 @@ const accessKeyId = encodeURIComponent("<AWS_ACCESS_KEY_ID>");
 const secretAccessKey = encodeURIComponent("<AWS_SECRET_ACCESS_KEY>");
 const clusterUrl = "<MongoDB cluster url>";
 
+const sessionToken = encodeURIComponent("<AWS_SESSION_TOKEN>"); // Optional
+
 const authMechanism = "MONGODB-AWS";
 
 // Replace the following with your MongoDB deployment's connection string.
 const uri =
   `mongodb+srv://${accessKeyId}:${secretAccessKey}@${clusterUrl}/?authMechanism=${authMechanism}`;
+
+// If you created a session token, append to the end of your URI string
+const tokenSetting = '&authMechanismProperties=${sessionToken}';
 
 // Create a new MongoClient
 const client = new MongoClient(uri);
