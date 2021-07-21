@@ -74,20 +74,19 @@ Useful References
 Runnable Examples
 -----------------
 
-The following example uses sample data about restaurants. 
-
-.. tip::
-
-   For more information on connecting to your MongoDB deployment, see the :doc:`Connection Guide </fundamentals/connection>`.
-
-The following code inserts data into the ``restaurants``
-collection of the ``aggregation`` database:
+The example uses sample data about restaurants. The following code
+inserts data into the ``restaurants`` collection of the ``aggregation``
+database:
 
 .. literalinclude:: /code-snippets/aggregation/agg.js
    :start-after: begin data insertion
    :end-before: end data insertion
    :language: javascript
    :dedent:
+
+.. tip::
+
+   For more information on connecting to your MongoDB deployment, see the :doc:`Connection Guide </fundamentals/connection>`.
 
 Aggregation Example
 ~~~~~~~~~~~~~~~~~~~
