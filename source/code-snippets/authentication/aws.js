@@ -26,7 +26,7 @@ async function run() {
     await client.db("admin").command({ ping: 1 });
     console.log("Connected successfully to server.");
   } finally {
-    // Ensure that the client will close when you finish/error.
+    // Ensure that the client closes when it finishes/errors.
     await client.close();
   }
 }
