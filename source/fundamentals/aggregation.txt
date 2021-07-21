@@ -79,7 +79,7 @@ example.
 
 .. tip::
 
-   For information on connecting to your MongoDB deployment, see the :ref:`Connection Guide </fundamentals/connection>`.
+   For information on connecting to your MongoDB deployment, see the :doc:`Connection Guide </fundamentals/connection>`.
    
 Insert Sample Data
 ~~~~~~~~~~~~~~~~~~
