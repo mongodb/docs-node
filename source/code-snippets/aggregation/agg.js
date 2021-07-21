@@ -11,11 +11,11 @@ async function run() {
         const coll = db.collection("restaurants");
 
         const docs = [
-            { "name": "Rising Sun Bakery", "stars": 3, "categories": ["Bakery", "Cafe"] },
-            { "name": "Cafe au Late", "stars": 4, "categories": ["Bakery", "Cafe", "Bar"] },
-            { "name": "Liz's Coffee Bar", "stars": 5, "categories": ["Cafe", "Bakery"] },
-            { "name": "Oak Steakhouse", "stars": 3, "categories": ["Steak", "Seafood"] },
-            { "name": "Petit Cookie", "stars": 4, "categories": ["Bakery", "Dessert"] },
+            { "stars": 3, "categories": ["Bakery", "Sandwiches"], "name": "Rising Sun Bakery" },
+            { "stars": 4, "categories": ["Bakery", "Cafe", "Bar"], "name": "Cafe au Late" },
+            { "stars": 5, "categories": ["Coffee", "Bakery"], "name": "Liz's Coffee Bar" },
+            { "stars": 3, "categories": ["Steak", "Seafood"], "name": "Oak Steakhouse" },
+            { "stars": 4, "categories": ["Bakery", "Dessert"], "name": "Petit Cookie" },
         ];
 
         const result = await coll.insertMany(docs);

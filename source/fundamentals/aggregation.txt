@@ -74,18 +74,12 @@ Useful References
 Runnable Examples
 -----------------
 
-Create a new file and connect to your MongoDB deployment to follow this
-example.
+The following example inserts sample data into the ``restaurants``
+collection of the ``aggregation`` database.
 
 .. tip::
 
    For information on connecting to your MongoDB deployment, see the :doc:`Connection Guide </fundamentals/connection>`.
-   
-Insert Sample Data
-~~~~~~~~~~~~~~~~~~
-
-The example uses sample data about restaurants. The following code
-inserts the data into the ``restaurants`` collection of the ``aggregation`` database:
 
 .. literalinclude:: /code-snippets/aggregation/agg.js
    :start-after: begin data insertion
