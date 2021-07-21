@@ -16,15 +16,15 @@ Overview
 In this guide, you can learn how to use **aggregation operations** in
 the MongoDB Node.js driver.
 
-Aggregation operations are expressions you can use to produce summarized
-and computed results in MongoDB. MongoDB's aggregation framework
+Aggregation operations are expressions you can use to produce reduced
+and summarized results in MongoDB. MongoDB's aggregation framework
 allows you to create a pipeline that consists of one or more stages,
 each of which performs a specific operation on your data.
 
 You can think of the aggregation framework as similar to an automobile factory.
 Automobile manufacturing requires the use of assembly stations organized
 into assembly lines. Each station has specialized tools, such as
-drills, welders, or other machinery. The factory transforms and
+drills and welders. The factory transforms and
 assembles the initial parts and materials into finished products.
 
 The **aggregation pipeline** is the assembly line, **aggregation stages** are the assembly stations, and
@@ -39,9 +39,9 @@ Using query operations, such as the ``find()`` method, you can:
 - select *which fields* to return
 - sort the results
 
-Using ``aggregation`` operations, you can:
+Using aggregation operations, you can:
 
-- perform all ``find`` operations
+- perform all query operations
 - rename fields
 - calculate fields
 - summarize data
