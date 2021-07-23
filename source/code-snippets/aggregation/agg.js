@@ -22,18 +22,8 @@ async function run() {
 
     // begin aggregation
     const pipeline = [
-        {
-            "$match": {
-                categories: "Bakery"
-            }
-        }, {
-            "$group": {
-                _id: "$stars",
-                count: {
-                    "$sum": 1
-                }
-            }
-        }
+        { $match: { categories: "Bakery" } },
+        { $group: { _id: "$stars", count: { $sum: 1 } } }
     ];
 
     const aggCursor = coll.aggregate(pipeline);
