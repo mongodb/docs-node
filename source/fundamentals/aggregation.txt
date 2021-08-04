@@ -51,17 +51,7 @@ Aggregation operations have some :manual:`limitations </core/aggregation-pipelin
 
 - Returned documents must not violate the :manual:`BSON-document size limit </reference/limits/#mongodb-limit-BSON-Document-Size>`
   of 16 megabytes.
-
-- Pipeline stages have a memory limit of 100 megabytes by default. If necessary, you may exceed this limit by setting the ``allowDiskUse``
-  property of ``AggregateOptions`` to ``true``. See the
-  :node-api-3.6:`AggregateOptions API documentation <interfaces/aggregateoptions.html>`
-  for more details.
-
-.. important:: ``$graphLookup`` exception
-
-   The :manual:`$graphLookup
-   </reference/operator/aggregation/graphLookup/>` stage has a strict
-   memory limit of 100 megabytes and will ignore ``allowDiskUse``.
+- Pipeline stages have a memory limit of 100 megabytes by default.
 
 Useful References
 ~~~~~~~~~~~~~~~~~
@@ -117,7 +107,7 @@ This example should produce the following output:
    { _id: 3, count: 1 }
    { _id: 5, count: 1 }
    
-For more information, see the :node-api-3.6:`aggregate() API documentation <classes/collection.html#aggregate>`.
+For more information, see the :node-api-3.6:`aggregate() API documentation <Collection.html#aggregate>`.
 
 Additional Aggregation Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
