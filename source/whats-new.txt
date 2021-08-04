@@ -12,8 +12,19 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 4.1 <version-4.1>`
 * :ref:`Version 4.0 <version-4.0>`
 * :ref:`Version 3.6 <version-3.6>`
+
+.. _version-4.1:
+
+What's New in 4.1
+-----------------
+
+New features of the 4.1 Node.js driver release include:
+
+- Added support for load balancer to specify how a driver should behave when connected
+- Added support for the ``advanceClusterTime()`` method to update the cluster time tracked by a session
 
 .. _version-4.0:
 
