@@ -94,7 +94,7 @@ default name ``fs``, as shown in the following example:
 
    const bucket = new mongodb.GridFSBucket(db, { bucketName: 'myCustomBucket' });
 
-For more information, see the :node-api-4.0:`GridFSBucket API documentation <classes/gridfsbucket.html>`.
+For more information, see the :node-api-3.6:`GridFSBucket API documentation <GridFSBucket.html>`.
 
 .. _gridfs-upload-files:
 
@@ -117,7 +117,7 @@ following code snippet:
             metadata: { field: 'myField', value: 'myValue' }
         });
 
-See the :node-api-4.0:`openUploadStream() API documentation <classes/gridfsbucket.html#openuploadstream>` for more information.
+See the :node-api-3.6:`openUploadStream() API documentation <GridFSBucket.html#openUploadStream>` for more information.
 
 .. _gridfs-retrieve-file-info:
 
@@ -135,12 +135,12 @@ about the file it refers to, including:
 - A ``metadata`` document in which you can store any other information
 
 Call the ``find()`` method on the ``GridFSBucket`` instance to retrieve
-files from a GridFS bucket. The method returns a ``FindCursor`` instance
+files from a GridFS bucket. The method returns a ``Cursor`` instance
 from which you can access the results.
 
 The following code example shows you how to retrieve and print file metadata
 from all your files in a GridFS bucket. Among the different ways that you can
-traverse the retrieved results from the ``FindCursor`` iterable, the
+traverse the retrieved results from the ``Cursor`` iterable, the
 following example uses the ``forEach()`` method to display the results:
 
 .. code-block:: javascript
@@ -154,8 +154,8 @@ combined with other methods such as ``sort()``, ``limit()``, and ``project()``.
 For more information on the classes and methods mentioned in this section,
 see the following resources:
 
-- :node-api-4.0:`find() API documentation <classes/gridfsbucket.html#find>`
-- :node-api-4.0:`FindCursor API documentation <classes/findcursor.html>`
+- :node-api-3.6:`find() API documentation <GridFSBucket.html#find>`
+- :node-api-3.6:`Cursor API documentation <Cursor.html>`
 - :doc:`Cursor Fundamentals page </fundamentals/crud/read-operations/cursor>`
 - :doc:`Read Operations page </fundamentals/crud/read-operations/>`
 
@@ -200,7 +200,7 @@ method, which takes the ``_id`` field of a file as a parameter:
    overhead.
 
 For more information on the ``openDownloadStreamByName()`` method, see
-its :node-api-4.0:`API documentation <classes/gridfsbucket.html#opendownloadstreambyname>`.
+its :node-api-3.6:`API documentation <GridFSBucket.html#openDownloadStreamByName>`.
 
 .. _gridfs-rename-files:
 
@@ -226,8 +226,8 @@ The following example shows how to update the ``filename`` field to
 
    bucket.rename(ObjectId("60edece5e06275bf0463aaf3"), "newFileName");
 
-For more information on this method, see the :node-api-4.0:`rename() API
-documentation <classes/gridfsbucket.html#rename>`.
+For more information on this method, see the :node-api-3.6:`rename() API
+documentation <GridFSBucket.html#rename>`.
 
 .. _gridfs-delete-files:
 
@@ -250,8 +250,8 @@ The following example shows you how to delete a file by referencing its ``_id`` 
 
    bucket.delete(ObjectId("60edece5e06275bf0463aaf3"));
 
-For more information on this method, see the :node-api-4.0:`delete() API
-documentation <classes/gridfsbucket.html#delete>`.
+For more information on this method, see the :node-api-3.6:`delete() API
+documentation <GridFSBucket.html#delete>`.
 
 .. _gridfs-delete-bucket:
 
@@ -266,8 +266,8 @@ code example shows you how to delete a GridFS bucket:
 
    bucket.drop();
 
-For more information on this method, see the :node-api-4.0:`drop() API
-documentation </classes/gridfsbucket.html#drop>`.
+For more information on this method, see the :node-api-3.6:`drop() API
+documentation <GridFSBucket.html#drop>`.
 
 Additional Resources
 --------------------
