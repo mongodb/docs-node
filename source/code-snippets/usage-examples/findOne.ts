@@ -23,12 +23,12 @@ async function run(): Promise<void> {
 
     const database = client.db("sample_mflix");
     const movies = database.collection<MovieSchema>("movies");
-    const query = { title: "The Room" } as Document;
+    const query: object = { title: "The Room" };
 
-    const options = {
+    const options: FindOptions = {
       sort: { rating: -1 },
       projection: { _id: 0, title: 1, imdb: 1 },
-    } as FindOptions;
+    };
 
     const movie = await movies.findOne(query, options);
     console.log(movie);
