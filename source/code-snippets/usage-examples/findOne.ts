@@ -6,11 +6,11 @@ const uri =
 
 const client = new MongoClient(uri);
 
-type imdb = {
+interface IMDB {
   rating: number;
   votes: number;
   id: number;
-};
+}
 
 interface MovieSchema extends Document {
   title: string;
