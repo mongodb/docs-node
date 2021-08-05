@@ -1,4 +1,4 @@
-import { FindOptions, MongoClient } from "mongodb";
+import { MongoClient } from "mongodb";
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
