@@ -17,7 +17,7 @@ export interface Movie {
   year: number;
   released: Date;
   plot: string;
-  type: 'movie' | 'tv' | 'web series';
+  type: 'movie' | 'series';
   imdb: IMDB;
 }
 
