@@ -12,9 +12,13 @@ interface IMDB {
   id: number;
 }
 
-interface MovieSchema extends Document {
+export interface Movie {
   title: string;
-  imdb: imdb;
+  year: number;
+  released: Date;
+  plot: string;
+  type: 'movie' | 'tv' | 'web series';
+  imdb: IMDB;
 }
 
 async function run(): Promise<void> {
