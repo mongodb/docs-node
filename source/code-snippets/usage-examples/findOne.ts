@@ -7,14 +7,14 @@ const uri =
 const client = new MongoClient(uri);
 
 type imdb = {
-  rating:number,
-  votes:number,
-  id:number
-}
+  rating: number;
+  votes: number;
+  id: number;
+};
 
 interface MovieSchema extends Document {
-  title:string,
-  imdb:imdb
+  title: string;
+  imdb: imdb;
 }
 
 async function run(): Promise<void> {
@@ -37,3 +37,4 @@ async function run(): Promise<void> {
   }
 }
 run().catch(console.dir);
+  
