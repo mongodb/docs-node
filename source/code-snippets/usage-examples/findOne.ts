@@ -35,7 +35,10 @@ async function run(): Promise<void> {
       projection: { _id: 0, title: 1, imdb: 1 },
     };
 
-    const movie = await movies.findOne(query, options);
+    const movie = await movies.findOne({ title: "The Room" }, {
+      sort: { rating: -1 },
+      projection: { _id: 0, title: 1, imdb: 1 },
+    });
     console.log(movie);
   } finally {
     await client.close();
