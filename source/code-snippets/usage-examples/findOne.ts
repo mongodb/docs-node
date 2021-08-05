@@ -26,6 +26,7 @@ async function run(): Promise<void> {
     await client.connect();
 
     const database = client.db("sample_mflix");
+    // Specifying a Schema is always optional, but it enables type hinting on finds and inserts
     const movies = database.collection<MovieSchema>("movies");
     const query: object = { title: "The Room" };
 
