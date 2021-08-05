@@ -57,10 +57,10 @@ collection. It uses the following parameters:
         :language: javascript
 
   .. tab:: TypeScript
-     :tabid: javascript
+     :tabid: typescript
     
      .. literalinclude:: /code-snippets/usage-examples/findOne.ts
-        :language: javascript
+        :language: typescript
 
 
 If you run the example above, you should see a result that resembles the
