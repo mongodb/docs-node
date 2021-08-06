@@ -16,9 +16,7 @@ async function run() {
     const doc = { name: "Red", region: "Kanto" };
     const result = await movies.insertOne(doc);
 
-    console.log(
-      `${result.insertedCount} documents were inserted with the _id: ${result.insertedId}`,
-    );
+    console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } finally {
     await client.close();
   }
