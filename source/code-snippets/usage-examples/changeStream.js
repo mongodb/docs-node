@@ -16,11 +16,13 @@ async function run() {
     // open a Change Stream on the "movies" collection
     changeStream = movies.watch();
 
-    // set up a listener when change events are emitted
-    changeStream.on("change", next => {
+    const callback = next => {
       // process any change event
       console.log("received a change to the collection: \t", next);
-    });
+    }
+
+    // set up a listener when change events are emitted
+    changeStream.on("change", callback);
 
     // use a timeout to ensure the listener is registered before the insertOne
     // operation is called.
@@ -31,7 +33,8 @@ async function run() {
         });
         // wait to close `changeStream` after the listener receives the event
         setTimeout(async () => {
-          resolve(await changeStream.close());
+          changeStream.removeListener("change", callback);
+          resolve(null);
         }, 1000);
       }, 1000);
     });
