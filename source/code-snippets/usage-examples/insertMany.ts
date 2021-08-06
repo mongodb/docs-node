@@ -20,17 +20,14 @@ async function run() {
     // finds and inserts
     const foods = database.collection<Food>("foods");
 
-    // create an array of documents to insert
-    const docs = [
-      { name: "cake", healthy: false },
-      { name: "lettuce", healthy: true },
-      { name: "donut", healthy: false },
-    ];
-
-    // this option prevents additional documents from being inserted if one fails
-    const options = { ordered: true };
-
-    const result = await foods.insertMany(docs, options);
+    const result = await foods.insertMany(
+      [
+        { name: "cake", healthy: false },
+        { name: "lettuce", healthy: true },
+        { name: "donut", healthy: false },
+      ],
+      { ordered: true }
+    );
     console.log(`${result.insertedCount} documents were inserted`);
   } finally {
     await client.close();
