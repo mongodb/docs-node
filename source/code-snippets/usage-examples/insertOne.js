@@ -10,10 +10,13 @@ async function run() {
   try {
     await client.connect();
 
-    const database = client.db("sample_mflix");
-    const movies = database.collection("movies");
-    // create a document to be inserted
-    const doc = { name: "Red", region: "Kanto" };
+    const database = client.db("insert_db");
+    const movies = database.collection("haikus");
+    // create a document to insert
+    const doc = {
+      title: "Record of a Shriveled Datum",
+      content: "No bytes, no problem. Just insert a document, in MongoDB",
+    }
     const result = await movies.insertOne(doc);
 
     console.log(`A document was inserted with the _id: ${result.insertedId}`);

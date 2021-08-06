@@ -6,20 +6,23 @@ const uri =
 
 const client = new MongoClient(uri);
 
-interface Town {
-  name: string;
-  region: string;
+interface Haiku {
+  title: string;
+  content: string;
 }
 
 async function run() {
   try {
     await client.connect();
 
-    const database = client.db("sample_mflix");
+    const database = client.db("insert_db");
     // Specifying a Schema is optional, but it enables type hints on
     // finds and inserts
-    const movies = database.collection<Town>("movies");
-    const result = await movies.insertOne({ name: "Red", region: "Kanto" });
+    const movies = database.collection<Haiku>("haikus");
+    const result = await movies.insertOne({
+      title: "Record of a Shriveled Datum",
+      content: "No bytes, no problem. Just insert a document, in MongoDB",
+    });
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } finally {
     await client.close();
