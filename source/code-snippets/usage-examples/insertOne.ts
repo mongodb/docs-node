@@ -17,7 +17,7 @@ async function run() {
 
     const database = client.db("sample_mflix");
     // Specifying a Schema is optional, but it enables type hints on
-    // finds and 'inserts
+    // finds and inserts
     const movies = database.collection<Town>("movies");
     // create a document to be inserted
     const result = await movies.insertOne({ name: "Red", region: "Kanto" });
