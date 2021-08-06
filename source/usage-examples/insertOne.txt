@@ -36,6 +36,20 @@ Example
 
 .. include:: /includes/connect-guide-note.rst
 
-.. literalinclude:: /code-snippets/usage-examples/insertOne.js
-  :language: javascript
-  :linenos:
+.. tabs::
+
+   .. tab:: JavaScript
+      :tabid: javascript
+ 
+      .. literalinclude:: /code-snippets/usage-examples/insertOne.js
+         :language: javascript
+         :linenos:
+ 
+   .. tab:: TypeScript
+      :tabid: typescript
+ 
+      .. literalinclude:: /code-snippets/usage-examples/insertOne.ts
+         :language: typescript
+         :linenos:
+
+
