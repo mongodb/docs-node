@@ -19,7 +19,6 @@ async function run() {
     // Specifying a Schema is optional, but it enables type hints on
     // finds and inserts
     const movies = database.collection<Town>("movies");
-    // create a document to be inserted
     const result = await movies.insertOne({ name: "Red", region: "Kanto" });
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } finally {
