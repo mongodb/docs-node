@@ -13,7 +13,7 @@ async function run() {
     const database = client.db("sample_mflix");
     const movies = database.collection("movies");
     // create a document to be inserted
-    const doc = { name: "Red", town: "kanto" };
+    const doc = { name: "Red", region: "Kanto" };
     const result = await movies.insertOne(doc);
 
     console.log(
