@@ -52,4 +52,9 @@ Example
          :language: typescript
          :linenos:
 
+If you run the example above, you should see a result that resembles the following:
+
+.. code-block:: none
+
+   A document was inserted with the _id: <your _id value>
 
