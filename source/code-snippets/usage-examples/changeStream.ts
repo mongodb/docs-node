@@ -17,25 +17,20 @@ async function run(): Promise<void> {
     const database = client.db("sample_mflix");
     const movies = database.collection("movies");
 
-    // open a Change Stream on the "movies" collection
+    // Specifying a type is optional, but it enables type hints
     let changeStream: TypedEventEmitter<ChangeStreamEvents> = movies.watch();
 
     const callback = (next: ChangeStreamDocument<Document>) => {
-      // process any change event
       console.log("received a change to the collection: \t", next);
     };
 
-    // set up a listener when change events are emitted
     changeStream.on<"change">("change", callback);
 
-    // use a timeout to ensure the listener is registered before the insertOne
-    // operation is called.
     await new Promise((resolve) => {
       setTimeout(async () => {
         await movies.insertOne({
           test: "sample movie document",
         });
-        // wait to close `changeStream` after the listener receives the event
         setTimeout(async () => {
           changeStream.removeListener<"change">("change", callback);
           resolve(null);
