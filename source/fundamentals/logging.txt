@@ -10,7 +10,7 @@ Logging
    :depth: 1
    :class: singlecols
 
-.. note::
+.. important::
 
   The driver doesn't use the logger in this version. Attempting to use
   prior settings in this version won't print anything. Instead, see our
@@ -20,11 +20,11 @@ Temporary Alternative
 ---------------------
 
 The Node.js team is currently working on rewriting the logger. In the
-meantime, you can log monitor events in the console using the following snippet:
+meantime, you can output monitor events using the following snippet:
 
 .. code-block:: javascript
 
   const client = new MongoClient(CONNECTION_STRING, { monitorCommands:true });
-  client.on('commandStarted', (ev) => console.debug(ev));
-  client.on('commandSucceeded', (ev) => console.debug(ev));
-  client.on('commandFailed', (ev) => console.debug(ev));
+  client.on('commandStarted', (event) => console.debug(event));
+  client.on('commandSucceeded', (event) => console.debug(event));
+  client.on('commandFailed', (event) => console.debug(event));
