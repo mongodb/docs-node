@@ -18,8 +18,8 @@ async function run() {
     const database = client.db("insert_db");
     // Specifying a Schema is optional, but it enables type hints on
     // finds and inserts
-    const movies = database.collection<Haiku>("haikus");
-    const result = await movies.insertOne({
+    const haiku = database.collection<Haiku>("haiku");
+    const result = await haiku.insertOne({
       title: "Record of a Shriveled Datum",
       content: "No bytes, no problem. Just insert a document, in MongoDB",
     });
