@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
@@ -6,12 +6,17 @@ const uri =
 
 const client = new MongoClient(uri);
 
+interface Food {
+  name: string;
+  healthy: boolean;
+}
+
 async function run() {
   try {
     await client.connect();
 
     const database = client.db("insert_db");
-    const foods = database.collection("foods");
+    const foods = database.collection<Food>("foods");
 
     // create an array of documents to insert
     const docs = [
