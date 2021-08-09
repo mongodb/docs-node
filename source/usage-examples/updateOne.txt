@@ -73,4 +73,5 @@ If you run the example above, you should see output that resembles the following
 .. code-block:: none
    :copyable: false
 
-   1 document(s) matched the filter, updated 0 document(s)
+   1 document(s) matched the filter, updated 1 document(s)
+ 

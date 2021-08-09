@@ -19,10 +19,10 @@ async function run() {
     const movies = database.collection<Movies>("movies");
 
     const result = await movies.updateOne(
-      { title: "Blacksmith Scene" },
+      { title: "Random Harvest" },
       {
         $set: {
-          plot: "Blacksmith Scene is a silent film directed by William K.L. Dickson.",
+          plot: `A harvest of random numbers, such as: ${Math.random()}`,
         },
       },
       { upsert: true }
