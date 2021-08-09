@@ -7,7 +7,8 @@ const uri =
 const client = new MongoClient(uri);
 
 interface Movies {
-  plot: String;
+  plot: string;
+  title: string;
 }
 
 async function run() {
