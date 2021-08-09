@@ -49,8 +49,21 @@ collection with ``Canada`` in the ``countries`` field.
 
 .. include:: /includes/connect-guide-note.rst
 
-.. literalinclude:: /code-snippets/usage-examples/count.js
-  :language: javascript
+.. tabs::
+
+  .. tab:: JavaScript
+     :tabid: javascript
+
+     .. literalinclude:: /code-snippets/usage-examples/count.js
+        :language: javascript
+        :linenos:
+
+  .. tab:: TypeScript
+     :tabid: typescript
+
+     .. literalinclude:: /code-snippets/usage-examples/count.ts
+        :language: typescript
+        :linenos:
 
 If you run the sample code above, you should see output that resembles the
 following:
