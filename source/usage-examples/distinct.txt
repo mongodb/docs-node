@@ -76,6 +76,7 @@ match movies that include "Barbara Streisand" as a ``director``.
 If you run the example above, you should see output that resembles the following:
 
 .. code-block:: json
+   :copyable: false
 
    [ 1983, 1991, 1996 ]
 
