@@ -34,10 +34,21 @@ Example
 
 .. include:: /includes/connect-guide-note.rst
 
-.. literalinclude:: /code-snippets/usage-examples/command.js
-  :language: javascript
-  :linenos:
+.. tabs::
 
+  .. tab:: JavaScript
+     :tabid: javascript
+
+     .. literalinclude:: /code-snippets/usage-examples/command.js
+        :language: javascript
+        :linenos:
+
+  .. tab:: TypeScript
+     :tabid: typescript
+
+     .. literalinclude:: /code-snippets/usage-examples/command.ts
+        :language: typescript
+        :linenos:
 
 When you run the above command, you should see output similar to the
 following:
