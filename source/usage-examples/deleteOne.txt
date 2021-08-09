@@ -45,5 +45,25 @@ to match only movies with a title of type ``string``.
 
 .. include:: /includes/connect-guide-note.rst
 
-.. literalinclude:: /code-snippets/usage-examples/deleteOne.js
-  :language: javascript
+.. tabs::
+
+  .. tab:: JavaScript
+     :tabid: javascript
+
+     .. literalinclude:: /code-snippets/usage-examples/deleteOne.js
+        :language: javascript
+        :linenos:
+
+  .. tab:: TypeScript
+     :tabid: typescript
+
+     .. literalinclude:: /code-snippets/usage-examples/deleteOne.ts
+        :language: typescript
+        :linenos:
+
+If you run the example above, you should see output that resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   'Successfully deleted one document.'
