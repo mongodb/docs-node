@@ -32,7 +32,7 @@ async function run() {
         // wait to close `changeStream` after the listener receives the event
         setTimeout(async () => {
           resolve(
-            await changeStream.close(() => console.log("Closed change stream"))
+            await changeStream.close(() => console.log("closed the change stream"))
           );
         }, 1000);
       }, 1000);

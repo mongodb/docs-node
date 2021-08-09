@@ -137,6 +137,7 @@ following:
      ns: { db: 'sample_mflix', coll: 'movies' },
      documentKey: { _id: 5ec3... },
    }
+   closed the change stream
 
 .. note:: Receive Full Documents From Updates
 
