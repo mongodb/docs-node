@@ -119,7 +119,7 @@ includes information on the hostname or IP address and port of your
 instance, authentication mechanism, user credentials when applicable, and
 other connection options.
 
-If you are connecting to an instance or cluster  that is not hosted by Atlas,
+If you are connecting to an instance or cluster that is not hosted by Atlas,
 see the :doc:`Connection Guide </fundamentals/connection>` for instructions on
 how to format your connection string.
 
