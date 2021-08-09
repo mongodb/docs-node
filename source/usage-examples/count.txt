@@ -69,6 +69,7 @@ If you run the sample code above, you should see output that resembles the
 following:
 
 .. code-block:: none
+   :copyable: false
 
    Estimated number of documents in the movies collection: 23541
    Number of movies from Canada: 1349
