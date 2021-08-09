@@ -1,7 +1,6 @@
 import {
   ChangeStreamDocument,
-  ChangeStreamEvents,
-  TypedEventEmitter,
+  ChangeStream,
   MongoClient,
 } from "mongodb";
 
@@ -18,7 +17,7 @@ async function run(): Promise<void> {
     const movies = database.collection("movies");
 
     // Specifying a type is optional, but it enables type hints
-    let changeStream: TypedEventEmitter<ChangeStreamEvents> = movies.watch();
+    let changeStream: ChangeStream = movies.watch();
 
     const callback = (next: ChangeStreamDocument<Document>) => {
       console.log("received a change to the collection: \t", next);
@@ -32,8 +31,9 @@ async function run(): Promise<void> {
           test: "sample movie document",
         });
         setTimeout(async () => {
-          changeStream.removeListener<"change">("change", callback);
-          resolve(null);
+          resolve(
+            await changeStream.close(() => console.log("Closed change stream"))
+          );
         }, 1000);
       }, 1000);
     });
