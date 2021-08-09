@@ -19,11 +19,9 @@ async function run(): Promise<void> {
     // Specifying a type is optional, but it enables type hints
     let changeStream: ChangeStream = movies.watch();
 
-    const callback = (next: ChangeStreamDocument<Document>) => {
+    changeStream.on<"change">("change", next => {
       console.log("received a change to the collection: \t", next);
-    };
-
-    changeStream.on<"change">("change", callback);
+    });
 
     await new Promise((resolve) => {
       setTimeout(async () => {

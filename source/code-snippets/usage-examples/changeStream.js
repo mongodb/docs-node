@@ -16,13 +16,11 @@ async function run() {
     // open a Change Stream on the "movies" collection
     changeStream = movies.watch();
 
-    const callback = next => {
+    // set up a listener when change events are emitted
+    changeStream.on("change", next => {
       // process any change event
       console.log("received a change to the collection: \t", next);
-    }
-
-    // set up a listener when change events are emitted
-    changeStream.on("change", callback);
+    });
 
     // use a timeout to ensure the listener is registered before the insertOne
     // operation is called.
