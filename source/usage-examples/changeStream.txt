@@ -118,9 +118,14 @@ callback process the event before exiting.
    .. tab:: TypeScript
       :tabid: typescript
  
-      .. literalinclude:: /code-snippets/usage-examples/changeStream.ts
-         :language: typescript
+      .. literalinclude:: /code-snippets/usage-examples/changeStream.js
+         :language: javascript
          :linenos:
+
+.. note:: Identical Code Snippets
+
+   The JavaScript and TypeScript code snippets above are identical. There are no
+   TypeScript specific features of the driver relevant to this use case.
 
 If you run the example above, you should see output similar to the
 following:
