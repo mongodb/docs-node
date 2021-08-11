@@ -61,10 +61,10 @@ to match only movies with a title of type ``string``.
         :language: javascript
         :linenos:
 
-.. important::
+.. note:: Identical Code Snippets
 
    The JavaScript and TypeScript code snippets above are identical. There is no
-   added value from using TypeScript over JavaScript for this use case.
+   added value from using TypeScript in this use case.
 
 If you run the example above, you should see output that resembles the following:
 
