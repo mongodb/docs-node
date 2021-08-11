@@ -17,7 +17,7 @@ Logging
   monitoring guides:
 
   - :doc:`Command Monitoring </fundamentals/monitoring/command-monitoring>` 
-  - :doc:`Cluster Monitoring </fundamentals/monitoring/cluster-monitoring>`. 
+  - :doc:`Cluster Monitoring </fundamentals/monitoring/cluster-monitoring>`
 
 Temporary Alternative
 ---------------------
