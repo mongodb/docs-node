@@ -14,7 +14,10 @@ Logging
 
   The driver doesn't use the logger in this version. Attempting to use
   prior settings in this version won't print anything. Instead, see our
-  :doc:`command monitoring guide <monitoring/command-monitoring>`. 
+  monitoring guides:
+
+  - :doc:`Command Monitoring </fundamentals/monitoring/command-monitoring>` 
+  - :doc:`Cluster Monitoring </fundamentals/monitoring/cluster-monitoring>`. 
 
 Temporary Alternative
 ---------------------
