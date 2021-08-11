@@ -64,7 +64,7 @@ to match only movies with a title of type ``string``.
 .. note:: Identical Code Snippets
 
    The JavaScript and TypeScript code snippets above are identical. There are no
-   TypeScript specific features in the driver relevant to this use case
+   TypeScript specific features of the driver relevant to this use case.
 
 If you run the example above, you should see output that resembles the following:
 
