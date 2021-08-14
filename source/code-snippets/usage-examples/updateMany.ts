@@ -16,7 +16,7 @@ enum Rating {
 
 interface Movies {
   rated: Rating;
-  random_number: number;
+  random_number?: number;
 }
 
 async function run() {
