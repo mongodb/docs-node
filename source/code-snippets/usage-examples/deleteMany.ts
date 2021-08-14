@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
@@ -6,16 +6,20 @@ const uri =
 
 const client = new MongoClient(uri);
 
+interface Movies {
+  title: string;
+}
+
 async function run() {
   try {
     await client.connect();
 
     const database = client.db("sample_mflix");
-    const movies = database.collection("movies");
-    // Query for all movies with the title "Santa Claus"
-    const query = { title: { $regex: ".*Santa.*" } };
-
-    const result = await movies.deleteMany(query);
+    const movies = database.collection<Movies>("movies");
+    const result = await movies.deleteMany(
+      // all movies with a title containing the string "Santa"
+      { title: { $regex: ".*Santa.*" } }
+    );
     console.log("Deleted " + result.deletedCount + " documents");
   } finally {
     await client.close();
