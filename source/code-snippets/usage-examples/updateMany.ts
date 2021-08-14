@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
@@ -6,23 +6,33 @@ const uri =
 
 const client = new MongoClient(uri);
 
+enum Rating {
+  G = "G",
+  PG = "PG",
+  PG_13 = "PG-13",
+  R = "R",
+  NR = "NOT RATED",
+}
+
+interface Movies {
+  rated: Rating;
+  random_number: number;
+}
+
 async function run() {
   try {
     await client.connect();
 
     const database = client.db("sample_mflix");
-    const movies = database.collection("movies");
-
-    // create a filter to update all movies with a 'G' rating
-    const filter = { rated: "G" };
-
-    // increment every document matching the filter with 2 more comments
-    const updateDoc = {
-      $set: {
-        random_number: Math.random(),
-      },
-    };
-    const result = await movies.updateMany(filter, updateDoc);
+    const movies = database.collection<Movies>("movies");
+    const result = await movies.updateMany(
+      { rated: Rating.G },
+      {
+        $set: {
+          random_number: Math.random(),
+        },
+      }
+    );
     console.log(`Updated ${result.modifiedCount} documents`);
   } finally {
     await client.close();
