@@ -1,10 +1,15 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
   "mongodb+srv://<user>:<password>@<cluster-url>?writeConcern=majority";
 
 const client = new MongoClient(uri);
+
+interface Movies {
+  title: string;
+  random_number?: number;
+}
 
 async function run() {
   try {
@@ -13,15 +18,13 @@ async function run() {
     const database = client.db("sample_mflix");
     const movies = database.collection("movies");
 
-    // create a query for a movie to update
-    const query = { title: { $regex: "The Cat from" } };
-    // create a new document that will be used to replace the existing document
-    const replacement = {
-      title: "The Cat from Cleveland",
-      random_number: Math.random(),
-    };
-
-    const result = await movies.replaceOne(query, replacement);
+    const result = await movies.replaceOne(
+      { title: { $regex: "The Cat from" } },
+      {
+        title: "The Cat from Cleveland",
+        random_number: Math.random(),
+      }
+    );
     console.log(`Modified ${result.modifiedCount} document`);
   } finally {
     await client.close();

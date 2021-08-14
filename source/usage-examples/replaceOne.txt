@@ -43,6 +43,22 @@ Example
 
 .. include:: /includes/connect-guide-note.rst
 
-.. literalinclude:: /code-snippets/usage-examples/replaceOne.js
-  :language: javascript
-  :linenos:
+.. tabs::
+
+  .. tab:: JavaScript
+     :tabid: javascript
+
+     .. literalinclude:: /code-snippets/usage-examples/replaceOne.js
+        :language: javascript
+        :linenos:
+
+  .. tab:: TypeScript
+     :tabid: typescript
+
+     .. literalinclude:: /code-snippets/usage-examples/replaceOne.ts
+        :language: typescript
+        :linenos:
+
+.. code-block:: none
+
+   Modified 1 document
