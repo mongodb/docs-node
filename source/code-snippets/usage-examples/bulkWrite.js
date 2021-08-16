@@ -14,38 +14,47 @@ async function run() {
     const theaters = database.collection("theaters");
 
     const result = await theaters.bulkWrite([
-      { insertOne:
-        {
-          "document": {
+      {
+        insertOne: {
+          document: {
             location: {
-              address: { street1: '3 Main St.', city: 'Anchorage', state: 'AK', zipcode: '99501' },
-            }
-          }
-        }
+              address: {
+                street1: "3 Main St.",
+                city: "Anchorage",
+                state: "AK",
+                zipcode: "99501",
+              },
+            },
+          },
+        },
       },
-      { insertOne:
-        {
-          "document": {
+      {
+        insertOne: {
+          document: {
             location: {
-              address: { street1: '75 Penn Plaza', city: 'New York', state: 'NY', zipcode: '10001' },
-            }
-          }
-        }
+              address: {
+                street1: "75 Penn Plaza",
+                city: "New York",
+                state: "NY",
+                zipcode: "10001",
+              },
+            },
+          },
+        },
       },
-      { updateMany:
-        {
-          "filter": { "location.address.zipcode" : "44011" },
-          "update": { $set : { "street2" : "25th Floor" } },
-          "upsert": true
-        }
+      {
+        updateMany: {
+          filter: { "location.address.zipcode": "44011" },
+          update: { $set: { street2: "25th Floor" } },
+          upsert: true,
+        },
       },
-      { deleteOne :
-        { "filter" : { "location.address.street1" : "221b Baker St"} }
+      {
+        deleteOne: { filter: { "location.address.street1": "221b Baker St" } },
       },
     ]);
 
     console.log(result);
-
   } finally {
     await client.close();
   }
