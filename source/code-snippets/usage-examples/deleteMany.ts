@@ -17,7 +17,6 @@ async function run() {
     const database = client.db("sample_mflix");
     const movies = database.collection<Movies>("movies");
     const result = await movies.deleteMany(
-      // all movies with a title containing the string "Santa"
       { title: { $regex: ".*Santa.*" } }
     );
     console.log("Deleted " + result.deletedCount + " documents");
