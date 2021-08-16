@@ -17,7 +17,7 @@ async function run() {
     const query = { title: { $regex: "The Cat from" } };
     // create a new document that will be used to replace the existing document
     const replacement = {
-      title: `The Cat from Sector ${Math.random()}`
+      title: `The Cat from Sector ${Math.floor(Math.random() * 1000) + 1}`,
     };
 
     const result = await movies.replaceOne(query, replacement);
