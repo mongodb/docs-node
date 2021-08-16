@@ -53,8 +53,16 @@ match and delete movies with the title "Santa Claus".
          :language: typescript
          :linenos:
 
-If you run the example above, you should see output that resembles the following:
+The first time you run the preceding example, you should see output that
+resembles the following:
 
 .. code-block:: none
 
    Deleted 19 documents
+
+On subsequent runs of the example, as you already deleted all relevant
+documents, you should see output that resembles the following:
+
+.. code-block:: none
+
+   Deleted 0 documents
