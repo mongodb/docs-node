@@ -6,7 +6,7 @@ const uri =
 
 const client = new MongoClient(uri);
 
-interface Movies {
+interface Movie {
   title: string;
 }
 
@@ -15,10 +15,8 @@ async function run() {
     await client.connect();
 
     const database = client.db("sample_mflix");
-    const movies = database.collection<Movies>("movies");
-    const result = await movies.deleteMany(
-      { title: { $regex: ".*Santa.*" } }
-    );
+    const movies = database.collection<Movie>("movies");
+    const result = await movies.deleteMany({ title: { $regex: "Santa" } });
     console.log("Deleted " + result.deletedCount + " documents");
   } finally {
     await client.close();
