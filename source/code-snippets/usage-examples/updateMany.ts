@@ -14,7 +14,7 @@ enum Rating {
   NR = "NOT RATED",
 }
 
-interface Movies {
+interface Movie {
   rated: Rating;
   random_review?: string;
 }
@@ -24,7 +24,7 @@ async function run() {
     await client.connect();
 
     const database = client.db("sample_mflix");
-    const movies = database.collection<Movies>("movies");
+    const movies = database.collection<Movie>("movies");
     const result = await movies.updateMany(
       { rated: Rating.G },
       {
