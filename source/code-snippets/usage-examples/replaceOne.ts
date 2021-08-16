@@ -8,7 +8,6 @@ const client = new MongoClient(uri);
 
 interface Movies {
   title: string;
-  random_number?: number;
 }
 
 async function run() {
@@ -16,13 +15,12 @@ async function run() {
     await client.connect();
 
     const database = client.db("sample_mflix");
-    const movies = database.collection("movies");
+    const movies = database.collection<Movies>("movies");
 
     const result = await movies.replaceOne(
       { title: { $regex: "The Cat from" } },
       {
-        title: "The Cat from Cleveland",
-        random_number: Math.random(),
+        title: `The Cat from Sector ${Math.random()}`,
       }
     );
     console.log(`Modified ${result.modifiedCount} document`);
