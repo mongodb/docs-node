@@ -6,10 +6,18 @@ const uri =
 
 const client = new MongoClient(uri);
 
-interface Movies {
+type Minutes = number;
+
+interface IMDB {
+  rating: number;
+  votes: number;
+  id: number;
+}
+
+interface Movie {
   title: string;
-  imdb: object;
-  runtime: number;
+  imdb: IMDB;
+  runtime: Minutes;
 }
 
 async function run() {
@@ -17,9 +25,9 @@ async function run() {
     await client.connect();
 
     const database = client.db("sample_mflix");
-    const movies = database.collection<Movies>("movies");
+    const movies = database.collection<Movie>("movies");
 
-    const cursor = movies.find<Movies>(
+    const cursor = movies.find<Movie>(
       { runtime: { $lt: 15 } },
       {
         sort: { title: 1 },
@@ -28,7 +36,7 @@ async function run() {
     );
 
     if ((await cursor.count()) === 0) {
-      console.log("No documents found!");
+      console.warn("No documents found!");
     }
 
     await cursor.forEach(console.dir);
