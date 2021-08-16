@@ -16,7 +16,7 @@ enum Rating {
 
 interface Movies {
   rated: Rating;
-  random_number?: number;
+  random_review?: string;
 }
 
 async function run() {
@@ -29,7 +29,9 @@ async function run() {
       { rated: Rating.G },
       {
         $set: {
-          random_number: Math.random(),
+          random_review: `After viewing I am ${
+            100 * Math.random()
+          }% more satisfied with life.`,
         },
       }
     );

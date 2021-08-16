@@ -19,7 +19,9 @@ async function run() {
     // increment every document matching the filter with 2 more comments
     const updateDoc = {
       $set: {
-        random_number: Math.random(),
+        random_review: `After viewing I am ${
+          100 * Math.random()
+        }% more satisfied with life.`,
       },
     };
     const result = await movies.updateMany(filter, updateDoc);
