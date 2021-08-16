@@ -7,14 +7,15 @@ const uri =
 const client = new MongoClient(uri);
 
 interface Address {
-  street1: string,
-  city: string,
-  state: string,
-  zipcode: string,
+  street1: string;
+  city: string;
+  state: string;
+  zipcode: string;
 }
 
 interface Theater {
-  location: {address: Address}
+  location: { address: Address };
+  is_in_ohio?: boolean;
 }
 
 async function run() {
@@ -56,12 +57,14 @@ async function run() {
       {
         updateMany: {
           filter: { "location.address.zipcode": "44011" },
-          update: { $set: { street2: "25th Floor" } },
+          update: { $set: { is_in_ohio: true } },
           upsert: true,
         },
       },
       {
-        deleteOne: { filter: { "location.address.street1": "221b Baker St" } },
+        deleteOne: {
+          filter: { "location.address.street1": "221b Baker St" },
+        },
       },
     ]);
 

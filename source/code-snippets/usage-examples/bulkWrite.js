@@ -45,7 +45,7 @@ async function run() {
       {
         updateMany: {
           filter: { "location.address.zipcode": "44011" },
-          update: { $set: { street2: "25th Floor" } },
+          update: { $set: { is_in_ohio: true } },
           upsert: true,
         },
       },
