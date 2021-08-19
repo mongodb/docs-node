@@ -41,7 +41,7 @@ Example
 
 The following snippet deletes a single document from the ``movies``
 collection. It uses a **query document** that configures the query
-to match only movies with a title of type ``string``.
+to match movies with a ``title`` value of "Annie Hall".
 
 .. include:: /includes/connect-guide-note.rst
 
@@ -71,4 +71,4 @@ If you run the example above, you should see output that resembles the following
 .. code-block:: none
    :copyable: false
 
-   'Successfully deleted one document.'
+   Successfully deleted one document.
