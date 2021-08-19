@@ -23,7 +23,7 @@ async function run() {
         title: `The Cat from Sector ${Math.floor(Math.random() * 1000) + 1}`,
       }
     );
-    console.log(`Modified ${result.modifiedCount} document`);
+    console.log(`Modified ${result.modifiedCount} document(s)`);
   } finally {
     await client.close();
   }
