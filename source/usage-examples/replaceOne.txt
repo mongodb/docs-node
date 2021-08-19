@@ -64,4 +64,4 @@ following:
 
 .. code-block:: none
 
-   Modified 1 document
+   Modified 1 document(s)
