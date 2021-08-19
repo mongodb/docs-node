@@ -21,7 +21,7 @@ async function run() {
     };
 
     const result = await movies.replaceOne(query, replacement);
-    console.log(`Modified ${result.modifiedCount} document`);
+    console.log(`Modified ${result.modifiedCount} document(s)`);
   } finally {
     await client.close();
   }
