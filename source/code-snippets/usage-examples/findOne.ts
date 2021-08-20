@@ -17,9 +17,11 @@ export interface Movie {
   year: number;
   released: Date;
   plot: string;
-  type: 'movie' | 'series';
+  type: "movie" | "series";
   imdb: IMDB;
 }
+
+type MovieSummary = Pick<Movie, "title" | "imdb">;
 
 async function run(): Promise<void> {
   try {
@@ -30,10 +32,13 @@ async function run(): Promise<void> {
     // finds and inserts
     const movies = database.collection<Movie>("movies");
 
-    const movie = await movies.findOne({ title: "The Room" }, {
-      sort: { rating: -1 },
-      projection: { _id: 0, title: 1, imdb: 1 },
-    });
+    const movie = await movies.findOne<MovieSummary>(
+      { title: "The Room" },
+      {
+        sort: { rating: -1 },
+        projection: { _id: 0, title: 1, imdb: 1 },
+      }
+    );
     console.log(movie);
   } finally {
     await client.close();
