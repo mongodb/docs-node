@@ -1,0 +1,48 @@
+===========
+Time Series
+===========
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecols
+
+
+Overview
+--------
+
+In this guide, you can learn about time series collections in the MongoDB
+Node.js driver. 
+
+Create a Time Series Collection
+-------------------------------
+
+You should create a time series collection using the mongo shell. For detailed
+instructions on creating a time series collection using the mongo shell, see our
+:ref:`MongoDB Manual entry on time series collections <manual-timeseries-collection-create>`.
+
+.. important:: Use the Mongo Shell For Administrative Commands
+
+   You should not use the Node.js driver to perform administrative commands on
+   your MongoDB deployment. Use the mongo shell to perform administrative
+   commands including but not limited to:
+   
+   - :manual:`Create a collection <reference/method/db.createCollection/#mongodb-method-db.createCollection>`
+   - :manual:`Create a user <reference/method/db.createUser/#mongodb-method-db.createUser>`
+   - :manual:`Manage access <reference/method/db.grantRolesToUser/#mongodb-method-db.grantRolesToUser>`
+
+Query a Time Series Collection
+------------------------------
+
+You query a time series collection in the same way you query every other
+collection type in MongoDB. The Node.js driver has no features specifically for
+querying time series data.
+
+For more information on querying data in the MongoDB Node.js driver, see the
+following resources:
+
+- :ref:`Guide On Read Operations <nodejs-driver-retrieve-data-overview>`
+- :ref:`Guide On Aggregations <nodejs-aggregation-overview>`
