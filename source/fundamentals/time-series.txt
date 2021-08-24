@@ -46,3 +46,9 @@ following resources:
 
 - :ref:`Guide On Read Operations <nodejs-driver-retrieve-data-overview>`
 - :ref:`Guide On Aggregations <nodejs-aggregation-overview>`
+
+.. note:: Window Functions
+
+   MongoDB version 5.0 introduced window functions into the MongoDB aggregation
+   framework. For more information, see 
+   :ref:`the reference documentation for the setWindowFields aggregation stage <setWindowFields-syntax>`.
