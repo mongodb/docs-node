@@ -22,7 +22,7 @@ Create a Time Series Collection
 
 You should create a time series collection using the MongoDB Shell. For detailed
 instructions on creating a time series collection using the MongoDB Shell, see our
-:ref:`MongoDB Manual entry on time series collections <manual-timeseries-collection-create>`.
+:manual:`MongoDB Manual entry on time series collections </core/timeseries-collections/#create-a-time-series-collection>`.
 
 .. important:: Use the MongoDB Shell For Administrative Commands
 
