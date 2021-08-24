@@ -8,4 +8,4 @@ version = 4.0
 package-name-org = "mongodb-org"
 pgp-version = "{+version+}"
 node-api = "https://mongodb.github.io/node-mongodb-native/{+version+}"
-mongosh = ":binary:~bin.mongosh"
+mongosh = ":binary:`~bin.mongosh`"
