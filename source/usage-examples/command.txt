@@ -58,7 +58,8 @@ Example
 When you run the above command, you should see output similar to the
 following:
 
-.. code-block:: javascript
+.. code-block:: json
+   :copyable: false
 
    {
      db: 'sample_mflix',

@@ -80,6 +80,7 @@ matching document or ``null`` if there are no matches.
    The output might resemble the following:
 
    .. code-block:: none
+      :copyable: false
 
       [
         { name: "Lemony Snicket", type: "horseradish pizza", qty: 1, status: "delivered", date: ... },
@@ -123,6 +124,7 @@ group, and arrange the result data from a collection.
    The output might resemble the following:
 
    .. code-block:: none
+      :copyable: false
 
       [
         { _id: 'delivering', count: 5 },

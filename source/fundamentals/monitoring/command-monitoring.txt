@@ -59,7 +59,8 @@ The following sections show sample output for each type of command monitoring ev
 commandStarted
 ^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: json
+   :copyable: false
 
   CommandStartedEvent {
     requestId: 1534,
@@ -75,7 +76,8 @@ commandStarted
 commandSucceeded
 ^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: json
+   :copyable: false
 
   CommandSucceededEvent {
     requestId: 1534,
@@ -104,7 +106,8 @@ commandSucceeded
 commandFailed
 ^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: json
+   :copyable: false
 
   CommandFailedEvent {
     requestId: 1534,
