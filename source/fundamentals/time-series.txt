@@ -52,4 +52,4 @@ following resources:
    MongoDB version 5.0 introduces window functions into the MongoDB aggregation
    framework. You can use window functions to perform operations on a
    contiguous span of time series data. For more information, see 
-   :ref:`the reference documentation for the $setWindowFields aggregation stage <setWindowFields-syntax>`.
+   :manual:`the reference documentation for the $setWindowFields aggregation stage </reference/operator/aggregation/setWindowFields/#-setwindowfields--aggregation->`.
