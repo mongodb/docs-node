@@ -45,7 +45,7 @@ For more information on querying data in the MongoDB Node.js driver, see the
 following resources:
 
 - :ref:`Guide On Read Operations <nodejs-driver-retrieve-data-overview>`
-- :ref:`Guide On Aggregations <nodejs-aggregation-overview>`
+- :ref:`Guide On Aggregation <nodejs-aggregation-overview>`
 
 .. note:: Window Functions
 
