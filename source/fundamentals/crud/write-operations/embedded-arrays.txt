@@ -247,7 +247,7 @@ The following snippet shows the complete update method for this example:
 After we run the method above, all of the large pizza order items for
 customer "Steve Lobsters" now contain "garlic" in the ``toppings`` field:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    {
@@ -278,7 +278,7 @@ the update as follows:
 
 After we run the update method, the document resembles the following:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    {

@@ -104,7 +104,7 @@ multi-word phrase with escaped quotes (``\"<term>\"``):
 Querying by the phrase "star trek" instead of just the term "trek"
 matches the following documents:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    { title: 'Star Trek' }
@@ -141,7 +141,7 @@ includes two distinct terms, separate them with a space.
 
 Querying with the negated term yields the following documents:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    { title: 'Star Trek' }
@@ -175,7 +175,7 @@ Querying in this way returns the following documents in the following
 order. In general, text relevance increases as a string matches more
 terms and decreases as the unmatched portion of the string lengthens.
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    { title: 'Star Trek', score: 1.5 }

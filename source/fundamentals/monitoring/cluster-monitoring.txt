@@ -85,7 +85,7 @@ The following sections show sample output for each type of SDAM event.
 serverDescriptionChanged
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
   ServerDescriptionChangedEvent {
@@ -167,7 +167,7 @@ one of the following possible values:
 serverHeartbeatStarted
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
    ServerHeartbeatStartedEvent {
@@ -177,7 +177,7 @@ serverHeartbeatStarted
 serverHeartbeatSucceeded
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
    ServerHeartbeatSucceededEvent {
@@ -215,7 +215,7 @@ serverHeartbeatSucceeded
 serverHeartbeatFailed
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
    ServerHeartbeatFailed {
@@ -227,7 +227,7 @@ serverHeartbeatFailed
 serverOpening
 ^^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
    ServerOpeningEvent {
@@ -238,7 +238,7 @@ serverOpening
 serverClosed
 ^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
    ServerClosedEvent {
@@ -249,7 +249,7 @@ serverClosed
 topologyOpening
 ^^^^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
    TopologyOpeningEvent {
@@ -259,7 +259,7 @@ topologyOpening
 topologyClosed
 ^^^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
    TopologyClosedEvent {
@@ -269,7 +269,7 @@ topologyClosed
 topologyDescriptionChanged
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: json
+.. code-block:: js
    :copyable: false
 
    TopologyDescriptionChangedEvent {

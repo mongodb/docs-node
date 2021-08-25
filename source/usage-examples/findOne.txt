@@ -66,7 +66,7 @@ collection. It uses the following parameters:
 If you run the example above, you should see a result that resembles the
 following:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    { title: 'The Room', imdb: { rating: 3.5, votes: 25673, id: 368226 } }

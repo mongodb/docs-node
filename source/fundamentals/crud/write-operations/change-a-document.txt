@@ -29,7 +29,7 @@ document** that specifies the **update operator** (the type of update to
 perform) and the fields and values that describe the change. Update
 documents use the following format:
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       <update operator>: {
@@ -74,7 +74,7 @@ Example
 Consider a document of fields containing the English alphabet of lowercase
 letters ``a`` through ``z`` and their ordinal values:
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       _id: 465,
@@ -103,7 +103,7 @@ your update operation might resemble the following:
 The updated document resembles the following, with an an updated value in
 the ``z`` field and all other values unchanged:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    {
@@ -133,7 +133,7 @@ To perform a replacement operation, create a **replacement document** that
 consists of the fields and values that you would like to insert in your
 **replace** operation. Replacement documents use the following format:
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       <field>: {
@@ -153,7 +153,7 @@ Example
 Consider a document of fields containing the English alphabet of lowercase
 letters ``a`` through ``z`` and their ordinal values:
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       _id: 465,
@@ -181,7 +181,7 @@ resemble the following:
 The replaced document contains the contents of the replacement document
 and the immutable ``_id`` field as follows:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    {

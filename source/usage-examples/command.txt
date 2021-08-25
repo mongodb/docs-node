@@ -58,7 +58,7 @@ Example
 When you run the above command, you should see output similar to the
 following:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    {
