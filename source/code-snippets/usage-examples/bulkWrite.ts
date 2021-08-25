@@ -56,6 +56,7 @@ async function run() {
       },
       {
         updateMany: {
+          // Important: You lose type safety when you use dot notation in queries
           filter: { "location.address.zipcode": "44011" },
           update: { $set: { is_in_ohio: true } },
           upsert: true,
