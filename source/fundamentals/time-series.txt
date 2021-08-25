@@ -37,8 +37,8 @@ instructions on creating a time series collection using the MongoDB Shell, see o
 Query a Time Series Collection
 ------------------------------
 
-You query a time series collection in the same way you query other
-collection types in MongoDB. The Node.js driver has no features specifically for
+Since you query a time series collection in the same way you query other
+collection types in MongoDB, the Node.js driver has no features specifically for
 querying time series data.
 
 For more information on querying data in the MongoDB Node.js driver, see the
