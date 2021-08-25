@@ -100,7 +100,7 @@ commandSucceeded
        ok: 1,
        operationTime: 1586380205
      }
-  }
+   }
 
 
 commandFailed
