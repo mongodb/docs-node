@@ -25,9 +25,9 @@ can also pass a callback method as an optional third parameter.
 For more information on this method, see the
 :node-api-4.0:`insertOne() API documentation </classes/collection.html#insertone>`.
 
-If the operation successfully inserts a document, it appends the ``_id``
-of the inserted document to the object and references it as the object's
-``insertedId`` field.
+If the operation successfully inserts a document, it appends an
+``insertedId`` field to the object passed in the method call, and sets the
+value of the field to the ``_id`` of the inserted document. 
 
 Example
 -------
