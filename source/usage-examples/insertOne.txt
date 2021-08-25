@@ -26,8 +26,8 @@ For more information on this method, see the
 :node-api-4.0:`insertOne() API documentation </classes/collection.html#insertone>`.
 
 If the operation successfully inserts a document, it appends the ``_id``
-of the inserted document and references it as the object's ``insertedId``
-field.
+of the inserted document to the object and references it as the object's
+``insertedId`` field.
 
 Example
 -------

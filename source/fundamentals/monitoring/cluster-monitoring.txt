@@ -88,7 +88,7 @@ serverDescriptionChanged
 .. code-block:: javascript
    :copyable: false
 
-  ServerDescriptionChangedEvent {
+   ServerDescriptionChangedEvent {
      topologyId: 0,
      address: 'localhost:27017',
      previousDescription: ServerDescription {
