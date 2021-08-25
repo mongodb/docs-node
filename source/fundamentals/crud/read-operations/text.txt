@@ -66,7 +66,7 @@ the search terms (logical ``OR``).
 
 This operation returns the following documents:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
 
    { title: 'Trek Nation' }

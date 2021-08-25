@@ -59,7 +59,7 @@ The following sections show sample output for each type of command monitoring ev
 commandStarted
 ^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
    :copyable: false
 
   CommandStartedEvent {
@@ -76,7 +76,7 @@ commandStarted
 commandSucceeded
 ^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
    :copyable: false
 
   CommandSucceededEvent {
@@ -106,7 +106,7 @@ commandSucceeded
 commandFailed
 ^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
    :copyable: false
 
   CommandFailedEvent {
