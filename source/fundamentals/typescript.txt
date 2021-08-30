@@ -13,15 +13,15 @@ TypeScript
 Overview
 --------
 
-In this guide, you can learn about the **TypeScript** specific features and limitiations
+In this guide, you can learn about the **TypeScript** features and limitiations
 of the MongoDB Node.js driver. TypeScript is a strongly typed programming
 language that compiles to JavaScript.
 
-All TypeScript features of the driver are optional, and all valid JavaScript
+All TypeScript features of the driver are optional. All valid JavaScript
 code written with the driver is also valid TypeScript code. 
 
-For more information on TypeScript, see 
-`the official TypeScript website <https://www.typescriptlang.org/>`__.
+For more information, see the
+`TypeScript website <https://www.typescriptlang.org/>`__.
 
 Features
 --------
@@ -47,8 +47,8 @@ The following classes accept any type parameter:
 - :node-api-4.0:`FindCursor <classes/findcursor.html>`
 - :node-api-4.0:`AggregationCursor <classes/aggregationcursor.html>`
 
-You can find an example that shows how to specify a type for the ``FindCursor``
-class in our 
+You can find a code snippet that shows how to specify a type for the ``FindCursor``
+class in the
 :ref:`Find a Document Usage Example <node-driver-findone-usage-example-code-snippet>`.
 
 Limitations
@@ -90,8 +90,8 @@ Click on the tabs to see code snippets that highlight this behavior:
 
         Type 'string' is not assignable to type 'number'.
 
-You should still use dot notation to access nested fields in query and update documents
-when you use TypeScript, but make sure to check that your nested field values have your
-intended type.
+Despite the lack of type safety, you should still use dot notation to access nested
+fields in query and update documents when you use TypeScript. You must
+manually check that your nested field values have your intended type.
 
 For more information on dot notation, see :manual:`the MongoDB Manual </core/document/#dot-notation>`.
