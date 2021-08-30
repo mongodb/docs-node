@@ -56,8 +56,9 @@ Limitations
 
 .. _node-driver-typescript-limitations-dot-notation:
 
-The driver cannot infer the type of values with keys containing dot notation.
-Click on the tabs to see code snippets that show this behavior:
+The driver cannot infer the type of values with keys containing **dot
+notation**. Dot notation is a property access syntax for navigating BSON objects.
+Click on the tabs to see code snippets that highlight this behavior:
 
 .. tabs::
 
@@ -90,7 +91,7 @@ Click on the tabs to see code snippets that show this behavior:
         Type 'string' is not assignable to type 'number'.
 
 You should still use dot notation to access nested fields in query and update documents
-when you use TypeScript, but make sure to confirm that your nested field values have the
+when you use TypeScript, but make sure to confirm that your nested field values have your
 intended type.
 
 For more information on dot notation, see :manual:`the MongoDB Manual </core/document/#dot-notation>`.
