@@ -1,0 +1,86 @@
+==========
+TypeScript
+==========
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecols
+
+Overview
+--------
+
+In this guide, you can learn about the **TypeScript** specific features and limitiations
+of the MongoDB Node.js driver. TypeScript is a strongly typed programming
+language that compiles to JavaScript.
+
+All TypeScript features of the driver are optional, and all valid JavaScript
+code written with the driver is also valid TypeScript code. 
+
+For more information on TypeScript, see 
+`the official TypeScript website <https://www.typescriptlang.org/>`__.
+
+Features
+--------
+
+When using TypeScript, you can specify a type for some classes in the driver.
+All classes that accept a type paramater in the driver have the default type
+:node-api-4.0:`Document </interfaces/Document.html>`.
+
+The following classes accept any type that extends the ``Document``
+interface:
+
+- :node-api-4.0:`Collection </classes/Collection.html>`
+- :node-api-4.0:`ChangeStream <classes/AggregationCursor.html>`
+
+You can pass a type parameter that extends the ``Document`` interface like this:
+
+.. literalinclude:: /code-snippets/typescript/extend-document.ts
+   :language: typescript
+   :linenos:
+
+The following classes accept any type parameter:
+
+- :node-api-4.0:`FindCursor </classes/FindCursor.html>`
+- :node-api-4.0:`AggregationCursor </classes/AggregationCursor.html>`
+
+You can find an example that shows how to specify a type for the ``FindCursor``
+class in our 
+:ref:`Find a Document Usage Example <node-driver-findone-usage-example-code-snippet>`.
+
+Limitations
+-----------
+
+The driver cannot infer the type of values with keys containing dot notation. The
+following code snippet does not raise any type errors:
+
+.. tabs::
+
+  .. tab:: Dot Notation
+     :tabid: dot-notation
+  
+     The following code snippet does not raise a type error:
+
+     .. literalinclude:: /code-snippets/typescript/dot-notation.ts
+        :language: typescript
+        :linenos:
+        :start-after: start-no-error
+        :end-before: end-no-error
+
+  .. tab:: Nested Objects
+     :tabid: nested-objects
+    
+     The following code snippet raises a type error:
+
+     .. literalinclude:: /code-snippets/typescript/dot-notation.ts
+        :language: typescript
+        :linenos:
+        :start-after: start-error
+        :end-before: end-error
+
+Make sure to double check the type of values with keys written in dot notation.
+
+For more information on dot notation, see :ref:`the MongoDB Manual <document-dot-notation>`.
