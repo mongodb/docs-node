@@ -91,7 +91,7 @@ Click on the tabs to see code snippets that highlight this behavior:
         Type 'string' is not assignable to type 'number'.
 
 You should still use dot notation to access nested fields in query and update documents
-when you use TypeScript, but make sure to confirm that your nested field values have your
+when you use TypeScript, but make sure to check that your nested field values have your
 intended type.
 
 For more information on dot notation, see :manual:`the MongoDB Manual </core/document/#dot-notation>`.
