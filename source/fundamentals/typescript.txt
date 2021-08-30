@@ -28,7 +28,7 @@ Features
 
 If you use TypeScript, you can specify a type for some classes in the driver.
 All classes that accept a type paramater in the driver have the default type
-:node-api-4.0:`Document </interfaces/Document.html>`.
+:node-api-4.0:`Document <interfaces/document.html>`.
 
 The following classes accept any type that extends the ``Document``
 interface:
