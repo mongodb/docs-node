@@ -54,8 +54,8 @@ class in our
 Limitations
 -----------
 
-The driver cannot infer the type of values with keys containing dot notation. The
-following code snippet does not raise any type errors:
+The driver cannot infer the type of values with keys containing dot notation.
+Click on the tabs to see code snippets that show this behavior:
 
 .. tabs::
 
@@ -81,6 +81,13 @@ following code snippet does not raise any type errors:
         :start-after: start-error
         :end-before: end-error
 
-Make sure to double check the type of values with keys written in dot notation.
+     This is the error:
 
-For more information on dot notation, see :ref:`the MongoDB Manual <document-dot-notation>`.
+     .. code-block:: text
+
+        Type 'string' is not assignable to type 'number'.
+
+Make sure to confirm that you have the intended type for values with keys
+containing dot notation.
+
+For more information on dot notation, see :manual:`the MongoDB Manual </core/document/#dot-notation>`.
