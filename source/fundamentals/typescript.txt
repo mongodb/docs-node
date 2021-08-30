@@ -54,6 +54,8 @@ class in our
 Limitations
 -----------
 
+.. _node-driver-typescript-limitations-dot-notation:
+
 The driver cannot infer the type of values with keys containing dot notation.
 Click on the tabs to see code snippets that show this behavior:
 
@@ -88,6 +90,6 @@ Click on the tabs to see code snippets that show this behavior:
         Type 'string' is not assignable to type 'number'.
 
 Make sure to confirm that you have the intended type for values with keys
-containing dot notation.
+specified with dot notation.
 
 For more information on dot notation, see :manual:`the MongoDB Manual </core/document/#dot-notation>`.
