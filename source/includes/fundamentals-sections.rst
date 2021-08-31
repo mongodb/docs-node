@@ -5,7 +5,7 @@
   authentication and log a user in
 
 * :doc:`Versioned API </fundamentals/versioned-api>`: run operations
-  with a specific API Versioned
+  with a specific API version
 
 * :doc:`CRUD Operations </fundamentals/crud>`: read and write data to MongoDB
 
