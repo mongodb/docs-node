@@ -67,8 +67,8 @@ You can pass a type parameter that extends the ``Document`` interface like this:
       :start-after: start-no-key
       :end-before: end-no-key
 
-Accept Any Type
-~~~~~~~~~~~~~~~
+Any Type
+~~~~~~~~
 
 The following classes accept any type parameter:
 
