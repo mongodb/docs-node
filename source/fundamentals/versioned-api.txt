@@ -131,7 +131,5 @@ interface.
    :language: javascript
    :dedent:
 
-For more information on the options in this section, see the following
-API Documentation:
-
-- :java-docs:`ServerApi </interfaces/serverapi.html>`
+For more information on the options in this section, see the
+:java-docs:`ServerApi </interfaces/serverapi.html>` API Documentation
