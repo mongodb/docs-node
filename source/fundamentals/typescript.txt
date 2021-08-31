@@ -133,25 +133,24 @@ must manually check that your nested field values have your intended type.
 
    .. code-block:: json
 
-      {field: {s1: "hi", s2: "bye"}}
+      { field: { s1: "hi", s2: "bye" } }
 
    The following query returns no results from this collection, as the value of
    ``field`` does not exactly match ``{s1: "hi"}``:
 
-   .. code-block:: javascript
-      
-      // returns no documents
-      collection.find({field : {s1: "hi"})
+   .. literalinclude:: /code-snippets/typescript/note-on-dot-notation.ts
+      :language: typescript
+      :linenos:
+      :start-after: start-no-doc
+      :end-before: end-no-doc
 
    The following queries both return your document:
  
-   .. code-block:: javascript
-
-      // returns your document (uses dot notation)
-      collection.find({"field.s1": "hi"})
-      
-      // returns your document (does not use dot notation)
-      collection.find({"$jsonSchema": { required: [ "field" ], properties: { field: { bsonType: "object", properties: { s1: { enum: ["hi"] }}}}}})
+   .. literalinclude:: /code-snippets/typescript/note-on-dot-notation.ts
+      :language: typescript
+      :linenos:
+      :start-after: start-doc
+      :end-before: end-doc
 
    The syntax of the query that does not use dot notation is cumbersome and hard
    to understand, and may not be worth the type safety obtained from
