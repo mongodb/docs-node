@@ -54,7 +54,7 @@ match and delete movies with the title "Santa Claus".
          :linenos:
 
 The first time you run the preceding example, you should see output that
-resembles the following:
+looks like this:
 
 .. code-block:: none
    :copyable: false
@@ -62,7 +62,7 @@ resembles the following:
    Deleted 19 documents
 
 On subsequent runs of the example, as you already deleted all relevant
-documents, you should see output that resembles the following:
+documents, you should see output that looks like this:
 
 .. code-block:: none
    :copyable: false
