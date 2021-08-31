@@ -28,7 +28,21 @@ Features
 
 If you use TypeScript, you can specify a type for some classes in the driver.
 All classes that accept a type paramater in the driver have the default type
-:node-api-4.0:`Document <interfaces/document.html>`.
+``Document``. The ``Document`` interface has the following definition:
+
+.. code-block:: typescript
+
+   interface Document {
+     [key: string]: any;
+   }
+
+Any object type can extend the ``Document`` interface.
+
+For more inforamtion on object types, see the 
+`TypeScript handbook <https://www.typescriptlang.org/docs/handbook/2/objects.html>`__.
+
+Extend Document
+~~~~~~~~~~~~~~~
 
 The following classes accept any type that extends the ``Document``
 interface:
@@ -41,6 +55,20 @@ You can pass a type parameter that extends the ``Document`` interface like this:
 .. literalinclude:: /code-snippets/typescript/extend-document.ts
    :language: typescript
    :linenos:
+
+.. important:: Keys Not in Type Parameter Receive ``any`` Type
+
+   Keys not listed in your specified type paramater receive the ``any`` type.
+   The following code snippet demonstrates this behavior:
+
+   .. literalinclude:: /code-snippets/typescript/dot-notation.ts
+      :language: typescript
+      :linenos:
+      :start-after: start-no-key
+      :end-before: end-no-key
+
+Accept Any Type
+~~~~~~~~~~~~~~~
 
 The following classes accept any type parameter:
 
@@ -90,8 +118,8 @@ Click on the tabs to see code snippets that highlight this behavior:
 
         Type 'string' is not assignable to type 'number'.
 
-Despite the lack of type safety, you should still use dot notation to access nested
-fields in query and update documents when you use TypeScript. You must
-manually check that your nested field values have your intended type.
+Despite the lack of type safety, we still recommend that you use dot notation to
+access nested fields in query and update documents when you use TypeScript. You
+must manually check that your nested field values have your intended type.
 
 For more information on dot notation, see :manual:`the MongoDB Manual </core/document/#dot-notation>`.

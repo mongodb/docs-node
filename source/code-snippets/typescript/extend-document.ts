@@ -1,7 +1,8 @@
-interface YourInterface {
-  StringKeys: "any" | "values"
-  YourType: "should model what's in your collection"
+interface Pet {
+  name: string;
+  age: number;
+  cute: true;
 }
 
 const database = client.db("<your database>");
-const collection = database.collection<YourInterface>("<your collection>");
+const collection = database.collection<Pet>("<your collection>");
