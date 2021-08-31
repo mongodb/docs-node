@@ -77,7 +77,7 @@ The following classes accept any type parameter:
 
 You can find a code snippet that shows how to specify a type for the ``FindCursor``
 class in the
-:ref:`Find a Document Usage Example <node-driver-findone-usage-example-code-snippet>`.
+:ref:`Find Multiple Documents Usage Example <node-driver-find-usage-example-code-snippet>`.
 
 Limitations
 -----------
