@@ -72,6 +72,27 @@ address or URL of your instance. Consult the
 :doc:`Connection Guide </fundamentals/connection>` for more information
 about getting connected to your MongoDB instance.
 
+.. note:: Examples Use ES Module Import Style
+
+   All usage examples use the ES module import style. Click on the tabs to see how to
+   import from the driver with the ES module and CommonJS module import styles:
+
+   .. tabs::
+
+      .. tab:: ES Module
+         :tabid: es-module
+
+         .. code-block:: javascript
+
+            import { MongoClient } from 'mongodb'
+
+      .. tab:: CommonJS Module
+         :tabid: commonjs-module
+
+         .. code-block:: javascript
+
+            const { MongoClient } = require('mongodb')
+
 Available Usage Examples
 ------------------------
 
