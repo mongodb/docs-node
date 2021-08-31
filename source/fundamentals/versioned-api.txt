@@ -130,4 +130,4 @@ interface.
    :dedent:
 
 For more information on the options in this section, see the
-:java-docs:`ServerApi </interfaces/serverapi.html>` API Documentation
+:node-api-4.0:`ServerApi </interfaces/serverapi.html>` API Documentation
