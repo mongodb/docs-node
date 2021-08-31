@@ -4,6 +4,9 @@
 * :doc:`Authentication </fundamentals/authentication>`: configure
   authentication and log a user in
 
+* :doc:`Versioned API </fundamentals/versioned-api>`: run operations
+  with a specific API Versioned
+
 * :doc:`CRUD Operations </fundamentals/crud>`: read and write data to MongoDB
 
 * :doc:`Promises and Callbacks </fundamentals/promises>`: access return
