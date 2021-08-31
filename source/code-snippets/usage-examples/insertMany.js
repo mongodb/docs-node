@@ -9,7 +9,7 @@ async function run() {
   try {
     await client.connect();
 
-    const database = client.db("insert_db");
+    const database = client.db("insertDB");
     const foods = database.collection("foods");
 
     // create an array of documents to insert

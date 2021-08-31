@@ -14,7 +14,7 @@ async function run() {
   try {
     await client.connect();
 
-    const database = client.db("insert_db");
+    const database = client.db("insertDB");
     // Specifying a Schema is optional, but it enables type hints on
     // finds and inserts
     const haiku = database.collection<Haiku>("haiku");
