@@ -120,8 +120,6 @@ described in the following table.
        |
        | Default: **false**
 
-
-
 The following example shows how you can set the options of the ``ServerApi``
 interface.
 
