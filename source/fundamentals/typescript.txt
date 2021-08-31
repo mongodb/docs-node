@@ -13,7 +13,7 @@ TypeScript
 Overview
 --------
 
-In this guide, you can learn about the **TypeScript** features and limitiations
+In this guide, you can learn about the **TypeScript** features and limitations
 of the MongoDB Node.js driver. TypeScript is a strongly typed programming
 language that compiles to JavaScript.
 
@@ -27,7 +27,7 @@ Features
 --------
 
 If you use TypeScript, you can specify a type for some classes in the driver.
-All classes that accept a type paramater in the driver have the default type
+All classes that accept a type parameter in the driver have the default type
 ``Document``. The ``Document`` interface has the following definition:
 
 .. code-block:: typescript
@@ -38,7 +38,7 @@ All classes that accept a type paramater in the driver have the default type
 
 Any object type can extend the ``Document`` interface.
 
-For more inforamtion on object types, see the 
+For more information on object types, see the 
 `TypeScript handbook <https://www.typescriptlang.org/docs/handbook/2/objects.html>`__.
 
 Extend Document
@@ -58,7 +58,7 @@ You can pass a type parameter that extends the ``Document`` interface like this:
 
 .. important:: Keys Not in Type Parameter Receive ``any`` Type
 
-   Keys not listed in your specified type paramater receive the ``any`` type.
+   Keys not listed in your specified type parameter receive the ``any`` type.
    The following code snippet demonstrates this behavior:
 
    .. literalinclude:: /code-snippets/typescript/dot-notation.ts
