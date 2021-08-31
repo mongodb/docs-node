@@ -131,21 +131,21 @@ must manually check that your nested field values have your intended type.
    To show this behavior, lets say you have a collection containing
    only the following document:
 
-   .. codeblock:: json
+   .. code-block:: json
 
       {field: {s1: "hi", s2: "bye"}}
 
    The following query returns no results from this collection, as the value of
    ``field`` one does not exactly match ``{s1: "hi"}``:
 
-   .. codeblock:: javascript
+   .. code-block:: javascript
       
       // returns no documents
       collection.find({field : {s1: "hi"})
 
    The following queries both return your document:
  
-   .. codeblock:: javascript
+   .. code-block:: javascript
 
       // returns your document (uses dot notation)
       collection.find({"field.s1": "hi"})
