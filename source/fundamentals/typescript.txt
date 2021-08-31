@@ -122,4 +122,39 @@ Despite the lack of type safety, we still recommend that you use dot notation to
 access nested fields in query and update documents when you use TypeScript. You
 must manually check that your nested field values have your intended type.
 
+.. note:: Reason To Use Dot Notation
+
+   In the MongoDB Query Language, you must match a subdocument exactly
+   when specifying subdocuments in a query. Dot notation allows you to query
+   nested fields without matching subdocuments exactly.  
+
+   To show this behavior, lets say you have a collection containing
+   only the following document:
+
+   .. codeblock:: json
+
+      {field: {s1: "hi", s2: "bye"}}
+
+   The following query returns no results from this collection, as the value of
+   ``field`` one does not exactly match ``{s1: "hi"}``:
+
+   .. codeblock:: javascript
+      
+      // returns no documents
+      collection.find({field : {s1: "hi"})
+
+   The following queries both return your document:
+ 
+   .. codeblock:: javascript
+
+      // returns your document (uses dot notation)
+      collection.find({"field.s1": "hi"})
+      
+      // returns your document (does not use dot notation)
+      collection.find({"$jsonSchema": { required: [ "field" ], properties: { field: { bsonType: "object", properties: { s1: { enum: ["hi"] }}}}}})
+
+   The syntax of the query that does not use dot notation is cumbersome and hard
+   to understand, and may not be worth the type safety obtained from
+   avoiding dot notation.
+
 For more information on dot notation, see :manual:`the MongoDB Manual </core/document/#dot-notation>`.
