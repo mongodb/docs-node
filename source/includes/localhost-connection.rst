@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-To connect to a ``mongod`` running locally, change the connection string
-to ``"mongodb://localhost:<port>"``, e.g. ``"mongodb://localhost:27107"``.
-
-Your ``mongod`` instance must be running to successfully connect to your
-database. For information on how to start your ``mongod`` instance,
-see the :manual:`Manage mongod Processes
-</tutorial/manage-mongodb-processes/#start-mongod-processes>` Server
-Manual Entry.
-=======
 If you need to run a MongoDB server on your local machine for development
 purposes instead of using an Atlas cluster, you need to complete the following:
 
@@ -35,4 +25,3 @@ configured your server to listen for incoming connections.
 
 If you need to specify a different hostname or IP address, see our Server
 Manual entry on :manual:`Connection Strings </reference/connection-string/>`.
->>>>>>> e0a2b56 (DOCSP-17791: update instructions on connecting to locally hosted server (#235))
