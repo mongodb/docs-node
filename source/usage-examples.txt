@@ -61,21 +61,21 @@ with your instance of MongoDB:
    const uri =
       "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&writeConcern=majority";
 
-You can use the :guides:`Atlas Connectivity Guide
-</cloud/connectionstring/>` to enable connectivity to your instance of
-Atlas and find the :manual:`connection string
-</reference/connection-string/>` to replace the ``uri`` variable in the
-usage example. If your instance uses :manual:`SCRAM authentication
-</core/security-scram/>`, you can replace ``<user>`` with your username,
-``<password>`` with your password, and ``<cluster-url>`` with the IP
-address or URL of your instance. Consult the
-:doc:`Connection Guide </fundamentals/connection>` for more information
-about getting connected to your MongoDB instance.
+All examples use ES module imports. You 
+`must enable ES module imports <https://nodejs.org/api/esm.html#esm_enabling>`__
+by adding the following to your package.json file:
 
-.. note:: Examples Use ES Module Import Style
+.. code-block:: json
 
-   All usage examples use the ES module import style. Click on the tabs to see how to
-   import from the driver with the ES module and CommonJS module import styles:
+   // package.json
+   {
+      "type": "module"
+   }
+
+.. note:: Different Import Styles
+
+   Click on the tabs to see how to import from the driver with the ES module and
+   CommonJS module import systems:
 
    .. tabs::
 
@@ -92,6 +92,17 @@ about getting connected to your MongoDB instance.
          .. code-block:: javascript
 
             const { MongoClient } = require('mongodb')
+
+You can use the :guides:`Atlas Connectivity Guide
+</cloud/connectionstring/>` to enable connectivity to your instance of
+Atlas and find the :manual:`connection string
+</reference/connection-string/>` to replace the ``uri`` variable in the
+usage example. If your instance uses :manual:`SCRAM authentication
+</core/security-scram/>`, you can replace ``<user>`` with your username,
+``<password>`` with your password, and ``<cluster-url>`` with the IP
+address or URL of your instance. Consult the
+:doc:`Connection Guide </fundamentals/connection>` for more information
+about getting connected to your MongoDB instance.
 
 Available Usage Examples
 ------------------------
