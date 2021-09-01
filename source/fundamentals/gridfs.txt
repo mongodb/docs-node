@@ -116,7 +116,7 @@ following code snippet:
             chunkSizeBytes: 1048576,
             metadata: { field: 'myField', value: 'myValue' }
         });
-
+        
 See the :node-api-3.6:`openUploadStream() API documentation <GridFSBucket.html#openUploadStream>` for more information.
 
 .. _gridfs-retrieve-file-info:

@@ -51,8 +51,8 @@ version of the Versioned API.
    If you need to run commands using more than one version of the Versioned
    API, instantiate a separate client with that version.
 
-   If you need to run commands not covered by the Versioned API, make sure the
-   "strict" option is disabled. See the section on
+   If you need to run commands not covered by the Versioned API, make
+   sure you disable the "strict" option. See the section on
    :ref:`Versioned API Options <versioned-api-options>` for more information.
 
 The example below shows how you can instantiate a ``MongoClient`` that
@@ -120,8 +120,6 @@ described in the following table.
        |
        | Default: **false**
 
-
-
 The following example shows how you can set the options of the ``ServerApi``
 interface.
 
@@ -131,7 +129,6 @@ interface.
    :language: javascript
    :dedent:
 
-For more information on the options in this section, see the following
-API Documentation:
 
-- :java-docs:`ServerApi </interfaces/serverapi.html>`
+For more information on the options in this section, see the
+:node-api-4.0:`ServerApi </interfaces/serverapi.html>` API Documentation.
