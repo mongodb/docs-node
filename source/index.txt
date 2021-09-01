@@ -96,7 +96,7 @@ material on using the Node.js driver for the following:
 
 API
 ---
-See the :node-api-3.6:`API documentation <>` if you are looking for
+See the `API documentation <{+node-api+}>`__ if you are looking for
 technical information about classes, methods, and configuration objects
 within the MongoDB Node.js driver.
 

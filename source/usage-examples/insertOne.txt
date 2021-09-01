@@ -9,21 +9,21 @@ Insert a Document
    do not specify one, this method returns a ``Promise`` that resolves to the 
    result object when it completes. See our guide on :doc:`Promises and
    Callbacks </fundamentals/promises>` for more information, or the
-   :node-api-3.6:`API documentation <Collection.html#~insertOneWriteOpResult>` for
+   `API documentation <{+node-api+}/Collection.html#~insertOneWriteOpResult>`__ for
    information on the result object.
 
 You can insert a document into a collection using the
-:node-api-3.6:`collection.insertOne() <Collection.html#insertOne>` method. To
+`collection.insertOne() <{+node-api+}/Collection.html#insertOne>`__ method. To
 insert a document, define an object that contains the fields and values that
 you want to store. If the specified collection does not exist, the
 ``insertOne()`` method creates the collection.
 
 You can specify additional query options using the ``options`` parameter.
 For more information on the method parameters, see the
-:node-api-3.6:`insertOne() API documentation <Collection.html#insertOne>`. You
+`insertOne() API documentation <{+node-api+}/Collection.html#insertOne>`__. You
 can also pass a callback method as an optional third parameter.
 For more information on this method, see the
-:node-api-3.6:`insertOne() API documentation <Collection.html#insertOne>`.
+`insertOne() API documentation <{+node-api+}/Collection.html#insertOne>`__.
 
 The ``insertedId`` field of this object is the ``_id`` of the
 inserted document. If the operation fails to create a document, the
