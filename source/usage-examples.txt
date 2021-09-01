@@ -62,7 +62,7 @@ with your instance of MongoDB:
       "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&writeConcern=majority";
 
 All examples use ES module imports. You 
-`must enable ES module imports <https://nodejs.org/api/esm.html#esm_enabling>`__
+`can enable ES module imports <https://nodejs.org/api/esm.html#esm_enabling>`__
 by adding the following key-value pair to your package.json file:
 
 .. code-block:: json
@@ -70,10 +70,14 @@ by adding the following key-value pair to your package.json file:
    "type": "module"
    
 
-.. note:: Different Import Styles
+.. note:: CommonJS
 
-   Click on the tabs to see how to import from the driver with the ES module and
-   CommonJS module import systems:
+   You can use any usage example with CommonJS ``require``. To use CommonJS ``require``, you
+   must swap out the ES module ``import`` statement for your CommonJS ``require``
+   statement.
+   
+   Click on the tabs to see the syntax for importing the driver with ES module
+   ``import`` and CommonJS ``require``:
 
    .. tabs::
 
