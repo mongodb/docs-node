@@ -68,7 +68,7 @@ uses the following parameters:
         :language: typescript
         :linenos:
 
-If you run the preceding example, you should see results that looks like this:
+If you run the preceding example, you should see the following output:
 
 .. code-block:: javascript
    :copyable: false
