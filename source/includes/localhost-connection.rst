@@ -24,4 +24,5 @@ If your MongoDB Server is running locally, you can use the connection string
 configured your server to listen for incoming connections.
 
 If you need to specify a different hostname or IP address, see our Server
-Manual entry on :manual:`Connection Strings </reference/connection-string/>`.
+Manual entry on :manual:`Connection Strings
+</reference/connection-string/>`.
