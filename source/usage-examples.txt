@@ -63,14 +63,12 @@ with your instance of MongoDB:
 
 All examples use ES module imports. You 
 `must enable ES module imports <https://nodejs.org/api/esm.html#esm_enabling>`__
-by adding the following to your package.json file:
+by adding the following key-value pair to your package.json file:
 
 .. code-block:: json
 
-   // package.json
-   {
-      "type": "module"
-   }
+   "type": "module"
+   
 
 .. note:: Different Import Styles
 
