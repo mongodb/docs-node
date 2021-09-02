@@ -9,24 +9,24 @@ Delete Multiple Documents
    do not specify one, this method returns a ``Promise`` that resolves to the
    result object when it completes. See our guide on :doc:`Promises and
    Callbacks </fundamentals/promises>` for more information, or the
-   :node-api-3.6:`API documentation <Collection.html#~deleteWriteOpResult>` for
+   `API documentation <{+node-api+}/Collection.html#~deleteWriteOpResult>`__ for
    information on the result object.
 
 You can delete several documents in a collection at once using the
-:node-api-3.6:`collection.deleteMany() <Collection.html#deleteMany>` method.
+`collection.deleteMany() <{+node-api+}/Collection.html#deleteMany>`__ method.
 Pass a query document to the ``deleteMany()`` method to specify a subset
 of documents in the collection to delete. If you do not provide a query
 document (or if you provide an empty document), MongoDB matches all documents
 in the collection and deletes them. While you can use ``deleteMany()``
 to delete all documents in a collection, consider using
-:node-api-3.6:`drop() <Collection.html#drop>` instead for better performance
+`drop() <{+node-api+}/Collection.html#drop>`__ instead for better performance
 and clearer code.
 
 You can specify additional options in the ``options`` object passed in
 the second parameter of the ``deleteMany()`` method. You can also pass a
 callback method as the optional third parameter. For more detailed 
 information, see the 
-:node-api-3.6:`deleteMany() API documentation <Collection.html#deleteMany>`.
+`deleteMany() API documentation <{+node-api+}/Collection.html#deleteMany>`__.
 
 Example
 -------

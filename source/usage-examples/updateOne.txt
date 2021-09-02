@@ -9,11 +9,11 @@ Update a Document
    do not specify one, this method returns a ``Promise`` that resolves to the
    result object when it completes. See our guide on :doc:`Promises and
    Callbacks </fundamentals/promises>` for more information, or see the
-   :node-api-3.6:`API documentation <Collection.html#~updateWriteOpResult>` for
+   `API documentation <{+node-api+}/Collection.html#~updateWriteOpResult>`__ for
    information on the result object.
 
 You can update a single document using the 
-:node-api-3.6:`collection.updateOne() <Collection.html#updateOne>`
+`collection.updateOne() <{+node-api+}/Collection.html#updateOne>`__
 method. The ``updateOne()`` method accepts a filter
 document and an update document. If the query matches documents in the
 collection, the method applies the updates from the update document to fields
@@ -25,7 +25,7 @@ You can specify additional query options using the ``options`` object
 passed as the second parameter of the ``updateOne()`` method.
 Set the ``upsert`` option to ``true`` to create a new document
 if no documents match the filter. For additional information, see the
-:node-api-3.6:`updateOne() API documentation <Collection.html#updateOne>`.
+`updateOne() API documentation <{+node-api+}/Collection.html#updateOne>`__.
 
 ``updateOne()`` throws an exception if an error occurs during execution.
 If you specify a value in your update document for the immutable field
@@ -36,8 +36,8 @@ key error`` exception.
 .. note::
 
   If your application requires the document after updating,
-  consider using the :node-api-3.6:`collection.findOneAndUpdate()
-  <Collection.html#findOneAndUpdate>`. method, which has a similar
+  consider using the `collection.findOneAndUpdate()
+  <{+node-api+}/Collection.html#findOneAndUpdate>`__. method, which has a similar
   interface to ``updateOne()`` but also returns the original or updated
   document.
 
