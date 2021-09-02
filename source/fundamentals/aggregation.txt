@@ -107,7 +107,7 @@ This example should produce the following output:
    { _id: 3, count: 1 }
    { _id: 5, count: 1 }
    
-For more information, see the :node-api-3.6:`aggregate() API documentation <Collection.html#aggregate>`.
+For more information, see the `aggregate() API documentation <{+node-api+}/Collection.html#aggregate>`__.
 
 Additional Aggregation Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

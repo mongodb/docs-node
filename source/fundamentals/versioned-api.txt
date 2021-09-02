@@ -86,8 +86,8 @@ For more information on the methods and classes referenced in this
 section, see the following API Documentation:
 
 - :node-api-4.0:`ServerApiVersion </modules.html#serverapiversion>`
-- :node-api-4.0:`MongoClientOptions </interfaces/mongoclientoptions.html>`
-- :node-api-4.0:`MongoClient </classes/mongoclient.html>`
+- `MongoClientOptions <{+node-api+}/global.html#MongoClientOptions>`__
+- `MongoClient <{+node-api+}/MongoClient.html>`__
 
 .. _versioned-api-options:
 

@@ -94,7 +94,7 @@ calls are equivalent:
 
 For more information on the ``options`` settings for the ``find()``
 method, see the
-:node-api-3.6:`API documentation on find() <Collection.html#find>`.
+`API documentation on find() <{+node-api+}/Collection.html#find>`__.
 
 Skip
 ----
