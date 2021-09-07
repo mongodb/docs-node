@@ -50,4 +50,5 @@ If you run the preceding example, you should see the following output:
 
 .. code-block:: none
    :copyable: false
+
    3 documents were inserted

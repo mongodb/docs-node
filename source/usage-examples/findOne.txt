@@ -60,6 +60,7 @@ collection. It uses the following parameters:
 
   .. tab:: TypeScript
      :tabid: typescript
+
      .. literalinclude:: /code-snippets/usage-examples/findOne.ts
         :language: typescript
 
