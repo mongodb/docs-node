@@ -92,6 +92,7 @@ Click on the tabs to see code snippets that highlight this behavior:
 
   .. tab:: Dot Notation
      :tabid: dot-notation
+
      The following code snippet does not raise a type error:
 
      .. literalinclude:: /code-snippets/typescript/dot-notation.ts
@@ -102,6 +103,7 @@ Click on the tabs to see code snippets that highlight this behavior:
 
   .. tab:: Nested Objects
      :tabid: nested-objects
+
      The following code snippet raises a type error:
 
      .. literalinclude:: /code-snippets/typescript/dot-notation.ts
@@ -143,6 +145,7 @@ must manually check that your nested field values have your intended type.
       :end-before: end-no-doc
 
    The following queries both return your document:
+
    .. literalinclude:: /code-snippets/typescript/note-on-dot-notation.ts
       :language: typescript
       :linenos:
