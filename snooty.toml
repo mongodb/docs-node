@@ -5,4 +5,7 @@ toc_landing_pages = ["/fundamentals/authentication", "/fundamentals", "/fundamen
 
 [constants]
 version = 4.1
+package-name-org = "mongodb-org"
+pgp-version = "{+version+}"
 api = "https://mongodb.github.io/node-mongodb-native/{+version+}"
+mongosh = "``mongosh``"
