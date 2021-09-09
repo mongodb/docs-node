@@ -14,7 +14,7 @@ change stream emits **change event** documents when they occur.
 The ``watch()`` method optionally takes an **aggregation pipeline** which consists of an array of **aggregation stages**
 as the first parameter. The aggregation stages filter and transform the change events.
 
-In the example below, the ``$match`` stage will match all change event documents with a ``runtime`` value of less than
+In the following snippet, the ``$match`` stage will match all change event documents with a ``runtime`` value of less than
 15, filtering all others out.
 
 .. code-block:: javascript
@@ -82,27 +82,26 @@ methods presented above:
 Example
 -------
 
-The following example opens a change stream on the ``movies`` collection in
-the ``sample_mflix`` database. Let's create a listener function to receive and
+The following example opens a change stream on the ``haiku`` collection in
+the ``insert_db`` database. Let's create a listener function to receive and
 print change events that occur on the collection.
 
 First, open the change stream on the collection and then define a callback
-on the change stream using the ``on()`` method. Once set, generate a change
-event to be emitted by performing a change to the collection.
+on the change stream using the ``on()`` method. Once set, generate the
+change event on the collection, run the :doc:`insert a document usage
+example <insertOne>` in a different shell.
 
-To generate the change event on the collection, let's use ``insertOne()``
-method to add a new document. Since the ``insertOne()`` may run before the
-listener function can register, we use a timer, declared with ``setTimeout()``
-to wait one second before executing the insert.
+Since it may take some time for the listener function pick up the change
+event, we use a timer. We define the timer with ``simulateAsyncPause``
+to wait 20 seconds before closing the ``ChangeStream`` instance using
+the ``close()`` method.
 
-We also use a second timer to wait an additional second after the insertion of
-the document to provide ample time for the change event to be received and
-the for the callback to complete its execution before closing the
-``ChangeStream`` instance using the ``close()`` method.
+.. note::
 
-The timers used in this example are only necessary for this demonstration
-to make sure there is enough time to register listener and have the
-callback process the event before exiting.
+   The timer used in this example is only necessary for this demonstration
+   to make sure there is enough time to pick up the change event before
+   exiting. If you need more or less time, modify the
+   ``simulateAsyncPause`` declaration.
 
 .. include:: /includes/connect-guide-note.rst
 
@@ -133,16 +132,19 @@ If you run the preceding example, you should see the following output:
    :copyable: false
 
    received a change to the collection: 	 {
-     _id: {
-       _data: '825EC...'
-     },
-     operationType: 'insert',
-     clusterTime: Timestamp { ... },
-     fullDocument: { _id: 5ec3..., test: 'sample movie document' },
-     ns: { db: 'sample_mflix', coll: 'movies' },
-     documentKey: { _id: 5ec3... },
-   }
-   closed the change stream
+      _id: {
+         _data: '8261...'
+      },
+      operationType: 'insert',
+      clusterTime: new Timestamp({ t: 1631216117, i: 9 }),
+      fullDocument: {
+         _id: new ObjectId("..."),
+         title: 'Record of a Shriveled Datum',
+         content: 'No bytes, no problem. Just insert a document, in MongoDB'
+      },
+      ns: { db: 'insert_db', coll: 'haiku' },
+      documentKey: { _id: new ObjectId("...") }
+      }
 
 .. note:: Receive Full Documents From Updates
 
