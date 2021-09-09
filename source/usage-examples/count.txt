@@ -10,18 +10,18 @@ Count Documents
    this method returns a ``Promise`` that resolves to the result object
    when it completes. See our guide on :doc:`Promises and Callbacks
    </fundamentals/promises>` for more information, or the
-   :node-api-4.0:`API documentation </classes/collection.html#~countcallback>` for
+   `API documentation <{+api+}/classes/Collection.html#count>`__ for
    information on the result object.
 
 The Node.js driver provides two methods for counting documents in a
 collection:
 
-- :node-api-4.0:`collection.countDocuments() </classes/collection.html#countdocuments>` returns the number of documents in
+- `collection.countDocuments() <{+api+}/classes/Collection.html#countDocuments>`__ returns the number of documents in
   the collection that match the specified query. If you specify an empty
   query document, ``countDocuments()`` returns the total number of
   documents in the collection.
 
-- :node-api-4.0:`collection.estimatedDocumentCount() </classes/collection.html#estimateddocumentcount>` returns an
+- `collection.estimatedDocumentCount() <{+api+}/classes/Collection.html#estimatedDocumentCount>`__ returns an
   **estimation** of the number of documents in the collection based on
   collection metadata.
 
@@ -70,13 +70,10 @@ collection with ``Canada`` in the ``countries`` field.
    The JavaScript and TypeScript code snippets above are identical. There are no
    TypeScript specific features of the driver relevant to this use case.
 
-If you run the sample code above, you should see output that resembles the
-following:
+If you run the preceding sample code, you should see the following output:
 
 .. code-block:: none
    :copyable: false
 
    Estimated number of documents in the movies collection: 23541
    Number of movies from Canada: 1349
-
-

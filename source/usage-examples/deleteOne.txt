@@ -9,7 +9,7 @@ Delete a Document
    do not specify one, this method returns a ``Promise`` that resolves to the
    result object when it completes. See our guide on :doc:`Promises and
    Callbacks </fundamentals/promises>` for more information, or the
-   :node-api-4.0:`API documentation </classes/collection.html#~deletewriteopresult>` for
+   `API documentation <{+api+}/classes/Collection.html#deleteOne>`__ for
    information on the result object.
 
 You can delete a single document in a collection with
@@ -23,16 +23,16 @@ deletes the first match.
 You can specify additional query options using the
 ``options`` object passed as the second parameter of the
 ``deleteOne`` method. You can also pass a
-:node-api-4.0:`callback method </classes/collection.html#~deletewriteopcallback>`
+`callback method <{+api+}/classes/Collection.html#deleteOne>`__
 as an optional third parameter. For more information on this method,
 see the
-:node-api-4.0:`deleteOne() API documentation </classes/collection.html#deleteone>`.
+`deleteOne() API documentation <{+api+}/classes/Collection.html#deleteOne>`__.
 
 .. note::
 
   If your application requires the deleted document after deletion,
   consider using the
-  :node-api-4.0:`collection.findOneAndDelete() </classes/collection.html#findoneanddelete>`.
+  `collection.findOneAndDelete() <{+api+}/classes/Collection.html#findOneAndDelete>`__.
   method, which has a similar interface to ``deleteOne()`` but also
   returns the deleted document.
 
@@ -66,16 +66,15 @@ to match movies with a ``title`` value of "Annie Hall".
    The JavaScript and TypeScript code snippets above are identical. There are no
    TypeScript specific features of the driver relevant to this use case.
 
-If you run the example, you should see output that resembles the following:
+If you run the preceding example, you should see the following output:
 
 .. code-block:: none
    :copyable: false
 
    Successfully deleted one document.
 
-Because you already deleted the matched document for the query filter,
-if you attempt to run the example again you should see output that resembles
-the following:
+On subsequent runs of the preceding example, as you already deleted the document that
+matched your query, you should see the following output:
 
 .. code-block:: none
    :copyable: false

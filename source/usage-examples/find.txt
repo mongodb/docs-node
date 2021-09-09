@@ -18,10 +18,10 @@ and
 :doc:`projection </fundamentals/crud/read-operations/project>`
 to configure the result set. You can specify these in the options
 parameter in your ``find()`` method call in ``sort`` and ``projection``
-objects. See :node-api-4.0:`collection.find() </classes/collection.html#find>` for more
+objects. See `collection.find() <{+api+}/classes/Collection.html#find>`__ for more
 information on the parameters you can pass to the method.
 
-The ``find()`` method returns a :node-api-4.0:`FindCursor </classes/findcursor.html>` that
+The ``find()`` method returns a `FindCursor <{+api+}/classes/FindCursor.html>`__ that
 manages the results of your query. You can iterate through the matching
 documents using one of the following :ref:`cursor methods <cursor-methods>`:
 
@@ -50,6 +50,7 @@ uses the following parameters:
 
 .. include:: /includes/connect-guide-note.rst
 
+.. _node-driver-find-usage-example-code-snippet:
 
 .. tabs::
 
@@ -67,10 +68,10 @@ uses the following parameters:
         :language: typescript
         :linenos:
 
-If you run the example above, you should see results that resemble the
-following:
+If you run the preceding example, you should see the following output:
 
 .. code-block:: javascript
+   :copyable: false
 
    { title: '10 Minutes', imdb: { rating: 7.9, votes: 743, id: 339976 } }
    { title: '3x3', imdb: { rating: 6.9, votes: 206, id: 1654725 } }

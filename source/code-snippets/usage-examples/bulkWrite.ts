@@ -5,12 +5,24 @@ const uri = "<connection string uri>";
 
 const client = new MongoClient(uri);
 
+interface Address {
+  street1: string;
+  city: string;
+  state: string;
+  zipcode: string;
+}
+
+interface Theater {
+  location: { address: Address };
+  is_in_ohio?: boolean;
+}
+
 async function run() {
   try {
     await client.connect();
 
     const database = client.db("sample_mflix");
-    const theaters = database.collection("theaters");
+    const theaters = database.collection<Theater>("theaters");
 
     const result = await theaters.bulkWrite([
       {
@@ -43,13 +55,16 @@ async function run() {
       },
       {
         updateMany: {
+          // Important: You lose type safety when you use dot notation in queries
           filter: { "location.address.zipcode": "44011" },
           update: { $set: { is_in_ohio: true } },
           upsert: true,
         },
       },
       {
-        deleteOne: { filter: { "location.address.street1": "221b Baker St" } },
+        deleteOne: {
+          filter: { "location.address.street1": "221b Baker St" },
+        },
       },
     ]);
 

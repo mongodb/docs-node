@@ -18,6 +18,7 @@ Fundamentals
    /fundamentals/monitoring
    /fundamentals/gridfs
    /fundamentals/time-series
+   /fundamentals/typescript
 
 The **Fundamentals** section contains detailed information to help you
 expand your knowledge on how to use MongoDB with the Node.js driver. The
