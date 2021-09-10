@@ -46,25 +46,31 @@ create a new project by :ref:`cloning our js-starter repository
 Clone the Project
 ~~~~~~~~~~~~~~~~~
 
-This approach assumes you to have `Git
-<https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
-installed.
+.. note::
+
+   This approach requires you to have `Git
+   <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
+   installed.
 
 First, clone our `js-starter repository
 <https://github.com/mongodb-university/js-starter>`__  in your command
-line interface.
+line interface using the following command:
 
-For SSH, use the following command:
+.. tabs::
 
-.. code-block:: none
+   .. tab:: SSH
+      :tabid: ssh
+      
+      .. code-block:: none
 
-   git clone git@github.com:mongodb-university/js-starter.git 
+         git clone git@github.com:mongodb-university/js-starter.git 
 
-For HTTPS, use the following command:
+   .. tab:: HTTPS
+      :tabid: https
+      
+      .. code-block:: none
 
-.. code-block:: none
-
-   git clone https://github.com/mongodb-university/js-starter.git
+         git clone https://github.com/mongodb-university/js-starter.git
 
 Then, navigate into that directory so you can work directly with your
 project's files:
