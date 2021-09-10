@@ -37,110 +37,77 @@ to check your version of Node and NPM and installation instructions for your
 system, see `downloading and installing Node.js and npm
 <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`_.
 
-After you verify that you installed the required versions of Node and NPM,
-create a new project by :ref:`cloning our js-starter repository
-<qs-download-the-repo>` or by :ref:`creating it manually <qs-manual-setup>`.
-
-.. _qs-download-the-repo:
-
-Clone the Project
-~~~~~~~~~~~~~~~~~
-
-.. note::
-
-   This approach requires you to have `Git
-   <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__
-   installed.
-
-First, clone our `js-starter repository
-<https://github.com/mongodb-university/js-starter>`__  in your command
-line interface using the following command:
-
 .. tabs::
 
-   .. tab:: SSH
-      :tabid: ssh
-      
-      .. code-block:: none
+   .. tab:: Clone the Project
+      :tabid: clone the project
+
+      First, install git using `Git's Getting Started Guide
+      <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__.
+
+      Then, clone the `js-starter repository
+      <https://github.com/mongodb-university/js-starter>`__  in your shell:
+
+      .. code-block:: bash
 
          git clone git@github.com:mongodb-university/js-starter.git 
 
-   .. tab:: HTTPS
-      :tabid: https
-      
+      Next, navigate into the repository:
+
+      .. code-block:: bash
+
+         cd js-starter
+
+      At this point, you have the appropriate version of Node.js installed and
+      a project directory that contains the dependencies you need to use the
+      Node.js MongoDB driver.
+
+   .. tab:: Create the Project
+      :tabid: create the project
+
+      First, create a directory for your project in your command line interface:
+
       .. code-block:: none
 
-         git clone https://github.com/mongodb-university/js-starter.git
+         mkdir node_quickstart
 
-Then, navigate into that directory so you can work directly with your
-project's files:
+      Then, navigate into that directory so you can work directly with your
+      project's files:
 
-.. code-block:: none
+      .. code-block:: none
 
-   cd js-starter
+         cd node_quickstart
 
-At this point, you should have appropriate version of Node.js and NPM
-installed as well as a project directory that contains the dependencies you
-need to use the Node.js MongoDB driver.
+      Next, set up NPM for your project by running the following command.
+      This command creates a file called ``package.json``:
 
-Next, continue with this guide by :ref:`creating a MongoDB cluster
-<qs-create-a-cluster>`.
+      .. code-block:: none
 
-.. _qs-manual-setup:
+         npm init -y
 
-Manual Creation
-~~~~~~~~~~~~~~~
+      .. note:: Why the -y?
 
-Initialize the Project
-``````````````````````
+         If you specify the ``-y`` option in the command, NPM automatically
+         accepts the default values for the command. Omit the ``-y`` flag to
+         interactively select your project settings.
 
-First, create a directory for your project in your command line interface:
+      Next, add the official Node.js MongoDB driver to your project dependencies.
+      Use the following command to instruct NPM to download and install the
+      ``mongodb`` package.
 
-.. code-block:: none
+      .. code-block:: none
 
-   mkdir node_quickstart
+         npm install mongodb
 
-Then, navigate into that directory so you can work directly with your
-project's files:
+      This command downloads ``mongodb`` package and dependencies required for its
+      installation and saves them into a directory called ``node_modules`` in
+      your project directory, and records the dependency information in the
+      ``package.json`` file you generated in the previous step.
 
-.. code-block:: none
+      At this point, you should have appropriate versions of Node.js and NPM
+      installed as well as a project directory that contains the dependencies you
+      need to use the Node.js MongoDB driver.
 
-   cd node_quickstart
-
-Next, set up NPM for your project by running the following command.
-This command creates a file called ``package.json``:
-
-.. code-block:: none
-
-   npm init -y
-
-.. note:: Why the -y?
-
-   If you specify the ``-y`` option in the command, NPM automatically
-   accepts the default values for the command. Omit the ``-y`` flag to
-   interactively select your project settings.
-
-Add MongoDB as a Dependency
-```````````````````````````
-
-Next, add the official Node.js MongoDB driver to your project dependencies.
-Use the following command to instruct NPM to download and install the
-``mongodb`` package.
-
-.. code-block:: none
-
-   npm install mongodb
-
-This command downloads ``mongodb`` package and dependencies required for its
-installation and saves them into a directory called ``node_modules`` in
-your project directory, and records the dependency information in the
-``package.json`` file you generated in the previous step.
-
-At this point, you should have appropriate versions of Node.js and NPM
-installed as well as a project directory that contains the dependencies you
-need to use the Node.js MongoDB driver.
-
-.. _qs-create-a-cluster:
 
 Create a MongoDB Cluster
 ------------------------
