@@ -88,16 +88,16 @@ print change events that occur on the collection.
 
 First, open the change stream on the collection and then define a callback
 on the change stream using the ``on()`` method. Once set, generate a change
-event to emit by performing a change to the collection.
+event by performing a change to the collection.
 
 To generate the change event on the collection, let's use ``insertOne()``
 method to add a new document. Since the ``insertOne()`` may run before the
-listener function can register, we use a timer, declared with
-``simulateAsyncPause`` to wait 100 milliseconds before executing the insert.
+listener function can register, we use a timer, defined as
+``simulateAsyncPause`` to wait 1 second before executing the insert.
 
 We also use ``simulateAsyncPause`` after the insertion of the document
 to provide ample time for the listener function to receive the change
-event and the for the callback to complete its execution before 
+event and for the callback to complete its execution before 
 closing the ``ChangeStream`` instance using the ``close()`` method.
 
 The timers used in this example are only necessary for this demonstration

@@ -7,7 +7,7 @@ const client = new MongoClient(uri);
 
 const simulateAsyncPause = () =>
   new Promise(resolve => {
-    setTimeout(() => resolve(), 100);
+    setTimeout(() => resolve(), 1000);
   });
 
 let changeStream;
