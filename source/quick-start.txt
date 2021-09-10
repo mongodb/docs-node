@@ -59,29 +59,28 @@ system, see `downloading and installing Node.js and npm
          cd js-starter
 
       At this point, you have the appropriate version of Node.js installed and
-      a project directory that contains the dependencies you need to use the
+      a project that contains the dependencies you need to use the
       Node.js MongoDB driver.
 
    .. tab:: Create the Project
       :tabid: create the project
 
-      First, create a directory for your project in your command line interface:
+      First, create a directory for your project in your shell:
 
-      .. code-block:: none
+      .. code-block:: bash
 
          mkdir node_quickstart
 
-      Then, navigate into that directory so you can work directly with your
-      project's files:
+      Then, navigate into that directory:
 
-      .. code-block:: none
+      .. code-block:: bash
 
          cd node_quickstart
 
       Next, set up NPM for your project by running the following command.
       This command creates a file called ``package.json``:
 
-      .. code-block:: none
+      .. code-block:: bash
 
          npm init -y
 
@@ -91,7 +90,7 @@ system, see `downloading and installing Node.js and npm
          accepts the default values for the command. Omit the ``-y`` flag to
          interactively select your project settings.
 
-      Next, add the official Node.js MongoDB driver to your project dependencies.
+      Then, add the official Node.js MongoDB driver to your project dependencies.
       Use the following command to instruct NPM to download and install the
       ``mongodb`` package.
 
@@ -101,13 +100,12 @@ system, see `downloading and installing Node.js and npm
 
       This command downloads ``mongodb`` package and dependencies required for its
       installation and saves them into a directory called ``node_modules`` in
-      your project directory, and records the dependency information in the
+      your project, and records the dependency information in the
       ``package.json`` file you generated in the previous step.
 
       At this point, you should have appropriate versions of Node.js and NPM
-      installed as well as a project directory that contains the dependencies you
+      installed as well as a project that contains the dependencies you
       need to use the Node.js MongoDB driver.
-
 
 Create a MongoDB Cluster
 ------------------------
