@@ -28,12 +28,12 @@ instance.
 Set up Your Project
 -------------------
 
-Install Node and NPM
+Install Node and npm
 ~~~~~~~~~~~~~~~~~~~~
 
 Ensure your system has Node.js version 10 or later and a compatible
-version of NPM (Node Package Manager) installed. For more information on how
-to check your version of Node and NPM and installation instructions for your
+version of npm (Node Package Manager) installed. For more information on how
+to check your version of Node and npm and installation instructions for your
 system, see `downloading and installing Node.js and npm
 <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`_.
 
@@ -42,7 +42,7 @@ system, see `downloading and installing Node.js and npm
    .. tab:: Clone the Project
       :tabid: clone the project
 
-      First, install git using `Git's Getting Started Guide
+      First, install Git using `Git's Getting Started Guide
       <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__.
 
       Then, clone the `js-starter repository
@@ -60,7 +60,7 @@ system, see `downloading and installing Node.js and npm
 
       At this point, you have the appropriate version of Node.js installed and
       a project that contains the dependencies you need to use the
-      Node.js MongoDB driver.
+      MongoDB Node.js driver.
 
    .. tab:: Create the Project
       :tabid: create the project
@@ -77,7 +77,7 @@ system, see `downloading and installing Node.js and npm
 
          cd node_quickstart
 
-      Next, set up NPM for your project by running the following command.
+      Next, set up npm for your project by running the following command.
       This command creates a file called ``package.json``:
 
       .. code-block:: bash
@@ -86,12 +86,12 @@ system, see `downloading and installing Node.js and npm
 
       .. note:: Why the -y?
 
-         If you specify the ``-y`` option in the command, NPM automatically
+         If you specify the ``-y`` option in the command, npm automatically
          accepts the default values for the command. Omit the ``-y`` flag to
          interactively select your project settings.
 
-      Then, add the official Node.js MongoDB driver to your project dependencies.
-      Use the following command to instruct NPM to download and install the
+      Then, add the official MongoDB Node.js driver to your project dependencies.
+      Use the following command to instruct npm to download and install the
       ``mongodb`` package.
 
       .. code-block:: none
@@ -103,9 +103,9 @@ system, see `downloading and installing Node.js and npm
       your project, and records the dependency information in the
       ``package.json`` file you generated in the previous step.
 
-      At this point, you should have appropriate versions of Node.js and NPM
+      At this point, you should have appropriate versions of Node.js and npm
       installed as well as a project that contains the dependencies you
-      need to use the Node.js MongoDB driver.
+      need to use the MongoDB Node.js driver.
 
 Create a MongoDB Cluster
 ------------------------
@@ -113,7 +113,7 @@ Create a MongoDB Cluster
 Set up a Free Tier Cluster in Atlas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After installing the Node MongoDB driver, create a MongoDB instance to store
+After installing the MongoDB Node.js driver, create a MongoDB instance to store
 and manage your data. Complete the
 :atlas:`Get Started with Atlas </getting-started?tck=docs_driver_nodejs>` guide
 to set up a new Atlas account and a free tier cluster (MongoDB instance).
