@@ -14,11 +14,11 @@ let changeStream;
 async function run() {
   try {
     await client.connect();
-    const database = client.db("sample_mflix");
-    const movies = database.collection("movies");
+    const database = client.db("insertDB");
+    const collection = database.collection("haikus");
 
-    // open a Change Stream on the "movies" collection
-    changeStream = movies.watch();
+    // open a Change Stream on the "haikus" collection
+    changeStream = collection.watch();
 
     // set up a listener when change events are emitted
     changeStream.on("change", next => {
@@ -28,13 +28,16 @@ async function run() {
 
     await simulateAsyncPause();
 
-    await movies.insertOne({
-      test: "sample movie document"
+    await collection.insertOne({
+      title: "Record of a Shriveled Datum",
+      content: "No bytes, no problem. Just insert a document, in MongoDB",
     });
 
     await simulateAsyncPause();
 
-    await changeStream.close(() => console.log("closed the change stream"));
+    await changeStream.close();
+    
+    console.log("closed the change stream");
   } finally {
     await client.close();
   }

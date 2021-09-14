@@ -82,8 +82,8 @@ methods presented above:
 Example
 -------
 
-The following example opens a change stream on the ``movies`` collection in
-the ``sample_mflix`` database. Let's create a listener function to receive and
+The following example opens a change stream on the ``haikus`` collection in
+the ``insertDB`` database. Let's create a listener function to receive and
 print change events that occur on the collection.
 
 First, open the change stream on the collection and then define a callback
@@ -136,8 +136,8 @@ If you run the preceding example, you should see the following output:
      _id: { _data: '825EC...' },
      operationType: 'insert',
      clusterTime: new Timestamp { ... },
-     fullDocument: { _id: new ObjectId(...), test: 'sample movie document' },
-     ns: { db: 'sample_mflix', coll: 'movies' },
+     fullDocument: { _id: new ObjectId(...), title: 'Record of a Shriveled Datum', content: 'No bytes, no problem. Just insert a document, in MongoDB' },
+     ns: { db: 'insertDB', coll: 'haikus' },
      documentKey: { _id: new ObjectId(...) }
    }
    closed the change stream
