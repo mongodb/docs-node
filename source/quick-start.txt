@@ -33,7 +33,7 @@ Install Node and npm
 
 Ensure your system has Node.js version 10 or later and a compatible
 version of npm (Node Package Manager) installed. For more information on how
-to check your version of Node and npm and installation instructions for your
+to check your version of Node, npm and installation instructions for your
 system, see `downloading and installing Node.js and npm
 <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`_.
 
@@ -45,12 +45,12 @@ system, see `downloading and installing Node.js and npm
       First, install Git using `Git's Getting Started Guide
       <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__.
 
-      Then, clone the `js-starter repository
-      <https://github.com/mongodb-university/js-starter>`__  in your shell:
+      Then, in your shell, clone the `js-starter repository
+      <https://github.com/mongodb-university/js-starter>`__:
 
       .. code-block:: bash
 
-         git clone git@github.com:mongodb-university/js-starter.git 
+         git clone https://github.com/mongodb-university/js-starter.git
 
       Next, navigate into the repository:
 
@@ -58,14 +58,10 @@ system, see `downloading and installing Node.js and npm
 
          cd js-starter
 
-      At this point, you have the appropriate version of Node.js installed and
-      a project that contains the dependencies you need to use the
-      MongoDB Node.js driver.
-
    .. tab:: Create the Project
       :tabid: create the project
 
-      First, create a directory for your project in your shell:
+      First, in your shell, create a directory for your project:
 
       .. code-block:: bash
 
@@ -77,35 +73,33 @@ system, see `downloading and installing Node.js and npm
 
          cd node_quickstart
 
-      Next, set up npm for your project by running the following command.
-      This command creates a file called ``package.json``:
+      Next, set up npm for your project:
 
       .. code-block:: bash
 
          npm init -y
 
-      .. note:: Why the -y?
+      .. tip:: Why the -y?
 
-         If you specify the ``-y`` option in the command, npm automatically
-         accepts the default values for the command. Omit the ``-y`` flag to
-         interactively select your project settings.
+         If you specify the ``-y`` option in the command, npm uses the
+         default values for your project settings. If you want to
+         interactively select your project settings, omit the ``-y`` flag.
 
-      Then, add the official MongoDB Node.js driver to your project dependencies.
-      Use the following command to instruct npm to download and install the
-      ``mongodb`` package.
+Then, add the official MongoDB Node.js driver to your project
+dependencies:
 
-      .. code-block:: none
+.. code-block:: none
 
-         npm install mongodb
+   npm install mongodb
 
-      This command downloads ``mongodb`` package and dependencies required for its
-      installation and saves them into a directory called ``node_modules`` in
-      your project, and records the dependency information in the
-      ``package.json`` file you generated in the previous step.
+This command performs the following actions:
 
-      At this point, you should have appropriate versions of Node.js and npm
-      installed as well as a project that contains the dependencies you
-      need to use the MongoDB Node.js driver.
+- Downloads the ``mongodb`` package and dependencies required
+- Saves the package in a directory called ``node_modules``
+- Records the dependency information in the ``package.json`` file
+
+At this point, your project that contains the dependencies you need to
+use the MongoDB Node.js driver.
 
 Create a MongoDB Cluster
 ------------------------
