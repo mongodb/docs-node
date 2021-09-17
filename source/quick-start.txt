@@ -85,8 +85,7 @@ system, see `downloading and installing Node.js and npm
          default values for your project settings. If you want to
          interactively select your project settings, omit the ``-y`` flag.
 
-Then, add the official MongoDB Node.js driver to your project
-dependencies:
+Then, install the Node.js driver:
 
 .. code-block:: none
 
@@ -121,7 +120,7 @@ into your cluster.
 Connect to your Cluster
 -----------------------
 
-In this step, we create and run an application that uses the Node.js MongoDB
+In this step, we create and run an application that uses the MongoDB Node.js
 driver to connect to your instance of MongoDB and run a query on the sample
 data.
 
