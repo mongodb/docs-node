@@ -1,3 +1,6 @@
+Learn how to perform the following tasks using the Node.js driver in the
+Fundamentals section:
+
 - :doc:`Connect to MongoDB </fundamentals/connection>`
 - :doc:`Authenticate with MongoDB </fundamentals/authentication>`
 - :doc:`Read from and Write to MongoDB </fundamentals/crud>`

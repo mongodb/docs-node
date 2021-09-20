@@ -26,68 +26,64 @@ Introduction
 
 Welcome to the MongoDB Node.js driver documentation. 
 
-The official MongoDB Node.js driver lets you connect your Node.js
-applications to MongoDB and work with your data. The driver features an
-asynchronous API which allows you to access method return values through
-Promises or specify callbacks to access them when communicating with
-MongoDB.
+Connect your Node.js applications to MongoDB and work with your data
+using the official Node.js driver. The driver features an asynchronous
+API that you can use to access method return values through Promises or
+specify callbacks to access them when communicating with MongoDB.
 
 On this page, you can find descriptions of each section of the driver
-documentation and where to go to learn more about the Node.js driver.
+documentation and how to learn more about the Node.js driver.
 
 Quick Start
 -----------
 
-The :doc:`Quick Start </quick-start>` section is where you can
-establish a connection to MongoDB Atlas and begin working with data.
+Learn how to establish a connection to MongoDB Atlas and begin
+working with data in the :doc:`Quick Start </quick-start>` section.
 
 Usage Examples
 --------------
 
-The :doc:`Usage Examples </usage-examples>` section is where you can
-find runnable code snippets and high-level explanations for common
-methods.
+For fully runnable code snippets and high-level explanations for common
+methods, see the :doc:`Usage Examples </usage-examples>` section.
 
 Fundamentals
 ------------
-
-The Fundamentals section explains how to perform the following tasks
-using the Node.js driver:
 
 .. include:: /includes/fundamentals-sections.rst
 
 API
 ---
 
-The `MongoDB Node.js driver API documentation <{+api+}>`__ contains
-detailed information about classes and methods in the MongoDB
-Node.js driver.
+For detailed information about classes and methods in the MongoDB
+Node.js driver, see the `MongoDB Node.js driver API documentation
+<{+api+}>`__ .
 
 FAQ
 ---
 
-The :doc:`Frequently Asked Questions (FAQ) </faq>` section provides answers
-to commonly asked questions about the MongoDB Node.js Driver.
+For answers to commonly asked questions about the MongoDB
+Node.js Driver, see the :doc:`Frequently Asked Questions (FAQ) </faq>`
+section.
 
 Issues & Help
 -------------
 
-The :doc:`Issues & Help </issues-and-help>` section explains how to report
-bugs, contribute to the driver, and find additional resources for asking
-questions and receiving help.
+Learn how to report bugs, contribute to the driver, and find
+additional resources for asking questions and receiving help in the
+:doc:`Issues & Help </issues-and-help>` section.
 
 Compatibility
 -------------
 
-The :doc:`Compatibility </compatibility>` section contains compatibility
-charts that show the recommended Node.js Driver version for each MongoDB
-Server version.
+For the compatibility charts that show the recommended Node.js
+Driver version for each MongoDB Server version, see the
+:doc:`Compatibility </compatibility>` section.
 
 What's New
 ----------
 
-The :doc:`What's New </whats-new>` section  lists new features and
-changes in each version.
+For a list of new features and changes in each version, see the
+:doc:`What's New </whats-new>` section.
 
 Learn
 -----
