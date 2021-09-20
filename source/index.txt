@@ -43,7 +43,7 @@ working with data in the :doc:`Quick Start </quick-start>` section.
 Usage Examples
 --------------
 
-For fully runnable code snippets and high-level explanations for common
+For fully runnable code snippets and explanations for common
 methods, see the :doc:`Usage Examples </usage-examples>` section.
 
 Fundamentals
