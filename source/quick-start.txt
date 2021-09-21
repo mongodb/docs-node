@@ -31,10 +31,11 @@ Set up Your Project
 Install Node and npm
 ~~~~~~~~~~~~~~~~~~~~
 
-Ensure your system has Node.js version 10 or later and a compatible
-version of npm (Node Package Manager) installed. For more information on how
-to check your version of Node, npm and installation instructions for your
-system, see `downloading and installing Node.js and npm
+Check the :doc:`compatibility table </compatibility>` to ensure your
+system has the correct Node.js version and a compatible version of npm
+(Node Package Manager) installed. For information on how to check
+your version of Node and npm, as well as installation instructions, see
+`downloading and installing Node.js and npm 
 <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`_.
 
 .. tabs::
@@ -73,7 +74,7 @@ system, see `downloading and installing Node.js and npm
 
          cd node_quickstart
 
-      Next, set up npm for your project:
+      Next, initialize your project:
 
       .. code-block:: bash
 
@@ -97,7 +98,7 @@ This command performs the following actions:
 - Saves the package in a directory called ``node_modules``
 - Records the dependency information in the ``package.json`` file
 
-At this point, your project that contains the dependencies you need to
+At this point, your project contains the dependencies you need to
 use the MongoDB Node.js driver.
 
 Create a MongoDB Cluster
