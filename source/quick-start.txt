@@ -60,7 +60,7 @@ instructions, see `downloading and installing Node.js and npm
 
       Then, install the Node.js driver:
 
-      .. code-block:: none
+      .. code-block:: bash
 
          npm install
 
@@ -70,7 +70,7 @@ instructions, see `downloading and installing Node.js and npm
         called ``node_modules``
       - Installs ``eslint``, which the project uses to identify and
         report issues in your code
-      - Installs ``prettier``, which the project uses to format your code uniformly
+      - Installs ``prettier``, which the project uses to format your code
 
    .. tab:: Create the Project
       :tabid: create the project
@@ -101,14 +101,14 @@ instructions, see `downloading and installing Node.js and npm
 
       Then, install the Node.js driver:
 
-      .. code-block:: none
+      .. code-block:: bash
 
          npm install mongodb
 
       This command performs the following actions:
 
-      - Downloads the ``mongodb`` package and dependencies required
-      - Saves the package in a directory called ``node_modules``
+      - Downloads the ``mongodb`` package and the dependencies it requires
+      - Saves the package in the ``node_modules`` directory
       - Records the dependency information in the ``package.json`` file
 
 At this point, you are ready to use the MongoDB Node.js driver with your
