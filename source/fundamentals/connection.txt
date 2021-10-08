@@ -190,7 +190,7 @@ URI to specify the behavior of the client.
 
    * - **maxPoolSize**
      - integer
-     - ``10``
+     - ``100``
      - Specifies the maximum number of connections that a connection pool may
        have at a given time.
 
@@ -199,11 +199,6 @@ URI to specify the behavior of the client.
      - ``∞``
      - Specifies the maximum amount of time a connection can remain idle in the
        connection pool before being removed and closed.
-
-   * - **minSize**
-     - integer
-     - ``0``
-     - Specifies the minimum size of the instance connection pool.
 
    * - **minPoolSize**
      - integer
@@ -223,11 +218,6 @@ URI to specify the behavior of the client.
      - ``null``
      - Specifies a primary key factory object that generates custom ``_id``
        keys.
-
-   * - **poolSize**
-     - integer
-     - ``5``
-     - Specifies the maximum size of the instance connection pool.
 
    * - **promiseLibrary**
      - object
