@@ -166,19 +166,27 @@ the following choices:
 
 - **Specify your AWS session token in a connection string.**
 
-  To pass the AWS session token in the connection string,
+  To specify your AWS session token in a connection string,
   append your session token with the ``authMechanismProperties``
   parameter using the format ``AWS_SESSION_TOKEN:<awsSessionToken>``.
   Your code to append a session token should look something like this:
 
-  .. code-block::
+  .. code-block:: javascript
 
+     // Replace the following with values for your environment.
+     const accessKeyId = encodeURIComponent("<AWS_ACCESS_KEY_ID>");
+     const secretAccessKey = encodeURIComponent("<AWS_SECRET_ACCESS_KEY>");
+     const clusterUrl = "<MongoDB cluster url>";
+
+     let uri =`mongodb+srv://${accessKeyId}:${secretAccessKey}@${clusterUrl}/?authMechanism="MONGODB-AWS"`;
+     
      const sessionToken = encodeURIComponent("<AWS_SESSION_TOKEN>");
      uri = uri.concat(`&authMechanismProperties=AWS_SESSION_TOKEN:${sessionToken}`);
 
 - **Specify your AWS session token in an environment variable.**
 
-  In your client execution environment, set an environment variable
+  To specify your AWS session token in an environment variable, navigate
+  to your client execution environment, set an environment variable
   called ``AWS_SESSION_TOKEN`` and assign your token to it. The value is
   automatically picked up by your ``MongoClient`` when you specify the
   ``MONGODB-AWS`` authentication mechanism.
