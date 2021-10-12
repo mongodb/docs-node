@@ -10,10 +10,6 @@ const authMechanism = "MONGODB-AWS";
 let uri =
   `mongodb+srv://${accessKeyId}:${secretAccessKey}@${clusterUrl}/?authMechanism=${authMechanism}`;
 
-// Uncomment the following lines if your AWS authentication setup requires a session token.
-// const sessionToken = encodeURIComponent("<AWS_SESSION_TOKEN>");
-// uri = uri.concat(`&authMechanismProperties=${sessionToken}`);
-
 // Create a new MongoClient.
 const client = new MongoClient(uri);
 
