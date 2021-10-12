@@ -166,15 +166,15 @@ the following choices:
 
 - **Specify your AWS session token in a connection string.**
 
-  If you prefer to pass the AWS session token in the connection string,
-  append your session token in the ``authMechanismProperties``
+  To pass the AWS session token in the connection string,
+  append your session token with the ``authMechanismProperties``
   parameter using the format ``AWS_SESSION_TOKEN:<awsSessionToken>``.
   Your code to append a session token should look something like this:
 
-.. code-block::
+  .. code-block::
 
-   const sessionToken = encodeURIComponent("<AWS_SESSION_TOKEN>");
-   uri = uri.concat(`&authMechanismProperties=AWS_SESSION_TOKEN:${sessionToken}`);
+     const sessionToken = encodeURIComponent("<AWS_SESSION_TOKEN>");
+     uri = uri.concat(`&authMechanismProperties=AWS_SESSION_TOKEN:${sessionToken}`);
 
 - **Specify your AWS session token in an environment variable.**
 
