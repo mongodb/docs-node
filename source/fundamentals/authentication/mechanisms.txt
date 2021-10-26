@@ -136,9 +136,12 @@ Identity and Access Management (AWS IAM) credentials to authenticate your
 user.
 
 To connect to a MongoDB instance with ``MONGODB-AWS`` authentication
-enabled, specify the ``MONGODB-AWS`` authentication mechanism and pass
-your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` credentials to the
-driver when you attempt to connect. 
+enabled, specify the ``MONGODB-AWS`` authentication mechanism. 
+
+Add your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` credentials
+to your environment variables. If you need to specify an
+``AWS_SESSION_TOKEN``, add it to your environment variables as well. The
+driver automatically retrieves the values when you attempt to connect.
 
 The driver checks the following sources for your credentials in order:
 
@@ -160,36 +163,6 @@ authentication mechanism and credentials in the connection string:
 
 .. literalinclude:: /code-snippets/authentication/aws.js
    :language: javascript
-
-If you need to specify an AWS session token, you can add it using one of
-the following choices:
-
-- **Specify your AWS session token in a connection string.**
-
-  To specify your AWS session token in a connection string,
-  append your session token with the ``authMechanismProperties``
-  parameter using the format ``AWS_SESSION_TOKEN:<awsSessionToken>``.
-  Your code to append a session token should look something like this:
-
-  .. code-block:: javascript
-
-     // Replace the following with values for your environment.
-     const accessKeyId = encodeURIComponent("<AWS_ACCESS_KEY_ID>");
-     const secretAccessKey = encodeURIComponent("<AWS_SECRET_ACCESS_KEY>");
-     const clusterUrl = "<MongoDB cluster url>";
-
-     let uri =`mongodb+srv://${accessKeyId}:${secretAccessKey}@${clusterUrl}/?authMechanism="MONGODB-AWS"`;
-     
-     const sessionToken = encodeURIComponent("<AWS_SESSION_TOKEN>");
-     uri = uri.concat(`&authMechanismProperties=AWS_SESSION_TOKEN:${sessionToken}`);
-
-- **Specify your AWS session token in an environment variable.**
-
-  To specify your AWS session token in an environment variable, navigate
-  to your client execution environment, set an environment variable
-  called ``AWS_SESSION_TOKEN`` and assign your token to it. The value is
-  automatically picked up by your ``MongoClient`` when you specify the
-  ``MONGODB-AWS`` authentication mechanism.
 
 ``X.509``
 ---------

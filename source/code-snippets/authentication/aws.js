@@ -1,14 +1,12 @@
 const { MongoClient } = require("mongodb");
 
-// Replace the following with values for your environment.
-const accessKeyId = encodeURIComponent("<AWS_ACCESS_KEY_ID>");
-const secretAccessKey = encodeURIComponent("<AWS_SECRET_ACCESS_KEY>");
+// Remember to add your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY 
+// credentials to your environment variables.
 const clusterUrl = "<MongoDB cluster url>";
-
 const authMechanism = "MONGODB-AWS";
 
 let uri =
-  `mongodb+srv://${accessKeyId}:${secretAccessKey}@${clusterUrl}/?authMechanism=${authMechanism}`;
+  `mongodb+srv://${clusterUrl}/?authSource=%24external&authMechanism=${authMechanism}`;
 
 // Create a new MongoClient.
 const client = new MongoClient(uri);
