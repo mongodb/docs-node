@@ -27,9 +27,9 @@ Introduction
 Welcome to the official MongoDB Node.js driver documentation.
 
 Connect your Node.js applications to MongoDB and work with your data
-using the official Node.js driver. The driver features an asynchronous
-API that you can use to access method return values through Promises or
-specify callbacks to access them when communicating with MongoDB.
+using the Node.js driver. The driver features an asynchronous API that you can
+use to access method return values through Promises or specify callbacks to
+access them when communicating with MongoDB.
 
 On this page, you can find descriptions of each section of the driver
 documentation.
