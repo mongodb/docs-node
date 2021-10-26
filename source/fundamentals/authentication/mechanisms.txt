@@ -138,26 +138,7 @@ user.
 To connect to a MongoDB instance with ``MONGODB-AWS`` authentication
 enabled, specify the ``MONGODB-AWS`` authentication mechanism. 
 
-.. tabs::
-
-   .. tab:: Environment Variables
-      :tabid: environment variables
-
-      Add your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` credentials
-      to your environment variables. If you need to specify an
-      ``AWS_SESSION_TOKEN``, add it to your environment variables as well. You
-      don't need to specify these credentials in your connection URI because the
-      driver automatically retrieves them when you attempt to connect.
-
-   .. tab:: Connection String
-      :tabid: connection string
-
-      Pass your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY``
-      credentials to the driver when you attempt to connect. If your AWS
-      login requires a session token, you must include your
-      ``AWS_SESSION_TOKEN`` as well. 
-
-The driver checks the following sources for your credentials in order:
+The driver checks for your credentials in the following sources in order:
 
 1. Connection string
 2. Environment variables
@@ -177,17 +158,30 @@ install it using the following ``npm`` command:
    .. tab:: Environment Variables
       :tabid: environment variables
 
+      To connect to your MongoDB instance with environment variables,
+      add your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY``
+      credentials to your environment variables. If you need to specify an
+      ``AWS_SESSION_TOKEN``, add it to your environment variables as well. You
+      don't need to specify these credentials in your connection URI because the
+      driver automatically retrieves them when you attempt to connect.
+
       The following code shows an example of specifying the ``MONGODB-AWS``
-      authentication mechanism with your environment variables:
+      authentication mechanism with environment variables:
 
       .. literalinclude:: /code-snippets/authentication/aws-env-variable.js
-         :language: javascript   
+         :language: javascript 
 
    .. tab:: Connection String
       :tabid: connection string
 
+      To connect to your MongoDB instance with a connection string, pass
+      your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY``
+      credentials to the driver when you attempt to connect. If your AWS
+      login requires a session token, you must include your
+      ``AWS_SESSION_TOKEN`` as well. 
+
       The following code shows an example of specifying the ``MONGODB-AWS``
-      authentication mechanism and credentials with your connection string:
+      authentication mechanism and credentials with a connection string:
 
       .. important::
          
