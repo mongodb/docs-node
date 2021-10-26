@@ -140,8 +140,9 @@ enabled, specify the ``MONGODB-AWS`` authentication mechanism.
 
 Add your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY`` credentials
 to your environment variables. If you need to specify an
-``AWS_SESSION_TOKEN``, add it to your environment variables as well. The
-driver automatically retrieves the values when you attempt to connect.
+``AWS_SESSION_TOKEN``, add it to your environment variables as well. You
+don't need to specify these credentials in your connection URI because the
+driver automatically retrieves them when you attempt to connect.
 
 The driver checks the following sources for your credentials in order:
 
