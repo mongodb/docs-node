@@ -281,8 +281,8 @@ URI to specify the behavior of the client.
    * - **srvServiceName**
      - string
      - ``mongodb``
-     - Sets the connection protocol (``mongodb`` or ``mongodb+srv``) the
-       driver uses to connect to your cluster.
+     - Specifies the SRV record service name to which the driver should 
+       connect.
 
    * - **socketTimeoutMS**
      - integer
