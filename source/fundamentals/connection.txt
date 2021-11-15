@@ -277,12 +277,12 @@ URI to specify the behavior of the client.
        | driver does not limit the number of hosts.
        |
        | Throws an exception if the value is not equal to ``0`` and you are
-         not using the SRV connection protocol
+         not using the SRV connection protocol.
 
    * - **srvServiceName**
      - string
      - ``mongodb``
-     - Specifies the SRV record service name to which the driver should 
+     - Specifies the SRV record service name to which the driver should
        connect.
 
    * - **socketTimeoutMS**
