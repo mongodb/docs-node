@@ -1,0 +1,188 @@
+.. _nodejs-transactions:
+
+============
+Transactions
+============
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+Read this guide to learn how to perform **transactions** in MongoDB using the
+Node.js driver. A transaction is a unit of work, composed of a series of
+operations that you want either to succeed together or fail together when one
+or more of the operations fail which a property called **atomicity**.
+Atomicity describes one or more operations that happen all at once, such that
+no other client can observe them as separate operations, and that it
+leaves no changes if one of the operations fails.
+
+Since all write operations on a single document in MongoDB are atomic, you
+may benefit most from transactions when you need to make an atomic change that
+involves multiple documents, which is called a multi-document transaction.
+
+.. note::
+
+   You can use multi-document transactions in MongoDB version 4.0 and later.
+
+   For a detailed list of limitations, see the :manual:`Transactions and
+   Operations </core/transactions/#transactions-and-operations>` section in
+   the server manual.
+
+Learn more about how to use the transaction API to run multi-document
+transactions on MongoDB in the following sections of this guide:
+
+- :ref:`Transaction APIs <nodejs-transaction-apis>`
+- :ref:`Transaction Settings <nodejs-transaction-settings>`
+- :ref:`Core API Example <nodejs-transaction-core-api-example>`
+- :ref:`Callback API Example <nodejs-transaction-callback-api-example>`
+
+.. _nodejs-transaction-apis:
+
+Transaction APIs
+----------------
+
+The Node.js driver provides two APIs for managing transactions: the **Core
+API** and the **Callback API**.
+
+The Core API provides methods to start, cancel, or commit a transaction.
+When you commit the transaction, you are sending a request to the server
+to make the changes from your operations atomically. When using this API,
+you must handle certain transaction errors returned by the server manually.
+
+See
+:manual:`TransientTransactionError </core/transactions-in-applications/#std-label-transient-transaction-error>`
+and
+:manual:`UnknownTransactionCommitResult <https://docs.mongodb.com/manual/core/transactions-in-applications/#-unknowntransactioncommitresult->`
+for more information on these errors.
+
+See the :ref:`Core API example <nodejs-transaction-core-api-example>` for
+a sample transaction implementation.
+
+The Callback API runs a callback function that encapsulates the series
+of operations you want to run in the transaction. This API automatically
+provides error handling logic for the transaction errors that the Core API
+requires you to manually define. You can manually catch and define your own
+error handling by wrapping the callback.
+
+See the :ref:`Callback API example <nodejs-transaction-callback-api-example>`
+for a sample transaction implementation.
+
+.. _nodejs-transaction-settings:
+
+Transaction Settings
+--------------------
+
+When you instantiate a transaction, ou can specify the following options to
+set the default behavior for that transaction:
+
+.. list-table::
+
+
+   * - Setting
+     - Description
+
+   * - ``readConcern``
+     - specify how to check for the consistency of the data that the
+       read operations retrieve from replica sets.
+
+       See :manual:`Read Concern </reference/read-concern/>` in the server
+       manual for more information.
+
+   * - ``writeConcern``
+     -
+       specify requirements on when a write is acknowledged
+       See :manual:`Write Concern </reference/write-concern/>` in the
+       server manual for more information.
+
+   * - ``readPreference``
+     -
+       See :manual:`Read Preference <core/read-preference/#read-preference>`
+       in the server manual for more information.
+
+   * - ``maxCommitTimeMS`` https://mongodb.github.io/node-mongodb-native/4.2/interfaces/TransactionOptions.html#maxCommitTimeMS
+     - Maximum amount of time to allow a commit action on a transaction to
+       run in milliseconds.
+
+If you do not provide values, the driver uses the client settings.
+
+To specify the options in the constructor, pass an object that contains
+the settings
+
+
+For the Core API, this might resemble the following:
+
+.. code-block:: javascript
+
+   const transactionOptions = {
+     readConcern: ...,
+     ...
+   };
+   session.startTransaction(transactionOptions);
+
+Fore the Callback API, this might resemble the following:
+
+.. code-block:: javascript
+
+   const transactionOptions = {
+     readConcern: ...,
+     ...
+   };
+   await session.withTranssaction(<callback function>, transactionOptions);
+
+
+.. _nodejs-transaction-example:
+
+Example
+-------
+
+Consider a scenario in which a customer purchases items from your online
+store. To track the purchase, you need to record the following:
+
+- Inventory updates
+- Customer orders
+- Payment receipts
+
+If there aren't enough items in your inventory, customer information is
+incomplete, or if you can't produce the receipt, you want to make sure
+there are no partial updates that could make the data inconsistent until
+you cleaned up the data.
+This is a candidate for multi-document transaction.
+
+.. important::
+
+   The following examples require that you create the collections outside of
+   the transaction or are using MongoDB4.4 or later. For more information on
+   creating collections inside a transaction, see the
+   :manual:`Create Collections and Indexes in a Transaction </core/transactions/#std-label-transactions-create-collections-indexes>`
+   server guide.
+
+
+1. Core API
+   You can call ``startTransaction()`` on a ``Session`` object
+   to start the transaction and then ``commitTransaction()`` to complete it.
+   You must catch and provide your own logic for handling certain errors
+   reported by the server.
+
+2. Callback API
+   You can provide a callback function to the ``withTransaction()`` method
+   on a ``Session`` object which automatically retries when encountering
+   certain errors reported by the server.
+
+.. _nodejs-transaction-core-api-example:
+
+Core API Implementation
+~~~~~~~~~~~~~~~~~~~~~~~
+
+
+.. _nodejs-transaction-callback-api-example:
+
+Callback API Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
