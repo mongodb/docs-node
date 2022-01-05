@@ -1,6 +1,5 @@
 const { MongoClient } = require("mongodb");
 
-// drop collections
 async function cleanUp(client) {
   try {
     const customersColl = client.db("testdb").collection("customers");

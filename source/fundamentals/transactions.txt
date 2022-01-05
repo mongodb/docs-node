@@ -72,7 +72,7 @@ you must handle certain transaction errors returned by the server manually.
 See
 :manual:`TransientTransactionError </core/transactions-in-applications/#std-label-transient-transaction-error>`
 and
-:manual:`UnknownTransactionCommitResult <https://docs.mongodb.com/manual/core/transactions-in-applications/#-unknowntransactioncommitresult->`
+:manual:`UnknownTransactionCommitResult </core/transactions-in-applications/#-unknowntransactioncommitresult->`
 for more information on these errors.
 
 To start, cancel, or commit your transaction, you can call the corresponding
@@ -96,7 +96,7 @@ returned by the server.
 See
 :manual:`TransientTransactionError </core/transactions-in-applications/#std-label-transient-transaction-error>`
 and
-:manual:`UnknownTransactionCommitResult <https://docs.mongodb.com/manual/core/transactions-in-applications/#-unknowntransactioncommitresult->`
+:manual:`UnknownTransactionCommitResult </core/transactions-in-applications/#-unknowntransactioncommitresult->`
 for more information on these errors.
 
 To create a transaction, pass a callback function that encapsulates your
@@ -138,7 +138,7 @@ set the default behavior for that transaction:
      - See :manual:`Read Preference <core/read-preference/#read-preference>`
        in the server manual for more information.
 
-   * - ``maxCommitTimeMS`` https://mongodb.github.io/node-mongodb-native/4.2/interfaces/TransactionOptions.html#maxCommitTimeMS
+   * - ``maxCommitTimeMS``
      - Maximum amount of time to allow a commit action on a transaction to
        run in milliseconds.
 
@@ -250,15 +250,17 @@ To call
 
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
-   :start-after: start-session
-   :end-before: end-session
+   :language: javascript
+   :start-after: start session
+   :end-before: end session
 
 The code to place the order including the calls to start and end the
 transaction
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
-   :start-after: start-transaction
-   :end-before: end-transaction
+   :language: javascript
+   :start-after: start transaction
+   :end-before: end transaction
 
 
 
