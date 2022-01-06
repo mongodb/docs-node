@@ -64,8 +64,8 @@ API
 ---
 
 For detailed information about classes and methods in the MongoDB
-Node.js driver, see the :node-api-3.6:`MongoDB Node.js driver API
-documentation <>`.
+Node.js driver, see the `MongoDB Node.js driver API documentation
+<{+api+}>`__.
 
 FAQ
 ---
