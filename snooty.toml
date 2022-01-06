@@ -4,6 +4,9 @@ title = "Node.js"
 toc_landing_pages = ["/fundamentals/authentication", "/fundamentals", "/fundamentals/crud", "/usage-examples"]
 
 [constants]
-version = 4.0
+version = 3.6
 package-name-org = "mongodb-org"
 pgp-version = "{+version+}"
+api = "https://mongodb.github.io/node-mongodb-native/{+version+}"
+mongosh = "``mongosh``"
+driver = "node"
