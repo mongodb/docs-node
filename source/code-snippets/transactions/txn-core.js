@@ -1,18 +1,13 @@
 const { MongoClient } = require("mongodb");
 
+// drop collections
 async function cleanUp(client) {
-  try {
-    const customersColl = client.db("testdb").collection("customers");
-    await customersColl.drop();
-  } catch(e) {}
-  try {
-    const inventoryColl = client.db("testdb").collection("inventory");
-    await inventoryColl.drop();
-  } catch(e) {}
-  try {
-    const ordersCollection = client.db('testdb').collection('orders')
-    await ordersCollection.drop();
-  } catch(e) {}
+  await Promise.all( ['customers', 'inventory', 'orders'].map(async c => {
+    try {
+      const coll = client.db('testdb').collection(c);
+      await coll.drop();
+    } catch(e) {}
+  }));
 }
 
 async function setup(client) {
@@ -31,23 +26,35 @@ async function setup(client) {
   }
 }
 
-async function queryData(client) {
-  const customerColl = client.db("testdb").collection("customers");
-  const customers = await customerColl.find().toArray();
-  console.log(JSON.stringify(customers));
+async function queryData() {
+  const client = new MongoClient(uri, { useUnifiedTopology: true });
+  try {
+    await client.connect();
+    await Promise.all(['customers', 'inventory', 'orders'].map(async c => {
+      const coll = client.db('testdb').collection(c);
+      console.log(JSON.stringify(await coll.find().toArray()));
+    }, client));
 
-  const inventoryColl = client.db("testdb").collection("inventory");
-  const inventory= await inventoryColl.find().toArray();
-  console.log(JSON.stringify(inventory));
+  } finally {
+    client.close();
+  }
 }
 
-// start transaction
-async function placeOrder(client, session, cart, payment) {
+// start placeOrder
+async function placeOrder(client) {
   const transactionOptions = {
     readConcern: { level: 'snapshot' },
     writeConcern: { w: 'majority' },
     readPreference: 'primary'
   };
+
+  const cart = [
+    { name: "sun screen", sku: 5432, qty: 1, price: 5.19 },
+    { name: "beach towel", sku: 7865, qty: 2, price: 15.99 }
+  ];
+  const payment = { customer: 98765, total: 37.17 };
+
+  const session = client.startSession();
 
   try {
     session.startTransaction(transactionOptions);
@@ -63,13 +70,11 @@ async function placeOrder(client, session, cart, payment) {
     );
 
     const inventoryCollection = client.db('testdb').collection('inventory');
-
     for (var i=0; i<cart.length; i++) {
-
       const item = cart[i];
 
       // Cancel the transaction when you have insufficient inventory
-      const checkInventory = inventoryCollection.findOne({
+      const checkInventory = await inventoryCollection.findOne({
         sku: item.sku,
         qty: { $gte: item.qty }
       })
@@ -94,7 +99,6 @@ async function placeOrder(client, session, cart, payment) {
     console.log("Transaction successfully committed.");
 
   } catch (error) {
-
     if (error instanceof MongoError) {
       if (err.hasErrorLabel('UnknownTransactionCommitResult')) {
         // add your logic to retry or handle the error
@@ -106,32 +110,28 @@ async function placeOrder(client, session, cart, payment) {
 
     console.log('An error occured in the transaction, performing a data rollback:' + error);
     await session.abortTransaction();
+  } finally {
+    session.endSession();
   }
 }
-// end transaction
-
-const uri = process.env.MONGDODB_URI;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-
+// end placeOrder
 
 async function run() {
+  const uri = process.env.MONGDODB_URI;
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
   await client.connect();
   await cleanUp(client);
   await setup(client);
 
-  // start session
-  const cart = [
-    { name: "sun screen", sku: 5432, qty: 1, price: 5.19 },
-    { name: "beach towel", sku: 7865, qty: 2, price: 15.99 }
-  ];
-  const payment = { customer: 98765, total: 37.17 };
-
-  const session = client.startSession();
-  await placeOrder(client, session, cart, payment);
-  session.endSession();
-  // end session
-
-  await queryData(client);
+  try {
+    await placeOrder(client);
+    await queryData(client);
+  } finally {
+    await cleanUp(client);
+    await client.close();
+  }
 }
-run().catch(console.dir).finally(() => client.close());
+run().catch(console.dir);
+
 
