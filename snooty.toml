@@ -1,6 +1,5 @@
 name = "node"
 title = "Node.js"
-
 toc_landing_pages = ["/fundamentals/authentication", "/fundamentals", "/fundamentals/crud", "/usage-examples"]
 
 [constants]
