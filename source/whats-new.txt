@@ -264,7 +264,7 @@ File Upload & Download
 
 .. example::
 
-   .. code-block:: language
+   .. code-block:: javascript
 
       await client.connect();
       const filename = 'test.txt'; // whatever local file name you want
