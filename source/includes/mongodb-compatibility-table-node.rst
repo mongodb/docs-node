@@ -1,7 +1,7 @@
 .. list-table::
-      :header-rows: 1
-      :stub-columns: 1
-      :class: compatibility-large
+   :header-rows: 1
+   :stub-columns: 1
+   :class: compatibility-large
 
    * - Node.js Driver Version
      - MongoDB 5.1
@@ -166,6 +166,5 @@
      -
      -
      -
-     - ✓
      - ✓
      - ✓
