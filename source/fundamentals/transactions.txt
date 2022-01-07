@@ -151,8 +151,9 @@ resembles the following:
 .. code-block:: javascript
 
    const transactionOptions = {
-     readConcern: ...,
-     ...
+     readPreference: 'primary',
+     readConcern: { level: 'local' },
+     writeConcern: { w: 'majority' }
    };
    session.startTransaction(transactionOptions);
 
@@ -162,8 +163,9 @@ resembles the following:
 .. code-block:: javascript
 
    const transactionOptions = {
-     readConcern: ...,
-     ...
+     readPreference: 'primary',
+     readConcern: { level: 'local' },
+     writeConcern: { w: 'majority' }
    };
    await session.withTransaction(<callback function>, transactionOptions);
 
@@ -303,8 +305,8 @@ to run as a transaction.
    :end-before: end session
 
 The ``placeOrder()`` callback function passed to ``withTransaction()``
-contains operations that the driver automatically runs in the same session
-and transaction as shown in the following code example:
+contains operations that the driver automatically runs in the same transaction
+as shown in the following code example:
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
@@ -385,5 +387,4 @@ information:
        "total": 37.17
      }
    ]
-
 
