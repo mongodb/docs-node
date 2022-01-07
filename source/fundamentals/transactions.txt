@@ -255,7 +255,7 @@ shows how you can perform the following:
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
-   :emphasize-lines: 2-5,13,16,52,57-62,65,67
+   :emphasize-lines: 2-6,14,17,55,60-66,68,70
    :start-after: start placeOrder
    :end-before: end placeOrder
 
@@ -284,7 +284,7 @@ to run as a transaction.
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
-   :emphasize-lines: 6-10,12,14-16,20
+   :emphasize-lines: 6-10,13,15-17,21
    :start-after: start session
    :end-before: end session
 

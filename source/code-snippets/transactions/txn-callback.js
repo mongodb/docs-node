@@ -92,9 +92,9 @@ const uri = process.env.MONGDODB_URI;
 const client = new MongoClient(uri, { useUnifiedTopology: true });
 
 async function run() {
-  await client.connect();
-  await cleanUp(client);
-  await setup(client);
+  //await client.connect();
+  //await cleanUp(client);
+  //await setup(client);
 
   // start session
   const cart = [
@@ -108,6 +108,7 @@ async function run() {
     writeConcern: { w: 'majority' }
   };
 
+  await client.connect();
   const session = client.startSession();
   try {
     await session.withTransaction(async () => {
