@@ -230,11 +230,25 @@ Documents that track inventory items in a collection called ``inventory``.
 The code examples also perform operations on the ``orders`` collection, but
 do not require any prior sample documents.
 
+The code examples refer to ``cart`` and ``payment`` constants to represent
+a sample list of items purchased and order payment details as follows:
+
+.. code-block:: javascript
+
+   const cart = [
+     { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
+     { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
+   ];
+
+.. code-block:: javascript
+
+   const payment = { customer: 98765, total: 37.17 };
+
 .. important::
 
-   The following examples require that you create the collections outside of
-   the transaction or are using MongoDB 4.4 or later. For more information on
-   creating collections inside a transaction, see the
+   The examples in the following sections require that you create the
+   collections outside of the transaction or are using MongoDB 4.4 or later.
+   For more information on creating collections inside a transaction, see the
    :manual:`Create Collections and Indexes in a Transaction </core/transactions/#std-label-transactions-create-collections-indexes>`
    server guide.
 
@@ -255,7 +269,7 @@ shows how you can perform the following:
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
-   :emphasize-lines: 2-6,14,17,55,60-66,68,70
+   :emphasize-lines: 2-6,8,11,49,54-59,62,64
    :start-after: start placeOrder
    :end-before: end placeOrder
 
@@ -284,7 +298,7 @@ to run as a transaction.
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
-   :emphasize-lines: 6-10,13,15-17,21
+   :emphasize-lines: 1-5,8,10-12,16
    :start-after: start session
    :end-before: end session
 

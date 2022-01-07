@@ -41,18 +41,12 @@ async function queryData() {
 }
 
 // start placeOrder
-async function placeOrder(client) {
+async function placeOrder(client, cart, payment) {
   const transactionOptions = {
     readConcern: { level: 'snapshot' },
     writeConcern: { w: 'majority' },
     readPreference: 'primary'
   };
-
-  const cart = [
-    { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
-    { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
-  ];
-  const payment = { customer: 98765, total: 37.17 };
 
   const session = client.startSession();
 
@@ -64,13 +58,13 @@ async function placeOrder(client) {
       {
         customer: payment.customer,
         items: cart,
-        total: 37.17,
+        total: payment.total,
       },
       { session }
     );
 
     const inventoryCollection = client.db('testdb').collection('inventory');
-    for (var i=0; i<cart.length; i++) {
+    for (var i = 0; i < cart.length; i++) {
       const item = cart[i];
 
       // Cancel the transaction when you have insufficient inventory
@@ -124,8 +118,14 @@ async function run() {
   await cleanUp(client);
   await setup(client);
 
+  const cart = [
+    { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
+    { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
+  ];
+  const payment = { customer: 98765, total: 37.17 };
+
   try {
-    await placeOrder(client);
+    await placeOrder(client, cart, payment);
     await queryData(client);
   } finally {
     await cleanUp(client);

@@ -43,13 +43,19 @@ async function queryData(client) {
 
 
 // start callback
-async function placeOrder(client, session, cart, payment) {
+async function placeOrder(client, session) {
+  const cart = [
+    { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
+    { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
+  ];
+  const payment = { customer: 98765, total: 37.17 };
+
   const ordersCollection = client.db('testdb').collection('orders');
   const orderResult = await ordersCollection.insertOne(
     {
       customer: payment.customer,
       items: cart,
-      total: 37.17,
+      total: payment.total,
     },
     { session }
   );
@@ -97,11 +103,7 @@ async function run() {
   //await setup(client);
 
   // start session
-  const cart = [
-    { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
-    { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
-  ];
-  const payment = { customer: 98765, total: 37.17 };
+
   const transactionOptions = {
     readPreference: 'primary',
     readConcern: { level: 'local' },
