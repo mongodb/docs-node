@@ -38,13 +38,6 @@ transactions.
    Operations </core/transactions/#transactions-and-operations>` section in
    the server manual.
 
-Learn more about how to use the driver to run multi-document transactions on
-MongoDB in the following sections of this guide:
-
-- :ref:`Transaction APIs <nodejs-transaction-apis>`
-- :ref:`Transaction Settings <nodejs-transaction-settings>`
-- :ref:`Core API and Callback API Examples <nodejs-transaction-examples>`
-
 In MongoDB, multi-document transactions run within a **client session**.
 A client session is a grouping of related operations that guarantees
 consistency between sequential read or write operations in certain
@@ -52,13 +45,22 @@ conditions. For more information about client sessions, see the
 :manual:`Client Sessions and Causal Consistency Guarantees </core/read-isolation-consistency-recency/#std-label-sessions>`
 Server manual guide.
 
+Learn more about how to use the driver to run multi-document transactions on
+MongoDB in the following sections of this guide:
+
+- :ref:`Transaction APIs <nodejs-transaction-apis>`
+- :ref:`Transaction Settings <nodejs-transaction-settings>`
+- :ref:`Core API and Callback API Examples <nodejs-transaction-examples>`
+
 .. _nodejs-transaction-apis:
 
 Transaction APIs
 ----------------
 
-The Node.js driver provides two APIs for managing transactions: the **Core
-API** and the **Callback API**.
+To implement a transaction with the driver , you can use either the
+**Core API** or the **Callback API**. To use the Core API, you declare the
+start and commit points of the transaction. To use the Callback API, you pass
+a callback function that contains the logic you want to run as a transaction.
 
 Core API
 ~~~~~~~~
@@ -199,9 +201,9 @@ A purchase can fail several ways such as if there's insufficient quantity of
 the item in inventory, if the order couldn't be completed, or if your
 payment system is offline.
 
-If the payment fails for any reason, you can use a transaction to make sure
-that you don't expose any partial updates that might cause data consistency
-issues for other operations that depend on that data.
+If the payment fails, you can use a transaction to make sure that you don't
+expose any partial updates that might cause data consistency issues for other
+operations that depend on that data.
 
 Sample Data
 ~~~~~~~~~~~
@@ -231,7 +233,7 @@ do not require any prior sample documents.
 .. important::
 
    The following examples require that you create the collections outside of
-   the transaction or are using MongoDB4.4 or later. For more information on
+   the transaction or are using MongoDB 4.4 or later. For more information on
    creating collections inside a transaction, see the
    :manual:`Create Collections and Indexes in a Transaction </core/transactions/#std-label-transactions-create-collections-indexes>`
    server guide.
@@ -241,23 +243,28 @@ do not require any prior sample documents.
 Core API Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The code examples in this section show how you can use the Core API to run the
-multi-document payment transaction in a session. This example performs the
-following actions:
+The code example in this section demonstrates how you can use the Core API to
+run the multi-document payment transaction in a session. This function
+shows how you can perform the following:
 
-1. Start the session
-#. Start the transaction
-#. Perform data operations
-#. Commit the transaction or cancel it if the driver encounters an error
-#. End the session
-
+1. Start a session
+#. Start a transaction, specifying transaction options
+#. Perform data operations in the same session
+#. Commit a transaction, or cancel it if the driver encounters an error
+#. End a session
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
+   :emphasize-lines: 2-5,13,16,52,57-62,65,67
    :start-after: start placeOrder
    :end-before: end placeOrder
 
-TODO: explain catch blocks
+Note that you need to pass the session object to each CRUD operation that
+you want to run on the session.
+
+The code and comments in ``catch`` block demonstrates how you can identify
+the server transaction errors and where you can place your logic to handle
+them.
 
 See the :ref:`Payment Transaction Data <nodejs-transaction-example-payment-data>`
 to see what your collections should contain after you run the transaction
@@ -268,20 +275,27 @@ successfully.
 Callback API Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO:
+The code examples in this section show how you can use the Callback API to
+run the multi-document payment transaction in a session.
+
+The following code example shows a function you can use to start the
+session and pass the callback function that contains the operations you want
+to run as a transaction.
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
+   :emphasize-lines: 6-10,12,14-16,20
    :start-after: start session
    :end-before: end session
 
-TODO:
+The ``placeOrder()`` callback function passed to ``withTransaction()``
+contains operations that the driver automatically runs in the same session
+and transaction as shown in the following code example:
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
    :start-after: start callback
    :end-before: end callback
-
 
 See the :ref:`Payment Transaction Data <nodejs-transaction-example-payment-data>`
 to see what your collections should contain after you run the transaction

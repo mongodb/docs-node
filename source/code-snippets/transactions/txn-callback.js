@@ -1,12 +1,12 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient } = require('mongodb');
 
 async function cleanUp(client) {
   try {
-    const customersColl = client.db("testdb").collection("customers");
+    const customersColl = client.db('testdb').collection('customers');
     await customersColl.drop();
   } catch(e) {}
   try {
-    const inventoryColl = client.db("testdb").collection("inventory");
+    const inventoryColl = client.db('testdb').collection('inventory');
     await inventoryColl.drop();
   } catch(e) {}
   try {
@@ -17,26 +17,26 @@ async function cleanUp(client) {
 
 async function setup(client) {
   try {
-    const customerColl = client.db("testdb").collection("customers");
-    const inventoryColl = client.db("testdb").collection("inventory");
+    const customerColl = client.db('testdb').collection('customers');
+    const inventoryColl = client.db('testdb').collection('inventory');
 
     await customerColl.insertOne({ _id: 98765, orders: [] });
 
     await inventoryColl.insertMany([
-      { name: "sunblock", sku: 5432, qty: 85 },
-      { name: "beach towel", sku: 7865, qty: 41 },
+      { name: 'sunblock', sku: 5432, qty: 85 },
+      { name: 'beach towel', sku: 7865, qty: 41 },
     ]);
   } catch (e) {
-    console.log("Unable to insert test data: " + e);
+    console.log('Unable to insert test data: ' + e);
   }
 }
 
 async function queryData(client) {
-  const customerColl = client.db("testdb").collection("customers");
+  const customerColl = client.db('testdb').collection('customers');
   const customers = await customerColl.find().toArray();
   console.log(JSON.stringify(customers));
 
-  const inventoryColl = client.db("testdb").collection("inventory");
+  const inventoryColl = client.db('testdb').collection('inventory');
   const inventory= await inventoryColl.find().toArray();
   console.log(JSON.stringify(inventory));
 }
@@ -74,7 +74,7 @@ async function placeOrder(client, session, cart, payment) {
 
     await inventoryCollection.updateOne(
       { sku: item.sku },
-      { $inc: { "qty": -item.qty }},
+      { $inc: { 'qty': -item.qty }},
       { session }
     );
   }
@@ -98,8 +98,8 @@ async function run() {
 
   // start session
   const cart = [
-    { name: "sunblock", sku: 5432, qty: 1, price: 5.19 },
-    { name: "beach towel", sku: 7865, qty: 2, price: 15.99 }
+    { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
+    { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
   ];
   const payment = { customer: 98765, total: 37.17 };
   const transactionOptions = {
@@ -114,7 +114,7 @@ async function run() {
       placeOrder(client, session, cart, payment)
     }, transactionOptions);
   } catch(error) {
-    console.log("Encountered an error during the transaction: " + error);
+    console.log('Encountered an error during the transaction: ' + error);
   } finally {
     await session.endSession();
     await client.close();
