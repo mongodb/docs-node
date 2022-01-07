@@ -23,7 +23,7 @@ async function setup(client) {
     await customerColl.insertOne({ _id: 98765, orders: [] });
 
     await inventoryColl.insertMany([
-      { name: "sun screen", sku: 5432, qty: 85 },
+      { name: "sunblock", sku: 5432, qty: 85 },
       { name: "beach towel", sku: 7865, qty: 41 },
     ]);
   } catch (e) {
@@ -41,6 +41,8 @@ async function queryData(client) {
   console.log(JSON.stringify(inventory));
 }
 
+
+// start callback
 async function placeOrder(client, session, cart, payment) {
   const ordersCollection = client.db('testdb').collection('orders');
   const orderResult = await ordersCollection.insertOne(
@@ -62,7 +64,7 @@ async function placeOrder(client, session, cart, payment) {
         sku: item.sku,
         qty: { $gte: item.qty }
       },
-      { session}
+      { session }
     );
 
     if (checkInventory === null) {
@@ -83,9 +85,8 @@ async function placeOrder(client, session, cart, payment) {
     { $push:  { orders: orderResult.insertedId }},
     { session }
   );
-
-  await queryData(client, session);
 }
+// end callback
 
 const uri = process.env.MONGDODB_URI;
 const client = new MongoClient(uri, { useUnifiedTopology: true });
@@ -97,7 +98,7 @@ async function run() {
 
   // start session
   const cart = [
-    { name: "sun screen", sku: 5432, qty: 1, price: 5.19 },
+    { name: "sunblock", sku: 5432, qty: 1, price: 5.19 },
     { name: "beach towel", sku: 7865, qty: 2, price: 15.99 }
   ];
   const payment = { customer: 98765, total: 37.17 };

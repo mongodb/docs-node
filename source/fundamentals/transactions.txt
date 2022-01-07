@@ -43,8 +43,7 @@ MongoDB in the following sections of this guide:
 
 - :ref:`Transaction APIs <nodejs-transaction-apis>`
 - :ref:`Transaction Settings <nodejs-transaction-settings>`
-- :ref:`Core API Example <nodejs-transaction-core-api-example>`
-- :ref:`Callback API Example <nodejs-transaction-callback-api-example>`
+- :ref:`Core API and Callback API Examples <nodejs-transaction-examples>`
 
 In MongoDB, multi-document transactions run within a **client session**.
 A client session is a grouping of related operations that guarantees
@@ -164,21 +163,17 @@ resembles the following:
      readConcern: ...,
      ...
    };
-   await session.withTranssaction(<callback function>, transactionOptions);
+   await session.withTransaction(<callback function>, transactionOptions);
 
-.. _nodejs-transaction-example:
+.. _nodejs-transaction-examples:
 
-Example
--------
+Examples
+--------
 
 Consider a scenario in which a customer purchases items from your online
-store. To track the purchase, you need to record the following information:
-
-- Inventory updates
-- Customer orders
-- Payment receipts
-
-You might organize the data updates required for a purchase as follows:
+store. To record the purchase, your application needs to update
+information related to inventory, the customer's orders, and register the
+order details. Suppose you organize the data updates as follows:
 
 .. list-table::
    :widths: 25 25 50
@@ -226,7 +221,7 @@ Documents that track inventory items in a collection called ``inventory``.
 .. code-block:: json
 
    [
-    { name: "sun screen", sku: 5432, qty: 85 },
+    { name: "sunblock", sku: 5432, qty: 85 },
     { name: "beach towel", sku: 7865, qty: 41 }
    ]
 
@@ -247,17 +242,15 @@ Core API Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 The code examples in this section show how you can use the Core API to run the
-multi-document payment transaction in a session.
-
-TODO:
+multi-document payment transaction in a session. This example performs the
+following actions:
 
 1. Start the session
-2. Start the transaction
-3. Commit the transaction or cancel it if the driver encounters an error
-4. End the session
+#. Start the transaction
+#. Perform data operations
+#. Commit the transaction or cancel it if the driver encounters an error
+#. End the session
 
-The following code example shows the calls
-to create the session
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
@@ -267,7 +260,8 @@ to create the session
 TODO: explain catch blocks
 
 See the :ref:`Payment Transaction Data <nodejs-transaction-example-payment-data>`
-to check what your collections should contain.
+to see what your collections should contain after you run the transaction
+successfully.
 
 .. _nodejs-transaction-callback-api-example:
 
@@ -278,24 +272,29 @@ TODO:
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
-   :start-after: start transaction
-   :end-before: end transaction
+   :start-after: start session
+   :end-before: end session
 
 TODO:
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
-   :start-after: start session
-   :end-before: end session
+   :start-after: start callback
+   :end-before: end callback
 
+
+See the :ref:`Payment Transaction Data <nodejs-transaction-example-payment-data>`
+to see what your collections should contain after you run the transaction
+successfully.
 
 .. _nodejs-transaction-example-payment-data:
 
 Payment Transaction Data
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-After your application completes the payment transaction, your collections
-should contain the following documents:
+If your application successfully completes the payment transaction, your
+database should contain all the updates, and if an exception interrupted your
+transaction, none of the changes should exist in your database.
 
 The ``customers`` collection should contain the customer document with an
 order id appended to the orders field:
@@ -311,7 +310,7 @@ order id appended to the orders field:
    }
 
 The ``inventory`` collection should contain updated quantities for the
-items "sun screen" and "beach towel":
+items "sunblock" and "beach towel":
 
 .. code-block:: json
    :copyable: false
@@ -319,7 +318,7 @@ items "sun screen" and "beach towel":
    [
      {
        "_id": ...,
-       "name": "sun screen",
+       "name": "sunblock",
        "sku": 5432,
        "qty": 84
      },
@@ -343,7 +342,7 @@ information:
        "customer": 98765,
        "items": [
          {
-           "name": "sun screen",
+           "name": "sunblock",
            "sku": 5432,
            "qty": 1,
            "price": 5.19
