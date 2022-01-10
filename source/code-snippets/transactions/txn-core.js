@@ -67,10 +67,13 @@ async function placeOrder(client, cart, payment) {
         const item = cart[i];
 
         // Cancel the transaction when you have insufficient inventory
-        const checkInventory = await inventoryCollection.findOne({
-          sku: item.sku,
-          qty: { $gte: item.qty }
-        })
+        const checkInventory = await inventoryCollection.findOne(
+          {
+            sku: item.sku,
+            qty: { $gte: item.qty }
+          },
+          { session }
+        )
         if (checkInventory === null) {
           throw new Error('Insufficient quantity or SKU not found.');
         }

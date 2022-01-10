@@ -102,6 +102,7 @@ async function run() {
   //await cleanUp(client);
   //await setup(client);
 
+  await client.connect();
   // start session
   const transactionOptions = {
     readPreference: 'primary',
@@ -109,7 +110,6 @@ async function run() {
     writeConcern: { w: 'majority' }
   };
 
-  await client.connect();
   with client.startSession() as session:
     try {
       await session.withTransaction(async () => {
@@ -118,10 +118,9 @@ async function run() {
     } catch(error) {
       console.log('Encountered an error during the transaction: ' + error);
     }
-
-  await client.close();
   // end session
 
   await queryData(client);
+  await client.close();
 }
 run().catch(console.dir);
