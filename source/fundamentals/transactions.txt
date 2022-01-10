@@ -278,7 +278,7 @@ shows how you can perform the following:
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
-   :emphasize-lines: 2-6,8,10,19, 48,52-58,62
+   :emphasize-lines: 2-6,8,10,19,32,41,49,51,55-61,65
    :start-after: start placeOrder
    :end-before: end placeOrder
 
