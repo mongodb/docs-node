@@ -160,7 +160,8 @@ resembles the following:
    const transactionOptions = {
      readPreference: 'primary',
      readConcern: { level: 'local' },
-     writeConcern: { w: 'majority' }
+     writeConcern: { w: 'majority' },
+     maxCommitTimeMS: 1000
    };
    session.startTransaction(transactionOptions);
 
@@ -172,7 +173,8 @@ resembles the following:
    const transactionOptions = {
      readPreference: 'primary',
      readConcern: { level: 'local' },
-     writeConcern: { w: 'majority' }
+     writeConcern: { w: 'majority' },
+     maxCommitTimeMS: 1000
    };
    await session.withTransaction(<callback function>, transactionOptions);
 
