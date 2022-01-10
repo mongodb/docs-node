@@ -278,7 +278,7 @@ shows how you can perform the following:
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
-   :emphasize-lines: 2-6,8,10,19,32,41,49,51,55-61,65
+   :emphasize-lines: 2-6,8,10,19,32,41,49,51,55-61,65,67
    :start-after: start placeOrder
    :end-before: end placeOrder
 
@@ -307,7 +307,7 @@ to run as a transaction.
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
-   :emphasize-lines: 1-5,8,10-12,17
+   :emphasize-lines: 1-5,7,9-11,15
    :start-after: start session
    :end-before: end session
 
