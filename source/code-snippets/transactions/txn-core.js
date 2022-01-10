@@ -108,7 +108,7 @@ async function placeOrder(client, cart, payment) {
     console.log('An error occured in the transaction, performing a data rollback:' + error);
     await session.abortTransaction();
   } finally {
-    session.endSession();
+    await session.endSession();
   }
 }
 // end placeOrder
