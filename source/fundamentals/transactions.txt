@@ -317,7 +317,7 @@ as shown in the following code example:
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
-   :emphasize-lines: 15,28,39,47
+   :emphasize-lines: 9,22,33,41
    :start-after: start callback
    :end-before: end callback
 
