@@ -103,7 +103,6 @@ async function run() {
   //await setup(client);
 
   // start session
-
   const transactionOptions = {
     readPreference: 'primary',
     readConcern: { level: 'local' },
@@ -111,17 +110,16 @@ async function run() {
   };
 
   await client.connect();
-  const session = client.startSession();
-  try {
-    await session.withTransaction(async () => {
-      placeOrder(client, session, cart, payment)
-    }, transactionOptions);
-  } catch(error) {
-    console.log('Encountered an error during the transaction: ' + error);
-  } finally {
-    await session.endSession();
-    await client.close();
-  }
+  with client.startSession() as session:
+    try {
+      await session.withTransaction(async () => {
+        placeOrder(client, session, cart, payment)
+      }, transactionOptions);
+    } catch(error) {
+      console.log('Encountered an error during the transaction: ' + error);
+    }
+
+  await client.close();
   // end session
 
   await queryData(client);
