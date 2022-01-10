@@ -31,16 +31,19 @@ async function setup(client) {
   }
 }
 
-async function queryData(client) {
-  const customerColl = client.db('testdb').collection('customers');
-  const customers = await customerColl.find().toArray();
-  console.log(JSON.stringify(customers));
-
-  const inventoryColl = client.db('testdb').collection('inventory');
-  const inventory= await inventoryColl.find().toArray();
-  console.log(JSON.stringify(inventory));
+async function queryData() {
+  const uri = process.env.MONGODB_URI;
+  const client = new MongoClient(uri, { useUnifiedTopology: true });
+  try {
+    await client.connect();
+    await Promise.all(['customers', 'inventory', 'orders'].map(async c => {
+      const coll = client.db('testdb').collection(c);
+      console.log(JSON.stringify(await coll.find().toArray()));
+    }, client));
+  } finally {
+    client.close();
+  }
 }
-
 
 // start callback
 async function placeOrder(client, session, cart, payment) {
@@ -88,7 +91,7 @@ async function placeOrder(client, session, cart, payment) {
 }
 // end callback
 
-const uri = process.env.MONGDODB_URI;
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useUnifiedTopology: true });
 
 async function run() {
@@ -110,17 +113,17 @@ async function run() {
     writeConcern: { w: 'majority' }
   };
 
-  with client.startSession() as session:
-    try {
-      await session.withTransaction(async () => {
-        placeOrder(client, session, cart, payment)
-      }, transactionOptions);
-    } catch(error) {
-      console.log('Encountered an error during the transaction: ' + error);
-    }
+  const session = client.startSession();
+  try {
+    await session.withTransaction(async () => {
+      await placeOrder(client, session, cart, payment)
+    }, transactionOptions);
+  } catch(error) {
+    console.log('Encountered an error during the transaction: ' + error);
+  } finally {
+    await session.endSession();
+  }
   // end session
-
-  await queryData(client);
   await client.close();
 }
-run().catch(console.dir);
+run().then(() => queryData());

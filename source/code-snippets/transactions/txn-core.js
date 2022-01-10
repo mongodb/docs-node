@@ -27,6 +27,7 @@ async function setup(client) {
 }
 
 async function queryData() {
+  const uri = process.env.MONGODB_URI;
   const client = new MongoClient(uri, { useUnifiedTopology: true });
   try {
     await client.connect();
@@ -48,70 +49,72 @@ async function placeOrder(client, cart, payment) {
     readPreference: 'primary'
   };
 
-  with client.startSession() as session:
-    try {
-      session.startTransaction(transactionOptions);
+  const session = client.startSession();
+  try {
+    session.startTransaction(transactionOptions);
 
-      const ordersCollection = client.db('testdb').collection('orders');
-      const orderResult = await ordersCollection.insertOne(
+    const ordersCollection = client.db('testdb').collection('orders');
+    const orderResult = await ordersCollection.insertOne(
+      {
+        customer: payment.customer,
+        items: cart,
+        total: payment.total,
+      },
+      { session }
+    );
+
+    const inventoryCollection = client.db('testdb').collection('inventory');
+    for (var i = 0; i < cart.length; i++) {
+      const item = cart[i];
+
+      // Cancel the transaction when you have insufficient inventory
+      const checkInventory = await inventoryCollection.findOne(
         {
-          customer: payment.customer,
-          items: cart,
-          total: payment.total,
+          sku: item.sku,
+          qty: { $gte: item.qty }
         },
         { session }
-      );
-
-      const inventoryCollection = client.db('testdb').collection('inventory');
-      for (var i = 0; i < cart.length; i++) {
-        const item = cart[i];
-
-        // Cancel the transaction when you have insufficient inventory
-        const checkInventory = await inventoryCollection.findOne(
-          {
-            sku: item.sku,
-            qty: { $gte: item.qty }
-          },
-          { session }
-        )
-        if (checkInventory === null) {
-          throw new Error('Insufficient quantity or SKU not found.');
-        }
-
-        await inventoryCollection.updateOne(
-          { sku: item.sku },
-          { $inc: { 'qty': -item.qty }},
-          { session }
-        );
+      )
+      if (checkInventory === null) {
+        throw new Error('Insufficient quantity or SKU not found.');
       }
 
-      const customerCollection = client.db('testdb').collection('customers');
-      await customerCollection.updateOne(
-        { _id: payment.customer },
-        { $push:  { orders: orderResult.insertedId }},
+      await inventoryCollection.updateOne(
+        { sku: item.sku },
+        { $inc: { 'qty': -item.qty }},
         { session }
       );
-      await session.commitTransaction();
-      console.log('Transaction successfully committed.');
-
-    } catch (error) {
-      if (error instanceof MongoError) {
-        if (err.hasErrorLabel('UnknownTransactionCommitResult')) {
-          // add your logic to retry or handle the error
-        }
-        else if (err.hasErrorLabel('TransientTransactionError')) {
-          // add your logic to retry or handle the error
-        }
-      }
-
-      console.log('An error occured in the transaction, performing a data rollback:' + error);
-      await session.abortTransaction();
     }
+
+    const customerCollection = client.db('testdb').collection('customers');
+    await customerCollection.updateOne(
+      { _id: payment.customer },
+      { $push:  { orders: orderResult.insertedId }},
+      { session }
+    );
+    await session.commitTransaction();
+    console.log('Transaction successfully committed.');
+
+  } catch (error) {
+    if (error instanceof MongoError) {
+      if (err.hasErrorLabel('UnknownTransactionCommitResult')) {
+        // add your logic to retry or handle the error
+      }
+      else if (err.hasErrorLabel('TransientTransactionError')) {
+        // add your logic to retry or handle the error
+      }
+    }
+
+    console.log('An error occured in the transaction, performing a data rollback:' + error);
+    await session.abortTransaction();
+  } finally {
+    session.endSession();
+  }
 }
 // end placeOrder
 
 async function run() {
-  const uri = process.env.MONGDODB_URI;
+  const uri = process.env.MONGODB_URI;
   const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
   await client.connect();
@@ -126,12 +129,9 @@ async function run() {
 
   try {
     await placeOrder(client, cart, payment);
-    await queryData(client);
   } finally {
     await cleanUp(client);
     await client.close();
   }
 }
-run().catch(console.dir);
-
-
+run().then(() => queryData());

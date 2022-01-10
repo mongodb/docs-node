@@ -343,7 +343,7 @@ order id appended to the orders field:
    {
      "_id": 98765,
      "orders": [
-       ...
+       "61dc..."
      ]
    }
 
