@@ -41,21 +41,20 @@ Any object type can extend the ``Document`` interface.
 For more information on object types, see the
 `TypeScript handbook <https://www.typescriptlang.org/docs/handbook/2/objects.html>`__.
 
-
-.. _node-driver-typescript-dot-notation:
+.. _node-driver-recursive-type:
 
 .. important:: Recursive Types
 
-   You cannot use a recursive type as a schema for your documents.
+   You cannot specify a recursive type as a type parameter for {+driver-long+}
+   classes.
 
-   Click the following tabs to see a recursive type,
-   and a code snippet using the recursive type that raises an error: 
+   Click the following tabs to see a recursive type, and a code snippet that
+   uses the recursive type and raises an error: 
 
    .. tabs::
 
       .. tab:: Recursive Type
          :tabid: recursive-type
-
 
          .. code-block:: typescript
 
@@ -87,13 +86,14 @@ For more information on object types, see the
    use version 4.2 of the {+driver-long+}.
 
    To track the progress of mitigating this limitation in version 4.3 of the driver,
-   see `this JIRA ticket <https://jira.mongodb.org/browse/NODE-3852>`__.
+   see `this ticket <https://jira.mongodb.org/browse/NODE-3852>`__ in the
+   {+driver-short+}'s JIRA project.
 
 Extend Document
 ~~~~~~~~~~~~~~~
 
-The following classes accept any type that extends the ``Document``
-interface:
+The following classes accept any :ref:`non-recursive <node-driver-recursive-type>`
+type that extends the ``Document`` interface:
 
 - `Collection <{+api+}/classes/Collection.html>`__
 - `ChangeStream <{+api+}/classes/ChangeStream.html>`__
@@ -118,7 +118,8 @@ You can pass a type parameter that extends the ``Document`` interface like this:
 Any Type
 ~~~~~~~~
 
-The following classes accept any type parameter:
+The following classes accept any :ref:`non-recursive <node-driver-recursive-type>`
+type parameter:
 
 - `FindCursor <{+api+}/classes/FindCursor.html>`__
 - `AggregationCursor <{+api+}/classes/AggregationCursor.html>`__
