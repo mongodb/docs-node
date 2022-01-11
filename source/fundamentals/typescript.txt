@@ -46,9 +46,7 @@ For more information on object types, see the
 .. important:: Recursive Types
 
    You cannot specify a recursive type as a type parameter for {+driver-long+}
-   classes.
-
-   Click the following tabs to see a recursive type, and a code snippet that
+   classes. Click the following tabs to see a recursive type, and a code snippet that
    uses the recursive type and raises an error: 
 
    .. tabs::
@@ -85,9 +83,9 @@ For more information on object types, see the
    If you must use a recursive type to specify a schema for your documents,
    use version 4.2 of the {+driver-long+}.
 
-   To track the progress of mitigating this limitation in version 4.3 of the driver,
-   see `this ticket <https://jira.mongodb.org/browse/NODE-3852>`__ in the
-   {+driver-short+}'s JIRA project.
+   To track the progress of mitigating this limitation in version {+version+} of
+   the driver, see `this ticket <https://jira.mongodb.org/browse/NODE-3852>`__
+   in the {+driver-short+}'s JIRA project.
 
 Extend Document
 ~~~~~~~~~~~~~~~
