@@ -51,25 +51,30 @@ For more information on object types, see the
 
 .. important:: Recursive Types
 
-   You cannot use recurisve types as your document schema.
+   You cannot use a recursive type as a schema for your documents.
 
-   Given the following recursive type:
-
-   .. code-block:: typescript
-
-      interface RecursiveType {
-        r: RecursiveType | BaseCase;
-        i: number;
-      }
-
-      type BaseCase = "done"; 
-
-   The following code snippet raises the following error:
+   Click the following tabs to see a recursive type,
+   and a code snippet using the recursive type that raises an error: 
 
    .. tabs::
 
+      .. tab:: Recursive Type
+         :tabid: code-snippet
+
+
+         .. code-block:: typescript
+
+            interface RecursiveType {
+            r: RecursiveType | BaseCase;
+            i: number;
+            }
+
+            type BaseCase = "done"; 
+
       .. tab:: Code Snippet
          :tabid: code-snippet
+
+         The following code snippet uses a recursive type:
 
          .. code-block:: typescript
 
@@ -77,13 +82,17 @@ For more information on object types, see the
             const col = database.collection<RecursiveType>("test-collection");
             const document = await col.findOne({ i: 1 });
 
-      .. tab:: Error
-         :tabid: error
+         The preceding code snippet raises the following error at compile time:
 
          .. code-block:: text
 
             error TS2615: Type of property 'r' circularly references itself in mapped type '{ [Key in keyof RecursiveType]: [Key, ...NestedPaths<RecursiveType[Key]>]; }'.
 
+   If you must use a recursive type to specify a schema for your documents,
+   use version 4.2 of the {+driver-long+}.
+
+   To track the progress of mitigating this limitation, see
+   the `this JIRA ticket <https://jira.mongodb.org/browse/NODE-3852>`__.
 
 Extend Document
 ~~~~~~~~~~~~~~~
