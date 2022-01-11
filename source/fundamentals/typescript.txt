@@ -43,11 +43,6 @@ For more information on object types, see the
 
 
 .. _node-driver-typescript-dot-notation:
-.. 
-   ref corresponding to when the driver did not support type inference
-   for queries specified with dot notation.
-
-.. _node-driver-typescript-limitations-dot-notation:
 
 .. important:: Recursive Types
 
@@ -59,14 +54,14 @@ For more information on object types, see the
    .. tabs::
 
       .. tab:: Recursive Type
-         :tabid: code-snippet
+         :tabid: recursive-type
 
 
          .. code-block:: typescript
 
             interface RecursiveType {
-            r: RecursiveType | BaseCase;
-            i: number;
+              r: RecursiveType | BaseCase;
+              i: number;
             }
 
             type BaseCase = "done"; 
@@ -91,8 +86,8 @@ For more information on object types, see the
    If you must use a recursive type to specify a schema for your documents,
    use version 4.2 of the {+driver-long+}.
 
-   To track the progress of mitigating this limitation, see
-   the `this JIRA ticket <https://jira.mongodb.org/browse/NODE-3852>`__.
+   To track the progress of mitigating this limitation in version 4.3 of the driver,
+   see `this JIRA ticket <https://jira.mongodb.org/browse/NODE-3852>`__.
 
 Extend Document
 ~~~~~~~~~~~~~~~
