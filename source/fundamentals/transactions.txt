@@ -325,6 +325,7 @@ to run as a transaction.
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
    :linenos:
+   :dedent:
    :emphasize-lines: 1-5,7,9-11,15
    :start-after: start session
    :end-before: end session
