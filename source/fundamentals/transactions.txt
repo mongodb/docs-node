@@ -169,7 +169,6 @@ You can specify the transaction options in the Callback API using code that
 resembles the following:
 
 .. code-block:: javascript
-   :emphasize-lines: 7
 
    const transactionOptions = {
      readPreference: 'primary',
