@@ -19,7 +19,7 @@ interface TestNumber {
   myNumber: number;
 }
 
-const database = client.db("<your db>");
+const database = client.db("<your database>");
 const collection = db.collection<TestNumber>("...");
 collection.find({ someRandomKey: "Accepts any type!" });
 // end-no-key
