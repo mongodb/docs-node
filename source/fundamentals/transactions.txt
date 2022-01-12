@@ -340,11 +340,11 @@ as shown in the following code example:
    :start-after: start callback
    :end-before: end callback
 
-See the :ref:`Payment Transaction Result <nodejs-transaction-example-payment-data>`
+See the :ref:`Payment Transaction Result <nodejs-transaction-example-payment-result>`
 section to see what your collections should contain after you run the
 transaction successfully.
 
-.. _nodejs-transaction-example-payment-data:
+.. _nodejs-transaction-example-payment-result:
 
 Payment Transaction Result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
