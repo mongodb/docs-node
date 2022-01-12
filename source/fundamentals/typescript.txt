@@ -44,11 +44,13 @@ For more information on object types, see the
 Extend Document
 ~~~~~~~~~~~~~~~
 
-The following classes accept all :ref:`non-recursive <node-driver-limitations>`
-types that extends the ``Document`` interface:
+The following classes accept all types that extends the ``Document`` interface
+and that are not recursive:
 
 - `Collection <{+api+}/classes/Collection.html>`__
 - `ChangeStream <{+api+}/classes/ChangeStream.html>`__
+
+To view an example of a recursive type, see the :ref:`<node-driver-limitations>` section.
 
 You can pass a type parameter that extends the ``Document`` interface like this:
 
@@ -71,10 +73,12 @@ Any Type
 ~~~~~~~~
 
 The following classes accept any :ref:`non-recursive <node-driver-limitations>`
-type parameter:
+type parameter that is not recursive:
 
 - `FindCursor <{+api+}/classes/FindCursor.html>`__
 - `AggregationCursor <{+api+}/classes/AggregationCursor.html>`__
+
+To view an example of a recursive type, see the :ref:`<node-driver-limitations>` section.
 
 You can find a code snippet that shows how to specify a type for the ``FindCursor``
 class in the
