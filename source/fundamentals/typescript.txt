@@ -44,8 +44,8 @@ For more information on object types, see the
 Extend Document
 ~~~~~~~~~~~~~~~
 
-The following classes accept any :ref:`non-recursive <node-driver-recursive-type>`
-type that extends the ``Document`` interface:
+The following classes accept all :ref:`non-recursive <node-driver-limitations>`
+types that extends the ``Document`` interface:
 
 - `Collection <{+api+}/classes/Collection.html>`__
 - `ChangeStream <{+api+}/classes/ChangeStream.html>`__
@@ -70,7 +70,7 @@ You can pass a type parameter that extends the ``Document`` interface like this:
 Any Type
 ~~~~~~~~
 
-The following classes accept any :ref:`non-recursive <node-driver-recursive-type>`
+The following classes accept any :ref:`non-recursive <node-driver-limitations>`
 type parameter:
 
 - `FindCursor <{+api+}/classes/FindCursor.html>`__
@@ -85,46 +85,35 @@ class in the
 Limitations
 -----------
 
-.. _node-driver-recursive-type:
-
 You cannot specify a recursive type as a type parameter for {+driver-long+}
-classes. Click the following tabs to see a recursive type and a code snippet that
-uses the recursive type and raises an error: 
+classes. The following code snippet defines a recursive type: 
 
-.. tabs::
+.. code-block:: typescript
 
-   .. tab:: Recursive Type
-      :tabid: recursive-type
+   interface RecursiveType {
+      r: RecursiveType | BaseCase;
+      i: number;
+   }
 
-      .. code-block:: typescript
+   type BaseCase = "done"; 
 
-         interface RecursiveType {
-            r: RecursiveType | BaseCase;
-            i: number;
-         }
+The following code snippet uses the preceding recursive type:
 
-         type BaseCase = "done"; 
+.. code-block:: typescript
 
-   .. tab:: Code Snippet
-      :tabid: code-snippet
+   const database = client.db("<your db>");
+   const col = database.collection<RecursiveType>("<your collection>");
+   const document = await col.findOne({ i: 1 });
 
-      The following code snippet uses a recursive type:
+The preceding code snippet raises the following error at compile time:
 
-      .. code-block:: typescript
+.. code-block:: text
 
-         const database = client.db("test-db");
-         const col = database.collection<RecursiveType>("test-collection");
-         const document = await col.findOne({ i: 1 });
+   error TS2615: Type of property 'r' circularly references itself in mapped type '{ [Key in keyof RecursiveType]: [Key, ...NestedPaths<RecursiveType[Key]>]; }'.
 
-      The preceding code snippet raises the following error at compile time:
+If you must use a recursive type as your document schema, use version 4.2 of
+the {+driver-long+}.
 
-      .. code-block:: text
-
-         error TS2615: Type of property 'r' circularly references itself in mapped type '{ [Key in keyof RecursiveType]: [Key, ...NestedPaths<RecursiveType[Key]>]; }'.
-
-If you must use a recursive type to specify a schema for your documents,
-use version 4.2 of the {+driver-long+}.
-
-To track the progress of mitigating this limitation in version {+version+} of
-the driver, see `this ticket <https://jira.mongodb.org/browse/NODE-3852>`__
-in the {+driver-short+}'s JIRA project.
+To track the fix for this limitation, see 
+`NODE-3852 <https://jira.mongodb.org/browse/NODE-3852>`__
+in JIRA.
