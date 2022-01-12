@@ -111,8 +111,7 @@ The following code snippet uses the preceding recursive type:
 
 .. code-block:: typescript
 
-   const database = client.db("<your database>");
-   const col = database.collection<RecursiveType>("<your collection>");
+   const col = client.db("<your database>").collection<RecursiveType>("<your collection>");
    const document = await col.findOne({ i: 1 });
 
 The preceding code snippet raises the following error at compile time:
