@@ -20,6 +20,6 @@ interface TestNumber {
 }
 
 const database = client.db("<your database>");
-const collection = db.collection<TestNumber>("...");
+const collection = db.collection<TestNumber>("<your collection>");
 collection.find({ someRandomKey: "Accepts any type!" });
 // end-no-key

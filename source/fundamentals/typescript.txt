@@ -44,8 +44,8 @@ For more information on object types, see the
 Extend Document
 ~~~~~~~~~~~~~~~
 
-The following classes accept all types that extends the ``Document`` interface
-and that are not recursive:
+The following classes accept all types that extend the ``Document`` interface
+and are not recursive:
 
 - `Collection <{+api+}/classes/Collection.html>`__
 - `ChangeStream <{+api+}/classes/ChangeStream.html>`__
@@ -88,8 +88,15 @@ class in the
 Limitations
 -----------
 
-You cannot specify a recursive type as a type parameter for {+driver-long+}
-classes. The following code snippet defines a recursive type: 
+You cannot specify a recursive type as a type parameter for the following 
+{+driver-long+} classes:
+
+- ``FindCursor``
+- ``AggregationCursor``
+- ``Collection``
+- ``ChangeStream``
+
+The following code snippet defines a recursive type: 
 
 .. code-block:: typescript
 
@@ -114,9 +121,9 @@ The preceding code snippet raises the following error at compile time:
 
    error TS2615: Type of property 'r' circularly references itself in mapped type '{ [Key in keyof RecursiveType]: [Key, ...NestedPaths<RecursiveType[Key]>]; }'.
 
-If you must use a recursive type as your document schema, use version 4.2 of
+If you must apply a recursive type to your documents, use version 4.2 of
 the {+driver-long+}.
 
 To track the fix for this limitation, see 
 `NODE-3852 <https://jira.mongodb.org/browse/NODE-3852>`__
-in JIRA.
+in JIRA issue tracker.
