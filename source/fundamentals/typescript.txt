@@ -44,8 +44,8 @@ For more information on object types, see the
 Parameters that Extend Document
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following classes accept all types that extend the ``Document`` interface
-and are not recursive:
+The following classes accept all non-recursive types that extend
+the ``Document`` interface:
 
 - `Collection <{+api+}/classes/Collection.html>`__
 - `ChangeStream <{+api+}/classes/ChangeStream.html>`__
@@ -53,6 +53,8 @@ and are not recursive:
 To view an example of a recursive type, see the :ref:`<node-driver-limitations>` section.
 
 You can pass a type parameter that extends the ``Document`` interface like this:
+
+.. _mongodb-node-typescript-pet-interface:
 
 .. literalinclude:: /code-snippets/typescript/extend-document.ts
    :language: typescript
@@ -97,7 +99,8 @@ If you specify a recursive type, the driver raises the following error:
    error TS2615: Type of property 'r' circularly references itself in mapped type '{ [Key in keyof RecursiveType]: [Key, ...NestedPaths<RecursiveType[Key]>]; }'.
 
 A recursive type is a type that references itself. You can update
-the ``Pet`` interface to be recursive by adding the following field:
+the :ref:`Pet <mongodb-node-typescript-pet-interface>` interface
+to be recursive by adding the following field:
 
 .. code-block:: typescript
    :emphasize-lines: 2
