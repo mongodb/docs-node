@@ -41,8 +41,8 @@ Any object type can extend the ``Document`` interface.
 For more information on object types, see the
 `TypeScript handbook <https://www.typescriptlang.org/docs/handbook/2/objects.html>`__.
 
-Extend Document
-~~~~~~~~~~~~~~~
+Parameters that Extend Document
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following classes accept all types that extend the ``Document`` interface
 and are not recursive:
@@ -69,8 +69,8 @@ You can pass a type parameter that extends the ``Document`` interface like this:
       :start-after: start-no-key
       :end-before: end-no-key
 
-Any Type
-~~~~~~~~
+Paramaters of Any Type
+~~~~~~~~~~~~~~~~~~~~~~
 
 The following classes accept any type parameter that is not recursive:
 
@@ -91,10 +91,10 @@ Limitations
 You cannot specify a recursive type as a type parameter for the following 
 {+driver-long+} classes:
 
-- ``FindCursor``
-- ``AggregationCursor``
-- ``Collection``
-- ``ChangeStream``
+- `Collection <{+api+}/classes/Collection.html>`__
+- `ChangeStream <{+api+}/classes/ChangeStream.html>`__
+- `FindCursor <{+api+}/classes/FindCursor.html>`__
+- `AggregationCursor <{+api+}/classes/AggregationCursor.html>`__
 
 The following code snippet defines a recursive type: 
 
