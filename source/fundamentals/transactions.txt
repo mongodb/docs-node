@@ -227,19 +227,19 @@ Sample Data
 The code examples require the following sample data in the ``testdb``
 database to successfully run the multi-document payment transaction:
 
-- A document in the ``customers`` collection that contains a document
-  describing a customer and their associated orders.
+- A document in the ``customers`` collection that describes a customer and
+  their orders.
 - Documents in the ``inventory`` collection that each track quantity and
   description of an item.
 
-The document in the ``customers`` collection in this example includes the
+The document in the ``customers`` collection in this example contains the
 following:
 
 .. code-block:: json
 
    { _id: 98765, orders: [] }
 
-The documents in the ``inventory`` collection in this example include the
+The documents in the ``inventory`` collection in this example contain the
 following:
 
 .. code-block:: json
@@ -252,8 +252,8 @@ following:
 The code examples also perform operations on the ``orders`` collection, but
 do not require any prior sample documents.
 
-The code examples use the ``cart`` and ``payment`` constants to represent
-a sample list of items purchased and order payment details as follows:
+The code examples use the ``cart`` and ``payment`` variables to represent
+a sample list of items purchased and the order payment details as follows:
 
 .. code-block:: javascript
 
@@ -261,9 +261,6 @@ a sample list of items purchased and order payment details as follows:
      { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
      { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
    ];
-
-.. code-block:: javascript
-
    const payment = { customer: 98765, total: 37.17 };
 
 .. important::
@@ -293,7 +290,7 @@ shows how you can perform the following:
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
    :linenos:
-   :emphasize-lines: 2-6,8,10,19,32,41,49,51,54-59,64,66
+   :emphasize-lines: 2-6,8,10,19,32,41,49,51,55-59,63,65
    :start-after: start placeOrder
    :end-before: end placeOrder
 
