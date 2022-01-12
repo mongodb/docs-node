@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoError, MongoClient } = require('mongodb');
 
 // drop collections
 async function cleanUp(client) {
@@ -96,16 +96,14 @@ async function placeOrder(client, cart, payment) {
     console.log('Transaction successfully committed.');
 
   } catch (error) {
-    if (error instanceof MongoError) {
-      if (err.hasErrorLabel('UnknownTransactionCommitResult')) {
-        // add your logic to retry or handle the error
-      }
-      else if (err.hasErrorLabel('TransientTransactionError')) {
-        // add your logic to retry or handle the error
-      }
+    if (error instanceof MongoError && error.hasErrorLabel('UnknownTransactionCommitResult')) {
+      // add your logic to retry or handle the error
     }
-
-    console.log('An error occured in the transaction, performing a data rollback:' + error);
+    else if (error instanceof MongoError && error.hasErrorLabel('TransientTransactionError')) {
+      // add your logic to retry or handle the error
+    } else {
+      console.log('An error occured in the transaction, performing a data rollback:' + error);
+    }
     await session.abortTransaction();
   } finally {
     await session.endSession();

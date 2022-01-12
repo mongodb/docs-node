@@ -33,12 +33,12 @@ in your transaction operations remains consistent, even if it encounters
 unexpected errors. Learn more from this MongoDB article on
 `ACID transactions <https://www.mongodb.com/basics/acid-transactions>`__.
 
-You can use the driver's transaction API to perform multi-document
-transactions.
+You can use the driver to perform multi-document transactions.
 
 .. note::
 
-   You can use multi-document transactions in MongoDB version 4.0 and later.
+   To run multi-document transactions, you must use MongoDB version 4.0 or
+   later.
 
    For a detailed list of limitations, see the :manual:`Transactions and
    Operations </core/transactions/#transactions-and-operations>` section in
@@ -143,12 +143,12 @@ set the default behavior for that transaction:
        server manual for more information.
 
    * - ``readPreference``
-     - See :manual:`Read Preference <core/read-preference/#read-preference>`
+     - See :manual:`Read Preference </core/read-preference/#read-preference>`
        in the server manual for more information.
 
    * - ``maxCommitTimeMS``
-     - Maximum amount of time to allow a commit action on a transaction to
-       run in milliseconds.
+     - Specifies the maximum amount of time to allow a commit action on a
+       transaction to run in milliseconds.
 
 If you do not provide values, the driver uses the client settings.
 
@@ -169,6 +169,7 @@ You can specify the transaction options in the Callback API using code that
 resembles the following:
 
 .. code-block:: javascript
+   :emphasize-lines: 7
 
    const transactionOptions = {
      readPreference: 'primary',
@@ -176,7 +177,11 @@ resembles the following:
      writeConcern: { w: 'majority' },
      maxCommitTimeMS: 1000
    };
-   await session.withTransaction(<callback function>, transactionOptions);
+   await session.withTransaction(myCallbackFunction(session), transactionOptions);
+
+Replace ``myCallbackFunction`` with the function that contains your
+transaction operations. Pass the ``session`` and any other variables you
+need in the scope of that function.
 
 .. _nodejs-transaction-examples:
 
@@ -222,14 +227,20 @@ Sample Data
 The code examples require the following sample data in the ``testdb``
 database to successfully run the multi-document payment transaction:
 
-A document that represents a customer and associated orders in a collection
-called ``customers``.
+- A document in the ``customers`` collection that contains a document
+  describing a customer and their associated orders.
+- Documents in the ``inventory`` collection that each track quantity and
+  description of an item.
+
+The document in the ``customers`` collection in this example includes the
+following:
 
 .. code-block:: json
 
    { _id: 98765, orders: [] }
 
-Documents that track inventory items in a collection called ``inventory``.
+The documents in the ``inventory`` collection in this example include the
+following:
 
 .. code-block:: json
 
@@ -258,8 +269,9 @@ a sample list of items purchased and order payment details as follows:
 .. important::
 
    The examples in the following sections require that you create the
-   collections outside of the transaction or are using MongoDB 4.4 or later.
-   For more information on creating collections inside a transaction, see the
+   collections outside of the transaction or that you are using MongoDB 4.4 or
+   later. For more information on creating collections inside a transaction,
+   see the
    :manual:`Create Collections and Indexes in a Transaction </core/transactions/#std-label-transactions-create-collections-indexes>`
    server guide.
 
@@ -280,20 +292,26 @@ shows how you can perform the following:
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
-   :emphasize-lines: 2-6,8,10,19,32,41,49,51,55-61,65,67
+   :linenos:
+   :emphasize-lines: 2-6,8,10,19,32,41,49,51,54-59,64,66
    :start-after: start placeOrder
    :end-before: end placeOrder
 
 Note that you must pass the session object to each CRUD operation that
 you want to run on that session.
 
-The code and comments in ``catch`` block demonstrates how you can identify
+The code and comments in the ``catch`` block demonstrate how you can identify
 the server transaction errors and where you can place your logic to handle
-them.
+them. Make sure to include the ``MongoError`` type from the driver in your
+code as shown in the following sample import statement:
 
-See the :ref:`Payment Transaction Data <nodejs-transaction-example-payment-data>`
-to see what your collections should contain after you run the transaction
-successfully.
+.. code-block:: javascript
+
+   const { MongoError, MongoClient } = require('mongodb');
+
+See the :ref:`Payment Transaction Result <nodejs-transaction-example-payment-result>`
+section to see what your collections should contain after you run the
+transaction successfully.
 
 .. _nodejs-transaction-callback-api-example:
 
@@ -309,6 +327,7 @@ to run as a transaction.
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
+   :linenos:
    :emphasize-lines: 1-5,7,9-11,15
    :start-after: start session
    :end-before: end session
@@ -318,19 +337,20 @@ contains operations that the driver automatically runs in the same transaction
 as shown in the following code example:
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
+   :linenos:
    :language: javascript
    :emphasize-lines: 9,22,33,41
    :start-after: start callback
    :end-before: end callback
 
-See the :ref:`Payment Transaction Data <nodejs-transaction-example-payment-data>`
-to see what your collections should contain after you run the transaction
-successfully.
+See the :ref:`Payment Transaction Result <nodejs-transaction-example-payment-data>`
+section to see what your collections should contain after you run the
+transaction successfully.
 
 .. _nodejs-transaction-example-payment-data:
 
-Payment Transaction Data
-~~~~~~~~~~~~~~~~~~~~~~~~
+Payment Transaction Result
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If your application successfully completes the payment transaction, your
 database should contain all the updates, and if an exception interrupted your
