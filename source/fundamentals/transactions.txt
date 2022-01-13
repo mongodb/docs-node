@@ -317,9 +317,9 @@ Callback API Implementation
 The code examples in this section show how you can use the Callback API to
 run the multi-document payment transaction in a session.
 
-The following code example shows a function you can use to start the
-session and pass the callback function that contains the operations you want
-to run as a transaction.
+The following code example shows how you can start the session and pass the
+callback function that contains the operations you want to run as a
+transaction.
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
@@ -334,8 +334,8 @@ contains operations that the driver automatically runs in the same transaction
 as shown in the following code example:
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
-   :linenos:
    :language: javascript
+   :linenos:
    :emphasize-lines: 9,22,33,41
    :start-after: start callback
    :end-before: end callback
