@@ -41,16 +41,14 @@ Any object type can extend the ``Document`` interface.
 For more information on object types, see the
 `TypeScript handbook <https://www.typescriptlang.org/docs/handbook/2/objects.html>`__.
 
-Parameters that Extend Document
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Type Parameters that Extend Document
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following classes accept all non-recursive types that extend
-the ``Document`` interface:
+The following classes accept all types that both extend
+the ``Document`` interface and are not recursive:
 
 - `Collection <{+api+}/classes/Collection.html>`__
 - `ChangeStream <{+api+}/classes/ChangeStream.html>`__
-
-To view an example of a recursive type, see the :ref:`<node-driver-limitations>` section.
 
 You can pass a type parameter that extends the ``Document`` interface like this:
 
@@ -71,19 +69,23 @@ You can pass a type parameter that extends the ``Document`` interface like this:
       :start-after: start-no-key
       :end-before: end-no-key
 
-Parameters of Any Type
-~~~~~~~~~~~~~~~~~~~~~~
+To view an example of a recursive type, which is not supported by the preceding
+classes, see the :ref:`<node-driver-limitations>` section.
+
+Type Parameters of Any Type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following classes accept all type parameters that are not recursive:
 
 - `FindCursor <{+api+}/classes/FindCursor.html>`__
 - `AggregationCursor <{+api+}/classes/AggregationCursor.html>`__
 
-To view an example of a recursive type, see the :ref:`<node-driver-limitations>` section.
-
 You can find a code snippet that shows how to specify a type for the ``FindCursor``
 class in the
 :ref:`Find Multiple Documents Usage Example <node-driver-find-usage-example-code-snippet>`.
+
+To view an example of a recursive type, which is not supported by the preceding
+classes, see the :ref:`<node-driver-limitations>` section.
 
 .. _node-driver-limitations:
 
@@ -100,21 +102,21 @@ If you specify a recursive type, the driver raises the following error:
 
 A recursive type is a type that references itself. You can update
 the :ref:`Pet <mongodb-node-typescript-pet-interface>` interface
-to be recursive by adding the following field:
+to be recursive by allowing a pet to have its own pet. The following is the
+recursive ``Pet`` interface:
 
 .. code-block:: typescript
    :emphasize-lines: 2
 
    interface Pet {
-      pet: Pet | null;
+      pet?: Pet;
       name: string;
       age: number;
-      cute: true;
    }
 
 To track the fix for this limitation, see 
 `NODE-3852 <https://jira.mongodb.org/browse/NODE-3852>`__
-in JIRA issue tracker.
+in the JIRA issue tracker.
 
-If you must apply a recursive type to your documents, use version 4.2 of
+If you must apply a recursive type to your classes, use version 4.2 of
 the {+driver-long+}.

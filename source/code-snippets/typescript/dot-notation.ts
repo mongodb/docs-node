@@ -15,11 +15,11 @@ const collection = database.collection<TestType>("<your collection>");
 await collection.updateOne({}, { $set: { field: { nested: "A string" } } });
 // end-error
 // start-no-key
-interface TestNumber {
-  myNumber: number;
+interface Furniture {
+  style: string;
 }
 
 const database = client.db("<your database>");
-const collection = db.collection<TestNumber>("<your collection>");
-collection.find({ someRandomKey: "Accepts any type!" });
+const collection = db.collection<Furniture>("<your collection>");
+collection.find({ quantity: "Accepts any type!" });
 // end-no-key
