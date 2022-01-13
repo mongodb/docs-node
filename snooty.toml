@@ -8,3 +8,7 @@ version = 3.7
 package-name-org = "mongodb-org"
 pgp-version = "{+version+}"
 node-api = "http://mongodb.github.io/node-mongodb-native/{+version+}/api"
+mongosh = "``mongosh``"
+driver = "node"
+driver-long = "MongoDB Node.js driver"
+driver-short = "Node.js driver"
