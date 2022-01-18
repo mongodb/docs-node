@@ -130,7 +130,7 @@ with an incorrect type but does not raise an error:
       .collection<RecursivePet>("your-collection")
       .findOne({ "pet.age": "Spot" });
 
-The following code snippet references a top level instance of the
+The following code snippet references a top-level instance of the
 ``RecursivePet`` interface with an incorrect type and correctly
 raises an error:
 
