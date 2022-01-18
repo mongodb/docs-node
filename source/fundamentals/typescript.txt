@@ -116,11 +116,23 @@ recursive ``Pet`` interface:
 Recursive Types and Type Safety
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The {+driver-short+} cannot provide type safety within a recursive type.
+The {+driver-short+} cannot provide type safety within nested instances of
+recursive types.
 
-For example the following code snippet that uses the
-:ref:`RecursivePet <node-driver-limitations-recursive-pet>`
-interface raises an error:
+For example, the following code snippet references a nested instance of the
+:ref:`RecursivePet <node-driver-limitations-recursive-pet>` interface
+with an incorrect type but does not raise an error:
+
+.. code-block:: typescript
+   :emphasize-lines: 3
+
+   database
+      .collection<RecursivePet>("your-collection")
+      .findOne({ "pet.age": "Spot" });
+
+The following code snippet references a top level instance of the
+``RecursivePet`` interface with an incorrect type and correctly
+raises an error:
 
 .. tabs::
 
@@ -128,6 +140,7 @@ interface raises an error:
       :tabid: code-snippet
 
       .. code-block:: typescript
+         :emphasize-lines: 3
 
          database
            .collection<RecursivePet>("your-collection")
@@ -141,16 +154,8 @@ interface raises an error:
          index.ts(19,59): error TS2769: No overload matches this call.
          The last overload gave the following error.
          Type 'string' is not assignable to type 'Condition<Pet>'.
-         
-Whereas the following code snippet does not raise an error:
 
-.. code-block:: typescript
-
-   database
-      .collection<RecursivePet>("your-collection")
-      .findOne({ "pet.age": "Spot" });
-
-If you must have type safety within a nested recursive type,
+If you must have type safety within nested instances of recursive types,
 use version 4.2 of the {+driver-long+}.
 
 .. _node-driver-limitations-mutual-recursion:
