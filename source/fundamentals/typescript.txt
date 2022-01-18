@@ -96,7 +96,7 @@ The following subsections describe the limitations of version {+version+}
 of the {+driver-long+}. 
 
 Many limitations of the {+driver-short+}
-are all related to **recursive types**.
+are related to **recursive types**.
 A recursive type is a type that references itself. You can update
 the :ref:`Pet <mongodb-node-typescript-pet-interface>` interface
 to be recursive by allowing a pet to have its own pet. The following is the
