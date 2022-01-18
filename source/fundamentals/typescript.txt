@@ -45,7 +45,7 @@ Type Parameters that Extend Document
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following classes accept all types that both extend
-the ``Document`` interface and are not recursive:
+the ``Document`` interface and are not mutually recursive:
 
 - `Collection <{+api+}/classes/Collection.html>`__
 - `ChangeStream <{+api+}/classes/ChangeStream.html>`__
@@ -69,13 +69,13 @@ You can pass a type parameter that extends the ``Document`` interface like this:
       :start-after: start-no-key
       :end-before: end-no-key
 
-To view an example of a recursive type, which is not supported by the preceding
-classes, see the :ref:`<node-driver-limitations>` section.
+To view an example of a mutually recursive type, which is not supported by the
+preceding classes, see the :ref:`<node-driver-limitations-mutual-recursion>` section.
 
 Type Parameters of Any Type
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following classes accept all type parameters that are not recursive:
+The following classes accept all type parameters that are not mutually recursive:
 
 - `FindCursor <{+api+}/classes/FindCursor.html>`__
 - `AggregationCursor <{+api+}/classes/AggregationCursor.html>`__
@@ -84,39 +84,109 @@ You can find a code snippet that shows how to specify a type for the ``FindCurso
 class in the
 :ref:`Find Multiple Documents Usage Example <node-driver-find-usage-example-code-snippet>`.
 
-To view an example of a recursive type, which is not supported by the preceding
-classes, see the :ref:`<node-driver-limitations>` section.
+To view an example of a mutually recursive type, which is not supported by the
+preceding classes, see the :ref:`<node-driver-limitations-mutual-recursion>` section.
 
 .. _node-driver-limitations:
 
 Limitations For Driver Version {+version+}
 ----------------------------------
 
-You cannot specify a recursive type as a type parameter in version {+version+} of the driver.
+The following subsections describe the limitations of version {+version+}
+of the {+driver-long+}. 
 
-If you specify a recursive type, the driver raises the following error:
-
-.. code-block:: text
-
-   error TS2615: Type of property 'r' circularly references itself in mapped type '{ [Key in keyof RecursiveType]: [Key, ...NestedPaths<RecursiveType[Key]>]; }'.
-
+Many limitations of the {+driver-short+}
+are all related to **recursive types**.
 A recursive type is a type that references itself. You can update
 the :ref:`Pet <mongodb-node-typescript-pet-interface>` interface
 to be recursive by allowing a pet to have its own pet. The following is the
 recursive ``Pet`` interface:
 
+.. _node-driver-limitations-recursive-pet:
+
 .. code-block:: typescript
    :emphasize-lines: 2
 
-   interface Pet {
+   interface RecursivePet {
       pet?: Pet;
       name: string;
       age: number;
    }
 
-To track the fix for this limitation, see 
-`NODE-3852 <https://jira.mongodb.org/browse/NODE-3852>`__
-in the JIRA issue tracker.
+.. _node-driver-limitations-mutual-recursion:
 
-If you must apply a recursive type to your classes, use version 4.2 of
+Mutual Recursion
+~~~~~~~~~~~~~~~~
+
+You cannot specify a mutually recursive types as a type parameter in version
+{+version+} of the driver.
+
+If you specify a mutually recursive type, the driver raises the following error:
+
+.. code-block:: text
+
+   error TS2615: Type of property 'r' circularly references itself in mapped type '{ [Key in keyof MutuallyRecursive]: MutuallyRecursive[Key] extends MutuallyRecursive ? [Key] : MutuallyRecursive extends MutuallyRecursive[Key] ? [...] : MutuallyRecursive[Key] extends readonly (infer ArrayType)[] ? MutuallyRecursive extends ArrayType ? [...] : ArrayType extends MutuallyRecursive ? [...] : [...] : [...'.
+
+A mutually recursive type exists when two types define themselves relative
+to each other. You can update the
+:ref:`Pet <mongodb-node-typescript-pet-interface>` interface
+to be mutually recursive by allowing a pet to have a handler, and defining a
+handler to have a pet. The following is the mutually
+recursive ``Pet`` interface:
+
+.. code-block:: typescript
+   :emphasize-lines: 2, 8
+
+   interface MutuallyRecursivePet {
+      handler?: Handler;
+      name: string;
+      age: number;
+   }
+
+   interface Handler {
+      pet: MutuallyRecursivePet;
+      name: string;
+   }
+
+If you must apply a mutually recursive type to your classes, use version 4.2 of
 the {+driver-long+}.
+
+Recursive Types and Type Safety
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The {+driver-short+} cannot provide type safety within a recursive type.
+
+For example the following code snippet that uses the
+:ref:`RecursivePet <node-driver-limitations-recursive-pet>`
+interface raises an error:
+
+.. tabs::
+
+   .. tab:: Code Snippet
+      :tabid: code-snippet
+
+      .. code-block:: typescript
+
+         database
+           .collection<RecursivePet>("your-collection")
+           .findOne({ pet: "Spot" });
+
+   .. tab:: Error
+      :tabid: error
+
+      .. code-block:: text
+                  
+         index.ts(19,59): error TS2769: No overload matches this call.
+         The last overload gave the following error.
+         Type 'string' is not assignable to type 'Condition<Pet>'.
+         
+Whereas the following code snippet does not raise an error:
+
+.. code-block:: typescript
+
+   database
+      .collection<RecursivePet>("your-collection")
+      .findOne({ "pet.age": "Spot" });
+
+If you must have type safety within a nested recursive type,
+use version 4.2 of the {+driver-long+}.
