@@ -95,8 +95,7 @@ Limitations For Driver Version {+version+}
 The following subsections describe the limitations of version {+version+}
 of the {+driver-long+}. 
 
-Many limitations of the {+driver-short+}
-are related to **recursive types**.
+Many limitations of the {+driver-short+} relate to **recursive types**.
 A recursive type is a type that references itself. You can update
 the :ref:`Pet <mongodb-node-typescript-pet-interface>` interface
 to be recursive by allowing a pet to have its own pet. The following is the
@@ -108,20 +107,22 @@ recursive ``Pet`` interface:
    :emphasize-lines: 2
 
    interface RecursivePet {
-      pet?: Pet;
+      pet?: RecursivePet;
       name: string;
       age: number;
    }
 
-Recursive Types and Type Safety
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Recursive Types and Dot Notation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The {+driver-short+} cannot provide type safety within nested instances of
-recursive types.
+recursive types referenced through **dot notation**. Dot notation is a property
+access syntax for navigating BSON objects.
 
 For example, the following code snippet references a nested instance of the
 :ref:`RecursivePet <node-driver-limitations-recursive-pet>` interface
-with an incorrect type but does not raise an error:
+with an incorrect type using dot notation, but the TypeScript compiler
+does not raise an error:
 
 .. code-block:: typescript
    :emphasize-lines: 3
@@ -131,8 +132,7 @@ with an incorrect type but does not raise an error:
       .findOne({ "pet.age": "Spot" });
 
 The following code snippet references a top-level instance of the
-``RecursivePet`` interface with an incorrect type and correctly
-raises an error:
+``RecursivePet`` interface with an incorrect type and raises a type error:
 
 .. tabs::
 
@@ -156,7 +156,11 @@ raises an error:
          Type 'string' is not assignable to type 'Condition<Pet>'.
 
 If you must have type safety within nested instances of recursive types,
-use version 4.2 of the {+driver-long+}.
+you must write your query or update without dot notation.
+
+To learn more about dot notation, see 
+:manual:`Dot Notation </core/document/#dot-notation>`
+in the MongoDB manual.
 
 .. _node-driver-limitations-mutual-recursion:
 
