@@ -92,8 +92,8 @@ preceding classes, see the :ref:`<node-driver-limitations-mutual-recursion>` sec
 Limitations For Driver Version {+version+}
 ----------------------------------
 
-The following subsections describe the limitations of version {+version+}
-of the {+driver-long+}. 
+The following subsections describe the TypeScript specific limitations of
+version {+version+} of the {+driver-long+}. 
 
 Many limitations of the {+driver-short+} relate to **recursive types**.
 A recursive type is a type that references itself. You can update
