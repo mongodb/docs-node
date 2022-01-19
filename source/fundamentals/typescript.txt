@@ -170,7 +170,8 @@ Mutual Recursion
 You cannot specify a mutually recursive type as a type parameter in version
 {+version+} of the driver.
 
-If you specify a mutually recursive type, the driver raises the following error:
+If you specify a mutually recursive type, the TypeScript compiler raises the
+following error:
 
 .. code-block:: text
 
