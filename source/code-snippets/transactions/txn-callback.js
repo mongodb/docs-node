@@ -122,7 +122,6 @@ async function run() {
   } finally {
     await session.endSession();
   }
-  // end session
   await client.close();
   */
 
