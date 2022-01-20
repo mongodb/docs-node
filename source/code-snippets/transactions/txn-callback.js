@@ -58,7 +58,7 @@ async function placeOrder(client, session, cart, payment) {
   );
 
   const inventoryCollection = client.db('testdb').collection('inventory');
-  for (var i=0; i<cart.length; i++) {
+  for (let i=0; i<cart.length; i++) {
     const item = cart[i];
 
     // Cancel the transaction when you have insufficient inventory
@@ -95,9 +95,10 @@ const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useUnifiedTopology: true });
 
 async function run() {
-  //await client.connect();
-  //await cleanUp(client);
-  //await setup(client);
+  /* Test code: uncomment block and commentto run
+  await client.connect();
+  await cleanUp(client);
+  await setup(client);
 
   const cart = [
     { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
@@ -105,8 +106,6 @@ async function run() {
   ];
   const payment = { customer: 98765, total: 37.17 };
 
-  await client.connect();
-  // start session
   const transactionOptions = {
     readPreference: 'primary',
     readConcern: { level: 'local' },
@@ -125,5 +124,25 @@ async function run() {
   }
   // end session
   await client.close();
+  */
+
+  // start session
+  const transactionOptions = {
+    readPreference: 'primary',
+    readConcern: { level: 'local' },
+    writeConcern: { w: 'majority' }
+  };
+
+  const session = client.startSession();
+  try {
+    await session.withTransaction(
+      async (session) => { /* your transaction here */ },
+      transactionOptions);
+  } catch(error) {
+    console.log('Encountered an error during the transaction: ' + error);
+  } finally {
+    await session.endSession();
+  }
+  // end session
 }
 run().then(() => queryData());

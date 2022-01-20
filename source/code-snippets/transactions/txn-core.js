@@ -64,7 +64,7 @@ async function placeOrder(client, cart, payment) {
     );
 
     const inventoryCollection = client.db('testdb').collection('inventory');
-    for (var i = 0; i < cart.length; i++) {
+    for (let i=0; i<cart.length; i++) {
       const item = cart[i];
 
       // Cancel the transaction when you have insufficient inventory

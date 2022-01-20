@@ -224,7 +224,7 @@ Sample Data
 ~~~~~~~~~~~
 
 The code examples require the following sample data in the ``testdb``
-database to successfully run the multi-document payment transaction:
+database to run the multi-document payment transaction:
 
 - A document in the ``customers`` collection that describes a customer and
   their orders.
@@ -307,7 +307,7 @@ code as shown in the following sample import statement:
 
 See the :ref:`Payment Transaction Result <nodejs-transaction-example-payment-result>`
 section to see what your collections should contain after you run the
-transaction successfully.
+transaction.
 
 .. _nodejs-transaction-callback-api-example:
 
@@ -317,9 +317,9 @@ Callback API Implementation
 The code examples in this section show how you can use the Callback API to
 run the multi-document payment transaction in a session.
 
-The following code example shows how you can start the session and pass the
-callback function that contains the operations you want to run as a
-transaction.
+The following code example shows how you can start the session and pass an
+anonymous callback function that contains the operations you want to run
+as a transaction.
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
@@ -329,9 +329,10 @@ transaction.
    :start-after: start session
    :end-before: end session
 
-The ``placeOrder()`` callback function passed to ``withTransaction()``
-contains operations that the driver automatically runs in the same transaction
-as shown in the following code example:
+Rather than pass an anonymous callback function, you can pass a named
+function that returns a Promise. See the following ``placeOrder()``
+example callback function that you can pass to ``withTransaction()`` to run
+as a transaction:
 
 .. literalinclude:: /code-snippets/transactions/txn-callback.js
    :language: javascript
@@ -342,14 +343,14 @@ as shown in the following code example:
 
 See the :ref:`Payment Transaction Result <nodejs-transaction-example-payment-result>`
 section to see what your collections should contain after you run the
-transaction successfully.
+transaction.
 
 .. _nodejs-transaction-example-payment-result:
 
 Payment Transaction Result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If your application successfully completes the payment transaction, your
+If your application completes the payment transaction, your
 database should contain all the updates, and if an exception interrupted your
 transaction, none of the changes should exist in your database.
 
