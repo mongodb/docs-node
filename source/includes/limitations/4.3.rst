@@ -1,8 +1,8 @@
-The following sections describe the following TypeScript specific limitations of
+Learn about the following TypeScript specific limitations of
 version {+version+} of the {+driver-short+}:
 
 - :ref:`The {+driver-short+} is unable to provide type safety for references to nested instances of recursive types specified through dot notation. <node-driver-recursive-types-dot-notation>`
-- :ref:`The {+driver-short+} does not support mutal recursion. <node-driver-limitations-mutual-recursion>`
+- :ref:`The {+driver-short+} does not support mutual recursion. <node-driver-limitations-mutual-recursion>`
 
 The TypeScript specific limitations of the {+driver-short+} relate to **recursive types**.
 A recursive type is a type that references itself. You can update
@@ -30,10 +30,10 @@ The {+driver-short+} cannot provide type safety within nested instances of
 recursive types referenced through **dot notation**. Dot notation is a
 syntax you can use to navigate nested JSON objects.
 
-.. important:: Depth Limit
+.. note:: Depth Limit
 
    The {+driver-short+} does not traverse nested recursive types when
-   type checking strings specified with dot notation to avoid hitting
+   type checking dot notation keys to avoid hitting
    TypeScript's recursive depth limit.
 
 The following code snippet references a nested instance of the
