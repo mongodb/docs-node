@@ -95,7 +95,7 @@ const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useUnifiedTopology: true });
 
 async function run() {
-  /* Test code: uncomment block and commentto run
+  /* Test code: uncomment block to run
   await client.connect();
   await cleanUp(client);
   await setup(client);
@@ -109,7 +109,8 @@ async function run() {
   const transactionOptions = {
     readPreference: 'primary',
     readConcern: { level: 'local' },
-    writeConcern: { w: 'majority' }
+    writeConcern: { w: 'majority' },
+    maxCommitTimeMS: 1000
   };
 
   const session = client.startSession();
@@ -129,7 +130,8 @@ async function run() {
   const transactionOptions = {
     readPreference: 'primary',
     readConcern: { level: 'local' },
-    writeConcern: { w: 'majority' }
+    writeConcern: { w: 'majority' },
+    maxCommitTimeMS: 1000
   };
 
   const session = client.startSession();

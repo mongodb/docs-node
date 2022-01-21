@@ -176,11 +176,9 @@ resembles the following:
      writeConcern: { w: 'majority' },
      maxCommitTimeMS: 1000
    };
-   await session.withTransaction(myCallbackFunction(session), transactionOptions);
-
-Replace ``myCallbackFunction`` with the function that contains your
-transaction operations. Pass the ``session`` and any other variables you
-need in the scope of that function.
+   await session.withTransaction(
+     async (session) => { /* your transaction here */ },
+     transactionOptions);
 
 .. _nodejs-transaction-examples:
 
@@ -325,7 +323,7 @@ as a transaction.
    :language: javascript
    :linenos:
    :dedent:
-   :emphasize-lines: 1-5,7,9-11,15
+   :emphasize-lines: 1-6,8,10-12,16
    :start-after: start session
    :end-before: end session
 
