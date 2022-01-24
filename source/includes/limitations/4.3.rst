@@ -1,8 +1,8 @@
 Learn about the following TypeScript specific limitations of
 version 4.3 of the {+driver-short+}:
 
-- :ref:`No type safety for references to nested instances of recursive types specified through dot notation <node-driver-recursive-types-dot-notation>`
-- :ref:`You can't specify mutually recursive types <node-driver-limitations-mutual-recursion>`
+- :ref:`No type safety for dot notation references to nested instances of recursive types <node-driver-recursive-types-dot-notation>`
+- :ref:`No mutually recursive types <node-driver-limitations-mutual-recursion>`
 
 .. _node-driver-recursive-types-dot-notation:
 
