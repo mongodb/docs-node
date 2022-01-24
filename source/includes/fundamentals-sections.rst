@@ -17,3 +17,4 @@ Fundamentals section:
 - :doc:`Specify Type Parameters with TypeScript </fundamentals/typescript>`
 - :doc:`Specify UTF-8 Validation Settings </fundamentals/utf8-validation>`
 
+- :doc:`Encrypt Fields from the Client </fundamentals/csfle>`
