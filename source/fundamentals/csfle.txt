@@ -84,8 +84,8 @@ specified by a user-provided
 For more detailed information on ``mongocryptd``, see the
 :manual:`mongocryptd reference documentation </reference/security-client-side-encryption-appendix/#mongocryptd>`
 
-Examples
---------
+Example
+-------
 
 To run an example of client-side field level encryption with a local 
 key using the Node.js driver, see MongoDB University's GitHub 
