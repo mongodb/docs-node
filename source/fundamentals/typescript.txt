@@ -95,7 +95,4 @@ see the :ref:`<node-driver-limitations-mutual-recursion>` section.
 
 .. _node-driver-limitations:
 
-Limitations For Driver Version {+version+}
-----------------------------------
-
 .. include:: includes/limitations/{+version+}.rst
