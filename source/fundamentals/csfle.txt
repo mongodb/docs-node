@@ -43,8 +43,7 @@ To get started with CSFLE in your client application, you need
 - the MongoDB Node.js driver
 - `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption>`__
 - `uuid-base64 <https://www.npmjs.com/package/uuid-base64#installation>`__
-
-.. - ``mongocryptd`` if using automatic encryption (Enterprise or Atlas)
+- ``mongocryptd`` if using automatic encryption (Enterprise or Atlas)
 
 ``mongodb-client-encryption``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -53,7 +52,7 @@ The ``mongodb-client-encryption`` module is the official client
 encryption module for the MongoDB Node.js driver. It contains bindings 
 to communicate with the native library that manages the encryption.
 
-Add it to your project using ``npm``.
+Add it to your project using ``npm``:
 
 .. code-block:: sh
    :copyable: true
@@ -66,7 +65,7 @@ Add it to your project using ``npm``.
 The ``uuid-base64`` module converts between Base64 and hexadecimal 
 UUIDs.
 
-Add it to your project using ``npm``.
+Add it to your project using ``npm``:
 
 .. code-block:: sh
    :copyable: true
