@@ -1,6 +1,3 @@
-Limitations of Driver Version 4.3
----------------------------------
-
 Learn about the following TypeScript specific limitations of
 version 4.3 of the {+driver-short+}:
 
