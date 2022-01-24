@@ -57,7 +57,7 @@ Add it to your project using ``npm``:
 .. code-block:: sh
    :copyable: true
 
-   npm install mongodb-client-encryption
+   npm install mongodb-client-encryption --save
 
 ``uuid-base64``
 ~~~~~~~~~~~~~~~
@@ -70,7 +70,7 @@ Add it to your project using ``npm``:
 .. code-block:: sh
    :copyable: true
 
-   npm install uuid-base64
+   npm install uuid-base64 --save
 
 ``mongocryptd``
 ~~~~~~~~~~~~~~~
