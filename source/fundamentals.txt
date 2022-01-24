@@ -11,6 +11,7 @@ Fundamentals
    /fundamentals/crud
    /fundamentals/promises
    /fundamentals/aggregation
+   /fundamentals/transactions
    /fundamentals/indexes
    /fundamentals/collations
    /fundamentals/logging
