@@ -18,6 +18,7 @@ Fundamentals
    /fundamentals/logging
    /fundamentals/monitoring
    /fundamentals/gridfs
+   /fundementals/csfle
    /fundamentals/time-series
    /fundamentals/typescript
    /fundamentals/utf8-validation

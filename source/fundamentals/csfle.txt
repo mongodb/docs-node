@@ -1,0 +1,99 @@
+==================================
+Client-Side Field Level Encryption
+==================================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. explain relationship between mongodb-client-encryption and CSFLE in node driver
+
+Overview
+--------
+
+In this guide, you can learn how to install and use **Client-Side Field
+Level Encryption (CSFLE)** in the MongoDB Node.js driver.
+
+CSFLE allows you to encrypt specific data fields within a document with
+your MongoDB client application before sending the data to the server.
+Starting in MongoDB 4.2 Enterprise, you can perform this client-side 
+encryption automatically.
+
+With CSFLE, your client application encrypts fields client-side without 
+requiring any server-side configuration or directives. CSFLE is useful 
+for situations in which applications must guarantee that unauthorized 
+parties, including server administrators, cannot read the encrypted 
+data.
+
+This guide is a quick introduction to CSFLE using the Node.js driver. 
+For in-depth information on how CSFLE works, see
+the :manual:`CSFLE reference </core/security-client-side-encryption/>` 
+documentation. For a real-world scenario and implementation, see our 
+`CSFLE Guide <https://docs.mongodb.com/drivers/security/client-side-field-level-encryption-guide>`_.
+
+Installation
+------------
+
+To get started with CSFLE in your client application, you need
+
+- the MongoDB Node.js driver
+- `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption>`__
+- `uuid-base64 <https://www.npmjs.com/package/uuid-base64#installation>`__
+
+.. - ``mongocryptd`` if using automatic encryption (Enterprise or Atlas)
+
+``mongodb-client-encryption``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``mongodb-client-encryption`` module is the official client 
+encryption module for the MongoDB Node.js driver. It contains bindings 
+to communicate with the native library that manages the encryption.
+
+Add it to your project using ``npm``.
+
+.. code-block:: sh
+   :copyable: true
+
+   npm install mongodb-client-encryption
+
+``uuid-base64``
+~~~~~~~~~~~~~~~
+
+The ``uuid-base64`` module converts between Base64 and hexadecimal 
+UUIDs.
+
+Add it to your project using ``npm``.
+
+.. code-block:: sh
+   :copyable: true
+
+   npm install uuid-base64
+
+``mongocryptd``
+~~~~~~~~~~~~~~~
+
+``mongocryptd`` is a binary run as a daemon / process that is used for 
+automatic encryption. ``mongodb-crypt`` communicates with 
+``mongodb-client-encryption`` to automatically encrypt the information 
+specified by a user-provided 
+:manual:`JSON Schema </reference/security-client-side-automatic-json-schema/>`.
+
+For more detailed information on ``mongocryptd``, see the
+:manual:`mongocryptd reference documentation </reference/security-client-side-encryption-appendix/#mongocryptd>`
+
+Examples
+--------
+
+To run an example of client-side field level encryption with a local 
+key using the Node.js driver, see MongoDB University's GitHub 
+`Node CSFLE Example <https://github.com/mongodb-university/csfle-guides/tree/master/nodejs>`__.
+
+.. warning::
+
+   MongoDB recommends using local key management only for testing 
+   purposes, and using a remote key management service
+   for production.
