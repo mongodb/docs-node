@@ -11,3 +11,5 @@ Fundamentals section:
 - :doc:`Log Events in the Driver </fundamentals/logging>`
 - :doc:`Monitor Driver Events </fundamentals/monitoring>`
 - :doc:`Store and Retrieve Large Files in MongoDB </fundamentals/gridfs>`
+- :doc:`Use TypeScript Types with the Driver </fundamentals/typescript>`
+- :doc:`Specify UTF-8 Validation Settings </fundamentals/utf8-validation>`
