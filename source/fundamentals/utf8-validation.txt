@@ -29,8 +29,7 @@ overhead, but cannot guarantee consistent presentation of invalid UTF-8 data.
 
 The driver enables UTF-8 validation by default. It checks documents for any
 characters that are not encoded in a valid UTF-8 format when it transfers data
-between your application. If it encounters invalid UTF-8 characters, it
-throws an error.
+between your application and MongoDB.
 
 .. note::
 
