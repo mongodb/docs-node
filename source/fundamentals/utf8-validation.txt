@@ -16,30 +16,32 @@ Overview
 --------
 
 In this guide, you can learn how to enable or disable the {+driver-short+}'s
-**UTF-8** validation feature. **UTF-8** is a character encoding specification
+**UTF-8** validation feature. UTF-8 is a character encoding specification
 that ensures compatibility and consistent presentation across most operating
-systems, applications, and language character sets. By default, the driver
-checks documents for any characters that are not encoded in a valid UTF-8
-format when it transfers data between your application and MongoDB.
+systems, applications, and language character sets.
 
-If you enable validation, the driver substitutes invalid UTF-8 characters
-with valid UTF-8 ones when transferring data between your application and
-MongoDB. The validation adds processing overhead since it needs to verify the
-data and to make substitutions when necessary.
+If you *enable* validation, the driver throws an error when it attempts to
+convert data that contains invalid UTF-8 characters. The validation adds
+processing overhead since it needs to check the data.
 
-If you disable validation, your application can avoid the processing
-overhead caused by validation, but cannot guarantee consistent presentation of
-invalid UTF-8 data.
+If you *disable* validation, your application avoids the validation processing
+overhead, but cannot guarantee consistent presentation of invalid UTF-8 data.
 
-Read the sections below to learn how to set UTF-8 validation using the
-{+driver-short+}.
+The driver enables UTF-8 validation by default. It checks documents for any
+characters that are not encoded in a valid UTF-8 format when it transfers data
+between your application. If it encounters invalid UTF-8 characters, it
+throws an error.
 
 .. note::
 
-   The {+driver-short+} automatically substitutes invalid UTF-8 characters
-   in your application before sending them to MongoDB regardless of whether
-   you enable validation. You can only retrieve invalid UTF-8 characters
-   from MongoDB.
+   The current version of the {+driver-short+} automatically substitutes
+   invalid UTF-8 characters with alternate valid UTF-8 ones prior to
+   validation when you send data to MongoDB. Therefore, the validation
+   only throws an error when the setting is enabled and the driver
+   receives invalid UTF-8 document data from MongoDB.
+
+Read the sections below to learn how to set UTF-8 validation using the
+{+driver-short+}.
 
 .. _nodejs-specify-utf-8-validation:
 
@@ -49,7 +51,10 @@ Specify the UTF-8 Validation Setting
 You can specify whether the driver should perform UTF-8 validation by
 defining the ``enableUtf8Validation`` setting in the options parameter
 when you create a client, reference a database or collection, or call a
-CRUD operation. By default, the {+driver-short+} enables UTF-8 validation.
+CRUD operation. If you omit the setting, the driver enables UTF-8 validation.
+
+See the following for code examples that demonstrate how to disable UTF-8
+validation on the client, database, collection, or CRUD operation:
 
 .. code-block:: javascript
 
