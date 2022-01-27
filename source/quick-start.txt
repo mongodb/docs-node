@@ -55,7 +55,7 @@ tab if you want to create the project dependency file yourself.
 
       .. code-block:: bash
 
-         git clone --branch {+version+} https://github.com/mongodb-university/js-starter.git
+         git clone --branch v{+version+} https://github.com/mongodb-university/js-starter.git
 
       Next, navigate into the repository:
 
@@ -108,7 +108,7 @@ tab if you want to create the project dependency file yourself.
 
       .. code-block:: bash
 
-         npm install mongodb@v{+version+}
+         npm install mongodb@{+version+}
 
       This command performs the following actions:
 
