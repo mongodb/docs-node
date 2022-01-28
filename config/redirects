@@ -4,3 +4,5 @@ define: versions v3.6 master
 
 raw: ${prefix}/ -> ${base}/current/
 raw: ${prefix}/stable -> ${base}/current/
+
+[*-master]: ${prefix}/${version}/fundamentals/versioned-api/ -> ${prefix}/${version}/fundamentals/stable-api/
