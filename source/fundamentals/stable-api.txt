@@ -1,4 +1,4 @@
-.. _stable-api:
+.. _nodejs-stable-api:
 
 ==============
 {+stable-api+}
@@ -56,7 +56,8 @@ version of the {+stable-api+}.
 
    If you need to run commands not covered by the {+stable-api+}, make sure the
    "strict" option is disabled. See the section on
-   :ref:`{+stable-api+} Options <stable-api-options>` for more information.
+   :ref:`{+stable-api+} Options <nodejs-stable-api-options>` for more
+   information.
 
 The example below shows how you can instantiate a ``MongoClient`` that
 sets the {+stable-api+} version and connects to a server by performing the
@@ -92,7 +93,7 @@ section, see the following API Documentation:
 - `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
 - `MongoClient <{+api+}/classes/MongoClient.html>`__
 
-.. _stable-api-options:
+.. _nodejs-stable-api-options:
 .. _versioned-api-options:
 
 {+stable-api+} Options
