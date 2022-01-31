@@ -93,6 +93,45 @@ To view an example of a mutually recursive type, which is not supported by the
 :ref:`preceding classes <node-mongodb-type-paramaters-any-type>`,
 see the :ref:`<node-driver-limitations-mutual-recursion>` section.
 
+
+Dot Notation
+~~~~~~~~~~~~
+
+If you specify a query or update with **dot notation**, the {+driver-short+}
+provides type safety if your query does not 
+:ref:`reference a nested instance of a recursive type <node-driver-recursive-types-dot-notation>`.
+Dot notation is a syntax you can use to navigate nested JSON objects.
+
+The following code snippet defines the ``ClassificationPet`` interface,
+which includes a ``taxonomy`` field that lets us specify the
+genus and family of dogs and cats:  
+
+.. code-block:: typescript
+
+   interface ClassificationPet {
+     name: string;
+     age: number;
+     taxonomy: { genus: "Canis" | "Felis"; family: "Canidae" | "Felinae" };
+   }
+
+The following code snippet correctly raises a type error by trying to query on
+the genus of an unsupported animal:
+
+.. code-block:: typescript
+
+   database
+     .collection<ClassificationPet>("<test-collection>")
+     .find({ "taxonomy.genus": "Sylvilagus" });
+
+To learn more about dot notation, see 
+:manual:`Dot Notation </core/document/#dot-notation>`
+in the MongoDB manual.
+
+To learn more about the limitations of dot notation in the
+{+driver-short+}, see the 
+:ref:`<node-driver-recursive-types-dot-notation>`
+section.
+
 .. _node-driver-limitations:
 
 Limitations of Driver Version {+version+}

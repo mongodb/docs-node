@@ -10,8 +10,7 @@ Recursive Types and Dot Notation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The {+driver-short+} cannot provide type safety within nested instances of
-**recursive types** referenced through **dot notation**. Dot notation is a
-syntax you can use to navigate nested JSON objects.
+**recursive types** referenced through dot notation.
 
 A recursive type is a type that references itself. You can update
 the :ref:`Pet <mongodb-node-typescript-pet-interface>` interface
