@@ -94,8 +94,8 @@ To view an example of a mutually recursive type, which is not supported by the
 see the :ref:`<node-driver-limitations-mutual-recursion>` section.
 
 
-Dot Notation
-~~~~~~~~~~~~
+Type Safety and Dot Notation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you specify a query or update with **dot notation**, the {+driver-short+}
 provides type safety if your query or update does not 
@@ -114,8 +114,8 @@ genus and family of dogs and cats:
      taxonomy: { genus: "Canis" | "Felis"; family: "Canidae" | "Felinae" };
    }
 
-The following code snippet correctly raises a type error by trying to query on
-the genus of an unsupported animal:
+The following code snippet correctly raises a type error by specifying
+the genus of an unsupported animal in a query:
 
 .. code-block:: typescript
 
