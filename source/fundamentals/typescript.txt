@@ -103,15 +103,15 @@ provides type safety if your query or update does not
 Dot notation is a syntax you can use to navigate nested JSON objects.
 
 The following code snippet defines the ``ClassificationPet`` interface,
-which includes a ``taxonomy`` field that enables you to specify the
-genus and family of dogs and cats:  
+which includes a ``classification`` field that enables you to specify the
+genus and color of dogs and cats:  
 
 .. code-block:: typescript
 
    interface ClassificationPet {
      name: string;
      age: number;
-     taxonomy: { genus: "Canis" | "Felis"; family: "Canidae" | "Felinae" };
+     classification: { genus: "Canis" | "Felis"; color: string };
    }
 
 The following code snippet correctly raises a type error by specifying
@@ -121,7 +121,7 @@ the genus of an unsupported animal in a query:
 
    database
      .collection<ClassificationPet>("<your collection>")
-     .find({ "taxonomy.genus": "Sylvilagus" });
+     .find({ "classification.genus": "Sylvilagus" });
 
 The type error raised by the preceding code snippet is as follows:
 
