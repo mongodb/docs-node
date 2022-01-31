@@ -47,7 +47,7 @@ Type Parameters that Extend Document
 The following classes accept all types that both extend
 the ``Document`` interface and are not mutually recursive:
 
-.. _node-mongodb-type-paramaters-extend-document:
+.. _node-mongodb-type-parameters-extend-document:
 
 - `Collection <{+api+}/classes/Collection.html>`__
 - `ChangeStream <{+api+}/classes/ChangeStream.html>`__
@@ -72,7 +72,7 @@ You can pass a type parameter that extends the ``Document`` interface like this:
       :end-before: end-no-key
 
 To view an example of a mutually recursive type, which is not supported by the
-:ref:`preceding classes <node-mongodb-type-paramaters-extend-document>`,
+:ref:`preceding classes <node-mongodb-type-parameters-extend-document>`,
 see the :ref:`<node-driver-limitations-mutual-recursion>` section.
 
 Type Parameters of Any Type
@@ -80,7 +80,7 @@ Type Parameters of Any Type
 
 The following classes accept all type parameters that are not mutually recursive:
 
-.. _node-mongodb-type-paramaters-any-type:
+.. _node-mongodb-type-parameters-any-type:
 
 - `FindCursor <{+api+}/classes/FindCursor.html>`__
 - `AggregationCursor <{+api+}/classes/AggregationCursor.html>`__
@@ -90,7 +90,7 @@ class in the
 :ref:`Find Multiple Documents Usage Example <node-driver-find-usage-example-code-snippet>`.
 
 To view an example of a mutually recursive type, which is not supported by the
-:ref:`preceding classes <node-mongodb-type-paramaters-any-type>`,
+:ref:`preceding classes <node-mongodb-type-parameters-any-type>`,
 see the :ref:`<node-driver-limitations-mutual-recursion>` section.
 
 
@@ -98,7 +98,7 @@ Dot Notation
 ~~~~~~~~~~~~
 
 If you specify a query or update with **dot notation**, the {+driver-short+}
-provides type safety if your query does not 
+provides type safety if your query or update does not 
 :ref:`reference a nested instance of a recursive type <node-driver-recursive-types-dot-notation>`.
 Dot notation is a syntax you can use to navigate nested JSON objects.
 
@@ -122,6 +122,14 @@ the genus of an unsupported animal:
    database
      .collection<ClassificationPet>("<test-collection>")
      .find({ "taxonomy.genus": "Sylvilagus" });
+
+The type error raised by the preceding code snippet is as follows:
+
+.. code-block:: none
+
+   No overload matches this call.
+   ...
+   Type '"Sylvilagus"' is not assignable to type 'Condition<"Canis" | "Felis">'.
 
 To learn more about dot notation, see 
 :manual:`Dot Notation </core/document/#dot-notation>`
