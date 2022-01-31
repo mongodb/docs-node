@@ -114,7 +114,7 @@ genus and color of dogs and cats:
      classification: { genus: "Canis" | "Felis"; color: string };
    }
 
-The following code snippet correctly raises a type error by specifying
+The following code snippet correctly raises a type error when specifying
 the genus of an unsupported animal in a query:
 
 .. code-block:: typescript
