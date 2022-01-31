@@ -46,8 +46,8 @@ tab if you want to create the project dependency file yourself.
    .. tab:: Clone the Project
       :tabid: clone the project
 
-      First, ensure you have ``git`` installed in your development
-      environment or otherwise install Git using `Git's Getting Started Guide
+      First, ensure you have Git installed in your development
+      environment or otherwise install it using `Git's Getting Started Guide
       <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__.
 
       Then, from your shell, clone the `js-starter repository
