@@ -103,7 +103,7 @@ provides type safety if your query or update does not
 Dot notation is a syntax you can use to navigate nested JSON objects.
 
 The following code snippet defines the ``ClassificationPet`` interface,
-which includes a ``taxonomy`` field that lets us specify the
+which includes a ``taxonomy`` field that enables you to specify the
 genus and family of dogs and cats:  
 
 .. code-block:: typescript
@@ -120,7 +120,7 @@ the genus of an unsupported animal:
 .. code-block:: typescript
 
    database
-     .collection<ClassificationPet>("<test-collection>")
+     .collection<ClassificationPet>("<your collection>")
      .find({ "taxonomy.genus": "Sylvilagus" });
 
 The type error raised by the preceding code snippet is as follows:
