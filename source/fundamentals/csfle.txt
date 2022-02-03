@@ -128,7 +128,7 @@ configured for CSFLE will return the document in encrypted form.
 
    Auto encryption requires MongoDB **Enterprise** or **Atlas**.
 
-.. code-block:: node
+.. code-block:: javascript
 
    // Import "mongodb" and "mongodb-client-encryption"
    const mongodb = require("mongodb")
