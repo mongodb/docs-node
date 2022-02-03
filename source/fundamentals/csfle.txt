@@ -96,3 +96,197 @@ key using the Node.js driver, see MongoDB University's GitHub
    MongoDB recommends using local key management only for testing 
    purposes, and using a remote key management service
    for production.
+
+The examples on this page use a local key, but you can also use integrated support for cloud-based key management
+services from AWS, Azure, and GCP. Each example program execution creates a new master key in memory and drops the
+``test.coll`` collection.
+
+.. tip::
+
+   In the examples, the in-memory master key is lost when the application finishes running. If you'd like to retain
+   and decrypt documents from previous runs, you can save the local master key to a file for reuse and remove the logic
+   to drop the collection.
+
+.. warning::
+
+   MongoDB recommends using local key management only for testing purposes, and using a remote key management service
+   for production.
+
+.. _auto-encryption-decryption-java:
+
+Automatic Encryption and Decryption
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The following example shows how to use ``mongodb-client-encryption`` to 
+configure a CSFLE-enabled client with a data key and JSON schema map.
+
+The data in sensetive fields is automatically encrypted 
+before insertion, and decrypted when calling ``findOne()``
+on the client side. Querying this collection from a client that isn't 
+configured for CSFLE will return the document in encrypted form.
+
+.. note::
+
+   Auto encryption requires MongoDB **Enterprise** or **Atlas**.
+
+.. code-block:: node
+
+   // Import "mongodb" and "mongodb-client-encryption"
+   const mongodb = require("mongodb")
+   const { ClientEncryption } = require("mongodb-client-encryption")
+   
+   // Set your database URI
+   const uri = "mongodb+srv://<user>>:<password>@cluster0.gvzx6.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+   
+   // Create a regular client without encryption/ decryption capabilities
+   async function getRegularClient() {
+     const client = new mongodb.MongoClient(uri, {
+       useNewUrlParser: true,
+       useUnifiedTopology: true,
+     })
+     return await client.connect()
+   }
+   
+   const regularClient = getRegularClient();
+   
+   // Create a data key
+   async function getDataKey(client) {
+     const encryption = new ClientEncryption(client, {
+       keyVaultNamespace: 'encryption.__keyVault',
+       kmsProviders: null
+     })
+   
+     dataKey = await encryption.createDataKey("local")
+     return dataKey.toString("base64")
+   }
+   
+   const dataKey = getDataKey(regularClient);
+   
+   // Create a JSON schema map with the data key
+   function createJsonSchemaMap(dataKey) {
+     return {
+       "medicalRecords.patients": {
+         bsonType: "object",
+         // specify the encryptMetadata key at the root level of the JSON Schema.
+         // As a result, all encrypted fields defined in the properties field of the
+         // schema will inherit this encryption key unless specifically overwritten.
+         encryptMetadata: {
+           keyId: [new Binary(Buffer.from(dataKey, "base64"), 4)]
+         },
+         properties: {
+           insurance: {
+             bsonType: "object",
+             properties: {
+               policyNumber: {
+                 encrypt: {
+                   bsonType: "int",
+                   algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic"
+                 }
+               }
+             }
+           },
+           medicalRecords: {
+             encrypt: {
+               bsonType: "array",
+               algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Random"
+             }
+           },
+           bloodType: {
+             encrypt: {
+               bsonType: "string",
+               algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Random"
+             }
+           },
+           ssn: {
+             encrypt: {
+               bsonType: "int",
+               algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic"
+             }
+           }
+         }
+       }
+     }
+   }
+   
+   const schemaMap = createJsonSchemaMap(dataKey);
+   
+   // Use the data key and schema to create a CSFLE-enabled client
+   async function getCsfleEnabledClient(schemaMap) {
+     const client = new mongodb.MongoClient(uri, {
+       useNewUrlParser: true,
+       useUnifiedTopology: true,
+       monitorCommands: true,
+       autoEncryption: {
+         // The key vault collection contains the data key that the client uses to encrypt and decrypt fields.
+         keyVaultNamespace: 'encryption.__keyVault',
+         // The client expects a key management system to store and provide the application's master encryption key.
+         // For now, we will use a local master key, so they use the local KMS provider.
+         kmsProviders: null,
+         // The JSON Schema that we have defined doesn't explicitly specify the collection to which it applies.
+         // To assign the schema, they map it to the medicalRecords.patients collection namespace
+         schemaMap
+       }
+     })
+     return await client.connect()
+   }
+   
+   const csfleClient = getCsfleEnabledClient(schemaMap);
+   
+   // Create sample data
+   let exampleDocument = {
+     name: "Jon Doe",
+     ssn: 241014209,
+     bloodType: "AB+",
+     medicalRecords: [
+       {
+         weight: 180,
+         bloodPressure: "120/80"
+       }
+     ],
+     insurance: {
+       provider: "MaestCare",
+       policyNumber: 123142
+     }
+   }
+   
+   const regularClientPatientsColl = regularClient
+     .db("medicalRecords")
+     .collection("patients")
+   const csfleClientPatientsColl = csfleClient
+     .db("medicalRecords")
+     .collection("patients")
+   
+   // Insert sample data with an encrypted field using the CSFLE client
+   async function upsertExampleData() {
+     await csfleClientPatientsColl.updateOne(
+       { ssn: exampleDocument["ssn"] },
+       { $set: exampleDocument },
+       { upsert: true }
+     )
+   }
+   
+   upsertExampleData();
+   
+   async function compareResults() {
+     // Decrypt data with a CSFLE client using findOne()
+     const csfleFindResult = await csfleClientPatientsColl.findOne({
+       ssn: exampleDocument["ssn"]
+     })
+     console.log(
+       "Document retreived with csfle enabled client:\n",
+       csfleFindResult
+     )
+   
+     // View encrypted data from a regular client using findOne()
+     const regularFindResult = await regularClientPatientsColl.findOne({
+       name: "Jon Doe"
+     })
+     console.log("Document retreived with regular client:\n", regularFindResult)
+     
+     await regularClient.close()
+     await csfleClient.close()
+   }
+   
+   compareResults();
+
+   
