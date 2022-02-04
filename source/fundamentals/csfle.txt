@@ -116,7 +116,7 @@ University's GitHub
 .. code-block:: javascript
   
   // Create a data key using a MongoDB client instance
-  async function createDataKeyWithClient(client) {
+  async function createDataKeyWithMasterKey(client) {
     const encryption = new ClientEncryption(client, {
       keyVaultNamespace: "encryption.__keyVault",
       kmsProviders: null, // required
@@ -130,7 +130,7 @@ University's GitHub
   }
   
   // Create a JSON schema using your data key
-  function createJsonSchemaMapWithDataKey(dataKey) {
+  function createJsonSchemaMap(dataKey) {
     return {
       "medicalRecords.patients": {
         bsonType: "object",
