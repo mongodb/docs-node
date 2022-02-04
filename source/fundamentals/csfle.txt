@@ -88,7 +88,9 @@ Example
 -------
 
 The following example shows how to configure a CSFLE-enabled client 
-with a local key and a JSON schema. 
+with a local key and a JSON schema. Data in fields specified by your 
+JSON schema is automatically encrypted before insertion, and decrypted 
+when calling ``find()`` with a CSFLE-enabled client.
 
 Considerations
 ~~~~~~~~~~~~~~
@@ -106,11 +108,6 @@ Considerations
    purposes, and using a remote key management service
    for production.
 
-In this example, data in sensetive fields is automatically encrypted 
-before insertion, and decrypted when calling ``findOne()``
-on the client side. Querying this collection from a client that isn't 
-configured for CSFLE will return the document in encrypted form.
-
 To run a complete example of automatic client-side field level 
 encryption with a local key using the Node.js driver, see MongoDB 
 University's GitHub 
@@ -120,7 +117,6 @@ University's GitHub
   
   // Create a data key using a MongoDB client instance
   async function createDataKeyWithClient(client) {
-    
     const encryption = new ClientEncryption(client, {
       keyVaultNamespace: "encryption.__keyVault",
       kmsProviders: null, // required
@@ -135,7 +131,6 @@ University's GitHub
   
   // Create a JSON schema using your data key
   function createJsonSchemaMapWithDataKey(dataKey) {
-  
     return {
       "medicalRecords.patients": {
         bsonType: "object",
@@ -179,7 +174,6 @@ University's GitHub
   
   // Create a CSFLE-enabled client using your JSON schema
   async function getCsfleEnabledClient(schemaMap) {
-  
     const client = new MongoClient(this.connectionString, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
