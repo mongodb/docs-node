@@ -88,8 +88,8 @@ Example
 -------
 
 The following example shows how to configure a CSFLE-enabled client 
-with a local key and a JSON schema. Data in fields specified by your 
-JSON schema is automatically encrypted before insertion, and decrypted 
+with a local key and a JSON schema. Values in fields specified by your 
+JSON schema are automatically encrypted before insertion, and decrypted 
 when calling ``find()`` with a CSFLE-enabled client.
 
 Considerations
@@ -138,26 +138,9 @@ University's GitHub
           keyId: [new Binary(Buffer.from(dataKey, "base64"), 4)],
         },
         properties: {
-          insurance: {
-            bsonType: "object",
-            properties: {
-              policyNumber: {
-                encrypt: {
-                  bsonType: "int",
-                  algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic",
-                },
-              },
-            },
-          },
           medicalRecords: {
             encrypt: {
               bsonType: "array",
-              algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Random",
-            },
-          },
-          bloodType: {
-            encrypt: {
-              bsonType: "string",
               algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Random",
             },
           },
@@ -173,7 +156,7 @@ University's GitHub
   };
   
   // Create a CSFLE-enabled client using your JSON schema
-  async function getCsfleEnabledClient(schemaMap) {
+  async function createCsfleEnabledClient(schemaMap) {
     const client = new MongoClient(this.connectionString, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
