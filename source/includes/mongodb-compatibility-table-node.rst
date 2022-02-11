@@ -63,6 +63,18 @@
      - ✓
      - ✓
      - ✓
+   * - 3.7 [#unified-topology]_
+     - 
+     - 
+     - ✓
+     - ✓
+     - ✓
+     - ✓
+     - ✓
+     - ✓
+     - ✓
+     - ✓
+     - ✓
    * - 3.6
      - 
      - 
@@ -183,3 +195,5 @@
      - 
      - ✓
      - ✓
+
+.. [#unified-topology] When using Node.js Driver version 3.7, you must set the ``useUnifiedTopology`` flag to ``true`` for certain features.
