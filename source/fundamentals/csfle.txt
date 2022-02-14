@@ -7,7 +7,7 @@ Client-Side Field Level Encryption
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 2
+   :depth: 1
    :class: singlecol
 
 Overview
@@ -92,7 +92,7 @@ available at University's GitHub
 
 To run this example, first complete the following steps:
 
-- Save `master-key.txt <https://github.com/mongodb-university/csfle-guides/raw/master/nodejs/master-key.txt>`__.
+- Save `master-key.txt <https://github.com/mongodb-university/csfle-guides/raw/master/nodejs/master-key.txt>`__
   to the same directory as this example code.
 - Start a ``mongod`` locally on the default port 27017.
 - Start a ``mongocryptd`` locally on the default port 27020.
