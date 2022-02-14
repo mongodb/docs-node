@@ -105,37 +105,51 @@ encryption with a local key using the Node.js driver, see MongoDB
 University's GitHub 
 `Node CSFLE Example <https://github.com/mongodb-university/csfle-guides/tree/master/nodejs>`__.
 
+To run this example, first do the following:
+
+- Save master-key.txt to the same directory as this example code.
+- Start a ``mongod`` locally on the default port 27017.
+- Start a ``mongocryptd`` locally on the default port 27020.
+
 .. code-block:: javascript
   
-  // Create a data key using a MongoDB client instance
-  async function createDataKeyWithMasterKey(client) {
-    const encryption = new ClientEncryption(client, {
-      keyVaultNamespace: "encryption.__keyVault",
-      kmsProviders: null, // required
-    });
-      
-    let dataKey = await encryption.createDataKey(this.provider, {
-      masterKey: null, // required
-    }).toString("base64");
+  const { MongoClient, Binary } = require("mongodb");
+  const { ClientEncryption } = require("mongodb-client-encryption");
+  const fs = require("fs");
   
-    return dataKey;
+  async function getRegularClient() {
+    const client = new MongoClient("mongodb://localhost:27017", { 
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    return await client.connect();
   }
   
-  // Create a JSON schema using your data key
+  async function getCsfleEnabledClient(schemaMap) {
+    const client = new MongoClient("mongodb://localhost:27017", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      autoEncryption: {
+        keyVaultNamespace: "encryption.__keyVault",
+        kmsProviders: {
+          local: {
+            key: fs.readFileSync("./master-key.txt"),
+          },
+        },
+        schemaMap,
+      },
+    });
+    return await client.connect();
+  }
+  
   function createJsonSchemaMap(dataKey) {
     return {
-      "medicalRecords.patients": {
+      "users.ssns": {
         bsonType: "object",
         encryptMetadata: {
           keyId: [new Binary(Buffer.from(dataKey, "base64"), 4)],
         },
         properties: {
-          medicalRecords: {
-            encrypt: {
-              bsonType: "array",
-              algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Random",
-            },
-          },
           ssn: {
             encrypt: {
               bsonType: "int",
@@ -144,20 +158,81 @@ University's GitHub
           },
         },
       },
-    }
-  };
+    };
+  }
   
-  // Create a CSFLE-enabled client using your JSON schema
-  async function createCsfleEnabledClient(schemaMap) {
-    const client = new MongoClient(this.connectionString, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      monitorCommands: true,
-      autoEncryption: {
-        keyVaultNamespace: "encryption.__keyVault",
-        kmsProviders: null, // required
-        schemaMap,
+  async function makeDataKey(client) {
+    const encryption = new ClientEncryption(client, {
+      keyVaultNamespace: "encryption.__keyVault",
+      kmsProviders: {
+        local: {
+          key: fs.readFileSync("./master-key.txt"),
+        },
       },
     });
-    return await client.connect();
+    
+    let dataKey = await encryption.createDataKey("local", {
+      masterKey: null,
+    });
+    
+    return dataKey.toString("base64");
   }
+  
+  async function run(regularClient, csfleClient) {
+    try {
+  
+      regularClient = await getRegularClient();
+  
+      let dataKey = await makeDataKey(regularClient);
+      console.log(
+        "New dataKey created for this run:\n",
+        dataKey
+      );
+  
+      const schemaMap = createJsonSchemaMap(dataKey);
+      
+      csfleClient = await getCsfleEnabledClient(schemaMap);
+  
+      const regularClientSsnsColl = regularClient
+        .db("users")
+        .collection("ssns");
+      const csfleClientSsnsColl = csfleClient
+        .db("users")
+        .collection("ssns");
+  
+      const exampleDocument = {
+        name: "Jon Doe",
+        ssn: 241014209,
+      };
+  
+      await csfleClientSsnsColl.updateOne(
+        { ssn: exampleDocument["ssn"] },
+        { $set: exampleDocument },
+        { upsert: true }
+      );
+  
+      const csfleFindResult = await csfleClientSsnsColl.findOne({
+        ssn: exampleDocument["ssn"],
+      });
+      console.log(
+        "Document retrieved with csfle enabled client:\n",
+        csfleFindResult
+      );
+  
+      const regularFindResult = await regularClientSsnsColl.findOne({
+        name: "Jon Doe",
+      });
+      console.log(
+        "Document retrieved with regular client:\n", 
+        regularFindResult
+      );
+  
+    } finally {
+      if (regularClient) await regularClient.close();
+      if (csfleClient) await csfleClient.close();
+    }
+  }
+  
+  let regularClient = null;
+  let csfleClient = null;
+  run(regularClient, csfleClient).catch(console.dir);
