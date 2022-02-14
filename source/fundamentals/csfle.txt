@@ -36,11 +36,10 @@ documentation. For a real-world scenario and implementation, see our
 Installation
 ------------
 
-To get started with CSFLE in your client application, you need
+To get started with CSFLE in your client application, you need:
 
 - the MongoDB Node.js driver
 - `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption>`__
-- `uuid-base64 <https://www.npmjs.com/package/uuid-base64#installation>`__
 - ``mongocryptd`` if using automatic encryption (Enterprise or Atlas)
 
 ``mongodb-client-encryption``
@@ -73,9 +72,19 @@ Example
 -------
 
 The following example shows how to configure a CSFLE-enabled client 
-with a local key and a JSON schema. Values in the ``ssn` field are 
+with a local key and a JSON schema. Values in the ``ssn`` field are 
 automatically encrypted before insertion, and decrypted when calling 
 ``find()`` with a CSFLE-enabled client.
+
+.. warning::
+
+   MongoDB recommends using local key management only for testing 
+   purposes, and using a remote key management service
+   for production.
+
+An expanded example with support for remote key management services is 
+available at University's GitHub 
+`Node CSFLE Example <https://github.com/mongodb-university/csfle-guides/tree/master/nodejs>`__.
 
 .. note::
    
@@ -213,13 +222,3 @@ To run this example, first complete the following steps:
    let regularClient = null;
    let csfleClient = null;
    run(regularClient, csfleClient).catch(console.dir);
-
-.. warning::
-
-   MongoDB recommends using local key management only for testing 
-   purposes, and using a remote key management service
-   for production.
-
-An expanded example with support for remote key management services is 
-available at University's GitHub 
-`Node CSFLE Example <https://github.com/mongodb-university/csfle-guides/tree/master/nodejs>`__.
