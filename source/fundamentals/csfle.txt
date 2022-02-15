@@ -83,7 +83,7 @@ automatically encrypted before insertion, and decrypted when calling
    for production.
 
 An expanded example with support for remote key management services is 
-available at University's GitHub 
+available at MongoDB University's GitHub 
 `Node CSFLE Example <https://github.com/mongodb-university/csfle-guides/tree/master/nodejs>`__.
 
 .. note::
