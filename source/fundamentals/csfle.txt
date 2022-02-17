@@ -101,7 +101,7 @@ To run this example, first complete the following steps:
   
    const { MongoClient, Binary } = require("mongodb");
    const { ClientEncryption } = require("mongodb-client-encryption");
-   const fs = require("fs");
+   const fs = require("fs/promises");
    
    async function getRegularClient() {
      const client = new MongoClient("mongodb://localhost:27017", { 
