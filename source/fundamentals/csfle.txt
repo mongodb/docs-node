@@ -110,13 +110,11 @@ To run this example, first complete the following steps:
    
    async function getCsfleEnabledClient(schemaMap) {
      const client = new MongoClient("mongodb://localhost:27017", {
-       useNewUrlParser: true,
-       useUnifiedTopology: true,
        autoEncryption: {
          keyVaultNamespace: "encryption.__keyVault",
          kmsProviders: {
            local: {
-             key: fs.readFileSync("./master-key.txt"),
+             key: await fs.readFile("./master-key.txt"),
            },
          },
          schemaMap,
