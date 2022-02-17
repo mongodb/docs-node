@@ -104,10 +104,7 @@ To run this example, first complete the following steps:
    const fs = require("fs/promises");
    
    async function getRegularClient() {
-     const client = new MongoClient("mongodb://localhost:27017", { 
-       useNewUrlParser: true,
-       useUnifiedTopology: true,
-     });
+     const client = new MongoClient("mongodb://localhost:27017");
      return await client.connect();
    }
    
