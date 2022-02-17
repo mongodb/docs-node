@@ -147,7 +147,7 @@ To run this example, first complete the following steps:
        keyVaultNamespace: "encryption.__keyVault",
        kmsProviders: {
          local: {
-           key: fs.readFileSync("./master-key.txt"),
+           key: await fs.readFile("./master-key.txt"),
          },
        },
      });
