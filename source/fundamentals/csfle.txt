@@ -214,6 +214,7 @@ To run this example, first complete the following steps:
      }
    }
    
-   let regularClient = null;
-   let csfleClient = null;
-   run(regularClient, csfleClient).catch(console.dir);
+   run().catch(error => {
+     console.dir(error);
+     process.exit(1);
+   });
