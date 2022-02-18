@@ -193,7 +193,7 @@ To run this example, first complete the following steps:
        );
    
        const csfleFindResult = await csfleClientSsnsColl.findOne({
-         ssn: exampleDocument["ssn"],
+         ssn: exampleDocument.ssn,
        });
        console.log(
          "Document retrieved with csfle enabled client:\n",
