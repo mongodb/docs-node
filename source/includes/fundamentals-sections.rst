@@ -16,8 +16,3 @@ Fundamentals section:
 - :doc:`Encrypt Fields from the Client </fundamentals/csfle>`
 - :doc:`Create and Query Time Series Collection </fundamentals/time-series>`
 - :doc:`Specify Type Parameters with TypeScript </fundamentals/typescript>`
-<<<<<<< HEAD
-
-=======
-- :doc:`Specify UTF-8 Validation Settings </fundamentals/utf8-validation>`
->>>>>>> 91dc1b9 ((DOCSP-18745) Node CSFLE fundementals (#277))
