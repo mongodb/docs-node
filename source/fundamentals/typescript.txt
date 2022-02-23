@@ -142,6 +142,71 @@ section.
 
 .. _node-driver-limitations:
 
+
+Type Safety and the _id Field
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+How you specify the ``_id`` field in your document schema affects the behavior
+of insert operations.
+
+The following table describes how different ``_id`` field specifications effect
+insert operations:
+
+.. list-table::
+   :header-rows: 1
+   :widths: 33 33 34
+
+   * - ``_id`` field type
+     - Required on insert
+     - Behavior on insert
+
+   * - | Unspecified
+     - | No
+     - | The driver uses the default ObjectId on inserts.
+
+   * - | Specified
+     - | Yes
+     - | If you do not specify a value for the ``_id`` field on insert operations,
+         the driver raises an error.
+
+   * - | Specified as Optional
+     - | No
+     - | You do not need to specify the value for the ``_id`` field on insert
+         operations, but you must specify a **primary key factory** method on your
+         ``MongoClient`` or ``Collection`` instance.
+       | A primary key factory is a class that defines a system for creating
+         unique identifiers for documents and implements the ``PkFactory``
+         interface.
+
+If want to specify the ``_id`` field in your schema as required but
+insert documents into MongoDB without specifying a value for the ``_id``
+field, you can wrap your document schema in the ``OptionalId`` type.
+
+The following code snippet defines the ``IdPet`` interface, which
+includes a type for the ``_id`` field:
+
+.. code-block:: typescript
+
+   interface IdPet {
+     _id: ObjectId;
+     name: string;
+     age: number;
+   }
+
+The following code uses the preceding interface along with the
+``OptionalId`` type to insert a document without specifying a value for the
+``_id`` field:
+
+.. code-block:: typescript
+
+   const database = client.db("<your database>");
+   const collection = db.collection<OptionalId<Test>>("<your collection>");
+   
+   collection.insertOne({
+     name: Spot,
+     age: 2
+   });
+
 Known Limitations
 -----------------
 
