@@ -143,8 +143,8 @@ section.
 .. _node-driver-limitations:
 
 
-Type Safety and the _id Field
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Inserts and the _id Field
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 How you specify the ``_id`` field in type parameters passed to your
 ``Collection`` instance effects the behavior
