@@ -146,15 +146,13 @@ section.
 Type Safety and the _id Field
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-How you specify the ``_id`` field in your document schema affects the behavior
-of insert operations.
-
-The following table describes how different ``_id`` field specifications effect
-insert operations:
+How you specify the ``_id`` field in type parameters affects the behavior
+of insert operations. The following table describes how different
+``_id`` field specifications effect insert operations:
 
 .. list-table::
    :header-rows: 1
-   :widths: 33 33 34
+   :widths: 30 20 50
 
    * - ``_id`` field type
      - Required on insert
@@ -162,14 +160,16 @@ insert operations:
 
    * - | Unspecified
      - | No
-     - | The driver uses the default ObjectId on inserts.
+     - | The driver creates an 
+         :manual:`ObjectId </reference/method/ObjectId/>`
+         value for each inserted document.
 
    * - | Specified
      - | Yes
      - | If you do not specify a value for the ``_id`` field on insert operations,
          the driver raises an error.
 
-   * - | Specified as Optional
+   * - | Specified as optional
      - | No
      - | You do not need to specify the value for the ``_id`` field on insert
          operations, but you must specify a **primary key factory** method on your
@@ -178,7 +178,7 @@ insert operations:
          unique identifiers for documents and implements the ``PkFactory``
          interface.
 
-If want to specify the ``_id`` field in your schema as required but
+If you want to specify the ``_id`` field in your schema as required but
 insert documents into MongoDB without specifying a value for the ``_id``
 field, you can wrap your document schema in the ``OptionalId`` type.
 
@@ -206,6 +206,13 @@ The following code uses the preceding interface along with the
      name: Spot,
      age: 2
    });
+
+To learn more about the types, interfaces, and classes discussed in this section, see the
+following resources:
+
+- `OptionalId <{+api+}/modules.html#OptionalId/>`__ API documentation
+- `PkFactory <{+api+}/interfaces/PkFactory.html>`__ API documentation
+- :github:`ObjectId <mongodb/js-bson/blob/master/src/objectid.ts>` source code
 
 Known Limitations
 -----------------
