@@ -146,7 +146,7 @@ section.
 Type Safety and the _id Field
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-How you specify the ``_id`` field in type parameters passed to your or
+How you specify the ``_id`` field in type parameters passed to your
 ``Collection`` instance effects the behavior
 of insert operations. The following table describes how different
 ``_id`` field specifications effect insert operations:
@@ -156,7 +156,7 @@ of insert operations. The following table describes how different
    :widths: 20 20 20 40
 
    * - ``_id`` field type
-     - Example
+     - Example Type
      - Required on insert
      - Behavior on insert
 
@@ -168,13 +168,13 @@ of insert operations. The following table describes how different
          value for each inserted document.
 
    * - | Specified
-     - | ``_id: number;`` 
+     - | ``{ _id: number };`` 
      - | Yes
      - | If you do not specify a value for the ``_id`` field on insert operations,
          the driver raises an error.
 
    * - | Specified as optional
-     - | ``_id?: number;``
+     - | ``{ _id?: number };``
      - | No
      - | You do not need to specify the value for the ``_id`` field on insert
          operations, but you must specify a **primary key factory** method on your
@@ -183,9 +183,11 @@ of insert operations. The following table describes how different
          unique identifiers for documents and implements the ``PkFactory``
          interface.
 
-If you want to specify the ``_id`` field in your schema as required but
-insert documents into MongoDB without specifying a value for the ``_id``
-field, you can wrap your document schema in the ``OptionalId`` type.
+If you must specify the ``_id`` field in the type you define to represent
+documents in your collection but you do not want to specify values for the
+``_id`` field in insert operations, use the ``OptionalId`` type. The
+``OptionalId`` type accepts a type parameter as an argument and returns
+that type with an optional ``_id`` field.
 
 The following code snippet defines the ``IdPet`` interface, which
 includes a type for the ``_id`` field:
@@ -211,6 +213,10 @@ The following code uses the preceding interface along with the
      name: Spot,
      age: 2
    });
+
+To learn more about the ``_id`` field, see
+:manual:`The _id Field </core/document/#the-_id-field>` in the MongoDB
+manual.
 
 To learn more about the types, interfaces, and classes discussed in this section, see the
 following resources:
