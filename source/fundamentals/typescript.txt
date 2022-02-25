@@ -171,7 +171,7 @@ a document with an ``_id`` of type ``ObjectId``:
    const id : ObjectId = document._id;
 
 The following code uses the ``IdNumberPet`` interface to return a
-document with an ``_id`` field of type number:
+document with an ``_id`` field of type ``number``:
 
 .. code-block:: typescript
 
