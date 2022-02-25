@@ -209,8 +209,8 @@ of insert operations. The following table describes how different
 
    .. code-block:: typescript
 
-      collection.insertOne({_id:1, name: Scar})
-      collection.insertOne({name: Ursula})
+      collection.insertOne({ _id: 1, name: Scar });
+      collection.insertOne({ name: Ursula });
 
    To ensure that your data is consistent, apply a primary key factory to
    your ``MongoClient`` instance like this:
@@ -229,8 +229,6 @@ that type with an optional ``_id`` field.
 
 The following code snippet defines the ``IdPet`` interface, which
 includes a type for the ``_id`` field:
-
-.. _mongodb-node-ts-id-pet:
 
 .. code-block:: typescript
 
@@ -280,13 +278,13 @@ If the type parameter passed to your ``Collection`` instance does not include th
 field, the driver gives the ``_id`` field in the values returned from the find methods
 the type ``ObjectId``.
 
-The following code uses the :ref:`IdPet interface <mongodb-node-ts-id-pet>` to return
+The following code uses the :ref:`Pet interface <mongodb-node-ts-id-pet>` to return
 a document with an ``_id`` of type ``ObjectId``:
 
 .. code-block:: typescript
 
    const database = client.db("<your database>");
-   const collection = db.collection<IdPet>("<your collection>");
+   const collection = db.collection<Pet>("<your collection>");
    
    const document = await collection.findOne({
      name: Spot,
