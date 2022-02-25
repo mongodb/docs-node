@@ -143,8 +143,8 @@ section.
 .. _node-driver-limitations:
 
 
-Inserts and the _id Field
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Insert Operations and the _id Field
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 How you specify the ``_id`` field in type parameters passed to your
 ``Collection`` instance effects the behavior
@@ -185,13 +185,13 @@ of insert operations. The following table describes how different
        | The default primary key factory generates ``_id`` values of type
          ``ObjectId``.
 
-.. important:: Data Consistency and Optional _id Fields
+.. important:: Data Consistency and Optional _id Types
 
    If you do not specify a primary key factory method that generates
    ``_id`` values of your desired type, you may experience data inconsistency.
    This occurs because the driver's default primary factory method generates
-   ``_id`` values of ``ObjectId`` regardless of the type specified for ``_id``
-   in your type parameter.
+   ``_id`` values of ``ObjectId`` regardless of the type specified for the 
+   ``_id`` field in your type parameter.
 
    To show this behavior, assume you apply the following interface to
    your ``Collection`` instance:
@@ -230,6 +230,8 @@ that type with an optional ``_id`` field.
 The following code snippet defines the ``IdPet`` interface, which
 includes a type for the ``_id`` field:
 
+.. _mongodb-node-ts-id-pet:
+
 .. code-block:: typescript
 
    interface IdPet {
@@ -262,6 +264,57 @@ following resources:
 - `OptionalId <{+api+}/modules.html#OptionalId/>`__ API documentation
 - `PkFactory <{+api+}/interfaces/PkFactory.html>`__ API documentation
 - :github:`ObjectId <mongodb/js-bson/blob/master/src/objectid.ts>` source code
+
+Find Methods and the _id Field
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As the ``_id`` field is present in all documents returned from the ``find``
+and ``findOne`` methods, the return type of these methods always includes
+the ``_id`` field.
+
+If the type parameter passed to your ``Collection`` instance includes the
+``_id`` field, the return type of your find method is the same as the type of the ``_id``
+field in your type parameter.
+
+If the type parameter passed to your ``Collection`` instance does not include the ``_id``
+field, the ``_id`` field is given the type ``ObjectId``.
+
+The following code uses the :ref:`IdPet interface <mongodb-node-ts-id-pet>` to return
+a document with an ``_id`` of type ``ObjectId``:
+
+.. code-block:: typescript
+
+   const database = client.db("<your database>");
+   const collection = db.collection<IdPet>("<your collection>");
+   
+   const document = await collection.findOne({
+     name: Spot,
+   });
+   const id : ObjectId = document._id;
+
+Now, take a look at the ``IdNumberPet`` interface:
+
+.. code-block:: typescript
+
+   interface IdNumberPet {
+     _id: number;
+     name: string;
+     age: number;
+   }
+
+The following code uses the preceding interface to return a document with an ``_id`` field
+of type number:
+
+.. code-block:: typescript
+
+   const database = client.db("<your database>");
+   const collection = db.collection<IdNumberPet>("<your collection>");
+
+   const document = await collection.findOne({
+     name: Spot,
+   });
+   const id : number = document._id;
+
 
 Known Limitations
 -----------------
