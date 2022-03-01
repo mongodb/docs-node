@@ -147,9 +147,9 @@ Insert Operations and the _id Field
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 How you specify the ``_id`` field in type parameters passed to your
-``Collection`` instance effects the behavior
+``Collection`` instance affects the behavior
 of insert operations. The following table describes how different
-``_id`` field specifications effect insert operations:
+``_id`` field specifications affect insert operations:
 
 .. list-table::
    :header-rows: 1
@@ -190,7 +190,7 @@ of insert operations. The following table describes how different
    If you do not specify a primary key factory method that generates
    ``_id`` values of your desired type, you may experience data inconsistency.
    This occurs because the driver's default primary factory method generates
-   ``_id`` values of type ``ObjectId`` regardless of the type specified for the 
+   ``_id`` values of type ``ObjectId`` regardless of the type you specify for the 
    ``_id`` field in your type parameter.
 
    To show this behavior, assume you apply the following interface to
@@ -209,8 +209,8 @@ of insert operations. The following table describes how different
 
    .. code-block:: typescript
 
-      collection.insertOne({ _id: 1, name: Scar });
-      collection.insertOne({ name: Ursula });
+      collection.insertOne({ _id: 1, name: "Scar" });
+      collection.insertOne({ name: "Ursula" });
 
    To ensure that your data is consistent, apply a primary key factory to
    your ``MongoClient`` instance like this:
