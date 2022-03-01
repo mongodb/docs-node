@@ -199,7 +199,7 @@ of insert operations. The following table describes how different
    .. code-block:: typescript
 
       interface I {
-        _id: number;
+        _id?: number;
         name: string;
       } 
 
