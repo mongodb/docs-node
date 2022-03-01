@@ -259,7 +259,7 @@ manual.
 To learn more about the types, interfaces, and classes discussed in this section, see the
 following resources:
 
-- `OptionalId <{+api+}/modules.html#OptionalId/>`__ API documentation
+- `OptionalId <{+api+}/modules.html#OptionalId>`__ API documentation
 - `PkFactory <{+api+}/interfaces/PkFactory.html>`__ API documentation
 - :github:`ObjectId <mongodb/js-bson/blob/master/src/objectid.ts>` source code
 
