@@ -157,7 +157,7 @@ If the type parameter passed to your ``Collection`` instance does not include th
 field, the driver gives the ``_id`` field in the values returned from the find methods
 the type ``ObjectId``.
 
-The following code uses the :ref:`Pet interface <mongodb-node-ts-id-pet>` to return
+The following code uses the :ref:`Pet <mongodb-node-typescript-pet-interface>` interface to return
 a document with an ``_id`` of type ``ObjectId``:
 
 .. code-block:: typescript
@@ -166,7 +166,7 @@ a document with an ``_id`` of type ``ObjectId``:
    const collection = db.collection<Pet>("<your collection>");
    
    const document = await collection.findOne({
-     name: Spot,
+     name: "Spot",
    });
    const id : ObjectId = document._id;
 
@@ -185,13 +185,14 @@ document with an ``_id`` field of type ``number``:
    const collection = db.collection<IdNumberPet>("<your collection>");
 
    const document = await collection.findOne({
-     name: Spot,
+     name: "Spot",
    });
    const id : number = document._id;
 
-To learn more about the methods discussed in this section, see the following
+To learn more about the classes and methods discussed in this section, see the following
 API documentation:
 
+- `Collection <{+api+}/classes/Collection.html>`__
 - `find <{+api+}/classes/Collection.html#find>`__
 - `findOne <{+api+}/classes/Collection.html#findOne>`__
 
