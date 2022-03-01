@@ -185,6 +185,37 @@ of insert operations. The following table describes how different
        | The default primary key factory generates ``_id`` values of type
          ``ObjectId``.
 
+If you must specify the ``_id`` field as required in the type you define to represent
+documents in your collection but you do not want to specify values for the
+``_id`` field in insert operations, use the ``OptionalId`` type. The
+``OptionalId`` type accepts a type parameter as an argument and returns
+that type with an optional ``_id`` field.
+
+The following code snippet defines the ``IdPet`` interface, which
+includes a type for the ``_id`` field:
+
+.. code-block:: typescript
+
+   interface IdPet {
+     _id: ObjectId;
+     name: string;
+     age: number;
+   }
+
+The following code uses the preceding interface along with the
+``OptionalId`` type to insert a document without specifying a value for the
+``_id`` field:
+
+.. code-block:: typescript
+
+   const database = client.db("<your database>");
+   const collection = db.collection<OptionalId<IdPet>>("<your collection>");
+   
+   collection.insertOne({
+     name: Spot,
+     age: 2
+   });
+
 .. important:: Data Consistency and Optional _id Types
 
    If you do not specify a primary key factory method that generates
@@ -220,37 +251,6 @@ of insert operations. The following table describes how different
       const client = new MongoClient(uri, {
         pkFactory: { createPk: () => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) },
       });
-
-If you must specify the ``_id`` field as required in the type you define to represent
-documents in your collection but you do not want to specify values for the
-``_id`` field in insert operations, use the ``OptionalId`` type. The
-``OptionalId`` type accepts a type parameter as an argument and returns
-that type with an optional ``_id`` field.
-
-The following code snippet defines the ``IdPet`` interface, which
-includes a type for the ``_id`` field:
-
-.. code-block:: typescript
-
-   interface IdPet {
-     _id: ObjectId;
-     name: string;
-     age: number;
-   }
-
-The following code uses the preceding interface along with the
-``OptionalId`` type to insert a document without specifying a value for the
-``_id`` field:
-
-.. code-block:: typescript
-
-   const database = client.db("<your database>");
-   const collection = db.collection<OptionalId<IdPet>>("<your collection>");
-   
-   collection.insertOne({
-     name: Spot,
-     age: 2
-   });
 
 To learn more about the ``_id`` field, see
 :manual:`The _id Field </core/document/#the-_id-field>` in the MongoDB
