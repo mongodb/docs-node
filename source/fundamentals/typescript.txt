@@ -145,8 +145,8 @@ section.
 Find Methods and the _id Field
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As the ``_id`` field is present in all documents stored in MongoDB, the ``find``
-and ``findOne`` methods always include the ``_id`` field in their return type.
+The ``find`` and ``findOne`` methods always include the ``_id`` field in their
+return type.
 
 If the type parameter you passed to your ``Collection`` instance includes the
 ``_id`` field, the type of the ``_id`` field in the values returned from the 
@@ -188,6 +188,21 @@ document with an ``_id`` field of type ``number``:
      name: "Spot",
    });
    const id : number = document._id;
+
+.. important:: Projection
+
+   If you specify a projection that removes the ``_id`` field in a find method,
+   you must manually ensure that you do not reference the ``_id`` field of values
+   returned by that method. TypeScript cannot check at compile time that a referenced
+   ``_id`` field was excluded with a projection.
+
+   To show this behavior, the following code snippet passes type checking but
+   raises an error at runtime:
+
+   .. code-block:: typescript
+
+      const doc = await collection.findOne({}, { projection: { _id: 0 } });
+      console.log(doc._id.generationTime); 
 
 To learn more about the classes and methods discussed in this section, see the following
 API documentation:
