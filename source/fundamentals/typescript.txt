@@ -206,7 +206,7 @@ document with an ``_id`` field of type ``number``:
         {},
         { projection: { _id: 0, name: 1 } }
       );
-      console.log(doc._id.generationTime); 
+      console.log(doc._id.generationTime);
 
    To catch this error at compile time, pass a type parameter that does not include
    the ``_id`` field to your find method:
@@ -222,7 +222,12 @@ document with an ``_id`` field of type ``number``:
         { projection: { _id: 0, name: 1 } }
       );
       // Compile time error: Property '_id' does not exist
-      console.log(doc._id.generationTime); 
+      console.log(doc._id.generationTime);
+   
+   To view a runnable TypeScript example that includes a find method applying a
+   projection, see the
+   :ref:`Find a Document <node-driver-findone-usage-example-code-snippet>` page.
+
 
 To learn more about the classes and methods discussed in this section, see the following
 API documentation:
