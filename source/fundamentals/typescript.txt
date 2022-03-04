@@ -221,7 +221,7 @@ document with an ``_id`` field of type ``number``:
         {},
         { projection: { _id: 0, name: 1 } }
       );
-      // Compile time error: Property '_id' does not exist
+      // Compile time error: Property '_id' does not exist on type 'ProjectedDocument'.
       console.log(doc._id.generationTime);
    
    To view a runnable TypeScript example that includes a find method applying a
