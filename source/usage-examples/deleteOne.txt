@@ -6,10 +6,10 @@ Delete a Document
 
 .. note::
    If you specify a callback method, ``deleteOne()`` returns nothing. If you
-   not specify one, this method returns a ``Promise`` that resolves to the
+   do not specify one, this method returns a ``Promise`` that resolves to the
    result object when it completes. See our guide on :doc:`Promises and
    Callbacks </fundamentals/promises>` for more information, or the
-   :node-api:`API documentation <Collection.html#~deleteWriteOpResult>` for
+   :node-api-3.6:`API documentation <Collection.html#~deleteWriteOpResult>` for
    information on the result object.
 
 You can delete a single document in a collection with
@@ -23,16 +23,16 @@ deletes the first match.
 You can specify additional query options using the
 ``options`` object passed as the second parameter of the
 ``deleteOne`` method. You can also pass a
-:node-api:`callback method <Collection.html#~deleteWriteOpCallback>`
+:node-api-3.6:`callback method <Collection.html#~deleteWriteOpCallback>`
 as an optional third parameter. For more information on this method,
 see the
-:node-api:`deleteOne() API documentation <Collection.html#deleteOne>`.
+:node-api-3.6:`deleteOne() API documentation <Collection.html#deleteOne>`.
 
 .. note::
 
   If your application requires the deleted document after deletion,
   consider using the
-  :node-api:`collection.findOneAndDelete()
+  :node-api-3.6:`collection.findOneAndDelete()
   <Collection.html#findOneAndDelete>`.
   method, which has a similar interface to ``deleteOne()`` but also
   returns the deleted document.
@@ -42,9 +42,25 @@ Example
 
 The following snippet deletes a single document from the ``movies``
 collection. It uses a **query document** that configures the query
-to match only movies with a title of type ``string``.
+to match movies with a ``title`` value of "Annie Hall".
 
 .. include:: /includes/connect-guide-note.rst
 
 .. literalinclude:: /code-snippets/usage-examples/deleteOne.js
   :language: javascript
+
+If you run the example, you should see output that resembles the following:
+
+.. code-block:: none
+   :copyable: false
+
+   Successfully deleted one document.
+
+Because you already deleted the matched document for the query filter,
+if you attempt to run the example again you should see output that resembles
+the following:
+
+.. code-block:: none
+   :copyable: false
+
+   No documents matched the query. Deleted 0 documents.

@@ -4,6 +4,15 @@ Limit the Number of Returned Results
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
 Use ``limit`` to cap the number of documents that can be returned from a
 read operation. ``limit`` functions as a cap on the maximum number of
 documents that the operation can return, but the operation can return
@@ -13,12 +22,15 @@ to reach the limit. If ``limit`` is used with the
 first and the limit only applies to the documents left over after
 the skip.
 
+Sample Documents
+~~~~~~~~~~~~~~~~
+
 Follow the instructions in the examples below to insert data into
 a collection and return only certain results from a query using a sort,
 a skip, and a limit. Consider the following collection of documents that
 describe books:
 
-.. code-block:: javascript
+.. code-block:: json
 
    [
      { "_id": 1, "name": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 },
@@ -28,6 +40,11 @@ describe books:
      { "_id": 5, "name": "Cryptonomicon", "author": "Stephenson", "length": 918 },
      { "_id": 6, "name": "A Dance With Dragons", "author": "Tolkein", "length": 1104 },
    ]
+
+.. include:: /includes/access-cursor-note.rst
+
+Limit
+-----
 
 The following example queries the collection to return the top three
 longest books. It matches all the documents with the query, applies
@@ -48,7 +65,8 @@ books, and applies a ``limit`` to return only ``3`` results:
 The code example above outputs the following three documents, sorted by
 length:
 
-.. code-block:: javascript
+.. code-block:: json
+   :copyable: false
 
    { "_id": 2, "title": "Les Misérables", "author": "Hugo", "length": 1462 }
    { "_id": 6, "title": "A Dance With Dragons", "author": "Martin", "length": 1104 }
@@ -76,7 +94,10 @@ calls are equivalent:
 
 For more information on the ``options`` settings for the ``find()``
 method, see the
-:node-api:`API documentation on find() <Collection.html#find>`.
+:node-api-3.6:`API documentation on find() <Collection.html#find>`.
+
+Skip
+----
 
 To see the next three books in the results, append the ``skip()`` method,
 passing the number of documents to bypass as shown below:
@@ -96,8 +117,9 @@ passing the number of documents to bypass as shown below:
 This operation returns the documents that describe the fourth through sixth
 books in order of longest-to-shortest length:
 
-.. code-block:: javascript
-
+.. code-block:: json
+   :copyable: false
+   
    { "_id": 3, "title": "Atlas Shrugged", "author": "Rand", "length": 1088 }
    { "_id": 5, "title": "Cryptonomicon", "author": "Stephenson", "length": 918 }
    { "_id": 1, "title": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 }

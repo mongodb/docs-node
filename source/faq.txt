@@ -17,6 +17,7 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
 -------------------------------------------------------------------------------------
 
 .. list-table::
+   :widths: 22 78
    :header-rows: 1
 
    * - Setting
@@ -28,7 +29,7 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
 
        .. tip::
 
-          To modify the allowed time for :node-api:`MongoClient.connect <MongoClient.html#.connect>` to establish a
+          To modify the allowed time for :node-api-3.6:`MongoClient.connect <MongoClient.html#.connect>` to establish a
           connection to a MongoDB server, use the ``serverSelectionTimeoutMS`` option instead.
 
        **Default:** 10000
@@ -38,22 +39,25 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
        never time out the socket. This option applies only to sockets that
        have already been connected.
    * - maxTimeMS
-     - :node-api:`maxTimeMS </Cursor.html#maxTimeMS>` is the maximum
+     - :node-api-3.6:`maxTimeMS <Cursor.html#maxTimeMS>` is the maximum
        amount of time the server should wait for an operation to complete
        after it has reached the server. If an operation runs over the
        specified time limit, it returns a timeout error.
 
 To specify the optional settings for your ``MongoClient``, declare one or
-more of them in the ``options`` object of the constructor as follows:
+more available settings in the ``options`` object of the constructor as
+follows: 
 
 .. code-block:: javascript
 
    const client = new MongoClient(uri, {
      connectTimeoutMS: <integer value>,
-     socketTimeoutMS: <integer value>,
-     maxTimeMS: <integer value>,
+     socketTimeoutMS: <integer value>
    });
 
+To see all the available settings, see the
+:node-api-3.6:`MongoClientOptions <global.html#MongoClientOptions>` API
+Documentation.  
 
 How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?
 -------------------------------------------------------------------------------------------------------------------------------

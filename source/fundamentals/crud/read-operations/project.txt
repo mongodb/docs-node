@@ -4,6 +4,15 @@ Specify Which Fields to Return
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
 Use a projection to control which fields appear in the documents
 returned by read operations. Many requests only require certain fields,
 so projections can help you limit unnecessary network bandwidth usage.
@@ -19,10 +28,13 @@ These two methods of projection are mutually exclusive: if you
 explicitly include fields, you cannot explicitly exclude fields, and
 vice versa.
 
+Sample Documents
+~~~~~~~~~~~~~~~~
+
 Consider the following collection containing documents that describe
 varieties of fruit:
 
-.. code-block:: javascript
+.. code-block:: json
 
    [
      { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
@@ -30,6 +42,11 @@ varieties of fruit:
      { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },
      { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
    ]
+
+.. include:: /includes/access-cursor-note.rst
+
+Single Field
+------------
 
 In the following query, pass the projection to only return the ``name``
 field of each document:
@@ -49,7 +66,8 @@ excludes the ``qty`` and ``rating`` fields. Passing this projection to
 ``find()`` with an empty query document and no sort document yields
 the following results:
 
-.. code-block:: javascript
+.. code-block:: json
+   :copyable: false
 
    { "_id": 1, "name": "apples" }
    { "_id": 2, "name": "bananas" }
@@ -86,12 +104,16 @@ excludes the ``qty`` and ``rating`` fields. Passing this projection to
 ``find()`` with an empty query document and no sort document yields
 the following results:
 
-.. code-block:: javascript
+.. code-block:: json
+   :copyable: false
 
    { "name": "apples" }
    { "name": "bananas" }
    { "name": "oranges" }
    { "name": "avocados" }
+
+Multiple Fields
+---------------
 
 You can also specify multiple fields to include in your projection. Note: the
 order in which you specify the fields in the projection does not alter the
@@ -106,7 +128,8 @@ order in which they are returned.
 This example that identifies two fields to include in the projection yields
 the following results:
 
-.. code-block:: javascript
+.. code-block:: json
+   :copyable: false
 
      { "name": "apples", "rating": 3 }
      { "name": "bananas", "rating": 1 }
