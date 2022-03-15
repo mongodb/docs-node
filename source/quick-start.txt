@@ -28,66 +28,96 @@ instance.
 Set up Your Project
 -------------------
 
-Install Node and NPM
+Install Node and npm
 ~~~~~~~~~~~~~~~~~~~~
 
-Ensure your system has Node.js version 10 or later and a compatible
-version of NPM (Node Package Manager) installed. For more information on how
-to check your version of Node and NPM and installation instructions for your
-system, see `downloading and installing Node.js and npm
+Ensure your system has Node.js version 12 or later and a compatible
+version of npm (Node Package Manager) installed. For information on how
+to check your version of Node and npm, as well as installation
+instructions, see `downloading and installing Node.js and npm
 <https://docs.npmjs.com/downloading-and-installing-node-js-and-npm>`_.
 
-Initialize the Project
-~~~~~~~~~~~~~~~~~~~~~~
+Select the :guilabel:`Clone the Project` tab if you want to build your
+project from a premade dependency file or the :guilabel:`Create the Project`
+tab if you want to create the project dependency file yourself.
 
-After you verify that you installed the required versions of Node and NPM,
-create a new project.
+.. tabs::
 
-First, create a directory for your project in your command line interface:
+   .. tab:: Clone the Project
+      :tabid: clone the project
 
-.. code-block:: none
+      First, ensure you have Git installed in your development
+      environment or otherwise install it using `Git's Getting Started Guide
+      <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__.
 
-   mkdir node_quickstart
+      Then, from your shell, clone the `js-starter repository
+      <https://github.com/mongodb-university/js-starter>`__:
 
-Then, navigate into that directory so you can work directly with your
-project's files:
+      .. code-block:: bash
 
-.. code-block:: none
+         git clone --branch v{+version+} https://github.com/mongodb-university/js-starter.git
 
-   cd node_quickstart
+      Next, navigate into the repository:
 
-Next, set up NPM for your project by running the following command.
-This command creates a file called ``package.json``:
+      .. code-block:: bash
 
-.. code-block:: none
+         cd js-starter
 
-   npm init -y
+      Then, install the Node.js driver:
 
-.. note:: Why the -y?
+      .. code-block:: bash
 
-   If you specify the ``-y`` option in the command, NPM automatically
-   accepts the default values for the command. Omit the ``-y`` flag to
-   interactively select your project settings.
+         npm install
 
-Add MongoDB as a Dependency
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      This command performs the following actions:
 
-Next, add the official Node.js MongoDB driver to your project dependencies.
-Use the following command to instruct NPM to download and install the
-``mongodb`` package.
+      - Downloads and saves the ``mongodb`` package in a directory
+        called ``node_modules``
+      - Installs ``eslint``, which the project uses to identify and
+        report issues in your code
+      - Installs ``prettier``, which the project uses to format your code
 
-.. code-block:: none
+   .. tab:: Create the Project
+      :tabid: create the project
 
-   npm install mongodb
+      First, in your shell, create a directory for your project:
 
-This command downloads ``mongodb`` package and dependencies required for its
-installation and saves them into a directory called ``node_modules`` in
-your project directory, and records the dependency information in the
-``package.json`` file you generated in the previous step.
+      .. code-block:: bash
 
-At this point, you should have appropriate versions of Node.js and NPM
-installed as well as a project directory that contains the dependencies you
-need to use the Node.js MongoDB driver.
+         mkdir node_quickstart
+
+      Then, navigate into that directory:
+
+      .. code-block:: bash
+
+         cd node_quickstart
+
+      Next, initialize your project:
+
+      .. code-block:: bash
+
+         npm init -y
+
+      .. tip:: Why the -y?
+
+         If you specify the ``-y`` option in the command, npm uses the
+         default values for your project settings. If you want to
+         interactively select your project settings, omit the ``-y`` flag.
+
+      Then, install the Node.js driver:
+
+      .. code-block:: bash
+
+         npm install mongodb@{+version+}
+
+      This command performs the following actions:
+
+      - Downloads the ``mongodb`` package and the dependencies it requires
+      - Saves the package in the ``node_modules`` directory
+      - Records the dependency information in the ``package.json`` file
+
+At this point, you are ready to use the MongoDB Node.js driver with your
+application.
 
 Create a MongoDB Cluster
 ------------------------
@@ -95,7 +125,7 @@ Create a MongoDB Cluster
 Set up a Free Tier Cluster in Atlas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After installing the Node MongoDB driver, create a MongoDB instance to store
+After installing the MongoDB Node.js driver, create a MongoDB instance to store
 and manage your data. Complete the
 :atlas:`Get Started with Atlas </getting-started?tck=docs_driver_nodejs>` guide
 to set up a new Atlas account and a free tier cluster (MongoDB instance).
@@ -109,7 +139,7 @@ into your cluster.
 Connect to your Cluster
 -----------------------
 
-In this step, we create and run an application that uses the Node.js MongoDB
+In this step, we create and run an application that uses the MongoDB Node.js
 driver to connect to your instance of MongoDB and run a query on the sample
 data.
 
@@ -118,6 +148,10 @@ MongoDB instance in a string called the *connection string*. This string
 includes information on the hostname or IP address and port of your
 instance, authentication mechanism, user credentials when applicable, and
 other connection options.
+
+If you are connecting to an instance or cluster that is not hosted by Atlas,
+see :ref:`Other Ways to Connect to MongoDB <node-other-ways-to-connect>` for
+instructions on how to format your connection string.
 
 To retrieve your connection string for the instance and user you created in
 the previous step, log into your Atlas account and navigate to the
@@ -144,37 +178,50 @@ variable with your connection string. Make sure to replace the "<password>"
 section of the connection string with the password you created for your user
 that has **atlasAdmin** permissions.
 
+
 .. code-block:: js
 
-  const { MongoClient } = require("mongodb");
+   const { MongoClient } = require("mongodb");
 
-  // Replace the uri string with your MongoDB deployment's connection string.
-  const uri =
-    "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&writeConcern=majority";
+   // Replace the uri string with your MongoDB deployment's connection string.
+   const uri =
+     "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&writeConcern=majority";
 
-  const client = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+   const client = new MongoClient(uri, {
+     useNewUrlParser: true,
+     useUnifiedTopology: true,
+   });
 
-  async function run() {
-    try {
-      await client.connect();
+   async function run() {
+     try {
+       await client.connect();
 
-      const database = client.db('sample_mflix');
-      const movies = database.collection('movies');
+       const database = client.db('sample_mflix');
+       const movies = database.collection('movies');
 
-      // Query for a movie that has the title 'Back to the Future'
-      const query = { title: 'Back to the Future' };
-      const movie = await movies.findOne(query);
+       // Query for a movie that has the title 'Back to the Future'
+       const query = { title: 'Back to the Future' };
+       const movie = await movies.findOne(query);
 
-      console.log(movie);
-    } finally {
-      // Ensures that the client will close when you finish/error
-      await client.close();
-    }
-  }
-  run().catch(console.dir);
+       console.log(movie);
+     } finally {
+       // Ensures that the client will close when you finish/error
+       await client.close();
+     }
+   }
+   run().catch(console.dir);
+
+.. tip::
+
+   The line of code assigning the ``MongoClient`` variable uses
+   :mdn:`Object destructuring <Web/JavaScript/Reference/Operators/Destructuring_assignment#object_destructuring>`,
+   introduced to Node in v6. If you are using an older version of Node,
+   use the following to declare ``MongoClient``.
+
+   .. code-block:: js
+
+      const MongoClient = require("mongodb").MongoClient;
+
 
 Run the sample code with the following command from your command line:
 

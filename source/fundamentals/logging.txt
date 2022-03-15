@@ -28,6 +28,7 @@ You can configure the driver to report logger messages at three different
 levels as shown in the following table.
 
 .. list-table::
+   :widths: 25 75
    :header-rows: 1
 
    * - Logger Level
@@ -111,6 +112,7 @@ You can specify any number of the following driver classes in the logging
 filter array to control what information is passed to the Logger:
 
 .. list-table::
+   :widths: 25 75
    :header-rows: 1
 
    * - Class name
@@ -220,4 +222,4 @@ The output of the example resembles the following:
    }
 
 For more information on the methods available on the ``Logger``, see the
-:node-api:`Logger API documentation <Logger.html>`.
+:node-api-3.6:`Logger API documentation <Logger.html>`.

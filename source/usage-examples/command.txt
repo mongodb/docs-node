@@ -9,10 +9,10 @@ Run a Command
    not specify one, this method returns a ``Promise`` that resolves to the
    result object when it completes. See our guide on :doc:`Promises and
    Callbacks </fundamentals/promises>` for more information, or the
-   :node-api:`API documentation <Db.html#~resultCallback>` for
+   :node-api-3.6:`API documentation <Db.html#~resultCallback>` for
    information on the result object.
 
-You can run all raw database operations using the :node-api:`db.command()
+You can run all raw database operations using the :node-api-3.6:`db.command()
 <Db.html#~command>` method. Call the ``command()`` method with
 your command object on an instance of a database for diagnostic and
 administrative tasks such as fetching server stats or initializing a replica
@@ -25,8 +25,8 @@ set.
 You can specify additional options in the ``options`` object passed in
 the second parameter of the ``command()`` method. For more information
 on the options you can pass, see the
-:node-api:`db.command() API documentation <Db.html#~command>`. You can
-also pass a :node-api:`callback method <Admin.html#~resultCallback>` as an
+:node-api-3.6:`db.command() API documentation <Db.html#~command>`. You can
+also pass a :node-api-3.6:`callback method <Admin.html#~resultCallback>` as an
 optional third parameter.
 
 Example
@@ -43,6 +43,7 @@ When you run the above command, you should see output similar to the
 following:
 
 .. code-block:: javascript
+   :copyable: false
 
    {
      db: 'sample_mflix',

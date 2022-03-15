@@ -7,7 +7,7 @@ Monitoring
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecols
 
 Overview
@@ -40,6 +40,7 @@ Event Descriptions
 You can subscribe to any of the following SDAM events:
 
 .. list-table::
+   :widths: 33 67 
    :header-rows: 1
 
    * - Event Name
@@ -84,9 +85,10 @@ The following sections show sample output for each type of SDAM event.
 ``serverDescriptionChanged``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
-  ServerDescriptionChangedEvent {
+   ServerDescriptionChangedEvent {
      topologyId: 0,
      address: 'localhost:27017',
      previousDescription: ServerDescription {
@@ -135,6 +137,7 @@ The ``type`` field of the ``ServerDescription`` object in this event contains
 one of the following possible values:
 
 .. list-table::
+   :widths: 30 70
    :header-rows: 1
 
    * - Type
@@ -164,7 +167,8 @@ one of the following possible values:
 serverHeartbeatStarted
 ^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
    ServerHeartbeatStartedEvent {
      connectionId: 'localhost:27017'
@@ -173,7 +177,8 @@ serverHeartbeatStarted
 serverHeartbeatSucceeded
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
    ServerHeartbeatSucceededEvent {
      duration: 1.939997,
@@ -210,7 +215,8 @@ serverHeartbeatSucceeded
 serverHeartbeatFailed
 ^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
    ServerHeartbeatFailed {
      duration: 20,
@@ -221,7 +227,8 @@ serverHeartbeatFailed
 serverOpening
 ^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
    ServerOpeningEvent {
      topologyId: 0,
@@ -231,7 +238,8 @@ serverOpening
 serverClosed
 ^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
    ServerClosedEvent {
      topologyId: 0,
@@ -241,7 +249,8 @@ serverClosed
 topologyOpening
 ^^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
    TopologyOpeningEvent {
      topologyId: 0
@@ -250,7 +259,8 @@ topologyOpening
 topologyClosed
 ^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
    TopologyClosedEvent {
      topologyId: 0
@@ -259,7 +269,8 @@ topologyClosed
 topologyDescriptionChanged
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: js
+.. code-block:: javascript
+   :copyable: false
 
    TopologyDescriptionChangedEvent {
      topologyId: 0,
@@ -305,6 +316,7 @@ The ``type`` field of the ``TopologyDescription`` object in this event contains
 one of the following possible values:
 
 .. list-table::
+   :widths: 30 70 
    :header-rows: 1
 
    * - Type

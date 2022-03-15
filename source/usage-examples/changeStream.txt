@@ -14,18 +14,18 @@ change stream emits **change event** documents when they occur.
 The ``watch()`` method optionally takes an **aggregation pipeline** which consists of an array of **aggregation stages**
 as the first parameter. The aggregation stages filter and transform the change events.
 
-In the example below, the ``$match`` stage will match all change event documents with a ``runtime`` value of less than
+In the following snippet, the ``$match`` stage matches all change event documents with a ``runtime`` value of less than
 15, filtering all others out.
 
 .. code-block:: javascript
 
-   const pipeline = [ { $match: { runtime: { $lt: 15 } } ];
+   const pipeline = [ { $match: { runtime: { $lt: 15 } } } ];
    const changeStream = collection.watch(pipeline);
 
 The ``watch()`` method accepts an ``options`` object as the second parameter. Refer to the links at the end of this
 section for more information on the settings you can configure with this object.
 
-The ``watch()`` method returns an instance of a :node-api:`ChangeStream </ChangeStream.html>`. You can read events from
+The ``watch()`` method returns an instance of a :node-api-3.6:`ChangeStream <ChangeStream.html>`. You can read events from
 change streams by iterating over them or listening for events. Select the tab that corresponds to the way you want to
 read events from the change stream below.
 
@@ -63,7 +63,7 @@ read events from the change stream below.
 
       You can control the change stream by calling ``pause()`` to stop emitting events or ``resume()`` to continue to emit events.
 
-      To stop processing change events, call the :node-api:`close() </ChangeStream.html#close>` method on the
+      To stop processing change events, call the :node-api-3.6:`close() <ChangeStream.html#close>` method on the
       ``ChangeStream`` instance. This closes the change stream and frees resources.
 
       .. code-block:: javascript
@@ -77,45 +77,31 @@ methods presented above:
 - :manual:`Change events </reference/change-events/>`
 - :manual:`Aggregation pipeline </reference/operator/aggregation-pipeline/>`
 - :manual:`Aggregation stages </changeStreams/#modify-change-stream-output>`
-- :node-api:`ChangeStream class API documentation </ChangeStream.html>`
-- :node-api:`Collection.watch() </Collection.html#watch>`,
-- :node-api:`Db.watch() </Db.html#watch>`,
-- :node-api:`MongoClient.watch() API documentation </MongoClient.html#watch>`
-
-.. note::
-
-   Change events that contain information on update operations only return the modified
-   fields by default rather than the full updated document. You can configure
-   your change stream to also return the most current version of the document
-   by setting the ``fullDocument`` field of the options object to
-   ``"updateLookup"`` as follows:
-
-   .. code-block:: javascript
-
-      const changeStream = collection.watch();
-      const options = { fullDocument: "updateLookup" };
-      changeStream.on("change", callbackFunction, options);
+- :node-api-3.6:`ChangeStream class API documentation <ChangeStream.html>`
+- :node-api-3.6:`Collection.watch() <Collection.html#watch>`,
+- :node-api-3.6:`Db.watch() <Db.html#watch>`,
+- :node-api-3.6:`MongoClient.watch() API documentation <MongoClient.html#watch>`
 
 Example
 -------
 
-The following example opens a change stream on the ``movies`` collection in
-the ``sample_mflix`` database. Let's create a listener function to receive and
+The following example opens a change stream on the ``haikus`` collection in
+the ``insertDB`` database. Let's create a listener function to receive and
 print change events that occur on the collection.
 
 First, open the change stream on the collection and then define a callback
 on the change stream using the ``on()`` method. Once set, generate a change
-event to be emitted by performing a change to the collection.
+event by performing a change to the collection.
 
 To generate the change event on the collection, let's use ``insertOne()``
 method to add a new document. Since the ``insertOne()`` may run before the
-listener function can register, we use a timer, declared with ``setTimeout()``
-to wait one second before executing the insert.
+listener function can register, we use a timer, defined as
+``simulateAsyncPause`` to wait 1 second before executing the insert.
 
-We also use a second timer to wait an additional second after the insertion of
-the document to provide ample time for the change event to be received and
-the for the callback to complete its execution before closing the
-``ChangeStream`` instance using the ``close()`` method.
+We also use ``simulateAsyncPause`` after the insertion of the document
+to provide ample time for the listener function to receive the change
+event and for the callback to complete its execution before 
+closing the ``ChangeStream`` instance using the ``close()`` method.
 
 The timers used in this example are only necessary for this demonstration
 to make sure there is enough time to register listener and have the
@@ -130,14 +116,31 @@ If you run the example above, you should see output similar to the
 following:
 
 .. code-block:: javascript
+   :copyable: false
 
    received a change to the collection: 	 {
-     _id: {
-       _data: '825EC...'
-     },
+     _id: { _data: '825EC...' },
      operationType: 'insert',
-     clusterTime: Timestamp { ... },
-     fullDocument: { _id: 5ec3..., test: 'sample movie document' },
-     ns: { db: 'sample_mflix', coll: 'movies' },
-     documentKey: { _id: 5ec3... },
+     clusterTime: new Timestamp { ... },
+     fullDocument: { _id: new ObjectId(...), title: 'Record of a Shriveled Datum', content: 'No bytes, no problem. Just insert a document, in MongoDB' },
+     ns: { db: 'insertDB', coll: 'haikus' },
+     documentKey: { _id: new ObjectId(...) }
    }
+
+.. note:: Receive Full Documents From Updates
+
+   Change events that contain information on update operations only return the modified
+   fields by default rather than the full updated document. You can configure
+   your change stream to also return the most current version of the document
+   by setting the ``fullDocument`` field of the options object to
+   ``"updateLookup"`` as follows:
+
+   .. code-block:: javascript
+      :emphasize-lines: 1, 5
+
+      const options = { fullDocument: "updateLookup" };
+      // This could be any pipeline.
+      const pipeline = [];
+
+      const changeStream = collection.watch(pipeline, options);
+

@@ -6,22 +6,22 @@ Update Multiple Documents
 
 .. note::
    If you specify a callback method, ``updateMany()`` returns nothing. If you
-   not specify one, this method returns a ``Promise`` that resolves to the
+   do not specify one, this method returns a ``Promise`` that resolves to the
    result object when it completes. See our guide on :doc:`Promises and
-   Callbacks </fundamentals/promises>` for more information, or the
-   :node-api:`API documentation <Collection.html#~resultCallback>` for
+   Callbacks </fundamentals/promises>` for more information, or see the
+   :node-api-3.6:`API documentation <Collection.html#~resultCallback>` for
    information on the result object.
 
 You can update multiple documents using the
-:node-api:`updateMany() <Collection.html#updateMany>` method.
-``updateMany()`` accepts a filter object and update document, and
-replaces documents in a collection that match the filter with the update
-document. The update document requires an :manual:`update operator
+:node-api-3.6:`collection.updateMany() <Collection.html#updateMany>` method.
+The ``updateMany()`` method accepts a filter document and an update document. If the query matches documents in the
+collection, the method applies the updates from the update document to fields
+and values of the matching documents. The update document requires an :manual:`update operator
 </reference/operator/update>` to modify a field in a document.
 
 You can specify additional options in the ``options`` object passed in
 the third parameter of the ``updateMany()`` method. For more detailed
-information, see :node-api:`the updateMany() API documentation
+information, see :node-api-3.6:`the updateMany() API documentation
 <Collection.html#updateMany>`.
 
 Example

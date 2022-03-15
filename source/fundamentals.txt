@@ -4,22 +4,19 @@ Fundamentals
 
 .. default-domain:: mongodb
 
-- :doc:`Connection Guide </fundamentals/connection>`
-- :doc:`Authentication </fundamentals/authentication>`
-- :doc:`CRUD Operations </fundamentals/crud>`
-- :doc:`Promises and Callbacks </fundamentals/promises>`
-- :doc:`Indexes </fundamentals/indexes>`
-- :doc:`Collations </fundamentals/collations>`
-- :doc:`Logging </fundamentals/logging>`
-- :doc:`Monitoring </fundamentals/monitoring>`
-
 .. toctree::
 
    /fundamentals/connection
    /fundamentals/authentication
    /fundamentals/crud
    /fundamentals/promises
+   /fundamentals/aggregation
+   /fundamentals/transactions
    /fundamentals/indexes
    /fundamentals/collations
    /fundamentals/logging
    /fundamentals/monitoring
+   /fundamentals/gridfs
+   /fundamentals/csfle
+
+.. include:: /includes/fundamentals-sections.rst

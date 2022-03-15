@@ -4,6 +4,12 @@ Change a Document
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
 Overview
 --------
 
@@ -89,6 +95,7 @@ The updated document resembles the following, with an an updated value in
 the ``z`` field and all other values unchanged:
 
 .. code-block:: javascript
+   :copyable: false
 
    {
       _id: 465,
@@ -166,6 +173,7 @@ The replaced document contains the contents of the replacement document
 and the immutable ``_id`` field as follows:
 
 .. code-block:: javascript
+   :copyable: false
 
    {
       _id: 465,

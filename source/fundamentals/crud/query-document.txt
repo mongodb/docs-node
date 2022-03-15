@@ -4,8 +4,14 @@ Specify a Query
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
 Overview
-~~~~~~~~
+--------
 
 Most CRUD operations allow you to narrow the set of matched documents by
 specifying matching criteria in a **query document**. Query documents contain
@@ -38,6 +44,8 @@ examples:
      { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },
      { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
    ]);
+
+.. include:: /includes/access-cursor-note.rst
 
 Literal Value Queries
 ---------------------
@@ -85,10 +93,10 @@ Comparison Operators
 
 Comparison operators allow you to query for data based on comparisons
 with values in a collection. Common comparison operators include
-``$gt`` for "greater than" comparisons, ``$lt`` for "less than or equal
-to" comparisons, and ``$ne`` for "not equal to " comparisons. The
-following operation uses the comparison operator ``$gt`` to search for
-documents with a quantity value greater than 5 and prints them out:
+``$gt`` for "greater than" comparisons, ``$lt`` for "less than" comparisons,
+and ``$ne`` for "not equal to" comparisons. The following operation uses
+the comparison operator ``$gt`` to search for documents with a quantity
+value greater than 5 and prints them out:
 
 .. code-block:: javascript
 
@@ -111,7 +119,7 @@ Logical Operators
 Logical operators allow you to query for data using logic applied to the
 results of field-level operators. For instance, you can use the ``$or``
 method to query for documents that match either a ``$gt`` comparison
-operators or a literal value query. The following operation uses the
+operator or a literal value query. The following operation uses the
 logical operator ``$not`` to search for documents with a quantity value
 that is not greater than 5 and prints them out:
 

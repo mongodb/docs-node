@@ -4,6 +4,15 @@ Update Arrays in a Document
 
 .. default-domain:: mongodb
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
 If you need to modify an array embedded within a document, you can use an
 array update operator in your update method call. In this guide, we
 explain and show examples on usage of these operators including:
@@ -16,8 +25,8 @@ See the MongoDB server guide on
 :manual:`Update Operators </reference/operator/update-array/#update-operators>`
 for a complete list.
 
-Examples
-~~~~~~~~
+Sample Documents
+~~~~~~~~~~~~~~~~
 
 The following examples use a database called ``test`` and collection
 called ``pizza`` which contains documents that describe customers and
@@ -83,7 +92,7 @@ the following sample document to follow the example queries:
 .. _first-match-operator:
 
 Match the First Array Element
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 To perform the update on only the first array element of each document
 that matches your query document in your update operation, use the ``$``
@@ -127,6 +136,7 @@ omit the ``items.type`` field from the query and specify the ``$`` operator
 in our update, we encounter the following error:
 
 .. code-block:: none
+   :copyable: false
 
    The positional operator did not find the match needed from the query.
 
@@ -138,7 +148,7 @@ in our update, we encounter the following error:
 .. _all-match-operator:
 
 Match All Array Elements
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 To perform the update on all of the array elements of each document that
 matches your query document in your update operation, use the all
@@ -156,8 +166,9 @@ order items.
 After you run the update method, your customer document for "Popeye" should
 resemble the following:
 
-.. code-block:: javascript
-
+.. code-block:: json
+   :copyable: false
+   
    {
      "name":"Popeye",
      ...
@@ -178,7 +189,7 @@ resemble the following:
 .. _filtered-positional-operator:
 
 Filtered Positional Operator
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 In the previous sections, we used the ``$`` operator to match the first
 array element and the ``$[]`` operator to match all array elements. In this
@@ -237,6 +248,7 @@ After we run the method above, all of the large pizza order items for
 customer "Steve Lobsters" now contain "garlic" in the ``toppings`` field:
 
 .. code-block:: javascript
+   :copyable: false
 
    {
      name: "Steve Lobsters",
@@ -267,6 +279,7 @@ the update as follows:
 After we run the update method, the document resembles the following:
 
 .. code-block:: javascript
+   :copyable: false
 
    {
      name: "Steve Lobsters",
