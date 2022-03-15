@@ -266,7 +266,7 @@ code example shows you how to delete a GridFS bucket:
 
    bucket.drop();
 
-For more information on this method, see the `drop() <{+api+}/classes/GridFSBucket.html#drop>__
+For more information on this method, see the `drop() <{+api+}/classes/GridFSBucket.html#drop>`__
 API documentation.
 
 Additional Resources
