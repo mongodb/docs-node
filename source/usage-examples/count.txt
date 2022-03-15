@@ -9,23 +9,21 @@ Count Documents
    ``estimatedDocumentCount()`` return nothing. If you do not specify one,
    this method returns a ``Promise`` that resolves to the result object
    when it completes. See our guide on :doc:`Promises and Callbacks
-   </fundamentals/promises>` for more information, or the
-   `API documentation <{+node-api+}/Collection.html#~countCallback>`__ for
-   information on the result object.
+   </fundamentals/promises>` for more information. See the
+   `countCallback() <{+api+}/Collection.html#~countCallback>`__ API
+   documentation for information on how to use the result object.
 
 The Node.js driver provides two methods for counting documents in a
 collection:
 
-- `collection.countDocuments()
-  <{+node-api+}/Collection.html#countDocuments>`__ returns the number of documents in
-  the collection that match the specified query. If you specify an empty
-  query document, ``countDocuments()`` returns the total number of
-  documents in the collection.
+- `collection.countDocuments() <{+api+}/Collection.html#countDocuments>`__ 
+  returns the number of documents in the collection that match the specified 
+  query. If you specify an empty query document, ``countDocuments()`` returns 
+  the total number of documents in the collection.
 
-- `collection.estimatedDocumentCount()
-  <{+node-api+}/Collection.html#estimatedDocumentCount>`__ returns an
-  **estimation** of the number of documents in the collection based on
-  collection metadata.
+- `collection.estimatedDocumentCount() <{+api+}/Collection.html#estimatedDocumentCount>`__ 
+  returns an **estimation** of the number of documents in the collection based 
+  on collection metadata.
 
 ``estimatedDocumentCount()`` is faster than ``countDocuments()`` because
 the estimation uses the collection's metadata rather than scanning the

@@ -222,4 +222,4 @@ The output of the example resembles the following:
    }
 
 For more information on the methods available on the ``Logger``, see the
-`Logger API documentation <{+node-api+}/Logger.html>`__.
+`Logger API documentation <{+api+}/Logger.html>`__.

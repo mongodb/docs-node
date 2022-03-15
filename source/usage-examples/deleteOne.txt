@@ -9,7 +9,7 @@ Delete a Document
    do not specify one, this method returns a ``Promise`` that resolves to the
    result object when it completes. See our guide on :doc:`Promises and
    Callbacks </fundamentals/promises>` for more information, or the
-   `API documentation <{+node-api+}/Collection.html#~deleteWriteOpResult>`__ for
+   `API documentation <{+api+}/Collection.html#~deleteWriteOpResult>`__ for
    information on the result object.
 
 You can delete a single document in a collection with
@@ -23,17 +23,17 @@ deletes the first match.
 You can specify additional query options using the
 ``options`` object passed as the second parameter of the
 ``deleteOne`` method. You can also pass a
-`callback method <{+node-api+}/Collection.html#~deleteWriteOpCallback>`__
+`callback method <{+api+}/Collection.html#~deleteWriteOpCallback>`__
 as an optional third parameter. For more information on this method,
 see the
-`deleteOne() API documentation <{+node-api+}/Collection.html#deleteOne>`__.
+`deleteOne() API documentation <{+api+}/Collection.html#deleteOne>`__.
 
 .. note::
 
   If your application requires the deleted document after deletion,
   consider using the
   `collection.findOneAndDelete()
-  <{+node-api+}/Collection.html#findOneAndDelete>`__.
+  <{+api+}/Collection.html#findOneAndDelete>`__.
   method, which has a similar interface to ``deleteOne()`` but also
   returns the deleted document.
 
