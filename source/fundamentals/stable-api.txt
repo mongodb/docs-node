@@ -84,12 +84,6 @@ following operations:
 
       MongoParseError: Invalid server API version=...
 
-For more information on the methods and classes referenced in this
-section, see the following API Documentation:
-
-- `MongoClientOptions <{+node-api+}/global.html#MongoClientOptions>`__
-- `MongoClient <{+node-api+}/MongoClient.html>`__
-
 .. _stable-api-options:
 
 {+stable-api+} Options
@@ -129,6 +123,3 @@ interface.
    :end-before: end serverApiVersion
    :language: javascript
    :dedent:
-
-For more information on the options in this section, see the
-:node-api-4.0:`ServerApi </interfaces/serverapi.html>` API Documentation.
