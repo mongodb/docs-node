@@ -94,7 +94,7 @@ default name ``fs``, as shown in the following example:
 
    const bucket = new mongodb.GridFSBucket(db, { bucketName: 'myCustomBucket' });
 
-For more information, see the `GridFSBucket API documentation <{+api+}classes/gridfsbucket.html>`__.
+For more information, see the `GridFSBucket API documentation <{+api+}/classes/gridfsbucket.html>`__.
 
 .. _gridfs-upload-files:
 
@@ -117,7 +117,7 @@ following code snippet:
             metadata: { field: 'myField', value: 'myValue' }
         });
 
-See the `openUploadStream() API documentation <{+api+}classes/gridfsbucket.html#openuploadstream>`__ for more information.
+See the `openUploadStream() API documentation <{+api+}/classes/gridfsbucket.html#openuploadstream>`__ for more information.
 
 .. _gridfs-retrieve-file-info:
 
@@ -154,8 +154,8 @@ combined with other methods such as ``sort()``, ``limit()``, and ``project()``.
 For more information on the classes and methods mentioned in this section,
 see the following resources:
 
-- `find() API documentation <{+api+}classes/gridfsbucket.html#find>`__
-- `FindCursor API documentation <{+api+}classes/findcursor.html>`__
+- `find() API documentation <{+api+}/classes/gridfsbucket.html#find>`__
+- `FindCursor API documentation <{+api+}/classes/findcursor.html>`__
 - :doc:`Cursor Fundamentals page </fundamentals/crud/read-operations/cursor>`
 - :doc:`Read Operations page </fundamentals/crud/read-operations/>`
 
@@ -200,7 +200,7 @@ method, which takes the ``_id`` field of a file as a parameter:
    overhead.
 
 For more information on the ``openDownloadStreamByName()`` method, see
-its `API documentation <{+api+}classes/gridfsbucket.html#opendownloadstreambyname>`__.
+its `API documentation <{+api+}/classes/gridfsbucket.html#opendownloadstreambyname>`__.
 
 .. _gridfs-rename-files:
 
@@ -227,7 +227,7 @@ The following example shows how to update the ``filename`` field to
    bucket.rename(ObjectId("60edece5e06275bf0463aaf3"), "newFileName");
 
 For more information on this method, see the `rename() <{+api+}/classes/gridfsbucket.html#rename>`__
-API documentation <classes/gridfsbucket.html#rename>`.
+API documentation.
 
 .. _gridfs-delete-files:
 
@@ -251,7 +251,7 @@ The following example shows you how to delete a file by referencing its ``_id`` 
    bucket.delete(ObjectId("60edece5e06275bf0463aaf3"));
 
 For more information on this method, see the `delete() <{+api+}/classes/gridfsbucket.html#delete>`__
-API documentation <classes/gridfsbucket.html#delete>`.
+API documentation.
 
 .. _gridfs-delete-bucket:
 
@@ -267,7 +267,7 @@ code example shows you how to delete a GridFS bucket:
    bucket.drop();
 
 For more information on this method, see the `drop() <{+api+}/classes/gridfsbucket.html#drop>`__
-API documentation </classes/gridfsbucket.html#drop>`.
+API documentation.
 
 Additional Resources
 --------------------
