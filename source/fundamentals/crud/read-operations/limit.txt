@@ -94,7 +94,7 @@ calls are equivalent:
 
 For more information on the ``options`` settings for the ``find()``
 method, see the
-`API documentation on find() <{+node-api+}/Collection.html#find>`__.
+`API documentation on find() <{+api+}/Collection.html#find>`__.
 
 Skip
 ----
@@ -119,7 +119,7 @@ books in order of longest-to-shortest length:
 
 .. code-block:: json
    :copyable: false
-   
+
    { "_id": 3, "title": "Atlas Shrugged", "author": "Rand", "length": 1088 }
    { "_id": 5, "title": "Cryptonomicon", "author": "Stephenson", "length": 918 }
    { "_id": 1, "title": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 }

@@ -42,15 +42,15 @@ Built-in Methods
 
 There are three major compound operations:
 
-- `findOneAndDelete() <{+node-api+}/Collection.html#findOneAndDelete>`__
+- `findOneAndDelete() <{+api+}/Collection.html#findOneAndDelete>`__
   matches multiple documents to a supplied query and removes the first
   of those matched documents.
 
-- `findOneAndUpdate() <{+node-api+}/Collection.html#findOneAndUpdate>`__
+- `findOneAndUpdate() <{+api+}/Collection.html#findOneAndUpdate>`__
   matches multiple documents to a supplied query and updates the first
   of those matched documents using the provided update document.
 
-- `findOneAndReplace() <{+node-api+}/Collection.html#findOneAndReplace>`__
+- `findOneAndReplace() <{+api+}/Collection.html#findOneAndReplace>`__
   matches multiple documents to a supplied query and replaces the first
   of those matched documents using the provided replacement document.
 

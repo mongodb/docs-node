@@ -13,7 +13,7 @@ MongoDB Node Driver
   /quick-start
   /usage-examples
   /fundamentals
-  API Documentation <{+node-api+}>
+  API Documentation <{+api+}>
   /faq
   /issues-and-help
   /compatibility
@@ -65,7 +65,7 @@ API
 
 For detailed information about classes and methods in the MongoDB
 Node.js driver, see the `MongoDB Node.js driver API documentation
-<{+node-api+}>`__ .
+<{+api+}>`__ .
 
 FAQ
 ---
