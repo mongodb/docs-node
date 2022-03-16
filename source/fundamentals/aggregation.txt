@@ -81,7 +81,7 @@ database:
 Aggregation Example
 ~~~~~~~~~~~~~~~~~~~
 
-To perform an aggregation, pass a list of aggregation stages to the 
+To perform an aggregation, pass a list of aggregation stages to the
 ``collection.aggregate()`` method.
 
 In the example, the aggregation pipeline uses the following aggregation stages:
@@ -106,10 +106,10 @@ This example should produce the following output:
    { _id: 4, count: 2 }
    { _id: 3, count: 1 }
    { _id: 5, count: 1 }
-   
-For more information, see the `aggregate() API documentation <{+node-api+}/Collection.html#aggregate>`__.
+
+For more information, see the `aggregate() API documentation <{+api+}/Collection.html#aggregate>`__.
 
 Additional Aggregation Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 You can find another aggregation framework example `in this MongoDB Blog
-post <https://www.mongodb.com/blog/post/quick-start-nodejs--mongodb--how-to-analyze-data-using-the-aggregation-framework>`_. 
+post <https://www.mongodb.com/blog/post/quick-start-nodejs--mongodb--how-to-analyze-data-using-the-aggregation-framework>`_.

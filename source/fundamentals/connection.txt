@@ -292,4 +292,4 @@ URI to specify the behavior of the client.
        :manual:`w Option </reference/write-concern/#w-option>`.
 
 For a complete list of options, see the `MongoClient
-<{+node-api+}/MongoClient.html>`__ API reference page.
+<{+api+}/MongoClient.html>`__ API reference page.
