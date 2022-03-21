@@ -13,13 +13,13 @@ Update Arrays in a Document
 Overview
 --------
 
-If you need to modify an array embedded within a document, you can use an
+To modify an array embedded within a document, use an
 array update operator in your update method call. In this guide, we
-explain and show examples on usage of these operators including:
+explain and show examples on how to update the following:
 
-- :ref:`First array element match positional operator <first-match-operator>`: ``$``
-- :ref:`All array element match operator <all-match-operator>`: ``$[]``
-- :ref:`Filtered positional operator <filtered-positional-operator>`: ``$[<identifier>]``
+- :ref:`first-match-operator`: ``$``
+- :ref:`All Matching Array Elemetns <all-match-operator>`: ``$[]``
+- :ref:`Multiple Matching Array Elements <filtered-positional-operator>`: ``$[<identifier>]``
 
 See the MongoDB server guide on
 :manual:`Update Operators </reference/operator/update-array/#update-operators>`
@@ -28,10 +28,10 @@ for a complete list.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-The following examples use a database called ``test`` and collection
-called ``pizza`` which contains documents that describe customers and
-their pizza shop orders as array elements in field called ``items``. Use
-the following sample document to follow the example queries:
+The following examples use the ``test.pizza`` collection. The collection
+contains documents that describe customers and their pizza shop orders
+as array elements in field called ``items``. Use the following sample
+document to follow the example queries:
 
 .. code-block:: javascript
 
@@ -39,69 +39,49 @@ the following sample document to follow the example queries:
       name: "Steve Lobsters",
       address: "731 Yexington Avenue",
       items: [
-        {
-          type: "beverage",
-          name: "Water",
-          size: "17oz"
-        },
-        {
-          type: "pizza",
-          size: "large",
-          toppings: ["pepperoni"],
-        },
-        {
-          type: "pizza",
-          size: "medium",
-          toppings: ["mushrooms", "sausage", "green peppers"],
-          comment: "Extra green peppers please!",
-        },
-        {
-          type: "pizza",
-          size: "large",
-          toppings: ["pineapple, ham"],
-          comment: "red pepper flakes on top",
-        },
-        {
-          type: "calzone",
-          fillings: ["canadian bacon", "sausage", "onion"],
-        },
-        {
-          type: "beverage",
-          name: "Diet Pepsi",
-          size: "16oz",
-        },
+        { type: "beverage", name: "Water", size: "17oz", },
+        { type: "pizza", size: "large", toppings: ["pepperoni"], },
+        { type: "pizza", size: "medium", toppings: ["mushrooms", "sausage", "green peppers"], comment: "Extra green peppers please!", },
+        { type: "pizza", size: "large", toppings: ["pineapple, ham"], comment: "red pepper flakes on top", },
+        { type: "calzone", fillings: ["canadian bacon", "sausage", "onion"], },
+        { type: "beverage", name: "Diet Pepsi", size: "16oz", },
       ],
     },
     {
       name: "Popeye",
       address: "1 Sweethaven",
       items: [
-        {
-          type: "pizza",
-          size: "large",
-          toppings: ["garlic, spinach"],
-        },
-        {
-          type: "calzone",
-          toppings: ["ham"],
-        },
+        { type: "pizza", size: "large", toppings: ["garlic, spinach"], },
+        { type: "calzone", toppings: ["ham"], },
       ],
     }]
 
+Specifying Array Elements
+-------------------------
+
+You can specify which array elements to update using a positional
+operator. Positional operators can specify the first, all, or certain
+array elements to update. 
+
+To specify elements in an array with positional operators, use **dot
+notation**. Dot notation is a property access syntax for navigating BSON
+objects. To learn more, see :manual:`dot notation
+</core/document/#std-label-document-dot-notation>`.
 
 .. _first-match-operator:
 
-Match the First Array Element
------------------------------
+The First Matching Array Element
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To perform the update on only the first array element of each document
-that matches your query document in your update operation, use the ``$``
-positional array update operator. This update operator references the array
-matched by the query filter and cannot be used to reference an array nested
-within that array. For cases in which you need to access the nested arrays,
-use the :ref:`filtered positional operator <filtered-positional-operator>`.
+To update the first array element of each document that matches your
+query document, use the positional ``$`` operator. 
 
-The following code snippet shows how you can use the ``$`` array update
+The ``$`` operator references the array matched by the query filter.
+You cannot use this operator to reference a nested array. For cases in
+which you need to access the nested arrays, use the :ref:`filtered
+positional operator <filtered-positional-operator>`.
+
+The following code snippet shows how you can use the ``$``
 operator to update the size of the first pizza order item to "extra large"
 for the customer named "Steve Lobsters".
 
@@ -110,7 +90,7 @@ for the customer named "Steve Lobsters".
    :start-after: start firstArrayElement example
    :end-before: end firstArrayElement example
 
-Once the update operation is run, the document contains the new value for
+After you run the update method, the document contains the new value for
 size for the first item:
 
 .. code-block:: javascript
@@ -119,15 +99,13 @@ size for the first item:
      name: "Steve Lobsters",
      ...
      items: [
-       {
-         type: "pizza",
-         size: "extra large",
-         ...
+       { type: "pizza", size: "extra large", ... }
+     ]
    }
 
 The query filter matches all documents that contain an element embedded in
 the ``items`` array that contain a value of ``pizza`` in the ``type`` field.
-The ``updateDocument`` specifies the update operation should set the
+The ``updateDocument`` specifies the update operation to set the
 first array element match in ``items`` to "extra large".
 
 Note that we included both ``name`` and ``items.type`` fields in the query
@@ -142,19 +120,18 @@ in our update, we encounter the following error:
 
 .. warning::
 
-   Do not use the ``$`` operator in an ``upsert`` call because the ``$``
-   is treated as a field name in the insert document.
+   Do not use the ``$`` operator in an ``upsert`` call because the
+   driver treats``$`` as a field name in the insert document.
 
 .. _all-match-operator:
 
-Match All Array Elements
-------------------------
+Matching All Array Elements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform the update on all of the array elements of each document that
-matches your query document in your update operation, use the all
-positional operator, ``$[]``.
+matches your query document, use the all positional ``$[]`` operator.
 
-The following code snippet shows how you can use the ``$[]`` array update
+The following code snippet shows how you can use the ``$[]``
 operator to add "fresh mozzarella" to the toppings of all of Popeye's
 order items.
 
@@ -163,8 +140,8 @@ order items.
    :start-after: start allArrayElement example
    :end-before: end allArrayElement example
 
-After you run the update method, your customer document for "Popeye" should
-resemble the following:
+After you run the update method, your customer document for "Popeye"
+resembles the following:
 
 .. code-block:: json
    :copyable: false
@@ -173,36 +150,26 @@ resemble the following:
      "name":"Popeye",
      ...
      "items": [
-       {
-         "type": "pizza",
-         ...
-         "toppings": ["garlic", "spinach", "fresh mozzarella"],
-       },
-       {
-         "type": "calzone",
-         ...
-         "toppings":["ham", "fresh mozzarella"],
-       },
+       { "type": "pizza", ... , "toppings": ["garlic", "spinach", "fresh mozzarella"], },
+       { "type": "calzone", ... , "toppings":["ham", "fresh mozzarella"], },
      ]
    }
 
 .. _filtered-positional-operator:
 
-Filtered Positional Operator
-----------------------------
+Matching Multiple Array Elements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the previous sections, we used the ``$`` operator to match the first
 array element and the ``$[]`` operator to match all array elements. In this
-section, we use the filtered positional operator to match all embedded
-array elements that match our specified criteria.
+section, we use the filtered positional ``$[<identifier>]`` operator to
+match all embedded array elements that match our specified criteria.
 
-The filtered positional operator, denoted by ``$[<identifier>]``,
-specifies the matching array elements in the update document. This
-operator is paired with query filters in an ``arrayFilters`` object in
-your update operation's ``options`` parameter to identify which array
-elements to match.
+The ``$[<identifier>]`` operator specifies the matching array elements
+in the update document. To identify which array elements to match, pair
+this operator with ``<identifier>`` in an ``options.arrayFilters`` object.
 
-The ``<identifier>`` term is a placeholder value you designate that represents
+The ``<identifier>`` term is a placeholder value you assign that represents
 an element of the array field name that prefixes it. For example, to add a
 "garlic" topping to certain order items using this operator, format your
 update document as follows:
@@ -213,8 +180,8 @@ update document as follows:
 
 .. note::
 
-   The <identifier> placeholder name must start with lowercase and contain
-   only alphanumeric characters.
+   The ``<identifier>`` placeholder name must start with lowercase
+   letter and contain only alphanumeric characters.
 
 This update document specifies the following:
 
@@ -244,7 +211,7 @@ The following snippet shows the complete update method for this example:
    :start-after: start arrayFiltersOne example
    :end-before: end arrayFiltersOne example
 
-After we run the method above, all of the large pizza order items for
+After you run the method, all of the large pizza order items for
 customer "Steve Lobsters" now contain "garlic" in the ``toppings`` field:
 
 .. code-block:: javascript
@@ -254,16 +221,9 @@ customer "Steve Lobsters" now contain "garlic" in the ``toppings`` field:
      name: "Steve Lobsters",
      ...
      items: [
-       {
-         type: "pizza",
-         size: "large",
-         toppings: ["pepperoni", "garlic"]
-       },
-       {
-         type: "pizza",
-         size: "large",
-         toppings: ["pineapple", "ham", "garlic"]
-         ...
+       { type: "pizza", size: "large", toppings: ["pepperoni", "garlic"] },
+       { type: "pizza", size: "large", toppings: ["pineapple", "ham", "garlic"], ...},
+     ]
    }
 
 Let's run through another example. Suppose "Steve Lobsters" wants to
@@ -276,7 +236,7 @@ the update as follows:
    :start-after: start arrayFiltersTwo example
    :end-before: end arrayFiltersTwo example
 
-After we run the update method, the document resembles the following:
+After you run the update method, the document resembles the following:
 
 .. code-block:: javascript
    :copyable: false
@@ -285,31 +245,10 @@ After we run the update method, the document resembles the following:
      name: "Steve Lobsters",
      address: "731 Yexington Avenue",
      items: [
-       {
-         type: "pizza",
-         size: "large",
-         toppings: ["pepperoni", "salami"],
-       },
-       {
-         type: "pizza",
-         size: "medium",
-         toppings: ["mushrooms", "sausage", "green peppers"],
-         comment: "Extra green peppers please!",
-       },
-       {
-         type: "pizza",
-         size: "large",
-         toppings: ["pineapple, ham"],
-         comment: "red pepper flakes on top",
-       },
-       {
-         type: "calzone",
-         fillings: ["canadian bacon", "sausage", "onion"],
-       },
-       {
-         type: "beverage",
-         name: "Diet Pepsi",
-         size: "16oz",
-       },
+       { type: "pizza", size: "large", toppings: ["pepperoni", "salami"], },
+       { type: "pizza", size: "medium", toppings: ["mushrooms", "sausage", "green peppers"], comment: "Extra green peppers please!", },
+       { type: "pizza", size: "large", toppings: ["pineapple, ham"], comment: "red pepper flakes on top", },
+       { type: "calzone", fillings: ["canadian bacon", "sausage", "onion"], },
+       { type: "beverage", name: "Diet Pepsi", size: "16oz", },
      ],
    }
