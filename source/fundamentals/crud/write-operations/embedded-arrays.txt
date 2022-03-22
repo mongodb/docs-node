@@ -13,13 +13,12 @@ Update Arrays in a Document
 Overview
 --------
 
-To modify an array embedded within a document, use an
-array update operator in your update method call. In this guide, we
-explain and show examples on how to update the following:
+In this guide, you can learn how to use the following array update
+operators to modify an array embedded within a document: 
 
-- :ref:`first-match-operator`
-- :ref:`All Matching Array Elemetns <all-match-operator>`
-- :ref:`Multiple Matching Array Elements <filtered-positional-operator>`
+- :ref:`Positional Operator <first-match-operator>`: ``$``
+- :ref:`All Positional Operator <all-match-operator>`: ``$[]``
+- :ref:`Filtered Positional Operator <filtered-positional-operator>`: ``$[<identifier>]``
 
 See the MongoDB server guide on
 :manual:`Update Operators </reference/operator/update-array/#update-operators>`
@@ -28,10 +27,10 @@ for a complete list.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-The following examples use the ``test.pizza`` collection. The collection
-contains documents that describe the customers and their pizza orders
-as array elements in field called ``items``. The following examples
-update this sample document:
+The examples in this guide use the following sample documents from the
+``test.pizza`` collection. The collection contains documents that
+describe the customers and their pizza orders as array elements in field
+called ``items``.
 
 .. code-block:: javascript
 
@@ -71,14 +70,14 @@ objects. To learn more, see :manual:`dot notation
 .. _first-match-operator:
 
 The First Matching Array Element
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 To update the first array element of each document that matches your
-query document, use the positional ``$`` operator. 
+query, use the positional operator ``$``. 
 
-The positional ``$`` operator references the array matched by the query
-filter. You cannot use this operator to reference a nested array. For
-cases in which you want to access a nested array, use the
+The positional operator ``$`` references the array matched by the query.
+You cannot use this operator to reference a nested array. For cases in
+which you want to access a nested array, use the
 :ref:`filtered positional operator <filtered-positional-operator>`.
 
 .. important::
@@ -87,7 +86,7 @@ cases in which you want to access a nested array, use the
    driver treats ``$`` as a field name in the insert document.
 
 Example
-```````
+~~~~~~~
 
 The following code snippet shows how to update the size of the first
 pizza order item to "extra large" for the customer named Steve Lobsters.
@@ -97,8 +96,8 @@ pizza order item to "extra large" for the customer named Steve Lobsters.
    :start-after: start firstArrayElement example
    :end-before: end firstArrayElement example
 
-The query filter matches all documents that contain an element embedded in
-the ``items`` array that contain a value of ``pizza`` in the ``type`` field.
+The query matches all documents that contain an element embedded in the
+``items`` array that contain a value of ``pizza`` in the ``type`` field.
 The ``updateDocument`` specifies the update operation to set the
 first array element match in ``items`` to "extra large".
 
@@ -117,7 +116,7 @@ Lobsters resembles the following:
    }
 
 Note that we included both ``name`` and ``items.type`` fields in the query
-filter in order to match the array in which we apply the ``$`` operator. If we
+in order to match the array in which we apply the ``$`` operator. If we
 omit the ``items.type`` field from the query and specify the ``$`` operator
 in our update, we encounter the following error:
 
@@ -129,13 +128,13 @@ in our update, we encounter the following error:
 .. _all-match-operator:
 
 Matching All Array Elements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 To perform the update on all of the array elements of each document that
-matches your query document, use the all positional ``$[]`` operator.
+matches your query, use the all positional operator ``$[]``.
 
 Example
-```````
+~~~~~~~
 
 The following code snippet adds "fresh mozzarella" to the toppings of
 all of Popeye's order items.
@@ -152,36 +151,37 @@ resembles the following:
    :copyable: false
 
    {
-     "name":"Popeye",
-     "address": "1 Sweethaven",
-     "items": [
-       { "type": "pizza", ... , "toppings": ["garlic", "spinach", "fresh mozzarella"], },
-       { "type": "calzone", ... , "toppings":["ham", "fresh mozzarella"], },
+     name:"Popeye",
+     address: "1 Sweethaven",
+     items: [
+       { type: "pizza", ... , toppings: ["garlic", "spinach", "fresh mozzarella"], },
+       { type: "calzone", ... , toppings: ["ham", "fresh mozzarella"], },
      ]
    }
 
 .. _filtered-positional-operator:
 
 Matching Multiple Array Elements
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
-To match all embedded array elements that match our specified criteria,
-use the filtered positional ``$[<identifier>]`` operator. 
+To perform an update on all embedded array elements of each document
+that matches your query, use the filtered positional operator
+``$[<identifier>]``.
 
-The filtered positional ``$[<identifier>]`` operator specifies the
+The filtered positional operator ``$[<identifier>]`` specifies the
 matching array elements in the update document. To identify which array
 elements to match, pair this operator with ``<identifier>`` in an
 ``options.arrayFilters`` object.
 
 The ``<identifier>`` term is a placeholder value you assign that represents
 an element of the array field name that prefixes it. This value must
-start with lowercase letter and contain only alphanumeric characters.
+start with a lowercase letter and contain only alphanumeric characters.
 
 Example
-```````
+~~~~~~~
 
-For example, to add a "garlic" topping to certain order items using this
-operator, format your update document as follows:
+To add a "garlic" topping to certain order items, format your update
+document as follows:
 
 .. code-block:: javascript
 
@@ -196,7 +196,7 @@ This update document specifies the following:
 - ``garlic``: the value to push onto the ``toppings`` array
 
 Next, add the matching criteria in your ``arrayFilters`` object in your update
-operation's ``options`` parameter. This object is an array of query filters
+operation's ``options`` parameter. This object is an array of queries
 that specify which array elements to include in the update. To add the
 "garlic" topping to order items of type "pizza" and "large size", pass the
 following ``arrayFilters``:
@@ -208,7 +208,7 @@ following ``arrayFilters``:
      { orderItem.size: "large" }
    ]
 
-The following snippet shows the complete update method for this example:
+The following snippet shows the complete update method:
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -232,12 +232,11 @@ Lobsters resembles the following:
    }
 
 Example
-```````
+~~~~~~~
 
-Let's run through another example. Suppose Steve Lobsters wants to
-adjust their order to add "salami" as a topping to all pizzas that
-have pepperoni. To perform the update, use the filtered positional
-operator as follows:
+Suppose Steve Lobsters wants to adjust their order to add "salami" as a
+topping to all pizzas that have pepperoni. To perform the update, use
+the filtered positional operator as follows:
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
