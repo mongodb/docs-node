@@ -84,13 +84,13 @@ cases in which you want to access a nested array, use the
 .. important::
 
    Do not use the ``$`` operator in an ``upsert`` call because the
-   driver treats``$`` as a field name in the insert document.
+   driver treats ``$`` as a field name in the insert document.
 
 Example
 ```````
 
 The following code snippet shows how to update the size of the first
-pizza order item to "extra large" for the customer named "Steve Lobsters".
+pizza order item to "extra large" for the customer named Steve Lobsters.
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -102,8 +102,8 @@ the ``items`` array that contain a value of ``pizza`` in the ``type`` field.
 The ``updateDocument`` specifies the update operation to set the
 first array element match in ``items`` to "extra large".
 
-After you run the update method, your customer document for "Steve
-Lobsters" resembles the following:
+After you run the update method, your customer document for Steve
+Lobsters resembles the following:
 
 .. code-block:: javascript
 
@@ -137,16 +137,15 @@ matches your query document, use the all positional ``$[]`` operator.
 Example
 ```````
 
-The following code snippet shows how you can use the ``$[]``
-operator to add "fresh mozzarella" to the toppings of all of Popeye's
-order items.
+The following code snippet adds "fresh mozzarella" to the toppings of
+all of Popeye's order items.
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
    :start-after: start allArrayElement example
    :end-before: end allArrayElement example
 
-After you run the update method, your customer document for "Popeye"
+After you run the update method, your customer document for Popeye
 resembles the following:
 
 .. code-block:: json
@@ -216,8 +215,8 @@ The following snippet shows the complete update method for this example:
    :start-after: start arrayFiltersOne example
    :end-before: end arrayFiltersOne example
 
-After you run the method, your customer document for "Steve
-Lobsters" resembles the following:
+After you run the method, your customer document for Steve
+Lobsters resembles the following:
 
 .. code-block:: javascript
    :copyable: false
@@ -235,7 +234,7 @@ Lobsters" resembles the following:
 Example
 ```````
 
-Let's run through another example. Suppose "Steve Lobsters" wants to
+Let's run through another example. Suppose Steve Lobsters wants to
 adjust their order to add "salami" as a topping to all pizzas that
 have pepperoni. To perform the update, use the filtered positional
 operator as follows:
@@ -245,8 +244,8 @@ operator as follows:
    :start-after: start arrayFiltersTwo example
    :end-before: end arrayFiltersTwo example
 
-After you run the update method, your customer document for "Steve
-Lobsters" resembles the following:
+After you run the update method, your customer document for Steve
+Lobsters resembles the following:
 
 .. code-block:: javascript
    :copyable: false
