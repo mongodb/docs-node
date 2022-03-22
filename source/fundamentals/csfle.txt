@@ -31,7 +31,7 @@ This guide is a quick introduction to CSFLE using the Node.js driver.
 For in-depth information on how CSFLE works, see
 the :manual:`CSFLE reference </core/security-client-side-encryption/>` 
 documentation. For a real-world scenario and implementation, see our 
-`CSFLE Guide <https://docs.mongodb.com/drivers/security/client-side-field-level-encryption-guide>`_.
+`CSFLE Guide <https://www.mongodb.com/docs/drivers/security/client-side-field-level-encryption-guide>`_.
 
 Installation
 ------------
