@@ -85,8 +85,8 @@ which you want to access a nested array, use the
    Do not use the ``$`` operator in an ``upsert`` call because the
    driver treats ``$`` as a field name in the insert document.
 
-Example
-~~~~~~~
+Size Example
+~~~~~~~~~~~~
 
 The following code snippet shows how to update the size of the first
 pizza order item to "extra large" for the customer named Steve Lobsters.
@@ -133,8 +133,8 @@ Matching All Array Elements
 To perform the update on all of the array elements of each document that
 matches your query, use the all positional operator ``$[]``.
 
-Example
-~~~~~~~
+Toppings Example
+~~~~~~~~~~~~~~~~
 
 The following code snippet adds "fresh mozzarella" to the toppings of
 all of Popeye's order items.
@@ -177,8 +177,8 @@ The ``<identifier>`` term is a placeholder value you assign that represents
 an element of the array field name that prefixes it. This value must
 start with a lowercase letter and contain only alphanumeric characters.
 
-Example
-~~~~~~~
+Size Example
+~~~~~~~~~~~~
 
 To add a "garlic" topping to certain order items, format your update
 document as follows:
@@ -231,8 +231,8 @@ Lobsters resembles the following:
      ]
    }
 
-Example
-~~~~~~~
+Toppings Example
+~~~~~~~~~~~~~~~~
 
 Suppose Steve Lobsters wants to adjust their order to add "salami" as a
 topping to all pizzas that have pepperoni. To perform the update, use
