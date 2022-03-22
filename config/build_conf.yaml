@@ -6,7 +6,7 @@ git:
 project:
   name: 'node-driver'
   tag: 'node-driver'
-  url: 'https://ww.mongodb.com/docs/drivers/nodejs'
+  url: 'https://www.mongodb.com/docs/drivers/nodejs'
   title: 'Node Driver Manual'
   branched: true
 version:
