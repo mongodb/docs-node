@@ -70,7 +70,7 @@ objects. To learn more, see :manual:`dot notation
 .. _first-match-operator:
 
 The First Matching Array Element
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To update the first array element of each document that matches your
 query, use the positional operator ``$``. 
@@ -85,8 +85,8 @@ which you want to access a nested array, use the
    Do not use the ``$`` operator in an ``upsert`` call because the
    driver treats ``$`` as a field name in the insert document.
 
-Size Example
-~~~~~~~~~~~~
+Example
+```````
 
 The following code snippet shows how to update the size of the first
 pizza order item to "extra large" for the customer named Steve Lobsters.
@@ -128,13 +128,13 @@ in our update, we encounter the following error:
 .. _all-match-operator:
 
 Matching All Array Elements
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform the update on all of the array elements of each document that
 matches your query, use the all positional operator ``$[]``.
 
-Toppings Example
-~~~~~~~~~~~~~~~~
+Example
+```````
 
 The following code snippet adds "fresh mozzarella" to the toppings of
 all of Popeye's order items.
@@ -162,7 +162,7 @@ resembles the following:
 .. _filtered-positional-operator:
 
 Matching Multiple Array Elements
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform an update on all embedded array elements of each document
 that matches your query, use the filtered positional operator
@@ -177,8 +177,8 @@ The ``<identifier>`` term is a placeholder value you assign that represents
 an element of the array field name that prefixes it. This value must
 start with a lowercase letter and contain only alphanumeric characters.
 
-Size Example
-~~~~~~~~~~~~
+Example
+```````
 
 To add a "garlic" topping to certain order items, format your update
 document as follows:
@@ -231,8 +231,8 @@ Lobsters resembles the following:
      ]
    }
 
-Toppings Example
-~~~~~~~~~~~~~~~~
+Example
+```````
 
 Suppose Steve Lobsters wants to adjust their order to add "salami" as a
 topping to all pizzas that have pepperoni. To perform the update, use
