@@ -58,9 +58,8 @@ and links to related reference and API documentation.
           - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
    * - Insert a Document
-     - .. code-block::
+     - .. code-block:: javascript
           :copyable: true
-          :language: js
 
           coll.insert({ title: 'Jackie Robinson'});
 
