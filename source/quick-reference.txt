@@ -17,6 +17,9 @@ and links to related reference and API documentation.
      - Syntax
 
    * - Find a Document
+       - `API Documentation <{+api}/classes/Collection.html#findOne>`__
+       - :ref:`Usage Example <node-usage-findone>`
+       - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
      - .. io-code-block::
           :copyable: true
 
@@ -29,13 +32,6 @@ and links to related reference and API documentation.
              :language: js
 
              { name: 'Hamlet', type: 'movie', ... }
-
-       .. hlist::
-          :columns: 3
-
-          - `API Documentation <{+api}/classes/Collection.html#findOne>`__
-          - :ref:`Usage Example <node-usage-findone>`
-          - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
    * - Find Multiple Documents
      - .. io-code-block::
@@ -59,3 +55,57 @@ and links to related reference and API documentation.
           - :ref:`Usage Example <node-usage-find>`
           - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
+   * - Insert a Document
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             coll.insert({ title: 'Jackie Robinson'});
+
+        - `API Documentation <{+api}/classes/Collection.html#insert>`__
+        - :ref:`Usage Example <node-usage-insert>`
+        - :ref:`Fundamentals <node-fundamentals-insert-data>`
+
+
+   * - Insert Multiple Documents
+     -
+
+   * - Update a Document
+     -
+
+   * - Update Multiple Documents
+     -
+
+
+   * - Update Arrays in Documents
+     -
+   * - Replace a Document
+     -
+   * - Delete a Document
+     -
+   * - Delete multiple documents
+     -
+   * - Bulk Write
+     -
+   * - Watch for Changes
+     -
+   * - Access Data from a Cursor
+     -
+   * - Count Documents
+     -
+   * - Limit the Number of Documents Retrieved
+     -
+   * - Skip Retrieved Documents
+     -
+   * - Sort the Documents When Retrieving Them
+     -
+   * - Project Document Fields When Retrieving Them
+     -
+   * - Create an Index
+     -
+   * - Install the Driver Dependency
+     -
+   * - Search Geospatial Areas
+     -
