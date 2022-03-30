@@ -16,7 +16,7 @@ and links to related reference and API documentation.
    * - Command
      - Syntax
 
-     - Find a Document
+   * - Find a Document
      - .. io-code-block::
           :copyable: true
 
@@ -37,7 +37,7 @@ and links to related reference and API documentation.
           - :ref:`Usage Example <node-usage-findone>`
           - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
-     - Find Multiple Documents
+   * - Find Multiple Documents
      - .. io-code-block::
           :caption: Find Multiple Documents
           :copyable: true
