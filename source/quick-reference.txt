@@ -1,0 +1,35 @@
+.. _node-quick-reference:
+
+===============
+Quick Reference
+===============
+
+.. default-domain:: mongodb
+
+This page demonstrates the syntax of a list of MongoDB commands
+and links to related reference and API documentation.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Command
+     - Syntax
+
+   * - Find A Document
+     - .. io-code-block::
+          :caption: Find a Document
+          :copyable: true
+
+          .. input:: 
+             :language: js
+
+              coll.findOne({ title: 'Hamlet});
+
+          .. output::
+             :language: js
+
+             { name: 'Hamlet', type: 'movie', ... }
+
+       - API Documentation: `findOne() <{+api}/classes/Collection.html#findOne>`__
+       - Usage Example: :ref:`Find a Document <node-usage-findone>`
+       - Fundamentals: :ref:`Retrieve Data <node-fundamentals-retrieve-data>`
