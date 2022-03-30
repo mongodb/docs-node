@@ -17,9 +17,11 @@ and links to related reference and API documentation.
      - Syntax
 
    * - Find a Document
+
        - `API Documentation <{+api}/classes/Collection.html#findOne>`__
        - :ref:`Usage Example <node-usage-findone>`
        - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -56,17 +58,15 @@ and links to related reference and API documentation.
           - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
    * - Insert a Document
-     - .. io-code-block::
+     - .. code-block::
           :copyable: true
+          :language: js
 
-          .. input::
-             :language: js
+          coll.insert({ title: 'Jackie Robinson'});
 
-             coll.insert({ title: 'Jackie Robinson'});
-
-        - `API Documentation <{+api}/classes/Collection.html#insert>`__
-        - :ref:`Usage Example <node-usage-insert>`
-        - :ref:`Fundamentals <node-fundamentals-insert-data>`
+       - `API Documentation <{+api}/classes/Collection.html#insert>`__
+       - :ref:`Usage Example <node-usage-insert>`
+       - :ref:`Fundamentals <node-fundamentals-insert-data>`
 
 
    * - Insert Multiple Documents
