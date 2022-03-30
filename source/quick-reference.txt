@@ -48,7 +48,11 @@ and links to related reference and API documentation.
           .. output::
              :language: js
 
-             [{ title: 'Christmas in Boston', year: 2005', ...}, ... ]
+             [ 
+               { title: 'Christmas in Boston', year: 2005, ...}, 
+               { title: 'Chicken Little', year: 2005, ...},
+               ...
+             ]
 
        .. hlist::
           :columns: 3
