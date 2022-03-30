@@ -9,29 +9,53 @@ Quick Reference
 This page demonstrates the syntax of a list of MongoDB commands
 and links to related reference and API documentation.
 
+.. list-table::
+   :header-rows: 1
+   :widths: 25 75
 
-Find a Document
-^^^^^^^^^^^^^^^
+   * - Command
+     - Syntax
 
- .. io-code-block::
-    :caption: Find a Document
-    :copyable: true
+     - Find a Document
+     - .. io-code-block::
+          :copyable: true
 
-    .. input:: 
-       :language: js
+          .. input::
+             :language: js
 
-       coll.findOne({ title: 'Hamlet});
+             coll.findOne({ title: 'Hamlet' });
 
-    .. output::
-       :language: js
+          .. output::
+             :language: js
 
-       { name: 'Hamlet', type: 'movie', ... }
+             { name: 'Hamlet', type: 'movie', ... }
 
- .. hlist::
-    :columns: 3
+       .. hlist::
+          :columns: 3
 
-    - `API Documentation <{+api}/classes/Collection.html#findOne>`__
-    - :ref:`Usage Example <node-usage-findone>`
-    - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
+          - `API Documentation <{+api}/classes/Collection.html#findOne>`__
+          - :ref:`Usage Example <node-usage-findone>`
+          - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
+     - Find Multiple Documents
+     - .. io-code-block::
+          :caption: Find Multiple Documents
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             coll.find({ year: 2005 });
+
+          .. output::
+             :language: js
+
+             [{ title: 'Christmas in Boston', year: 2005', ...}, ... ]
+
+       .. hlist::
+          :columns: 3
+
+          - `API Documentation <{+api}/classes/Collection.html#find>`__
+          - :ref:`Usage Example <node-usage-find>`
+          - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
