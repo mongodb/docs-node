@@ -103,6 +103,11 @@ and links to related reference and API documentation.
              TODO:
 
    * - Update Multiple Documents
+
+       - `API Documentation <{+api}/classes/Collection.html#updateMany>`__
+       - :ref:`Usage Example <node-usage-updatemany>`
+       - :ref:`Fundamentals <node-fundamentals-change-a-document>`
+
    - .. io-code-block::
           :copyable: true
 
@@ -117,6 +122,10 @@ and links to related reference and API documentation.
              TODO:
 
    * - Update Arrays in Documents
+
+       - `API Documentation <{+api}/classes/Collection.html#update>`__
+       - :ref:`Fundamentals <node-fundamentals-update-array>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -131,6 +140,11 @@ and links to related reference and API documentation.
              TODO:
 
    * - Replace a Document
+
+       - `API Documentation <{+api}/classes/Collection.html#replaceOne>`__
+       - :ref:`Usage Example <node-usage-replaceone>`
+       - :ref:`Fundamentals <node-fundamentals-replaceone>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -145,18 +159,33 @@ and links to related reference and API documentation.
              TODO:
 
    * - Delete a Document
+
+       - `API Documentation <{+api}/classes/Collection.html#deleteOne>`__
+       - :ref:`Usage Example <node-usage-deleteone>`
+       - :ref:`Fundamentals <node-fundamentals-delete>`
+
      - .. code-block:: javascript
           :copyable: true
 
           TODO:
 
    * - Delete Multiple Documents
+
+       - `API Documentation <{+api}/classes/Collection.html#deleteMany>`__
+       - :ref:`Usage Example <node-usage-deletemany>`
+       - :ref:`Fundamentals <node-fundamentals-delete>`
+
      - .. code-block:: javascript
           :copyable: true
 
           TODO:
 
    * - Bulk Write
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -171,12 +200,22 @@ and links to related reference and API documentation.
              TODO:
 
    * - Watch for Changes
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
      - .. code-block:: javascript
           :copyable: true
 
           coll.watch([ { $ match: { year: { $geq: 2022 } } } ]);
 
    * - Access Data from a Cursor
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -190,6 +229,11 @@ and links to related reference and API documentation.
 
              TODO:
    * - Count Documents
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -203,6 +247,11 @@ and links to related reference and API documentation.
 
              TODO:
    * - Limit the Number of Documents Retrieved
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -216,6 +265,11 @@ and links to related reference and API documentation.
 
              TODO:
    * - Skip Retrieved Documents
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -229,6 +283,11 @@ and links to related reference and API documentation.
 
              TODO:
    * - Sort the Documents When Retrieving Them
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -255,6 +314,11 @@ and links to related reference and API documentation.
 
              TODO:
    * - Create an Index
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
      - .. io-code-block::
           :copyable: true
 
@@ -268,6 +332,12 @@ and links to related reference and API documentation.
 
              TODO:
    * - Install the Driver Dependency
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+
+
      - .. code-block:: javascript
           :caption: Entry in package.json
           :copyable: true
@@ -279,6 +349,10 @@ and links to related reference and API documentation.
 
           coll.insert({ title: 'Jackie Robinson'});
    * - Search Geospatial Areas
+
+       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - :ref:`Fundamentals <node-fundamentals-geospatial>`
+
      - .. io-code-block::
           :copyable: true
 
