@@ -91,7 +91,7 @@ and links to related reference and API documentation.
        - :ref:`Usage Example <node-usage-updateone>`
        - :ref:`Fundamentals <node-fundamentals-change-a-document>`
 
-   - .. io-code-block::
+     - .. io-code-block::
           :copyable: true
 
           .. input::
@@ -110,7 +110,7 @@ and links to related reference and API documentation.
        - :ref:`Usage Example <node-usage-updatemany>`
        - :ref:`Fundamentals <node-fundamentals-change-a-document>`
 
-   - .. io-code-block::
+     - .. io-code-block::
           :copyable: true
 
           .. input::
