@@ -1,4 +1,6 @@
 .. _node-quick-reference:
+.. _node-usage-TODO:
+.. _node-fundamentals-TODO:
 
 ===============
 Quick Reference
@@ -184,7 +186,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
           :copyable: true
@@ -203,7 +205,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. code-block:: javascript
           :copyable: true
@@ -214,7 +216,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
           :copyable: true
@@ -232,7 +234,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
           :copyable: true
@@ -250,7 +252,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
           :copyable: true
@@ -268,7 +270,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
           :copyable: true
@@ -286,7 +288,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
           :copyable: true
@@ -317,7 +319,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
           :copyable: true
@@ -335,7 +337,7 @@ and links to related reference and API documentation.
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
        - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO-data>`
+       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
 
      - .. code-block:: javascript
