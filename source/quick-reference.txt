@@ -36,8 +36,12 @@ and links to related reference and API documentation.
              { name: 'Hamlet', type: 'movie', ... }
 
    * - Find Multiple Documents
+
+       - `API Documentation <{+api}/classes/Collection.html#find>`__
+       - :ref:`Usage Example <node-usage-find>`
+       - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
+
      - .. io-code-block::
-          :caption: Find Multiple Documents
           :copyable: true
 
           .. input::
@@ -48,67 +52,242 @@ and links to related reference and API documentation.
           .. output::
              :language: js
 
-             [ 
-               { title: 'Christmas in Boston', year: 2005, ...}, 
+             [
+               { title: 'Christmas in Boston', year: 2005, ...},
                { title: 'Chicken Little', year: 2005, ...},
                ...
              ]
 
-       .. hlist::
-          :columns: 3
-
-          - `API Documentation <{+api}/classes/Collection.html#find>`__
-          - :ref:`Usage Example <node-usage-find>`
-          - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
-
    * - Insert a Document
-     - .. code-block:: javascript
-          :copyable: true
-
-          coll.insert({ title: 'Jackie Robinson'});
 
        - `API Documentation <{+api}/classes/Collection.html#insert>`__
        - :ref:`Usage Example <node-usage-insert>`
        - :ref:`Fundamentals <node-fundamentals-insert-data>`
 
+     - .. code-block:: javascript
+          :copyable: true
+
+          coll.insert({ title: 'Jackie Robinson'});
 
    * - Insert Multiple Documents
-     -
+
+       - `API Documentation <{+api}/classes/Collection.html#insertMany>`__
+       - :ref:`Usage Example <node-usage-insertmany>`
+       - :ref:`Fundamentals <node-fundamentals-insert-data>`
+
+     - .. code-block:: javascript
+          :copyable: true
+
+          coll.insertMany([
+            { title: 'Dangal', rating: 'Not Rated' },
+            { title: 'The Boss Baby', rating: 'PG' }
+           ]);
 
    * - Update a Document
-     -
+
+       - `API Documentation <{+api}/classes/Collection.html#update>`__
+       - :ref:`Usage Example <node-usage-updateone>`
+       - :ref:`Fundamentals <node-fundamentals-change-a-document>`
+
+   - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             coll.updateOne({ title: "Amadeus" }, { $set: { rating: 9.5 } })
+
+          .. output::
+             :language: js
+
+             TODO:
 
    * - Update Multiple Documents
-     -
+   - .. io-code-block::
+          :copyable: true
 
+          .. input::
+             :language: js
+
+             coll.updateMany({ year: 1990 }, { })
+
+          .. output::
+             :language: js
+
+             TODO:
 
    * - Update Arrays in Documents
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
+
    * - Replace a Document
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
+
    * - Delete a Document
-     -
-   * - Delete multiple documents
-     -
+     - .. code-block:: javascript
+          :copyable: true
+
+          TODO:
+
+   * - Delete Multiple Documents
+     - .. code-block:: javascript
+          :copyable: true
+
+          TODO:
+
    * - Bulk Write
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
+
    * - Watch for Changes
-     -
+     - .. code-block:: javascript
+          :copyable: true
+
+          coll.watch([ { $ match: { year: { $geq: 2022 } } } ]);
+
    * - Access Data from a Cursor
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
    * - Count Documents
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
    * - Limit the Number of Documents Retrieved
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
    * - Skip Retrieved Documents
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
    * - Sort the Documents When Retrieving Them
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
    * - Project Document Fields When Retrieving Them
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
    * - Create an Index
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
    * - Install the Driver Dependency
-     -
+     - .. code-block:: javascript
+          :caption: Entry in package.json
+          :copyable: true
+
+          "dependencies": {
+            "mongodb": "^4.4.0",
+            ...
+          }
+
+          coll.insert({ title: 'Jackie Robinson'});
    * - Search Geospatial Areas
-     -
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             TODO:
+
+          .. output::
+             :language: js
+
+             TODO:
