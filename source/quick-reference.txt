@@ -97,12 +97,12 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.updateOne({ title: "Amadeus" }, { $set: { rating: 9.5 } })
+             coll.updateOne({ title: "Amadeus" }, { $set: { imdb.rating: 9.5 } });
 
           .. output::
              :language: js
 
-             TODO:
+             { title: "Amadeus", imdb: { rating: 9.5, ... }
 
    * - Update Multiple Documents
 
@@ -116,12 +116,15 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.updateMany({ year: 1990 }, { })
+             coll.updateMany({ year: 2001 }, { $inc: { imdb.votes: 100 } });
 
           .. output::
              :language: js
 
-             TODO:
+             [{ title: 'A Beautiful Mind', year: 2001, imdb: { votes: 826257, ... },
+              { title: 'Shaolin Soccer', year: 2001, imdb: { votes: 65442, ... },
+              ...
+             ]
 
    * - Update Arrays in Documents
 
@@ -134,12 +137,12 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             TODO:
+             coll.updateOne({ title: 'Coco' }, { $push: { genres: 'Educational' }}):
 
           .. output::
              :language: js
 
-             TODO:
+             { title: 'Coco', genres: [ 'Animation', ..., 'Educational' ] }
 
    * - Replace a Document
 
@@ -169,7 +172,7 @@ and links to related reference and API documentation.
      - .. code-block:: javascript
           :copyable: true
 
-          TODO:
+          coll.deleteOne({ title: 'Congo' });
 
    * - Delete Multiple Documents
 
@@ -180,7 +183,7 @@ and links to related reference and API documentation.
      - .. code-block:: javascript
           :copyable: true
 
-          TODO:
+          coll.deleteMany({ title: { $regex: /^Shark.*/ } });
 
    * - Bulk Write
 
@@ -203,20 +206,40 @@ and links to related reference and API documentation.
 
    * - Watch for Changes
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
+       - `API Documentation <{+api}/classes/Collection.html#watch>`__
+       - :ref:`Usage Example <node-usage-watch>`
+       - :ref:`Fundamentals <node-fundamentals-watch>`
 
      - .. code-block:: javascript
           :copyable: true
 
           coll.watch([ { $ match: { year: { $geq: 2022 } } } ]);
 
-   * - Access Data from a Cursor
+   * - Access Data from a Cursor Iteratively
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
+       - `API Documentation <{+api}/classes/FindCursor.html#forEach>`__
+       - :ref:`Fundamentals <node-fundamentals-cursor-foreach>`
+
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             const cursor = coll.find();
+             const results = await cursor.forEach(result => console.dir(result));
+
+          .. output::
+             :language: js
+
+             [
+                { title: '2001: A Space Odyssey', ... },
+                { title: 'The Sound of Music', ... },
+                ...
+             ]
+
+   * - Access Data from a Cursor as an Array
+
+       - `API Documentation <{+api}/classes/FindCursor.html#toArray>`__
+       - :ref:`Fundamentals <node-fundamentals-cursor-array>`
 
      - .. io-code-block::
           :copyable: true
@@ -224,16 +247,22 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             TODO:
+             const cursor = coll.find();
+             await cursor.toArray();
 
           .. output::
              :language: js
 
-             TODO:
+             [
+                { title: '2001: A Space Odyssey', ... },
+                { title: 'The Sound of Music', ... },
+                ...
+             ]
+
    * - Count Documents
 
        - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
+       - :ref:`Usage Example <node-usage-count>`
        - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
@@ -248,11 +277,11 @@ and links to related reference and API documentation.
              :language: js
 
              TODO:
+
    * - Limit the Number of Documents Retrieved
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
+       - `API Documentation <{+api}/classes/FindCursor.html#limit>`__
+       - :ref:`Fundamentals <node-fundamentals-limit>`
 
      - .. io-code-block::
           :copyable: true
@@ -260,17 +289,20 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             TODO:
+             coll.find().limit(2);
 
           .. output::
              :language: js
 
-             TODO:
+             [
+                { title: 'My Neighbor Totoro', ... },
+                { title: 'Amélie', ... }
+             ]
+
    * - Skip Retrieved Documents
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
+       - `API Documentation <{+api}/classes/FindCursor.html#skip>`__
+       - :ref:`Fundamentals <node-fundamentals-skip>`
 
      - .. io-code-block::
           :copyable: true
@@ -278,17 +310,20 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             TODO:
+             collection.find({title: {$regex: /^Rocky/}}, { skip: 2 })
 
           .. output::
              :language: js
+             [
+                { title: 'Rocky III', ... },
+                { title: 'Rocky IV', ... },
+                { title: 'Rocky V'}, ... }
+             ]
 
-             TODO:
    * - Sort the Documents When Retrieving Them
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
+       - `API Documentation <{+api}/classes/FindCursor.html#sort>`__
+       - :ref:`Fundamentals <node-fundamentals-sort>`
 
      - .. io-code-block::
           :copyable: true
@@ -296,52 +331,53 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             TODO:
+             coll.find().sort({ year: 1})
 
           .. output::
              :language: js
 
-             TODO:
+             [
+                { title: 'Newark Athlete', year: 1891, ... },
+                { title: 'Blacksmith Scene', year: 1893, ...},
+                { title: 'Dickson Experimental Sound Film', year: 1894},
+                ...
+             ]
+
    * - Project Document Fields When Retrieving Them
+     - `API Documentation <{+api}/classes/FindCursor.html#project>`__
+       - :ref:`Fundamentals <node-fundamentals-prjoect>`
+
      - .. io-code-block::
           :copyable: true
 
           .. input::
              :language: js
 
-             TODO:
+             coll.find().project({ _id: 0, year: 1, imdb: 1 });
 
           .. output::
              :language: js
 
-             TODO:
+             [
+                { year: 2012, imdb: { rating: 5.8, votes: 230, id: 8256 }},
+                { year: 1985, imdb: { rating: 7.0, votes: 447, id: 1654 }},
+                ...
+             ]
+
    * - Create an Index
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
-
-     - .. io-code-block::
-          :copyable: true
-
-          .. input::
-             :language: js
-
-             TODO:
-
-          .. output::
-             :language: js
-
-             TODO:
-   * - Install the Driver Dependency
-
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
-
+       - `API Documentation <{+api}/classes/Collection.html#createIndex>`__
+       - :ref:`Fundamentals <node-fundamentals-indexes>`
 
      - .. code-block:: javascript
-          :caption: Entry in package.json
+          :copyable: true
+
+          await coll.createIndex({ title: 1, year: -1 });
+
+   * - Install the Driver Dependency
+
+     - .. code-block:: javascript
+          :caption: package.json
           :copyable: true
 
           "dependencies": {
@@ -361,6 +397,11 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
+             coll.find({
+                'location.geo': {
+
+                }
+             )
              TODO:
 
           .. output::
