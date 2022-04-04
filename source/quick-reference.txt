@@ -33,7 +33,7 @@ and links to related reference and API documentation.
           .. output::
              :language: js
 
-             { name: 'Hamlet', type: 'movie', ... }
+             { title: 'Hamlet', type: 'movie', ... }
 
    * - | **Find Multiple Documents**
        |
@@ -53,8 +53,8 @@ and links to related reference and API documentation.
              :language: js
 
              [
-               { title: 'Christmas in Boston', year: 2005, ...},
-               { title: 'Chicken Little', year: 2005, ...},
+               { title: 'Christmas in Boston', year: 2005, ... },
+               { title: 'Chicken Little', year: 2005, ... },
                ...
              ]
 
@@ -67,7 +67,7 @@ and links to related reference and API documentation.
      - .. code-block:: javascript
           :copyable: true
 
-          coll.insert({ title: 'Jackie Robinson'});
+          coll.insert({ title: 'Jackie Robinson' });
 
    * - | **Insert Multiple Documents**
        |
@@ -95,12 +95,15 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.updateOne({ title: 'Amadeus' }, { $set: { imdb.rating: 9.5 } });
+             await coll.updateOne(
+                { title: 'Amadeus' },
+               { $set: { 'imdb.rating': 9.5 } }
+            );
 
           .. output::
              :language: js
 
-             { title: 'Amadeus', imdb: { rating: 9.5, ... }
+             { title: 'Amadeus', imdb: { rating: 9.5, ... } }
 
    * - | **Update Multiple Documents**
        |
@@ -114,14 +117,18 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.updateMany({ year: 2001 }, { $inc: { imdb.votes: 100 } });
+             await coll.updateMany(
+                { year: 2001 },
+                { $inc: { 'imdb.votes': 100 } }
+             );
 
           .. output::
              :language: js
 
-             [{ title: 'A Beautiful Mind', year: 2001, imdb: { votes: 826257, ... },
-              { title: 'Shaolin Soccer', year: 2001, imdb: { votes: 65442, ... },
-              ...
+             [
+               { title: 'A Beautiful Mind', year: 2001, imdb: { votes: 826257, ... },
+               { title: 'Shaolin Soccer', year: 2001, imdb: { votes: 65442, ... },
+               ...
              ]
 
    * - | **Update Arrays in Documents**
@@ -135,12 +142,15 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.updateOne({ title: 'Coco' }, { $push: { genres: 'Educational' }}):
+             await coll.updateOne(
+                { title: 'Cosmos' },
+                { $push: { genres: 'Educational' } }
+             ):
 
           .. output::
              :language: js
 
-             { title: 'Coco', genres: [ 'Animation', ..., 'Educational' ] }
+             { title: 'Cosmos', genres: [ 'Documentary', 'Educational' ] }
 
    * - | **Replace a Document**
        |
@@ -154,10 +164,10 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.replaceOne(
+             await coll.replaceOne(
                 { name: 'Deli Llama', address: '2 Nassau St' },
                 { name: 'Lord of the Wings', zipcode: 10001 }
-             )
+             );
 
           .. output::
              :language: js
@@ -173,7 +183,7 @@ and links to related reference and API documentation.
      - .. code-block:: javascript
           :copyable: true
 
-          coll.deleteOne({ title: 'Congo' });
+          await coll.deleteOne({ title: 'Congo' });
 
    * - | **Delete Multiple Documents**
        |
@@ -184,7 +194,7 @@ and links to related reference and API documentation.
      - .. code-block:: javascript
           :copyable: true
 
-          coll.deleteMany({ title: { $regex: /^Shark.*/ } });
+          await coll.deleteMany({ title: { $regex: /^Shark.*/ } });
 
    * - | **Bulk Write**
        |
@@ -197,7 +207,7 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.bulkWrite([
+             await coll.bulkWrite([
                 {
                    insertOne: {
                       document: {
@@ -230,7 +240,7 @@ and links to related reference and API documentation.
      - .. code-block:: javascript
           :copyable: true
 
-          coll.watch([ { $ match: { year: { $geq: 2022 } } } ]);
+          coll.watch([ { $match: { year: { $gte: 2022 } } } ]);
 
    * - | **Access Data from a Cursor Iteratively**
        |
@@ -328,7 +338,7 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             collection.find({title: {$regex: /^Rocky/}}, { skip: 2 })
+             collection.find({ title: { $regex: /^Rocky/} }, { skip: 2 });
 
           .. output::
              :language: js
@@ -350,7 +360,7 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.find().sort({ year: 1})
+             coll.find().sort({ year: 1});
 
           .. output::
              :language: js
