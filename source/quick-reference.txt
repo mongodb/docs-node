@@ -35,7 +35,7 @@ and links to related reference and API documentation.
 
              { name: 'Hamlet', type: 'movie', ... }
 
-   * - | **Find Multiple Documents **
+   * - | **Find Multiple Documents**
        |
        | `API Documentation <{+api}/classes/Collection.html#find>`__
        | :ref:`Usage Example <node-usage-find>`
@@ -332,6 +332,7 @@ and links to related reference and API documentation.
 
           .. output::
              :language: js
+
              [
                 { title: 'Rocky III', ... },
                 { title: 'Rocky IV', ... },
