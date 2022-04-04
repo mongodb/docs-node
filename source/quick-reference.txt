@@ -1,6 +1,4 @@
 .. _node-quick-reference:
-.. _node-usage-TODO:
-.. _node-fundamentals-TODO:
 
 ===============
 Quick Reference
@@ -18,11 +16,11 @@ and links to related reference and API documentation.
    * - Command
      - Syntax
 
-   * - Find a Document
-
-       - `API Documentation <{+api}/classes/Collection.html#findOne>`__
-       - :ref:`Usage Example <node-usage-findone>`
-       - :ref:`Fundamentals <node-fundamentals-retrieve-data>`
+   * - | Find a Document
+       |
+       | `API Documentation <{+api}/classes/Collection.html#findOne>`__
+       | :ref:`Usage Example <node-usage-findone>`
+       | :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
      - .. io-code-block::
           :copyable: true
@@ -97,12 +95,12 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.updateOne({ title: "Amadeus" }, { $set: { imdb.rating: 9.5 } });
+             coll.updateOne({ title: 'Amadeus' }, { $set: { imdb.rating: 9.5 } });
 
           .. output::
              :language: js
 
-             { title: "Amadeus", imdb: { rating: 9.5, ... }
+             { title: 'Amadeus', imdb: { rating: 9.5, ... }
 
    * - Update Multiple Documents
 
@@ -156,12 +154,15 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             TODO:
+             coll.replaceOne(
+                { name: 'Deli Llama', address: '2 Nassau St' },
+                { name: 'Lord of the Wings', zipcode: 10001 }
+             )
 
           .. output::
              :language: js
 
-             TODO:
+             { name: 'Lord of the Wings', zipcode: 10001 }
 
    * - Delete a Document
 
@@ -187,9 +188,8 @@ and links to related reference and API documentation.
 
    * - Bulk Write
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Usage Example <node-usage-TODO>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
+       - `API Documentation <{+api}/classes/Collection.html#bulkWrite>`__
+       - :ref:`Usage Example <node-usage-bulk>`
 
      - .. io-code-block::
           :copyable: true
@@ -197,12 +197,29 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             TODO:
+             coll.bulkWrite([
+                {
+                   insertOne: {
+                      document: {
+                         title: 'A New Movie',
+                         year: 2022
+                      }
+                   },
+                   deleteMany: {
+                      filter: { year: { $lt: 1970 } }
+                   }
+                }
+             ]);
 
           .. output::
              :language: js
 
-             TODO:
+             BulkWriteResult {
+                result: {
+                   ...
+                },
+                ...
+             }
 
    * - Watch for Changes
 
@@ -261,9 +278,8 @@ and links to related reference and API documentation.
 
    * - Count Documents
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
+       - `API Documentation <{+api}/classes/Collection.html#countDocuments>`__
        - :ref:`Usage Example <node-usage-count>`
-       - :ref:`Fundamentals <node-fundamentals-TODO>`
 
      - .. io-code-block::
           :copyable: true
@@ -271,12 +287,12 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             TODO:
+             await coll.countDocuments({ year: 2000 });
 
           .. output::
              :language: js
 
-             TODO:
+             618
 
    * - Limit the Number of Documents Retrieved
 
@@ -385,11 +401,10 @@ and links to related reference and API documentation.
             ...
           }
 
-          coll.insert({ title: 'Jackie Robinson'});
-   * - Search Geospatial Areas
+   * - Search Text
 
-       - `API Documentation <{+api}/classes/Collection.html#TODO>`__
-       - :ref:`Fundamentals <node-fundamentals-geospatial>`
+       - `API Documentation <{+api}/classes/Collection.html#find>`__
+       - :ref:`Fundamentals <node-fundamentals-text>`
 
      - .. io-code-block::
           :copyable: true
@@ -397,14 +412,11 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
-             coll.find({
-                'location.geo': {
-
-                }
-             )
-             TODO:
+             coll.find({ $text: { $search: 'zissou' } });
 
           .. output::
              :language: js
 
-             TODO:
+             [
+                { title: 'The Life Aquatic with Steve Zissou', ... }
+             ]
