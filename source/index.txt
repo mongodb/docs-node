@@ -42,7 +42,8 @@ working with data in the :doc:`Quick Start </quick-start>` section.
 Quick Reference
 ---------------
 
-See a list of 
+See driver syntax examples for common MongoDB commands in the
+:ref:`Quick Reference <node-quick-reference>` section.
 
 Usage Examples
 --------------

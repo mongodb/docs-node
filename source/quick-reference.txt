@@ -96,7 +96,7 @@ their related reference and API documentation.
              :language: js
 
              await coll.updateOne(
-                { title: 'Amadeus' },
+               { title: 'Amadeus' },
                { $set: { 'imdb.rating': 9.5 } }
              );
 
@@ -118,8 +118,8 @@ their related reference and API documentation.
              :language: js
 
              await coll.updateMany(
-                { year: 2001 },
-                { $inc: { 'imdb.votes': 100 } }
+               { year: 2001 },
+               { $inc: { 'imdb.votes': 100 } }
              );
 
           .. output::
@@ -143,8 +143,8 @@ their related reference and API documentation.
              :language: js
 
              await coll.updateOne(
-                { title: 'Cosmos' },
-                { $push: { genres: 'Educational' } }
+               { title: 'Cosmos' },
+               { $push: { genres: 'Educational' } }
              ):
 
           .. output::
@@ -165,8 +165,8 @@ their related reference and API documentation.
              :language: js
 
              await coll.replaceOne(
-                { name: 'Deli Llama', address: '2 Nassau St' },
-                { name: 'Lord of the Wings', zipcode: 10001 }
+               { name: 'Deli Llama', address: '2 Nassau St' },
+               { name: 'Lord of the Wings', zipcode: 10001 }
              );
 
           .. output::
@@ -208,27 +208,27 @@ their related reference and API documentation.
              :language: js
 
              await coll.bulkWrite([
-                {
-                   insertOne: {
-                      document: {
-                         title: 'A New Movie',
-                         year: 2022
-                      }
-                   },
-                   deleteMany: {
-                      filter: { year: { $lt: 1970 } }
+               {
+                 insertOne: {
+                   document: {
+                     title: 'A New Movie',
+                     year: 2022
                    }
-                }
+               },
+                 deleteMany: {
+                   filter: { year: { $lt: 1970 } }
+                 }
+               }
              ]);
 
           .. output::
              :language: js
 
              BulkWriteResult {
-                result: {
-                   ...
-                },
-                ...
+               result: {
+                 ...
+               },
+               ...
              }
 
    * - | **Watch for Changes**
@@ -260,9 +260,9 @@ their related reference and API documentation.
              :language: js
 
              [
-                { title: '2001: A Space Odyssey', ... },
-                { title: 'The Sound of Music', ... },
-                ...
+               { title: '2001: A Space Odyssey', ... },
+               { title: 'The Sound of Music', ... },
+               ...
              ]
 
    * - | **Access Data from a Cursor as an Array**
@@ -283,9 +283,9 @@ their related reference and API documentation.
              :language: js
 
              [
-                { title: '2001: A Space Odyssey', ... },
-                { title: 'The Sound of Music', ... },
-                ...
+               { title: '2001: A Space Odyssey', ... },
+               { title: 'The Sound of Music', ... },
+               ...
              ]
 
    * - | **Count Documents**
@@ -341,8 +341,8 @@ their related reference and API documentation.
              :language: js
 
              [
-                { title: 'My Neighbor Totoro', ... },
-                { title: 'Amélie', ... }
+               { title: 'My Neighbor Totoro', ... },
+               { title: 'Amélie', ... }
              ]
 
    * - | **Skip Retrieved Documents**
@@ -362,9 +362,9 @@ their related reference and API documentation.
              :language: js
 
              [
-                { title: 'Rocky III', ... },
-                { title: 'Rocky IV', ... },
-                { title: 'Rocky V'}, ... }
+               { title: 'Rocky III', ... },
+               { title: 'Rocky IV', ... },
+               { title: 'Rocky V'}, ... }
              ]
 
    * - | **Sort the Documents When Retrieving Them**
@@ -384,10 +384,10 @@ their related reference and API documentation.
              :language: js
 
              [
-                { title: 'Newark Athlete', year: 1891, ... },
-                { title: 'Blacksmith Scene', year: 1893, ...},
-                { title: 'Dickson Experimental Sound Film', year: 1894},
-                ...
+               { title: 'Newark Athlete', year: 1891, ... },
+               { title: 'Blacksmith Scene', year: 1893, ...},
+               { title: 'Dickson Experimental Sound Film', year: 1894},
+               ...
              ]
 
    * - | **Project Document Fields When Retrieving Them**
@@ -407,9 +407,9 @@ their related reference and API documentation.
              :language: js
 
              [
-                { year: 2012, imdb: { rating: 5.8, votes: 230, id: 8256 }},
-                { year: 1985, imdb: { rating: 7.0, votes: 447, id: 1654 }},
-                ...
+               { year: 2012, imdb: { rating: 5.8, votes: 230, id: 8256 }},
+               { year: 1985, imdb: { rating: 7.0, votes: 447, id: 1654 }},
+               ...
              ]
 
    * - | **Create an Index**
@@ -440,7 +440,7 @@ their related reference and API documentation.
              :language: js
 
              [
-                { title: 'The Life Aquatic with Steve Zissou', ... }
+               { title: 'The Life Aquatic with Steve Zissou', ... }
              ]
 
    * - | **Install the Driver Dependency**
