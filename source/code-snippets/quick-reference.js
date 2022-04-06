@@ -85,17 +85,19 @@ async function deleteMany(coll) {
 
 async function bulkWriteExample(coll) {
   const result = await coll.bulkWrite([
-      {
-          insertOne: {
-              document: {
-                  title: 'A New Movie',
-                  year: 2022
-              }
-          },
-          deleteMany: {
-              filter: { year: { $lt: 1970 } }
-          }
+    {
+      insertOne: {
+        document: {
+          title: 'A New Movie',
+          year: 2022
+        }
       }
+    },
+    {
+      deleteMany: {
+        filter: { year: { $lt: 1970 } }
+      }
+    }
   ]);
   await console.dir(result);
 }
