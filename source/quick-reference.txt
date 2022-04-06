@@ -6,8 +6,8 @@ Quick Reference
 
 .. default-domain:: mongodb
 
-This page demonstrates the syntax of a list of MongoDB commands
-and links to related reference and API documentation.
+This page shows the driver syntax for several MongoDB commands and links to
+their related reference and API documentation.
 
 .. list-table::
    :header-rows: 1
@@ -254,7 +254,7 @@ and links to related reference and API documentation.
              :language: js
 
              const cursor = coll.find();
-             const results = await cursor.forEach(result => console.dir(result));
+             await cursor.forEach(console.dir);
 
           .. output::
              :language: js
@@ -277,7 +277,7 @@ and links to related reference and API documentation.
              :language: js
 
              const cursor = coll.find();
-             await cursor.toArray();
+             const results = await cursor.toArray();
 
           .. output::
              :language: js
@@ -305,6 +305,24 @@ and links to related reference and API documentation.
              :language: js
 
              618
+
+   * - | **List the Distinct Documents or Field Values**
+       | `API Documentation <{+api+}/classes/Collection.html#distinct>`__
+       | :ref:`Usage Example <node-usage-distinct>`
+       | :ref:`Fundamentals <node-fundamentals-limit>`
+
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             await coll.distinct('year');
+
+          .. output::
+             :language: js
+
+             [ 1891, 1893, 1894, 1896, 1903, ... ]
 
    * - | **Limit the Number of Documents Retrieved**
        |
@@ -415,6 +433,7 @@ and links to related reference and API documentation.
           .. input::
              :language: js
 
+             // only searches fields with text indexes
              coll.find({ $text: { $search: 'zissou' } });
 
           .. output::
@@ -431,6 +450,6 @@ and links to related reference and API documentation.
           :copyable: true
 
           "dependencies": {
-            "mongodb": "^4.4.0",
+            "mongodb": "^{+version+}",
             ...
           }

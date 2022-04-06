@@ -3,10 +3,9 @@ const { MongoClient } = require("mongodb");
 
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri =
-  "CONNECTION_URI";
+  "<connection URI>";
 
 const client = new MongoClient(uri);
-
 
 async function query(coll) {
   await console.log("findOne");
@@ -61,6 +60,7 @@ async function updateArrayElement(coll) {
   const findResult = await coll.findOne({title: 'Cosmos'});
   await console.dir(findResult);
 }
+
 async function replaceDocument(coll) {
   const result = await coll.replaceOne(
                 { name: 'Deli Llama', address: '2 Nassau St' },
@@ -77,6 +77,7 @@ async function deleteOne(coll) {
   const result = await coll.deleteOne({ title: 'Congo' });
   await console.dir(result);
 }
+
 async function deleteMany(coll) {
   const result = await coll.deleteMany({ title: { $regex: /^Shark.*/ } });
   await console.dir(result);
@@ -105,13 +106,15 @@ async function watchStart(coll) {
 
 async function accessCursorIterative(coll) {
   const cursor = coll.find().limit(10);
-  const results = await cursor.forEach(result => console.dir(result));
+  await cursor.forEach(console.dir);
 }
+
 async function accessCursorArray(coll) {
   const cursor = coll.find().limit(10);
   const results = await cursor.toArray();
   console.log(results);
 }
+
 async function createIndex(coll) {
   const result = await coll.createIndex({'title':1 , 'year':-1});
   await console.dir(result);
@@ -121,6 +124,7 @@ async function countExample(coll) {
   const result = await coll.countDocuments({year: 2000});
   await console.dir(result);
 }
+
 async function skipExample(coll) {
   const cursor = await coll.find({title: {$regex: /^Rocky/ }}, { skip: 2 });
   await console.dir(await cursor.toArray());
@@ -128,18 +132,24 @@ async function skipExample(coll) {
 
 async function sortExample(coll) {
   const cursor = await coll.find().limit(50).sort({ year: 1});
-  await cursor.forEach(result => console.dir(result));
+  await cursor.forEach(console.dir);
 }
 
 async function projectExample(coll) {
   const cursor = coll.find().project({ _id: 0, year: 1, imdb: 1 });
-  await cursor.forEach(result => console.dir(result));
+  await cursor.forEach(console.dir);
 }
 
 async function searchText(coll) {
   const result = await coll.find({$text: { $search: 'zissou' }}).limit(30).project({title: 1});
   await result.forEach(console.dir);
 }
+
+async function distinct(coll) {
+  const result = await coll.distinct('year');
+  await console.log(result);
+}
+
 async function run() {
   try {
     await client.connect();
@@ -168,7 +178,7 @@ async function run() {
     //await projectExample(collection);
     //await createIndex(collection);
     //await searchText(collection);
-
+    //await distinct(collection);
 
   } finally {
     await client.close();
