@@ -1,9 +1,17 @@
 name = "node"
 title = "Node.js"
-intersphinx = ["https://mongodb.com/docs/manual/objects.inv",
-              "https://mongodb.com/docs/drivers/objects.inv"]
+intersphinx = [
+    "https://mongodb.com/docs/manual/objects.inv",
+    "https://mongodb.com/docs/drivers/objects.inv",
+]
 
-toc_landing_pages = ["/fundamentals/authentication", "/fundamentals", "/fundamentals/crud", "/usage-examples"]
+toc_landing_pages = [
+    "/fundamentals/authentication",
+    "/fundamentals",
+    "/fundamentals/crud",
+    "/usage-examples",
+]
+sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
 
 [constants]
 version = 4.0
