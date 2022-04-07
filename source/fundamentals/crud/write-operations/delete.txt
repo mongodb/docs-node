@@ -1,5 +1,3 @@
-.. _node-fundamentals-delete:
-
 =================
 Delete a Document
 =================

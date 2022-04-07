@@ -11,7 +11,6 @@ MongoDB Node Driver
   :maxdepth: 1
 
   /quick-start
-  /quick-reference
   /usage-examples
   /fundamentals
   API Documentation <{+api+}>
@@ -40,12 +39,6 @@ Quick Start
 
 Learn how to establish a connection to MongoDB Atlas and begin
 working with data in the :doc:`Quick Start </quick-start>` section.
-
-Quick Reference
----------------
-
-See driver syntax examples for common MongoDB commands in the
-:ref:`Quick Reference <node-quick-reference>` section.
 
 Usage Examples
 --------------

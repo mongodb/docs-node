@@ -1,5 +1,3 @@
-.. _node-fundamentals-project:
-
 ==============================
 Specify Which Fields to Return
 ==============================
