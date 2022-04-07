@@ -1,5 +1,3 @@
-.. _node-usage-insertmany:
-
 =========================
 Insert Multiple Documents
 =========================

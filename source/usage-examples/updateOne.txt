@@ -1,5 +1,3 @@
-.. _node-usage-updateone:
-
 =================
 Update a Document
 =================
