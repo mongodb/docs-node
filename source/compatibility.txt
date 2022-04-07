@@ -4,9 +4,14 @@ Compatibility
 MongoDB Compatibility
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: /includes/mongodb-compatibility-table-node.rst
+.. sharedinclude:: dbx/mongodb-compatibility-table-node.rst
 
 Language Compatibility
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. include:: /includes/language-compatibility-table-node.rst
+.. sharedinclude:: dbx/language-compatibility-table-node.rst
+
+About Compatibility Tables
+--------------------------
+
+.. sharedinclude:: dbx/about-compatibility.rst
