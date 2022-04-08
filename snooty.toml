@@ -15,7 +15,7 @@ sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
 
 
 [constants]
-version = 3.7
+version = "3.7"
 package-name-org = "mongodb-org"
 pgp-version = "{+version+}"
 api = "http://mongodb.github.io/node-mongodb-native/{+version+}/api"
