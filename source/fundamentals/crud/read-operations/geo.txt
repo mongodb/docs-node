@@ -1,3 +1,5 @@
+.. _node-fundamentals-geospatial:
+
 ===================
 Search Geospatially
 ===================
@@ -46,9 +48,9 @@ A ``Line`` uses two coordinates: a longitude and a latitude for each end.
 A ``Polygon`` consists of a list of coordinates in which the first and last
 coordinate are the same, effectively closing the polygon. To learn more
 about the GeoJSON shapes you can use in MongoDB, consult the
-:manual:`GeoJSON manual entry </reference/geojson/>`. 
+:manual:`GeoJSON manual entry </reference/geojson/>`.
 
-To enable querying GeoJSON data, you must add the field to a ``2dsphere`` 
+To enable querying GeoJSON data, you must add the field to a ``2dsphere``
 index. The following snippet creates an index on the ``location.geo`` field in
 the ``movies`` collection using the ``createIndex()`` method:
 
@@ -61,9 +63,9 @@ the ``movies`` collection using the ``createIndex()`` method:
 Coordinates on a 2D Plane
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also express geospatial queries using ``x`` and ``y`` coordinates in 
-a two-dimentional Euclidian plane. Until MongoDB, this was the only format 
-compatible with geospatial queries, and are now referred to as 
+You can also express geospatial queries using ``x`` and ``y`` coordinates in
+a two-dimentional Euclidian plane. Until MongoDB, this was the only format
+compatible with geospatial queries, and are now referred to as
 "legacy coordinate pairs".
 
 Legacy coordinate pairs use the following structure:
@@ -72,11 +74,11 @@ Legacy coordinate pairs use the following structure:
 
    <field> : [ x, y ]
 
-The field should contain an array of two values in which the first represents 
-the ``x`` axis value and the second represents the ``y`` axis value. 
+The field should contain an array of two values in which the first represents
+the ``x`` axis value and the second represents the ``y`` axis value.
 
 To enable querying using legacy coordinate pairs, create a ``2d`` index on
-the field on the collection. The following snippet creats an index on the
+the field on the collection. The following snippet creates an index on the
 ``coordinates`` field in the ``shipwrecks`` collection using the
 ``createIndex()`` method:
 
@@ -84,8 +86,8 @@ the field on the collection. The following snippet creats an index on the
 
    db.shipwrecks({coordinates: "2d"})
 
-See the 
-:manual:`MongoDB server manual page on legacy coordinate pairs </geospatial-queries/index.html#legacy-coordinate-pairs>`
+See the
+:manual:`MongoDB server manual page on legacy coordinate pairs </geospatial-queries/#legacy-coordinate-pairs>`
 for more information.
 
 .. note::

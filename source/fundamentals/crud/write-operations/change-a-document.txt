@@ -1,3 +1,5 @@
+.. _node-fundamentals-change-a-document:
+
 =================
 Change a Document
 =================
@@ -77,7 +79,7 @@ letters ``a`` through ``z`` and their ordinal values:
       z: 26,
    }
 
-If you apply the ``$set`` update operator with a specified value for ``z``, 
+If you apply the ``$set`` update operator with a specified value for ``z``,
 your update operation might resemble the following:
 
 .. code-block:: javascript
@@ -112,9 +114,10 @@ attempts to perform an update, but if no documents are matched, inserts
 a new document.
 
 You cannot modify the ``_id`` field of a document nor change a field to
-a value that violates a unique index constraint. See the MongoDB server manual 
+a value that violates a unique index constraint. See the MongoDB server manual
 for more information on :manual:`unique indexes </core/index-unique/>`.
 
+.. _node-fundamentals-replaceone:
 .. _replacementDocument:
 
 Replace
