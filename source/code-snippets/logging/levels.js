@@ -8,13 +8,10 @@ const uri =
 const client = new MongoClient(uri);
 
 async function main(client) {
-  // Set debug level
-  Logger.setLevel("debug");
-
   const db = client.db("sample_mflix");
 
-  // Run a sample command to produce logger messages
-  await db.command({ isMaster: true });
+  // Run a sample command
+  logger.debug(await db.command({ hello: 1 }));
 }
 // end-ex
 
