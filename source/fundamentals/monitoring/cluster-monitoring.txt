@@ -74,8 +74,8 @@ You can subscribe to any of the following SDAM events:
        MongoDB instance.
 
    * - ``serverHeartbeatFailed``
-     - Created when an ``hello`` command issued to a specific MongoDB
-       instance fails to return a successful response
+     - Created when a ``hello`` command issued to a specific MongoDB
+       instance fails to return a successful response.
 
 Example Event Documents
 -----------------------
