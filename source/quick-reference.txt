@@ -18,7 +18,7 @@ their related reference and API documentation.
 
    * - | **Find a Document**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#findOne>`__
+       | `API Documentation <{+api+}/Collection.html#findOne>`__
        | :ref:`Usage Example <node-usage-findone>`
        | :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
@@ -37,7 +37,7 @@ their related reference and API documentation.
 
    * - | **Find Multiple Documents**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#find>`__
+       | `API Documentation <{+api+}/Collection.html#find>`__
        | :ref:`Usage Example <node-usage-find>`
        | :ref:`Fundamentals <node-fundamentals-retrieve-data>`
 
@@ -60,7 +60,7 @@ their related reference and API documentation.
 
    * - | **Insert a Document**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#insert>`__
+       | `API Documentation <{+api+}/Collection.html#insert>`__
        | :ref:`Usage Example <node-usage-insert>`
        | :ref:`Fundamentals <node-fundamentals-insert-data>`
 
@@ -71,7 +71,7 @@ their related reference and API documentation.
 
    * - | **Insert Multiple Documents**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#insertMany>`__
+       | `API Documentation <{+api+}/Collection.html#insertMany>`__
        | :ref:`Usage Example <node-usage-insertmany>`
        | :ref:`Fundamentals <node-fundamentals-insert-data>`
 
@@ -85,7 +85,7 @@ their related reference and API documentation.
 
    * - | **Update a Document**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#update>`__
+       | `API Documentation <{+api+}/Collection.html#update>`__
        | :ref:`Usage Example <node-usage-updateone>`
        | :ref:`Fundamentals <node-fundamentals-change-a-document>`
 
@@ -107,7 +107,7 @@ their related reference and API documentation.
 
    * - | **Update Multiple Documents**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#updateMany>`__
+       | `API Documentation <{+api+}/Collection.html#updateMany>`__
        | :ref:`Usage Example <node-usage-updatemany>`
        | :ref:`Fundamentals <node-fundamentals-change-a-document>`
 
@@ -133,7 +133,7 @@ their related reference and API documentation.
 
    * - | **Update Arrays in Documents**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#update>`__
+       | `API Documentation <{+api+}/Collection.html#update>`__
        | :ref:`Fundamentals <node-fundamentals-update-array>`
 
      - .. io-code-block::
@@ -154,7 +154,7 @@ their related reference and API documentation.
 
    * - | **Replace a Document**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#replaceOne>`__
+       | `API Documentation <{+api+}/Collection.html#replaceOne>`__
        | :ref:`Usage Example <node-usage-replaceone>`
        | :ref:`Fundamentals <node-fundamentals-replaceone>`
 
@@ -176,7 +176,7 @@ their related reference and API documentation.
 
    * - | **Delete a Document**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#deleteOne>`__
+       | `API Documentation <{+api+}/Collection.html#deleteOne>`__
        | :ref:`Usage Example <node-usage-deleteone>`
        | :ref:`Fundamentals <node-fundamentals-delete>`
 
@@ -187,7 +187,7 @@ their related reference and API documentation.
 
    * - | **Delete Multiple Documents**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#deleteMany>`__
+       | `API Documentation <{+api+}/Collection.html#deleteMany>`__
        | :ref:`Usage Example <node-usage-deletemany>`
        | :ref:`Fundamentals <node-fundamentals-delete>`
 
@@ -198,7 +198,7 @@ their related reference and API documentation.
 
    * - | **Bulk Write**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#bulkWrite>`__
+       | `API Documentation <{+api+}/Collection.html#bulkWrite>`__
        | :ref:`Usage Example <node-usage-bulk>`
 
      - .. io-code-block::
@@ -235,7 +235,7 @@ their related reference and API documentation.
 
    * - | **Watch for Changes**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#watch>`__
+       | `API Documentation <{+api+}/Collection.html#watch>`__
        | :ref:`Usage Example <node-usage-watch>`
        | :ref:`Fundamentals <node-fundamentals-watch>`
 
@@ -246,7 +246,7 @@ their related reference and API documentation.
 
    * - | **Access Data from a Cursor Iteratively**
        |
-       | `API Documentation <{+api+}/classes/FindCursor.html#forEach>`__
+       | `API Documentation <{+api+}/Cursor.html#forEach>`__
        | :ref:`Fundamentals <node-fundamentals-cursor-foreach>`
 
      - .. io-code-block::
@@ -269,7 +269,7 @@ their related reference and API documentation.
 
    * - | **Access Data from a Cursor as an Array**
        |
-       | `API Documentation <{+api+}/classes/FindCursor.html#toArray>`__
+       | `API Documentation <{+api+}/Cursor.html#toArray>`__
        | :ref:`Fundamentals <node-fundamentals-cursor-array>`
 
      - .. io-code-block::
@@ -292,7 +292,7 @@ their related reference and API documentation.
 
    * - | **Count Documents**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#countDocuments>`__
+       | `API Documentation <{+api+}/Collection.html#countDocuments>`__
        | :ref:`Usage Example <node-usage-count>`
 
      - .. io-code-block::
@@ -309,7 +309,7 @@ their related reference and API documentation.
              618
 
    * - | **List the Distinct Documents or Field Values**
-       | `API Documentation <{+api+}/classes/Collection.html#distinct>`__
+       | `API Documentation <{+api+}/Collection.html#distinct>`__
        | :ref:`Usage Example <node-usage-distinct>`
        | :ref:`Fundamentals <node-fundamentals-limit>`
 
@@ -328,7 +328,7 @@ their related reference and API documentation.
 
    * - | **Limit the Number of Documents Retrieved**
        |
-       | `API Documentation <{+api+}/classes/FindCursor.html#limit>`__
+       | `API Documentation <{+api+}/Cursor.html#limit>`__
        | :ref:`Fundamentals <node-fundamentals-limit>`
 
      - .. io-code-block::
@@ -349,7 +349,7 @@ their related reference and API documentation.
 
    * - | **Skip Retrieved Documents**
        |
-       | `API Documentation <{+api+}/classes/FindCursor.html#skip>`__
+       | `API Documentation <{+api+}/Cursor.html#skip>`__
        | :ref:`Fundamentals <node-fundamentals-skip>`
 
      - .. io-code-block::
@@ -371,7 +371,7 @@ their related reference and API documentation.
 
    * - | **Sort the Documents When Retrieving Them**
        |
-       | `API Documentation <{+api+}/classes/FindCursor.html#sort>`__
+       | `API Documentation <{+api+}/Cursor.html#sort>`__
        | :ref:`Fundamentals <node-fundamentals-sort>`
 
      - .. io-code-block::
@@ -394,7 +394,7 @@ their related reference and API documentation.
 
    * - | **Project Document Fields When Retrieving Them**
        |
-       | `API Documentation <{+api+}/classes/FindCursor.html#project>`__
+       | `API Documentation <{+api+}/Cursor.html#project>`__
        | :ref:`Fundamentals <node-fundamentals-project>`
 
      - .. io-code-block::
@@ -416,7 +416,7 @@ their related reference and API documentation.
 
    * - | **Create an Index**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#createIndex>`__
+       | `API Documentation <{+api+}/Collection.html#createIndex>`__
        | :ref:`Fundamentals <node-fundamentals-indexes>`
 
      - .. code-block:: javascript
@@ -426,7 +426,7 @@ their related reference and API documentation.
 
    * - | **Search Text**
        |
-       | `API Documentation <{+api+}/classes/Collection.html#find>`__
+       | `API Documentation <{+api+}/Collection.html#find>`__
        | :ref:`Fundamentals <node-fundamentals-text>`
 
      - .. io-code-block::
