@@ -17,7 +17,7 @@ async function main(client) {
   const db = client.db("sample_mflix");
 
   // Run a sample command to produce logger messages
-  await db.command({ isMaster: true });
+  await db.command({ hello: 1 });
 }
 // end-ex
 
