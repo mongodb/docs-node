@@ -60,13 +60,13 @@ resemble the following:
 
 .. code-block:: none
 
-   [DEBUG-Db:63846] 1585699200000 executing command {"isMaster":true} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}] {
+   [DEBUG-Db:63846] 1585699200000 executing command {"hello":1} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}] {
      type: 'debug',
-     message: 'executing command {"isMaster":true} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}]',
+     message: 'executing command {"hello":1} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}]',
      className: 'Db',
      ...,
    }
-   [DEBUG-Server:63846] 1585699200000 executing command [{"ns":"sample_mflix.$cmd","cmd":{"isMaster":true},"options":{}}] against myClusterHostname:27017:27017 {
+   [DEBUG-Server:63846] 1585699200000 executing command [{"ns":"sample_mflix.$cmd","cmd":{"hello":1},"options":{}}] against myClusterHostname:27017:27017 {
      ...
    }
    [DEBUG-Server:63846] 11585699200000 executing command
@@ -92,8 +92,8 @@ apply a filter to log messages from the ``Db`` class only.
 
      const db = client.db("sample_mflix");
 
-     // Execute command { isMaster: true } against db
-     await db.command({ isMaster: true });
+     // Execute command { hello: 1 } against db
+     await db.command({ hello: 1 });
    }
 
 The logger output of the code above is similar to the prior example, but
@@ -102,9 +102,9 @@ resembles the following:
 
 .. code-block:: none
 
-   [DEBUG-Db:63846] 1585699200000 executing command {"isMaster":true} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}] {
+   [DEBUG-Db:63846] 1585699200000 executing command {"hello":1} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}] {
      type: 'debug',
-     message: 'executing command {"isMaster":true} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}]',
+     message: 'executing command {"hello":1} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}]',
      className: 'Db',
      ...
 
@@ -206,16 +206,16 @@ function and add custom logic to it.
    const db = client.db("sample_mflix");
 
    // Run a command to produce logger messages
-   await db.command({ isMaster: true });
+   await db.command({ hello: 1 });
 
 The code example above adds additional information in the callback function.
 The output of the example resembles the following:
 
 .. code-block:: none
 
-   Hello, World! [DEBUG-Db:65873] 1585699200000 executing command {"isMaster":true} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}] {
+   Hello, World! [DEBUG-Db:65873] 1585699200000 executing command {"hello":1} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}] {
      type: 'debug',
-     message: 'executing command {"isMaster":true} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}]',
+     message: 'executing command {"hello":1} against sample_mflix.$cmd with options [{"readPreference":{"mode":"primary"}}]',
      className: 'Db',
      foo: 'bar',
      ...
