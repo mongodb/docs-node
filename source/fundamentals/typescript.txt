@@ -190,6 +190,8 @@ documents in your collection but you do not want to specify values for the
 create your collection. The ``OptionalId`` type accepts a type parameter as an
 argument and returns that type with an optional ``_id`` field.
 
+.. include:: /includes/pkfactory-upsert.rst
+
 The following code snippet defines the ``IdPet`` interface, which
 includes a type for the ``_id`` field:
 

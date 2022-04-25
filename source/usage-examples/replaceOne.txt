@@ -28,6 +28,8 @@ You can specify additional options, such as ``upsert``, using the
 optional ``options`` parameter. If you set the ``upsert`` option field to
 ``true`` the method inserts a new document if no document matches the query.
 
+.. include:: /includes/pkfactory-upsert.rst
+   
 The ``replaceOne()`` method throws an exception if an error occurs
 during execution. For example, if you specify a value that violates a
 unique index rule, ``replaceOne()`` throws a ``duplicate key error``.

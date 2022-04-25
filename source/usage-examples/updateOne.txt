@@ -29,6 +29,8 @@ Set the ``upsert`` option to ``true`` to create a new document
 if no documents match the filter. For additional information, see the
 `updateOne() API documentation <{+api+}/classes/Collection.html#updateOne>`__.
 
+.. include:: /includes/pkfactory-upsert.rst
+   
 ``updateOne()`` throws an exception if an error occurs during execution.
 If you specify a value in your update document for the immutable field
 ``_id``, the method throws an exception. If your update document contains
