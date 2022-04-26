@@ -77,8 +77,6 @@ update the document, we can set ``upsert`` to ``true`` in our call to
    const update = { $set: { name: "Deli Llama", address: "3 Nassau St" }};
    const options = { upsert: true };
    collection.updateOne(query, update, options);
-
-.. include:: /includes/pkfactory-upsert.rst
    
 After you run the operation above, your collection should resemble the
 following, whether the "Deli Llama" document existed in your collection

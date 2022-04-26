@@ -122,8 +122,6 @@ an :doc:`upsert </fundamentals/crud/write-operations/upsert>` which
 attempts to perform an update, but if no documents are matched, inserts
 a new document.
 
-.. include:: /includes/pkfactory-upsert.rst
-
 You cannot modify the ``_id`` field of a document nor change a field to
 a value that violates a unique index constraint. See the MongoDB server manual
 for more information on :manual:`unique indexes </core/index-unique/>`.
@@ -199,8 +197,6 @@ does not make any changes. Replace operations can be configured to perform
 an :doc:`upsert </fundamentals/crud/write-operations/upsert>` which
 attempts to perform the replacement, but if no documents are matched, it
 inserts a new document.
-
-.. include:: /includes/pkfactory-upsert.rst
 
 You cannot modify the ``_id`` field of a document nor change a field to
 a value that violates a unique index constraint. See the MongoDB server manual
