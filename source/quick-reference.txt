@@ -24,7 +24,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -45,7 +44,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -95,7 +93,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -119,7 +116,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -146,7 +142,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -170,7 +165,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -215,7 +209,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -265,7 +258,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -290,7 +282,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -315,7 +306,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -335,7 +325,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -355,7 +344,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -378,7 +366,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -402,7 +389,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -427,7 +413,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
@@ -460,7 +445,6 @@ their related reference and API documentation.
 
      - .. io-code-block::
           :copyable: true
-          :visible: false
 
           .. input::
              :language: js
