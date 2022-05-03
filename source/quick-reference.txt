@@ -421,6 +421,7 @@ their related reference and API documentation.
 
           .. output::
              :language: js
+             :visible: false
 
              [
                { year: 2012, imdb: { rating: 5.8, votes: 230, id: 8256 }},
