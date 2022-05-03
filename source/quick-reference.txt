@@ -32,7 +32,7 @@ their related reference and API documentation.
 
           .. output::
              :language: js
-             
+             :visible: false          
 
              { title: 'Hamlet', type: 'movie', ... }
 
