@@ -1,0 +1,100 @@
+.. _node-pkfactory:
+
+===================
+Primary Key Factory
+===================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn about the primary key factory features
+and limitations in the MongoDB Node.js driver. 
+
+Behavior
+--------
+
+A primary key factory is a class that defines a system for creating
+unique identifiers for documents and implements  the ``pkFactory``
+interface. 
+
+If you choose not to specify an ``_id`` during an :ref:`insert
+operation <node-fundamentals-insert-data>`, the primary key factory
+generates unique ``_id`` values for your documents. The default primary
+key factory generates ``ObjectId`` values.
+
+Upsert Operations
+~~~~~~~~~~~~~~~~~
+
+When performing an :ref:`upsert operation
+<node-fundamentals-upsert>`, the driver doesn't use any
+``pkFactory`` methods. Instead, the driver always creates
+``ObjectId`` values for the ``_id`` field of the
+upserted documents.
+
+If you want to use ``pkFactory`` methods, peform a :ref:`find
+operation <node-fundamentals-retrieve-data>`, then an :ref:`update
+<node-fundamentals-change-a-document>` or :ref:`insert
+<node-fundamentals-insert-data>` operation.
+
+Data Consistency
+----------------
+
+If you do not specify a primary key factory method that generates
+``_id`` values of your desired type, you may experience data
+inconsistency.
+
+This occurs because the driver's default primary factory method generates
+``_id`` values of type ``ObjectId`` regardless of the type you specify for the 
+``_id`` field in your type parameter.
+
+Example
+~~~~~~~
+
+Assume you apply the following interface to your ``Collection``
+instance:
+
+.. code-block:: typescript
+
+   interface I {
+     _id?: number;
+     name: string;
+   } 
+
+The following sequence of insert operations inserts one document
+with an ``_id`` of type ``number`` and one document with an 
+``_id`` of type ``ObjectId`` into your collection:
+
+.. code-block:: typescript
+
+   collection.insertOne({ _id: 1, name: "Scar" });
+   collection.insertOne({ name: "Ursula" });
+
+To ensure that your data is consistent, apply a primary key factory to
+your ``MongoClient`` instance like this:
+
+.. code-block:: typescript
+
+   const client = new MongoClient(uri, {
+     pkFactory: { createPk: () => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) },
+   });
+
+Additional Information
+----------------------
+
+To learn more about the types, interfaces, and classes discussed in this
+section, see the following resources:
+
+- `PkFactory <{+api+}/interfaces/PkFactory.html>`__
+- :manual:`The _id Field </core/document/#the-_id-field>`
+- :ref:`node-fundamentals-upsert`
+- :ref:`node-fundamentals-retrieve-data`
+- :ref:`node-fundamentals-change-a-document`
+- :ref:`node-fundamentals-insert-data`
