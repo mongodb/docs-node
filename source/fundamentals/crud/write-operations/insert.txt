@@ -212,7 +212,3 @@ section, see the following resources:
 - API Documentation on `PkFactory <{+api+}/interfaces/PkFactory.html>`__
 - Server Manual Entry on :manual:`insertMany() </reference/method/db.collection.insertMany/>`
 - Runnable :doc:`Insert Multiple Documents Example </usage-examples/insertMany>`
-
-.. toctree::
-
-   /fundamentals/crud/write-operations/pkFactory

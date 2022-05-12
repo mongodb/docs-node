@@ -9,7 +9,7 @@ Primary Key Factory
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
@@ -25,18 +25,17 @@ A primary key factory is a class that defines a system for creating
 unique identifiers for documents and implements  the ``pkFactory``
 interface. 
 
-If you choose not to specify an ``_id`` during an :ref:`insert
-operation <node-fundamentals-insert-data>`, the primary key factory
-generates unique ``_id`` values for your documents. The default primary
-key factory generates ``ObjectId`` values.
+The driver uses the primary key factory to generate unique ``_id``
+values for your documents when you choose not to specify an ``_id``
+during an :ref:`insert operation <node-fundamentals-insert-data>`. The
+default primary key factory generates ``ObjectId`` values.
 
 Upsert Operations
 ~~~~~~~~~~~~~~~~~
 
-When performing an :ref:`upsert operation
-<node-fundamentals-upsert>`, the driver doesn't use any
-``pkFactory`` methods. Instead, the driver always creates
-``ObjectId`` values for the ``_id`` field of the
+For :ref:`upsert operations <node-fundamentals-upsert>`, the driver
+doesn't use any ``pkFactory`` methods. Instead, the driver always
+creates ``ObjectId`` values for the ``_id`` field of the
 upserted documents.
 
 If you want to use ``pkFactory`` methods, peform a :ref:`find
@@ -51,7 +50,7 @@ If you do not specify a primary key factory method that generates
 ``_id`` values of your desired type, you may experience data
 inconsistency.
 
-This occurs because the driver's default primary factory method generates
+This may occur because the driver's default primary factory method generates
 ``_id`` values of type ``ObjectId`` regardless of the type you specify for the 
 ``_id`` field in your type parameter.
 
@@ -68,17 +67,17 @@ instance:
      name: string;
    } 
 
-The following sequence of insert operations inserts one document
-with an ``_id`` of type ``number`` and one document with an 
-``_id`` of type ``ObjectId`` into your collection:
+The following insert operations insert a document with an ``_id`` of
+type ``number`` and another document with an ``_id`` of type
+``ObjectId`` into your collection:
 
 .. code-block:: typescript
 
    collection.insertOne({ _id: 1, name: "Scar" });
    collection.insertOne({ name: "Ursula" });
 
-To ensure that your data is consistent, apply a primary key factory to
-your ``MongoClient`` instance like this:
+To keep the ``_id`` consistent as whole numbers, apply a primary key
+factory to your ``MongoClient`` instance like this:
 
 .. code-block:: typescript
 
