@@ -30,6 +30,11 @@ events created by the MongoDB deployment:
 .. literalinclude:: /code-snippets/monitoring/apm-subscribe.js
    :language: javascript
 
+.. note::
+
+   To trigger events, enable command monitoring for the ``client`` by
+   specifying the ``monitorCommands`` option to ``true``.
+
 Event Descriptions
 ------------------
 
