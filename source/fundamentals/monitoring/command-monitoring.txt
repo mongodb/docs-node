@@ -32,8 +32,9 @@ events created by the MongoDB deployment:
 
 .. note::
 
-   To trigger events, enable command monitoring for the ``client`` by
-   specifying the ``monitorCommands`` option to ``true``.
+   Command monitoring is disabled by default. To enable command
+   monitoring, pass the ``monitorCommands`` option as ``true`` to
+   your ``MongoClient`` constructor. 
 
 Event Descriptions
 ------------------
