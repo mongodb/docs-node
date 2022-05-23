@@ -21,8 +21,8 @@ own ``_id`` values using the drivers ``pkFactory`` option.
 Behavior
 --------
 
-A primary key factory is a class that defines a system for creating
-unique identifiers in your documents. 
+The ``pkFactory``, primary key factory option defines a system for
+creating unique identifiers in your documents. 
 
 The driver uses the primary key factory to generate unique ``_id``
 values for your documents when you choose not to specify an ``_id``
@@ -69,16 +69,21 @@ Example
 ~~~~~~~
 
 Assume you have a collection, ``characters.villans``, that contains
-documents with a villans name. The following insert operations insert
+documents with a villans name. The following example inserts
 documents with an ``_id`` of type ``ObjectID`` into your collection:
 
 .. code-block:: javascript
 
    const uuid = require('bson');
    const { MongoClient } = require("mongodb");
+
    // Replace the uri string with your MongoDB deployment's connection string.
    const uri = "<your-connection-string>"
-   const client = new MongoClient(uri, {  useUnifiedTopology: true, pkFactory: { createPk: () => uuid }});
+   const client = new MongoClient(uri, {  
+     useUnifiedTopology: true, 
+     pkFactory: { createPk: () => uuid }
+   });
+   
    async function run() {
      try {
         await client.connect();
@@ -95,7 +100,8 @@ documents with an ``_id`` of type ``ObjectID`` into your collection:
 After running the code, the documents in your collection resemble the
 following:
 
-.. code-block::
+.. code-block:: json
+   :copyable: false
 
    {_id: ObjectID('628bdaf46777b6e36996ade3'), name: 'Scar'}
    {_id: ObjectID('628bdaf46777b6e36996ade4'), name: 'Ursula'}
