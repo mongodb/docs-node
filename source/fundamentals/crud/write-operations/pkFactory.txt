@@ -1,8 +1,8 @@
 .. _node-pkfactory:
 
-===================
-Primary Key Factory
-===================
+=======================
+Generate Unique ``_id``
+=======================
 
 .. default-domain:: mongodb
 
@@ -15,33 +15,32 @@ Primary Key Factory
 Overview
 --------
 
-In this guide, you can learn about the primary key factory features
-and limitations in the MongoDB Node.js driver. 
+In this guide, you can learn how to use the MongoDB Node.js driver to generate your
+own ``_id`` values using the drivers ``pkFactory`` option.
 
 Behavior
 --------
 
 A primary key factory is a class that defines a system for creating
-unique identifiers for documents and implements  the ``pkFactory``
-interface. 
+unique identifiers in your documents. 
 
 The driver uses the primary key factory to generate unique ``_id``
 values for your documents when you choose not to specify an ``_id``
 during an :ref:`insert operation <node-fundamentals-insert-data>`. The
 default primary key factory generates ``ObjectId`` values.
 
-Upsert Operations
-~~~~~~~~~~~~~~~~~
 
-For :ref:`upsert operations <node-fundamentals-upsert>`, the driver
-doesn't use any ``pkFactory`` methods. Instead, the driver always
-creates ``ObjectId`` values for the ``_id`` field of the
-upserted documents.
+.. note:: Upsert Operations
 
-If you want to use ``pkFactory`` methods, peform a :ref:`find
-operation <node-fundamentals-retrieve-data>`, then an :ref:`update
-<node-fundamentals-change-a-document>` or :ref:`insert
-<node-fundamentals-insert-data>` operation.
+   The driver doesn't use any ``pkFactory`` methods for :ref:`upsert
+   operations <node-fundamentals-upsert>`. Instead, the driver always 
+   creates ``ObjectId`` values for the ``_id`` field of the
+   upserted documents.
+
+   If you want to use ``pkFactory`` methods, peform a :ref:`find
+   operation <node-fundamentals-retrieve-data>`, then an :ref:`update
+   <node-fundamentals-change-a-document>` or :ref:`insert
+   <node-fundamentals-insert-data>` operation.
 
 Data Consistency
 ----------------
@@ -54,36 +53,56 @@ This may occur because the driver's default primary factory method generates
 ``_id`` values of type ``ObjectId`` regardless of the type you specify for the 
 ``_id`` field in your type parameter.
 
+Specify a ``pkFactory``
+-----------------------
+
+To keep the ``_id`` consistent, as a ``ObjectID``, apply a primary key
+factory to your ``MongoClient`` instance like this:
+
+.. code-block:: javascript
+
+   const uuid = require('bson');
+   ...
+   const client = new MongoClient(uri, { pkFactory: { createPk: () => uuid }});
+
 Example
 ~~~~~~~
 
-Assume you apply the following interface to your ``Collection``
-instance:
+Assume you have a collection, ``characters.villans``, that contains
+documents with a villans name. The following insert operations insert
+documents with an ``_id`` of type ``ObjectID`` into your collection:
 
-.. code-block:: typescript
+.. code-block:: javascript
 
-   interface I {
-     _id?: number;
-     name: string;
-   } 
+   const uuid = require('bson');
+   const { MongoClient } = require("mongodb");
+   // Replace the uri string with your MongoDB deployment's connection string.
+   const uri = "<your-connection-string>"
+   const client = new MongoClient(uri, {  useUnifiedTopology: true, pkFactory: { createPk: () => uuid }});
+   async function run() {
+     try {
+        await client.connect();
+        const database = client.db("characters");
+        const collection = database.collection("villans");
+        await collection.insertMany([{name: "Scar" }, { name: "Ursula" }]);
+     } finally {
+        await client.close();
+      }
+   }
 
-The following insert operations insert a document with an ``_id`` of
-type ``number`` and another document with an ``_id`` of type
-``ObjectId`` into your collection:
+   run();
 
-.. code-block:: typescript
+After running the code, the documents in your collection resemble the
+following:
 
-   collection.insertOne({ _id: 1, name: "Scar" });
-   collection.insertOne({ name: "Ursula" });
+.. code-block::
 
-To keep the ``_id`` consistent as whole numbers, apply a primary key
-factory to your ``MongoClient`` instance like this:
+   {_id: ObjectID('628bdaf46777b6e36996ade3'), name: 'Scar'}
+   {_id: ObjectID('628bdaf46777b6e36996ade4'), name: 'Ursula'}
 
-.. code-block:: typescript
+.. note:: 
 
-   const client = new MongoClient(uri, {
-     pkFactory: { createPk: () => Math.floor(Math.random() * Number.MAX_SAFE_INTEGER) },
-   });
+   Your ``ObjectId`` values will differ from those shown.
 
 Additional Information
 ----------------------
