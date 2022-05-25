@@ -25,26 +25,15 @@ default primary key factory generates ``ObjectId`` values.
 
 .. note:: Upsert Operations
 
-   The driver doesn't use any primary key factory methods for
+   The driver doesn't use any primary key factory for
    :ref:`upsert operations <node-fundamentals-upsert>`. Instead, the
    driver always creates ``ObjectId`` values for the ``_id`` field of
    the upserted documents.
 
-   If you want to use ``pkFactory`` methods, peform a :ref:`find
+   If you want to use the primary key factory, peform a :ref:`find
    operation <node-fundamentals-retrieve-data>`, then an :ref:`update
    <node-fundamentals-change-a-document>` or :ref:`insert
    <node-fundamentals-insert-data>` operation.
-
-Data Consistency
-----------------
-
-If you do not specify a primary key factory method that generates
-``_id`` values of your desired type, you may experience data
-inconsistency.
-
-This may occur because the driver's default primary factory method generates
-``_id`` values of type ``ObjectId`` regardless of the type you specify for the 
-``_id`` field in your type parameter.
 
 Specify a Primay Key Factory
 ----------------------------
@@ -52,14 +41,28 @@ Specify a Primay Key Factory
 To specify a primary key factory, apply a ``pkFactory`` option to your
 ``MongoClient`` instance.
 
-The following code snippet specifies the ``pkFactory`` option to general
-``_id`` values of type ``uuid``:
+.. note:: TypeScript Data Consistency
+
+   If you do not specify a primary key factory to generate
+   ``_id`` values of your desired type, you may experience data
+   inconsistency.
+   
+   This may happen because the driver's default primary key factory
+   generates ``_id`` values of type ``ObjectId`` regardless of type
+   parameter you specify. 
+
+The following code snippet indicates the ``pkFactory`` option to
+generate ``_id`` values of type ``uuid``:
 
 .. code-block:: javascript
 
-   const uuid = require('bson');
+   const { UUID } = require('bson');
    ...
-   const client = new MongoClient(uri, { pkFactory: { createPk: () => uuid }});
+   const client = new MongoClient(uri, { 
+     useUnifiedTopology: true, 
+     pkFactory: { createPk: () =>  new UUID().toBinary() }
+   });
+
 
 Additional Information
 ----------------------
@@ -67,7 +70,7 @@ Additional Information
 To learn more about the types, interfaces, and classes discussed in this
 section, see the following resources:
 
-- `PkFactory <{+api+}/interfaces/PkFactory.html>`__
+- `pkFactory <{+api+}/interfaces/PkFactory.html>`__
 - :manual:`The _id Field </core/document/#the-_id-field>`
 - :ref:`node-fundamentals-upsert`
 - :ref:`node-fundamentals-retrieve-data`
