@@ -16,7 +16,7 @@ Overview
 --------
 
 In this guide, you can learn how to use the MongoDB Node.js driver to generate your
-own ``_id`` values using the primary key factory.
+own ``_id`` values using the **primary key factory**.
 
 The primary key factory allows you to create unique identifiers in your
 documents when you choose not to specify an ``_id`` during an
@@ -25,7 +25,7 @@ default primary key factory generates ``ObjectId`` values.
 
 .. note:: Upsert Operations
 
-   The driver doesn't use any primary key factory for
+   The driver doesn't use the primary key factory for
    :ref:`upsert operations <node-fundamentals-upsert>`. Instead, the
    driver always creates ``ObjectId`` values for the ``_id`` field of
    the upserted documents.
@@ -38,18 +38,8 @@ default primary key factory generates ``ObjectId`` values.
 Specify a Primay Key Factory
 ----------------------------
 
-To specify a primary key factory, apply a ``pkFactory`` option to your
+To specify a primary key factory, apply the ``pkFactory`` option to your
 ``MongoClient`` instance.
-
-.. note:: TypeScript Data Consistency
-
-   If you do not specify a primary key factory to generate
-   ``_id`` values of your desired type, you may experience data
-   inconsistency.
-   
-   This may happen because the driver's default primary key factory
-   generates ``_id`` values of type ``ObjectId`` regardless of type
-   parameter you specify. 
 
 The following code snippet indicates the ``pkFactory`` option to
 generate ``_id`` values of type ``uuid``:
@@ -63,6 +53,15 @@ generate ``_id`` values of type ``uuid``:
      pkFactory: { createPk: () =>  new UUID().toBinary() }
    });
 
+.. note:: TypeScript Data Consistency
+
+   If you do not specify a primary key factory to generate
+   ``_id`` values of your desired type, you may experience data
+   inconsistency.
+   
+   This may happen because the driver's default primary key factory
+   generates ``_id`` values of type ``ObjectId`` regardless of type
+   parameter you specify. 
 
 Additional Information
 ----------------------
