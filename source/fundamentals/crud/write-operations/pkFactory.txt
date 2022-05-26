@@ -1,7 +1,7 @@
 .. _node-pkfactory:
 
 =================================
-Generate Custom Vales for ``_id``
+Generate Custom Values for ``_id``
 =================================
 
 .. default-domain:: mongodb
@@ -26,17 +26,20 @@ default primary key factory generates ``ObjectId`` values.
 .. note:: Upsert Operations
 
    The driver doesn't use the primary key factory for
-   :ref:`upsert operations <node-fundamentals-upsert>`. Instead, the
-   driver always creates ``ObjectId`` values for the ``_id`` field of
-   the upserted documents.
+   :ref:`upsert operations <node-fundamentals-upsert>` because it's
+   unable to determine whether to apply the primary key factory. 
 
-   If you want to use the primary key factory, peform a :ref:`find
-   operation <node-fundamentals-retrieve-data>`, then an :ref:`update
-   <node-fundamentals-change-a-document>` or :ref:`insert
-   <node-fundamentals-insert-data>` operation.
+   If you specified the primary key factory in an upsert operation and
+   it performs an insert operation, the server autogenerates an
+   ``ObjectId`` for that document.
 
-Specify a Primay Key Factory
-----------------------------
+   If you want to use your specified primary key factory, perform a
+   :ref:`find operation <node-fundamentals-retrieve-data>`, then an
+   :ref:`update <node-fundamentals-change-a-document>` or
+   :ref:`insert <node-fundamentals-insert-data>` operation.
+
+Specify a Primary Key Factory
+-----------------------------
 
 To specify a primary key factory, apply the ``pkFactory`` option to your
 ``MongoClient`` instance.
@@ -53,15 +56,19 @@ generate ``_id`` values of type ``uuid``:
      pkFactory: { createPk: () =>  new UUID().toBinary() }
    });
 
-.. note:: TypeScript Data Consistency
+.. note:: Data Consistency
 
-   If you do not specify a primary key factory to generate
-   ``_id`` values of your desired type, you may experience data
-   inconsistency.
-   
-   This may happen because the driver's default primary key factory
-   generates ``_id`` values of type ``ObjectId`` regardless of type
-   parameter you specify. 
+   If you insert a document with an ``_id`` field with a different
+   type than the type specified by the primary key factory, then you 
+   will have inconsistent data. 
+  
+   For example, if you run the following insert operation on a primary
+   key factory that generates ``uuid`` types, your ``_id`` values will
+   contain of the ``uuid`` and ``string`` types:
+
+   .. code-block:: javascript
+
+      collection.insertOne({ _id: "user1388", ... }); 
 
 Additional Information
 ----------------------
