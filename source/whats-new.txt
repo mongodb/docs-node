@@ -34,25 +34,27 @@ TypeScript: ``ChangeStreamDocument``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Ability to define your own custom type for the top level document
-  returned in a ``change`` event.
-- Improvements on the type information of the default
-  ``ChangeStreamDocument`` to default to union of the possible events.
-- Added the ``to``, ``lsid``, ``txnNumber`` and ``clusterTime`` properties.
+  returned in a change event.
+- The ``ChangeStreamDocument`` type now defaults to union all the
+  possible events.
+- Added `the following properties <{+api+}/modules.html#ChangeStreamDocument>`__ 
+  in the URI or as an option on ``MongoClientOptions``.: ``to``,
+  ``lsid``, ``txnNumber`` and ``clusterTime``.
 
-.. note:: 
+  .. note:: 
 
-   If you want to defer the type corrections, use the watch API as
-   follows:
+     If you want to defer the type corrections, use the watch API as
+     follows:
 
-   .. code-block:: typescript
+     .. code-block:: typescript
 
-      // 'X' controls the change document type
-      .watch<any, X>()
+        // 'X' controls the change document type
+        .watch<any, X>()
 
 Server Selection
 ~~~~~~~~~~~~~~~~
 
-- Distrubute the server load more evenly across all servers.
+- Even distribution of server selection based on load across servers.
 
 .. _version-4.5:
 
