@@ -37,26 +37,22 @@ TypeScript: ``ChangeStreamDocument``
   returned in a ``change`` event.
 - Improvements on the type information of the default
   ``ChangeStreamDocument`` to default to union of the possible events.
-- Added the ``to``, ``lsid``, ``txnNumber`` and ``clusterTime`` properties
+- Added the ``to``, ``lsid``, ``txnNumber`` and ``clusterTime`` properties.
 
 .. note:: 
 
-   If you differ in type corrections, use the watch API as follows:
+   If you want to defer the type corrections, use the watch API as
+   follows:
 
    .. code-block:: typescript
 
-      // 'X' controls the type of the change document
+      // 'X' controls the change document type
       .watch<any, X>()
 
-Server Load
-~~~~~~~~~~~
+Server Selection
+~~~~~~~~~~~~~~~~
 
-- Distrubute the server load more evenly across all servers during
-  server selesction.
-
-For more information on these new fearures, see 
-`v4.6.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.6.0>`__
-on GitHub.
+- Distrubute the server load more evenly across all servers.
 
 .. _version-4.5:
 
