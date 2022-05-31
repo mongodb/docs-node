@@ -75,7 +75,6 @@ Additional Information
 To learn more about the types, interfaces, and classes discussed in this
 section, see the following resources:
 
-- `pkFactory <{+api+}/interfaces/PkFactory.html>`__
 - :manual:`The _id Field </core/document/#the-_id-field>`
 - :ref:`node-fundamentals-upsert`
 - :ref:`node-fundamentals-retrieve-data`
