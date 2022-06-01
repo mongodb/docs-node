@@ -30,26 +30,10 @@ What's New in 4.6
 
 New features of the 4.6 Node.js driver release include:
 
-TypeScript: ``ChangeStreamDocument``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-- Ability to define your own custom type for the top level document
-  returned in a change event.
-- The ``ChangeStreamDocument`` type now defaults to union all the
-  possible events.
-- Added `the following properties
-  <{+api+}/modules.html#ChangeStreamDocument>`__ : ``to``, 
-  ``lsid``, ``txnNumber`` and ``clusterTime``.
-
-  .. note:: 
-
-     If you want to defer the type corrections, use the `watch()
-     <{+api+}/classes/Collection.html#watch>`__ method.
-
-Server Selection
-~~~~~~~~~~~~~~~~
-
+- Improved the ``ChangeStreamDocument`` in TypeScript.
 - Even distribution of server selection based on load across servers.
+
+To learn more, see `v4.6.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.6.0>`__.
 
 .. _version-4.5:
 
