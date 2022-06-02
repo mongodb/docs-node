@@ -1,0 +1,140 @@
+====================
+{+qe+}
+====================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to install and use **{+qe+}**
+in the MongoDB Node.js driver.
+
+{+qe+} allows you to encrypt specific data fields within a document with
+your MongoDB client application before sending the data to the server.
+Starting in MongoDB 6.0 Enterprise and Atlas, you can perform this
+client-side encryption automatically.
+
+With {+qe+}, your client application encrypts fields client-side. {+qe+}
+is useful for situations in which applications must guarantee that
+unauthorized parties, including server administrators, cannot read the
+encrypted data.
+
+This guide is a quick introduction to {+qe+} using the Node.js driver.
+For in-depth information on how {+qe+} works, see the
+:ref:`{+qe+} reference <qe-features>` documentation.
+
+Installation
+------------
+
+To get started with {+qe+} in your client application, you need:
+
+- the MongoDB Node.js driver
+- `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption>`__ version ``2.2.0-alpha.1`` or later
+- ``crypt_shared`` or ``mongocryptd`` if using automatic encryption
+
+``mongodb-client-encryption``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``mongodb-client-encryption`` module is the official client
+encryption module for the MongoDB Node.js driver. It contains bindings
+to communicate with the native library that manages the encryption.
+
+Add it to your project using ``npm``:
+
+.. code-block:: sh
+   :copyable: true
+
+   npm install mongodb-client-encryption@2.2.0-alpha.1 --save
+
+``crypt_shared``
+~~~~~~~~~~~~~~~~
+
+``crypt_shared`` is automatically used by the package, and is used
+for automatic encryption. It is a dynamically-loaded library providing
+query-analysis, and replaces ``mongocryptd``.
+
+For more detailed information on ``crypt_shared``, see the
+:ref:`crypt_shared reference documentation <qe-crypt_shared>`.
+
+``mongocryptd``
+~~~~~~~~~~~~~~~
+
+``mongocryptd`` is launched automatically by the package, and is used for
+automatic encryption. ``mongocryptd`` communicates with
+``mongodb-client-encryption`` to automatically encrypt the information
+specified by a user-provided
+:manual:`JSON Schema </reference/security-client-side-automatic-json-schema/>`.
+
+For more detailed information on ``mongocryptd``, see the
+:manual:`mongocryptd reference documentation </reference/security-client-side-encryption-appendix/#mongocryptd>`
+
+MongoClient Options
+-------------------
+
+You must configure your ``MongoClient`` for {+qe+} using new ``AutoEncryptionOptions``.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Option
+     - Description
+     - Default
+   * - ``encryptedFieldsMap``
+     - An encryption schema that defines how to encrypt specific fields in a document.
+       | For complete documentation of encryption schemas, see :ref:`qe-reference-encryption-schemas`.
+     - ``null``
+   * - ``bypassQueryAnalysis``
+     - Disables automatic analysis of outgoing commands. Set ``bypassQueryAnalsis``
+       | to ``true`` to use explicit encryption on indexed fields without
+       | the ``crypt_shared`` library.
+     - ``false``
+
+For a complete list of ``MongoClient`` options for {+qe+}, see the
+:ref:`{+qe+} reference <qe-reference-mongo-client>` documentation, and
+the `API documentation <{+api+}/interfaces/AutoEncryptionOptions.html>`__.
+
+Example
+-------
+
+The following example shows how to configure a {+qe+} enabled client
+with a local key and a configuration object that specifies which fields
+to encrypt. Values in the ``ssn`` field are automatically encrypted
+before insertion, and decrypted when calling ``find()`` with a {+qe+}
+enabled client.
+
+.. warning::
+
+   MongoDB recommends using a local key file for testing
+   purposes only, and using a remote key management service
+   for production.
+
+An expanded example with support for remote key management services is
+available to view in the :ref:`{+qe+} reference documentation <qe-tutorials>`.
+
+.. note::
+
+   Automatic encryption requires MongoDB **Enterprise** or **Atlas**.
+
+To run this example, first complete the following steps:
+
+- Save `master-key.txt <https://github.com/mongodb-university/csfle-guides/raw/master/nodejs/master-key.txt>`__
+  to the same directory as this example code.
+- Start a :ref:`replica set <server-replica-set-deploy-convert>` locally
+  on the default port 27017.
+- Ensure ``crypt_shared`` is available in a system library location for
+  automatic discovery, or have the path available to pass as an option.
+
+.. literalinclude:: /includes/qe/make-data-key.js
+   :language: javascript
+   :caption: make-data-key.js
+
+.. literalinclude:: /includes/qe/insert-encrypted-document.js
+   :language: javascript
+   :caption: insert-encrypted-document.js
