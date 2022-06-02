@@ -51,7 +51,7 @@ Add it to your project using ``npm``:
 .. code-block:: sh
    :copyable: true
 
-   npm install mongodb-client-encryption@2.2.0-alpha.1 --save
+   npm install mongodb-client-encryption@2.2.0 --save
 
 ``crypt_shared``
 ~~~~~~~~~~~~~~~~
@@ -62,18 +62,6 @@ query-analysis, and replaces ``mongocryptd``.
 
 For more detailed information on ``crypt_shared``, see the
 :ref:`crypt_shared reference documentation <qe-crypt_shared>`.
-
-``mongocryptd``
-~~~~~~~~~~~~~~~
-
-``mongocryptd`` is launched automatically by the package, and is used for
-automatic encryption. ``mongocryptd`` communicates with
-``mongodb-client-encryption`` to automatically encrypt the information
-specified by a user-provided
-:manual:`JSON Schema </reference/security-client-side-automatic-json-schema/>`.
-
-For more detailed information on ``mongocryptd``, see the
-:manual:`mongocryptd reference documentation </reference/security-client-side-encryption-appendix/#mongocryptd>`
 
 MongoClient Options
 -------------------
