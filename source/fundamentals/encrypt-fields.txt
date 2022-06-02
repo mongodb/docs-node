@@ -1,0 +1,64 @@
+==============
+Encrypt Fields
+==============
+
+.. default-domain:: mongodb
+
+Overview
+--------
+
+You can encrypt fields in a document using a feature called
+**client-side encryption**.
+
+Client-side encryption enables your client applications to encrypt data
+*before* sending it to MongoDB, and to query documents for values in
+encrypted fields.
+
+Because the driver encrypts the data before sending it to MongoDB, only
+your configured client applications can decrypt the data. People or
+applications with access to your encryption keys are the only ones that
+can see the decrypted, plaintext data. Should you have unauthorized access
+to your database, and attacker would only see the encrypted version of the
+fields you configured for encryption.
+
+Client-side encryption is useful for storing sensitive data, such as:
+
+- credit card numbers
+- addresses
+- health information
+- financial information
+- any other sensitive or personally identifiable information (PII)
+
+MongoDB offers two ways to encrypt data:
+
+{+qe+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+{+qe+} is the next-generation client-side encryption feature from MongoDB,
+introduced in MongoDB 6.0. {+qe+} supports searching encrypted fields
+for equality and encrypts each value uniquely.
+
+The MongoDB manual contains detailed information for {+qe+}:
+
+- A :ref:`qe-quick-start`
+- :ref:`qe-fundamentals`
+- KMS :ref:`qe-tutorials`
+- :ref:`qe-reference`
+
+Client-side Field Level Encryption (CSFLE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Client-side Field Level Encryption (CSFLE) supports searching encrypted values.
+The core difference between CSFLE and {+qe+} is that CSFLE requires that
+encrypted fields you want to search must be determinstically encrypted,
+the same input produces the same output.
+
+Fields that share common values between documents, such as gender or blood type,
+may be subject to inference if an unauthorized party gained access to your data.
+
+The MongoDB manual contains detailed information for CSFLE:
+
+- A :ref:`csfle-quick-start`
+- :ref:`csfle-fundamentals`
+- KMS :ref:`csfle-tutorials`
+- :ref:`csfle-reference`
