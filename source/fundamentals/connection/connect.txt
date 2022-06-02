@@ -46,7 +46,7 @@ your MongoDB instance.
 The last part of the connection string contains connection and authentication
 options as parameters. In the example above, we set two connection options:
 ``maxPoolSize=20`` and ``w=majority``. For more information on connection
-options, skip to the :ref:`connection-options` section.
+options, skip to the :ref:`node-connection-options` section.
 
 .. _connect-atlas-node-driver:
 
