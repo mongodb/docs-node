@@ -36,7 +36,7 @@ Installation
 To get started with {+qe+} in your client application, you need:
 
 - the MongoDB Node.js driver
-- `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption>`__ version ``2.2.0-alpha.1`` or later
+- `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption>`__ version ``2.2.0`` or later
 - ``crypt_shared`` or ``mongocryptd`` if using automatic encryption
 
 ``mongodb-client-encryption``
