@@ -1,8 +1,8 @@
-.. _node-connection-guide:
+.. _node-connection:
 
-================
-Connection Guide
-================
+==========
+Connection
+==========
 
 .. default-domain:: mongodb
 
@@ -22,15 +22,15 @@ Connection Guide
 Overview
 --------
 
-Learn how to set up a connection and specify connection behavior from your
-application to a MongoDB deployment using the driver in the following
-sections:
+Learn how to configure your applicaiton's connection to a MongoDB
+deployment using the Node.js driver. In the following sections, you will
+learn:
 
-- :ref:`Connect to MongoDB <node-connect-to-mongodb>`
-- :ref:`View a List of Connection Options <node-connection-options>`
+- :ref:`How to Connect to MongoDB <node-connect-to-mongodb>`
+- :ref:`The Available Connection Options <node-connection-options>`
 
-.. - :ref:`Enable Network Compression <node-network-compression>`
+.. - :ref:`How to Enable Network Compression <node-network-compression>`
 
 For information about authenticating with a MongoDB instance,
-see :ref:`<node-authentication-mechanisms>` and
-:ref:`<node-enterprise-authentication-mechanisms>`.
+see :ref:`node-authentication-mechanisms` and
+:ref:`node-enterprise-authentication-mechanisms`.
