@@ -6,6 +6,7 @@ intersphinx = ["https://mongodb.com/docs/manual/objects.inv",
 toc_landing_pages = [
     "/fundamentals/authentication",
     "/fundamentals",
+    "/fundamentals/connection",
     "/fundamentals/crud",
     "/usage-examples",
 ]
