@@ -22,7 +22,7 @@ Connection
 Overview
 --------
 
-Learn how to configure your applicaiton's connection to a MongoDB
+Learn how to configure your application's connection to a MongoDB
 deployment using the Node.js driver. In the following sections, you will
 learn:
 
@@ -31,6 +31,6 @@ learn:
 
 .. - :ref:`How to Enable Network Compression <node-network-compression>`
 
-For information about authenticating with a MongoDB instance,
+For information about authenticating to MongoDB,
 see :ref:`node-authentication-mechanisms` and
 :ref:`node-enterprise-authentication-mechanisms`.
