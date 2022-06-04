@@ -68,7 +68,7 @@ by specifying the algorithms in one of two ways:
 
          const client = new MongoClient(uri,
            {
-             compressors: "snappy"
+             compressors: ["snappy"]
            });
 
 Specify compression algorithms using the following strings:
