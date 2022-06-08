@@ -37,7 +37,7 @@ New features of the 4.7 {+driver-short+} release include:
 - Added support for new change stream fields related to cluster to cluster replication
 - The ``estimatedDocumentCount`` method now uses the ``count`` database command
 - Deprecates the ``ResumeOptions`` interface
-- Improvements to connecting to MongoDB in AWS Lambda Init phase
+- Improvements to connecting to MongoDB in the AWS Lambda Init phase
 
 Bug fixes included in the 4.7 {+driver-short+} release include:
 
