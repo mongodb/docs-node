@@ -12,6 +12,7 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 4.7 <version-4.7>`
 * :ref:`Version 4.6 <version-4.6>`
 * :ref:`Version 4.5 <version-4.5>`
 * :ref:`Version 4.4 <version-4.4>`
@@ -22,6 +23,28 @@ Learn what's new in:
 * :ref:`Version 3.7 <version-3.7>`
 * :ref:`Version 3.6 <version-3.6>`
 
+.. _version-4.7:
+
+What's New in 4.7
+-----------------
+
+New features of the 4.7 {+driver-short+} release include:
+
+- Running ``MongoClient.connect()`` is now optional when connecting to your MongoDB instance
+- Use Zstandard compression when communicating with your MongoDB instance
+- Add support for the ``maxConnecting`` connection option
+- Change stream documents now show your updated documents before and after MongoDB applied changes to them
+- Added support for new change stream fields related to cluster to cluster replication
+- The ``estimatedDocumentCount`` method now uses the ``count`` database command
+- Deprecates the ``ResumeOptions`` interface
+- Improvements to connecting to MongoDB in AWS Lambda Init phase
+
+Bug fixes included in the 4.7 {+driver-short+} release include:
+
+- Fixes related to change stream resumability in the driver
+- BSON options are now respected when creating change streams
+- Improves the return type of the ``withTransaction()`` method
+- Ensure the driver always uses the Node.js timers API 
 
 .. _version-4.6:
 
