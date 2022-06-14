@@ -40,7 +40,7 @@ New features of the 4.7 {+driver-short+} release include:
 
 .. important:: Deprecation Notice
 
-    The ``ResumeOptions`` interface is now deprecated. Please use the
+    The ``ResumeOptions`` interface is deprecated. Use the
     ``ChangeStreamCursorOptions`` interface instead.
 
 .. _version-4.6:
