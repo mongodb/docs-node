@@ -68,36 +68,6 @@ MongoDB supports a number of different index types to support querying
 your data. The following sections describe the most common index types
 and provide sample code for creating each index type.
 
-Clustered Indexes
-~~~~~~~~~~~~~~~~~
-
-**Clustered indexes** are indexes that improve the performance of
-insert, update, and delete operations. To create a
-clustered index, specify the ``clusteredIndex`` option in the
-``CollectionOption`` when you create a collection. The
-``clusteredIndex`` option must specify an index on the ``_id`` feild,
-and for the index to be unique.
-
-The following example uses the ``collection()`` method to create a
-clustered index on the ``_id`` field in the ``vendors`` collection of the
-``tea`` database.
-
-.. code-block:: javascript
-   
-   const db = client.db('tea');
-   const coll = db.collection(
-     'vendors',  
-     {
-       clusteredIndex: { 
-         key: { _id: 1 }, 
-         unique: true 
-       }
-     }
-   );
-
-To learn more, see :v5.3:`Clustered Indexes
-</reference/method/db.createCollection/#std-label-db.createCollection.clusteredIndex>`.
-
 Single Field
 ~~~~~~~~~~~~
 
@@ -187,6 +157,39 @@ query coverage, index bound computation, and sort behavior. For a full
 explanation of multikey indexes, including a discussion of their behavior
 and limitations, refer to the :manual:`Multikey Indexes page
 </core/index-multikey>` in the MongoDB manual.
+
+Clustered Indexes
+~~~~~~~~~~~~~~~~~
+
+**Clustered indexes** are indexes that improve the performance of
+insert, update, and delete operations. When you create a clustered
+index, you also create a :v5.3:`clustered collection
+</core/clustered-collections/#std-label-clustered-collections>`. 
+
+To create a clustered index, specify the ``clusteredIndex`` option in
+the ``CollectionOption`` when you create a collection. The
+``clusteredIndex`` option must specify an index on the ``_id`` field,
+and for the index to be unique.
+
+The following example uses the ``collection()`` method to create a
+clustered index on the ``_id`` field in the ``vendors`` collection of the
+``tea`` database.
+
+.. code-block:: javascript
+   
+   const db = client.db('tea');
+   const coll = db.collection(
+     'vendors',  
+     {
+       clusteredIndex: { 
+         key: { _id: 1 }, 
+         unique: true 
+       }
+     }
+   );
+
+To learn more, see :v5.3:`Clustered Indexes
+</reference/method/db.createCollection/#std-label-db.createCollection.clusteredIndex>`.
 
 Text Indexes
 ~~~~~~~~~~~~
