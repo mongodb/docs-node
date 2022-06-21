@@ -1,0 +1,19 @@
+==============
+Encrypt Fields
+==============
+
+.. default-domain:: mongodb
+
+.. toctree::
+
+   /fundamentals/encrypt-fields/qe
+   /fundamentals/encrypt-fields/csfle
+
+Overview
+--------
+
+These guides show you how to encrypt fields in the client before sending
+them to MongoDB, a feature called **Client-side Encryption**.
+
+- :ref:`node-qe`
+- :ref:`node-csfle`
