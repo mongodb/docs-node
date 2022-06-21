@@ -68,8 +68,8 @@ MongoDB supports a number of different index types to support querying
 your data. The following sections describe the most common index types
 and provide sample code for creating each index type.
 
-Single Field
-~~~~~~~~~~~~
+Single Field Indexes
+~~~~~~~~~~~~~~~~~~~~
 
 **Single field indexes** are indexes that improve performance for queries
 that specify ascending or descending sort order on a single field of a
@@ -162,14 +162,15 @@ Clustered Indexes
 ~~~~~~~~~~~~~~~~~
 
 **Clustered indexes** are indexes that improve the performance of
-insert, update, and delete operations. When you create a clustered
-index, you also create a :v5.3:`clustered collection
-</core/clustered-collections/#std-label-clustered-collections>`. 
+insert, update, and delete operations on **clustered collections**.
+Clustered collections store documents ordered by the clustered index key
+value. To create a :v5.3:`clustered collection
+</core/clustered-collections/#std-label-clustered-collections>`, create
+a clustered index. 
 
 To create a clustered index, specify the ``clusteredIndex`` option in
-the ``CollectionOption`` when you create a collection. The
-``clusteredIndex`` option must specify an index on the ``_id`` field,
-and for the index to be unique.
+the ``CollectionOption``. The ``clusteredIndex`` option must specify the
+``_id`` field as the key, and the unique field as ``true``.
 
 The following example uses the ``collection()`` method to create a
 clustered index on the ``_id`` field in the ``vendors`` collection of the
