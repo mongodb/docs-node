@@ -184,10 +184,9 @@ clustered index on the ``_id`` field in the ``vendors`` collection of the
      }
    });
 
-To learn more, see :manual:`Clustered Indexes
-</reference/method/db.createCollection/#std-label-db.createCollection.clusteredIndex>`
-and :manual:`Clustered Collections
-</core/clustered-collections/#std-label-clustered-collections>`.
+To learn more, see 
+:ref:`Clustered Indexes <db.createCollection.clusteredIndex>` and 
+:ref:`Clustered Collections <clustered-collections>`.
 
 Text Indexes
 ~~~~~~~~~~~~
