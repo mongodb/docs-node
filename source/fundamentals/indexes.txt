@@ -168,9 +168,9 @@ value.
 
 To create a clustered index, specify the ``clusteredIndex`` option in
 the ``CollectionOption``. The ``clusteredIndex`` option must specify the
-``_id`` field as the key, and the unique field as ``true``.
+``_id`` field as the key and the unique field as ``true``.
 
-The following example uses the ``collection()`` method to create a
+The following example uses the ``createCollection()`` method to create a
 clustered index on the ``_id`` field in the ``vendors`` collection of the
 ``tea`` database.
 
