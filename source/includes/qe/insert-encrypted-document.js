@@ -1,16 +1,15 @@
 const { MongoClient } = require("mongodb");
+const fs = require("fs");
 
-const eDB = "encryption";
-const eKV = "__keyVault";
+const edb = "encryption";
+const ekv = "__keyVault";
 const secretDB = "medicalRecords";
 const secretCollection = "patients";
-const keyVaultNamespace = `${eDB}.${eKV}`;
+const keyVaultNamespace = `${edb}.${ekv}`;
 
-const fs = require("fs");
-const provider = "local";
-const path = "./master-key.txt";
+const localKeyFilePath = "./local-key.txt";
 // WARNING: Do not use a local key file in a production application
-const localMasterKey = fs.readFileSync(path);
+const localMasterKey = fs.readFileSync(localKeyFilePath);
 const kmsProviders = {
   local: {
     key: localMasterKey,
@@ -18,12 +17,13 @@ const kmsProviders = {
 };
 
 async function run() {
+  // change this to your uri
   const uri = "<Your Connection String>";
-  const unencryptedClient = new MongoClient(uri);
-  await unencryptedClient.connect();
-  const keyVaultClient = unencryptedClient.db(eDB).collection(eKV);
+  const keyVaultClient = new MongoClient(uri);
+  await keyVaultClient.connect();
+  const keyVaultCollection = keyVaultClient.db(edb).collection(ekv);
 
-  const dek1 = await keyVaultClient.findOne({ keyAltNames: "dataKey1" });
+  const dek1 = await keyVaultCollection.findOne({ keyAltNames: "dataKey1" });
 
   const encryptedFieldsMap = {
     [`${secretDB}.${secretCollection}`]: {
@@ -39,6 +39,7 @@ async function run() {
   };
 
   const extraOptions = {
+    // change this to the path you installed the shared library to
     cryptSharedLibPath: "<path to Shared Library>",
   };
 
@@ -52,7 +53,7 @@ async function run() {
   });
   await encryptedClient.connect();
   try {
-    const unencryptedColl = unencryptedClient
+    const unencryptedColl = keyVaultClient
       .db(secretDB)
       .collection(secretCollection);
 
@@ -64,17 +65,14 @@ async function run() {
       ssn: "987-65-4320",
       medications: ["Atorvastatin", "Levothyroxine"],
     });
-    console.log("Finding a document with regular (non-encrypted) client.");
+    console.log("\n\n --- Unencrypted Client --- \n\n")
     console.log(await unencryptedColl.findOne({ firstName: /Jon/ }));
-    console.log(
-      "Finding a document with encrypted client, searching on an encrypted field"
-    );
+    console.log("\n\n --- Encrypted Client --- \n\n")
     console.log(
       await encryptedColl.findOne({ "ssn": "987-65-4320" })
     );
-    // end-find
   } finally {
-    await unencryptedClient.close();
+    await keyVaultClient.close();
     await encryptedClient.close();
   }
 }

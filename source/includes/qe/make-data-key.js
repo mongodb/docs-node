@@ -1,24 +1,16 @@
-const { MongoClient, Binary } = require("mongodb");
+const { MongoClient } = require("mongodb");
 const { ClientEncryption } = require("mongodb-client-encryption");
+const fs = require("fs");
 
-const eDB = "encryption";
-const eKV = "__keyVault";
-const keyVaultNamespace = `${eDB}.${eKV}`;
+const edb = "encryption";
+const ekv = "__keyVault";
+const keyVaultNamespace = `${edb}.${ekv}`;
 const secretDB = "medicalRecords";
 const secretCollection = "patients";
 
-const fs = require("fs");
-const crypto = require("crypto");
-try {
-  fs.writeFileSync("master-key.txt", crypto.randomBytes(96));
-} catch (err) {
-  console.error(err);
-}
-
-const provider = "local";
-const path = "./master-key.txt";
+const localKeyFilePath = "./local-key.txt";
 // WARNING: Do not use a local key file in a production application
-const localMasterKey = fs.readFileSync(path);
+const localMasterKey = fs.readFileSync(localKeyFilePath);
 const kmsProviders = {
   local: {
     key: localMasterKey,
@@ -26,9 +18,11 @@ const kmsProviders = {
 };
 
 async function run() {
+  // change this to your uri
   const uri = "<Your Connection String>";
   const keyVaultClient = new MongoClient(uri);
   await keyVaultClient.connect();
+  // create a key vault
   await keyVaultColl.createIndex(
     { keyAltNames: 1 },
     {
@@ -36,11 +30,11 @@ async function run() {
       partialFilterExpression: { keyAltNames: { $exists: true } },
     }
   );
-  const clientEnc = new ClientEncryption(keyVaultClient, {
+  const clientEncryption = new ClientEncryption(keyVaultClient, {
     keyVaultNamespace: keyVaultNamespace,
     kmsProviders: kmsProviders,
   });
-  const dek1 = await clientEnc.createDataKey(provider, {
+  const dek1 = await clientEncryption.createDataKey(provider, {
     keyAltNames: ["dataKey1"],
   });
   const encryptedFieldsMap = {
@@ -56,9 +50,10 @@ async function run() {
     },
   };
   const extraOptions = {
+    // change this to the path you installed the shared library to
     cryptSharedLibPath: "<path to Shared Library>",
   };
-  const encClient = new MongoClient(uri, {
+  const encryptedClient = new MongoClient(uri, {
     autoEncryption: {
       keyVaultNamespace,
       kmsProviders,
@@ -66,14 +61,13 @@ async function run() {
       encryptedFieldsMap,
     },
   });
-  await encClient.connect();
-  const newEncDB = encClient.db(secretDB);
-  await newEncDB.dropDatabase();
-  await newEncDB.createCollection(secretCollection);
+  await encryptedClient.connect();
+  const encryptedDb = encryptedClient.db(secretDB);
+  await encryptedDb.dropDatabase();
+  await encryptedDb.createCollection(secretCollection);
   console.log("Created encrypted collection!");
-  // end-create-enc-collection
   await keyVaultClient.close();
-  await encClient.close();
+  await encryptedClient.close();
 }
 
 run().catch(console.dir);
