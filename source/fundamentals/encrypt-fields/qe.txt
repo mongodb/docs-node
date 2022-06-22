@@ -18,6 +18,9 @@ Overview
 In this guide, you can learn how to install and use **{+qe+}**
 in the MongoDB Node.js driver.
 
+:ref:`sharding-high-availability`
+
+
 {+qe+} allows you to encrypt specific data fields within a document with
 your MongoDB client application before sending the data to the server.
 Starting in MongoDB 6.0 Enterprise and Atlas, you can perform this
