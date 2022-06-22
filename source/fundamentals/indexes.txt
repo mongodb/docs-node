@@ -164,9 +164,7 @@ Clustered Indexes
 **Clustered indexes** are indexes that improve the performance of
 insert, update, and delete operations on **clustered collections**.
 Clustered collections store documents ordered by the clustered index key
-value. To create a :v5.3:`clustered collection
-</core/clustered-collections/#std-label-clustered-collections>`, create
-a clustered index. 
+value.
 
 To create a clustered index, specify the ``clusteredIndex`` option in
 the ``CollectionOption``. The ``clusteredIndex`` option must specify the
@@ -190,7 +188,9 @@ clustered index on the ``_id`` field in the ``vendors`` collection of the
    );
 
 To learn more, see :v5.3:`Clustered Indexes
-</reference/method/db.createCollection/#std-label-db.createCollection.clusteredIndex>`.
+</reference/method/db.createCollection/#std-label-db.createCollection.clusteredIndex>`
+and :v5.3:`Clustered Collections
+</core/clustered-collections/#std-label-clustered-collections>`.
 
 Text Indexes
 ~~~~~~~~~~~~
