@@ -177,19 +177,16 @@ clustered index on the ``_id`` field in the ``vendors`` collection of the
 .. code-block:: javascript
    
    const db = client.db('tea');
-   const coll = db.collection(
-     'vendors',  
-     {
-       clusteredIndex: { 
-         key: { _id: 1 }, 
-         unique: true 
-       }
+   await db.createCollection('ratings', {
+     clusteredIndex: {
+       key: { _id: 1 },
+       unique: true
      }
-   );
+   });
 
-To learn more, see :v5.3:`Clustered Indexes
+To learn more, see :manual:`Clustered Indexes
 </reference/method/db.createCollection/#std-label-db.createCollection.clusteredIndex>`
-and :v5.3:`Clustered Collections
+and :manual:`Clustered Collections
 </core/clustered-collections/#std-label-clustered-collections>`.
 
 Text Indexes
