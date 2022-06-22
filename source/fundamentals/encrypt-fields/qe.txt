@@ -27,8 +27,8 @@ is useful for situations in which applications must guarantee that
 unauthorized parties, including server administrators, cannot read the
 encrypted data.
 
-For in-depth information on how {+qe+} works and full use-cases, see the
-:ref:`{+qe+} reference <qe-features>` documentation.
+For more thorough coverage of the core concepts, use-cases, examples, and
+in-depth reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.
 
 Installation
 ------------
@@ -36,9 +36,9 @@ Installation
 To get started with {+qe+} in your client application, you need:
 
 - MongoDB Enterprise, version ``6.0.0-rc9`` or later.
-- the MongoDB Node.js driver, version {+version+} or later.
-- `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption/v/{+mongodb-client-encryption-version+}-alpha.2>`__ version ``{+mongodb-client-encryption-version+}`` or later
-- The :ref:`{+qe+} shared library <qe-reference-shared-library-download>`
+- the MongoDB Node.js driver, version ``{+version+}`` or later.
+- `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption/v/{+mongodb-client-encryption-version+}>`__ version ``{+mongodb-client-encryption-version+}`` or later.
+- The :ref:`{+qe+} shared library <qe-reference-shared-library-download>`.
 
 ``mongodb-client-encryption``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -52,7 +52,7 @@ Add it to your project using ``npm``:
 .. code-block:: sh
    :copyable: true
 
-   npm install mongodb-client-encryption@2.2.0 --save
+   npm install mongodb-client-encryption@{+mongodb-client-encryption-version+} --save
 
 Shared Library
 ~~~~~~~~~~~~~~
@@ -165,4 +165,4 @@ Summary
 In this guide, you learned about the benefits of {+qe+}, how to install
 necessary dependencies, and ran a small example demonstrating it in use.
 For more thorough coverage of the core concepts, use-cases, examples, and
-in-depth reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`
+in-depth reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.
