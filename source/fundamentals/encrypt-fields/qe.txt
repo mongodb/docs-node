@@ -19,24 +19,24 @@ In this guide, you can learn how to install and use **{+qe+}**
 with the MongoDB Node.js driver.
 
 {+qe+} allows you to encrypt specific data fields within a document with
-your MongoDB client application before sending the data to the server,
-available with MongoDB version 6.0 or later.
+a configured client application before sending the data to the server.
+You can subsequently query on encrypted fields and retrieve matching documents.
 
 With {+qe+}, your client application encrypts fields client-side. {+qe+}
 is useful for situations in which applications must guarantee that
 unauthorized parties, including server administrators, cannot read the
 encrypted data.
 
-For more thorough coverage of the core concepts, use-cases, examples, and
+For thorough coverage of the core concepts, use-cases, examples, and
 in-depth reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.
 
 Installation
 ------------
 
-To get started with {+qe+} in your client application, you need:
+To get started with {+qe+}, you need:
 
 - MongoDB Enterprise, version ``6.0.0-rc9`` or later.
-- the MongoDB Node.js driver, version ``{+version+}`` or later.
+- The MongoDB Node.js driver, version ``{+version+}`` or later.
 - `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption/v/{+mongodb-client-encryption-version+}>`__ version ``{+mongodb-client-encryption-version+}`` or later.
 - The :ref:`{+qe+} shared library <qe-reference-shared-library-download>`.
 
@@ -81,7 +81,7 @@ with a {+qe+} enabled client.
    documents. A local key file is insecure and not suitable for a
    production application.
 
-Thorough coverage of {+qe+} and examples using differnet more secure methods
+Thorough coverage of {+qe+} and examples using more secure methods
 to store your key file are available in the :ref:`{+qe+} reference documentation <qe-tutorials>`.
 
 .. note::
@@ -153,7 +153,6 @@ To run this example, first complete the following steps:
       Change the path on line 43 to the location you installed the shared
       library.
 
-
       .. literalinclude:: /includes/qe/insert-encrypted-document.js
          :language: javascript
          :caption: insert-encrypted-document.js
@@ -164,5 +163,5 @@ Summary
 
 In this guide, you learned about the benefits of {+qe+}, how to install
 necessary dependencies, and ran a small example demonstrating it in use.
-For more thorough coverage of the core concepts, use-cases, examples, and
+For thorough coverage of the core concepts, use-cases, examples, and
 in-depth reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.
