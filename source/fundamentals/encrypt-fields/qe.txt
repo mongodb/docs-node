@@ -15,153 +15,34 @@ Encrypt Fields using Queryable Encryption
 Overview
 --------
 
-In this guide, you can learn how to install and use **{+qe+}**
-with the MongoDB Node.js driver.
+In this guide, you can learn how to configure the Node driver for {+qe+}.
 
-{+qe+} allows you to encrypt specific data fields within a document with
-a configured client application before sending the data to the server.
-You can subsequently query on encrypted fields and retrieve matching documents.
+For thorough coverage of the core concepts, use-cases, examples, and
+reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.
 
-With {+qe+}, your client application encrypts fields client-side. {+qe+}
+Introduction
+------------
+
+{+qe+} allows you to encrypt specific data fields within a document before
+sending the data to the server, and to query on encrypted fields. {+qe+}
 is useful for situations in which applications must guarantee that
 unauthorized parties, including server administrators, cannot read the
 encrypted data.
 
-For thorough coverage of the core concepts, use-cases, examples, and
-in-depth reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.
 
-Installation
-------------
+Configuration
+-------------
 
-To get started with {+qe+}, you need:
+To use {+qe+}, you must:
 
-- MongoDB Enterprise, version ``6.0.0-rc9`` or later.
-- The MongoDB Node.js driver, version ``{+version+}`` or later.
-- `mongodb-client-encryption <https://www.npmjs.com/package/mongodb-client-encryption/v/{+mongodb-client-encryption-version+}>`__ version ``{+mongodb-client-encryption-version+}`` or later.
-- The :ref:`{+qe+} shared library <qe-reference-shared-library-download>`.
-
-``mongodb-client-encryption``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The ``mongodb-client-encryption`` module is the official client
-encryption module for the MongoDB Node.js driver. It contains bindings
-to communicate with the native library that manages the encryption.
-
-Add it to your project using ``npm``:
-
-.. code-block:: sh
-   :copyable: true
-
-   npm install mongodb-client-encryption@{+mongodb-client-encryption-version+} --save
-
-Shared Library
-~~~~~~~~~~~~~~
-
-The shared library is automatically used by the package, and is used
-for automatic encryption. It is a dynamically-loaded library providing
-query-analysis.
-
-For more detailed information on the shared library, see the
-:ref:`the shared reference documentation <qe-reference-shared-library>`.
-
-Example
--------
-
-The following example shows how to configure a {+qe+} enabled client
-that specifies fields to encrypt.
-
-Values in the ``ssn`` field are automatically encrypted before the driver
-sends them to MongoDB, and decrypted client-side after retrieving documents
-with a {+qe+} enabled client.
-
-.. warning::
-
-   For brevity, this examples uses a local key file, a file stored on your
-   local disk that contains information necessary to encrypt and decrypt
-   documents. A local key file is insecure and not suitable for a
-   production application.
-
-Thorough coverage of {+qe+} and examples using more secure methods
-to store your key file are available in the :ref:`{+qe+} reference documentation <qe-tutorials>`.
-
-.. note::
-
-   Automatic encryption requires MongoDB **Enterprise** or **Atlas**.
-
-To run this example, first complete the following steps:
-
-.. procedure::
-
-   .. step:: Create a new directory.
-
-      Create a new directory to work in and complete the following steps.
-
-   .. step:: Create a local key file.
-
-      .. include:: /includes/qe/local-key-file-gen.rst
-
-   .. step:: Start MongoDB.
-
-      Start a :ref:`replica set <server-replica-set-deploy-convert>` locally
-      on the default port 27017.
-
-   .. step:: Configure the shared library.
-
-      Ensure the shared library is available in a system library location for
-      automatic discovery, or have the path available to pass as an option.
-
-   .. step:: Create a Data Encryption Key.
-
-      The following code creates a **Data Encryption Key** in a MongoDB
-      collection called ``encryption.__keyVault``. A data encryption key
-      is used by the driver to perform the actual encryption for a specific
-      field. This data encryption key is itself encrypted using the local
-      key file you created in an earlier step, a process known as
-      **envelope encryption**.
-
-      Change the URI on line 22 to connect to your MongoDB
-      instance. If you need guidance on connecting to MongoDB, see our
-      :ref:`node-connection-guide`.
-
-      Change the path on line 54 to the location you installed the shared
-      library.
+- Configure the driver with specific settings for encryption.
+- Configure and use the driver's encryption package, ``mongodb-client-encryption``.
 
 
-      .. literalinclude:: /includes/qe/make-data-key.js
-         :language: javascript
-         :caption: make-data-key.js
-         :emphasize-lines: 22,54
+MongoClient Configuration
++++++++++++++++++++++++++
 
-   .. step:: Insert and Retrieve a Document.
+You must pass an ``AutoEncrytionOptions`` object to the ``MongoClient`` constructor
+to enable {+qe+} operations with the {+driver-short+}.
 
-      The following code retrieves the data encryption key and uses it
-      to encrypt, then insert a document.
-
-      Then, two find operations are performed:
-
-      - A find operation with a client that **isn't** configured for {+qe+}
-      - A find operation with a client that **is** configured for {+qe+}
-
-      The client that ins't configured prints the document out with the
-      ``ssn`` field in encrypted form. The client that is configured prints
-      the document out with all fields in plaintext.
-
-      Change the URI on line 21 to connect to your MongoDB
-      instance. If you need guidance on connecting to MongoDB, see our
-      :ref:`node-connection-guide`.
-
-      Change the path on line 43 to the location you installed the shared
-      library.
-
-      .. literalinclude:: /includes/qe/insert-encrypted-document.js
-         :language: javascript
-         :caption: insert-encrypted-document.js
-         :emphasize-lines: 21,43
-
-Summary
--------
-
-In this guide, you learned about the benefits of {+qe+}, how to install
-necessary dependencies, and ran a small example demonstrating it in use.
-For thorough coverage of the core concepts, use-cases, examples, and
-in-depth reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.
+.. include:: /includes/auto-encryption-options.rst

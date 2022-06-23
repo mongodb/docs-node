@@ -31,7 +31,7 @@ async function run() {
         {
           keyId: dek1._id,
           path: "ssn",
-          bsonType: "int",
+          bsonType: "string",
           queries: { queryType: "equality" },
         },
      ],
