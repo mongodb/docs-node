@@ -27,6 +27,7 @@ The following table describes the structure of an
 
    * - **keyVaultNamespace**
      - *Required*
+
        **Type:** String
 
        **Description:**
