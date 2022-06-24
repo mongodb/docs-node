@@ -89,34 +89,36 @@ The following table describes the structure of an
      - No
 
      - ``extraOptions`` relate to communication with the shared library,
-       ``crypt_shared``, or with ``mongocryptd``.
+       ``crypt_shared``. Continue reading for ``extraOptions`` information.
 
-       .. list-table::
-          :header-rows: 1
-          :widths: 20 10 10 60
+The following table describes the structure of an ``extraOptions`` object:
 
-          * - Parameter
+.. list-table::
+   :header-rows: 1
+   :widths: 20 10 10 60
 
-            - Type
+   * - Parameter
 
-            - Required
+     - Type
 
-            - Description
+     - Required
 
-          * - ``cryptSharedLibPath``
+     - Description
 
-            - String
+   * - ``cryptSharedLibPath``
 
-            - No
+     - String
 
-            - The path to the ``crypt_shared`` library.
+     - No
 
-          * - ``cryptSharedLibRequired``
+     - The path to the ``crypt_shared`` library.
 
-            - Boolean
+   * - ``cryptSharedLibRequired``
 
-            - No
+     - Boolean
 
-            - Specifies whether the ``crypt_shared`` library is required.
-              If ``cryptSharedLibRequired`` is ``true``, the driver will
-              raise an error if the ``crypt_shared`` library is not found.
+     - No
+
+     - Specifies whether the ``crypt_shared`` library is required.
+       If ``cryptSharedLibRequired`` is ``true``, the driver will
+       raise an error if the ``crypt_shared`` library is not found.
