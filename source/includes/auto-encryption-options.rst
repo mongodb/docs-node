@@ -3,23 +3,16 @@ The following table describes the structure of an
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 10 10 60
+   :widths: 30 70
 
-   * - Parameter
-
-     - Type
-
-     - Required
-
+   * - Name
      - Description
 
-   * - ``keyVaultClient``
+   * - **keyVaultClient**
+     - **Type:** ``MongoClient``
 
-     - ``MongoClient``
-
-     - No
-
-     - A ``MongoClient`` configured to connect to
+       **Description**
+       A ``MongoClient`` configured to connect to
        the MongoDB instance hosting your {+key-vault-long+}. For more
 
        If you omit the ``keyVaultClient`` option, the driver uses the
@@ -29,21 +22,26 @@ The following table describes the structure of an
 
        To learn more about {+key-vault-long+}s, see :ref:`qe-reference-key-vault`.
 
-   * - ``keyVaultNamespace``
+       **Default:** ``undefined``
+       **Accepted Values:** A configured ``MongoClient``
 
-     - String
+   * - **keyVaultNamespace**
+     - *Required*
+       **Type:** String
 
-     - Yes
+       **Description:**
+       The full :term:`namespace` of the {+key-vault-long+}.
 
-     - The full :term:`namespace` of the {+key-vault-long+}.
+       **Accepted Values:** A string containing the full namespace of the
+       {+key-vault-long+}.
 
-   * - ``kmsProviders``
+   * - **kmsProviders**
+     - *Required*
 
-     - Object
+       **Type:** Object
 
-     - Yes
-
-     - The {+kms-long+} (KMS) used by {+qe+} for
+       **Description:**
+       The {+kms-long+} (KMS) used by {+qe+} for
        managing your {+cmk-long+}s (CMKs).
 
        To learn more about ``kmsProviders`` objects, see
@@ -51,74 +49,79 @@ The following table describes the structure of an
 
        To learn more about {+cmk-long+}s, see :ref:`qe-reference-keys-key-vaults`.
 
-   * - ``tlsOptions``
+       **Accepted Values:** An object containing the KMS provider or providers.
 
-     - Object
+   * - **tlsOptions**
+     -  **Type:** Object
 
-     - No
-
-     - Options to configure ``TLS`` connections to KMS providers.
+       **Description:**
+       Options to configure ``TLS`` connections to KMS providers.
 
        To learn more about ``tlsOptions``, see the `API documentation <{+api+}/interfaces/AutoEncryptionTlsOptions.html>`__.
 
-   * - ``encryptedFieldsMap``
+       **Default:** ``undefined``
+       **Accepted Values:** An object containing the TLS options.
 
-     - Object
+   * - **encryptedFieldsMap**
+     - **Type:** Object
 
-     - No
-
-     - An encryption schema.
+       **Description:**
+       An encryption schema.
 
        To learn how to construct an encryption schema, see
        :ref:`qe-fundamentals-encrypt-query`.
 
-   * - ``bypassQueryAnalysis``
+       **Default:** ``undefined``
+       **Accepted Values:** An object containing the encryption schema.
 
-     - Boolean
+   * - **bypassQueryAnalysis**
+     - **Type:** Boolean
 
-     - No
-
-     - Disables automatic analysis of outgoing commands. Set ``bypassQueryAnalysis``
+       **Description:**
+       Disables automatic analysis of outgoing commands. Set ``bypassQueryAnalysis``
        to ``true`` to use explicit encryption on indexed fields without the
        ``crypt_shared`` library. Defaults to ``false`` if not specified.
 
-   * - ``extraOptions``
+       **Default:** ``false``
+       **Accepted Values:** ``true`` or ``false``
 
-     - Object
+   * - **extraOptions**
+     - **Type:** Object
 
-     - No
-
-     - ``extraOptions`` relate to communication with the shared library,
+       **Description:**
+       ``extraOptions`` relate to communication with the shared library,
        ``crypt_shared``. Continue reading for ``extraOptions`` information.
+
+       **Default:** ``undefined``
+       **Accepted Values:** An object containing the extra options.
 
 The following table describes the structure of an ``extraOptions`` object:
 
 .. list-table::
    :header-rows: 1
-   :widths: 20 10 10 60
+   :widths: 30 70
 
-   * - Parameter
-
-     - Type
-
-     - Required
-
+   * - Name
      - Description
 
-   * - ``cryptSharedLibPath``
 
-     - String
+   * - **cryptSharedLibPath**
+     - **Type:** String
 
-     - No
 
-     - The path to the ``crypt_shared`` library.
+       **Description:**
+       The path to the ``crypt_shared`` library.
 
-   * - ``cryptSharedLibRequired``
+       **Default:** ``undefined``
+       **Accepted Values:** A string containing the path to the ``crypt_shared`` library.
 
-     - Boolean
+   * - **cryptSharedLibRequired**
+     - **Type:** Boolean
 
-     - No
-
-     - Specifies whether the ``crypt_shared`` library is required.
+       **Description:**
+       Specifies whether the ``crypt_shared`` library is required.
        If ``cryptSharedLibRequired`` is ``true``, the driver will
        raise an error if the ``crypt_shared`` library is not found.
+
+       **Default:** ``false``
+       **Accepted Values:** ``true`` or ``false``
