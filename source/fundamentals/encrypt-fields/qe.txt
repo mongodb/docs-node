@@ -59,7 +59,7 @@ ClientEncryption Configuration
 ++++++++++++++++++++++++++++++
 
 ``ClientEncryption`` is a class exposed by ``mongodb-client-encryption`` that provides
-methods for interacting with your {+DEK+}s. You construct a ``ClientEncryption`` object
+methods for interacting with your {+dek-long+}s. You construct a ``ClientEncryption`` object
 by passing a ``MongoClient`` object to the ``ClientEncryption`` constructor, and
 configuration options.
 
