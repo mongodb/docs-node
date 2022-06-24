@@ -15,7 +15,7 @@ Encrypt Fields using Queryable Encryption
 Overview
 --------
 
-In this guide, you can learn how to configure the Node driver for {+qe+}.
+In this guide, you can learn how to configure the {+driver-short+} for {+qe+}.
 
 For thorough coverage of the core concepts, use-cases, examples, and
 reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.

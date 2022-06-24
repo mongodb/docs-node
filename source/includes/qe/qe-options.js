@@ -1,7 +1,7 @@
 // begin client encryption
 const clientEncryption = new ClientEncryption(keyVaultClient, {
-  keyVaultNamespace: keyVaultNamespace,
-  kmsProviders: kmsProviders,
+  keyVaultNamespace,
+  kmsProviders,
 });
 // end client encryption
 
