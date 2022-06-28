@@ -1,0 +1,145 @@
+.. _node-fundamentals-distinct:
+
+========================
+Retrieve Distinct Values
+========================
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+Use the ``distinct()`` method to retrieve all distinct values for a specified field 
+across a collection.
+
+Sample Documents
+~~~~~~~~~~~~~~~~
+
+Follow the instructions in the examples below to insert data into a collection and
+return the unique values of a given field. Consider the following collection of 
+documents that describe books:
+
+.. code-block:: json
+
+   [
+      { "_id": 1, "name": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 },
+      { "_id": 2, "name": "Les Misérables", "author": "Hugo", "length": 1462 },
+      { "_id": 3, "name": "Atlas Shrugged", "author": "Rand", "length": 1088 },
+      { "_id": 4, "name": "Infinite Jest", "author": "Wallace", "length": 1104 },
+      { "_id": 5, "name": "Cryptonomicon", "author": "Stephenson", "length": 918 },
+      { "_id": 6, "name": "A Dance with Dragons", "author": "Martin", "length": 1104 },
+   ]
+
+.. include:: /includes/access-cursor-note.rst
+
+Distinct
+--------
+
+Use a document field name as a parameter for the ``distinct()`` method to return a 
+list of the field's unique values. Optionally, you can specify ``query`` and ``options`` 
+parameters to narrow down your results.
+
+Example
+```````
+
+The following example retrieves every unique value of the ``author`` field. 
+
+.. code-block:: javascript
+
+   // specify "author" as the field to return values for
+   const fieldName = "author";
+   // define an empty query document
+   const query = {};
+
+   const cursor = collection.distinct(fieldName, query);
+   await cursor.forEach(console.dir);
+
+This code outputs the following list of distinct ``author`` values:
+
+.. code-block:: json
+   :copyable: false
+
+   [ "Dostoyevsky", "Hugo", "Martin", "Rand", "Stephenson", "Wallace" ]
+
+Query Parameter
+~~~~~~~~~~~~~~~
+
+The previous example did not use a query filter. Instead, we set the query parameter
+as ``{}`` to match all the documents in a collection. However, you can specify which 
+distinct values to output by defining a query parameter.
+
+Visit :doc:`Specify a Query </fundamentals/crud/query-document>` for more information 
+on constructing a query filter.
+
+Example
+```````
+
+The following example outputs the distinct values of the ``name`` field, but only 
+includes books with a ``length`` value greater than ``1000``:
+
+.. code-block:: javascript
+   :emphasize-lines: 4
+
+   // specify "name" as the field to return values for
+   const fieldName = "name";
+   // specify that length values must be greater than 1000
+   const query = { length: { $gt: 1000 };
+
+   const cursor = collection.distinct(fieldName, query);
+   await cursor.forEach(console.dir);
+
+This code returns the following list of ``name`` values, filtered for ``length``: 
+
+.. code-block:: json
+   :copyable: false
+
+   [ "A Dance with Dragons", "Atlas Shrugged", "Infinite Jest", "Les Misérables" ]
+
+Options Parameter
+~~~~~~~~~~~~~~~~~
+
+You can specify the language collation of the ``distinct()`` method by defining a 
+``collation`` field as an ``options`` parameter. This field allows you to set 
+language-specific rules for string ordering and comparisons. 
+
+See :doc:`Collations </fundamentals/collations>` for instructions on applying 
+collations.
+
+Example
+```````
+
+The following example uses a ``collation`` field to specify French language ordering 
+conventions when outputting the distinct ``author`` values:
+
+.. code-block:: javascript
+   :emphasize-lines: 6
+
+   // specify "author" as the field to return values for
+   const fieldName = "author";
+   // define an empty query document
+   const query = {};
+   // specify French string ordering conventions
+   const options = { collation: { locale: "fr" };
+
+   const cursor = collection.distinct(fieldName, query, options);
+   await cursor.forEach(console.dir);
+
+
+Additional Information
+----------------------
+
+For a runnable example of retrieving distinct values, see :ref:`node-usage-distinct`.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about the ``distinct()`` method and its parameters, you can visit the 
+`API documentation <{+api+}/classes/Collection.html#distinct>`__.
+
+
