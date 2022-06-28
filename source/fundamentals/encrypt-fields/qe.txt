@@ -55,7 +55,7 @@ The following shows how to configure a ``MongoClient`` with ``AutoEncryptionOpti
    :language: javascript
    :dedent:
 
-`AutoEncryptionOptions API documentation <{+api+}/interfaces/AutoEncryptionOptions.html>`__.
+`AutoEncryptionOptions API documentation <{+api+}/interfaces/AutoEncryptionOptions.html>`__
 
 ClientEncryption Configuration
 ++++++++++++++++++++++++++++++
@@ -74,7 +74,7 @@ The following shows how to create a ``ClientEncryption`` object and configure it
    :language: javascript
    :dedent:
 
-`ClientEncrytion API documentation <https://www.npmjs.com/package/mongodb-client-encryption/v/{+mongodb-client-encryption-version+}#ClientEncryption>`__.
+`ClientEncrytion API documentation <https://www.npmjs.com/package/mongodb-client-encryption/v/{+mongodb-client-encryption-version+}#ClientEncryption>`__
 
 Learn More
 ----------
