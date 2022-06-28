@@ -47,34 +47,33 @@ to enable {+qe+} operations with the {+driver-short+}.
 
 .. include:: /includes/auto-encryption-options.rst
 
-.. example::
+The following shows how to configure a ``MongoClient`` with ``AutoEncryptionOptions``:
 
-   .. literalinclude:: /includes/qe/qe-options.js
-      :start-after: begin qe mongoclient
-      :end-before: end qe mongoclient
-      :language: javascript
-      :dedent:
+.. literalinclude:: /includes/qe/qe-options.js
+   :start-after: begin qe mongoclient
+   :end-before: end qe mongoclient
+   :language: javascript
+   :dedent:
 
 ClientEncryption Configuration
 ++++++++++++++++++++++++++++++
 
-``ClientEncryption`` is a class exposed by ``mongodb-client-encryption`` that provides
-methods for interacting with your {+dek-long+}s. You construct a ``ClientEncryption`` object
-by passing a ``MongoClient`` object to the ``ClientEncryption`` constructor, and
-configuration options.
+The ``ClientEncryption`` class in the ``mongodb-client-encryption`` package provides
+methods for interacting with your {+dek-long+}s. To construct a ``ClientEncryption``
+object, pass a ``MongoClient`` and configuration options to the constructor.
 
 .. include:: /includes/client-encryption-options.rst
 
-.. example::
+The following shows how to create a ``ClientEncryption`` object and configure it.
 
-   .. literalinclude:: /includes/qe/qe-options.js
-      :start-after: begin client encryption
-      :end-before: end client encryption
-      :language: javascript
-      :dedent:
+.. literalinclude:: /includes/qe/qe-options.js
+   :start-after: begin client encryption
+   :end-before: end client encryption
+   :language: javascript
+   :dedent:
 
-Further Reading
----------------
+Learn More
+----------
 
-For thorough coverage of the core concepts, use-cases, examples, and
-reference, visit the main {+qe+} :ref:`documentation site <qe-manual-feature-qe>`.
+For coverage of the core concepts, use-cases, examples, and
+reference, visit the main :ref:`{+qe+} documentation site <qe-manual-feature-qe>`.
