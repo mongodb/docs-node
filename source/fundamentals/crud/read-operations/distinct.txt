@@ -23,17 +23,17 @@ Sample Documents
 
 Follow the instructions in the examples below to insert data into a collection and
 return the unique values of a given field. Consider the following collection of 
-documents that describe books:
+documents that describe restaurants: 
 
 .. code-block:: json
 
    [
-      { "_id": 1, "name": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 },
-      { "_id": 2, "name": "Les Misérables", "author": "Hugo", "length": 1462 },
-      { "_id": 3, "name": "Atlas Shrugged", "author": "Rand", "length": 1088 },
-      { "_id": 4, "name": "Infinite Jest", "author": "Wallace", "length": 1104 },
-      { "_id": 5, "name": "Cryptonomicon", "author": "Stephenson", "length": 918 },
-      { "_id": 6, "name": "A Dance with Dragons", "author": "Martin", "length": 1104 },
+      { "_id": 1, "restaurant": "White Bear", "borough": "Queens", "cuisine": "Chinese" },
+      { "_id": 2, "restaurant": "Via Carota", "borough": "Manhattan", "cuisine": "Italian" },
+      { "_id": 3, "restaurant": "Borgatti's", "borough": "Bronx", "cuisine": "Italian" },
+      { "_id": 4, "restaurant": "Tanoreen", "borough": "Brooklyn", "cuisine": "Middle Eastern" },
+      { "_id": 5, "restaurant": "Äpfel", "borough": "Queens", "cuisine": "German" },
+      { "_id": 6, "restaurant": "Samba Kitchen", "borough": "Manhattan", "cuisine": "Brazilian" },
    ]
 
 .. include:: /includes/access-cursor-note.rst
@@ -42,37 +42,35 @@ Distinct
 --------
 
 Use a document field name as a parameter for the ``distinct()`` method to return a 
-list of the field's unique values. Optionally, you can specify ``query`` and ``options`` 
-parameters to narrow down your results.
+list of the field's unique values. Optionally, you can specify a ``query`` 
+parameter to narrow down your results or an ``options`` parameter to set the 
+string comparison language.
 
 Example
 ```````
 
-The following example retrieves every unique value of the ``author`` field. 
+Some boroughs, like "``Queens``", are represented multiple times in the restaurant 
+documents. However, the following example retrieves only the unique values of the 
+``borough`` field: 
 
 .. code-block:: javascript
 
-   // specify "author" as the field to return values for
-   const fieldName = "author";
-   // define an empty query document
-   const query = {};
-
-   const cursor = collection.distinct(fieldName, query);
+   // specify "borough" as the field to return values for
+   const cursor = collection.distinct("borough");
    await cursor.forEach(console.dir);
 
-This code outputs the following list of distinct ``author`` values:
+This code outputs the following ``borough`` values:
 
 .. code-block:: json
    :copyable: false
 
-   [ "Dostoyevsky", "Hugo", "Martin", "Rand", "Stephenson", "Wallace" ]
+   [ "Bronx", "Brooklyn", "Manhattan", "Queens" ]
 
 Query Parameter
 ~~~~~~~~~~~~~~~
 
-The previous example did not use a query filter. Instead, we set the query parameter
-as ``{}`` to match all the documents in a collection. However, you can specify which 
-distinct values to output by defining a query parameter.
+You can define a query parameter to prevent the ``distinct()`` method from returning 
+certain distinct values.
 
 Visit :doc:`Specify a Query </fundamentals/crud/query-document>` for more information 
 on constructing a query filter.
@@ -80,26 +78,26 @@ on constructing a query filter.
 Example
 ```````
 
-The following example outputs the distinct values of the ``name`` field, but only 
-includes books with a ``length`` value greater than ``1000``:
+The following example outputs the distinct values of the ``cuisine`` field but 
+excludes restaurants in "``Brooklyn``":
 
 .. code-block:: javascript
-   :emphasize-lines: 4
 
-   // specify "name" as the field to return values for
-   const fieldName = "name";
-   // specify that length values must be greater than 1000
-   const query = { length: { $gt: 1000 };
+   // exclude Brooklyn restaurants from the output
+   const query = { borough: { $ne: "Brooklyn" }};
 
-   const cursor = collection.distinct(fieldName, query);
+   // find the filtered distinct values of "cuisine"
+   const cursor = collection.distinct("cuisine", query);
    await cursor.forEach(console.dir);
 
-This code returns the following list of ``name`` values, filtered for ``length``: 
+In this case, the query filter prevents the ``distinct()`` method from matching a 
+``Middle Eastern`` Brooklyn restaurant. The code outputs the following ``cuisine`` 
+values:
 
 .. code-block:: json
    :copyable: false
 
-   [ "A Dance with Dragons", "Atlas Shrugged", "Infinite Jest", "Les Misérables" ]
+   [ "Brazilian", "Chinese", "German", "Italian" ]
 
 Options Parameter
 ~~~~~~~~~~~~~~~~~
@@ -111,25 +109,44 @@ language-specific rules for string ordering and comparisons.
 See :doc:`Collations </fundamentals/collations>` for instructions on applying 
 collations.
 
+.. note::
+
+   When using the ``options`` parameter, you must also specify a ``query`` parameter. If
+   you don't want to use a query filter, define the query as ``{}``.
+
 Example
 ```````
 
-The following example uses a ``collation`` field to specify French language ordering 
-conventions when outputting the distinct ``author`` values:
+The following example uses a ``collation`` field to specify German language ordering 
+conventions when outputting the distinct ``restaurant`` values:
 
 .. code-block:: javascript
    :emphasize-lines: 6
 
-   // specify "author" as the field to return values for
-   const fieldName = "author";
    // define an empty query document
    const query = {};
-   // specify French string ordering conventions
-   const options = { collation: { locale: "fr" };
+   // specify German string ordering conventions
+   const options = { collation: { locale: "de" }};
 
-   const cursor = collection.distinct(fieldName, query, options);
+   const cursor = collection.distinct("restaurant", query, options);
    await cursor.forEach(console.dir);
 
+In this case, German string ordering conventions place words beginning with "Ä" before
+those beginning with "B". The code outputs the following:
+
+.. code-block:: json
+   :copyable: false
+
+   [ "Äpfel", "Borgatti's", "Samba Kitchen", "Tanoreen", "Via Carota", "White Bear" ]
+
+Without specifying a ``collation`` field, the output order would follow default
+binary collation rules. These rules place words beginning with "Ä" after the those
+with unaccented first letters:
+
+.. code-block:: json
+   :copyable: false
+
+   [ "Borgatti's", "Samba Kitchen", "Tanoreen", "Via Carota", "White Bear", "Äpfel" ]
 
 Additional Information
 ----------------------
