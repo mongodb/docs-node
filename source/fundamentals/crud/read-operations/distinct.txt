@@ -91,7 +91,7 @@ excludes restaurants in "``Brooklyn``":
    await cursor.forEach(console.dir);
 
 In this case, the query filter prevents the ``distinct()`` method from matching a 
-``Middle Eastern`` Brooklyn restaurant. The code outputs the following ``cuisine`` 
+"``Middle Eastern``" Brooklyn restaurant. The code outputs the following ``cuisine`` 
 values:
 
 .. code-block:: json
@@ -121,7 +121,6 @@ The following example uses a ``collation`` field to specify German language orde
 conventions when outputting the distinct ``restaurant`` values:
 
 .. code-block:: javascript
-   :emphasize-lines: 6
 
    // define an empty query document
    const query = {};
