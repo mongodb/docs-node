@@ -21,9 +21,9 @@ across a collection.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-Follow the instructions in the examples below to insert data into a collection and
-return the unique values of a given field. Consider the following collection of 
-documents that describe restaurants: 
+Consider a collection called ``restaurants`` that contains documents with restaurant data. 
+The examples on this page use the following ``restaurants`` documents to demonstrate the 
+usage of ``distinct()``:
 
 .. code-block:: json
 
@@ -38,20 +38,23 @@ documents that describe restaurants:
 
 .. include:: /includes/access-cursor-note.rst
 
+
 Distinct
 --------
 
 Use a document field name as a parameter for the ``distinct()`` method to return a 
-list of the field's unique values. Optionally, you can specify a ``query`` 
-parameter to narrow down your results or an ``options`` parameter to set the 
-string comparison language.
+list of the field's unique values. You can specify two optional parameters to adjust
+the method output:
+
+- A ``query`` parameter to refine your results 
+- An ``options`` parameter to set collation rules
 
 Example
 ```````
 
-Some boroughs, like "``Queens``", are represented multiple times in the restaurant 
-documents. However, the following example retrieves only the unique values of the 
-``borough`` field: 
+The "``Queens``" and "``Manhattan``" borough values each appear more than
+once in the sample documents. However, the following example retrieves the 
+unique values of the ``borough`` field: 
 
 .. code-block:: javascript
 
@@ -69,11 +72,11 @@ This code outputs the following ``borough`` values:
 Query Parameter
 ~~~~~~~~~~~~~~~
 
-You can define a query parameter to prevent the ``distinct()`` method from returning 
-certain distinct values.
+You can specify a ``distinct()`` method query parameter to only return unique 
+values for documents that match your query.
 
-Visit :doc:`Specify a Query </fundamentals/crud/query-document>` for more information 
-on constructing a query filter.
+Visit :ref:`node-fundamentals-query-document` for more information on constructing a 
+query filter.
 
 Example
 ```````
@@ -90,9 +93,9 @@ excludes restaurants in "``Brooklyn``":
    const cursor = collection.distinct("cuisine", query);
    await cursor.forEach(console.dir);
 
-In this case, the query filter prevents the ``distinct()`` method from matching a 
-"``Middle Eastern``" Brooklyn restaurant. The code outputs the following ``cuisine`` 
-values:
+In this case, the query filter matches every borough value except for "``Brooklyn``". This
+prevents ``distinct()`` from outputting one ``cuisine`` value, "``Middle Eastern``".
+The code outputs the following ``cuisine`` values:
 
 .. code-block:: json
    :copyable: false
@@ -102,12 +105,11 @@ values:
 Options Parameter
 ~~~~~~~~~~~~~~~~~
 
-You can specify the language collation of the ``distinct()`` method by defining a 
+You can specify the collation to the ``distinct()`` method by defining a 
 ``collation`` field as an ``options`` parameter. This field allows you to set 
-language-specific rules for string ordering and comparisons. 
+regional rules for string ordering and comparisons. 
 
-See :doc:`Collations </fundamentals/collations>` for instructions on applying 
-collations.
+See :ref:`node-fundamentals-collations` for instructions on applying collations.
 
 .. note::
 
