@@ -72,8 +72,8 @@ This code outputs the following ``borough`` values:
 Query Parameter
 ~~~~~~~~~~~~~~~
 
-You can specify a ``distinct()`` method query parameter to only return unique 
-values for documents that match your query.
+You can specify a ``distinct()`` query parameter to only return unique values for 
+documents that match your query.
 
 Visit :ref:`node-fundamentals-query-document` for more information on constructing a 
 query filter.
@@ -95,7 +95,7 @@ excludes restaurants in "``Brooklyn``":
 
 In this case, the query filter matches every borough value except for "``Brooklyn``". This
 prevents ``distinct()`` from outputting one ``cuisine`` value, "``Middle Eastern``".
-The code outputs the following ``cuisine`` values:
+The code outputs the following values:
 
 .. code-block:: json
    :copyable: false
