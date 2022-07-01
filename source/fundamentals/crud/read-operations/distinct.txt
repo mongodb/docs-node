@@ -72,8 +72,8 @@ This code outputs the following ``borough`` values:
 Query Parameter
 ~~~~~~~~~~~~~~~
 
-You can specify a ``distinct()`` query parameter to only return unique values for 
-documents that match your query.
+You can specify a query parameter to return unique values for documents that match 
+your query.
 
 Visit :ref:`node-fundamentals-query-document` for more information on constructing a 
 query filter.
