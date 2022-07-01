@@ -13,7 +13,7 @@ Quick Start
    :class: singlecol
 
 This guide shows you how to create an application that uses the
-{+driver-long+} to connect to a MongoDB cluster hosted on  MongoDB Atlas. If
+{+driver-long+} to connect to a MongoDB cluster hosted on MongoDB Atlas. If
 you prefer to connect to MongoDB using a different driver or programming
 language, see our :driver:`list of official drivers <>`.
 
