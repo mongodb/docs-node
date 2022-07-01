@@ -159,7 +159,7 @@ application.
       .. figure:: /includes/figures/atlas_connection_copy_string_node.png
          :alt: The connection string copy button in the Connection String Only tab of the Atlas UI
 
-      Save your connection string to a safe location since you need it for the
+      Save your connection string to a safe location.
 
    .. step:: Create your Node.js Application
 
