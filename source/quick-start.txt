@@ -50,7 +50,7 @@ tab if you want to create the project dependency file yourself.
 
       Ensure you have git installed in your development environment.
 
-      For information on how to install git, see `Git's Getting Started Guide <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__.
+      For information on how to install git, see `Git - Getting Started Guide <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>`__.
 
       Then, from your shell, clone the `js-starter repository
       <https://github.com/mongodb-university/js-starter>`__:
@@ -126,7 +126,7 @@ application.
 
    .. step:: Create a Free Tier Cluster in Atlas
 
-      Ccreate a free tier MongoDB cluster on MongoDB Atlas to store and manage
+      Create a free tier MongoDB cluster on MongoDB Atlas to store and manage
       your data. MongoDB Atlas hosts and manages your MongoDB database in the
       cloud. Complete the :atlas:`Get Started with Atlas </getting-started?tck=docs_driver_nodejs>`
       guide to set up a new Atlas account, a free tier cluster (a shared
@@ -231,7 +231,7 @@ application.
 
       If you encounter an error or no output, check whether you specified the
       proper connection string in the application code, and loaded the sample
-      dataset in your Atlas cluster.
+      data set in your Atlas cluster.
 
       At this point, you should have a working application that uses
       the {+driver-short+} to connect to your MongoDB instance, runs a query
