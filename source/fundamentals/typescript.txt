@@ -128,7 +128,7 @@ must manually check that your nested field values have your intended type.
    when specifying subdocuments in a query. Dot notation allows you to query
    nested fields without matching subdocuments exactly.
 
-   To show this behavior, let's say you have a collection containing
+   To show this behavior, consider a collection containing
    only the following document:
 
    .. code-block:: json
