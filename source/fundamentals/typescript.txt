@@ -118,7 +118,7 @@ Click on the tabs to see code snippets that highlight this behavior:
 
         Type 'string' is not assignable to type 'number'.
 
-Despite the lack of type safety, we still recommend that you use dot notation to
+MongoDB recommends that you use dot notation to
 access nested fields in query and update documents when you use TypeScript. You
 must manually check that your nested field values have your intended type.
 
@@ -128,7 +128,7 @@ must manually check that your nested field values have your intended type.
    when specifying subdocuments in a query. Dot notation allows you to query
    nested fields without matching subdocuments exactly.
 
-   To show this behavior, lets say you have a collection containing
+   To show this behavior, consider a collection containing
    only the following document:
 
    .. code-block:: json
@@ -151,9 +151,5 @@ must manually check that your nested field values have your intended type.
       :linenos:
       :start-after: start-doc
       :end-before: end-doc
-
-   The syntax of the query that does not use dot notation is cumbersome and hard
-   to understand, and may not be worth the type safety obtained from
-   avoiding dot notation.
 
 For more information on dot notation, see :manual:`the MongoDB Manual </core/document/#dot-notation>`.
