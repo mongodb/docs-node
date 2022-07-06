@@ -20,26 +20,26 @@ making it easier to work with sensitive documents.
 There are two client-side encryption features you can use with MongoDB:
 
 - {+qe+}
-  |
-  | {+qe+} is the next-generation client-side encryption feature from MongoDB,
-  | introduced in MongoDB 6.0. {+qe+} supports searching encrypted fields
-  | for equality and encrypts each value uniquely, so fields with both
-  | high and low cardinality are equally secure.
-  |
-  | The MongoDB manual contains detailed information for {+qe+}:
+
+  {+qe+} is the next-generation client-side encryption feature from MongoDB,
+  introduced in MongoDB 6.0. {+qe+} supports searching encrypted fields
+  for equality and encrypts each value uniquely, so fields with both
+  high and low cardinality are equally secure.
+
+  The MongoDB manual contains detailed information for {+qe+}:
   - A :ref:`qe-quick-start`
   - :ref:`qe-fundamentals`
   - KMS :ref:`qe-tutorials`
   - :ref:`qe-reference`
 
 - Client-side Field Level Encryption (CSFLE)
-  |
-  | Client-side Field Level Encryption (CSFLE) supports searching encrypted values.
-  | A core difference between CSFLE and {+qe+} is that CSFLE requires that
-  | encrypted fields you want to search must be determinstically encrypted.
-  | This means fields with low cardinality are subject to frequency analysis.
-  |
-  | The MongoDB manual contains detailed information for CSFLE:
+
+  Client-side Field Level Encryption (CSFLE) supports searching encrypted values.
+  A core difference between CSFLE and {+qe+} is that CSFLE requires that
+  encrypted fields you want to search must be determinstically encrypted.
+  This means fields with low cardinality are subject to frequency analysis.
+
+  The MongoDB manual contains detailed information for CSFLE:
   - A :ref:`csfle-quick-start`
   - :ref:`csfle-fundamentals`
   - KMS :ref:`csfle-tutorials`
