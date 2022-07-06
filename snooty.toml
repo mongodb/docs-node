@@ -12,7 +12,6 @@ toc_landing_pages = [
     "/fundamentals",
     "/fundamentals/connection",
     "/fundamentals/crud",
-    "fundamentals/encrypt-fields",
     "/usage-examples",
 ]
 sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
