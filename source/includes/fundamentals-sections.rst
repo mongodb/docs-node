@@ -13,8 +13,7 @@ Fundamentals section:
 - :doc:`Log Events in the Driver </fundamentals/logging>`
 - :doc:`Monitor Driver Events </fundamentals/monitoring>`
 - :doc:`Store and Retrieve Large Files in MongoDB </fundamentals/gridfs>`
-- :doc:`Encrypt Fields from the Client using Queryable Encryption</fundamentals/qe>`
-- :doc:`Encrypt Fields from the Client using Client-Side Field Level Encryption </fundamentals/csfle>`
+- :doc:`Encrypt Fields from the Client</fundamentals/encrypt-fields>`
 - :doc:`Create and Query Time Series Collection </fundamentals/time-series>`
 - :doc:`Specify Type Parameters with TypeScript </fundamentals/typescript>`
 - :doc:`Specify UTF-8 Validation Settings </fundamentals/utf8-validation>`
