@@ -22,6 +22,7 @@ to your database, and attacker would only see the encrypted version of the
 fields you configured for encryption.
 
 Client-side encryption is useful for storing sensitive data, such as:
+
 - credit card numbers
 - addresses
 - health information
