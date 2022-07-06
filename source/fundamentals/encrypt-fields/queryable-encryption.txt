@@ -15,7 +15,7 @@ Configure Queryable Encryption
 Overview
 --------
 
-In this guide, you can learn how to configure the {+driver-short+} for {+qe+}.
+In this guide, you can learn about {+qe+} and how to configure the {+driver-short+} for {+qe+}.
 
 For coverage of the core concepts, use-cases, examples, and
 reference, visit the main :ref:`{+qe+} documentation site <qe-manual-feature-qe>`.

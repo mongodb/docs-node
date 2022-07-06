@@ -6,14 +6,33 @@ Encrypt Fields
 
 .. toctree::
 
-   /fundamentals/encrypt-fields/qe
+   /fundamentals/encrypt-fields/queryable-encryption
    /fundamentals/encrypt-fields/csfle
 
 Overview
 --------
 
 These guides show you how to encrypt fields in the client before sending
-them to MongoDB, a feature called **Client-side Encryption**.
+them to MongoDB, a feature called **client-side encryption**.  Client-side
+Encryption enables your client applications to encrypt
+data *before* sending it to MongoDB. Only your configured client
+applications can decrypt the data. This ensures that fields you've
+encrypted are secure from any entity that doesn't have access to your
+encryption keys. Client-side encryption supports querying documents on
+encrypted values, making it easier to work with sensitive documents.
+
+There are two client-side encryption features you can use with MongoDB:
 
 - :ref:`node-qe`
+
+  {+qe+} is the next-generation client-side encryption feature from MongoDB.
+  {+qe+} supports searching encrypted fields for equality and encrypts
+  each value uniquely, so fields with both high cardinality and low
+  cardinality are equally secure.
+
 - :ref:`node-csfle`
+
+  Client-side Field Level Encryption (CSFLE) supports searching encrypted values.
+  A core difference between CSFLE and {+qe+} is that CSFLE requires that
+  encrypted fields you want to search must be determinstically encrypted.
+  This means fields with low cardinality are subject to frequency analysis.
