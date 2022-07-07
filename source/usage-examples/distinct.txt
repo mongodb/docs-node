@@ -11,7 +11,7 @@ Retrieve Distinct Values of a Field
    not specify one, this method returns a ``Promise`` that resolves to the
    result object when it completes. See our guide on :ref:`Promises and Callbacks <node-promises-and-callbacks>` 
    for more information, or the
-   `API documentation <{+api+}/classes/Collection.html#~resultcallback>`__ for
+   `API documentation <{+api+}/classes/collection.html#~resultcallback>`__ for
    information on the result object.
 
 You can retrieve a list of distinct values for a field across a collection by using 
