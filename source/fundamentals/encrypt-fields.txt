@@ -56,8 +56,9 @@ same input value produces the same output value.
 
 An unauthorized party who gains access to your data may be able to infer
 the plaintext values of fields that contain common values. For example,
-an attacker may infer the plaintext value of a ``gender`` field by
-examining the ``name`` across multiple documents.
+an attacker could infer the ``occupation`` field for all documents with
+a value of "software engineer" if they know that value for a specific
+document.
 
 The MongoDB manual contains detailed information for CSFLE:
 
