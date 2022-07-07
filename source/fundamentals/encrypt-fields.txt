@@ -18,47 +18,50 @@ Because the driver encrypts the data before sending it to MongoDB, only
 your configured client applications can decrypt the data. People or
 applications with access to your encryption keys are the only ones that
 can see the decrypted, plaintext data. Should you have unauthorized access
-to your database, and attacker would only see the encrypted version of the
+to your database, an attacker could only see the encrypted version of the
 fields you configured for encryption.
 
-Client-side encryption is useful for storing sensitive data, such as:
+Client-side can prevent exposure of the following sensitive types of data:
 
-- credit card numbers
-- addresses
-- health information
-- financial information
-- any other sensitive or personally identifiable information (PII)
+- Credit card numbers
+- Addresses
+- Health information
+- Financial information
+- Any other sensitive or personally identifiable information (PII)
 
-MongoDB offers two ways to encrypt data:
+MongoDB offers the following ways to encrypt data:
 
 {+qe+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-{+qe+} is the next-generation client-side encryption feature from MongoDB,
+{+qe+} is the next-generation client-side encryption feature,
 introduced in MongoDB 6.0. {+qe+} supports searching encrypted fields
 for equality and encrypts each value uniquely.
 
 The MongoDB manual contains detailed information for {+qe+}:
 
-- A :ref:`qe-quick-start`
-- :ref:`qe-fundamentals`
-- KMS :ref:`qe-tutorials`
-- :ref:`qe-reference`
+- Begin a working {+qe+} example with the :ref:`qe-quick-start`
+- Learn how to use {+qe+} in the :ref:`qe-fundamentals`
+- Learn how to integrate your {+qe+} implementation with a KMS in the :ref:`qe-tutorials`
+- Learn {+qe+} concepts in the :ref:`qe-reference`
 
-Client-side Field Level Encryption (CSFLE)
+{+csfle-long+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Client-side Field Level Encryption (CSFLE) supports searching encrypted values.
-The core difference between CSFLE and {+qe+} is that CSFLE requires that
-encrypted fields you want to search must be determinstically encrypted,
-the same input produces the same output.
+{+csfle-long+} supports searching encrypted values.
+The core difference between {+csfle-short+} and {+qe+} is that {+csfle-short+}
+requires that encrypted fields you want to search must be determinstically
+encrypted. When you encrypt a value with deterministic encryption, the
+same input value produces the same output value.
 
-Fields that share common values between documents, such as gender or blood type,
-may be subject to inference if an unauthorized party gained access to your data.
+An unauthorized party who gains access to your data may be able to infer
+the plaintext values of fields that contain common values. For example,
+an attacker may infer the plaintext value of a ``gender`` field by
+examining the ``name`` across multiple documents.
 
 The MongoDB manual contains detailed information for CSFLE:
 
-- A :ref:`csfle-quick-start`
-- :ref:`csfle-fundamentals`
-- KMS :ref:`csfle-tutorials`
-- :ref:`csfle-reference`
+- Begin a working {+csfle-short+} example with the :ref:`csfle-quick-start`
+- Learn how to use {+csfle-short+} in the :ref:`csfle-fundamentals`
+- Learn how to integrate your {+csfle-short+} implementation with a KMS in the :ref:`csfle-tutorials`
+- Learn {+csfle-short+} concepts in the :ref:`csfle-reference`
