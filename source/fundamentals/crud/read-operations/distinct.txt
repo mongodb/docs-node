@@ -42,8 +42,8 @@ usage of ``distinct()``:
 Distinct
 --------
 
-The ``distinct()`` method requires one document field parameter. You can specify two optional
- parameters to adjust the method output:
+The ``distinct()`` method requires one document field parameter. You can specify two optional 
+parameters to adjust the method output:
 
 - A ``query`` parameter to refine your results 
 - An ``options`` parameter to set collation rules
