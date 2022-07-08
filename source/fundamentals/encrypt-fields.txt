@@ -2,6 +2,12 @@
 Encrypt Fields
 ==============
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
 .. default-domain:: mongodb
 
 Overview
@@ -15,13 +21,13 @@ Client-side encryption enables your client applications to encrypt data
 encrypted fields.
 
 Because the driver encrypts the data before sending it to MongoDB, only
-your configured client applications can decrypt the data. People or
-applications with access to your encryption keys are the only ones that
-can see the decrypted, plaintext data. Should you have unauthorized access
+your configured client applications can decrypt the data. Only applications
+using the driver with access to your encryption keys can access the decrypted,
+plaintext data. Should you have unauthorized access
 to your database, an attacker could only see the encrypted version of the
 fields you configured for encryption.
 
-Client-side can prevent exposure of the following sensitive types of data:
+Client-side encryption can prevent exposure of the following sensitive types of data:
 
 - Credit card numbers
 - Addresses
@@ -38,7 +44,7 @@ MongoDB offers the following ways to encrypt data:
 introduced in MongoDB 6.0. {+qe+} supports searching encrypted fields
 for equality and encrypts each value uniquely.
 
-The MongoDB manual contains detailed information for {+qe+}:
+The MongoDB manual contains detailed information on the following {+qe+} topics:
 
 - Begin a working {+qe+} example with the :ref:`qe-quick-start`
 - Learn how to use {+qe+} in the :ref:`qe-fundamentals`
@@ -48,19 +54,18 @@ The MongoDB manual contains detailed information for {+qe+}:
 {+csfle-long+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-{+csfle-long+} supports searching encrypted values.
-The core difference between {+csfle-short+} and {+qe+} is that {+csfle-short+}
-requires that encrypted fields you want to search must be determinstically
-encrypted. When you encrypt a value with deterministic encryption, the
-same input value produces the same output value.
+{+csfle-long+} was introduced in MongoDB v4.2 and supports searching encrypted fields.
+{+csfle-short+} differs from {+qe+} in that it requires that encrypted fields
+you want to search must be determinstically encrypted. When you deterministically
+encrypt a value, the same input value produces the same output value.
 
 An unauthorized party who gains access to your data may be able to infer
 the plaintext values of fields that contain common values. For example,
-an attacker could infer the ``occupation`` field for all documents with
-a value of "software engineer" if they know that value for a specific
-document.
+an attacker could infer the value of an encrypted ``occupation`` field
+for all documents with a value of "software engineer" if they know that
+value for a specific document.
 
-The MongoDB manual contains detailed information for CSFLE:
+The MongoDB manual contains detailed information on the following {+csfle-short+} topics:
 
 - Begin a working {+csfle-short+} example with the :ref:`csfle-quick-start`
 - Learn how to use {+csfle-short+} in the :ref:`csfle-fundamentals`
