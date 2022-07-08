@@ -42,12 +42,17 @@ usage of ``distinct()``:
 Distinct
 --------
 
-Use a document field name as a parameter for the ``distinct()`` method to return a 
-list of the field's unique values. You can specify two optional parameters to adjust
-the method output:
+The ``distinct()`` method requires one document field parameter. You can specify two optional
+ parameters to adjust the method output:
 
 - A ``query`` parameter to refine your results 
 - An ``options`` parameter to set collation rules
+
+Document Field Parameter
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use a document field name as a parameter for the ``distinct()`` method to return a 
+list of the field's unique values.
 
 Example
 ```````
