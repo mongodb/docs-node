@@ -45,10 +45,10 @@ uniquely.
 
 The MongoDB manual contains detailed information on the following {+qe+} topics:
 
-- Begin a working {+qe+} example with the :ref:`qe-quick-start`
-- Learn how to use {+qe+} in the :ref:`qe-fundamentals`
-- Learn how to integrate your {+qe+} implementation with a KMS in the :ref:`qe-tutorials`
-- Learn {+qe+} concepts in the :ref:`qe-reference`
+- Begin a working {+qe+} example with the `queryable-encryption quick start <{+iue+}/queryable-encryption/quick-start>`__.
+- Learn how to use {+qe+} in the `queryable-encryption fundamentals <{+iue+}/queryable-encryption/fundamentals>`__.
+- Learn how to integrate your {+qe+} implementation with a KMS in the `queryable-encryption tutorials <{+iue+}/queryable-encryption/tutorials>`__.
+- Learn {+qe+} concepts in the `queryable-encryption reference <{+iue+}/queryable-encryption/reference>`__.
 
 {+csfle-long+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,7 +63,8 @@ is susceptible to recovery using :wikipedia:`frequency analysis <Frequency_analy
 
 The MongoDB manual contains detailed information on the following {+csfle-short+} topics:
 
-- Begin a working {+csfle-short+} example with the :ref:`csfle-quick-start`
-- Learn how to use {+csfle-short+} in the :ref:`csfle-fundamentals`
-- Learn how to integrate your {+csfle-short+} implementation with a KMS in the :ref:`csfle-tutorials`
-- Learn {+csfle-short+} concepts in the :ref:`csfle-reference`
+- Begin a working {+csfle-short+} example with the `{+csfle-short+} quick start <{+iue+}/{+csfle-short+}/quick-start>`__.
+- Learn how to use {+csfle-short+} in the `{+csfle-short+} fundamentals <{+iue+}/{+csfle-short+}/fundamentals>`__.
+- Learn how to integrate your {+csfle-short+} implementation with a KMS in the `{+csfle-short+} tutorials <{+iue+}/{+csfle-short+}/tutorials>`__.
+- Learn {+csfle-short+} concepts in the `{+csfle-short+} reference <{+iue+}/{+csfle-short+}/reference>`__.
+
