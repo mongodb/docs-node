@@ -63,8 +63,8 @@ is susceptible to recovery using :wikipedia:`frequency analysis <Frequency_analy
 
 The MongoDB manual contains detailed information on the following {+csfle-short+} topics:
 
-- Begin a working {+csfle-short+} example with the `{+csfle-short+} quick start <{+iue+}/{+csfle-short+}/quick-start>`__.
-- Learn how to use {+csfle-short+} in the `{+csfle-short+} fundamentals <{+iue+}/{+csfle-short+}/fundamentals>`__.
-- Learn how to integrate your {+csfle-short+} implementation with a KMS in the `{+csfle-short+} tutorials <{+iue+}/{+csfle-short+}/tutorials>`__.
-- Learn {+csfle-short+} concepts in the `{+csfle-short+} reference <{+iue+}/{+csfle-short+}/reference>`__.
+- Begin a working {+csfle-short+} example with the `{+csfle-short+} quick start <{+iue+}/csfle/quick-start>`__.
+- Learn how to use {+csfle-short+} in the `{+csfle-short+} fundamentals <{+iue+}/csfle/fundamentals>`__.
+- Learn how to integrate your {+csfle-short+} implementation with a KMS in the `{+csfle-short+} tutorials <{+iue+}/csfle/tutorials>`__.
+- Learn {+csfle-short+} concepts in the `{+csfle-short+} reference <{+iue+}/csfle/reference>`__.
 
