@@ -38,7 +38,7 @@ MongoDB offers the following ways to encrypt fields:
 {+qe+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-{+qe+} is the next-generation client-side encryption feature,
+{+qe+} is the next-generation in-use encryption feature,
 introduced in MongoDB 6.0 and available as a public preview. {+qe+}
 supports searching encrypted fields for equality and encrypts each value
 uniquely.
