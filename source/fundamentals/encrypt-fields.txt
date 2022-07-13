@@ -45,10 +45,10 @@ uniquely.
 
 The MongoDB manual contains detailed information on the following {+qe+} topics:
 
-- Begin a working {+qe+} example with the :v6.0:`queryable-encryption quick start </core/queryable-encryption/quick-start>`.
-- Learn how to use {+qe+} in the :v6.0:`queryable-encryption fundamentals </core/queryable-encryption/fundamentals>`.
-- Learn how to integrate your {+qe+} implementation with a KMS in the :v6.0:`queryable-encryption tutorials </core/queryable-encryption/tutorials>`.
-- Learn {+qe+} concepts in the :v6.0:`queryable-encryption reference </core/queryable-encryption/reference>`.
+- To get started, see the {+qe+} :v6.0:`Quick Start </core/queryable-encryption/quick-start>`.
+- To learn how to use {+qe+}, see the {+qe+} :v6.0:`Fundamentals </core/queryable-encryption/fundamentals>`.
+- To learn how to integrate your {+qe+} implementation with a KMS, see the {+qe+} :v6.0:`Tutorials </core/queryable-encryption/tutorials>`.
+- To learn {+qe+} concepts, see the {+qe+} :v6.0:`Reference </core/queryable-encryption/reference>`.
 
 {+csfle-long+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -63,8 +63,8 @@ is susceptible to recovery using :wikipedia:`frequency analysis <Frequency_analy
 
 The MongoDB manual contains detailed information on the following {+csfle-short+} topics:
 
-- Begin a working {+csfle-short+} example with the :v6.0:`{+csfle-short+} quick start </core/csfle/quick-start>`.
-- Learn how to use {+csfle-short+} in the :v6.0:`{+csfle-short+} fundamentals </core/csfle/fundamentals>`.
-- Learn how to integrate your {+csfle-short+} implementation with a KMS in the :v6.0:`{+csfle-short+} tutorials </core/csfle/tutorials>`.
-- Learn {+csfle-short+} concepts in the :v6.0:`{+csfle-short+} reference </core/csfle/reference>`.
+- To get started, see the {+csfle-short+} :v6.0:`Quick Start </core/csfle/quick-start>`.
+- To learn how to use {+qe+}, see the {+csfle-short+} :v6.0:`Fundamentals </core/csfle/fundamentals>`.
+- To learn how to integrate your {+csfle-short+} implementation with a KMS, see the {+csfle-short+} :v6.0:`Tutorials </core/csfle/tutorials>`.
+- To learn :{+csfle-short+} concepts, see the {+csfle-short+} :v6.0:`Reference </core/csfle/reference>`.
 
