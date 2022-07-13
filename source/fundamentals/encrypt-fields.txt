@@ -64,7 +64,7 @@ is susceptible to recovery using :wikipedia:`frequency analysis <Frequency_analy
 The MongoDB manual contains detailed information on the following {+csfle-short+} topics:
 
 - To get started, see the {+csfle-short+} :v6.0:`Quick Start </core/csfle/quick-start>`.
-- To learn how to use {+qe+}, see the {+csfle-short+} :v6.0:`Fundamentals </core/csfle/fundamentals>`.
+- To learn how to use {+csfle-short+}, see the {+csfle-short+} :v6.0:`Fundamentals </core/csfle/fundamentals>`.
 - To learn how to integrate your {+csfle-short+} implementation with a KMS, see the {+csfle-short+} :v6.0:`Tutorials </core/csfle/tutorials>`.
 - To learn :{+csfle-short+} concepts, see the {+csfle-short+} :v6.0:`Reference </core/csfle/reference>`.
 
