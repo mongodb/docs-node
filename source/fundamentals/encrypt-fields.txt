@@ -66,5 +66,5 @@ The MongoDB manual contains detailed information on the following {+csfle-short+
 - To get started, see the :v6.0:`{+csfle-short+} Quick Start </core/csfle/quick-start>`.
 - To learn how to use {+csfle-short+}, see the :v6.0:`{+csfle-short+} Fundamentals </core/csfle/fundamentals>`.
 - To learn how to integrate your {+csfle-short+} implementation with a KMS, see the :v6.0:`{+csfle-short+} Tutorials </core/csfle/tutorials>`.
-- To learn :{+csfle-short+} concepts, see the :v6.0:`{+csfle-short+} Reference </core/csfle/reference>`.
+- To learn {+csfle-short+} concepts, see the :v6.0:`{+csfle-short+} Reference </core/csfle/reference>`.
 
