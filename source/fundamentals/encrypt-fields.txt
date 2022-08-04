@@ -47,7 +47,7 @@ The MongoDB manual contains detailed information on the following {+qe+} topics:
 
 - To get started, see the :ref:`{+qe+} Quick Start <qe-quick-start>`.
 - To learn how to use {+qe+}, see the :ref:`{+qe+} Fundamentals <qe-fundamentals>`.
-- To learn how to integrate your implementation with a KMS, see the {+qe+} :ref:`{+qe+} Tutorials <qe-tutorials>`.
+- To learn how to integrate your implementation with a KMS, see the :ref:`{+qe+} Tutorials <qe-tutorials>`.
 - To learn {+qe+} concepts, see the :ref:`{+qe+} Reference <qe-reference>`.
 
 {+csfle-long+}
