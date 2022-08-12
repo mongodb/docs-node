@@ -18,4 +18,3 @@ Compatibility Table Legend
      - The Driver version is not tested with the MongoDB version.
 
 |
-|
