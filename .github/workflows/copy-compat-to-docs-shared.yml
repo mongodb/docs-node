@@ -10,12 +10,13 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Copy mongodb-compat table
+      if: github.ref == 'refs/heads/master'
       uses: dmnemec/copy_file_to_another_repo_action@main
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source_file: 'source/includes/mongodb-compatibility-table-node.rst'
-        destination_repo: 'mongoKart/docs-shared'
+        destination_repo: '10gen/docs-shared'
         destination_folder: 'dbx'
         user_email: 'mike.woofter@mongodb.com'
         user_name: 'mongoKart'
