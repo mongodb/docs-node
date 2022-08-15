@@ -15,9 +15,9 @@ the {+driver-long+} for use with MongoDB.
 
 The first column lists the driver version.
 
-.. sharedinclude:: dbx/compatibility-table-legend.rst
+:ref:`What information does the MongoDB Compatibility table show? <mongodb-compatibility-table-about-node>`
 
-.. include:: /includes/mongodb-compatibility-table.rst
+.. sharedinclude:: dbx/mongodb-compatibility-table-node.rst
 
 Language Compatibility
 ----------------------
@@ -26,7 +26,11 @@ the {+driver-long+} for use with a specific version of Node.js.
 
 The first column lists the driver version.
 
-.. include:: /includes/language-compatibility-table.rst
+:ref:`What information does the Language Compatibility table show? <language-compatibility-table-about-node>`
 
-For more information on how to read the compatibility tables, see our guide on 
-:ref:`MongoDB Compatibility Tables. <about-driver-compatibility>`
+.. sharedinclude:: dbx/language-compatibility-table-node.rst
+
+About Compatibility Tables
+--------------------------
+
+.. sharedinclude:: dbx/about-compatibility.rst
