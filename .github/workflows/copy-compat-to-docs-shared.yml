@@ -14,9 +14,9 @@ jobs:
       env:
         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
       with:
-        source_file: 'source/includes/mongodb-compatibility-table.rst'
+        source_file: 'source/includes/mongodb-compatibility-table-node.rst'
         destination_repo: 'mongoKart/docs-shared'
-        destination_folder: 'dbx/mongodb-compatibility-table-node.rst'
+        destination_folder: 'dbx'
         user_email: 'mike.woofter@mongodb.com'
         user_name: 'mike.woofter'
         commit_message: 'Auto-import from docs-node'
