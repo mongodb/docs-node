@@ -28,8 +28,5 @@ The first column lists the driver version.
 
 .. sharedinclude:: dbx/language-compatibility-table-node.rst
 
-About Compatibility Tables
---------------------------
-
 For more information on how to read the compatibility tables, see our guide on
 :ref:`MongoDB Compatibility Tables. <about-driver-compatibility>`
