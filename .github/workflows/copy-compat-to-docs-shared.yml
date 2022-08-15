@@ -18,5 +18,5 @@ jobs:
         destination_repo: 'mongoKart/docs-shared'
         destination_folder: 'dbx'
         user_email: 'mike.woofter@mongodb.com'
-        user_name: 'mike.woofter'
+        user_name: 'mongoKart'
         commit_message: 'Auto-import from docs-node'
