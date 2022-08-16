@@ -6,7 +6,7 @@ Connection Options
 
 This section explains the MongoDB connection and authentication options
 supported by the driver. You can pass the connection options as
-parameters of the connection URI to specify the behavior of the client. 
+parameters of the connection URI to specify the behavior of the client.
 
 .. list-table::
    :header-rows: 1
@@ -76,8 +76,8 @@ parameters of the connection URI to specify the behavior of the client.
    * - **maxConnecting**
      - integer
      - ``2``
-     - Specifies the maximum number of connections a connection pool can establish 
-       concurrently. 
+     - Specifies the maximum number of connections a connection pool can establish
+       concurrently.
 
    * - **maxIdleTimeMS**
      - integer
@@ -139,6 +139,11 @@ parameters of the connection URI to specify the behavior of the client.
      - boolean
      - ``false``
      - Specifies whether to return document results as raw BSON buffers.
+
+   * - **retryWrites**
+     - boolean
+     - ``false``
+     - Specifies whether to enable retryable writes.
 
    * - **serializeFunctions**
      - boolean
@@ -205,4 +210,4 @@ parameters of the connection URI to specify the behavior of the client.
        :manual:`w Option </reference/write-concern/#w-option>`.
 
 For a complete list of options, see the `MongoClient
-<{+api+}/classes/MongoClient.html>`__ API reference page. 
+<{+api+}/classes/MongoClient.html>`__ API reference page.
