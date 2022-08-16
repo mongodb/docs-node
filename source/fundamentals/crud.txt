@@ -38,4 +38,3 @@ to learn more about these hybrid methods.
    - Analyze data in MongoDB Atlas using the `Aggregation Framework <https://developer.mongodb.com/quickstart/node-aggregation-framework>`__.
    - Learn how to perform `Transactions <https://developer.mongodb.com/quickstart/node-transactions>`__
      with an example scenario.
-
