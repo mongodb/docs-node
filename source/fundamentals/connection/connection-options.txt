@@ -46,7 +46,7 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies the database that connections should authenticate against.
 
    * - **compressors**
-     - comma separated list of strings, e.g. "snappy,zlib"
+     - comma separated list of strings, e.g. "snappy,zlib,zstd"
      - ``null``
      - Specifies the allowed compression types for wire protocol messages
        sent to or received from the server. See :ref:`node-network-compression`
@@ -84,9 +84,9 @@ parameters of the connection URI to specify the behavior of the client.
    * - **localThresholdMS**
      - non-negative integer
      - ``15``
-     - Specifies the amount of time beyond the fastest round trip time that a given
-       server’s round trip time can take and still be eligible for server selection.
-       Specifying ``0`` means no wait, meaning the fastest available server.
+     - Specifies the size of the latency window on round trip time for
+       selecting between suitable servers. Specifying ``0`` means no wait,
+       meaning the fastest available server.
 
    * - **maxIdleTimeMS**
      - non-negative integer
@@ -174,12 +174,12 @@ parameters of the connection URI to specify the behavior of the client.
    * - **retryReads**
      - boolean
      - ``true``
-     - Enables retryable reads on MongoDB version 3.6 or later.
+     - Enables retryable reads.
 
    * - **retryWrites**
      - boolean
      - ``true``
-     - Enables retryable writes on MongoDB version 3.6 or later.
+     - Enables retryable writes.
 
    * - **serverSelectionTimeoutMS**
      - non-negative integer
