@@ -82,27 +82,27 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies whether the driver is connecting to a load balancer.
 
    * - **localThresholdMS**
-     - unsigned integer
+     - non-negative integer
      - 15
      - Specifies the amount of time beyond the fastest round trip time that a given
        server’s round trip time can take and still be eligible for server selection.
        Specifying 0 means no wait, meaning the fastest available server.
 
    * - **maxIdleTimeMS**
-     - unsigned integer
+     - non-negative integer
      - ``0``
      - Specifies the amount of time a connection can be idle before it's closed.
        Specifying ``0`` means no minimum.
 
    * - **maxPoolSize**
-     - unsigned integer
+     - non-negative integer
      - ``100``
      - Specifies the maximum number of clients or connections the driver
        can create in its connection pool. This count includes connections
        in use.
 
    * - **maxConnecting**
-     - unsigned integer
+     - non-negative integer
      - ``2``
      - Specifies the maximum number of connections a driver's connection
        pool may be establishing concurrently.
@@ -115,7 +115,7 @@ parameters of the connection URI to specify the behavior of the client.
        Specifying ``-1`` means no maximum.
 
    * - **minPoolSize**
-     - unsigned integer
+     - non-negative integer
      - ``0``
      - Specifies the number of connections the driver should create and
        maintain in the connection pool even when no operations are occurring.
