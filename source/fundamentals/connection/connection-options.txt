@@ -30,7 +30,7 @@ parameters of the connection URI to specify the behavior of the client.
      - ``null``
      - Specifies the authentication mechanism method to use for connection to the
        server. If you do not specify a value, the driver uses the default mechanism,
-       either SCRAM-SHA-1 or SCRAM-SHA-256 depending on the server version. See
+       either ``SCRAM-SHA-1`` or ``SCRAM-SHA-256`` depending on the server version. See
        :ref:`authentication mechanism <node-authentication-mechanisms>` for available
        authentication mechanisms.
 
@@ -73,7 +73,7 @@ parameters of the connection URI to specify the behavior of the client.
    * - **journal**
      - boolean
      - ``null``
-     - Specifies the default write concern "j" field for the client. See
+     - Specifies the default write concern ``"j"`` field for the client. See
        :ref:`write concern <wc-j>` for more information.
 
    * - **loadBalanced**
@@ -83,10 +83,10 @@ parameters of the connection URI to specify the behavior of the client.
 
    * - **localThresholdMS**
      - non-negative integer
-     - 15
+     - ``15``
      - Specifies the amount of time beyond the fastest round trip time that a given
        server’s round trip time can take and still be eligible for server selection.
-       Specifying 0 means no wait, meaning the fastest available server.
+       Specifying ``0`` means no wait, meaning the fastest available server.
 
    * - **maxIdleTimeMS**
      - non-negative integer
@@ -161,10 +161,10 @@ parameters of the connection URI to specify the behavior of the client.
        separate tag set
      - ``null``
      - Specifies the default read preference tags for the client. This option is
-       valid only if the read preference mode is not primary
+       valid only if the read preference mode is not primary.
 
-       The order of the tag sets in the read preference is the same as the order
-       they are specified in the URI.
+       The driver uses the order of the tags in the URI as the order
+       for the read preference.
 
    * - **replicaSet**
      - string
@@ -184,18 +184,20 @@ parameters of the connection URI to specify the behavior of the client.
    * - **serverSelectionTimeoutMS**
      - non-negative integer
      - ``30000``
-     - Specifies the timeout, in milliseconds, to block for server selection before raising an error.
+     - Specifies the timeout, in milliseconds, to block for server selection
+       before raising an error.
 
    * - **serverSelectionTryOnce**
      - boolean
      - ``true``
-     - Scan the topology only once after a server selection failure instead of repeatedly until the server selection times out
+     - Specifies to scan the topology only once after a server selection
+       failure instead of repeatedly until the server selection times out.
 
    * - **socketTimeoutMS**
      - non-negative integer
      - ``0``
      - Specifies the amount of time spent attempting to send or receive on a
-       socket before timing out.
+       socket before timing out. Specifying ``0`` means no timeout.
 
    * - **srvMaxHosts**
      - non-negative integer
@@ -212,7 +214,7 @@ parameters of the connection URI to specify the behavior of the client.
    * - **ssl**
      - boolean
      - ``false``
-     - ``ssl`` is an alias of "tls"
+     - The ``ssl`` is an alias for the ``tls`` option.
 
    * - **tls**
      - boolean
@@ -237,7 +239,7 @@ parameters of the connection URI to specify the behavior of the client.
    * - **tlsCAFile**
      - string
      - ``null``
-     - Specifies the path to file with either a single or bundle of certificate
+     - Specifies the path to a file with either a single or bundle of certificate
        authorities to trust when making a TLS connection.
 
    * - **tlsCertificateKeyFile**
@@ -273,7 +275,7 @@ parameters of the connection URI to specify the behavior of the client.
    * - **w**
      - non-negative integer or string
      - ``null``
-     - Specifies the default write concern "w" field for the client.
+     - Specifies the default write concern ``"w"`` field for the client.
 
    * - **waitQueueTimeoutMS**
      - non-negative integer
@@ -284,12 +286,13 @@ parameters of the connection URI to specify the behavior of the client.
    * - **wTimeoutMS**
      - non-negative integer
      - ``null``
-     - Specifies the default write concern "wtimeout" field for the client.
+     - Specifies the default write concern ``"wtimeout"`` field for the client.
 
    * - **zlibCompressionLevel**
-     - integer between -1 and 9 (inclusive)
+     - integer between ``-1`` and ``9`` (inclusive)
      - ``-1``
      - Specifies the level of compression when using zlib to compress wire
        protocol messages. ``-1`` signifies the default level, ``0`` signifies
        no compression, ``1`` signifies the fastest speed, and ``9`` signifies
-       the best compression.
+       the best compression. See :ref`node-network-compression` for more
+
