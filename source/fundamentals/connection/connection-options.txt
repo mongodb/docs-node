@@ -194,9 +194,8 @@ parameters of the connection URI to specify the behavior of the client.
    * - **socketTimeoutMS**
      - non-negative integer
      - ``0``
-     - DEPRECATED. Use ``timeoutMS``.
-
-       Amount of time spent attempting to send or receive on a socket before timing out; note that this only applies to application operations, not SDAM.
+     - Specifies the amount of time spent attempting to send or receive on a
+       socket before timing out.
 
    * - **srvMaxHosts**
      - non-negative integer
@@ -286,14 +285,13 @@ parameters of the connection URI to specify the behavior of the client.
    * - **waitQueueTimeoutMS**
      - non-negative integer
      - ``0``
-     - DEPRECATED. Use ``timeoutMS``. Specifies the amount of time spent attempting to check out a connection
+     - Specifies the amount of time spent attempting to check out a connection
        from a server's connection pool before timing out.
 
    * - **wTimeoutMS**
      - non-negative integer
      - ``null``
-     - DEPRECATED. Use `timeoutMS`. Specifies the default write concern
-       "wtimeout" field for the client.
+     - Specifies the default write concern "wtimeout" field for the client.
 
    * - **zlibCompressionLevel**
      - integer between -1 and 9 (inclusive)
