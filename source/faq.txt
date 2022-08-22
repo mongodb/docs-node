@@ -25,7 +25,7 @@ options to resolve this:
 
      mongod --ipv6
 
-- Specify ``family: 4`` as a `option to your MongoClient <{+api+}/interfaces/MongoClientOptions.html#family>`__.
+- Specify ``family: 4`` as an `option to your MongoClient <{+api+}/interfaces/MongoClientOptions.html#family>`__.
 
   .. code-block:: js
 
