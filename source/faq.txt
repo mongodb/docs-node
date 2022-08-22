@@ -12,6 +12,27 @@ Frequently Asked Questions
    :depth: 2
    :class: singlecol
 
+How to fix MongoServerSelectionError: connect ECONNREFUSED ::1:27017 error?
+---------------------------------------------------------------------------
+
+Beginning with Node 17, Node defaults to using ``IPV6``. You have a few
+options to resolve this:
+
+- You can start your ``mongod`` with :manual:`the --ipv6 flag </reference/program/mongod/#std-option-mongod.--ipv6>`, or
+  you can set the ``net.ipv6`` option to ``true`` :manual:`in your configuration file </reference/configuration-options/#mongodb-setting-net.ipv6>`.
+
+  .. code-block:: sh
+
+     mongod --ipv6
+
+- Specify ``family: 4`` as a `option to your MongoClient <{+api+}/interfaces/MongoClientOptions.html#family>`__.
+
+  .. code-block:: js
+
+      const client = new MongoClient(uri, {
+        family: 4,
+      });
+
 
 What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTimeMS"?
 -------------------------------------------------------------------------------------
