@@ -15,7 +15,7 @@ Frequently Asked Questions
 How to fix MongoServerSelectionError: connect ECONNREFUSED ::1:27017 error?
 ---------------------------------------------------------------------------
 
-Beginning with Node 17, Node defaults to using ``IPV6``. You have a few
+Beginning with version 17, Node defaults to using ``IPV6``. You have a few
 options to resolve this:
 
 - You can start your ``mongod`` with :manual:`the --ipv6 flag </reference/program/mongod/#std-option-mongod.--ipv6>`, or
