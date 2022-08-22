@@ -1,5 +1,3 @@
-import { Collection } from "mongodb";
-
 // ignored first line
 const { MongoClient } = require("mongodb");
 
