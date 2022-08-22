@@ -79,6 +79,9 @@ This command performs the following actions:
 At this point, you are ready to use the {+driver-short+} with your
 application.
 
+Create a MongoDB Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. procedure::
    :style: connected
 
@@ -119,6 +122,12 @@ application.
 
       Save your connection string to a safe location.
 
+Connect to Your Application
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. procedure::
+   :style: connected
+
    .. step:: Create your Node.js Application
 
       Create a file to contain your application called ``index.js`` in your
@@ -132,7 +141,7 @@ application.
 
         // Replace the uri string with your connection string.
         const uri =
-          "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&writeConcern=majority";
+          "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 
         const client = new MongoClient(uri);
 
