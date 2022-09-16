@@ -126,8 +126,14 @@ For additional information, see the MDN documentation on
 :mdn:`await <Web/JavaScript/Reference/Operators/await>`.
 
 
-Callbacks
----------
+Callbacks (Deprecated)
+----------------------
+
+.. important::
+
+    Callbacks are deprecated in the {+driver-short+}. If your application
+    environment requires the use of callbacks, use the <TODO: some new legacy
+    client link> which wraps the Node driver.
 
 A callback is a method that gets called after another method has
 finished executing. This allows the enclosing method to continue to execute

@@ -57,7 +57,7 @@ MongoDB in the following sections of this guide:
 
 - :ref:`Transaction APIs <nodejs-transaction-apis>`
 - :ref:`Transaction Settings <nodejs-transaction-settings>`
-- :ref:`Core API and Callback API Examples <nodejs-transaction-examples>`
+- :ref:`Core API Examples <nodejs-transaction-examples>`
 
 .. _nodejs-transaction-apis:
 
@@ -309,8 +309,14 @@ transaction.
 
 .. _nodejs-transaction-callback-api-example:
 
-Callback API Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Callback API Implementation (Deprecated)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. important::
+
+    Callbacks are deprecated in the {+driver-short+}. If your application
+    environment requires the use of callbacks, use the <TODO: some new legacy
+    client link> which wraps the Node driver.
 
 The code examples in this section show how you can use the Callback API to
 run the multi-document payment transaction in a session.
