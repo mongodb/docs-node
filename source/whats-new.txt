@@ -55,7 +55,7 @@ New features of the 4.10 {+driver-short+} release include:
   - If you are unable to migrate to promises in a large codebase, you can
     use the {+node-legacy+} package.
 
-
+To learn more, see `v4.10.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.10.0>`__.
 
 .. _version-4.9:
 
