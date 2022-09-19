@@ -96,6 +96,11 @@ a sample transaction implementation.
 Callback API
 ~~~~~~~~~~~~
 
+.. important::
+
+   The Callback API is deprecated in {+driver-short+} version 4.10 and will
+   be removed in a future release. We recommend that you use the Core API.
+
 The Callback API enables you to run a transaction by passing a callback
 function that encapsulates the series of operations that make up the
 transaction. This API automatically handles certain transaction errors
@@ -309,14 +314,14 @@ transaction.
 
 .. _nodejs-transaction-callback-api-example:
 
-Callback API Implementation (Deprecated)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Callback API Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. important::
 
-    Callbacks are deprecated in the {+driver-short+}. If your application
-    environment requires the use of callbacks, use the <TODO: some new legacy
-    client link> which wraps the Node driver.
+   The Callback API is deprecated in {+driver-short+} version 4.10 and will
+   be removed in a future release. We recommend that you use the
+   :ref:`Core API <nodejs-transaction-core-api-example>`.
 
 The code examples in this section show how you can use the Callback API to
 run the multi-document payment transaction in a session.
