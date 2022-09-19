@@ -33,6 +33,15 @@ accepts a :doc:`query </fundamentals/crud/query-document>` parameter.
 settings that affect the method's execution. Refer to the reference
 documentation for each method for more information.
 
+.. important::
+
+   If you require an exact document count in your collection, use a query
+   to take advantage of the built-in index on the ``_id`` field.
+
+   .. code-block:: js
+
+      collection.countDocuments({ "_id": { "$exists": true } });
+
 Example
 -------
 
