@@ -41,19 +41,19 @@ New features of the 4.10 {+driver-short+} release include:
     migrating to promises where possible:
 
     - Use ``async/await`` syntax.
-    - Use the Node.js `callbackify utility <https://nodejs.org/api/util.html#utilcallbackifyoriginal>`__
+    - Use the Node.js `callbackify utility <https://nodejs.org/api/util.html#utilcallbackifyoriginal>`__:
 
       .. code-block:: js
 
          require('util').callbackify(() => collection.findOne())(callback)
 
-    - Use `then <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then>`__ syntax
+    - Use :mdn:`then <Web/JavaScript/Reference/Global_Objects/Promise/then>` syntax:
 
       .. code-block:: js
 
          collection.findOne().then(res => callback(null, res), err => callback(err))
 
-  - If you are unable to migrate to promises in a large codebase, you can
+  - If you are unable to migrate to Promises in a large codebase, you can
     use the {+node-legacy+} package.
 
 To learn more, see `v4.10.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.10.0>`__.

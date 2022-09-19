@@ -63,7 +63,7 @@ read events from the change stream below.
 
          changeStream.on("change", (changeEvent) => { /* your listener function */ });
 
-      The listener function triggers when a change event is emitted. You
+      The listener function triggers when a ``change`` event is emitted. You
       can specify logic in the listener to process the change event document
       when it is received.
 

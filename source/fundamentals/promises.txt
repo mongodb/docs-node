@@ -136,7 +136,7 @@ Callbacks (Deprecated)
     or Async/Await instead.
 
     If your application requires the use of callbacks, you can use the
-    {+node-legacy+} driver which wraps the {+driver-short+} and provides
+    {+node-legacy+}, which wraps the {+driver-short+} and provides
     optional callback support.
 
 A callback is a method that gets called after another method has
