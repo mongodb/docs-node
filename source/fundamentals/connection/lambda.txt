@@ -4,4 +4,4 @@
 Connect to MongoDB from AWS Lambda
 ==================================
 
-
+Learn how to connect to MongoDB from AWS Lambda.
