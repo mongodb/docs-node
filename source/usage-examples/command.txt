@@ -11,8 +11,8 @@ administrative tasks such as fetching server stats or initializing a replica
 set.
 
 .. note::
-    Use the :mongosh:`</>` for administrative tasks instead of the 
-    {+driver-short+} whenever possible.
+    Use the :mongosh:`MongoDB Shell </>` for administrative tasks instead of
+    the {+driver-short+} whenever possible.
 
 You can specify additional options in the ``options`` object passed in
 the second parameter of the ``command()`` method. For more information
