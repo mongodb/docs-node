@@ -32,42 +32,45 @@ Learn what's new in:
 What's New in 4.11
 ------------------
 
-New features of the 4.11 {+driver-short+} release include:
+The 4.11 {+driver-short+} release includes **recursive schema support**.
+The driver now supports recursive schemas and provides type safety for
+dot notation queries up to a depth of nine. Beyond a depth of nine, your code
+still compiles but is no longer type checked and falls back to a type of
+``any``. The recursive type depth limit is a current limitation in Typescript.
 
-- Recursive Schema Support
+Feature Demonstration
+~~~~~~~~~~~~~~~~~~~~~
 
-  - The driver now supports recursive schemas and provides type safety
-    on dot notation queries up to a depth of 9. Beyond a depth of 9,
-    your code still compiles but is no longer type checked and falls
-    back to a type of ``any``. This depth limit is a product of
-    Typescript's recursive type limitations.
+Suppose we have a collection of type ``Collection<CircularSchema>``:
 
-    - Create an interface with a recursive schema:
+.. code-block:: js
+   copyable: false
 
-      .. code-block:: js
+   interface CircularSchema {
+       name: string;
+       ref: CircularSchema;
+   }
 
-         interface CircularSchema {
-             name: string;
-             nestedSchema: CircularSchema;
-         }
+TypeScript enforces type checking below a depth of nine. The following
+code causes a TypeScript compilation error because the ``name`` property
+value must be a ``string`` type:
 
-    - Suppose we have a collection of type ``Collection<CircularSchema>``.
-      Below a depth of 9, type checking is enforced. The following code
-      results in a compilation error because the name must be a
-      ``string`` type:
+.. code-block:: js
+   copyable: false
 
-      .. code-block:: js
+   collection.findOne({ 'ref.ref.ref.name': 25 })
 
-         collection.findOne({ 'nestedSchema.nestedSchema.nestedSchema.name': 25 })
+At a depth greater than nine, TypeScript compiles your code but no
+longer type checks it. The type falls back to type ``any``. The
+following code references a property at a depth of 11 and does not cause
+a compilation error:
 
-    - At a depth greater than 9, the following code compiles but is not
-      type checked, as it is at a depth of 11:
+.. code-block:: js
+   copyable: false
 
-      .. code-block:: js
-
-         collection.findOne({
-             'nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.name': 25
-         })
+   collection.findOne({
+       'ref.ref.ref.ref.ref.ref.ref.ref.ref.ref.name': 25
+   })
 
 To learn more, see the `v4.11.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.11.0>`__.
 
