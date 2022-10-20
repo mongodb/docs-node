@@ -51,7 +51,7 @@ New features of the 4.11 {+driver-short+} release include:
              nestedSchema: CircularSchema;
          }
 
-    - Suppose we have a collection of type Collection<CircularSchema>.
+    - Suppose we have a collection of type ``Collection<CircularSchema>``.
       Below a depth of 9, type checking is enforced. The following code
       results in a compilation error because the name must be a string:
 
