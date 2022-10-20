@@ -32,11 +32,11 @@ Learn what's new in:
 What's New in 4.11
 ------------------
 
-The 4.11 {+driver-short+} release includes **recursive schema support**.
-The driver now supports recursive schemas and provides type safety for
-dot notation queries up to a depth of nine. Beyond a depth of nine, your code
-still compiles but is no longer type checked and falls back to a type of
-``any``. The recursive type depth limit is a current limitation in Typescript.
+The 4.11 {+driver-short+} release includes **recursive schema support**
+and provides type safety for dot notation queries up to a depth of
+nine. Beyond a depth of nine, your code still compiles but TypeScript no longer
+type checks and values fall back to a type of ``any``. The recursive type
+depth limit is a current limitation in TypeScript.
 
 Feature Demonstration
 ~~~~~~~~~~~~~~~~~~~~~
@@ -44,7 +44,7 @@ Feature Demonstration
 Suppose we have a collection of type ``Collection<CircularSchema>``:
 
 .. code-block:: js
-   copyable: false
+   :copyable: false
 
    interface CircularSchema {
        name: string;
@@ -56,7 +56,7 @@ code causes a TypeScript compilation error because the ``name`` property
 value must be a ``string`` type:
 
 .. code-block:: js
-   copyable: false
+   :copyable: false
 
    collection.findOne({ 'ref.ref.ref.name': 25 })
 
@@ -66,7 +66,7 @@ following code references a property at a depth of 11 and does not cause
 a compilation error:
 
 .. code-block:: js
-   copyable: false
+   :copyable: false
 
    collection.findOne({
        'ref.ref.ref.ref.ref.ref.ref.ref.ref.ref.name': 25
