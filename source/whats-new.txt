@@ -12,6 +12,7 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 4.11 <version-4.11>`
 * :ref:`Version 4.10 <version-4.10>`
 * :ref:`Version 4.9 <version-4.9>`
 * :ref:`Version 4.8 <version-4.8>`
@@ -26,6 +27,48 @@ Learn what's new in:
 * :ref:`Version 3.7 <version-3.7>`
 * :ref:`Version 3.6 <version-3.6>`
 
+.. _version-4.11:
+
+What's New in 4.11
+------------------
+
+New features of the 4.11 {+driver-short+} release include:
+
+- Recursive Schema Support
+
+  - The driver now supports recursive schemas and provides type safety
+    on dot notation queries up to a depth of 9. Beyond a depth of 9,
+    your code still compiles but is no longer type checked and falls
+    back to a type of ``any``. This depth limit is a product of
+    Typescript's recursive type limitations.
+
+    - Create an interface with a recursive schema:
+
+      .. code-block:: js
+
+         interface CircularSchema {
+             name: string;
+             nestedSchema: CircularSchema;
+         }
+
+    - Suppose we have a collection of type Collection<CircularSchema>.
+      Below a depth of 9, type checking is enforced. The following code
+      results in a compilation error because the name must be a string:
+
+      .. code-block:: js
+
+         collection.findOne({ 'nestedSchema.nestedSchema.nestedSchema.name': 25 })
+
+    - At a depth greater than 9, the following code compiles but is not
+      type checked, as it is at a depth of 11:
+
+      .. code-block:: js
+
+         collection.findOne({
+             'nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.nestedSchema.name': 25
+         })
+
+To learn more, see the `v4.11.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.11.0>`__.
 
 .. _version-4.10:
 
