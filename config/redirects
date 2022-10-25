@@ -8,3 +8,5 @@ raw: ${prefix}/ -> ${base}/current/
 raw: ${prefix}/stable -> ${base}/current/
 
 [*-master]: ${prefix}/${version}/fundamentals/versioned-api/ -> ${base}/${version}/fundamentals/stable-api/
+[*-master]: ${prefix}/${version}/fundamentals/connection/lambda/ -> ${base}/${version}/fundamentals/connection/
+[*-v4.5]: ${prefix}/${version}/fundamentals/encrypt-fields -> ${base}/${version}/fundamentals/csfle/
