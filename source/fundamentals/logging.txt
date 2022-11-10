@@ -84,17 +84,16 @@ apply a filter to log messages from the ``Db`` class only.
 
 .. code-block:: js
 
-     // Set debug level
-     Logger.setLevel("debug");
+   // Set debug level
+   Logger.setLevel("debug");
 
-     // Only log statements on "Db" class
-     Logger.filter("class", ["Db"]);
+   // Only log statements on "Db" class
+   Logger.filter("class", ["Db"]);
 
-     const db = client.db("sample_mflix");
+   const db = client.db("sample_mflix");
 
-     // Execute command { hello: 1 } against db
-     await db.command({ hello: 1 });
-   }
+   // Execute command { hello: 1 } against db
+   await db.command({ hello: 1 });
 
 The logger output of the code above is similar to the prior example, but
 excludes logging from classes other than ``Db`` such as ``Server`` and
