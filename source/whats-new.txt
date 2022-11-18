@@ -54,9 +54,8 @@ New features of the 4.12 {+driver-short+} release include:
   this release, the driver always updates its view of the topology when
   processing monitoring events.
 
-- Performance improvements with buffering.
-
-- Modification to data structures used internally in the driver.
+- Performance improvements with buffering as a result of modification to
+  data structures used internally in the driver.
 
 To learn more, see the `v4.12.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.12.0>`__.
 
