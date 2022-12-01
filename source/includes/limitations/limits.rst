@@ -88,14 +88,14 @@ recursive ``Pet`` and ``Handler`` interfaces:
 .. code-block:: typescript
    :emphasize-lines: 2, 8
 
-   interface MutuallyRecursivePet {
-      handler?: Handler;
+   interface Pet {
+      handler: Handler;
       name: string;
       age: number;
    }
 
    interface Handler {
-      pet: MutuallyRecursivePet;
+      pet: Pet;
       name: string;
    }
    
