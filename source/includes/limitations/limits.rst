@@ -89,7 +89,7 @@ recursive ``Pet`` and ``Handler`` interfaces:
    :emphasize-lines: 2, 8
 
    interface Pet {
-      handler: Handler;
+      handler?: Handler;
       name: string;
       age: number;
    }
@@ -108,7 +108,7 @@ the referenced property is at a depth of four:
    :emphasize-lines: 3
 
    database
-      .collection<RecursivePet>("<your collection>")
+      .collection<Pet>("<your collection>")
       .findOne({'handler.pet.handler.pet.age': "four"});
 
 The error raised by the preceding code snippet is as follows:
@@ -128,5 +128,5 @@ is at a depth of 10:
    :emphasize-lines: 3
 
    database
-      .collection<RecursivePet>("<your collection>")
+      .collection<Pet>("<your collection>")
       .findOne({'handler.pet.handler.pet.handler.pet.handler.pet.handler.pet.age': "four"});
