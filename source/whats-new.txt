@@ -66,10 +66,10 @@ What's New in 4.11
 
 The 4.11 {+driver-short+} release includes added support for **mutually 
 recursive** collection schema types. The driver also provides type safety for 
-dot notation queries up to a depth of eight in this release. At a depth greater 
+dot-notation queries up to a depth of eight in this release. At a depth greater 
 than or equal to eight, Typescript successfully compiles your code but does not 
-provide type safety because all type checking defaults to ``any`` at this 
-level. This depth limit is a current limitation in TypeScript.
+provide type safety. This depth limit on recursive types is a current limitation 
+of TypeScript.
 
 Mutually Recursive Schema Type Checking Example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
