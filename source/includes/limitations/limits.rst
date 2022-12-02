@@ -8,8 +8,8 @@ Learn about the following TypeScript specific limitations of the {+driver-short+
 Recursive Types and Dot Notation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Starting in version 4.3, the {+driver-short+} cannot provide type safety within 
-nested instances of **recursive types** referenced through dot notation.
+The {+driver-short+} cannot provide type safety within nested instances of 
+**recursive types** referenced through dot notation.
 
 A recursive type is a type that references itself. You can update
 the :ref:`Pet <mongodb-node-typescript-pet-interface>` interface
@@ -75,11 +75,7 @@ in the MongoDB manual.
 Mutual Recursion
 ~~~~~~~~~~~~~~~~
 
-In versions 4.3 through 4.10 of the {+driver-short+}, you cannot specify a 
-**mutually recursive** type as a type parameter. To specify a mutually 
-recursive type as a type parameter, use version 4.11 or newer.
-
-A mutually recursive type exists when two types contain a property that is of
+A  **mutually recursive**  type exists when two types contain a property that is of
 the other's type. You can update the :ref:`Pet <mongodb-node-typescript-pet-interface>` 
 interface to be mutually recursive by allowing a pet to have a handler, and 
 defining a handler to have a pet. The following examples reference the mutually
