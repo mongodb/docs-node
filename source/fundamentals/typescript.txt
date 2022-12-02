@@ -70,9 +70,6 @@ You can pass a type parameter that extends the ``Document`` interface like this:
       :start-after: start-no-key
       :end-before: end-no-key
 
-To view an example of a mutually recursive type, see the 
-:ref:`<node-driver-limitations-mutual-recursion>` section.
-
 Type Parameters of Any Type
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -86,9 +83,6 @@ The following classes accept all type parameters:
 You can find a code snippet that shows how to specify a type for the ``FindCursor``
 class in the
 :ref:`Find Multiple Documents Usage Example <node-driver-find-usage-example-code-snippet>`.
-
-To view an example of a mutually recursive type, see the 
-:ref:`<node-driver-limitations-mutual-recursion>` section.
 
 
 Type Safety and Dot Notation
