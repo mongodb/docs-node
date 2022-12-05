@@ -108,7 +108,7 @@ referenced property is at a depth of 10:
    :copyable: false
 
    collection.findOne({
-       ''bestBook.author.bestBook.author.bestBook.author.bestBook.author.bestBook.author.name': 25
+       'bestBook.author.bestBook.author.bestBook.author.bestBook.author.bestBook.author.name': 25
    })
 
 To learn more, see the `v4.11.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.11.0>`__.
