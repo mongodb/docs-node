@@ -8,11 +8,6 @@ Learn about the following TypeScript specific limitations of the {+driver-short+
 Recursive Types and Dot Notation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. important:: Impacted Versions
-
-   - 4.3
-   - 4.4
-
 The {+driver-short+} cannot provide type safety within nested instances of
 **recursive types** referenced through dot notation.
 
@@ -80,10 +75,11 @@ in the MongoDB manual.
 Mutual Recursion
 ~~~~~~~~~~~~~~~~
 
-.. important:: Impacted Versions
+.. important::
 
-   - 4.3
-   - 4.4
+   In this driver version, you cannot specify a mutually recursive type as a
+   type parameter. To specify a mutually recursive type as a type parameter,
+   use version 4.11 or newer.
 
 You cannot specify a **mutually recursive** type as a type parameter.
 
@@ -115,5 +111,3 @@ following error:
 
    error TS2615: Type of property 'r' circularly references itself in mapped type '{ [Key in keyof MutuallyRecursive]...
 
-If you must apply a mutually recursive type to your classes, use version 4.2 of
-the {+driver-short+}.
