@@ -75,7 +75,7 @@ in the MongoDB manual.
 Mutual Recursion
 ~~~~~~~~~~~~~~~~
 
-.. important:: Impacted Versions
+.. important::
 
    In this driver version, you cannot specify a mutually recursive type as a
    type parameter. To specify a mutually recursive type as a type parameter,
