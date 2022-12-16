@@ -69,8 +69,8 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
        have already been connected.
    * - maxTimeMS
      - `maxTimeMS <{+api+}/classes/FindCursor.html#maxTimeMS>`__ is only
-       passed to *an individual operation* in the driver or to a
-       *cursor*. It specifies the maximum amount of time the server
+       passed to an individual operation in the driver or to a
+       cursor. It specifies the maximum amount of time the server
        should wait for an operation to complete after it has reached the
        server. If an operation runs over the specified time limit, it
        returns a timeout error.
@@ -86,16 +86,16 @@ follows:
      socketTimeoutMS: <integer value>
    });
 
+To see all the available settings, see the
+`MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
+API Documentation.
+
 To specify ``maxTimeMS``, chain the ``maxTimeMS()`` method with a
 timeout specification to an operation that returns a ``Cursor``:
 
 .. code-block:: javascript
 
    const cursor = collection.find({}).maxTimeMS(50);
-
-To see all the available settings, see the
-`MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
-API Documentation.
 
 How Can I Prevent the Driver From Hanging During Connection or From Spending Too Long Trying to Reach Unreachable Replica Sets?
 -------------------------------------------------------------------------------------------------------------------------------
