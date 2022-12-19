@@ -39,7 +39,7 @@ New features of the 4.13 {+driver-short+} release include:
 - Disabled causal consistency in implicit sessions to prevent conflicting
   with the ``linearizable`` and ``available`` read concern settings.
 - Fixed a potential memory leak by ensuring that the driver destroys
-  ``MessageStream`` instances whenever their  connections are destroyed.
+  ``MessageStream`` instances whenever their connections are destroyed.
 
 .. _version-4.12:
 
