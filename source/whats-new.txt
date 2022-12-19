@@ -34,7 +34,7 @@ What's New in 4.13
 
 New features of the 4.13 {+driver-short+} release include:
 
-- Automatic cancelation of in-flight operations in the connection pool when
+- Automatic cancellation of in-flight operations in the connection pool when
   the driver encounters network timeout errors.
 - Disabled causal consistency in implicit sessions to prevent conflicting
   with the ``linearizable`` and ``available`` read concern settings.
