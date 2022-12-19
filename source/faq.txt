@@ -51,9 +51,11 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
 
    * - Setting
      - Description
-   * - connectTimeoutMS
-     - ``connectTimeoutMS`` is a :ref:`connection option <node-connection-options>` that sets the time, in milliseconds,
-       for an individual connection from your connection pool to establish a TCP connection to the MongoDB server before
+   * - **connectTimeoutMS**
+     - ``connectTimeoutMS`` is a :ref:`connection option
+       <node-connection-options>` that sets the time, in milliseconds,
+       for an individual connection from your connection pool to
+       establish a TCP connection to the MongoDB server before
        timing out.
 
        .. tip::
@@ -62,18 +64,18 @@ What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTim
           connection to a MongoDB server, use the ``serverSelectionTimeoutMS`` option instead.
 
        **Default:** 10000
-   * - socketTimeoutMS
+   * - **socketTimeoutMS**
      - ``socketTimeoutMS`` specifies the amount of time the driver waits
        for an inactive socket before closing it. The default value is to
        never time out the socket. This option applies only to sockets that
        have already been connected.
-   * - maxTimeMS
-     - `maxTimeMS <{+api+}/classes/FindCursor.html#maxTimeMS>`__ is only
-       passed to an individual operation in the driver or to a
-       cursor. It specifies the maximum amount of time the server
+   * - **maxTimeMS**
+     - `maxTimeMS <{+api+}/classes/FindCursor.html#maxTimeMS>`__
+       specifies the maximum amount of time the server 
        should wait for an operation to complete after it has reached the
        server. If an operation runs over the specified time limit, it
-       returns a timeout error.
+       returns a timeout error. You can pass ``maxTimeMS`` only to an
+       individual operation or to a cursor.
 
 To specify the optional settings for your ``MongoClient``, declare one or
 more available settings in the ``options`` object of the constructor as
