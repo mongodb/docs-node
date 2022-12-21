@@ -1,4 +1,4 @@
-.. _node-authentication-mechanisms:
+.. _node-community-authentication-mechanisms:
 
 =========================
 Authentication Mechanisms
