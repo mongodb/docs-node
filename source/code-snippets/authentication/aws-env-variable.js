@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-// Remember specify your AWS credentials in environment variables.
+// Remember to specify your AWS credentials in environment variables.
 const clusterUrl = "<MongoDB deployment url>";
 const authMechanism = "MONGODB-AWS";
 

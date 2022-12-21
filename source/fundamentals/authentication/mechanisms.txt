@@ -155,9 +155,9 @@ The driver checks for your credentials in the following sources in order:
 .. important::
 
    The driver only reads the credentials from the first method that it detects
-   in the order of the preceding list. For example, if you specify your
-   AWS credentials in the connection string, it ignores any credentials
-   that you specified in environment variables.
+   in the order as given by the preceding list. For example, if you specify 
+   your AWS credentials in the connection string, the driver ignores any 
+   credentials that you specified in environment variables.
 
 .. tabs::
 
