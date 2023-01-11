@@ -126,7 +126,7 @@ Creating Keys from Variables
 
 If you need to query a collection or perform another operation using a
 key created from specified variables, you must use an ``as const``
-assertion when specifying the key value. This mechanism will allow your
+assertion when specifying the key. This mechanism will allow your
 code to compile successfully as long as the input types are correct.
 
 The following code snippet defines the ``ClassificationPet`` interface
