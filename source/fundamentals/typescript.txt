@@ -121,12 +121,12 @@ The type error raised by the preceding code snippet is as follows:
    ...
    Type '"Sylvilagus"' is not assignable to type 'Condition<"Canis" | "Felis">'.
 
-Creating Keys from Variables
-````````````````````````````
+Referencing Keys that Incorporate Variables
+```````````````````````````````````````````
 
-If you need to query a collection or perform another operation using a
-key created from specified variables, you must use an ``as const``
-assertion when specifying the key. This mechanism will allow your
+If you need to query a collection or perform another operation with a
+key that incorporates variables, you must use an ``as const``
+assertion when specifying the key. This mechanism allows your
 code to compile successfully as long as the input types are correct.
 
 The following code snippet defines the ``ClassificationPet`` interface
@@ -146,9 +146,10 @@ each of which includes a ``time`` field:
      amount: number;
    }
 
-The following code snippet performs a find and update operation on a
-collection of ``ClassificationPet`` documents. It uses an ``as
-const`` assertion when creating a key using the defined variable ``mealCounter``:
+The following code snippet performs a find-and-update operation on a
+collection of ``ClassificationPet`` documents. The operation
+updates the nested ``time`` field of the ``Mealtime`` instance at index
+``1``, The index position is specified by the variable ``mealCounter``:
 
 .. code-block:: typescript
    :emphasize-lines: 5
