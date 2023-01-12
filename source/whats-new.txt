@@ -82,7 +82,11 @@ To learn more, see the `v4.12.0 Release Highlights <https://github.com/mongodb/n
 What's New in 4.11
 ------------------
 
-The 4.11 {+driver-short+} release includes added support for **mutually
+When using the 4.11 {+driver-short+} with MongoDB Server version 6.0 or
+greater, note that the driver prioritizes ``electionId`` before
+``setVersion`` during Server Discovery and Monitoring events.
+
+The release also includes added support for **mutually
 recursive** collection schema types. The driver also provides type safety for
 dot-notation queries up to a depth of eight in this release. At a depth greater
 than or equal to eight, Typescript successfully compiles your code but does not
