@@ -84,7 +84,8 @@ What's New in 4.11
 
 When using the 4.11 {+driver-short+} with MongoDB Server version 6.0 or
 greater, note that the driver prioritizes ``electionId`` before
-``setVersion`` during Server Discovery and Monitoring events.
+``setVersion`` during Server Discovery and Monitoring events. In
+previous versions, the prioritization order was reversed.
 
 The release also includes added support for **mutually
 recursive** collection schema types. The driver also provides type safety for
