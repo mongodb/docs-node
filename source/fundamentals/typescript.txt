@@ -149,7 +149,7 @@ each of which includes a ``time`` field:
 The following code snippet performs a find-and-update operation on a
 collection of ``ClassificationPet`` documents. The operation
 updates the nested ``time`` field of the ``Mealtime`` instance at index
-``1``, The index position is specified by the variable ``mealCounter``:
+``1``. The index position is specified by the variable ``mealCounter``:
 
 .. code-block:: typescript
    :emphasize-lines: 5
