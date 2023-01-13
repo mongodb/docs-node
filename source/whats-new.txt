@@ -32,11 +32,15 @@ Learn what's new in:
 What's New in 4.11
 ------------------
 
-The 4.11 {+driver-short+} release includes added support for **mutually 
-recursive** collection schema types. The driver also provides type safety for 
-dot-notation queries up to a depth of eight in this release. At a depth greater 
-than or equal to eight, Typescript successfully compiles your code but does not 
-provide type safety. This depth limit on recursive types is a current limitation 
+When connecting to MongoDB Server version 6.0 or later, the driver prioritizes
+``electionId`` settings before ``setVersion`` settings during Server Discovery and
+Monitoring events. In previous versions, the prioritization order was reversed.
+
+This release also includes added support for **mutually
+recursive** collection schema types. The driver also provides type safety for
+dot-notation queries up to a depth of eight in this release. At a depth greater
+than or equal to eight, Typescript successfully compiles your code but does not
+provide type safety. This depth limit on recursive types is a current limitation
 of TypeScript.
 
 Mutually Recursive Schema Type Checking Example
