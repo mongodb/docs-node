@@ -84,11 +84,13 @@ You can find a code snippet that shows how to specify a type for the ``FindCurso
 class in the
 :ref:`Find Multiple Documents Usage Example <node-driver-find-usage-example-code-snippet>`.
 
+.. _node-ts-type-safety:
+
 Type Safety and Dot Notation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you specify a query or update with **dot notation**, the {+driver-short+}
-provides type safety if your query or update does not
+If you specify an update with **dot notation**, the {+driver-short+}
+provides type safety if your update does not
 :ref:`reference a nested instance of a recursive type <node-driver-recursive-types-dot-notation>`.
 Dot notation is a syntax you can use to navigate nested JSON objects.
 
@@ -104,22 +106,53 @@ genus and color of dogs and cats:
      classification: { genus: "Canis" | "Felis"; color: string };
    }
 
-The following code snippet correctly raises a type error when specifying
-the genus of an unsupported animal in a query:
+The following code snippet correctly raises a type error when setting
+the ``classification.color`` to a ``number`` type in an update
+operation:
 
 .. code-block:: typescript
 
-   database
-     .collection<ClassificationPet>("<your collection>")
-     .find({ "classification.genus": "Sylvilagus" });
+   await collection.updateOne({ name: "Garfield" }, { $set: { "classification.color": 101 } });
 
 The type error raised by the preceding code snippet is as follows:
 
 .. code-block:: none
 
-   No overload matches this call.
-   ...
-   Type '"Sylvilagus"' is not assignable to type 'Condition<"Canis" | "Felis">'.
+   Type 'number' is not assignable to type 'string'.
+   
+Dot Notation in Find Operations
+```````````````````````````````
+
+Starting in version 5.0, the {+driver-short+} does not provide type
+safety for *find operations* that search on fields expressed in dot
+notation. When you construct a filter to pass to a find method, such as
+``find()`` or ``findOneAndUpdate()``, your code compiles even if you
+specify a value of an incorrect type for a field expressed in dot
+notation.
+
+The following code compiles, even though the value of
+``classification.color`` should be a string:
+
+.. code-block:: typescript
+
+   await collection.find({ "classification.color": false })
+
+Even though support for this checking is removed by default, you can
+enable type-checking by constructing filters as ``StrictFilter`` types.
+
+.. warning::
+   
+   Use of the ``StrictFilter`` type to create filters is experimental and currently has
+   unknown performance implications.
+
+The following code does not compile because the filter is assigned as a
+``StrictFilter`` type, which causes the driver to report a type error
+because the value of ``classification.color`` should be a string:
+
+.. code-block:: typescript
+
+   const filterPredicate: StrictFilter<ClassificationPet> = { "classification.color": false };
+   collection.find(filterPredicate);
 
 Referencing Keys that Incorporate Variables
 ```````````````````````````````````````````
