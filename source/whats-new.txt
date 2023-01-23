@@ -35,9 +35,9 @@ What's New in 5.0
 
 .. important:: Version 5.0 Not Compatible with Node.js Version 12
 
-   The 5.0 {+driver-short+} is not compatible with Node.js version 12 or
-   earlier. If you wish to upgrade, you need to use Node.js version
-   14.20.1 or greater.
+   Version 5.0 of the {+driver-short+} is not compatible with Node.js
+   version 12 or earlier. If you wish to upgrade, you need to use
+   Node.js version 14.20.1 or greater.
 
 New features of the 5.0 {+driver-short+} release include:
 
