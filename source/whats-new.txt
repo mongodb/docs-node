@@ -43,28 +43,27 @@ New features of the 5.0 {+driver-short+} release include:
 
 - Optional installation of ``@aws-sdk/credential-providers`` as a dependency.
 
-  - The driver no longer includes AWS SDK modules by default. If you
-    install the SDK, ``npm`` notifies you if the version of the SDK you
-    installed is incompatible with the driver. When the dependency is
-    installed, the driver uses the AWS SDK itself to manage credentials
-    from the environment. Use the following ``npm`` command to install the SDK:
+  - The driver no longer includes AWS SDK modules by default. Use the
+    following ``npm`` command to install the SDK:
 
     .. code-block:: bash
 
        npm install --save @aws-sdk/credential-providers@3.186.0
 
+    If you install the SDK, ``npm`` notifies you if the version of the SDK you
+    installed is incompatible with the driver. Once you install the
+    dependency successfully, the driver uses the AWS SDK itself to
+    manage credentials from the environment.
+
 .. important:: Breaking Change: Removal of CRUD Helper Methods
 
    This release removes support for the ``Collection.insert()``, ``Collection.update()``, and
-   ``Collection.remove()`` helper methods. The following list describes
-   methods to migrate to:
+   ``Collection.remove()`` helper methods. The following list provides
+   instructions on how to replace the functionality of the removed methods:
 
-   - ``insertOne()`` and ``insertMany()`` in place of
-     ``Collection.insert()``
-   - ``updateOne()`` and ``updateMany()`` in place of
-     ``Collection.update()``
-   - ``deleteOne()`` and ``deleteMany()`` in place of
-     ``Collection.remove()``
+   - Migrate from ``Collection.insert()`` to ``insertOne()`` or ``insertMany()``
+   - Migrate from ``Collection.update()`` to ``updateOne()`` or ``updateMany()``
+   - Migrate from ``Collection.remove()`` to ``deleteOne()`` or ``deleteMany()``
    
 .. _version-4.13:
 
