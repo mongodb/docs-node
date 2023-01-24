@@ -41,12 +41,9 @@ What's New in 5.0
 
 New features of the 5.0 {+driver-short+} release include:
 
-- Removal of default Typescript type-checking of types expressed in dot
-  notation.
-
-  - The driver no longer checks types referenced in dot notation during
-    find operations unless the ``StrictFilter`` feature is explicitly
-    implemented. To learn more about this change, see the :ref:`Typescript fundamentals page <node-ts-type-safety>`.
+- By default, the driver no longer checks types referenced in dot notation during
+  find operations unless the ``StrictFilter`` feature is explicitly
+  implemented. To learn more about this change, see the :ref:`Typescript fundamentals page <node-ts-type-safety>`.
 
 - Optional installation of ``@aws-sdk/credential-providers`` as a dependency.
 
