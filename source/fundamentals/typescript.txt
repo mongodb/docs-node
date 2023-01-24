@@ -131,7 +131,7 @@ typed value for a field expressed in dot notation.
 
 .. note::
 
-   The following methods comprise find operations:
+   The following methods exhibit this behavior:
 
    - ``find()``
    - ``findOne()``
