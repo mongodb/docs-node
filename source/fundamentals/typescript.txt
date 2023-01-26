@@ -96,6 +96,18 @@ you construct a filter to pass to a query, the driver will not raise a
 type error even if you specify an incorrectly typed value for a field expressed
 in dot notation.
 
+The following code snippet defines the ``ClassificationPet`` interface,
+which includes a ``classification`` field that enables you to specify the
+genus and color of dogs and cats:
+
+.. code-block:: typescript
+
+   interface ClassificationPet {
+     name: string;
+     age: number;
+     classification: { genus: "Canis" | "Felis"; color: string };
+   }
+
 The driver does not raise a type error for the following code sample,
 even though the value of ``classification.color`` is a boolean
 instead of a string:
