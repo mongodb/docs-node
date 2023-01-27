@@ -51,7 +51,7 @@ New features of the 5.0 {+driver-short+} release include:
    - Use the promise-based API and ``util.callbackify``
    - Add ``mongodb-legacy`` to continue using callbacks
 
-   For more information about these strategies, see the `v5 Change Notes <https://github.com/mongodb/node-mongodb-native/etc/notes/CHANGES_5.0.0.md>`__.
+   For more information about these strategies, see the `v5 Change Notes <https://github.com/mongodb/node-mongodb-native/blob/main/etc/notes/CHANGES_5.0.0.md>`__.
 
 - By default, the driver no longer checks types referenced in dot notation
   unless the ``StrictFilter`` type annotation is explicitly
