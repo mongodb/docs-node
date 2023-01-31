@@ -35,9 +35,9 @@ What's New in 5.0
 
 .. important:: Breaking Changes in v5.0
 
-   Version 5.0 of the {+driver-short+} is not compatible with Node.js
-   v12 or earlier. If you wish to upgrade, you need to use
-   Node.js v14.20.1 or greater.
+   - Version 5.0 of the {+driver-short+} is not compatible with Node.js
+     v12 or earlier. If you wish to upgrade, you need to use
+     Node.js v14.20.1 or greater.
 
    - This release removes support for callbacks in favor of a promise-based API.
      The following list provides some strategies for callback users to adopt this
@@ -47,7 +47,7 @@ What's New in 5.0
      - Use the promise-based API and ``util.callbackify``
      - Add ``mongodb-legacy`` to continue using callbacks
 
-     For more information about these strategies, see 
+     For more information about these strategies, see
      `Changes in the MongoDB Node.js Driver v5 <https://github.com/mongodb/node-mongodb-native/blob/main/etc/notes/CHANGES_5.0.0.md>`__.
 
    - This release removes support for the ``Collection.insert()``,
