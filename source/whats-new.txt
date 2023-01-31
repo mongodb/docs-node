@@ -36,8 +36,8 @@ What's New in 5.0
 .. important:: Breaking Changes in v5.0
 
    - Version 5.0 of the {+driver-short+} is not compatible with Node.js
-     v12 or earlier. If you wish to upgrade, you need to use
-     Node.js v14.20.1 or greater.
+     v12 or earlier. If you want to use this version of the driver, You must
+     use Node.js v14.20.1 or greater.
 
    - This release removes support for callbacks in favor of a promise-based API.
      The following list provides some strategies for callback users to adopt this
