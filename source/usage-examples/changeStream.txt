@@ -126,7 +126,7 @@ event and for the listener to complete its execution before
 closing the ``ChangeStream`` instance using the ``close()`` method.
 
 The timers used in this example are only necessary for this demonstration
-to make sure there is enough time to register listener and have the
+to make sure there is enough time to register the listener and have the
 listener process the event before exiting.
 
 .. include:: /includes/connect-guide-note.rst
@@ -154,7 +154,7 @@ listener process the event before exiting.
 
 If you run the preceding example, you should see the following output:
 
-.. code-block:: javascript
+.. code-block:: none
    :copyable: false
 
    received a change to the collection: 	 {
