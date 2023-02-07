@@ -26,9 +26,8 @@ example shows each part of the connection URI:
 .. figure:: /includes/figures/connection-string-parts.png
    :alt: Each part of the connection string
 
-In this example, we use ``mongodb`` for the protocol, which specifies the
-:manual:`Standard Connection String Format
-</reference/connection-string/#std-label-connections-standard-connection-string-format>`.
+In this example, we use ``mongodb`` for the protocol, which specifies
+the :manual:`Standard Connection String Format </reference/connection-string/#std-label-connections-standard-connection-string-format>`.
 
 .. tip::
 
@@ -105,8 +104,9 @@ When making a connection, the driver takes the following actions by default:
 
 .. tip::
 
-   You only need to specify one host to connect to a replica set. However, to ensure connectivity if the specified host
-   is unavailable, provide the full list of hosts.
+   You only need to specify one host to connect to a replica set.
+   However, to ensure connectivity if the specified host is unavailable,
+   provide the full list of hosts.
 
 Direct Connection
 ^^^^^^^^^^^^^^^^^
