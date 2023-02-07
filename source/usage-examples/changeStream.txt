@@ -44,8 +44,8 @@ read events from the change stream:
    .. tab::
       :tabid: Idiomatic Iteration
 
-      Starting in version 4.12, the ``ChangeStream`` class is an async
-      iterable. With this change, you can use ``for-await`` loops to
+      Starting in version 4.12, ``ChangeStream`` objects are async
+      iterables. With this change, you can use ``for-await`` loops to
       retrieve events from an open change stream:
 
       .. code-block:: js
@@ -92,42 +92,14 @@ read events from the change stream:
 
 .. include:: /includes/changestream-paradigm-warning.rst
 
-Visit the following resources for additional material on the classes and
-methods presented above:
+Examples
+--------
 
-- :manual:`Change streams </changeStreams/>`
-- :manual:`Change events </reference/change-events/>`
-- :manual:`Aggregation pipeline </reference/operator/aggregation-pipeline/>`
-- :manual:`Aggregation stages </changeStreams/#modify-change-stream-output>`
-- `ChangeStream class API documentation <{+api+}/classes/ChangeStream.html>`__
-- `Collection.watch() <{+api+}/classes/Collection.html#watch>`__,
-- `Db.watch() <{+api+}/classes/Db.html#watch>`__,
-- `MongoClient.watch() API documentation <{+api+}/classes/MongoClient.html#watch>`__
-
-Example
--------
+Iteration
+~~~~~~~~~
 
 The following example opens a change stream on the ``haikus`` collection in
-the ``insertDB`` database. Let's create a listener function to receive and
-print change events that occur on the collection.
-
-First, open the change stream on the collection and then define a listener
-on the change stream using the ``on()`` method. Once set, generate a change
-event by performing a change to the collection.
-
-To generate the change event on the collection, let's use ``insertOne()``
-method to add a new document. Since the ``insertOne()`` may run before the
-listener function can register, we use a timer, defined as
-``simulateAsyncPause`` to wait 1 second before executing the insert.
-
-We also use ``simulateAsyncPause`` after the insertion of the document
-to provide ample time for the listener function to receive the change
-event and for the listener to complete its execution before
-closing the ``ChangeStream`` instance using the ``close()`` method.
-
-The timers used in this example are only necessary for this demonstration
-to make sure there is enough time to register the listener and have the
-listener process the event before exiting.
+the ``insertDB`` database and prints change events as they occur:
 
 .. include:: /includes/connect-guide-note.rst
 
@@ -152,20 +124,29 @@ listener process the event before exiting.
    The JavaScript and TypeScript code snippets above are identical. There are no
    TypeScript specific features of the driver relevant to this use case.
 
-If you run the preceding example, you should see the following output:
+When you run this code and then make any changes to the ``haikus``
+collection, such as performing an insert or delete operation, you will
+be able to see each change event document in your terminal.
+
+For example, if you insert a document to the collection, the code prints
+the following output:
 
 .. code-block:: none
    :copyable: false
 
-   received a change to the collection: 	 {
-     _id: { _data: '825EC...' },
+   {
+     _id: {
+       _data: '...'
+     },
      operationType: 'insert',
-     clusterTime: new Timestamp { ... },
-     fullDocument: { _id: new ObjectId(...), title: 'Record of a Shriveled Datum', content: 'No bytes, no problem. Just insert a document, in MongoDB' },
+     clusterTime: new Timestamp({ t: 1675800603, i: 31 }),
+     fullDocument: {
+       _id: new ObjectId("..."),
+       ...
+     },
      ns: { db: 'insertDB', coll: 'haikus' },
-     documentKey: { _id: new ObjectId(...) }
+     documentKey: { _id: new ObjectId("...") }
    }
-   closed the change stream
 
 .. note:: Receive Full Documents From Updates
 
@@ -184,3 +165,62 @@ If you run the preceding example, you should see the following output:
 
       const changeStream = collection.watch(pipeline, options);
 
+Listener Function
+~~~~~~~~~~~~~~~~~
+
+The following example opens a change stream on the ``haikus`` collection in
+the ``insertDB`` database. Let's create a listener function to receive and
+print change events that occur on the collection.
+
+First, open the change stream on the collection and then define a listener
+on the change stream using the ``on()`` method. Once set, generate a change
+event by performing a change to the collection.
+
+To generate the change event on the collection, let's use ``insertOne()``
+method to add a new document. Since the ``insertOne()`` may run before the
+listener function can register, we use a timer, defined as
+``simulateAsyncPause`` to wait 1 second before executing the insert.
+
+We also use ``simulateAsyncPause`` after the insertion of the document
+to provide ample time for the listener function to receive the change
+event and for the listener to complete its execution before
+closing the ``ChangeStream`` instance using the ``close()`` method.
+
+The timers used in this example are only necessary for this demonstration
+to make sure there is enough time to register listener and have the
+listener process the event before exiting.
+
+.. include:: /includes/connect-guide-note.rst
+
+.. tabs::
+
+   .. tab:: JavaScript
+      :tabid: javascript
+
+      .. literalinclude:: /code-snippets/usage-examples/changeStream_listener.js
+         :language: javascript
+         :linenos:
+
+   .. tab:: TypeScript
+      :tabid: typescript
+
+      .. literalinclude:: /code-snippets/usage-examples/changeStream_listener.js
+         :language: javascript
+         :linenos:
+
+.. note:: Identical Code Snippets
+
+   The JavaScript and TypeScript code snippets above are identical. There are no
+   TypeScript specific features of the driver relevant to this use case.
+
+Visit the following resources for additional material on the classes and
+methods mentioned on this page:
+
+- :manual:`Change streams </changeStreams/>`
+- :manual:`Change events </reference/change-events/>`
+- :manual:`Aggregation pipeline </reference/operator/aggregation-pipeline/>`
+- :manual:`Aggregation stages </changeStreams/#modify-change-stream-output>`
+- `ChangeStream class API documentation <{+api+}/classes/ChangeStream.html>`__
+- `Collection.watch() <{+api+}/classes/Collection.html#watch>`__,
+- `Db.watch() <{+api+}/classes/Db.html#watch>`__,
+- `MongoClient.watch() API documentation <{+api+}/classes/MongoClient.html#watch>`__
