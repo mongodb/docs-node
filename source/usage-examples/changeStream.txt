@@ -134,6 +134,7 @@ the following output:
 .. code-block:: none
    :copyable: false
 
+   Received change:
    {
      _id: {
        _data: '...'
