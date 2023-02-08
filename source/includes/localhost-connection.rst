@@ -25,7 +25,7 @@ connection string:
 
    mongodb://localhost:<port>
    
-In this connection string, ``<port>`` is the port number you
+In this connection string, ``<port>`` is the port number on which you
 configured your server to listen for incoming connections.
 
 If you need to specify a different hostname or IP address, see our Server

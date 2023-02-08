@@ -4,8 +4,6 @@
 Connection Guide
 ================
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -29,16 +27,17 @@ example shows each part of the connection URI:
 In this example, we use ``mongodb`` for the protocol, which specifies
 the :manual:`Standard Connection String Format </reference/connection-string/#std-label-connections-standard-connection-string-format>`.
 
-.. tip::
-
-   You can also use the :manual:`DNS Seed List Connection Format
-   </reference/connection-string/#dns-seed-list-connection-format>` if
-   you want more flexibility of deployment and the ability to change the
-   servers in rotation without reconfiguring clients.
+If your instance or deployment has a DNS SRV record, you can use the
+:manual:`DNS Seed List Connection Format
+</reference/connection-string/#dns-seed-list-connection-format>` for
+your connection string. This format offers more flexibility of
+deployment and the ability to change the servers in rotation without
+reconfiguring clients.
 
 .. note::
 
-   To learn how to retrieve your connection string in Atlas, see the :ref:`Quick Start guide <node-quickstart-connect-cluster>`.
+   To learn how to retrieve your connection string in Atlas, see the
+   :atlas:`Atlas driver connection guide </driver-connection>`.
 
 The next part of the connection string contains your username and password
 if you are using password-based authentication. Replace the value of ``user``
@@ -102,11 +101,10 @@ When making a connection, the driver takes the following actions by default:
 - Discovers all replica set members when given the address of any one member.
 - Dispatches operations to the appropriate member, such as write against the **primary**.
 
-.. tip::
+.. tip:: Specify all hosts
 
-   You only need to specify one host to connect to a replica set.
-   However, to ensure connectivity if the specified host is unavailable,
-   provide the full list of hosts.
+   To ensure connectivity if one host is unavailable, provide the full
+   list of hosts when connecting to a replica set.
 
 Direct Connection
 ^^^^^^^^^^^^^^^^^
@@ -118,7 +116,7 @@ driver does not accept the DNS seedlist connection format (SRV) when you
 specify this option.
 
 When you specify ``directConnection`` and connect to a secondary member of the
-replica set, your write operations fail because you are not connected to the primary member.
-To perform read operations, you must enable secondary reads. See the
-:manual:`read preference options </reference/connection-string/#read-preference-options>`
+replica set, your write operations fail because the client isn't
+connected to the primary member. To perform read operations, you must
+enable secondary reads. See the :manual:`read preference options </reference/connection-string/#read-preference-options>`
 for more information.
