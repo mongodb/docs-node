@@ -194,8 +194,6 @@ closing the ``ChangeStream`` instance using the ``close()`` method.
    the listener and have the listener process the change event before
    exiting.
 
-.. include:: /includes/connect-guide-note.rst
-
 .. tabs::
 
    .. tab:: JavaScript
