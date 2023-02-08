@@ -124,9 +124,9 @@ the ``insertDB`` database and prints change events as they occur:
    The JavaScript and TypeScript code snippets above are identical. There are no
    TypeScript specific features of the driver relevant to this use case.
 
-When you run this code and then make any changes to the ``haikus``
+When you run this code and then make a change to the ``haikus``
 collection, such as performing an insert or delete operation, you will
-be able to see each change event document in your terminal.
+be able to see the change event document printed in your terminal.
 
 For example, if you insert a document to the collection, the code prints
 the following output:
@@ -174,22 +174,25 @@ the ``insertDB`` database. Let's create a listener function to receive and
 print change events that occur on the collection.
 
 First, open the change stream on the collection and then define a listener
-on the change stream using the ``on()`` method. Once set, generate a change
-event by performing a change to the collection.
+on the change stream using the ``on()`` method. Once you set the
+listener, generate a change event by performing a change to the collection.
 
-To generate the change event on the collection, let's use ``insertOne()``
-method to add a new document. Since the ``insertOne()`` may run before the
+To generate the change event on the collection, let's use the ``insertOne()``
+method to add a new document. Since ``insertOne()`` may run before the
 listener function can register, we use a timer, defined as
 ``simulateAsyncPause`` to wait 1 second before executing the insert.
 
-We also use ``simulateAsyncPause`` after the insertion of the document
-to provide ample time for the listener function to receive the change
+We also use ``simulateAsyncPause`` after the insertion of the document.
+This provides ample time for the listener function to receive the change
 event and for the listener to complete its execution before
 closing the ``ChangeStream`` instance using the ``close()`` method.
 
-The timers used in this example are only necessary for this demonstration
-to make sure there is enough time to register listener and have the
-listener process the event before exiting.
+.. note:: Reason to include timers
+
+   The timers used in this example are only for demonstration
+   purposes. They make sure that there is enough time to register
+   the listener and have the listener process the change event before
+   exiting.
 
 .. include:: /includes/connect-guide-note.rst
 
