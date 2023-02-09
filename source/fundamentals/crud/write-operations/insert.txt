@@ -68,10 +68,12 @@ the new document.
 Example
 ~~~~~~~
 
-The following example creates and inserts a document using the
-``insertOne()`` method:
+The following example creates and inserts a document to the
+``myDB.pizzaMenu`` collection using the ``insertOne()`` method:
 
 .. code-block:: javascript
+
+   const collection = client.db("myDB").collection("pizzaMenu");
 
    const doc = { name: "Neapolitan pizza", shape: "round" };
    const result = await collection.insertOne(doc);
@@ -121,6 +123,8 @@ your collection.
    processed documents before the error occurs:
 
    .. code-block:: javascript
+
+      const collection = client.db("myDB").collection("colors");
 
       try {
          const docs = [
@@ -174,10 +178,12 @@ documents inserted and the ``_id`` of the new document.
 Example
 ~~~~~~~
 
-The following example creates and adds three documents using the
-``insertMany()`` method:
+The following example creates and inserts three documents to the
+``myDB.pizzaMenu`` collection using the ``insertMany()`` method:
 
 .. code-block:: javascript
+
+   const collection = client.db("myDB").collection("pizzaMenu");
 
    const docs = [
       { name: "Sicilian pizza", shape: "square" },
