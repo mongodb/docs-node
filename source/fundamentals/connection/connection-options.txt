@@ -19,7 +19,7 @@ parameters of the connection URI to specify the behavior of the client.
 
    * - **connectTimeoutMS**
      - integer
-     - ``10000``
+     - ``30000``
      - Specifies the number of milliseconds to wait before timeout on a TCP
        connection.
 
