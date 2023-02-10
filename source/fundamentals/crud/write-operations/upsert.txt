@@ -50,7 +50,7 @@ location and want to apply the update. This update might resemble the
 following:
 
 .. code-block:: javascript
-   :emphasize-lines: 2
+   :emphasize-lines: 5
 
    const myDB = client.db("myDB")
    const myColl = myDB.collection("foodTrucks");

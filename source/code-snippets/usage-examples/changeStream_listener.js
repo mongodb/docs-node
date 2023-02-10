@@ -14,10 +14,10 @@ let changeStream;
 async function run() {
   try {
     const database = client.db("insertDB");
-    const myColl = database.collection("haikus");
+    const haikus = database.collection("haikus");
 
     // open a Change Stream on the "haikus" collection
-    changeStream = myColl.watch();
+    changeStream = haikus.watch();
 
     // set up a listener when change events are emitted
     changeStream.on("change", next => {

@@ -34,9 +34,9 @@ of query operators in MongoDB and show examples on how to use them:
 
 - :manual:`Evaluation Operators </reference/operator/query-evaluation/>`
 
-Use the following code snippet to create a collection of documents that
-describe an inventory of fruit to follow along with our query operator
-examples:
+Use the following code snippet to insert documents that
+describe an inventory of fruit to the ``myDB.fruits`` collection to
+follow along with our query operator examples:
 
 .. code-block:: javascript
 

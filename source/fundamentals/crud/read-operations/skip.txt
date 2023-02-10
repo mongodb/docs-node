@@ -37,7 +37,7 @@ the examples in this guide:
 .. code-block:: javascript
 
    const myDB = client.db("myDB")
-   const myColl = myDB.collection("restaurants");
+   const myColl = myDB.collection("fruits");
 
    await myColl.insertMany([
       { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
