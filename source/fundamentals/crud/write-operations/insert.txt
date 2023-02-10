@@ -73,10 +73,11 @@ The following example creates and inserts a document to the
 
 .. code-block:: javascript
 
-   const collection = client.db("myDB").collection("pizzaMenu");
+   const myDB = client.db("myDB")
+   const myColl = myDB.collection("pizzaMenu");
 
    const doc = { name: "Neapolitan pizza", shape: "round" };
-   const result = await collection.insertOne(doc);
+   const result = await myColl.insertOne(doc);
    console.log(
       `A document was inserted with the _id: ${result.insertedId}`,
    );
@@ -124,7 +125,8 @@ your collection.
 
    .. code-block:: javascript
 
-      const collection = client.db("myDB").collection("colors");
+      const myDB = client.db("myDB")
+      const myColl = myDB.collection("colors");
 
       try {
          const docs = [
@@ -134,7 +136,7 @@ your collection.
             { "_id": 3, "color": "blue"}
          ];
 
-         const insertManyresult = await collection.insertMany(docs);
+         const insertManyresult = await myColl.insertMany(docs);
          let ids = insertManyresult.insertedIds;
 
          console.log(`${insertManyresult.insertedCount} documents were inserted.`);
@@ -183,7 +185,8 @@ The following example creates and inserts three documents to the
 
 .. code-block:: javascript
 
-   const collection = client.db("myDB").collection("pizzaMenu");
+   const myDB = client.db("myDB")
+   const myColl = myDB.collection("pizzaMenu");
 
    const docs = [
       { name: "Sicilian pizza", shape: "square" },
@@ -191,7 +194,7 @@ The following example creates and inserts three documents to the
       { name: "Grandma pizza", shape: "square" }
    ];
 
-   const insertManyresult = await collection.insertMany(docs);
+   const insertManyresult = await myColl.insertMany(docs);
    let ids = insertManyresult.insertedIds;
 
    console.log(`${insertManyresult.insertedCount} documents were inserted.`);
