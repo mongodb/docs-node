@@ -22,7 +22,7 @@ Sample Documents
 ~~~~~~~~~~~~~~~~
 
 To follow along with the examples in this guide, use the following code
-snippet to insert documents that describe restaurants to the
+snippet to insert documents that describe restaurants into the
 ``myDB.restaurants`` collection:
 
 .. code-block:: javascript

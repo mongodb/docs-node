@@ -31,7 +31,7 @@ Sample Documents
 ~~~~~~~~~~~~~~~~
 
 To follow along with the examples in this guide, use the following code
-snippet to insert documents that describe fruits to the
+snippet to insert documents that describe fruits into the
 ``myDB.fruits`` collection:
 
 .. code-block:: javascript

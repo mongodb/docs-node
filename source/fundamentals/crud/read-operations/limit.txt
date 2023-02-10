@@ -28,7 +28,7 @@ Sample Documents
 ~~~~~~~~~~~~~~~~
 
 To follow along with the examples in this guide, use the following code
-snippet to insert documents that describe books to the
+snippet to insert documents that describe books into the
 ``myDB.books`` collection:
 
 .. code-block:: javascript

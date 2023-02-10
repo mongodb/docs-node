@@ -68,8 +68,8 @@ the new document.
 Example
 ~~~~~~~
 
-The following example creates and inserts a document to the
-``myDB.pizzaMenu`` collection using the ``insertOne()`` method:
+The following example uses the ``insertOne()`` method to insert a new
+document into the ``myDB.pizzaMenu`` collection:
 
 .. code-block:: javascript
 
@@ -180,8 +180,8 @@ documents inserted and the ``_id`` of the new document.
 Example
 ~~~~~~~
 
-The following example creates and inserts three documents to the
-``myDB.pizzaMenu`` collection using the ``insertMany()`` method:
+The following example uses the ``insertMany()`` method to insert three new
+documents into the ``myDB.pizzaMenu`` collection:
 
 .. code-block:: javascript
 

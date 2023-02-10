@@ -33,8 +33,8 @@ Performing an Update
 --------------------
 
 Suppose your application tracks the current location of food trucks,
-storing the nearest address data in the ``myDB.foodTrucks`` collection
-that resembles the following:
+storing the nearest address data in the ``myDB.foodTrucks`` collection,
+which resembles the following:
 
 .. code-block:: javascript
 
