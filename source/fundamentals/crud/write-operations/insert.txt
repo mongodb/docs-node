@@ -73,7 +73,7 @@ The following example creates and inserts a document to the
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("pizzaMenu");
 
    const doc = { name: "Neapolitan pizza", shape: "round" };
@@ -125,7 +125,7 @@ your collection.
 
    .. code-block:: javascript
 
-      const myDB = client.db("myDB")
+      const myDB = client.db("myDB");
       const myColl = myDB.collection("colors");
 
       try {
@@ -185,7 +185,7 @@ The following example creates and inserts three documents to the
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("pizzaMenu");
 
    const docs = [

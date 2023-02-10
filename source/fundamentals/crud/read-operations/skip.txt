@@ -30,20 +30,20 @@ a query, that query returns no documents.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-Use the following code snippet to insert documents describing fruit
-varieties to the ``myDB.fruits`` collection to follow along with
-the examples in this guide:
+To follow along with the examples in this guide, use the following code
+snippet to insert documents that describe fruits to the
+``myDB.fruits`` collection:
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("fruits");
 
    await myColl.insertMany([
-      { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
-      { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 },
-      { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },
-      { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
+     { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
+     { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 },
+     { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },
+     { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
    ]);
 
 .. include:: /includes/access-cursor-note.rst

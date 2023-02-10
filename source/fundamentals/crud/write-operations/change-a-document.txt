@@ -73,7 +73,7 @@ Example
 ~~~~~~~
 
 Consider a document in the ``myDB.items`` collection with fields
-describing an item for sale, its price, and quantity available:
+describing an item for sale, its price, and the quantity available:
 
 .. code-block:: javascript
 
@@ -89,7 +89,7 @@ If you apply the ``$set`` update operator with a new value for
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("items");
 
    const filter = { _id: 465 };
@@ -153,7 +153,7 @@ Example
 ~~~~~~~
 
 Consider a document in the ``myDB.items`` collection with fields
-describing an item for sale, its price, and quantity available:
+describing an item for sale, its price, and the quantity available:
 
 .. code-block:: javascript
 
@@ -170,7 +170,7 @@ resemble the following:
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("items");
 
    const filter = { _id: 501 };

@@ -21,13 +21,13 @@ across a collection.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-Use the following code snippet to insert documents with restaurant
-data to the ``myDB.restaurants`` collection to follow along with the
-examples in this guide:
+To follow along with the examples in this guide, use the following code
+snippet to insert documents that describe restaurants to the
+``myDB.restaurants`` collection:
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("restaurants");
 
    await myColl.insertMany([

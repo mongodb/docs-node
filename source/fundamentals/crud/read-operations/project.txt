@@ -36,13 +36,13 @@ vice versa.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-Use the following code snippet to insert documents describing fruit
-varieties to the ``myDB.fruits`` collection to follow along with
-the examples in this guide:
+To follow along with the examples in this guide, use the following code
+snippet to insert documents that describe fruits to the
+``myDB.fruits`` collection:
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("fruits");
 
    await myColl.insertMany([

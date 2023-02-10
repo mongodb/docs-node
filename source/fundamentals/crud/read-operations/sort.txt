@@ -33,7 +33,7 @@ insert this data into a collection, run the following operation:
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("books");
 
    await myColl.insertMany([

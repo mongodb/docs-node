@@ -27,13 +27,13 @@ the skip.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-Use the following code snippet to insert documents describing books to
-the ``myDB.books`` collection to follow along with the examples in this
-guide:
+To follow along with the examples in this guide, use the following code
+snippet to insert documents that describe books to the
+``myDB.books`` collection:
 
 .. code-block:: javascript
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("books");
 
    await myColl.insertMany([

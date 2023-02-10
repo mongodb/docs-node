@@ -114,7 +114,7 @@ instead of a string:
 
 .. code-block:: typescript
 
-   await myColl.findOneAndDelete({ "classification.color": false })
+   await myColl.findOneAndDelete({ "classification.color": false });
 
 You can enable type-checking by constructing filters as ``StrictFilter`` or
 ``StrictUpdateFilter`` types.
@@ -245,7 +245,7 @@ of insert operations. The following table describes how different
 If you must specify the ``_id`` field as required in the type you define to represent
 documents in your collection but you do not want to specify values for the
 ``_id`` field in insert operations, use the ``OptionalId`` helper type when you
-create your myColl. The ``OptionalId`` type accepts a type parameter as an
+create your collection. The ``OptionalId`` type accepts a type parameter as an
 argument and returns that type with an optional ``_id`` field.
 
 The following code snippet defines the ``IdPet`` interface, which

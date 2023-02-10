@@ -52,7 +52,7 @@ following:
 .. code-block:: javascript
    :emphasize-lines: 5
 
-   const myDB = client.db("myDB")
+   const myDB = client.db("myDB");
    const myColl = myDB.collection("foodTrucks");
 
    const query = { name: "Deli Llama" };
