@@ -92,7 +92,7 @@ pool monitoring event.
 connectionPoolCreated
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionPoolCreatedEvent {
@@ -104,7 +104,7 @@ connectionPoolCreated
 connectionPoolReady
 ~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionPoolReadyEvent {
@@ -115,7 +115,7 @@ connectionPoolReady
 connectionPoolClosed
 ~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionPoolClosedEvent {
@@ -126,7 +126,7 @@ connectionPoolClosed
 connectionCreated
 ~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionCreatedEvent {
@@ -138,7 +138,7 @@ connectionCreated
 connectionReady
 ~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionReadyEvent {
@@ -150,7 +150,7 @@ connectionReady
 connectionClosed
 ~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionClosedEvent {
@@ -164,7 +164,7 @@ connectionClosed
 connectionCheckOutStarted
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionCheckOutStartedEvent {
@@ -175,7 +175,7 @@ connectionCheckOutStarted
 connectionCheckOutFailed
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionCheckOutFailedEvent {
@@ -187,7 +187,7 @@ connectionCheckOutFailed
 connectionCheckedOut
 ~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionCheckedOutEvent {
@@ -199,7 +199,7 @@ connectionCheckedOut
 connectionCheckedIn
 ~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionCheckedInEvent {
@@ -211,7 +211,7 @@ connectionCheckedIn
 connectionPoolCleared
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+.. code-block:: none
    :copyable: false
 
    ConnectionPoolClearedEvent {
