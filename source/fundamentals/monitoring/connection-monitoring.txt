@@ -77,8 +77,8 @@ You can subscribe to any of the following connection pool monitoring events:
        execution.
 
    * - ``connectionCheckedIn``
-     - Created when a connection is returned to the pool after operation
-       execution.
+     - Created when a connection is checked back into the pool after an operation
+       is executed.
 
    * - ``connectionPoolCleared``
      - Created when a connection pool is cleared.
