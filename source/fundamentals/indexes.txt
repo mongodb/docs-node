@@ -128,13 +128,13 @@ To learn more, see  :manual:`Compound Indexes </core/index-compound>`.
 Multikey Indexes (Indexes on Array Fields)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Multikey indexes** are indexes that improve performance for queries on
-fields that contain array values. You can define a multikey index using
-the same syntax as when you create a single field or compound index.
+**Multikey indexes** are indexes that improve the performance of queries on
+fields that contain array values.
 
-The following example uses the ``createIndex()`` method to create an ascending
-index on the ``cast`` field, which contains an array of names, in the
-``movies`` collection of the ``sample_mflix`` database.
+You can create a multikey index on a field with an array value by
+calling the ``createIndex()`` method. The following code creates an ascending
+index on the ``cast`` field in the ``movies`` collection of the
+``sample_mflix`` database:
 
 .. literalinclude:: /code-snippets/indexes/multikey.js
    :language: js
@@ -142,8 +142,8 @@ index on the ``cast`` field, which contains an array of names, in the
    :end-before: end-idx
    :dedent:
 
-The following code performs a query that uses the index on
-the ``cast`` field:
+The following code queries the multikey index to find
+documents with a ``cast`` field value that contains "Viola Davis":
 
 .. literalinclude:: /code-snippets/indexes/multikey.js
    :language: js
