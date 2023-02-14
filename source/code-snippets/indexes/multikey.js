@@ -21,7 +21,7 @@ async function run() {
 
     // begin-query
     const query = { cast: "Viola Davis" };
-    const projection = { _id: 0, cast: 1 , title:1 };
+    const projection = { _id: 0, cast: 1 , title: 1 };
 
     const cursor = movies
       .find(query)
