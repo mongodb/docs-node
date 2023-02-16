@@ -20,6 +20,7 @@ Logging
 
   - :doc:`Command Monitoring </fundamentals/monitoring/command-monitoring>`
   - :doc:`Cluster Monitoring </fundamentals/monitoring/cluster-monitoring>`
+  - :doc:`Connection Pool Monitoring </fundamentals/monitoring/connection-monitoring>`
 
 Temporary Alternative
 ---------------------
