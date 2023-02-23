@@ -38,7 +38,7 @@ What's New in 5.1
 New features of the 5.1 {+driver-short+} release include:
 
 - The driver now supports automatic serialization of JavaScript ``bigint`` to
-  ``BSON.Long``. It also supports deserializing of ``BSON.Long`` values returned
+  ``BSON.Long``. It also supports deserialization of ``BSON.Long`` values returned
   from the server to ``bigint`` values when the ``useBigInt64`` flag is passed
   as true.
 
