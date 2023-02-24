@@ -4,10 +4,6 @@ MongoDB Node Driver
 
 .. _node-driver-landing:
 
-.. default-domain:: mongodb
-
-.. include:: /includes/unicode-checkmark.rst
-
 .. toctree::
   :titlesonly:
   :maxdepth: 1
@@ -33,7 +29,7 @@ in JavaScript. Download it using `npm <https://www.npmjs.com/>`__
 or set up a runnable project by following our Quick Start guide.
 
 Quick Start
-------------------
+-----------
 
 Learn how to establish a connection to MongoDB Atlas and begin
 working with data in the step-by-step :doc:`Quick Start </quick-start>`.
