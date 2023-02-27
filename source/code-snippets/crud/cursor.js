@@ -11,7 +11,7 @@ async function forEachIteration(collection) {
   const cursor = collection.find({});
   await cursor.forEach(doc => console.log(doc));
   // end foreach cursor example
-  console.log(await cursor.count());
+  console.log(await myColl.countDocuments());
 }
 
 async function asyncIteration(collection) {
@@ -68,13 +68,8 @@ async function rewind(collection) {
   // end rewind cursor example
 }
 
-async function count(collection) {
-  // start count cursor example
-  const cursor = collection.find({});
-  const count = await cursor.count();
-  // end count cursor example
-  console.log(count);
-
+async function close(myColl) {
+  const cursor = myColl.find({});
   // start close cursor example
   await cursor.close();
   // end close cursor example
