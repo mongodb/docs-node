@@ -91,7 +91,7 @@ Connect to a MongoDB Server on Your Local Machine
 .. include:: /includes/localhost-connection.rst
 
 To test whether you can connect to your server, replace the connection
-string in the :ref:`Connect to MongoDB <connect-sample-node-driver>` code
+string in the :ref:`Connect to MongoDB <connect-atlas-node-driver>` code
 example and run it.
 
 Connect to a Replica Set
