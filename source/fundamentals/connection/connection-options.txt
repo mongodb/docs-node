@@ -46,7 +46,7 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies the database that connections should authenticate against.
 
    * - **compressors**
-     - comma separated list of strings, e.g. "snappy,zlib,zstd"
+     - comma separated list of strings, e.g. "snappy,zlib"
      - ``null``
      - Specifies the allowed compression types for wire protocol messages
        sent to or received from the server. See :ref:`node-network-compression`
