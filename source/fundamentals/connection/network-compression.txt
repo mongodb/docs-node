@@ -28,11 +28,11 @@ by specifying the algorithms using one of the following methods:
 2. Specify the ``compressors`` option in your ``MongoClientOptions``.
 
 Select the tab that matches your use case for instructions on how to specify
-the  compression algorithm:
+the compression algorithm:
 
 .. tabs::
 
-   .. tab:: Add a Parameter to the Connection String
+   .. tab:: Connection String
       :tabid: connection-string
 
       To enable compression using the connection string, add the
@@ -48,7 +48,7 @@ the  compression algorithm:
 
          const client = new MongoClient(uri);
 
-   .. tab:: Specify the Option in MongoClientOptions
+   .. tab:: MongoClientOptions
       :tabid: mongoclientoptions
 
       To enable compression using `MongoClientOptions <{+api+}/api/global.html#MongoClientOptions>`__,
