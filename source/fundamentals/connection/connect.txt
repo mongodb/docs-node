@@ -55,7 +55,7 @@ options as parameters. In the example above, we set two connection options:
 ``maxPoolSize=20`` and ``w=majority``. For more information on connection
 options, skip to the :ref:`node-connection-options` section.
 
-.. _connect-atlas-node-driver:
+.. _connect-sample-node-driver:
 
 Atlas Connection Example
 ------------------------
@@ -91,7 +91,7 @@ Connect to a MongoDB Server on Your Local Machine
 .. include:: /includes/localhost-connection.rst
 
 To test whether you can connect to your server, replace the connection
-string in the :ref:`Connect to MongoDB <connect-atlas-node-driver>` code
+string in the :ref:`Connect to MongoDB <connect-sample-node-driver>` code
 example and run it.
 
 Connect to a Replica Set
