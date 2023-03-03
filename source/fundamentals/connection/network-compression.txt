@@ -36,9 +36,9 @@ the compression algorithm:
       :tabid: connection-string
 
       To enable compression by using parameters on the connection string, add 
-      the ``compressors`` parameter and the algorithm value. You can
-      specify one or more compression algorithms, separating them with
-      commas:
+      the ``compressors`` parameter and the names of the algorithms as the
+      value. You can specify one or more compression algorithms, separating 
+      them with commas:
 
       .. code-block:: javascript
          :emphasize-lines: 2
