@@ -35,7 +35,7 @@ the compression algorithm:
    .. tab:: Connection String
       :tabid: connection-string
 
-      To enable compression using the connection string, add the
+      To enable compression by using the connection string, add the
       ``compressors`` parameter in the connection string. You can
       specify one or more compression algorithms, separating them with
       commas:
@@ -51,7 +51,7 @@ the compression algorithm:
    .. tab:: MongoClientOptions
       :tabid: mongoclientoptions
 
-      To enable compression using `MongoClientOptions <{+api+}/api/global.html#MongoClientOptions>`__,
+      To enable compression by using `MongoClientOptions <{+api+}/api/global.html#MongoClientOptions>`__,
       pass the ``compressors`` option along with the compression
       algorithm you want to use. You can specify one or more compression
       algorithms, separating them with commas:
@@ -67,7 +67,7 @@ the compression algorithm:
              compressors: ["snappy", "zlib"]
            });
 
-Specify compression algorithms using the following strings:
+Specify compression algorithms by using the following strings:
 
 - "snappy" for `Snappy <https://google.github.io/snappy/>`__ compression
 - "zlib" for `Zlib <https://zlib.net/>`__ compression
