@@ -16,25 +16,23 @@ The driver supports the following compression algorithms:
 If you specify multiple compression algorithms, the driver selects the
 first one in the list supported by your MongoDB instance.
 
-.. note::
-
-   When using the Snappy or Zstandard compression algorithm, you must
-   :ref:`add explicit dependencies <compression-dependencies>`.
-
 .. _enable-compression:
 
 Specify Compression Algorithms
 ------------------------------
 
 You can enable compression for the connection to your MongoDB instance
-by specifying the algorithms in one of two ways: 
+by specifying the algorithms using one of the following methods:
 
-1. Adding the parameter to your connection string. 
-2. Specifying the ``compressors`` option in your ``MongoClientOptions``.
+1. Add the parameter to the connection string. 
+2. Specify the ``compressors`` option in your ``MongoClientOptions``.
+
+Select the tab that matches your use case for instructions on how to specify
+the  compression algorithm:
 
 .. tabs::
 
-   .. tab:: Connection String
+   .. tab:: Add a Parameter to the Connection String
       :tabid: connection-string
 
       To enable compression using the connection string, add the
@@ -50,10 +48,10 @@ by specifying the algorithms in one of two ways:
 
          const client = new MongoClient(uri);
 
-   .. tab:: MongoClientOptions
+   .. tab:: Specify the Option in MongoClientOptions
       :tabid: mongoclientoptions
 
-      To enable compression using the `MongoClientOptions <{+api+}/api/global.html#MongoClientOptions>`__,
+      To enable compression using `MongoClientOptions <{+api+}/api/global.html#MongoClientOptions>`__,
       pass the ``compressors`` option along with the compression
       algorithm you want to use. You can specify one or more compression
       algorithms, separating them with commas:
@@ -66,7 +64,7 @@ by specifying the algorithms in one of two ways:
 
          const client = new MongoClient(uri,
            {
-             compressors: ["snappy"]
+             compressors: ["snappy", "zlib"]
            });
 
 Specify compression algorithms using the following strings:
@@ -79,16 +77,12 @@ Specify compression algorithms using the following strings:
 Compression Algorithm Dependencies
 ----------------------------------
 
-To add the Snappy compression algorithm to your application, run the
-following code: 
+To use Snappy compression, add it to your application dependencies by
+running the following command:
 
 .. code-block:: javascript
 
    npm install --save snappy
 
-To add the Zstandard compression algorithm to your application, run the
-following code: 
+You can use Zlib compression without adding any additional dependencies.
 
-.. code-block:: javascript
-
-   npm install --save @mongodb-js/zstd
