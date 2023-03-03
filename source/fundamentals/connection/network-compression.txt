@@ -35,8 +35,8 @@ the compression algorithm:
    .. tab:: Connection String
       :tabid: connection-string
 
-      To enable compression by using the connection string, add the
-      ``compressors`` parameter in the connection string. You can
+      To enable compression by using parameters on the connection string, add 
+      the ``compressors`` parameter and the algorithm value. You can
       specify one or more compression algorithms, separating them with
       commas:
 
@@ -52,8 +52,8 @@ the compression algorithm:
       :tabid: mongoclientoptions
 
       To enable compression by using `MongoClientOptions <{+api+}/api/global.html#MongoClientOptions>`__,
-      pass the ``compressors`` option along with the compression
-      algorithm you want to use. You can specify one or more compression
+      pass the ``compressors`` option and the names of compression algorithms
+      that you want to use. You can specify one or more compression
       algorithms, separating them with commas:
 
       .. code-block:: javascript
