@@ -45,8 +45,8 @@ with your username and ``pass`` with your password. If you are using an
 authentication mechanism that does not require a username and password, omit
 this part of the connection URI.
 
-The next part of the connection string specifies the hostname or IP address,
-followed by the port of your MongoDB instance. In the example above, we use
+The next part of the connection string specifies the hostname or IP address of
+your MongoDB instance, followed by the port number. In the example above, we use
 ``sample.host`` as the hostname and ``27017`` as the port. Replace these values
 to point to your MongoDB instance.
 
@@ -60,21 +60,23 @@ options, skip to the :ref:`node-connection-options` section.
 Atlas Connection Example
 ------------------------
 
-To connect to a MongoDB deployment on Atlas you must first create a client. You
-can create a client that uses your connection string and any other
-client options by passing your URI and a ``MongoClientOptions`` object to a
-``MongoClient``.
+You must create a client to connect to a MongoDB deployment on Atlas. To create
+a client, construct an instance of ``MongoClient``, passing in your 
+URI and a ``MongoClientOptions`` object.
 
-You can set the Stable API version client option to avoid breaking changes when
-you upgrade to a new server version. To learn more about the Stable API feature,
-see the :ref:`{+stable-api+} page <nodejs-stable-api>`.
+Use the ``serverApi`` option in your ``MongoClientOptions`` object to
+enable the {+stable-api+} feature, which forces the server to run operations
+with behavior compatible with the specified API version.
 
 The following code shows how you can specify the connection string and the
-Stable API client option when connecting to a MongoDB deployment on Atlas and
+{+stable-api+} client option when connecting to a MongoDB deployment on Atlas and
 verify that the connection is successful:
 
 .. literalinclude:: /code-snippets/connection/stable-api-connect.js
    :language: javascript
+
+To learn more about the Stable
+API feature, see the :ref:`{+stable-api+} page <nodejs-stable-api>`.
 
 .. _node-other-ways-to-connect:
 
