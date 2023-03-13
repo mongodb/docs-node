@@ -84,14 +84,17 @@ You can find a code snippet that shows how to specify a type for the ``FindCurso
 class in the
 :ref:`Find Multiple Documents Usage Example <node-driver-find-usage-example-code-snippet>`.
 
+.. _node-ts-type-safety:
 
 Type Safety and Dot Notation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you specify a query or update with **dot notation**, the {+driver-short+}
-provides type safety if your query or update does not
-:ref:`reference a nested instance of a recursive type <node-driver-recursive-types-dot-notation>`.
-Dot notation is a syntax you can use to navigate nested JSON objects.
+Starting in version 5.0, by default, the {+driver-short+} does not provide type
+safety for operations that search on fields expressed in **dot notation**. Dot
+notation is a syntax you can use to navigate nested JSON objects. When
+you construct a filter to pass to a query, the driver will not raise a
+type error even if you specify an incorrectly typed value for a field expressed
+in dot notation.
 
 The following code snippet defines the ``ClassificationPet`` interface,
 which includes a ``classification`` field that enables you to specify the
@@ -105,22 +108,80 @@ genus and color of dogs and cats:
      classification: { genus: "Canis" | "Felis"; color: string };
    }
 
-The following code snippet correctly raises a type error when specifying
-the genus of an unsupported animal in a query:
+The driver does not raise a type error for the following code sample,
+even though the value of ``classification.color`` is a boolean
+instead of a string:
 
 .. code-block:: typescript
 
-   database
-     .collection<ClassificationPet>("<your collection>")
-     .find({ "classification.genus": "Sylvilagus" });
+   await myColl.findOneAndDelete({ "classification.color": false });
 
-The type error raised by the preceding code snippet is as follows:
+You can enable type-checking by constructing filters as ``StrictFilter`` or
+``StrictUpdateFilter`` types.
 
-.. code-block:: none
+.. warning::
+   
+   The ``StrictFilter`` and ``StrictUpdateFilter`` types are experimental and
+   may show type errors in valid queries where there should be none.
 
-   No overload matches this call.
-   ...
-   Type '"Sylvilagus"' is not assignable to type 'Condition<"Canis" | "Felis">'.
+In the following code sample, the filter is assigned a
+``StrictFilter`` type. Given this filter type, the {+driver-short+}
+reports a type error because the value of ``classification.color`` is a
+boolean instead of a string.
+
+.. code-block:: typescript
+
+   const filterPredicate: StrictFilter<ClassificationPet> = { "classification.color": false };
+   await myColl.findOneAndDelete(filterPredicate);
+
+The following example assigns a ``StrictUpdateFilter`` type to an update
+filter. The {+driver-short+} reports a type error because the value of
+``classification.color`` is a boolean instead of a string.
+
+.. code-block:: typescript
+   
+   const updateFilter: StrictUpdateFilter<ClassificationPet> = { $set: { "classification.color": false } }
+   await pets.updateOne({}, updateFilter);
+
+Referencing Keys that Incorporate Variables
+```````````````````````````````````````````
+
+If you need to query a collection or perform another operation with a
+key that incorporates variables, you must use an ``as const``
+assertion when specifying the key. This mechanism allows your
+code to compile successfully as long as the input types are correct.
+
+The following code snippet defines the ``ClassificationPet`` interface
+and the ``Mealtime`` interface. ``ClassificationPet`` includes a
+``mealtimes`` field that contains an array of ``Mealtime`` interfaces,
+each of which includes a ``time`` field:
+
+.. code-block:: typescript
+
+   interface ClassificationPet {
+     name: string;
+     mealtimes: Mealtime[];
+   }
+   
+   interface Mealtime{
+     time: string;
+     amount: number;
+   }
+
+The following code snippet performs a find-and-update operation on a
+collection of ``ClassificationPet`` documents. The operation
+updates the nested ``time`` field of the ``Mealtime`` instance at index
+``1``. The index position is specified by the variable ``mealCounter``:
+
+.. code-block:: typescript
+   :emphasize-lines: 5
+
+   const mealCounter = 1;
+   
+   await myColl.findOneAndUpdate(
+     { name: "Lassie" },
+     { $set: { [`mealtimes.${mealCounter}.time` as const]: '4:00 PM' } },
+   );
 
 To learn more about dot notation, see
 :manual:`Dot Notation </core/document/#dot-notation>`
@@ -207,7 +268,7 @@ The following code uses the preceding interface along with the
    const database = client.db("<your database>");
    const collection = db.collection<OptionalId<IdPet>>("<your collection>");
    
-   collection.insertOne({
+   myColl.insertOne({
      name: "Spot",
      age: 2
    });
@@ -246,7 +307,7 @@ a document with an ``_id`` of type ``ObjectId``:
    const database = client.db("<your database>");
    const collection = db.collection<Pet>("<your collection>");
    
-   const document = await collection.findOne({
+   const document = await myColl.findOne({
      name: "Spot",
    });
    const id : ObjectId = document._id;
@@ -265,7 +326,7 @@ document with an ``_id`` field of type ``number``:
    const database = client.db("<your database>");
    const collection = db.collection<IdNumberPet>("<your collection>");
 
-   const document = await collection.findOne({
+   const document = await myColl.findOne({
      name: "Spot",
    });
    const id : number = document._id;
@@ -283,7 +344,7 @@ document with an ``_id`` field of type ``number``:
 
    .. code-block:: typescript
 
-      const doc = await collection.findOne(
+      const doc = await myColl.findOne(
         {},
         { projection: { _id: 0, name: 1 } }
       );
@@ -298,7 +359,7 @@ document with an ``_id`` field of type ``number``:
          name: string
       }
 
-      const doc = await collection.findOne<ProjectedDocument>(
+      const doc = await myColl.findOne<ProjectedDocument>(
         {},
         { projection: { _id: 0, name: 1 } }
       );

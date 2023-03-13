@@ -10,6 +10,9 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 5.1 <version-5.1>`
+* :ref:`Version 5.0 <version-5.0>`
+* :ref:`Version 4.14 <version-4.14>`
 * :ref:`Version 4.13 <version-4.13>`
 * :ref:`Version 4.12 <version-4.12>`
 * :ref:`Version 4.11 <version-4.11>`
@@ -26,6 +29,93 @@ Learn what's new in:
 * :ref:`Version 4.0 <version-4.0>`
 * :ref:`Version 3.7 <version-3.7>`
 * :ref:`Version 3.6 <version-3.6>`
+
+.. _version-5.1:
+
+What's New in 5.1
+-----------------
+
+New features of the 5.1 {+driver-short+} release include:
+
+- The driver now supports automatic serialization of JavaScript ``bigint`` to
+  ``BSON.Long``. It also supports the deserialization of ``BSON.Long`` values returned
+  from the server to ``bigint`` values when the ``useBigInt64`` flag is passed
+  as true.
+
+To learn more, see the `v5.1.0 Release Highlights
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v5.1.0>`__. 
+
+.. _version-5.0:
+
+What's New in 5.0
+-----------------
+
+.. important:: Breaking Changes in v5.0
+
+   - Version 5.0 of the {+driver-short+} is not compatible with Node.js
+     v12 or earlier. If you want to use this version of the driver, You must
+     use Node.js v14.20.1 or greater.
+
+   - This release removes support for callbacks in favor of a promise-based API.
+     The following list provides some strategies for callback users to adopt this
+     version:
+
+     - Migrate to the promise-based API (recommended)
+     - Use the promise-based API and ``util.callbackify``
+     - Add ``mongodb-legacy`` to continue using callbacks
+
+     For more information about these strategies, see
+     `Changes in the MongoDB Node.js Driver v5 <https://github.com/mongodb/node-mongodb-native/blob/main/etc/notes/CHANGES_5.0.0.md>`__.
+
+   - This release removes support for the ``Collection.insert()``,
+     ``Collection.update()``, and ``Collection.remove()`` helper methods.
+     The following list provides instructions on how to replace the
+     functionality of the removed methods:
+
+     - Migrate from ``Collection.insert()`` to ``insertOne()`` or ``insertMany()``
+     - Migrate from ``Collection.update()`` to ``updateOne()`` or ``updateMany()``
+     - Migrate from ``Collection.remove()`` to ``deleteOne()`` or ``deleteMany()``
+
+New features of the 5.0 {+driver-short+} release include:
+
+- By default, the driver no longer checks types referenced in dot notation
+  unless the ``StrictFilter`` type annotation is explicitly
+  used. To learn more about this change, see the :ref:`Typescript fundamentals
+  page <node-ts-type-safety>`.
+
+  .. note::
+
+     This change is for Typescript only, and does not affect queries or operations
+     at runtime.
+
+- Optional installation of ``@aws-sdk/credential-providers`` as a dependency.
+
+  - The driver no longer includes AWS SDK modules by default. Use the
+    following ``npm`` command to install the SDK:
+
+    .. code-block:: bash
+
+       npm install --save "@aws-sdk/credential-providers@^3.201.0"
+
+    If you install the SDK, ``npm`` notifies you if the version of the SDK you
+    installed is incompatible with the driver. Once you install the
+    dependency successfully, the driver uses the AWS SDK itself to
+    manage credentials from the environment.
+
+.. _version-4.14:
+
+What's New in 4.14
+------------------
+
+.. important:: Upgrade from v4.13 to v4.14
+
+   This version includes a fix to a memory leak introduced in v4.13.
+   We recommend upgrading to v4.14.
+
+New features of the 4.14 {+driver-short+} release include:
+
+- Fixed a memory leak introduced in v4.13.
+- Deprecated methods and options that reference the legacy Logger.
 
 .. _version-4.13:
 
@@ -63,7 +153,7 @@ New features of the 4.12 {+driver-short+} release include:
     .. code-block:: js
        :copyable: false
 
-       const changeStream = collection.watch();
+       const changeStream = myColl.watch();
        for await (const change of changeStream) {
          console.log("Received change: ", change);
        }
@@ -82,7 +172,11 @@ To learn more, see the `v4.12.0 Release Highlights <https://github.com/mongodb/n
 What's New in 4.11
 ------------------
 
-The 4.11 {+driver-short+} release includes added support for **mutually
+When connecting to MongoDB Server version 6.0 or later, the driver prioritizes
+``electionId`` settings before ``setVersion`` settings during Server Discovery and
+Monitoring events. In previous versions, the prioritization order was reversed.
+
+This release also includes added support for **mutually
 recursive** collection schema types. The driver also provides type safety for
 dot-notation queries up to a depth of eight in this release. At a depth greater
 than or equal to eight, Typescript successfully compiles your code but does not
@@ -115,7 +209,7 @@ value must be a ``string`` type:
 .. code-block:: js
    :copyable: false
 
-   collection.findOne({ 'bestBook.author.bestBook.title': 25 })
+   myColl.findOne({ 'bestBook.author.bestBook.title': 25 });
 
 At a depth greater than or equal to eight, TypeScript compiles your code but no
 longer type checks it. For example, the following code assigns a ``number`` to a
@@ -125,9 +219,9 @@ referenced property is at a depth of 10:
 .. code-block:: js
    :copyable: false
 
-   collection.findOne({
+   myColl.findOne({
        'bestBook.author.bestBook.author.bestBook.author.bestBook.author.bestBook.author.name': 25
-   })
+   });
 
 To learn more, see the `v4.11.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.11.0>`__.
 
@@ -149,13 +243,13 @@ New features of the 4.10 {+driver-short+} release include:
 
       .. code-block:: js
 
-         require('util').callbackify(() => collection.findOne())(callback)
+         require('util').callbackify(() => myColl.findOne())(callback)
 
     - Use :mdn:`then <Web/JavaScript/Reference/Global_Objects/Promise/then>` syntax:
 
       .. code-block:: js
 
-         collection.findOne().then(res => callback(null, res), err => callback(err))
+         myColl.findOne().then(res => callback(null, res), err => callback(err))
 
   - If you are unable to migrate to Promises in a large codebase, you can
     use the {+node-legacy+} package.
@@ -344,7 +438,7 @@ before and after execution of an operation.
    .. code-block:: js
       :copyable: False
 
-      const fc = collection.find({a: 2.3}).skip(1)
+      const fc = myColl.find({a: 2.3}).skip(1)
       for await (const doc of fc) {
         console.log(doc)
         fc.limit(1) // incorrect usage, cursor already executing
@@ -376,10 +470,10 @@ transformed into a stream by calling ``cursor.stream()``.
    .. code-block:: js
       :copyable: False
 
-      const cursor = collection.find({})
-      const stream = cursor.stream()
-      stream.on("data", data => console.log)
-      stream.on("error", () => client.close())
+      const cursor = myColl.find({});
+      const stream = cursor.stream();
+      stream.on("data", data => console.log);
+      stream.on("error", () => client.close());
 
 Use ``hasNext()`` and ``next()`` for manual iteration.
 Use ``for await of`` syntax or any ``Promise`` helpers for
@@ -612,7 +706,6 @@ What's New in 3.6
 New features of the 3.6 Node.js driver release include:
 
 - Added support for the :ref:`MONGODB-AWS <mongodb-aws>` authentication mechanism using Amazon Web Services (AWS) Identity and Access Management (IAM) credentials
-- Added support for Online Certificate Status Protocol (OCSP)
 - The `find() <{+api+}/classes/Collection.html#find>`__ method supports ``allowDiskUse()`` for sorts that require too much memory to execute in RAM
 - The :ref:`update() <updateDocuments>` and :ref:`replaceOne() <replacementDocument>` methods support index hints
 - A reduction in recovery time for topology changes and failover events

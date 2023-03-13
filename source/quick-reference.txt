@@ -69,7 +69,7 @@ their related reference and API documentation.
      - .. code-block:: javascript
           :copyable: true
 
-          await coll.insert({ title: 'Jackie Robinson' });
+          await coll.insertOne({ title: 'Jackie Robinson' });
 
    * - | **Insert Multiple Documents**
        |
@@ -370,7 +370,7 @@ their related reference and API documentation.
           .. input::
              :language: js
 
-             collection.find({ title: { $regex: /^Rocky/} }, { skip: 2 });
+             coll.find({ title: { $regex: /^Rocky/} }, { skip: 2 });
 
           .. output::
              :language: js

@@ -35,7 +35,7 @@ parameters of the connection URI to specify the behavior of the client.
        authentication mechanisms.
 
    * - **authMechanismProperties**
-     - comma separated key:value pairs, e.g. "opt1:val1,opt2:val2"
+     - comma separated key:value pairs, for example, "opt1:val1,opt2:val2"
      - ``null``
      - Specifies additional options provided for authentication, such as
        enabling hostname canonicalization for GSSAPI.
@@ -46,7 +46,7 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies the database that connections should authenticate against.
 
    * - **compressors**
-     - comma separated list of strings, e.g. "snappy,zlib,zstd"
+     - comma separated list of strings, for example, "snappy,zlib,zstd"
      - ``null``
      - Specifies the allowed compression types for wire protocol messages
        sent to or received from the server. See :ref:`node-network-compression`
@@ -54,8 +54,8 @@ parameters of the connection URI to specify the behavior of the client.
 
    * - **connectTimeoutMS**
      - non-negative integer
-     - ``10000``
-     - Specifies the amount of time to wait to establish a single TCP
+     - ``30000``
+     - Specifies the amount of time, in milliseconds, to wait to establish a single TCP
        socket connection to the server before raising an error. Specifying
        ``0`` disables the connection timeout.
 
@@ -68,7 +68,7 @@ parameters of the connection URI to specify the behavior of the client.
    * - **heartbeatFrequencyMS**
      - integer greater than or equal to 500
      - ``null``
-     - Specifies the interval between regular server monitoring checks.
+     - Specifies the interval, in milliseconds, between regular server monitoring checks.
 
    * - **journal**
      - boolean
@@ -84,14 +84,14 @@ parameters of the connection URI to specify the behavior of the client.
    * - **localThresholdMS**
      - non-negative integer
      - ``15``
-     - Specifies the size of the latency window on round trip time for
+     - Specifies the size of the latency window, in milliseconds, on round trip time for
        selecting between suitable servers. Specifying ``0`` means no wait,
        meaning the fastest available server.
 
    * - **maxIdleTimeMS**
      - non-negative integer
      - ``0``
-     - Specifies the amount of time a connection can be idle before it's closed.
+     - Specifies the amount of time, in milliseconds, a connection can be idle before it's closed.
        Specifying ``0`` means no minimum.
 
    * - **maxPoolSize**
@@ -156,7 +156,7 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies the default read preference for the client (excluding tags). See :ref:`read preference <read-preference>` for more information.
 
    * - **readPreferenceTags**
-     - comma-separated key:value pairs (e.g. "dc:ny,rack:1" and "dc:ny)
+     - comma-separated key:value pairs, for example, "dc:ny,rack:1" and "dc:ny
        can be specified multiple times, each instance of this key is a
        separate tag set
      - ``null``
@@ -196,7 +196,7 @@ parameters of the connection URI to specify the behavior of the client.
    * - **socketTimeoutMS**
      - non-negative integer
      - ``0``
-     - Specifies the amount of time spent attempting to send or receive on a
+     - Specifies the amount of time, in milliseconds, spent attempting to send or receive on a
        socket before timing out. Specifying ``0`` means no timeout.
 
    * - **srvMaxHosts**
@@ -215,6 +215,11 @@ parameters of the connection URI to specify the behavior of the client.
      - boolean
      - ``false``
      - The ``ssl`` is an alias for the ``tls`` option.
+
+   * - **timeoutMS**
+     - non-negative integer
+     - unset (feature is not enabled by default)
+     - Specifies the timeout, in milliseconds, for the full execution of an operation.
 
    * - **tls**
      - boolean
@@ -254,18 +259,6 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies the password to decrypt the client private key to be used
        for TLS connections.
 
-   * - **tlsDisableCertificateRevocationCheck**
-     - boolean
-     - ``false``
-     - Specifies whether the driver will check a certificate's
-       revocation status via CRLs or OCSP.
-
-   * - **tlsDisableOCSPEndpointCheck**
-     - boolean
-     - ``false``
-     - Specifies whether the driver will reach out to OCSP
-       endpoints if needed.
-
    * - **tlsInsecure**
      - boolean
      - ``false``
@@ -280,7 +273,7 @@ parameters of the connection URI to specify the behavior of the client.
    * - **waitQueueTimeoutMS**
      - non-negative integer
      - ``0``
-     - Specifies the amount of time spent attempting to check out a connection
+     - Specifies the amount of time, in milliseconds, spent attempting to check out a connection
        from a server's connection pool before timing out.
 
    * - **wTimeoutMS**
