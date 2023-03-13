@@ -118,8 +118,7 @@ Take the free online course taught by MongoDB instructors
 
 .. list-table::
 
-   * - .. cssclass:: bordered-figure
-       .. figure:: /includes/figures/M220JS_hero.jpg
+   * - .. figure:: /includes/figures/M220JS_hero.jpg
           :alt: M220JS course banner
 
      - `M220JS: MongoDB for JavaScript Developers <https://university.mongodb.com/courses/M220JS/about>`_
