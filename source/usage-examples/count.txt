@@ -35,11 +35,11 @@ documentation for each method for more information.
 
 .. tip::
 
-   You can avoid a collection scan when using ``countDocuments()`` to return
-   the total number of documents in a collection by using a :manual:`hint
-   </reference/method/cursor.hint>` to take advantage of the built-in index on
-   the ``_id`` field. Use this technique only when calling ``countDocuments()``
-   with an empty query parameter.
+   You can improve performance when using ``countDocuments()`` to return the
+   total number of documents in a collection by avoiding a collection scan. To
+   do this, use a :manual:`hint </reference/method/cursor.hint>` to take
+   advantage of the built-in index on the ``_id`` field. Use this technique only
+   when calling ``countDocuments()`` with an empty query parameter.
 
    .. code-block:: javascript
 
