@@ -186,7 +186,7 @@ The driver checks for your credentials in the following sources in order:
 
       To authenticate to your MongoDB instance using AWS credentials stored in
       environment variables, set the following variables by using
-      a shell as shown in the following example:
+      a shell:
 
       .. code-block:: bash
 
