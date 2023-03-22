@@ -185,10 +185,8 @@ The driver checks for your credentials in the following sources in order:
       :tabid: environment variables
 
       To authenticate to your MongoDB instance using AWS credentials stored in
-      environment variables, you must specify ``MONGODB-AWS`` as the
-      value of the ``authMechanism`` parameter in your connection string.
-      Then, set the following environment variables by using
-      ``bash`` or a similar shell as shown in the following example:
+      environment variables, set the following variables by using
+      a shell as shown in the following example:
 
       .. code-block:: bash
 
@@ -214,7 +212,7 @@ The driver checks for your credentials in the following sources in order:
       to Amazon Elastic Kubernetes Service (EKS) or other services.
       To use an OIDC token, create a file that contains your token, then 
       set the absolute path to this file in an environment variable by using
-      ``bash`` or a similar shell as shown in the following example:
+      a shell as shown in the following example:
 
       .. code-block:: bash
 
