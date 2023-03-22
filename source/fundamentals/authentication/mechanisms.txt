@@ -208,7 +208,7 @@ The driver checks for your credentials in the following sources in order:
          :language: javascript
    
    .. tab:: Web Identity Token
-      ..tabid: web-identity-token
+      :tabid: web-identity-token
 
       You can use the OpenID Connect (OIDC) token obtained from a web identity provider to authenticate
       to Amazon Elastic Kubernetes Service (EKS) or other services.
