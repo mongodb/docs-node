@@ -148,7 +148,7 @@ The driver checks for your credentials in the following sources in order:
 
 1. Connection string
 #. Environment variables
-#. Web identity token
+#. Web identity token file
 #. AWS ECS endpoint specified in ``AWS_CONTAINER_CREDENTIALS_RELATIVE_URI``
 #. AWS EC2 endpoint. For more information, see `IAM Roles for Tasks
    <https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html>`_.
@@ -161,6 +161,25 @@ The driver checks for your credentials in the following sources in order:
    credentials that you specified in environment variables.
 
 .. tabs::
+
+   .. tab:: Connection String
+      :tabid: connection string
+
+      To connect to your MongoDB instance with a connection string, pass
+      your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY``
+      credentials to the driver when you attempt to connect. If your AWS
+      login requires a session token, include your ``AWS_SESSION_TOKEN`` as well.
+
+      The following code shows an example of specifying the ``MONGODB-AWS``
+      authentication mechanism and credentials with a connection string:
+
+      .. important::
+
+         Always **URI encode** the username and certificate file path using the
+         ``encodeURIComponent`` method to ensure they are correctly parsed.
+
+      .. literalinclude:: /code-snippets/authentication/aws.js
+         :language: javascript
 
    .. tab:: Environment Variables
       :tabid: environment variables
@@ -187,28 +206,9 @@ The driver checks for your credentials in the following sources in order:
 
       .. literalinclude:: /code-snippets/authentication/aws-env-variable.js
          :language: javascript
-
-   .. tab:: Connection String
-      :tabid: connection string
-
-      To connect to your MongoDB instance with a connection string, pass
-      your ``AWS_ACCESS_KEY_ID`` and ``AWS_SECRET_ACCESS_KEY``
-      credentials to the driver when you attempt to connect. If your AWS
-      login requires a session token, include your ``AWS_SESSION_TOKEN`` as well.
-
-      The following code shows an example of specifying the ``MONGODB-AWS``
-      authentication mechanism and credentials with a connection string:
-
-      .. important::
-
-         Always **URI encode** the username and certificate file path using the
-         ``encodeURIComponent`` method to ensure they are correctly parsed.
-
-      .. literalinclude:: /code-snippets/authentication/aws.js
-         :language: javascript
-   
-   .. tab:: Web Identity Token
-      :tabid: web-identity-token
+      
+   .. tab:: Web Identity Token File
+      :tabid: web-identity-token-file
 
       You can use the OpenID Connect (OIDC) token obtained from a web identity provider to authenticate
       to Amazon Elastic Kubernetes Service (EKS) or other services.
