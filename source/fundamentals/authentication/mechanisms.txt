@@ -201,8 +201,8 @@ The driver checks for your credentials in the following sources in order:
          Omit the line containing ``AWS_SESSION_TOKEN`` if you don't need an AWS
          session token for that role.
       
-      The following code shows an example of specifying the ``MONGODB-AWS``
-      authentication mechanism with environment variables:
+      After you've set the preceding environment variables, specify the ``MONGODB-AWS``
+      authentication mechanism in your connection string as shown in the following example:
 
       .. literalinclude:: /code-snippets/authentication/aws-env-variable.js
          :language: javascript
@@ -220,8 +220,8 @@ The driver checks for your credentials in the following sources in order:
 
          export AWS_WEB_IDENTITY_TOKEN_FILE=<absolute path to file containing your OIDC token>
 
-      The following code shows an example of specifying the ``MONGODB-AWS``
-      authentication mechanism with environment variables:
+      After you've set the preceding environment variable, specify the ``MONGODB-AWS``
+      authentication mechanism in your connection string as shown in the following example:
 
       .. literalinclude:: /code-snippets/authentication/aws-env-variable.js
          :language: javascript
