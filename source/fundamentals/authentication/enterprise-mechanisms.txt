@@ -33,6 +33,14 @@ parameters of the
   parameter if using a value other than ``mongodb``
 - Specify a ``SERVICE_REALM`` value in the ``authMechanismProperties``
   parameter if a custom service realm is required.
+- Specify a ``CANONICALIZE_HOST_NAME`` value in the ``authMechanismProperties``
+  parameter if canonicalization of the hostname is required. This property can take
+  the following values:
+
+  - ``none``: (default) does not perform hostname canonicalization
+  - ``forward``: performs a forward DNS lookup to canonicalize the hostname
+  - ``forwardAndReverse``: performs a forward DNS lookup and then a
+    reverse lookup on that value to canonicalize the hostname
 
 .. important::
    
@@ -58,7 +66,8 @@ The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
    const clusterUrl = "<MongoDB cluster URL>";
    const principal = encodeURIComponent("<Kerberos principal and realm>");
    const serviceRealm = "<Kerberos service realm>";
-   const authMechanismProperties = `SERVICE_REALM:${serviceRealm}`;
+   const canonicalizedHostname = "<canonicalized hostname>";
+   const authMechanismProperties = `SERVICE_REALM:${serviceRealm},CANONICALIZE_HOST_NAME:${canonicalizedHostname}`;
 
    const authMechanism = "GSSAPI";
 
