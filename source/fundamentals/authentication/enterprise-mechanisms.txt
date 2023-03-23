@@ -66,8 +66,8 @@ The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
    const clusterUrl = "<MongoDB cluster URL>";
    const principal = encodeURIComponent("<Kerberos principal and realm>");
    const serviceRealm = "<Kerberos service realm>";
-   const canonicalizedHostname = "<canonicalized hostname>";
-   const authMechanismProperties = `SERVICE_REALM:${serviceRealm},CANONICALIZE_HOST_NAME:${canonicalizedHostname}`;
+   const canonicalizationSetting = "<canonicalization setting>";
+   const authMechanismProperties = `SERVICE_REALM:${serviceRealm},CANONICALIZE_HOST_NAME:${canonicalizationSetting}`;
 
    const authMechanism = "GSSAPI";
 
