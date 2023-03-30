@@ -117,7 +117,7 @@ Version 4.x Breaking Changes
 - ``Cursor`` types no longer extend ``Readable`` directly.
 
 - You cannot use a ``ChangeStream`` instance as an iterator after using
-  it as an ``EventEmitter``. You also cannot do the reverse—using
+  it as an ``EventEmitter``. You also cannot do the reverse—using an
   ``EventEmitter`` instance as an iterator after using it as a ``ChangeStream``.
 
 - The following methods no longer accept a callback parameter:
