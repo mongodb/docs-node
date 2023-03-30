@@ -23,8 +23,8 @@ Before you upgrade, perform the following actions:
   your application connects to and the version of Node.js that your
   application runs on. See the :ref:`<node-compatibility>`
   page for this information.
-- Address any breaking changes between the current version of the driver
-  your application uses and your planned upgrade version in the
+- Address any breaking changes between the version of the driver
+  your application currently uses and your planned upgrade version in the
   :ref:`<node-breaking-changes>` section of this guide. To learn
   more about the {+mdb-server+} release compatibility changes, see the 
   :ref:`<node-server-support-changes>` section.
@@ -46,9 +46,10 @@ working as expected.
 
 The breaking changes in this section are categorized by the major
 version releases that introduced them. When upgrading driver versions,
-address all the breaking changes between the current and upgrade
-versions. For example, if you are upgrading the driver from v3.x to
-v5.x, address all breaking changes listed under v4.x and v5.x.
+address all the breaking changes between your current version and the
+planned upgrade version. For example, if you are upgrading the driver
+from v3.x to v5.x, address all breaking changes listed under v4.x and
+v5.x.
 
 .. _node-breaking-changes-v5.x:
 
@@ -67,8 +68,8 @@ Version 5.x Breaking Changes
   - Use the promise-based API and ``util.callbackify``
   - Add ``mongodb-legacy`` to continue using callbacks
 
-For more information about these strategies, see
-`the v5.0 changelog <https://github.com/mongodb/node-mongodb-native/blob/main/etc/notes/CHANGES_5.0.0.md#optional-callback-support-migrated-to-mongodb-legacy>`__.
+  For more information about these strategies, see
+  `the v5.0 changelog <https://github.com/mongodb/node-mongodb-native/blob/main/etc/notes/CHANGES_5.0.0.md#optional-callback-support-migrated-to-mongodb-legacy>`__.
 
 - The driver removes support for the ``Collection.insert()``,
   ``Collection.update()``, and ``Collection.remove()`` helper methods.
@@ -116,7 +117,8 @@ Version 4.x Breaking Changes
 - ``Cursor`` types no longer extend ``Readable`` directly.
 
 - You cannot use a ``ChangeStream`` instance as an iterator after using
-  it as an ``EventEmitter`` nor visa versa.
+  it as an ``EventEmitter``. You also cannot do the reverse—using
+  ``EventEmitter`` instance as an iterator after using it as a ``ChangeStream``.
 
 - The following methods no longer accept a callback parameter:
 
