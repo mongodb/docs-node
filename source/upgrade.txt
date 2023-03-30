@@ -1,4 +1,4 @@
-.. _node-upgrade-driver:
+.. _node-uqpgrade-driver:
 
 =======================
 Upgrade Driver Versions
@@ -13,7 +13,7 @@ Upgrade Driver Versions
 Overview
 --------
 
-With this guide, you can learn about any changes you might need to make to
+On this page, you can learn about any changes you might need to make to
 your application to upgrade your driver to a new version without loss of
 functionality.
 
@@ -141,6 +141,9 @@ Version 4.x Breaking Changes
 - The driver removes support for the ``Collection.group()`` helper.
 
 - The driver no longer includes the deprecated ``GridStore`` API.
+
+For more information about these changes, see
+`the v4.0 changelog <https://github.com/mongodb/node-mongodb-native/blob/main/etc/notes/CHANGES_4.0.0.md>`__.
 
 .. _node-server-support-changes:
 
