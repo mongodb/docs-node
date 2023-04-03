@@ -213,8 +213,9 @@ The driver checks for your credentials in the following sources in order:
       other services.
 
       To authenticate with your OIDC token you must first install
-      ``@aws-sdk/credential-providers``. Install this dependency using the
-      following ``npm`` command:
+      `@aws-sdk/credential-providers
+      <https://www.npmjs.com/package/@aws-sdk/credential-providers>`__. You can
+      install this dependency using the following ``npm`` command:
 
       .. code-block:: bash
 
