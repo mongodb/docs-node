@@ -1,21 +1,27 @@
+.. _node-faq:
+
 ===
 FAQ
 ===
 
-.. default-domain:: mongodb
-
-Frequently Asked Questions
-
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 2
+   :depth: 1
    :class: singlecol
+
+This page contains frequently asked questions and their corresponding answers.
+
+.. tip::
+
+   If you can't find an answer to your problem on this page,
+   see the :ref:`node-issues-help` page for next steps and more
+   resources.
 
 .. _node-faq-connection-pool:
 
 How Does Connection Pooling Work in the Node Driver?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
 
 Every ``MongoClient`` instance has a built-in connection pool for each server
 in your MongoDB topology. Connection pools open sockets on demand to
