@@ -221,7 +221,7 @@ The driver checks for your credentials in the following sources in order:
 
          npm install @aws-sdk/credential-providers
 
-      Next, create a file that contains your OIDC token, then 
+      Next, create a file that contains your OIDC token. Then 
       set the absolute path to this file in an environment variable by using
       a shell as shown in the following example:
 
