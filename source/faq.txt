@@ -43,7 +43,7 @@ application uses a :ref:`read preference <read-preference>` to query the
 secondary nodes, those connection pools grow and there can be
 ``306`` total connections.
 
-To support high numbers of concurrent MongoDB threads
+To support high numbers of concurrent MongoDB requests
 within one process, you can increase ``maxPoolSize``.
 
 Connection pools are rate-limited. The ``maxConnecting`` option
