@@ -40,8 +40,7 @@ What's New in 5.2
 New features of the 5.2 {+driver-short+} release include:
 
 - The driver now supports automatically obtaining Azure credentials when using
-  automatic Queryable Encryption
-- Minor bug fixes
+  automatic Queryable Encryption.
 
 To learn more, see the `v5.2.0 Release Highlights
 <https://github.com/mongodb/node-mongodb-native/releases/tag/v5.2.0>`__. 
@@ -128,7 +127,7 @@ What's New in 4.15
 
 New features of the 4.15 {+driver-short+} release include:
 
-- Support for AWS IAM roles for service accounts
+- Support for AWS IAM roles for service accounts.
 
 To learn more, see the `v4.15.0 Release Highlights
 <https://github.com/mongodb/node-mongodb-native/releases/tag/v4.15.0>`__. 
