@@ -34,8 +34,7 @@ until a connection becomes available.
 
 Each ``MongoClient`` instance opens two additional sockets per server in your
 MongoDB topology for monitoring the server's state.
-
-For example, a client connected to a 3-node replica set opens 6
+For example, a client connected to a three-node replica set opens six
 monitoring sockets. It also opens as many sockets as needed to support
 requests on each server, up to the value of ``maxPoolSize``. If
 ``maxPoolSize`` is ``100`` and the application uses only the primary
