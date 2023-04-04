@@ -252,12 +252,6 @@ Pass the location of your client certificate file as the value of
 .. literalinclude:: /code-snippets/authentication/x509.js
    :language: javascript
 
-.. note::
-
-   You do not need to specify a username when authenticating with this
-   mechanism. However, if you provide a username, you must encode it so
-   that the server parses it correctly.
-
 TLS/SSL Options
 ~~~~~~~~~~~~~~~
 
