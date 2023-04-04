@@ -53,14 +53,18 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies whether to enable ``keepAlive`` on the TCP socket. For more
        information, see the documentation for `Node.js socket.setKeepAlive
        <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_.
+       This option is deprecated from 5.2.0 and will be removed in a future release as it will always
+       be enabled.
 
    * - **keepAliveInitialDelay**
      - integer
-     - ``120000``
+     - ``300000``
      - Specifies the number of milliseconds to wait before initiating
        ``keepAlive`` on the TCP socket. For more information, see the
        documentation for `Node.js socket.setKeepAlive
        <https://nodejs.org/dist/latest-v10.x/docs/api/net.html#net_socket_setkeepalive_enable_initialdelay>`_.
+       This option is deprecated from 5.2.0 and will be removed in a future release - it will be always
+       set to 300 seconds.
 
    * - **logger**
      - object
