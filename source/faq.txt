@@ -200,6 +200,18 @@ this only works if the operating system supports ``SO_KEEPALIVE``\ .
 .. warning::
     If a firewall ignores or drops the ``keepAlive`` packets this may not work
 
+.. warning::
+    This option is deprecated in 5.2.0 and will be removed in a future release.
+    Once removed it will always be enabled with an initial delay of 300 seconds,
+    resulting in socket settings of:
+
+    - SO_KEEPALIVE=1
+    - TCP_KEEPIDLE=300000
+    - TCP_KEEPCNT=10
+    - TCP_KEEPINTVL=1
+    
+
+
 What Can I Do If I'm Experiencing Unexpected Network Behavior?
 --------------------------------------------------------------
 Internal firewalls that exist between application servers and MongoDB
