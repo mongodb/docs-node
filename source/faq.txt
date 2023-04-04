@@ -38,7 +38,7 @@ MongoDB topology for monitoring the server's state.
 For example, a client connected to a 3-node replica set opens 6
 monitoring sockets. It also opens as many sockets as needed to support
 requests on each server, up to the value of ``maxPoolSize``. If
-``maxPoolSize`` is ``100`` and the application only uses the primary
+``maxPoolSize`` is ``100`` and the application uses only the primary
 (the default), then only the primary connection pool grows and there can
 be at most ``106`` total connections. If the application uses a
 :manual:`read preference </core/read-preference/#read-preference>` to
@@ -46,26 +46,27 @@ query the secondary nodes, their pools also grow and there can be
 ``306`` total connections.
 
 Additionally, connection pools are rate-limited such that each connection pool
-can only create, at maximum, the value of ``maxConnecting`` connections
-in parallel at any time. Any additional request stops waiting in the
-following cases:
+can only create up to the value of ``maxConnecting`` connections
+in parallel at any time. Any additional request stops waiting until one the
+following cases occurs:
 
 - The connection pool finishes creating a connection and there are fewer
-  than ``minPoolSize`` connections in the pool.
+  than ``maxPoolSize`` connections in the pool.
 - An existing connection is checked back into the pool.
 - The driver's ability to reuse existing connections improves due to
   rate-limits on connection creation.
 
 You can set the minimum number of concurrent connections to
 each server with the ``minPoolSize`` option, which defaults to ``0``.
-The connection pool will be initialized with this number of sockets. If
-sockets are closed due to any network errors, causing the total number
+The driver initializes the connection pool with this number of sockets. If
+sockets are closed, causing the total number
 of sockets (both in use and idle) to drop below the minimum, more
 sockets are opened until the minimum is reached.
 
 You can set the maximum number of milliseconds that a connection can
-remain idle in the pool before being removed and replaced with
-the ``maxIdleTimeMS`` option, which defaults to ``0`` (no limit).
+remain idle in the pool by setting the ``maxIdleTimeMS`` option.
+Once a connection has been idle for ``maxIdleTimeMS``, the connection
+pool removes and replaces it. This option defaults to ``0`` (no limit).
 
 The following default configuration for a ``MongoClient`` works for most
 applications:
@@ -74,9 +75,9 @@ applications:
    
    const client = new MongoClient("<connection string>");
 
-Create a client once for each process, and reuse it for all
-operations. It is a common mistake to create a new client for each
-request, which is very inefficient.
+``MongoClient`` supports multiple concurrent requests. For each process,
+create a client and reuse it for all operations in a process. This
+practice is more efficient than creating a client for each request.
 
 To support high numbers of concurrent MongoDB requests
 within one process, you can increase ``maxPoolSize``. Once the pool
@@ -84,7 +85,7 @@ reaches its maximum size, additional requests wait for sockets
 to become available.
 
 The driver does not limit the number of requests that
-can wait for sockets to become available and it is the application's
+can wait for sockets to become available, and it is the application's
 responsibility to limit the size of its pool to bound queuing
 during a load spike. Requests wait for the amount of time specified in
 the ``waitQueueTimeoutMS`` option, which defaults to ``0`` (no limit).
