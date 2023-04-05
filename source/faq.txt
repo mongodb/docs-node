@@ -160,17 +160,17 @@ avoid closing.
 
 One message every 3000 milliseconds is not enough to keep the sockets
 active, so several of the sockets will time out after 5000 milliseconds.
-Reduce the ``minPoolSize`` option in the connection settings to lower
-the number of connection the driver should maintain in the connection
+Reduce the ``maxPoolSize`` option in the connection settings to lower
+the number of connection the driver can maintain in the connection
 pool.
 
-To specify the optional ``minPoolSize`` setting for your ``MongoClient``, declare
+To specify the optional ``maxPoolSize`` setting for your ``MongoClient``, declare
 it in the ``options`` object of the constructor as follows:
 
 .. code-block:: javascript
 
    const client = new MongoClient(uri, {
-     minPoolSize: <integer value>,
+     maxPoolSize: <integer value>,
    });
 
 What Does a Value of "0" mean for "connectTimeoutMS" and "socketTimeoutMS"?
@@ -263,7 +263,6 @@ other, faster operations.
 .. note::
     If the number of operations is greater than the set ``maxPoolSize`` and
     a slow operation occurs, subsequent operations will be delayed.
-
 
 To create a separate connection pool, instantiate another ``MongoClient``
 call the ``connect()`` method on it. See the following example for the
