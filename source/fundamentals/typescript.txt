@@ -304,8 +304,8 @@ include the ``_id`` field in its schema, the driver infers that the type of the
 
    The type parameter passed to your ``Collection`` influences only the type
    inference of the fields returned from the method. The driver does not convert
-   the field to the specified type. The type of the fields in your type
-   parameter's schema should match the type of their corresponding fields in the
+   the field to the specified type. The type of each field in your type
+   parameter's schema should match the type of the corresponding field in the
    collection.
 
 The following code uses the :ref:`Pet <mongodb-node-typescript-pet-interface>`
