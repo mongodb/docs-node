@@ -113,37 +113,31 @@ is on the other side of the planet and has a latency of 10000
 milliseconds, setting the ``connectTimeoutMS`` to anything lower will
 prevent the driver from ever connecting to that member.
 
-Should I Use "socketTimeoutMS" as a Way of Preventing Long-Running Operations From Slowing Down the Server?
--------------------------------------------------------------------------------------------------------------
-
-No, you should **not** use ``socketTimeoutMS`` to end operations that
-may run for too long and slow down the application. Attempting to do so
-may not achieve the intended result. Closing a socket is costly because
-the connection pool may create a new socket to replace the one on which
-the timeout occurred.
+What Happens to My Operations if My Client Disconnects?
+-------------------------------------------------------
 
 Starting in {+mdb-server+} version 4.2, the server terminates
 :manual:`certain operations </release-notes/4.2/#client-disconnection>` such as
 aggregations and find operations if the client disconnects before the
-operation completes.
+it successfully executes an operation.
 
-However, closing the socket does not terminate all operations, including
-all write operations. These operations continue to run on the MongoDB
-server, which could cause data inconsistencies if the application
-retries the operation on failure.
+Some operations, including all write operations, continue to run on the
+{+mdb-server+} even if the client disconnects. This behavior can cause data
+inconsistencies if your application retries the operation after failure.
 
-There are important use cases for ``socketTimeoutMS``, which
-are detailed in the following list:
+How Can I Confirm That the Driver Closed Unusable Sockets?
+----------------------------------------------------------
 
-- A MongoDB process errors out.
-- A misconfigured firewall causes a socket connection without sending a
-  ``FIN`` packet.
+If you experience unexpected network behavior or receive errors when
+executing a MongoDB process, you may not receive confirmation that the
+driver closed the corresponding socket correctly.
 
-In these cases, there is no way to detect that the connection has died.
-Setting the ``socketTimeoutMS`` option is essential to ensure that the sockets
-are closed correctly. A good rule of thumb is to set ``socketTimeoutMS``
-to two to three times the length of the slowest operation that you
-execute with the driver.
+To make sure that the driver closes sockets correctly in these cases,
+set the ``socketTimeoutMS`` option on your ``MongoClient``. Once any
+process times out, the driver will close the socket. We recommend that
+you select a value for ``socketTimeoutMS`` that is two to three times
+as long as the length of the slowest operation that your application
+executes.
 
 How Can I Prevent Sockets From Timing out Before They Become Active?
 --------------------------------------------------------------------
