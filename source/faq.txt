@@ -118,8 +118,8 @@ What Happens to My Operations if My Client Disconnects?
 
 Starting in {+mdb-server+} version 4.2, the server terminates
 :manual:`certain operations </release-notes/4.2/#client-disconnection>` such as
-aggregations and find operations if the client disconnects before the
-it successfully executes an operation.
+aggregations and find operations if the client disconnects before it
+successfully executes an operation.
 
 Some operations, including all write operations, continue to run on the
 {+mdb-server+} even if the client disconnects. This behavior can cause data
@@ -132,12 +132,12 @@ If you experience unexpected network behavior or receive errors when
 executing a MongoDB process, you may not receive confirmation that the
 driver closed the corresponding socket correctly.
 
-To make sure that the driver closes sockets correctly in these cases,
-set the ``socketTimeoutMS`` option on your ``MongoClient``. Once any
-process times out, the driver will close the socket. We recommend that
-you select a value for ``socketTimeoutMS`` that is two to three times
-as long as the length of the slowest operation that your application
-executes.
+To make sure that the driver closes the socket correctly in these cases,
+set the ``socketTimeoutMS`` option on your ``MongoClient`` instance. Once any
+process times out, the driver will successfully close the socket. We
+recommend that you select a value for ``socketTimeoutMS`` that is two to
+three times as long as the length of the slowest operation that your
+application executes.
 
 How Can I Prevent Sockets From Timing out Before They Become Active?
 --------------------------------------------------------------------
