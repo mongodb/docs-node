@@ -122,9 +122,10 @@ may not achieve the intended result. Closing a socket is costly because
 the connection pool may create a new socket to replace the one on which
 the timeout occurred.
 
-Starting in {+mdb-server+} version 4.2, the server terminates :ref:`certain
-operations <4.2-query-plans>` such as aggregations and find operations
-if the client disconnects before the operation completes.
+Starting in {+mdb-server+} version 4.2, the server terminates
+:manual:`certain operations </release-notes/4.2/#client-disconnection>` such as
+aggregations and find operations if the client disconnects before the
+operation completes.
 
 However, closing the socket does not terminate all operations, including
 all write operations. These operations continue to run on the MongoDB
