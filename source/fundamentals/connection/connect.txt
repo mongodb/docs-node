@@ -56,6 +56,14 @@ connect to MongoDB.
 .. literalinclude:: /code-snippets/connection/srv.js
    :language: javascript
 
+.. tip:: Reuse Your Client
+
+   As each ``MongoClient`` represents a pool of connections to the
+   database, most applications only require a single instance of a
+   ``MongoClient``, even across multiple requests. To learn more about
+   how connection pools work in the driver, see the :ref:`FAQ page
+   <node-faq-connection-pool>`.
+
 .. _node-other-ways-to-connect:
 
 Other Ways to Connect to MongoDB
