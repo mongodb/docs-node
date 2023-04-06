@@ -113,31 +113,33 @@ is on the other side of the planet and has a latency of 10000
 milliseconds, setting the ``connectTimeoutMS`` to anything lower will
 prevent the driver from ever connecting to that member.
 
-What Happens to My Operations if My Client Disconnects?
--------------------------------------------------------
+What Happens to Running Operations If the Client Disconnects?
+-------------------------------------------------------------
 
 Starting in {+mdb-server+} version 4.2, the server terminates
-:manual:`certain operations </release-notes/4.2/#client-disconnection>` such as
-aggregations and find operations if the client disconnects before it
-successfully executes an operation.
+certain operations such as aggregations and find operations if the
+client disconnects the operations successfully completes. To see a full
+list of operations affected by this behavior, see the :manual:`Server version
+4.2 release notes </release-notes/4.2/#client-disconnection>` in the
+Server manual.
 
-Some operations, including all write operations, continue to run on the
+Other operations, such as write operations, continue to run on the
 {+mdb-server+} even if the client disconnects. This behavior can cause data
-inconsistencies if your application retries the operation after failure.
+inconsistencies if your application retries the operation after the
+client disconnects.
 
 How Can I Confirm That the Driver Closed Unusable Sockets?
 ----------------------------------------------------------
 
-If you experience unexpected network behavior or receive errors when
-executing a MongoDB process, you may not receive confirmation that the
-driver closed the corresponding socket correctly.
+If you experience unexpected network behavior or if a MongoDB process
+fails with an error, you may not receive confirmation that the
+driver correctly closed the corresponding socket.
 
-To make sure that the driver closes the socket correctly in these cases,
-set the ``socketTimeoutMS`` option on your ``MongoClient`` instance. Once any
-process times out, the driver will successfully close the socket. We
-recommend that you select a value for ``socketTimeoutMS`` that is two to
-three times as long as the length of the slowest operation that your
-application executes.
+To make sure that the driver correctly closes the socket in these cases,
+set the ``socketTimeoutMS`` option. When a MongoDB process times out, the driver
+will close the socket. We recommend that you select a value
+for ``socketTimeoutMS`` that is two to three times as long as the
+expected duration of the slowest operation that your application executes.
 
 How Can I Prevent Sockets From Timing out Before They Become Active?
 --------------------------------------------------------------------
@@ -154,9 +156,9 @@ avoid closing.
 
 One message every 3000 milliseconds is not enough to keep the sockets
 active, so several of the sockets will time out after 5000 milliseconds.
-Reduce the ``maxPoolSize`` option in the connection settings to lower
-the number of connection the driver can maintain in the connection
-pool.
+To avoid excessive socket timeouts, reduce the number of connections
+that the driver can maintain in the connection pool by specifying the
+``maxPoolSize`` option.
 
 To specify the optional ``maxPoolSize`` setting for your ``MongoClient``, declare
 it in the ``options`` object of the constructor as follows:
@@ -255,8 +257,9 @@ a separate connection pool for the slow operation, isolating it from
 other, faster operations.
 
 .. note::
-    If the number of operations is greater than the set ``maxPoolSize`` and
-    a slow operation occurs, subsequent operations will be delayed.
+    If the number of operations is greater than the value of the
+    ``maxPoolSize`` option and a slow operation occurs, subsequent
+    operations will be delayed.
 
 To create a separate connection pool, instantiate another ``MongoClient``
 call the ``connect()`` method on it. See the following example for the
