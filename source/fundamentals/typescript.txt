@@ -1,8 +1,8 @@
+.. node-fundamentals-typescript:
+
 ==========
 TypeScript
 ==========
-
-.. default-domain:: mongodb
 
 .. contents:: On this page
    :local:
@@ -15,7 +15,9 @@ Overview
 
 In this guide, you can learn about the **TypeScript** features and limitations
 of the MongoDB Node.js driver. TypeScript is a strongly typed programming
-language that compiles to JavaScript.
+language that compiles to JavaScript. The TypeScript compiler offers error and
+type checking in real time. Code editors that support TypeScript can provide
+code autocompletion, inline documentation, and surface type-related errors.
 
 All TypeScript features of the driver are optional. All valid JavaScript
 code written with the driver is also valid TypeScript code.
