@@ -17,8 +17,8 @@ In this guide, you can learn about the **TypeScript** features and limitations
 of the MongoDB Node.js driver. TypeScript is a strongly typed programming
 language that compiles to JavaScript.
 
-The TypeScript compiler offers error and type checking in real time. Code
-editors that support TypeScript can provide autocomplete, display documentation
+The TypeScript compiler offers type checking in real time. Code editors that 
+support TypeScript can provide autocomplete suggestions, display documentation 
 inline, and identify type-related errors.
 
 All TypeScript features of the driver are optional. All valid JavaScript
