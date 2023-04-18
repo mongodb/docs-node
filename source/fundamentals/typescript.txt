@@ -1,8 +1,8 @@
+.. node-fundamentals-typescript:
+
 ==========
 TypeScript
 ==========
-
-.. default-domain:: mongodb
 
 .. contents:: On this page
    :local:
@@ -16,6 +16,10 @@ Overview
 In this guide, you can learn about the **TypeScript** features and limitations
 of the MongoDB Node.js driver. TypeScript is a strongly typed programming
 language that compiles to JavaScript.
+
+The TypeScript compiler offers type checking in real time. Code editors that
+support TypeScript can provide autocomplete suggestions, display documentation
+inline, and identify type-related errors.
 
 All TypeScript features of the driver are optional. All valid JavaScript
 code written with the driver is also valid TypeScript code.
@@ -88,13 +92,13 @@ Type Safety and Dot Notation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you specify a query or update with **dot notation**, the {+driver-short+}
-provides type safety if your query or update does not 
+provides type safety if your query or update does not
 :ref:`reference a nested instance of a recursive type <node-driver-recursive-types-dot-notation>`.
 Dot notation is a syntax you can use to navigate nested JSON objects.
 
 The following code snippet defines the ``ClassificationPet`` interface,
 which includes a ``classification`` field that enables you to specify the
-genus and color of dogs and cats:  
+genus and color of dogs and cats:
 
 .. code-block:: typescript
 
@@ -140,7 +144,7 @@ each of which includes a ``time`` field:
      name: string;
      mealtimes: Mealtime[];
    }
-   
+
    interface Mealtime{
      time: string;
      amount: number;
@@ -155,7 +159,7 @@ updates the nested ``time`` field of the ``Mealtime`` instance at index
    :emphasize-lines: 5
 
    const mealCounter = 1;
-   
+
    await collection.findOneAndUpdate(
      { name: "Lassie" },
      { $set: { [`mealtimes.${mealCounter}.time` as const]: '4:00 PM' } },
@@ -166,7 +170,7 @@ To learn more about dot notation, see
 in the MongoDB manual.
 
 To learn more about the limitations of dot notation in the
-{+driver-short+}, see the 
+{+driver-short+}, see the
 :ref:`<node-driver-recursive-types-dot-notation>`
 section.
 
@@ -190,12 +194,12 @@ of insert operations. The following table describes how different
    * - | Unspecified
      - | Not applicable
      - | No
-     - | The driver creates an 
+     - | The driver creates an
          :manual:`ObjectId </reference/method/ObjectId/>`
          value for each inserted document.
 
    * - | Specified
-     - | ``{ _id: number };`` 
+     - | ``{ _id: number };``
      - | Yes
      - | If you do not specify a value for the ``_id`` field in an insert operation,
          the driver raises an error.
@@ -232,7 +236,7 @@ The following code uses the preceding interface along with the
 
    const database = client.db("<your database>");
    const collection = db.collection<OptionalId<IdPet>>("<your collection>");
-   
+
    collection.insertOne({
      name: "Spot",
      age: 2
@@ -256,7 +260,7 @@ The ``find`` and ``findOne`` methods of the ``Collection`` class include
 the ``_id`` field in their return type.
 
 If the type parameter you passed to your ``Collection`` instance includes the
-``_id`` field, the type of the ``_id`` field in the values returned from the 
+``_id`` field, the type of the ``_id`` field in the values returned from the
 find methods is the same as the type of the ``_id``
 field in your type parameter.
 
@@ -271,7 +275,7 @@ a document with an ``_id`` of type ``ObjectId``:
 
    const database = client.db("<your database>");
    const collection = db.collection<Pet>("<your collection>");
-   
+
    const document = await collection.findOne({
      name: "Spot",
    });
@@ -330,7 +334,7 @@ document with an ``_id`` field of type ``number``:
       );
       // Compile time error: Property '_id' does not exist on type 'ProjectedDocument'.
       console.log(doc._id.generationTime);
-   
+
    To view a runnable TypeScript example that includes a find method applying a
    projection, see the
    :ref:`Find a Document <node-driver-findone-usage-example-code-snippet>` page.
