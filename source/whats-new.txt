@@ -10,6 +10,7 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 5.3 <version-5.3>`
 * :ref:`Version 5.2 <version-5.2>`
 * :ref:`Version 5.1 <version-5.1>`
 * :ref:`Version 5.0 <version-5.0>`
@@ -31,6 +32,30 @@ Learn what's new in:
 * :ref:`Version 4.0 <version-4.0>`
 * :ref:`Version 3.7 <version-3.7>`
 * :ref:`Version 3.6 <version-3.6>`
+
+.. _version-5.3:
+
+What's New in 5.3
+-----------------
+
+New features of the 5.3 {+driver-short+} release include:
+
+.. important:: Deprecation Notice
+
+    - The ``AbstractCursor.forEach()`` method is deprecated. Use ``for await...of``
+      instead.
+    - The ``addUser()`` method is deprecated. Use ``createUser()`` instead.
+    - The ``keepAlive`` and ``keepAliveInitialDelay`` connection options are 
+      deprecated.
+    - Duplicate getters in the ``BulkWriteResult`` class are deprecated. 
+      See the corresponding `GitHub pull request <https://github.com/mongodb/node-mongodb-native/pull/3623/files>`__
+      for a full list of deprecated methods and the preferred alternatives.
+
+- Client metadata now includes function-as-a-service (FaaS) environment information
+  and alternative runtime detection.
+- The ``keepAliveInitialDelay`` connection option now defaults to 300 seconds.
+- The driver now allows SRV record addresses that contain a trailing dot.
+- ``UpdateResult.upsertedId`` can now be null.
 
 .. _version-5.2:
 
