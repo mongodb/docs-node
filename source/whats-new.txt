@@ -57,6 +57,9 @@ New features of the 5.3 {+driver-short+} release include:
 - The driver now allows SRV record addresses that contain a trailing dot.
 - ``UpdateResult.upsertedId`` can now be null.
 
+To learn more, see the `v5.3.0 Release Highlights
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v5.3.0>`__. 
+
 .. _version-5.2:
 
 What's New in 5.2
