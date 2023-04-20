@@ -45,7 +45,7 @@ New features of the 5.3 {+driver-short+} release include:
     - The ``forEach()`` cursor method, which allows you to iteratively access
       results from queries and aggregations, is deprecated. Use the 
       ``for await...of`` syntax instead, as shown
-      :doc:`here. </fundamentals/crud/read-operations/cursor/#asynchronous-iteration>`
+      :ref:`here. <node-fundamentals-async-iteration>`
     - The ``addUser()`` method is deprecated. Use ``createUser()`` instead.
     - The ``keepAlive`` and ``keepAliveInitialDelay`` connection options are 
       deprecated.
