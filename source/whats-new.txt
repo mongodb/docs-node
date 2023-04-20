@@ -51,7 +51,7 @@ New features of the 5.3 {+driver-short+} release include:
       See the corresponding `GitHub pull request <https://github.com/mongodb/node-mongodb-native/pull/3623/files>`__
       for a full list of deprecated methods and the preferred alternatives.
 
-- Client metadata now includes function-as-a-service (FaaS) environment information
+- Client metadata now includes function as a service (FaaS) environment information
   and alternative runtime detection.
 - The ``keepAliveInitialDelay`` connection option now defaults to 300 seconds.
 - The driver now allows SRV record addresses that contain a trailing dot.
