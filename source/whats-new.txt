@@ -49,7 +49,7 @@ New features of the 5.3 {+driver-short+} release include:
     - The ``addUser()`` method is deprecated. Use ``createUser()`` instead.
     - The ``keepAlive`` and ``keepAliveInitialDelay`` connection options are 
       deprecated.
-    - Duplicate getters in the ``BulkWriteResult`` class are deprecated. 
+    - Methods that contain duplicated functionality in the ``BulkWriteResult`` class are deprecated. 
       See the 
       `API documentation <https://mongodb.github.io/node-mongodb-native/5.3/classes/BulkWriteResult.html#nInserted>`__
       for a full list of deprecated methods and the preferred alternatives.
