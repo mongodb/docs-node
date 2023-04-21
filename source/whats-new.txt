@@ -56,8 +56,6 @@ New features of the 5.3 {+driver-short+} release include:
 
 - Client metadata now includes function as a service (FaaS) environment information
   and alternative runtime detection.
-- The ``keepAliveInitialDelay`` connection option now defaults to 300 seconds
-  instead of 120 seconds.
 - The driver now allows SRV record addresses that contain a trailing dot.
 - ``UpdateResult.upsertedId`` now returns null when no documents are updated.
 
