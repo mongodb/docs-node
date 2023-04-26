@@ -31,8 +31,8 @@ for your client.
 Enable TLS
 ----------
 
-You can enable TLS for a connection to your MongoDB instance
-by using the following mechanisms:
+You can enable TLS on a connection to your MongoDB instance
+in the following ways:
 
 - Setting the ``tls`` option to ``true`` in your connection string
 - Setting the ``tls`` option to ``true`` in your ``MongoClientOptions``
