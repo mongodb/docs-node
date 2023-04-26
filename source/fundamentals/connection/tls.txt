@@ -20,7 +20,7 @@ the TLS/SSL settings in either your connection string or the
 `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
 for your client.
 
-.. important:: TLS is a Successor Protocol to SSL
+.. important:: TLS vs. SSL
    
    TLS is the successor protocol to SSL, but the terms are often used
    interchangeably. Since TLS is an improved version of SSL, this guide
@@ -35,8 +35,7 @@ You can enable TLS for a connection to your MongoDB instance
 by using the following mechanisms:
 
 - Setting the ``tls`` option to ``true`` in your connection string
-- Setting the ``tls`` option to ``true`` in the ``MongoClientOptions``
-  parameter of your ``MongoClient`` constructor
+- Setting the ``tls`` option to ``true`` in your ``MongoClientOptions``
 
 .. tabs::
 
@@ -105,6 +104,7 @@ your ``MongoClientOptions``:
 
    const client = new MongoClient(uri, {
      tlsAllowInvalidHostnames: true,
+     ...
    });
 
 .. warning::
@@ -130,6 +130,7 @@ your ``MongoClientOptions``:
 
    const client = new MongoClient(uri, {
      tlsAllowInvalidCertificates: true,
+     ...
    });
 
 .. warning::
@@ -199,6 +200,9 @@ To learn more about the ``tls.createSecureContext()`` method and the
 ``tls`` package, see the `Node.js TLS API documentation
 <https://nodejs.org/api/tls.html#tlscreatesecurecontextoptions>`__.
 
+To see a runnable example using the ``secureContext`` client option, see
+the :ref:`SecureContext Example <node-securecontext-full-example>`.
+
 Reference Certificate Filepaths to Connect
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -242,6 +246,8 @@ files and pass the resulting ``Buffer`` objects to the ``ca``, ``cert``, and
      key: key,
    });
 
+.. _node-securecontext-full-example:
+
 ``SecureContext`` Example
 -------------------------
 
@@ -266,8 +272,8 @@ connects to MongoDB and executes a find query:
    });
    
    const client = new MongoClient(uri, {
+     tls: true,     
      secureContext: sc,
-     tls: true,
    });
    
    async function run() {
