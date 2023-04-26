@@ -88,3 +88,210 @@ manual documentation:
 - :manual:`OpenSSL CA Certificate for Testing </appendix/security/appendixA-openssl-ca/>`
 - :manual:`OpenSSL Server Certificates for Testing </appendix/security/appendixB-openssl-server/>`
 - :manual:`OpenSSL Client Certificates for Testing </appendix/security/appendixC-openssl-client/>`
+
+.. _node-disable-hostname-verification:
+
+Disable Hostname Verification
+-----------------------------
+
+By default, the driver ensures that the hostname included in the server's
+TLS certificates matches the hostname you specify when creating
+a ``MongoClient``. If you need to disable hostname verification for your
+application, you set ``tlsAllowInvalidHostnames`` to ``true`` in
+your ``MongoClientOptions``:
+
+.. code-block:: js
+   :emphasize-lines: 2
+
+   const client = new MongoClient(uri, {
+     tlsAllowInvalidHostnames: true,
+   });
+
+.. warning::
+
+   If you disable hostname verification, you risk making your configuration
+   `insecure <https://tlseminar.github.io/docs/mostdangerous.pdf>`__.
+   You should only disable hostname verification for testing purposes or
+   when you have no other alternative.
+
+.. _node-allow-invalid-certificates:
+
+Bypass Certificate Validation
+-----------------------------
+
+By default, the driver validates certificates and raises an error for
+connections that present invalid certificates, such as self-signed
+certificates. If you need to disable certificate validation for your
+application, you set ``tlsAllowInvalidCertificates`` to ``true`` in
+your ``MongoClientOptions``:
+
+.. code-block:: js
+   :emphasize-lines: 2
+
+   const client = new MongoClient(uri, {
+     tlsAllowInvalidCertificates: true,
+   });
+
+.. warning::
+
+   If you disable certificate validation, you risk creating a
+   vulnerability to expired certificates and to foreign processes posing
+   as valid client instances. You should only use this option on systems
+   where intrusion is not possible.
+
+For a full list of client options, see :ref:`node-connection-options`.
+
+.. _node-client-tls-connect:
+
+Reference Certificates in a Client
+----------------------------------
+
+You must reference your certificates in your ``MongoClientOptions`` so
+that the Server can validate them before the client connects. The
+driver provides multiple TLS-related client options to reference your
+certificates. You can connect with the following option configurations:
+
+- Passing a ``SecureContext`` object to the ``secureContext`` option *(Recommended)*
+- Passing filepath strings to the ``tlsCAFile`` and
+  ``tlsCertificateKeyFile`` options
+- Passing ``Buffer`` objects that contain the contents of your
+  certificates to the ``ca``, ``cert``, and ``key`` options
+
+.. _node-tls-securecontext:
+
+Create a ``SecureContext`` Object to Connect
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We recommend that you use the ``secureContext`` option to connect with
+the TLS protocol. By using a ``SecureContext`` object to store your
+certificates, you use the Node.js framework for TLS that is independent of the
+driver. When you use this option, you keep all TLS options in a
+reusable object. This is the most organized way to set up
+TLS for your application.
+
+To create a ``SecureContext`` object, you must first install the ``tls``
+package and use it in your application. The ``tls.createSecureContext()``
+method takes an options parameter that contains the contents of the
+certificates. The ``secureContext`` option in your
+``MongoClientOptions`` takes the ``SecureContext`` object as its value,
+allowing the client to reference the certificates for validation.
+
+The following code shows how to create a ``SecureContext`` object by
+calling the ``tls.createSecureContext()`` method and set the
+``secureContext`` client option:
+
+.. code-block:: js
+   :emphasize-lines: 2-6, 10
+   
+   // Create a SecureContext object
+   var sc = tls.createSecureContext({
+     ca: fs.readFileSync(`<path to CA certificate>`),
+     cert: fs.readFileSync(`<path to client certificate>`),
+     key: fs.readFileSync(`<path to client certificate>`),
+   });
+   
+   // Pass the SecureContext as a client option
+   const client = new MongoClient(uri, {
+     secureContext: sc,
+   });
+
+To learn more about the ``tls.createSecureContext()`` method and the
+``tls`` package, see the `Node.js TLS API documentation
+<https://nodejs.org/api/tls.html#tlscreatesecurecontextoptions>`__.
+
+Reference Certificate Filepaths to Connect
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can reference the filepaths for your certificates as strings in your
+client options to connect with TLS.
+
+The following code shows how to specify the ``tlsCAFile`` and
+``tlsCertificateKeyFile`` client options with certificate filepaths: 
+
+.. code-block:: js
+   :emphasize-lines: 3-4
+   
+   // Pass filepaths to client options
+   const client = new MongoClient(uri, {
+     tlsCAFile: `<path to CA certificate>`,
+     tlsCertificateKeyFile: `<path to client certificate>`,
+   });
+
+Pass Certificate File Contents to Connect
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can pass the contents of your certificate files as ``Buffer``
+objects in your client options to connect with TLS.
+
+The following code shows how to read the contents of your certificate
+files and pass the resulting ``Buffer`` objects to the ``ca``, ``cert``, and
+``key`` client options:
+
+.. code-block:: js
+   :emphasize-lines: 2-4, 8-10
+   
+   // Read file contents
+   const ca = fs.readFileSync(`<path to CA certificate>`);
+   const cert = fs.readFileSync(`<path to client certificate>`);
+   const key = fs.readFileSync(`<path to client certificate>`);
+
+   // Pass Buffers to client options
+   const client = new MongoClient(uri, {
+     ca: ca,
+     cert: cert,
+     key: key,
+   });
+
+``SecureContext`` Example
+-------------------------
+
+This example shows how to create a ``SecureContext`` object and
+a ``MongoClient`` instance that includes TLS options. The example
+connects to MongoDB and executes a find query:
+
+.. code-block:: js
+   
+   const { MongoClient } = require("mongodb");
+   const fs = require("fs");
+   const tls = require("tls");
+   
+   // Replace the uri string with your connection string.
+   const uri = "<connection uri>";
+   
+   // Replace the filepaths with your certificate filepaths.
+   var sc = tls.createSecureContext({
+     ca: fs.readFileSync(`<path to CA certificate>`),
+     cert: fs.readFileSync(`<path to client certificate>`),
+     key: fs.readFileSync(`<path to client certificate>`),
+   });
+   
+   const client = new MongoClient(uri, {
+     secureContext: sc,
+     tls: true,
+   });
+   
+   async function run() {
+     try {
+       const db = client.db("myDB");
+       const myColl = database.collection("myColl");
+       const doc = await myColl.findOne({});   
+       console.log(doc);
+     } finally {
+       await client.close();
+     }
+   }
+   run().catch(console.dir);
+
+API Documentation
+-----------------
+
+- `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `tlsAllowInvalidHostnames client option <{+api+}/interfaces/MongoClientOptions.html#tlsAllowInvalidHostnames>`__
+- `tlsAllowInvalidCertificates client option <{+api+}/interfaces/MongoClientOptions.html#tlsAllowInvalidCertificates>`__
+- `secureContext client option <{+api+}/interfaces/MongoClientOptions.html#secureContext>`__
+- `tlsCAFile client option <{+api+}/interfaces/MongoClientOptions.html#tlsCAFile>`__
+- `tlsCertificateKeyFile client option <{+api+}/interfaces/MongoClientOptions.html#tlsCertificateKeyFile>`__
+- `ca client option <{+api+}/interfaces/MongoClientOptions.html#ca>`__
+- `cert client option <{+api+}/interfaces/MongoClientOptions.html#cert>`__
+- `key client option <{+api+}/interfaces/MongoClientOptions.html#key>`__
