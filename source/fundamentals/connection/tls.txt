@@ -1,0 +1,90 @@
+.. _node-connect-tls:
+
+==========================
+Enable TLS on a Connection
+==========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to connect to MongoDB instances with the
+`TLS/SSL <https://en.wikipedia.org/wiki/Transport_Layer_Security>`__
+security protocol. To configure your connection to use TLS/SSL, enable
+the TLS/SSL settings in either your connection string or the
+`MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
+for your client.
+
+.. important:: TLS is a Successor Protocol to SSL
+   
+   TLS is the successor protocol to SSL, but the terms are often used
+   interchangeably. Since TLS is an improved version of SSL, this guide
+   describes how to connect to MongoDB with the TLS protocol.
+
+.. _node-enable-tls:
+
+Enable TLS
+----------
+
+You can enable TLS for a connection to your MongoDB instance
+by using the following mechanisms:
+
+- Setting the ``tls`` option to ``true`` in your connection string
+- Setting the ``tls`` option to ``true`` in the ``MongoClientOptions``
+  parameter of your ``MongoClient`` constructor
+
+.. tabs::
+
+   .. tab:: Connection String
+      :tabid: connection string
+
+      To enable TLS on a connection by using a connection string option,
+      set the parameter ``tls`` as ``true`` in the connection string URI
+      that you pass to the ``MongoClient`` constructor:
+
+      .. code-block:: js
+         :emphasize-lines: 1
+
+         const uri = "mongodb://<hostname>:<port>?tls=true";
+         const client = new MongoClient(uri, myClientSettings);
+
+   .. tab:: MongoClientOptions
+      :tabid: mongoclientoptions
+
+      To enable TLS on a connection by using an option in a
+      ``MongoClientOptions`` instance, set the property ``tls`` as
+      ``true`` and pass the options to the ``MongoClient`` constructor:
+      
+      .. code-block:: js
+         :emphasize-lines: 2
+
+         var myClientSettings = {
+           tls: true,
+           ...
+         };
+         
+         const client = new MongoClient(uri, myClientSettings);
+
+.. _node-configure-tls-certificates:
+
+Configure Certificates
+----------------------
+
+Applications that initiate TLS requests require access to
+cryptographic certificates that prove the identity of the application
+itself and other applications that the application
+interacts with.
+
+For resources on generating TLS certificates, see the following Server
+manual documentation:
+
+- :manual:`TLS/SSL (Transport Encryption) </core/security-transport-encryption/>`
+- :manual:`TLS/SSL Configuration for Clients </tutorial/configure-ssl-clients/>`
+- :manual:`OpenSSL CA Certificate for Testing </appendix/security/appendixA-openssl-ca/>`
+- :manual:`OpenSSL Server Certificates for Testing </appendix/security/appendixB-openssl-server/>`
+- :manual:`OpenSSL Client Certificates for Testing </appendix/security/appendixC-openssl-client/>`
