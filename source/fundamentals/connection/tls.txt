@@ -88,10 +88,16 @@ manual documentation:
 - :manual:`OpenSSL Server Certificates for Testing </appendix/security/appendixB-openssl-server/>`
 - :manual:`OpenSSL Client Certificates for Testing </appendix/security/appendixC-openssl-client/>`
 
-.. _node-disable-hostname-verification:
+Configure TLS Client Options
+----------------------------
+
+The driver provides client options that you can use to customize how you
+enable TLS on a connection.
+
+For a full list of client options, see :ref:`node-connection-options`.
 
 Disable Hostname Verification
------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, the driver ensures that the hostname included in the server's
 TLS certificates matches the hostname you specify when creating
@@ -114,10 +120,8 @@ your ``MongoClientOptions``:
    You should only disable hostname verification for testing purposes or
    when you have no other alternative.
 
-.. _node-allow-invalid-certificates:
-
 Bypass Certificate Validation
------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By default, the driver validates certificates and raises an error for
 connections that present invalid certificates, such as self-signed
@@ -139,8 +143,6 @@ your ``MongoClientOptions``:
    vulnerability to expired certificates and to foreign processes posing
    as valid client instances. You should only use this option on systems
    where intrusion is not possible.
-
-For a full list of client options, see :ref:`node-connection-options`.
 
 .. _node-client-tls-connect:
 
