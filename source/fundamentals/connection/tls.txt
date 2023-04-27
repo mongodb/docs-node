@@ -34,23 +34,10 @@ Enable TLS
 You can enable TLS on a connection to your MongoDB instance
 in the following ways:
 
-- Setting the ``tls`` option to ``true`` in your connection string
 - Setting the ``tls`` option to ``true`` in your ``MongoClientOptions``
+- Setting the ``tls`` option to ``true`` in your connection string
 
 .. tabs::
-
-   .. tab:: Connection String
-      :tabid: connection string
-
-      To enable TLS on a connection by using a connection string option,
-      set the parameter ``tls`` as ``true`` in the connection string URI
-      that you pass to the ``MongoClient`` constructor:
-
-      .. code-block:: js
-         :emphasize-lines: 1
-
-         const uri = "mongodb://<hostname>:<port>?tls=true";
-         const client = new MongoClient(uri, myClientSettings);
 
    .. tab:: MongoClientOptions
       :tabid: mongoclientoptions
@@ -69,6 +56,19 @@ in the following ways:
          
          const client = new MongoClient(uri, myClientSettings);
 
+   .. tab:: Connection String
+      :tabid: connection string
+
+      To enable TLS on a connection by using a connection string option,
+      set the parameter ``tls`` as ``true`` in the connection string URI
+      that you pass to the ``MongoClient`` constructor:
+
+      .. code-block:: js
+         :emphasize-lines: 1
+
+         const uri = "mongodb://<hostname>:<port>?tls=true";
+         const client = new MongoClient(uri, myClientSettings);
+
 .. _node-configure-tls-certificates:
 
 Configure Certificates
@@ -82,14 +82,13 @@ be stored as ``PEM`` files, which are concatenated certificate
 containers.
 
 For production use, your MongoDB deployment should use valid certificates generated and
-signed by the same certificate authority. For testing, you can
-enable TLS with self-signed certificates.
+signed by the same certificate authority. For testing, you can use self-signed certificates.
 
 Configure TLS Client Options
 ----------------------------
 
-The driver provides client options that you can use to customize how you
-enable TLS on a connection.
+In addition to the ``tls`` option, the driver provides client options
+that you can use to configure TLS on your connection.
 
 The following table describes the TLS client options that you can
 specify to reference your certificates and connect to MongoDB with TLS
@@ -108,32 +107,34 @@ type for each option.
      - Description
 
    * - ``ca``, type: ``Buffer``
-     - | ``tlsCAFile``, type: ``filepath string``
+     - | ``tlsCAFile``, type: ``string``
        | ``ca``, type: ``Buffer``
      - Specifies either a single or bundle of certificate authorities to
        trust when making a TLS connection.
 
    * - ``cert``, type: ``Buffer``
-       | ``tlsCertificateFile``, type: ``filepath string``
-       | ``tlsCertificateKeyFile``, type: ``filepath string``
+     - | ``tlsCertificateFile``, type: ``string``
+       | ``tlsCertificateKeyFile``, type: ``string``
        | ``cert``, type: ``Buffer``
      - Specifies the client certificate file or the client
        private key file.
 
    * - ``key``, type: ``Buffer``
-     - | ``tlsCertificateKeyFile``, type: ``filepath string``
+     - | ``tlsCertificateKeyFile``, type: ``string``
        | ``key``, type: ``Buffer``
      - Specifies the client private key file.
 
    * - ``passphrase``, type: ``string``
-     - | ``tlsCertificateKeyFilePassword``, type: ``string``
+     - ``tlsCertificateKeyFilePassword``, type: ``string``
      - Specifies the password to decrypt the client private key.
 
 .. note:: Additional TLS Client Options
    
    For **testing purposes**, you can set the ``tlsAllowInvalidHostnames`` and
-   ``tlsAllowInvalidCertificates`` options. Setting the
-   ``tlsAllowInvalidHostnames`` option to ``true`` disables hostname verification.
+   ``tlsAllowInvalidCertificates`` client options.
+   
+   Setting the ``tlsAllowInvalidHostnames`` option to ``true`` disables
+   hostname verification.
    Setting the ``tlsAllowInvalidCertificates`` to ``true`` disables
    certificate validation and allows you to test a connection with an
    invalid certificate, such as a self-signed certificate.
