@@ -77,16 +77,13 @@ Configure Certificates
 Applications that initiate TLS requests require access to
 cryptographic certificates that prove the identity of the application
 itself and other applications that the application
-interacts with.
+interacts with. To connect to MongoDB with TLS, your certificates must
+be stored as ``PEM`` files, which are concatenated certificate
+containers.
 
-For resources on generating TLS certificates, see the following Server
-manual documentation:
-
-- :manual:`TLS/SSL (Transport Encryption) </core/security-transport-encryption/>`
-- :manual:`TLS/SSL Configuration for Clients </tutorial/configure-ssl-clients/>`
-- :manual:`OpenSSL CA Certificate for Testing </appendix/security/appendixA-openssl-ca/>`
-- :manual:`OpenSSL Server Certificates for Testing </appendix/security/appendixB-openssl-server/>`
-- :manual:`OpenSSL Client Certificates for Testing </appendix/security/appendixC-openssl-client/>`
+For production use, your MongoDB deployment should use valid certificates generated and
+signed by the same certificate authority. For testing, you can
+enable TLS with self-signed certificates.
 
 Configure TLS Client Options
 ----------------------------
@@ -94,55 +91,60 @@ Configure TLS Client Options
 The driver provides client options that you can use to customize how you
 enable TLS on a connection.
 
+The following table describes the TLS client options that you can
+specify to reference your certificates and connect to MongoDB with TLS
+enabled. The first column describes Node.js options that you can specify
+when creating a :ref:`SecureContext <node-tls-securecontext>`. The second column describes
+equivalent driver client options, and the third column provides a
+description of each option. The table entries include the expected value
+type for each option.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 1 1 1
+
+   * - Node.js Option
+     - Driver Option
+     - Description
+
+   * - ``ca``, type: ``Buffer``
+     - | ``tlsCAFile``, type: ``filepath string``
+       | ``ca``, type: ``Buffer``
+     - Specifies either a single or bundle of certificate authorities to
+       trust when making a TLS connection.
+
+   * - ``cert``, type: ``Buffer``
+       | ``tlsCertificateFile``, type: ``filepath string``
+       | ``tlsCertificateKeyFile``, type: ``filepath string``
+       | ``cert``, type: ``Buffer``
+     - Specifies the client certificate file or the client
+       private key file.
+
+   * - ``key``, type: ``Buffer``
+     - | ``tlsCertificateKeyFile``, type: ``filepath string``
+       | ``key``, type: ``Buffer``
+     - Specifies the client private key file.
+
+   * - ``passphrase``, type: ``string``
+     - | ``tlsCertificateKeyFilePassword``, type: ``string``
+     - Specifies the password to decrypt the client private key.
+
+.. note:: Additional TLS Client Options
+   
+   For **testing purposes**, you can set the ``tlsAllowInvalidHostnames`` and
+   ``tlsAllowInvalidCertificates`` options. Setting the
+   ``tlsAllowInvalidHostnames`` option to ``true`` disables hostname verification.
+   Setting the ``tlsAllowInvalidCertificates`` to ``true`` disables
+   certificate validation and allows you to test a connection with an
+   invalid certificate, such as a self-signed certificate.
+   
+   Specifying either of these options in a production environment puts
+   your application at risk of becoming
+   `insecure <https://tlseminar.github.io/docs/mostdangerous.pdf>`__ or
+   vulnerable to expired certificates and to foreign processes posing
+   as valid client instances.
+
 For a full list of client options, see :ref:`node-connection-options`.
-
-Disable Hostname Verification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-By default, the driver ensures that the hostname included in the server's
-TLS certificates matches the hostname you specify when creating
-a ``MongoClient``. If you need to disable hostname verification for your
-application, you set ``tlsAllowInvalidHostnames`` to ``true`` in
-your ``MongoClientOptions``:
-
-.. code-block:: js
-   :emphasize-lines: 2
-
-   const client = new MongoClient(uri, {
-     tlsAllowInvalidHostnames: true,
-     ...
-   });
-
-.. warning::
-
-   If you disable hostname verification, you risk making your configuration
-   `insecure <https://tlseminar.github.io/docs/mostdangerous.pdf>`__.
-   You should only disable hostname verification for testing purposes or
-   when you have no other alternative.
-
-Bypass Certificate Validation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-By default, the driver validates certificates and raises an error for
-connections that present invalid certificates, such as self-signed
-certificates. If you need to disable certificate validation for your
-application, you set ``tlsAllowInvalidCertificates`` to ``true`` in
-your ``MongoClientOptions``:
-
-.. code-block:: js
-   :emphasize-lines: 2
-
-   const client = new MongoClient(uri, {
-     tlsAllowInvalidCertificates: true,
-     ...
-   });
-
-.. warning::
-
-   If you disable certificate validation, you risk creating a
-   vulnerability to expired certificates and to foreign processes posing
-   as valid client instances. You should only use this option on systems
-   where intrusion is not possible.
 
 .. _node-client-tls-connect:
 
@@ -290,8 +292,17 @@ connects to MongoDB and executes a find query:
    }
    run().catch(console.dir);
 
+Additional Information
+----------------------
+
+For more information about enabling TLS on a connection, see the
+following Server manual documentation:
+
+- :manual:`TLS/SSL (Transport Encryption) </core/security-transport-encryption/>`
+- :manual:`TLS/SSL Configuration for Clients </tutorial/configure-ssl-clients/>`
+
 API Documentation
------------------
+~~~~~~~~~~~~~~~~~
 
 - `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
 - `MongoClient <{+api+}/classes/MongoClient.html>`__
