@@ -14,7 +14,7 @@ Overview
 --------
 
 In this guide, you can learn how to connect to MongoDB instances with the
-:wikipedia:`TLS </Transport_Layer_Security>`
+:wikipedia:`TLS <Transport_Layer_Security>`
 security protocol. To configure your connection to use TLS, enable
 the TLS settings in either your connection string or the
 `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
@@ -70,8 +70,8 @@ Configure Certificates
 
 To successfully initiate a TLS request, an application must prove its
 identity by referencing cryptographic certificates. To connect to
-MongoDB with TLS, your certificates must be stored as wikipedia:`PEM
-files </Privacy-Enhanced_Mail>`.
+MongoDB with TLS, your certificates must be stored as :wikipedia:`PEM
+files <Privacy-Enhanced_Mail>`.
 
 .. important::
 
