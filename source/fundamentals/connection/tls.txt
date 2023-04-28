@@ -105,9 +105,9 @@ a connection with TLS:
 
 .. list-table::
    :header-rows: 1
-   :widths: 1 1 1
+   :widths: 30 70
 
-   * - Certificate Type
+   * - TLS Component
      - Description
 
    * - Certificate Authority (CA)
