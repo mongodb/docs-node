@@ -14,17 +14,11 @@ Overview
 --------
 
 In this guide, you can learn how to connect to MongoDB instances with the
-`TLS/SSL <https://en.wikipedia.org/wiki/Transport_Layer_Security>`__
-security protocol. To configure your connection to use TLS/SSL, enable
-the TLS/SSL settings in either your connection string or the
+:wikipedia:`TLS </Transport_Layer_Security>`
+security protocol. To configure your connection to use TLS, enable
+the TLS settings in either your connection string or the
 `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
 for your client.
-
-.. important:: TLS vs. SSL
-   
-   TLS is the successor protocol to SSL, but the terms are often used
-   interchangeably. Since TLS is an improved version of SSL, this guide
-   describes how to connect to MongoDB with the TLS protocol.
 
 .. _node-enable-tls:
 
@@ -43,8 +37,8 @@ in the following ways:
       :tabid: mongoclientoptions
 
       To enable TLS on a connection by using an option in a
-      ``MongoClientOptions`` instance, set the property ``tls`` as
-      ``true`` and pass the options to the ``MongoClient`` constructor:
+      ``MongoClientOptions`` instance, set the property ``tls`` to
+      ``true`` and pass the options object to the ``MongoClient`` constructor:
       
       .. code-block:: js
          :emphasize-lines: 2
@@ -60,7 +54,7 @@ in the following ways:
       :tabid: connection string
 
       To enable TLS on a connection by using a connection string option,
-      set the parameter ``tls`` as ``true`` in the connection string URI
+      set the parameter ``tls`` to ``true`` in the connection string
       that you pass to the ``MongoClient`` constructor:
 
       .. code-block:: js
@@ -74,15 +68,16 @@ in the following ways:
 Configure Certificates
 ----------------------
 
-Applications that initiate TLS requests require access to
-cryptographic certificates that prove the identity of the application
-itself and other applications that the application
-interacts with. To connect to MongoDB with TLS, your certificates must
-be stored as ``PEM`` files, which are concatenated certificate
-containers.
+To successfully initiate a TLS request, an application must prove its
+identity by referencing cryptographic certificates. To connect to
+MongoDB with TLS, your certificates must be stored as wikipedia:`PEM
+files </Privacy-Enhanced_Mail>`.
 
-For production use, your MongoDB deployment should use valid certificates generated and
-signed by the same certificate authority. For testing, you can use self-signed certificates.
+.. important::
+
+   For production use, your MongoDB deployment should use valid
+   certificates generated and signed by the same certificate authority.
+   For testing, you can use self-signed certificates.
 
 Configure TLS Client Options
 ----------------------------
@@ -90,13 +85,13 @@ Configure TLS Client Options
 In addition to the ``tls`` option, the driver provides client options
 that you can use to configure TLS on your connection.
 
-The following table describes the TLS client options that you can
+The following table describes the client options that you can
 specify to reference your certificates and connect to MongoDB with TLS
 enabled. The first column describes Node.js options that you can specify
 when creating a :ref:`SecureContext <node-tls-securecontext>`. The second column describes
 equivalent driver client options, and the third column provides a
-description of each option. The table entries include the expected value
-type for each option.
+description of each option. The table entries include the accepted type
+for each option.
 
 .. list-table::
    :header-rows: 1
@@ -106,42 +101,45 @@ type for each option.
      - Driver Option
      - Description
 
-   * - ``ca``, type: ``Buffer``
-     - | ``tlsCAFile``, type: ``string``
-       | ``ca``, type: ``Buffer``
-     - Specifies either a single or bundle of certificate authorities to
+   * - **Name**: ``ca``, **Type**: ``Buffer``
+     - | **Name**: ``tlsCAFile``, **Type**: ``string``
+       |
+       | **Name**: ``ca``, **Type**: ``Buffer``
+     - Specifies either one or more certificate authorities to
        trust when making a TLS connection.
 
-   * - ``cert``, type: ``Buffer``
-     - | ``tlsCertificateFile``, type: ``string``
-       | ``tlsCertificateKeyFile``, type: ``string``
-       | ``cert``, type: ``Buffer``
+   * - **Name**: ``cert``, **Type**: ``Buffer``
+     - | **Name**: ``tlsCertificateFile``, **Type**: ``string``
+       |
+       | **Name**: ``tlsCertificateKeyFile``, **Type**: ``string``
+       |
+       | **Name**: ``cert``, **Type**: ``Buffer``
      - Specifies the client certificate file or the client
        private key file.
 
-   * - ``key``, type: ``Buffer``
-     - | ``tlsCertificateKeyFile``, type: ``string``
-       | ``key``, type: ``Buffer``
+   * - **Name**: ``key``, **Type**: ``Buffer``
+     - | **Name**: ``tlsCertificateKeyFile``, **Type**: ``string``
+       |
+       | **Name**: ``key``, **Type**: ``Buffer``
      - Specifies the client private key file.
 
-   * - ``passphrase``, type: ``string``
-     - ``tlsCertificateKeyFilePassword``, type: ``string``
+   * - **Name**: ``passphrase``, **Type**: ``string``
+     - **Name**: ``tlsCertificateKeyFilePassword``, **Type**: ``string``
      - Specifies the password to decrypt the client private key.
 
 .. note:: Additional TLS Client Options
    
-   For **testing purposes**, you can set the ``tlsAllowInvalidHostnames`` and
-   ``tlsAllowInvalidCertificates`` client options.
+   For **testing purposes**, you can set the ``tlsAllowInvalidHostnames``,
+   ``tlsAllowInvalidCertificates``, and ``tlsInsecure`` client options.
    
    Setting the ``tlsAllowInvalidHostnames`` option to ``true`` disables
-   hostname verification.
-   Setting the ``tlsAllowInvalidCertificates`` to ``true`` disables
-   certificate validation and allows you to test a connection with an
-   invalid certificate, such as a self-signed certificate.
+   hostname verification, and setting the
+   ``tlsAllowInvalidCertificates`` to ``true`` disables certificate
+   validation. Setting the ``tlsInsecure`` option to ``true`` disables
+   both certificate and hostname validation.
    
-   Specifying either of these options in a production environment puts
-   your application at risk of becoming
-   `insecure <https://tlseminar.github.io/docs/mostdangerous.pdf>`__ or
+   Specifying any of these options in a production environment makes
+   your application insecure and potentially
    vulnerable to expired certificates and to foreign processes posing
    as valid client instances.
 
@@ -153,20 +151,17 @@ Reference Certificates in a Client
 ----------------------------------
 
 You must reference your certificates in your ``MongoClientOptions`` so
-that the Server can validate them before the client connects. The
-driver provides multiple TLS-related client options to reference your
-certificates. You can connect with the following option configurations:
+that the server can validate them before the client connects. You can
+reference your certificates in the following ways:
 
-- Passing a ``SecureContext`` object to the ``secureContext`` option *(Recommended)*
-- Passing filepath strings to the ``tlsCAFile`` and
-  ``tlsCertificateKeyFile`` options
-- Passing ``Buffer`` objects that contain the contents of your
-  certificates to the ``ca``, ``cert``, and ``key`` options
+- Create a ``SecureContext`` object to store certificates *(Recommended)*
+- Provide filepath strings that point to your certificates
+- Create ``Buffer`` objects to store certificates
 
 .. _node-tls-securecontext:
 
-Create a ``SecureContext`` Object to Connect
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a ``SecureContext`` Object to Store Certificates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We recommend that you use the ``secureContext`` option to connect with
 the TLS protocol. By using a ``SecureContext`` object to store your
@@ -176,11 +171,10 @@ reusable object. This is the most organized way to set up
 TLS for your application.
 
 To create a ``SecureContext`` object, you must first install the ``tls``
-package and use it in your application. The ``tls.createSecureContext()``
-method takes an options parameter that contains the contents of the
-certificates. The ``secureContext`` option in your
-``MongoClientOptions`` takes the ``SecureContext`` object as its value,
-allowing the client to reference the certificates for validation.
+package and use it in your application. Next, call the ``tls.createSecureContext()``
+method and pass the contents of your certificates in the options parameter.
+This method returns a ``SecureContext`` object that you can set as an option 
+in your ``MongoClientOptions`` object.
 
 The following code shows how to create a ``SecureContext`` object by
 calling the ``tls.createSecureContext()`` method and set the
@@ -205,14 +199,14 @@ To learn more about the ``tls.createSecureContext()`` method and the
 ``tls`` package, see the `Node.js TLS API documentation
 <https://nodejs.org/api/tls.html#tlscreatesecurecontextoptions>`__.
 
-To see a runnable example using the ``secureContext`` client option, see
+For a runnable example that uses the ``secureContext`` client option, see
 the :ref:`SecureContext Example <node-securecontext-full-example>`.
 
-Reference Certificate Filepaths to Connect
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Provide Certificate Filepaths
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can reference the filepaths for your certificates as strings in your
-client options to connect with TLS.
+You can include the filepaths for your certificates as client options to
+retrieve your certificates while connecting with TLS.
 
 The following code shows how to specify the ``tlsCAFile`` and
 ``tlsCertificateKeyFile`` client options with certificate filepaths: 
@@ -226,8 +220,8 @@ The following code shows how to specify the ``tlsCAFile`` and
      tlsCertificateKeyFile: `<path to client certificate>`,
    });
 
-Pass Certificate File Contents to Connect
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Create ``Buffer`` Objects to Store Certificates
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can pass the contents of your certificate files as ``Buffer``
 objects in your client options to connect with TLS.
