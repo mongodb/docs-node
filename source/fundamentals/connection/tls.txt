@@ -14,11 +14,15 @@ Overview
 --------
 
 In this guide, you can learn how to connect to MongoDB instances with
-the TLS security protocol. For more information on TLS, see the
-Wikipedia entry on :wikipedia:`Transport Layer Security <Transport_Layer_Security>`.
+the TLS security protocol.
 
 To configure your connection to use TLS, enable
 the TLS option and provide your certificates for validation.
+
+.. tip::
+   
+   To learn more about TLS, see the Wikipedia entry on
+   :wikipedia:`Transport Layer Security <Transport_Layer_Security>`.
 
 .. _node-enable-tls:
 
@@ -28,7 +32,7 @@ Enable TLS
 You can enable TLS on a connection to your MongoDB instance
 in the following ways:
 
-- Setting the ``tls`` option to ``true`` in your ``MongoClientOptions``
+- Setting the ``tls`` option to ``true`` in your ``MongoClientOptions`` object
 - Setting the ``tls`` option to ``true`` in your connection string
 
 .. tabs::
@@ -91,8 +95,7 @@ Configure Certificates
 To successfully initiate a TLS request, an application must prove its
 identity by referencing cryptographic certificates. To connect to
 MongoDB with TLS, your certificates must be stored as PEM
-files. For more information on the PEM format, see the Wikipedia entry
-on :wikipedia:`Privacy-Enhanced Mail <Privacy-Enhanced_Mail>`.
+files.
 
 .. important::
 
@@ -111,7 +114,7 @@ a connection with TLS:
      - Description
 
    * - Certificate Authority (CA)
-     - Either one or more certificate authorities to
+     - One or more certificate authorities to
        trust when making a TLS connection.
 
    * - Client Certificate
@@ -125,14 +128,19 @@ a connection with TLS:
    * - Passphrase
      - The password to decrypt the client private key if it is encrypted.
 
+.. tip::
+   
+   To learn more about the PEM format, see the Wikipedia entry on
+   :wikipedia:`Privacy-Enhanced Mail <Privacy-Enhanced_Mail>`.
+
 .. _node-client-tls-connect:
 
 Reference Certificates in a Client
 ----------------------------------
 
-You must reference your certificates in your ``MongoClientOptions`` so
-that the server can validate them before the client connects. You can
-reference your certificates in the following ways:
+You must reference your certificates in your ``MongoClientOptions``
+object so that the server can validate them before the client connects.
+You can reference your certificates in the following ways:
 
 - Create a ``SecureContext`` object to store certificates *(Recommended)*
 - Provide filepath strings that point to your certificates
