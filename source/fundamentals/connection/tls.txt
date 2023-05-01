@@ -40,8 +40,8 @@ in the following ways:
    .. tab:: MongoClientOptions
       :tabid: mongoclientoptions
 
-      A ``MongoClient`` instance can connect with TLS if the
-      ``MongoClientOptions`` object has ``tls`` set to ``true``:
+      A ``MongoClient`` instance can connect with TLS if you set ``tls``
+      to ``true`` in your ``MongoClientOptions`` object:
       
       .. code-block:: js
          
@@ -50,8 +50,8 @@ in the following ways:
    .. tab:: Connection String
       :tabid: connection string
 
-      A ``MongoClient`` instance can connect with TLS if the
-      connection string has the ``tls`` option set to ``true``:
+      A ``MongoClient`` instance can connect with TLS if you set the
+      ``tls`` option to ``true`` in your connection string:
 
       .. code-block:: js
          :emphasize-lines: 1
@@ -61,7 +61,8 @@ in the following ways:
 
 .. note::
    
-   If you use a DNS SRV record when connecting to MongoDB, you enable
+   If you use a DNS SRV record when connecting to MongoDB by specifying
+   the ``+srv`` modification in your connection string, you enable
    TLS on your connection by default.
 
 In addition to the ``tls`` client option, the driver provides additional
@@ -123,7 +124,7 @@ a connection with TLS:
        included within the certificate file itself.
 
    * - Passphrase
-     - The password to decrypt the client private key if it is encrypted.
+     - The password to decrypt the private client key if it is encrypted.
 
 .. tip::
    
