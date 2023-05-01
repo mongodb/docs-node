@@ -13,4 +13,4 @@ Fundamentals section:
 - :doc:`Log Events in the Driver </fundamentals/logging>`
 - :doc:`Monitor Driver Events </fundamentals/monitoring>`
 - :doc:`Store and Retrieve Large Files in MongoDB </fundamentals/gridfs>`
-- :doc:`Encrypt Fields from the Client </fundamentals/csfle>`
+- :doc:`Encrypt Fields from the Client </fundamentals/encrypt-fields>`
