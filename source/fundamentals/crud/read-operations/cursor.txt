@@ -95,6 +95,8 @@ method to retrieve the subsequent element of the cursor:
    :start-after: start manual cursor example
    :end-before: end manual cursor example
 
+.. _node-fundamentals-cursor-array:
+
 Return an Array of All Documents
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
