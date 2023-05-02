@@ -101,11 +101,11 @@ Return an Array of All Documents
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For use cases that require all documents matched by a query to be held
-in memory at the same time, use `toArray() <{+api+}/classes/FindCursor.html#toArray>`__.
-Note that large numbers of matched documents can cause performance issues
+in memory at the same time, use the `toArray() <{+api+}/classes/FindCursor.html#toArray>`__
+method. Note that large numbers of matched documents can cause performance issues
 or failures if the operation exceeds memory constraints. Consider using
 the ``for await...of`` syntax to iterate
-through results unless you want to return all documents at once.
+through results rather than returning all documents at once.
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript

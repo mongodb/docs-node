@@ -25,7 +25,7 @@ information on the parameters you can pass to the method.
 
 The ``find()`` method returns a `FindCursor <{+api+}/classes/FindCursor.html>`__ that
 manages the results of your query. You can iterate through the matching
-documents using the ``for await...of`` syntax or one of the following 
+documents using the ``for await...of`` syntax, or one of the following 
 :ref:`cursor methods <cursor-methods>`:
 
 - ``next()``
