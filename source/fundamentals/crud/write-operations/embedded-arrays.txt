@@ -125,6 +125,7 @@ The following code snippet shows how to add an item to the
    :language: javascript
    :start-after: start firstArrayElement example
    :end-before: end firstArrayElement example
+   :dedent:
 
 The query matches all documents whose ``appointments`` array contains an
 entry that has the ``stylist`` field with the value "Janna".
@@ -195,6 +196,7 @@ salon voucher.
    :language: javascript
    :start-after: start allArrayElement example
    :end-before: end allArrayElement example
+   :dedent:
 
 After you run the update operation, the document for the client "Dennis
 Roberts" resembles the following:
@@ -271,7 +273,8 @@ following ``arrayFilters`` with your matching criteria:
 
    arrayFilters: [
      { "<identifier>.<arrayField1>": <value1> },
-     { "<identifier>.<arrayField2>": <value2> }
+     { "<identifier>.<arrayField2>": <value2> },
+     ...
    ]
 
 Example
@@ -286,6 +289,7 @@ the filtered positional operator as follows:
    :language: javascript
    :start-after: start arrayFiltersIdentifier example
    :end-before: end arrayFiltersIdentifier example
+   :dedent:
 
 After you run the update operation, the document for the client named
 "Sandy Kane" resembles the following:
