@@ -249,9 +249,9 @@ Usage
 To use an update operator on specified array elements, format your
 update document as follows:
 
-.. code-block:: javascript
+.. code-block:: json
 
-   { $<operator>: { <array>.$[<identifier>].<arrayField>: <value> } }
+   { $<operator>: { "<array>.$[<identifier>].<arrayField>": <value> } }
 
 This update document has the following components:
 
@@ -270,8 +270,8 @@ following ``arrayFilters`` with your matching criteria:
 .. code-block:: javascript
 
    arrayFilters: [
-     { <identifier>.<arrayField1>: "<value1>" },
-     { <identifier>.<arrayField2>: "<value2>" }
+     { "<identifier>.<arrayField1>": <value1> },
+     { "<identifier>.<arrayField2>": <value2> }
    ]
 
 Example
@@ -328,3 +328,6 @@ After you run the update operation, the document for the client named
        },
      ],
    }
+
+The entries in the ``appointments`` array that have a ``cost`` field
+that is at least ``100`` now have the ``paymentPlan`` field.
