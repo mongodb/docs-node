@@ -10,198 +10,129 @@ const client = new MongoClient(uri);
 async function loadData() {
   try {
     const database = client.db("test");
-    const pizza = database.collection("pizza");
+    const myColl = database.collection("salonClients");
 
-    await pizza.drop();
+    await myColl.drop();
 
-    await pizza.insertMany([
+    await myColl.insertMany([
       {
-        name: "Steve Lobsters",
-        address: "731 Yexington Avenue",
-        items: [
+        "name": "Sandy Kane",
+        "appointments": [
           {
-            type: "pizza",
-            size: "large",
-            toppings: ["pepperoni"],
+            "date": "4/7/2017 3:00 PM",
+            "services": [ "haircut", "styling", "color" ],
+            "cost": 275,
+            "stylist": "Francine"
           },
           {
-            type: "pizza",
-            size: "medium",
-            toppings: ["mushrooms", "sausage", "green peppers"],
-            comment: "Extra green peppers please!",
+            "date": "8/7/2017 3:00 PM",
+            "services": [ "haircut", "styling" ],
+            "cost": 115,
+            "stylist": "Janna"
           },
           {
-            type: "pizza",
-            size: "large",
-            toppings: ["pineapple, ham"],
-            comment: "red pepper flakes on top",
-          },
-          {
-            type: "calzone",
-            fillings: ["canadian bacon", "sausage", "onion"],
-          },
-          {
-            type: "beverage",
-            name: "Diet Pepsi",
-            size: "16oz",
-          },
-        ],
+            "date": "10/17/2017 3:00 PM",
+            "services": [ "styling" ],
+            "cost": 75,
+            "stylist": "Janna"
+          }
+        ]
       },
       {
-        name: "Popeye",
-        address:"1 Sweetwater",
-        items: [
+        "name": "Dennis Roberts",
+        "appointments": [
           {
-            type: "pizza",
-            size: "large",
-            toppings: ["garlic", "spinach"]
+            "date": "6/19/2017 4:30 PM",
+            "services": [ "haircut", "styling" ],
+            "cost": 85,
+            "stylist": "Colin"
           },
           {
-            type: "calzone",
-            toppings: ["ham"],
-          },
+            "date": "10/1/2017 5:00 PM",
+            "services": [ "beard trim" ],
+            "cost": 35,
+            "stylist": "Janna"
+          }
         ]
       }
     ]);
 
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
+    console.log(JSON.stringify(await (await myColl.find()).toArray()));
   } finally {
     await client.close();
   }
 }
 
+async function runFirstArrayElement() {
+
+  try {
+    const database = client.db("test");
+    const myColl = database.collection("salonClients");
+
+    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+
+    // start firstArrayElement example
+    const query = { "name": "Sandy Kane", "appointments.stylist": "Janna" };
+    const updateDocument = {
+      $push: { "appointments.$.services": "wash" }
+    };
+    const result = await myColl.updateOne(query, updateDocument);
+    // end firstArrayElement example
+    console.log(result.modifiedCount);
+    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+  } finally {
+    await client.close();
+  }
+}
 
 async function runAllArrayElements() {
 
   try {
     const database = client.db("test");
-    const pizza = database.collection("pizza");
+    const myColl = database.collection("salonClients");
 
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
+    console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start allArrayElement example
-    const query = { "name": "Popeye" };
+    const query = { "name": "Dennis Roberts" };
     const updateDocument = {
-      $push: { "items.$[].toppings": "fresh mozzarella" }
+      $inc: { "appointments.$[].cost": -15 }
     };
-    const result = await pizza.updateOne(query, updateDocument);
+    const result = await myColl.updateOne(query, updateDocument);
     // end allArrayElement example
     console.log(result.modifiedCount);
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
-  } finally {
-    await client.close();
-  }
-}
-async function runFirstArrayElement() {
-
-  try {
-    const database = client.db("test");
-    const pizza = database.collection("pizza");
-
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
-
-    // start firstArrayElement example
-    const query = { name: "Steve Lobsters", "items.type": "pizza" };
-    const updateDocument = {
-      $set: { "items.$.size": "extra large" }
-    };
-    const result = await pizza.updateOne(query, updateDocument);
-    // end firstArrayElement example
-    console.log(result.modifiedCount);
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
+    console.log(JSON.stringify(await (await myColl.find()).toArray()));
   } finally {
     await client.close();
   }
 }
 
-
-async function arrayFiltersOne() {
+async function arrayFiltersIdentifier() {
   try {
     const database = client.db("test");
-    const pizza = database.collection("pizza");
+    const myColl = database.collection("salonClients");
 
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
+    console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
-    // start arrayFiltersOne example
-    const query = { name: "Steve Lobsters" };
+    // start arrayFiltersIdentifier example
+    const query = { name: "Sandy Kane" };
     const updateDocument = {
-      $push: { "items.$[orderItem].toppings": "garlic" }
+      $set: {
+        "appointments.$[appt].paymentPlan": {
+          payment1: 50,
+          payment2: 50,
+          payment3: "remaining balance",
+        },
+      },
     };
     const options = {
-      arrayFilters: [{
-        "orderItem.type": "pizza",
-        "orderItem.size": "large",
-      }]
+      arrayFilters: [{ "appt.cost": { $gte: 100 } }],
     };
-
-    const result = await pizza.updateMany(query, updateDocument, options);
-    // end arrayFiltersOne example
-
-    console.log(result.modifiedCount);
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
-  } finally {
-    await client.close();
-  }
-}
-
-async function arrayFiltersTwo() {
-  try {
-    const database = client.db("test");
-    const pizza = database.collection("pizza");
-
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
-
-    // start arrayFiltersTwo example
-    const query = { name: "Steve Lobsters" };
-    const updateDocument = {
-      $push: { "items.$[item].toppings": "salami" },
-    };
-    const options = {
-      arrayFilters: [
-        {
-          "item.type": "pizza",
-          "item.toppings": "pepperoni",
-        },
-      ],
-    };
-    const result = await pizza.updateOne(query, updateDocument, options);
-    // end arrayFiltersTwo example
+    const result = await myColl.updateOne(query, updateDocument, options);
+    // end arrayFiltersIdentifier example
     console.log(result.modifiedCount);
 
-    pizza.insertOne({
-      name: "Steve Lobsters",
-      address: "731 Yexington Avenue",
-      items: [
-        {
-          type: "pizza",
-          size: "large",
-          toppings: ["pepperoni"],
-        },
-        {
-          type: "pizza",
-          size: "medium",
-          toppings: ["mushrooms", "sausage", "green peppers"],
-          comment: "Extra green peppers please!",
-        },
-        {
-          type: "pizza",
-          size: "large",
-          toppings: ["pineapple, ham"],
-          comment: "red pepper flakes on top",
-        },
-        {
-          type: "calzone",
-          fillings: ["canadian bacon", "sausage", "onion"],
-        },
-        {
-          type: "beverage",
-          name: "Diet Pepsi",
-          size: "16oz",
-        },
-      ],
-    });
-
-    console.log(JSON.stringify(await (await pizza.find()).toArray()));
+    console.log(JSON.stringify(await (await myColl.find()).toArray()));
   } finally {
     await client.close();
   }

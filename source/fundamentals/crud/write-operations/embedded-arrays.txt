@@ -22,47 +22,69 @@ operators to modify an array embedded within a document:
 - :ref:`All Positional Operator <all-match-operator>`: ``$[]``
 - :ref:`Filtered Positional Operator <filtered-positional-operator>`: ``$[<identifier>]``
 
-See the MongoDB server guide on
+See the MongoDB Server guide on
 :manual:`Update Operators </reference/operator/update-array/#update-operators>`
-for a complete list.
+for a complete list of operators.
 
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
 The examples in this guide use the following sample documents from the
-``test.pizza`` collection. The collection contains documents that
-describe the customers and their pizza orders as array elements in field
-called ``items``.
+``test.customers`` collection. The collection contains documents that
+describe the clients of a salon and their upcoming appointments.
 
 .. code-block:: javascript
+   :copyable: true
 
-   [{
-      name: "Steve Lobsters",
-      address: "731 Yexington Avenue",
-      items: [
-        { type: "beverage", name: "Water", size: "17oz", },
-        { type: "pizza", size: "large", toppings: ["pepperoni"], },
-        { type: "pizza", size: "medium", toppings: ["mushrooms", "sausage", "green peppers"], comment: "Extra green peppers please!", },
-        { type: "pizza", size: "large", toppings: ["pineapple, ham"], comment: "red pepper flakes on top", },
-        { type: "calzone", fillings: ["canadian bacon", "sausage", "onion"], },
-        { type: "beverage", name: "Diet Pepsi", size: "16oz", },
-      ],
-    },
-    {
-      name: "Popeye",
-      address: "1 Sweethaven",
-      items: [
-        { type: "pizza", size: "large", toppings: ["garlic, spinach"], },
-        { type: "calzone", toppings: ["ham"], },
-      ],
-    }]
+   {
+     "_id": ...,
+     "name": "Sandy Kane",
+     "appointments": [
+       {
+         "date": "April 7 3:00 PM",
+         "services": [ "haircut", "styling", "color" ],
+         "cost": 275,
+         "stylist": "Francine"
+       },
+       {
+         "date": "August 7 3:00 PM",
+         "services": [ "haircut", "styling" ],
+         "cost": 115,
+         "stylist": "Janna"
+       },
+       {
+         "date": "October 15 3:00 PM",
+         "services": [ "styling" ],
+         "cost": 75,
+         "stylist": "Janna"
+       }
+     ]
+   },
+   {
+     "_id": ...,
+     "name": "Dennis Roberts",
+     "appointments": [
+       {
+         "date": "June 19 4:30 PM",
+         "services": [ "haircut", "styling" ],
+         "cost": 85,
+         "stylist": "Colin"
+       },
+       {
+         "date": "October 1 5:00 PM",
+         "services": [ "beard trim" ],
+         "cost": 35,
+         "stylist": "Janna"
+       }
+     ]
+   }
 
 Specifying Array Elements
 -------------------------
 
 You can specify which array elements to update using a positional
 operator. Positional operators can specify the first, all, or certain
-array elements to update.
+array elements to apply updates to.
 
 To specify elements in an array with positional operators, use **dot
 notation**. Dot notation is a property access syntax for navigating BSON
@@ -90,37 +112,59 @@ which you want to access a nested array, use the
 Example
 ```````
 
-The following code snippet shows how to update the size of the first
-pizza order item to "extra large" for the customer named Steve Lobsters.
+The following code snippet shows how to add an item to the
+``services`` field of the first appointment that a customer named
+"Sandy Kane" had with the stylist "Janna".
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
    :start-after: start firstArrayElement example
    :end-before: end firstArrayElement example
 
-The query matches all documents that contain an element embedded in the
-``items`` array that contain a value of ``pizza`` in the ``type`` field.
-The ``updateDocument`` specifies the update operation to set the
-first array element match in ``items`` to "extra large".
+The query matches all documents whose ``appointments`` array contains an
+entry that has the ``stylist`` field with the value `"Janna".
+The ``updateDocument`` adds the "wash" item to the ``services`` field of
+the first array element match in the ``appointments`` array.
 
-After you run the update method, your customer document for Steve
-Lobsters resembles the following:
+After you run the update operation, the document for the client named
+"Sandy Kane" resembles the following:
 
 .. code-block:: javascript
+   :copyable: false
+   :emphasize-lines: 16
 
    {
-     name: "Steve Lobsters",
-     address: "731 Yexington Avenue",
-     items: [
-       { type: "pizza", size: "extra large", ... },
-       ...
+     "_id": ...,
+     "name": "Sandy Kane",
+     "appointments": [
+       {
+         "date": "April 7 3:00 PM",
+         "services": [ "haircut", "styling", "color" ],
+         "cost": 275,
+         "stylist": "Francine"
+       },
+       {
+         "date": "August 7 3:00 PM",
+         "services": [ "haircut", "styling", "wash" ],
+         "cost": 115,
+         "stylist": "Janna"
+       },
+       {
+         "date": "October 15 3:00 PM",
+         "services": [ "styling" ],
+         "cost": 75,
+         "stylist": "Janna"
+       }
      ]
    }
 
-Note that we included both ``name`` and ``items.type`` fields in the query
-in order to match the array in which we apply the ``$`` operator. If we
-omit the ``items.type`` field from the query and specify the ``$`` operator
-in our update, we encounter the following error:
+There are two array entries where the ``stylist`` value is "Janna", but
+only the first entry has the new "wash" item in the ``services`` array.
+
+We included both the ``name`` and ``appointments.stylist`` fields in the
+query to match the array to which we apply the ``$`` operator. If we
+omit the ``appointments.stylist`` field from the query and specify the
+``$`` operator in our update, the driver raises the following error:
 
 .. code-block:: none
    :copyable: false
@@ -138,28 +182,43 @@ matches your query, use the all positional operator ``$[]``.
 Example
 ```````
 
-The following code snippet adds "fresh mozzarella" to the toppings of
-all of Popeye's order items.
+The following code snippet reduces the ``cost`` field by ``15`` for all of
+the appointments for a client named "Dennis Roberts", since he has a
+salon voucher.
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
    :start-after: start allArrayElement example
    :end-before: end allArrayElement example
 
-After you run the update method, your customer document for Popeye
-resembles the following:
+After you run the update operation, the document for the client "Dennis
+Roberts" resembles the following:
 
-.. code-block:: json
+.. code-block:: javascript
    :copyable: false
-
+   :emphasize-lines: 8, 14
+   
    {
-     name:"Popeye",
-     address: "1 Sweethaven",
-     items: [
-       { type: "pizza", ... , toppings: ["garlic", "spinach", "fresh mozzarella"], },
-       { type: "calzone", ... , toppings: ["ham", "fresh mozzarella"], },
+     "_id": ...,
+     "name": "Dennis Roberts",
+     "appointments": [
+       {
+         "date": "June 19 4:30 PM",
+         "services": [ "haircut", "styling" ],
+         "cost": 70,
+         "stylist": "Colin"
+       },
+       {
+         "date": "October 1 5:00 PM",
+         "services": [ "beard trim" ],
+         "cost": 20,
+         "stylist": "Janna"
+       }
      ]
    }
+
+The ``cost`` field for every appointment is ``15`` less than the
+original value.
 
 .. _filtered-positional-operator:
 
@@ -175,90 +234,93 @@ matching array elements in the update document. To identify which array
 elements to match, pair this operator with ``<identifier>`` in an
 ``options.arrayFilters`` object.
 
-The ``<identifier>`` term is a placeholder value you assign that represents
+The ``<identifier>`` value is a placeholder you assign that represents
 an element of the array field name that prefixes it. This value must
 start with a lowercase letter and contain only alphanumeric characters.
 
-Example
-```````
+Usage
+`````
 
-To add a "garlic" topping to certain order items, format your update
-document as follows:
+To use an update operator on specified array elements, format your
+update document as follows:
 
 .. code-block:: javascript
 
-   { $push: { items.$[orderItem].toppings: "garlic" } }
+   { $<operator>: { <array>.$[<identifier>].<arrayField>: <value> } }
 
-This update document specifies the following:
+This update document has the following components:
 
-- ``$push``: the update operator
-- ``items``: the array in the document to update
-- ``orderItem``: the identifier for the filtered positional operator
-- ``toppings``: the field on the ``items`` array element to update
-- ``garlic``: the value to push onto the ``toppings`` array
+- ``$<operator>``: the update operator
+- ``<array>``: the array in the document to update
+- ``<identifier>``: the identifier for the filtered positional operator
+- ``<arrayField>``: the field in the ``<array>`` array element to update
+- ``<value>``: the value that the update operator applies
 
 Next, add the matching criteria in your ``arrayFilters`` object in your update
 operation's ``options`` parameter. This object is an array of queries
-that specify which array elements to include in the update. To add the
-"garlic" topping to order items of type "pizza" and "large size", pass the
-following ``arrayFilters``:
+that specify which array elements to include in the update. To apply
+your update to only certain array elements, pass the
+following ``arrayFilters`` with your matching criteria:
 
 .. code-block:: javascript
 
    arrayFilters: [
-     { orderItem.type: "pizza" },
-     { orderItem.size: "large" }
+     { <identifier>.<arrayField1>: "<value1>" },
+     { <identifier>.<arrayField2>: "<value2>" }
    ]
-
-The following snippet shows the complete update method:
-
-.. literalinclude:: /code-snippets/crud/arrayFilters.js
-   :language: javascript
-   :start-after: start arrayFiltersOne example
-   :end-before: end arrayFiltersOne example
-
-After you run the method, your customer document for Steve
-Lobsters resembles the following:
-
-.. code-block:: javascript
-   :copyable: false
-
-   {
-     name: "Steve Lobsters",
-     address: "731 Yexington Avenue",
-     items: [
-       { type: "pizza", size: "large", toppings: ["pepperoni", "garlic"] },
-       { type: "pizza", size: "large", toppings: ["pineapple", "ham", "garlic"], ...},
-       ...
-     ]
-   }
 
 Example
 ```````
 
-Suppose Steve Lobsters wants to adjust their order to add "salami" as a
-topping to all pizzas that have pepperoni. To perform the update, use
+Suppose the client named "Sandy Kane" wants to set up a payment plan for
+any appointment that costs more than ``100``. To find the matching
+documents and add a new ``paymentPlan`` field, use
 the filtered positional operator as follows:
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
-   :start-after: start arrayFiltersTwo example
-   :end-before: end arrayFiltersTwo example
+   :start-after: start arrayFiltersIdentifier example
+   :end-before: end arrayFiltersIdentifier example
 
-After you run the update method, your customer document for Steve
-Lobsters resembles the following:
+After you run the update operation, the document for the client named
+"Sandy Kane" resembles the following:
 
 .. code-block:: javascript
    :copyable: false
+   :emphasize-lines: 10-14, 21-25
 
    {
-     name: "Steve Lobsters",
-     address: "731 Yexington Avenue",
-     items: [
-       { type: "pizza", size: "large", toppings: ["pepperoni", "salami"], },
-       { type: "pizza", size: "medium", toppings: ["mushrooms", "sausage", "green peppers"], comment: "Extra green peppers please!", },
-       { type: "pizza", size: "large", toppings: ["pineapple, ham"], comment: "red pepper flakes on top", },
-       { type: "calzone", fillings: ["canadian bacon", "sausage", "onion"], },
-       { type: "beverage", name: "Diet Pepsi", size: "16oz", },
-     ],
+     "_id": ...,
+     "name": "Sandy Kane",
+     "appointments": [
+       {
+         "date": "April 7 3:00 PM",
+         "services": [ "haircut", "styling", "color" ],
+         "cost": 275,
+         "stylist": "Francine",
+         "paymentPlan": {
+           "payment1": 50,
+           "payment2": 50,
+           "payment3": "remaining balance"
+         }
+       },
+       {
+         "date": "August 7 3:00 PM",
+         "services": [ "haircut", "styling", "wash" ],
+         "cost": 115,
+         "stylist": "Janna",
+         "paymentPlan": {
+           "payment1": 50,
+           "payment2": 50,
+           "payment3": "remaining balance"
+         }
+       },
+       {
+         "date": "October 15 3:00 PM",
+         "services": [ "styling" ],
+         "cost": 75,
+         "stylist": "Janna"
+       }
+     ]
    }
+    
