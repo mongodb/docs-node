@@ -94,3 +94,5 @@ beforehand:
      { name: "Deli Llama", address: "3 Nassau St" },
      ...
    ]
+
+.. include:: /includes/undefined-values-note.rst

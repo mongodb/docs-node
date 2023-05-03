@@ -213,6 +213,8 @@ Your output should look something like this:
    Inserted a document with id 60ca09f4a40cf1d1afcd93a3
    Inserted a document with id 60ca09f4a40cf1d1afcd93a4
 
+.. include:: /includes/undefined-values-note.rst
+
 For additional information on the classes and methods mentioned in this
 section, see the following resources:
 
