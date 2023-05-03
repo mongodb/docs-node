@@ -29,55 +29,60 @@ for a complete list of operators.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-The examples in this guide use the following sample documents from the
-``test.customers`` collection. The collection contains documents that
-describe the clients of a salon and their upcoming appointments.
+To follow along with the examples in this guide, use the following code
+snippet to insert documents that describe fruits into the ``test.salonClients``
+collection:
 
 .. code-block:: javascript
-   :copyable: true
 
-   {
-     "_id": ...,
-     "name": "Sandy Kane",
-     "appointments": [
-       {
-         "date": "April 7 3:00 PM",
-         "services": [ "haircut", "styling", "color" ],
-         "cost": 275,
-         "stylist": "Francine"
-       },
-       {
-         "date": "August 7 3:00 PM",
-         "services": [ "haircut", "styling" ],
-         "cost": 115,
-         "stylist": "Janna"
-       },
-       {
-         "date": "October 15 3:00 PM",
-         "services": [ "styling" ],
-         "cost": 75,
-         "stylist": "Janna"
-       }
-     ]
-   },
-   {
-     "_id": ...,
-     "name": "Dennis Roberts",
-     "appointments": [
-       {
-         "date": "June 19 4:30 PM",
-         "services": [ "haircut", "styling" ],
-         "cost": 85,
-         "stylist": "Colin"
-       },
-       {
-         "date": "October 1 5:00 PM",
-         "services": [ "beard trim" ],
-         "cost": 35,
-         "stylist": "Janna"
-       }
-     ]
-   }
+   const database = client.db("test");
+   const myColl = database.collection("salonClients");
+
+   await myColl.insertMany([
+     {
+       name: "Sandy Kane",
+       appointments: [
+         {
+           date: "April 7 3:00 PM",
+           services: ["haircut", "styling", "color"],
+           cost: 275,
+           stylist: "Francine",
+         },
+         {
+           date: "August 7 3:00 PM",
+           services: ["haircut", "styling"],
+           cost: 115,
+           stylist: "Janna",
+         },
+         {
+           date: "October 10 3:00 PM",
+           services: ["styling"],
+           cost: 75,
+           stylist: "Janna",
+         },
+       ],
+     },
+     {
+       name: "Dennis Roberts",
+       appointments: [
+         {
+           date: "June 19 4:30 PM",
+           services: ["haircut", "styling"],
+           cost: 85,
+           stylist: "Francine",
+         },
+         {
+           date: "July 10 5:00 PM",
+           services: ["beard trim"],
+           cost: 35,
+           stylist: "Colin",
+         },
+       ],
+     },
+   ]);
+
+The collection contains documents that describe the clients of a salon
+and their upcoming appointments.
 
 Specifying Array Elements
 -------------------------
@@ -122,7 +127,7 @@ The following code snippet shows how to add an item to the
    :end-before: end firstArrayElement example
 
 The query matches all documents whose ``appointments`` array contains an
-entry that has the ``stylist`` field with the value `"Janna".
+entry that has the ``stylist`` field with the value "Janna".
 The ``updateDocument`` adds the "wash" item to the ``services`` field of
 the first array element match in the ``appointments`` array.
 
@@ -131,31 +136,31 @@ After you run the update operation, the document for the client named
 
 .. code-block:: javascript
    :copyable: false
-   :emphasize-lines: 16
+   :emphasize-lines: 13
 
    {
-     "_id": ...,
-     "name": "Sandy Kane",
-     "appointments": [
+     _id: ...,
+     name: "Sandy Kane",
+     appointments: [
        {
-         "date": "April 7 3:00 PM",
-         "services": [ "haircut", "styling", "color" ],
-         "cost": 275,
-         "stylist": "Francine"
+         date: "April 7 3:00 PM",
+         services: ["haircut", "styling", "color"],
+         cost: 275,
+         stylist: "Francine",
        },
        {
-         "date": "August 7 3:00 PM",
-         "services": [ "haircut", "styling", "wash" ],
-         "cost": 115,
-         "stylist": "Janna"
+         date: "August 7 3:00 PM",
+         services: ["haircut", "styling", "wash"],
+         cost: 115,
+         stylist: "Janna",
        },
        {
-         "date": "October 15 3:00 PM",
-         "services": [ "styling" ],
-         "cost": 75,
-         "stylist": "Janna"
-       }
-     ]
+         date: "October 10 3:00 PM",
+         services: ["styling"],
+         cost: 75,
+         stylist: "Janna",
+       },
+     ],
    }
 
 There are two array entries where the ``stylist`` value is "Janna", but
@@ -199,22 +204,22 @@ Roberts" resembles the following:
    :emphasize-lines: 8, 14
    
    {
-     "_id": ...,
-     "name": "Dennis Roberts",
-     "appointments": [
+     _id: ...,
+     name: "Dennis Roberts",
+     appointments: [
        {
-         "date": "June 19 4:30 PM",
-         "services": [ "haircut", "styling" ],
-         "cost": 70,
-         "stylist": "Colin"
+         date: "June 19 4:30 PM",
+         services: ["haircut", "styling"],
+         cost: 70,
+         stylist: "Francine",
        },
        {
-         "date": "October 1 5:00 PM",
-         "services": [ "beard trim" ],
-         "cost": 20,
-         "stylist": "Janna"
-       }
-     ]
+         date: "July 10 5:00 PM",
+         services: ["beard trim"],
+         cost: 20,
+         stylist: "Colin",
+       },
+     ],
    }
 
 The ``cost`` field for every appointment is ``15`` less than the
@@ -290,37 +295,36 @@ After you run the update operation, the document for the client named
    :emphasize-lines: 10-14, 21-25
 
    {
-     "_id": ...,
-     "name": "Sandy Kane",
-     "appointments": [
+     _id: ...,
+     name: "Sandy Kane",
+     appointments: [
        {
-         "date": "April 7 3:00 PM",
-         "services": [ "haircut", "styling", "color" ],
-         "cost": 275,
-         "stylist": "Francine",
-         "paymentPlan": {
-           "payment1": 50,
-           "payment2": 50,
-           "payment3": "remaining balance"
-         }
+         date: "April 7 3:00 PM",
+         services: ["haircut", "styling", "color"],
+         cost: 275,
+         stylist: "Francine",
+         paymentPlan: {
+           payment1: 50,
+           payment2: 50,
+           payment3: "remaining balance",
+         },
        },
        {
-         "date": "August 7 3:00 PM",
-         "services": [ "haircut", "styling", "wash" ],
-         "cost": 115,
-         "stylist": "Janna",
-         "paymentPlan": {
-           "payment1": 50,
-           "payment2": 50,
-           "payment3": "remaining balance"
-         }
+         date: "August 7 3:00 PM",
+         services: ["haircut", "styling"],
+         cost: 115,
+         stylist: "Janna",
+         paymentPlan: {
+           payment1: 50,
+           payment2: 50,
+           payment3: "remaining balance",
+         },
        },
        {
-         "date": "October 15 3:00 PM",
-         "services": [ "styling" ],
-         "cost": 75,
-         "stylist": "Janna"
-       }
-     ]
+         date: "October 10 3:00 PM",
+         services: ["styling"],
+         cost: 75,
+         stylist: "Janna",
+       },
+     ],
    }
-    
