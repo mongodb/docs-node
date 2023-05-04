@@ -47,7 +47,7 @@ New features of the 5.4 {+driver-short+} release include:
 
   - The ``collStats`` helper is deprecated. Use the :manual:`$collStats
     </reference/operator/aggregation/collStats>` aggregation operator instead.
-  - Methods of the ``db.command()`` that were incorrectly included in the
+  - Methods of ``db.command()`` that were incorrectly included in the
     typescript interface have been deprecated.
 
 - The ``ChangeStream.tryNext`` method now uses the ``TChange`` schema
