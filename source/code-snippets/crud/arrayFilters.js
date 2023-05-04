@@ -8,33 +8,18 @@ const client = new MongoClient(uri);
 
 async function loadData() {
   try {
-    const database = client.db("test");
-    const myColl = database.collection("salonClients");
+    const myDB = client.db("test");
+    const myColl = myDB.collection("salonClients");
 
     await myColl.drop();
 
     await myColl.insertMany([
       {
-        name: "Sandy Kane",
+        clientName: "Sandy Kane",
         appointments: [
-          {
-            date: "April 7 3:00 PM",
-            services: ["haircut", "styling", "color"],
-            cost: 275,
-            stylist: "Francine",
-          },
-          {
-            date: "August 7 3:00 PM",
-            services: ["haircut", "styling"],
-            cost: 115,
-            stylist: "Janna",
-          },
-          {
-            date: "October 10 3:00 PM",
-            services: ["styling"],
-            cost: 75,
-            stylist: "Janna",
-          },
+          { date: "May 12 5:00pm", services: ["haircut", "styling"], stylist: "Francine" },
+          { date: "Jul 12 5:00pm", services: ["haircut", "color"], stylist: "Janna" },
+          { date: "Sep 12 5:00pm", services: ["haircut"], stylist: "Janna" },
         ],
       },
       {
@@ -64,15 +49,15 @@ async function loadData() {
 
 async function runFirstArrayElement() {
   try {
-    const database = client.db("test");
-    const myColl = database.collection("salonClients");
+    const myDB = client.db("test");
+    const myColl = myDB.collection("salonClients");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start firstArrayElement example
     const query = { name: "Sandy Kane", "appointments.stylist": "Janna" };
     const updateDocument = {
-      $push: { "appointments.$.services": "wash" },
+      $push: { "appointments.$.services": "shampoo" },
     };
     const result = await myColl.updateOne(query, updateDocument);
     // end firstArrayElement example
@@ -85,13 +70,13 @@ async function runFirstArrayElement() {
 
 async function runAllArrayElements() {
   try {
-    const database = client.db("test");
-    const myColl = database.collection("salonClients");
+    const myDB = client.db("test");
+    const myColl = myDB.collection("salonClients");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start allArrayElement example
-    const query = { name: "Dennis Roberts" };
+    const query = { clientName: "Dennis Roberts" };
     const updateDocument = {
       $inc: { "appointments.$[].cost": -15 },
     };
@@ -106,8 +91,8 @@ async function runAllArrayElements() {
 
 async function arrayFiltersIdentifier() {
   try {
-    const database = client.db("test");
-    const myColl = database.collection("salonClients");
+    const myDB = client.db("test");
+    const myColl = myDB.collection("salonClients");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
@@ -116,14 +101,13 @@ async function arrayFiltersIdentifier() {
     const updateDocument = {
       $set: {
         "appointments.$[appt].paymentPlan": {
-          payment1: 50,
-          payment2: 50,
-          payment3: "remaining balance",
+          payment1: 75,
+          payment2: "remaining balance",
         },
       },
     };
     const options = {
-      arrayFilters: [{ "appt.cost": { $gte: 100 } }],
+      arrayFilters: [{ "appt.cost": { $gte: 100 } }, { "appt.stylist": "Janna" } ],
     };
     const result = await myColl.updateOne(query, updateDocument, options);
     // end arrayFiltersIdentifier example

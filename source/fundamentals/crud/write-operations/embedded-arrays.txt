@@ -22,74 +22,16 @@ operators to modify an array embedded within a document:
 - :ref:`All Positional Operator <all-match-operator>`: ``$[]``
 - :ref:`Filtered Positional Operator <filtered-positional-operator>`: ``$[<identifier>]``
 
-See the MongoDB Server guide on
-:manual:`Update Operators </reference/operator/update-array/#update-operators>`
-for a complete list of operators.
-
-Sample Documents
-~~~~~~~~~~~~~~~~
-
-To follow along with the examples in this guide, use the following code
-snippet to insert documents that describe fruits into the ``test.salonClients``
-collection:
-
-.. code-block:: javascript
-
-   const database = client.db("test");
-   const myColl = database.collection("salonClients");
-
-   await myColl.insertMany([
-     {
-       name: "Sandy Kane",
-       appointments: [
-         {
-           date: "April 7 3:00 PM",
-           services: ["haircut", "styling", "color"],
-           cost: 275,
-           stylist: "Francine",
-         },
-         {
-           date: "August 7 3:00 PM",
-           services: ["haircut", "styling"],
-           cost: 115,
-           stylist: "Janna",
-         },
-         {
-           date: "October 10 3:00 PM",
-           services: ["styling"],
-           cost: 75,
-           stylist: "Janna",
-         },
-       ],
-     },
-     {
-       name: "Dennis Roberts",
-       appointments: [
-         {
-           date: "June 19 4:30 PM",
-           services: ["haircut", "styling"],
-           cost: 85,
-           stylist: "Francine",
-         },
-         {
-           date: "July 10 5:00 PM",
-           services: ["beard trim"],
-           cost: 35,
-           stylist: "Colin",
-         },
-       ],
-     },
-   ]);
-
-The collection contains documents that describe the clients of a salon
-and their upcoming appointments.
+For a list of array update operators, see :manual:`Update Operators
+</reference/operator/update-array/> in the Server
+Manual documentation.
 
 Specifying Array Elements
 -------------------------
 
-You can specify which array elements to update using a positional
-operator. Positional operators can specify the first, all, or certain
-array elements to apply updates to.
+Positional operators specify which array elements to update. Using these
+operators, you can apply updates to the first element, all elements, or
+certain elements that match a criteria.
 
 To specify elements in an array with positional operators, use **dot
 notation**. Dot notation is a property access syntax for navigating BSON
@@ -117,9 +59,27 @@ which you want to access a nested array, use the
 Example
 ```````
 
-The following code snippet shows how to add an item to the
-``services`` field of the first appointment that a customer named
-"Sandy Kane" had with the stylist "Janna".
+This example applies an update to the following sample document, which
+describes the upcoming salon appointments for a client:
+
+.. code-block:: javascript
+   :copyable: false
+   
+   {
+     _id: ...,
+     clientName: "Sandy Kane",
+     appointments: [
+       { date: "May 12 5:00pm", services: ["haircut", "styling"], stylist: "Francine" },
+       { date: "Jul 12 5:00pm", services: ["haircut", "hair coloring"], stylist: "Janna" },
+       { date: "Sep 12 5:00pm", services: ["haircut"], stylist: "Janna" },
+     ],
+   }
+
+This example shows how to update a field in the first array element that
+matches a query. The query matches the client named ``"Sandy Kane"`` and any
+appointments they have with the stylist named ``"Janna"``. The update adds
+the ``"shampoo"`` array item into the ``services`` array
+of the first matching appointment entry.
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -127,50 +87,26 @@ The following code snippet shows how to add an item to the
    :end-before: end firstArrayElement example
    :dedent:
 
-The query matches all documents whose ``appointments`` array contains an
-entry that has the ``stylist`` field with the value "Janna".
-The ``updateDocument`` adds the "wash" item to the ``services`` field of
-the first array element match in the ``appointments`` array.
-
-After you run the update operation, the document for the client named
-"Sandy Kane" resembles the following:
+After you run the update operation, the document resembles the following:
 
 .. code-block:: javascript
    :copyable: false
-   :emphasize-lines: 13
+   :emphasize-lines: 6
 
    {
      _id: ...,
-     name: "Sandy Kane",
+     clientName: "Sandy Kane",
      appointments: [
-       {
-         date: "April 7 3:00 PM",
-         services: ["haircut", "styling", "color"],
-         cost: 275,
-         stylist: "Francine",
-       },
-       {
-         date: "August 7 3:00 PM",
-         services: ["haircut", "styling", "wash"],
-         cost: 115,
-         stylist: "Janna",
-       },
-       {
-         date: "October 10 3:00 PM",
-         services: ["styling"],
-         cost: 75,
-         stylist: "Janna",
-       },
+       { date: "May 12 5:00pm", services: ["haircut", "styling"], stylist: "Francine" },
+       { date: "Jul 12 5:00pm", services: ["haircut", "color", "shampoo"], stylist: "Janna" },
+       { date: "Sep 12 5:00pm", services: ["haircut"], stylist: "Janna" },
      ],
    }
 
-There are two array entries where the ``stylist`` value is "Janna", but
-only the first entry has the new "wash" item in the ``services`` array.
-
-We included both the ``name`` and ``appointments.stylist`` fields in the
-query to match the array to which we apply the ``$`` operator. If we
-omit the ``appointments.stylist`` field from the query and specify the
-``$`` operator in our update, the driver raises the following error:
+We included both the ``clientName`` and ``appointments.stylist`` fields in the
+query to match the array that the ``$`` operator applies to. If we
+omit the ``appointments.stylist`` field from the query when using the
+``$`` operator in an update, the driver raises the following error:
 
 .. code-block:: none
    :copyable: false
@@ -188,8 +124,23 @@ matches your query, use the all positional operator ``$[]``.
 Example
 ```````
 
+This example applies an update to the following sample document, which
+describes the upcoming salon appointments for a client:
+
+.. code-block:: javascript
+   :copyable: false
+   
+   {
+     _id: ...,
+     clientName: "Dennis Roberts",
+     appointments: [
+       { date: "May 17 11:00am", services: ["haircut"], cost: 45 },
+       { date: "Jul 17 11:00am", services: ["haircut", "beard grooming"], cost: 60 },
+     ],
+   }
+
 The following code snippet reduces the ``cost`` field by ``15`` for all of
-the appointments for a client named "Dennis Roberts", since he has a
+the appointments for the client named ``"Dennis Roberts"``, since he has a
 salon voucher.
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
@@ -198,34 +149,20 @@ salon voucher.
    :end-before: end allArrayElement example
    :dedent:
 
-After you run the update operation, the document for the client "Dennis
-Roberts" resembles the following:
+After you run the update operation, the document resembles the following:
 
 .. code-block:: javascript
    :copyable: false
-   :emphasize-lines: 8, 14
+   :emphasize-lines: 5-6
    
    {
      _id: ...,
-     name: "Dennis Roberts",
+     clientName: "Dennis Roberts",
      appointments: [
-       {
-         date: "June 19 4:30 PM",
-         services: ["haircut", "styling"],
-         cost: 70,
-         stylist: "Francine",
-       },
-       {
-         date: "July 10 5:00 PM",
-         services: ["beard trim"],
-         cost: 20,
-         stylist: "Colin",
-       },
+       { date: "May 17 11:00am", services: ["haircut"], cost: 30 },
+       { date: "Jul 17 11:00am", services: ["haircut", "beard grooming"], cost: 45 },
      ],
    }
-
-The ``cost`` field for every appointment is ``15`` less than the
-original value.
 
 .. _filtered-positional-operator:
 
@@ -248,90 +185,125 @@ start with a lowercase letter and contain only alphanumeric characters.
 Usage
 `````
 
-To use an update operator on specified array elements, format your
-update document as follows:
+The following steps describe how to use a filtered positional operator
+in an update operation:
 
-.. code-block:: json
+1. Format your update document as follows:
+   
+   .. code-block:: javascript
+   
+      { $<operator>: { "<array>.$[<identifier>].<arrayField>": <value> } }
 
-   { $<operator>: { "<array>.$[<identifier>].<arrayField>": <value> } }
+   This update document contains the following placeholders:
+   
+   - ``$<operator>``: The array update operator
+   - ``<array>``: The array in the document to update
+   - ``<identifier>``: The identifier for the filtered positional operator
+   - ``<arrayField>``: The field in the ``<array>`` array element to update
+   - ``<value>``: The value that describes the change
 
-This update document has the following components:
+#. Add the matching criteria in the ``arrayFilters`` object. This object
+   is an array of queries that specify which array elements to include
+   in the update. Use this object in an ``options`` parameter:
 
-- ``$<operator>``: the update operator
-- ``<array>``: the array in the document to update
-- ``<identifier>``: the identifier for the filtered positional operator
-- ``<arrayField>``: the field in the ``<array>`` array element to update
-- ``<value>``: the value that the update operator applies
+   .. code-block:: javascript
+      
+      const options = {
+        arrayFilters: [
+          { "<identifier>.<arrayField1>": <value1> },
+          { "<identifier>.<arrayField2>": <value2> },
+          ...
+        ]
+      };
 
-Next, add the matching criteria in your ``arrayFilters`` object in your update
-operation's ``options`` parameter. This object is an array of queries
-that specify which array elements to include in the update. To apply
-your update to only certain array elements, pass the
-following ``arrayFilters`` with your matching criteria:
-
-.. code-block:: javascript
-
-   arrayFilters: [
-     { "<identifier>.<arrayField1>": <value1> },
-     { "<identifier>.<arrayField2>": <value2> },
-     ...
-   ]
+ #. Pass the options and the update document to an
+    update method.
 
 Example
 ```````
 
-Suppose the client named "Sandy Kane" wants to set up a payment plan for
-any appointment that costs more than ``100``. To find the matching
-documents and add a new ``paymentPlan`` field, use
-the filtered positional operator as follows:
+This example applies an update to the following sample document, which
+describes the upcoming salon appointments for a client:
+
+.. code-block:: javascript
+   :copyable: false
+   
+   {
+     _id: ...,
+     clientName: "Sandy Kane",
+     appointments: [
+       {
+         date: "May 12 11:00am",
+         stylist: "Janna",
+         cost: 115
+       },
+       {
+         date: "Jul 12 11:00am",
+         stylist: "Francine",
+         cost: 200
+       },
+       {
+         date: "Sep 12 11:00am",
+         stylist: "Claire",
+         cost: 60
+       },
+       {
+         date: "Oct 12 11:00am",
+         stylist: "Janna",
+         cost: 130
+       },
+     ],
+   }
+
+Suppose the client named ``"Sandy Kane"`` wants to set up a payment plan for
+any appointment that costs more than ``100``. However, only the stylist
+named ``"Janna"`` accepts delayed payments. To add a new ``paymentPlan``
+field to the matching array entries, use the filtered positional
+operator as follows:
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
    :start-after: start arrayFiltersIdentifier example
    :end-before: end arrayFiltersIdentifier example
+   :emphasize-lines: 3-8, 10-12
    :dedent:
 
-After you run the update operation, the document for the client named
-"Sandy Kane" resembles the following:
+After you run the update operation, the document resembles the following:
 
 .. code-block:: javascript
    :copyable: false
-   :emphasize-lines: 10-14, 21-25
+   :emphasize-lines: 9, 25
 
    {
      _id: ...,
-     name: "Sandy Kane",
+     clientName: "Sandy Kane",
      appointments: [
        {
-         date: "April 7 3:00 PM",
-         services: ["haircut", "styling", "color"],
-         cost: 275,
-         stylist: "Francine",
-         paymentPlan: {
-           payment1: 50,
-           payment2: 50,
-           payment3: "remaining balance",
-         },
-       },
-       {
-         date: "August 7 3:00 PM",
-         services: ["haircut", "styling"],
+         date: "May 12 11:00am",
+         stylist: "Janna",
          cost: 115,
-         stylist: "Janna",
-         paymentPlan: {
-           payment1: 50,
-           payment2: 50,
-           payment3: "remaining balance",
-         },
+         paymentPlan: { payment1: 75, payment2: "remaining balance" },
        },
        {
-         date: "October 10 3:00 PM",
-         services: ["styling"],
-         cost: 75,
+         date: "Jul 12 11:00am",
+         stylist: "Francine",
+         cost: 200
+       },
+       {
+         date: "Sep 12 11:00am",
+         stylist: "Claire",
+         cost: 60
+       },
+       {
+         date: "Oct 12 11:00am",
          stylist: "Janna",
+         cost: 130,
+         paymentPlan: { payment1: 75, payment2: "remaining balance" },
        },
      ],
    }
 
-The entries in the ``appointments`` array that have a ``cost`` field
-that is at least ``100`` now have the ``paymentPlan`` field.
+The updated added ``paymentPlan`` field to all appointments with
+``"Janna"`` that cost at least ``100``. The appointment that cost ``60``
+and the appointment with ``"Francine"`` did not match the criteria in
+the ``arrayFilters`` object and therefore were excluded from the update.
