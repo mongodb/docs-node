@@ -10,7 +10,6 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/fundamentals/versioned-api/ -> ${base}/${version}/fundamentals/stable-api/
 [*-master]: ${prefix}/${version}/fundamentals/connection/lambda/ -> ${base}/${version}/fundamentals/connection/
 [*-master]: ${prefix}/${version}/fundamentals/csfle -> ${base}/${version}/fundamentals/encrypt-fields/
-[*-master]: ${prefix}/${version}/fundamentals/utf8-validation -> ${base}/${version}/fundamentals/bson/utf8-validation/
 
 [*-v5.0]: ${prefix}/${version}/quick-start/connect-to-mongodb/ -> ${base}/${version}/quick-start/
 [*-v5.0]: ${prefix}/${version}/quick-start/create-a-connection-string/ -> ${base}/${version}/quick-start/
@@ -18,3 +17,4 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-v5.0]: ${prefix}/${version}/quick-start/download-and-install/ -> ${base}/${version}/quick-start/
 [*-v5.0]: ${prefix}/${version}/quick-start/next-steps/ -> ${base}/${version}/quick-start/
 
+[v4.3-master]: ${prefix}/${version}/fundamentals/utf8-validation -> ${base}/${version}/fundamentals/bson/utf8-validation/
