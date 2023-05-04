@@ -23,7 +23,7 @@ operators to modify an array embedded within a document:
 - :ref:`Filtered Positional Operator <filtered-positional-operator>`: ``$[<identifier>]``
 
 For a list of array update operators, see :manual:`Update Operators
-</reference/operator/update-array/> in the Server
+</reference/operator/update-array/>` in the Server
 Manual documentation.
 
 Specifying Array Elements
@@ -216,8 +216,8 @@ in an update operation:
         ]
       };
 
- #. Pass the options and the update document to an
-    update method.
+#. Pass the options and the update document to an
+   update method.
 
 Example
 ```````
