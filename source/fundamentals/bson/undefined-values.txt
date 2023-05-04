@@ -31,7 +31,7 @@ The following example inserts two documents. One insert operation has
 the ``ignoreUndefined`` setting set to ``true``:
 
 .. code-block:: javascript
-   :emphasize-lines: 7
+   :emphasize-lines: 6
    
    await myColl.insertOne(
      {
