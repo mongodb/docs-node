@@ -205,5 +205,3 @@ inserts a new document with the specified fields and values.
 You cannot modify the ``_id`` field of a document nor change a field to
 a value that violates a unique index constraint. See the MongoDB Server manual
 for more information on :manual:`unique indexes </core/index-unique/>`.
-
-.. include:: /includes/undefined-values-note.rst

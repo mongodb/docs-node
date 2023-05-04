@@ -262,5 +262,3 @@ Lobsters resembles the following:
        { type: "beverage", name: "Diet Pepsi", size: "16oz", },
      ],
    }
-
-.. include:: /includes/undefined-values-note.rst
