@@ -13,22 +13,24 @@ Undefined Values
 Overview
 --------
 
-In this guide, you can learn how to control how the driver serializes
-undefined values. By default, the driver serializes ``undefined`` values
+In this guide, you can learn to control how the driver serializes
+``undefined`` values. By default, the driver serializes ``undefined`` values
 as ``null`` values during write operations.
 
 .. _nodejs-specify-ignoreundefined:
 
-Specify the ``ignoreUndefined`` Setting
----------------------------------------
+Ignore Undefined Values
+-----------------------
 
-If you want the driver to treat fields with
-``undefined`` values as non-existent fields, you must set the
+To make the driver ignore fields with
+``undefined`` values during serialization, set the
 ``ignoreUndefined`` setting to ``true``. When you specify this setting,
-the driver does not serialize fields with ``undefined`` values.
+the driver *does not* serialize fields with ``undefined`` values.
 
 The following example inserts two documents. One insert operation has
-the ``ignoreUndefined`` setting set to ``true``:
+the ``ignoreUndefined`` setting set to ``true``. The driver does not
+serialize the ``salesTax`` field during the first insert operation
+because we specified the ``ignoreUndefined`` setting:
 
 .. code-block:: javascript
    :emphasize-lines: 6
@@ -60,27 +62,30 @@ The documents appear in the collection as follows:
      state: "New Hampshire",
      salesTax: null
    }
-   
-The driver does not serialize the ``salesTax``
-field during the first insert operation because we specified the
-``ignoreUndefined`` setting.
 
 .. _nodejs-ignoreundefined-scope:
 
-Set Scope for Serializing Undefined Values
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Set the Scope for Serializing Undefined Values
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can specify the ``ignoreUndefined`` setting at the client,
-database, collection, or operation level.
+You can specify the ``ignoreUndefined`` setting at the following levels:
+
+- The client level
+- The database level
+- The collection level
+- The operation level
 
 The ``ignoreUndefined`` setting automatically applies to the scope of the
-object instance in which you specified it, and any other objects created
+object instance in which you specified it, as well as any other objects created
 from that instance.
 
-For example, if you include the option when instantiating a database
-object, any collection instance you extract from that object inherits
-the setting. Any operations you call on that collection instance also
-inherit the setting.
+For example, if you set the ``ignoreUndefined`` setting when
+instantiating a database object, any collection instance created from
+that object inherits the setting. Furthermore, any operations that you
+call on that collection instance also inherit the setting.
+
+The following example performs an update operation that inherits the
+``ignoreUndefined`` setting from the ``myDB`` database object:
 
 .. code-block:: javascript
 
@@ -95,14 +100,15 @@ inherit the setting.
      { $set: { gasTax: undefined } }
    );
 
-You can override the setting at any level of scope by including it when
-constructing the object instance or when executing an operation.
+You can specify the ``ignoreUndefined`` setting again at any level to
+override any inherited settings.
 
 For example, if you set ``ignoreUndefined`` to ``true`` on your
 collection object, you can override the setting in individual write
 operations that you execute on that collection.
 
 .. code-block:: javascript
+   :emphasize-lines: 1, 12
 
    const myColl = myDB.collection("states", { ignoreUndefined: true });
 
