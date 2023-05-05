@@ -11,4 +11,3 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/fundamentals/connection/lambda/ -> ${base}/${version}/fundamentals/connection/
 [v4.7-*]: ${prefix}/${version}/fundamentals/csfle -> ${base}/${version}/fundamentals/encrypt-fields/
 [*-v4.6]: ${prefix}/${version}/fundamentals/encrypt-fields -> ${base}/${version}/fundamentals/csfle/
-[v4.3-master]: ${prefix}/${version}/fundamentals/utf8-validation -> ${base}/${version}/fundamentals/bson/utf8-validation/
