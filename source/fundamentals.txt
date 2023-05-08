@@ -18,5 +18,6 @@ Fundamentals
    /fundamentals/monitoring
    /fundamentals/gridfs
    /fundamentals/encrypt-fields
+   /fundamentals/bson
 
 .. include:: /includes/fundamentals-sections.rst
