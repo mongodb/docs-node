@@ -3,7 +3,7 @@ Write Operations
 ================
 
 .. meta::
-   :description: Learn the concepts related to writing, updating, and deleting data to MongoDB by using the {+driver-long+}.
+   :description: Learn the concepts and commands for MongoDB write operations by using the {+driver-long+}.
 
 - :doc:`/fundamentals/crud/write-operations/insert`
 - :doc:`/fundamentals/crud/write-operations/pkFactory`
@@ -21,4 +21,4 @@ Write Operations
    /fundamentals/crud/write-operations/change-a-document
    /fundamentals/crud/write-operations/embedded-arrays
    /fundamentals/crud/write-operations/upsert
-   
+
