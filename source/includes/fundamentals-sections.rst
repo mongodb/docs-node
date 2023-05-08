@@ -14,3 +14,4 @@ Fundamentals section:
 - :doc:`Monitor Driver Events </fundamentals/monitoring>`
 - :doc:`Store and Retrieve Large Files in MongoDB </fundamentals/gridfs>`
 - :doc:`Encrypt Fields from the Client </fundamentals/encrypt-fields>`
+- :doc:`Specify BSON Serialization Settings </fundamentals/bson>`
