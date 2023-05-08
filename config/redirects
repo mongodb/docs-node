@@ -16,5 +16,3 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-v5.0]: ${prefix}/${version}/quick-start/create-a-deployment/ -> ${base}/${version}/quick-start/
 [*-v5.0]: ${prefix}/${version}/quick-start/download-and-install/ -> ${base}/${version}/quick-start/
 [*-v5.0]: ${prefix}/${version}/quick-start/next-steps/ -> ${base}/${version}/quick-start/
-
->>>>>>> 16e17b7 (DOCSP-29563: redirect CSFLE to Encrypt Fields for all versions (#670))
