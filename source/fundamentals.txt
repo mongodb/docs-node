@@ -21,5 +21,6 @@ Fundamentals
    /fundamentals/encrypt-fields
    /fundamentals/time-series
    /fundamentals/typescript
+   /fundamentals/bson
 
 .. include:: /includes/fundamentals-sections.rst
