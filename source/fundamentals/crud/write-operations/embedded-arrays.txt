@@ -59,8 +59,9 @@ which you want to access a nested array, use the
 Example
 ```````
 
-This example applies an update to the following sample document, which
-describes the upcoming salon appointments for a client:
+This example shows how to update the first matching array element in the
+following sample document, which describes the upcoming salon
+appointments for a client:
 
 .. code-block:: javascript
    :copyable: false
@@ -69,17 +70,16 @@ describes the upcoming salon appointments for a client:
      _id: ...,
      clientName: "Sandy Kane",
      appointments: [
-       { date: "May 12 5:00pm", services: ["haircut", "styling"], stylist: "Francine" },
-       { date: "Jul 12 5:00pm", services: ["haircut", "hair coloring"], stylist: "Janna" },
-       { date: "Sep 12 5:00pm", services: ["haircut"], stylist: "Janna" },
-     ],
+       { date: "5/12 5pm", services: ["haircut", "conditioning treatment"], stylist: "Francine" },
+       { date: "7/12 5pm", services: ["haircut", "hair coloring"], stylist: "Janna" },
+       { date: "9/12 5pm", services: ["haircut"], stylist: "Janna" }
+     ]
    }
 
-This example shows how to update a field in the first array element that
+The following code shows how to update a field in the first array element that
 matches a query. The query matches the client named ``"Sandy Kane"`` and any
 appointments they have with the stylist named ``"Janna"``. The update adds
-the ``"shampoo"`` array item into the ``services`` array
-of the first matching appointment entry.
+``"shampoo"`` to the ``services`` array of the first matching appointment.
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -97,10 +97,10 @@ After you run the update operation, the document resembles the following:
      _id: ...,
      clientName: "Sandy Kane",
      appointments: [
-       { date: "May 12 5:00pm", services: ["haircut", "styling"], stylist: "Francine" },
-       { date: "Jul 12 5:00pm", services: ["haircut", "color", "shampoo"], stylist: "Janna" },
-       { date: "Sep 12 5:00pm", services: ["haircut"], stylist: "Janna" },
-     ],
+       { date: "5/12 5pm", services: ["haircut", "conditioning treatment"], stylist: "Francine" },
+       { date: "7/12 5pm", services: ["haircut", "hair coloring", "shampoo"], stylist: "Janna" },
+       { date: "9/12 5pm", services: ["haircut"], stylist: "Janna" }
+     ]
    }
 
 We included both the ``clientName`` and ``appointments.stylist`` fields in the
@@ -124,8 +124,9 @@ matches your query, use the all positional operator ``$[]``.
 Example
 ```````
 
-This example applies an update to the following sample document, which
-describes the upcoming salon appointments for a client:
+This example shows how to update the all matching array elements in the
+following sample document, which describes the upcoming salon
+appointments for a client:
 
 .. code-block:: javascript
    :copyable: false
@@ -134,14 +135,15 @@ describes the upcoming salon appointments for a client:
      _id: ...,
      clientName: "Dennis Roberts",
      appointments: [
-       { date: "May 17 11:00am", services: ["haircut"], cost: 45 },
-       { date: "Jul 17 11:00am", services: ["haircut", "beard grooming"], cost: 60 },
-     ],
+       { date: "5/17 11am", services: ["haircut"], cost: 45 },
+       { date: "7/17 11am", services: ["haircut", "beard grooming"], cost: 60 }
+     ]
    }
 
-The following code snippet reduces the ``cost`` field by ``15`` for all of
-the appointments for the client named ``"Dennis Roberts"``, since he has a
-salon voucher.
+Suppose the client named ``"Dennis Roberts"`` has a coupon that reduces
+the total cost of any appointment. The following code shows
+how to reduce the ``cost`` field by ``15`` for
+all of the appointments in the array:
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -159,9 +161,9 @@ After you run the update operation, the document resembles the following:
      _id: ...,
      clientName: "Dennis Roberts",
      appointments: [
-       { date: "May 17 11:00am", services: ["haircut"], cost: 30 },
-       { date: "Jul 17 11:00am", services: ["haircut", "beard grooming"], cost: 45 },
-     ],
+       { date: "5/17 11am", services: ["haircut"], cost: 30 },
+       { date: "7/17 11am", services: ["haircut", "beard grooming"], cost: 45 }
+     ]
    }
 
 .. _filtered-positional-operator:
@@ -200,7 +202,7 @@ in an update operation:
    - ``<array>``: The array in the document to update
    - ``<identifier>``: The identifier for the filtered positional operator
    - ``<arrayField>``: The field in the ``<array>`` array element to update
-   - ``<value>``: The value that describes the change
+   - ``<updateParameter>``: The value that describes the change
 
 #. Add the matching criteria in the ``arrayFilters`` object. This object
    is an array of queries that specify which array elements to include
@@ -210,8 +212,8 @@ in an update operation:
       
       const options = {
         arrayFilters: [
-          { "<identifier>.<arrayField1>": <value1> },
-          { "<identifier>.<arrayField2>": <value2> },
+          { "<identifier>.<arrayField1>": <updateParameter1> },
+          { "<identifier>.<arrayField2>": <updateParameter2> },
           ...
         ]
       };
@@ -222,8 +224,9 @@ in an update operation:
 Example
 ```````
 
-This example applies an update to the following sample document, which
-describes the upcoming salon appointments for a client:
+This example shows how to update certain matching array elements in the
+following sample document, which describes the upcoming salon
+appointments for a client:
 
 .. code-block:: javascript
    :copyable: false
@@ -233,33 +236,33 @@ describes the upcoming salon appointments for a client:
      clientName: "Sandy Kane",
      appointments: [
        {
-         date: "May 12 11:00am",
+         date: "5/12 11am",
          stylist: "Janna",
          cost: 115
        },
        {
-         date: "Jul 12 11:00am",
+         date: "7/12 11am",
          stylist: "Francine",
          cost: 200
        },
        {
-         date: "Sep 12 11:00am",
+         date: "9/12 11am",
          stylist: "Claire",
          cost: 60
        },
        {
-         date: "Oct 12 11:00am",
+         date: "10/12 1pm",
          stylist: "Janna",
          cost: 130
-       },
-     ],
+       }
+     ]
    }
 
 Suppose the client named ``"Sandy Kane"`` wants to set up a payment plan for
 any appointment that costs more than ``100``. However, only the stylist
 named ``"Janna"`` accepts delayed payments. To add a new ``paymentPlan``
 field to the matching array entries, use the filtered positional
-operator as follows:
+operator as shown in the following code:
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -279,31 +282,31 @@ After you run the update operation, the document resembles the following:
      clientName: "Sandy Kane",
      appointments: [
        {
-         date: "May 12 11:00am",
+         date: "5/12 11am",
          stylist: "Janna",
          cost: 115,
-         paymentPlan: { payment1: 75, payment2: "remaining balance" },
+         paymentPlan: { planType: "monthly installments" }
        },
        {
-         date: "Jul 12 11:00am",
+         date: "7/12 11am",
          stylist: "Francine",
          cost: 200
        },
        {
-         date: "Sep 12 11:00am",
+         date: "9/12 11am",
          stylist: "Claire",
          cost: 60
        },
        {
-         date: "Oct 12 11:00am",
+         date: "10/12 1pm",
          stylist: "Janna",
          cost: 130,
-         paymentPlan: { payment1: 75, payment2: "remaining balance" },
-       },
-     ],
+         paymentPlan: { planType: "monthly installments" }
+       }
+     ]
    }
 
-The updated added ``paymentPlan`` field to all appointments with
+The update added the ``paymentPlan`` field to all appointments with
 ``"Janna"`` that cost at least ``100``. The appointment that cost ``60``
 and the appointment with ``"Francine"`` did not match the criteria in
 the ``arrayFilters`` object and therefore were excluded from the update.
