@@ -1,5 +1,4 @@
 const { MongoClient } = require("mongodb");
-const stream = require("stream");
 
 // Replace the following string with your MongoDB deployment's connection string.
 const uri =
@@ -9,7 +8,7 @@ const client = new MongoClient(uri);
 async function printData() {
   try {
     const myDB = client.db("test");
-    const myColl = myDB.collection("salonClients");
+    const myColl = myDB.collection("radioCallers");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
   } finally {
@@ -20,14 +19,14 @@ async function printData() {
 async function runFirstArrayElement() {
   try {
     const myDB = client.db("test");
-    const myColl = myDB.collection("salonClients");
+    const myColl = myDB.collection("radioCallers");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start firstArrayElement example
-    const query = { name: "Sandy Kane", "appointments.stylist": "Janna" };
+    const query = { date: "5/15/2023", "callers.phoneNumber": { $exists: true } };
     const updateDocument = {
-      $push: { "appointments.$.services": "shampoo" }
+      $set: { "callers.$.contestWinner": true }
     };
     const result = await myColl.updateOne(query, updateDocument);
     // end firstArrayElement example
@@ -41,14 +40,14 @@ async function runFirstArrayElement() {
 async function runAllArrayElements() {
   try {
     const myDB = client.db("test");
-    const myColl = myDB.collection("salonClients");
+    const myColl = myDB.collection("radioCallers");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start allArrayElement example
-    const query = { clientName: "Dennis Roberts" };
+    const query = { date: "5/15/2023" };
     const updateDocument = {
-      $inc: { "appointments.$[].cost": -15 }
+      $unset: { "callers.$[].duration": "" }
     };
     const result = await myColl.updateOne(query, updateDocument);
     // end allArrayElement example
@@ -62,21 +61,24 @@ async function runAllArrayElements() {
 async function arrayFiltersIdentifier() {
   try {
     const myDB = client.db("test");
-    const myColl = myDB.collection("salonClients");
+    const myColl = myDB.collection("radioCallers");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start arrayFiltersIdentifier example
-    const query = { name: "Sandy Kane" };
+    const query = { date: "5/15/2023" };
     const updateDocument = {
-      $set: {
-        "appointments.$[appt].paymentPlan": {
-          planType: "monthly installments"
-        }
-      }
+      $inc: {
+        "callers.$[c].contestEntries": 1,
+      },
     };
     const options = {
-      arrayFilters: [{ "appt.cost": { $gte: 100 } }, { "appt.stylist": "Janna" } ],
+      arrayFilters: [
+        {
+          "c.state": { $in: ["New Jersey", "Texas"] },
+          "c.phoneNumber": { $exists: true },
+        },
+      ],
     };
     const result = await myColl.updateOne(query, updateDocument, options);
     // end arrayFiltersIdentifier example
