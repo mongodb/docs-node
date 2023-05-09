@@ -70,15 +70,15 @@ async function arrayFiltersIdentifier() {
     const updateDocument = {
       $inc: {
         "callers.$[c].contestEntries": 1,
-      },
+      }
     };
     const options = {
       arrayFilters: [
         {
           "c.state": { $in: ["New Jersey", "Texas"] },
-          "c.phoneNumber": { $exists: true },
-        },
-      ],
+          "c.phoneNumber": { $exists: true }
+        }
+      ]
     };
     const result = await myColl.updateOne(query, updateDocument, options);
     // end arrayFiltersIdentifier example
