@@ -219,9 +219,9 @@ in an update operation:
    update method. The following sample code shows how to call the
    ``updateOne()`` method with these parameters:
 
-      .. code-block:: javascript
-      
-         await myColl.updateOne(query, updateDocument, options);
+   .. code-block:: javascript
+   
+      await myColl.updateOne(query, updateDocument, options);
 
 Example
 ```````
@@ -268,7 +268,7 @@ the ``arrayFilters`` object and therefore was excluded from the update.
 
 .. code-block:: javascript
    :copyable: false
-   :emphasize-lines: 9, 25
+   :emphasize-lines: 4, 7
 
    {
      _id: ...,
