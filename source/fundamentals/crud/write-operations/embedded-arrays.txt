@@ -69,7 +69,7 @@ following sample document, which describes callers to a radio station:
      date: "5/15/2023",
      callers: [
        { time: "6:08 am", name: "Sandy Kane" },
-       { time: "6:11 am", name: "Jordan Chin", phoneNumber: 2545550179 },
+       { time: "6:11 am", name: "TJ La", phoneNumber: 2545550179 },
        { time: "6:36 am", name: "Diya Patel", phoneNumber: 4255550100 }
      ]
    }
@@ -96,7 +96,7 @@ After you run the update operation, the document resembles the following:
      date: "5/15/2023",
      callers: [
        { time: "6:08 am", name: "Sandy Kane" },
-       { time: "6:11 am", name: "Jordan Chin", phoneNumber: 2545550179, contestWinner: true },
+       { time: "6:11 am", name: "TJ La", phoneNumber: 2545550179, contestWinner: true },
        { time: "6:36 am", name: "Diya Patel", phoneNumber: 4255550100 }
      ]
    }
@@ -236,10 +236,10 @@ following sample document, which describes callers to a radio station:
      _id: ...,
      date: "5/15/2023",
      callers: [
-       { time: "6:08 am", phoneNumber: 7325550159, state: "New Jersey", contestEntries: 1 },
-       { time: "6:11 am", phoneNumber: 5805550179, state: "Oklahoma", contestEntries: 1 },
-       { time: "6:36 am", state: "New Jersey", contestEntries: 1 },
-       { time: "6:11 am", phoneNumber: 2545550179, state: "Texas", contestEntries: 1 }
+       { phoneNumber: 7325550159, state: "New Jersey", contestEntries: 1 },
+       { phoneNumber: 5805550179, state: "Oklahoma", contestEntries: 1 },
+       { state: "New Jersey", contestEntries: 1 },
+       { phoneNumber: 2545550179, state: "Texas", contestEntries: 1 }
      ]
    }
 
@@ -274,9 +274,9 @@ the ``arrayFilters`` object and therefore was excluded from the update.
      _id: ...,
      date: "5/15/2023",
      callers: [
-       { time: "6:08 am", phoneNumber: 7325550159, state: "New Jersey", contestEntries: 2 },
-       { time: "6:11 am", phoneNumber: 5805550179, state: "Oklahoma", contestEntries: 1 },
-       { time: "6:36 am", state: "New Jersey", contestEntries: 1 },
-       { time: "6:11 am", phoneNumber: 2545550179, state: "Texas", contestEntries: 2 }
+       { phoneNumber: 7325550159, state: "New Jersey", contestEntries: 2 },
+       { phoneNumber: 5805550179, state: "Oklahoma", contestEntries: 1 },
+       { state: "New Jersey", contestEntries: 1 },
+       { phoneNumber: 2545550179, state: "Texas", contestEntries: 2 }
      ]
    }
