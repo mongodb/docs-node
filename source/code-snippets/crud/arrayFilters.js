@@ -10,7 +10,7 @@ async function printData() {
     const myDB = client.db("test");
     const myColl = myDB.collection("testColl");
 
-    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+    console.log(JSON.stringify(await myColl.find().toArray()));
   } finally {
     await client.close();
   }
@@ -21,7 +21,7 @@ async function runFirstArrayElement() {
     const myDB = client.db("test");
     const myColl = myDB.collection("testColl");
 
-    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+    console.log(JSON.stringify(await myColl.find().toArray()));
 
     // start firstArrayElement example
     const query = { "entries.x": { $type : "string" } };
@@ -31,7 +31,7 @@ async function runFirstArrayElement() {
     const result = await myColl.updateOne(query, updateDocument);
     // end firstArrayElement example
     console.log(result.modifiedCount);
-    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+    console.log(JSON.stringify(await myColl.find().toArray()));
   } finally {
     await client.close();
   }
@@ -42,7 +42,7 @@ async function runAllArrayElements() {
     const myDB = client.db("test");
     const myColl = myDB.collection("testColl");
 
-    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+    console.log(JSON.stringify(await myColl.find().toArray()));
 
     // start allArrayElement example
     const query = { date: "5/15/2023" };
@@ -52,7 +52,7 @@ async function runAllArrayElements() {
     const result = await myColl.updateOne(query, updateDocument);
     // end allArrayElement example
     console.log(result.modifiedCount);
-    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+    console.log(JSON.stringify(await myColl.find().toArray()));
   } finally {
     await client.close();
   }
@@ -63,7 +63,7 @@ async function arrayFiltersIdentifier() {
     const myDB = client.db("test");
     const myColl = myDB.collection("testColl");
 
-    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+    console.log(JSON.stringify(await myColl.find().toArray()));
 
     // start arrayFiltersIdentifier example
     const query = { date: "11/12/2023" };
@@ -82,7 +82,7 @@ async function arrayFiltersIdentifier() {
     // end arrayFiltersIdentifier example
     console.log(result.modifiedCount);
 
-    console.log(JSON.stringify(await (await myColl.find()).toArray()));
+    console.log(JSON.stringify(await myColl.find().toArray()));
   } finally {
     await client.close();
   }
