@@ -59,25 +59,24 @@ Example
 ```````
 
 This example shows how to update the first matching array element in the
-following sample document, which describes callers to a radio station:
+following sample document:
 
 .. code-block:: javascript
    :copyable: false
 
    {
      _id: ...,
-     date: "5/15/2023",
-     callers: [
-       { time: "6:08 am", name: "Sandy Kane" },
-       { time: "6:11 am", name: "TJ La", phoneNumber: 2545550179 },
-       { time: "6:36 am", name: "Diya Patel", phoneNumber: 4255550100 }
+     entries: [
+       { x: false, y: 1 },
+       { x: "hello", y: 100 },
+       { x: "goodbye", y: 1000 }
      ]
    }
 
-The following code shows how to add a field to the first array entry that
-matches a query. The query matches the radio show on ``"5/15/2023"`` and 
-callers that left a phone number. The update adds the ``contestWinner``
-field to the first matching caller.
+The following code shows how to increment a value in the first array
+element that matches a query. The query matches elements in the
+``entries`` array where the value of ``x`` is a ``string`` type. The update
+increases the ``y`` field by ``33`` in the first matching element.
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -85,31 +84,31 @@ field to the first matching caller.
    :end-before: end firstArrayElement example
    :dedent:
 
-After you run the update operation, the document resembles the following:
+After you run the update operation, the document resembles the
+following:
 
 .. code-block:: javascript
    :copyable: false
-   :emphasize-lines: 6
+   :emphasize-lines: 5
 
    {
      _id: ...,
-     date: "5/15/2023",
-     callers: [
-       { time: "6:08 am", name: "Sandy Kane" },
-       { time: "6:11 am", name: "TJ La", phoneNumber: 2545550179, contestWinner: true },
-       { time: "6:36 am", name: "Diya Patel", phoneNumber: 4255550100 }
+     entries: [
+       { x: false, y: 1 },
+       { x: "hello", y: 133 },
+       { x: "goodbye", y: 1000 }
      ]
    }
 
-The example includes both the ``date`` and ``callers.phoneNumber`` fields in the
+The example includes the ``entries.x`` field in the
 query to match the array that the ``$`` operator applies an update to. If you
-omit the ``callers.phoneNumber`` field from the query while using the
+omit the ``entries.x`` field from the query while using the
 ``$`` operator in an update, the driver raises the following error:
 
 .. code-block:: none
    :copyable: false
 
-   The positional operator did not find the match needed from the query.
+   MongoServerError: The positional operator did not find the match needed from the query.
 
 .. _all-match-operator:
 
@@ -123,7 +122,7 @@ Example
 ```````
 
 This example shows how to update the all matching array elements in the
-following sample document, which describes callers to a radio station:
+following sample documents, which describe phone call logs:
 
 .. code-block:: javascript
    :copyable: false
@@ -131,15 +130,23 @@ following sample document, which describes callers to a radio station:
    {
      _id: ...,
      date: "5/15/2023",
-     callers: [
-       { time: "6:08 am", phoneNumber: 7325550159, duration: 67 },
-       { time: "6:11 am", phoneNumber: 2545550179, duration: 121 },
-       { time: "6:36 am", phoneNumber: 4255550100, duration: 102 }
+     calls: [
+       { time: "10:08 am", caller: "Mom", duration: 67 },
+       { time: "4:11 pm", caller: "Dad", duration: 121 },
+       { time: "6:36 pm", caller: "Grandpa", duration: 13 }
+     ]
+   },
+   {
+     _id: ...,
+     date: "5/16/2023",
+     calls: [
+       { time: "11:47 am", caller: "Mom", duration: 4 },
      ]
    }
 
 The following code shows how to remove the ``duration`` field from
-all of the entries in the array:
+all of the ``calls`` array entries in the document whose ``date`` is
+``"5/15/2023"``:
 
 .. literalinclude:: /code-snippets/crud/arrayFilters.js
    :language: javascript
@@ -147,18 +154,26 @@ all of the entries in the array:
    :end-before: end allArrayElement example
    :dedent:
 
-After you run the update operation, the document resembles the following:
+After you run the update operation, the documents resemble the following:
 
 .. code-block:: javascript
    :copyable: false
+   :emphasize-lines: 5-7
    
    {
      _id: ...,
      date: "5/15/2023",
-     callers: [
-       { time: "6:08 am", phoneNumber: 7325550159 },
-       { time: "6:11 am", phoneNumber: 2545550179 },
-       { time: "6:36 am", phoneNumber: 4255550100 }
+     calls: [
+       { time: "10:08 am", caller: "Mom" },
+       { time: "4:11 pm", caller: "Dad" },
+       { time: "6:36 pm", caller: "Grandpa" }
+     ]
+   },
+   {
+     _id: ...,
+     date: "5/16/2023",
+     calls: [
+       { time: "11:47 am", caller: "Mom", duration: 4 },
      ]
    }
 
@@ -193,7 +208,7 @@ in an update operation:
    
    .. code-block:: javascript
    
-      { $<operator>: { "<array>.$[<identifier>].<arrayField>": <value> } }
+      { $<operator>: { "<array>.$[<identifier>].<arrayField>": <updateParameter> } }
 
    This update document contains the following placeholders:
    
@@ -201,11 +216,11 @@ in an update operation:
    - ``<array>``: The array in the document to update
    - ``<identifier>``: The identifier for the filtered positional operator
    - ``<arrayField>``: The field in the ``<array>`` array element to update
-   - ``<updateParameter>``: The value that describes the change
+   - ``<updateParameter>``: The value that describes the update
 
 #. Add the matching criteria in the ``arrayFilters`` object. This object
    is an array of queries that specify which array elements to include
-   in the update. Use this object in an ``options`` parameter:
+   in the update. Set this object in an ``options`` parameter:
 
    .. code-block:: javascript
       
@@ -227,29 +242,38 @@ Example
 ```````
 
 This example shows how to update certain matching array elements in the
-following sample document, which describes callers to a radio station:
+following sample documents, which describe shopping lists made for specific
+recipes:
 
 .. code-block:: javascript
    :copyable: false
 
    {
      _id: ...,
-     date: "5/15/2023",
-     callers: [
-       { phoneNumber: 7325550159, state: "New Jersey", contestEntries: 1 },
-       { phoneNumber: 5805550179, state: "Oklahoma", contestEntries: 1 },
-       { state: "New Jersey", contestEntries: 1 },
-       { phoneNumber: 2545550179, state: "Texas", contestEntries: 1 }
+     date: "11/12/2023",
+     items: [
+       { item: "Scallions", quantity: 3, recipe: "Fried rice" },
+       { item: "Mangos", quantity: 4, recipe: "Salsa" },
+       { item: "Pork shoulder", quantity: 1, recipe: "Fried rice" },
+       { item: "Sesame oil", quantity: 1, recipe: "Fried rice" }
+     ]
+   },
+   {
+     _id: ...,
+     date: "11/20/2023",
+     items: [
+       { item: "Coffee beans", quantity: 1, recipe: "Coffee" }
      ]
    }
 
-Suppose the radio station is running a contest, and callers that match
-the following criteria receive extra entries:
+Suppose you want to increase the quantity of items you purchase for a
+recipe on your ``"11/12/2023"`` grocery trip. You want to double the quantity if
+the item meets the following criteria:
 
-- The caller is from ``"New Jersey"`` or ``"Texas"``.
-- The caller left a phone number.
+- The item is for the ``"Fried rice"`` recipe.
+- The item name does not include the word ``"oil"``.
 
-To increase the ``contestEntries`` field by ``1`` in the matching array
+To double the ``quantity`` field in the matching array
 entries, use the filtered positional operator as shown in the following
 code:
 
@@ -257,26 +281,33 @@ code:
    :language: javascript
    :start-after: start arrayFiltersIdentifier example
    :end-before: end arrayFiltersIdentifier example
-   :emphasize-lines: 3-5, 8-13
+   :emphasize-lines: 3, 6-11
    :dedent:
 
-After you run the update operation, the document resembles the
-following. The update incremented the ``contestEntries`` field for
-all callers that matched the criteria. The caller from ``"New Jersey"``
-who did not leave a phone number did not match the criteria in
-the ``arrayFilters`` object and therefore was excluded from the update.
+After you run the update operation, the documents resemble the
+following. The update multiplied the ``quantity`` field by ``2`` for
+items that matched the criteria. The item ``"Sesame oil"`` did not match
+the criteria in the ``arrayFilters`` object and therefore was excluded
+from the update.
 
 .. code-block:: javascript
    :copyable: false
-   :emphasize-lines: 5, 8
+   :emphasize-lines: 5, 7
 
    {
      _id: ...,
-     date: "5/15/2023",
-     callers: [
-       { phoneNumber: 7325550159, state: "New Jersey", contestEntries: 2 },
-       { phoneNumber: 5805550179, state: "Oklahoma", contestEntries: 1 },
-       { state: "New Jersey", contestEntries: 1 },
-       { phoneNumber: 2545550179, state: "Texas", contestEntries: 2 }
+     date: "11/12/2023",
+     items: [
+       { item: "Scallions", quantity: 6, recipe: "Fried rice" },
+       { item: "Mangos", quantity: 4, recipe: "Salsa" },
+       { item: "Pork shoulder", quantity: 2, recipe: "Fried rice" },
+       { item: "Sesame oil", quantity: 1, recipe: "Fried rice" }
+     ]
+   },
+   {
+     _id: ...,
+     date: "11/20/2023",
+     items: [
+       { item: "Coffee beans", quantity: 1, recipe: "Coffee" }
      ]
    }

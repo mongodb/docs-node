@@ -8,7 +8,7 @@ const client = new MongoClient(uri);
 async function printData() {
   try {
     const myDB = client.db("test");
-    const myColl = myDB.collection("radioCallers");
+    const myColl = myDB.collection("testColl");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
   } finally {
@@ -19,14 +19,14 @@ async function printData() {
 async function runFirstArrayElement() {
   try {
     const myDB = client.db("test");
-    const myColl = myDB.collection("radioCallers");
+    const myColl = myDB.collection("testColl");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start firstArrayElement example
-    const query = { date: "5/15/2023", "callers.phoneNumber": { $exists: true } };
+    const query = { "entries.x": { $type : "string" } };
     const updateDocument = {
-      $set: { "callers.$.contestWinner": true }
+      $inc: { "entries.$.y": 33 }
     };
     const result = await myColl.updateOne(query, updateDocument);
     // end firstArrayElement example
@@ -40,14 +40,14 @@ async function runFirstArrayElement() {
 async function runAllArrayElements() {
   try {
     const myDB = client.db("test");
-    const myColl = myDB.collection("radioCallers");
+    const myColl = myDB.collection("testColl");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start allArrayElement example
     const query = { date: "5/15/2023" };
     const updateDocument = {
-      $unset: { "callers.$[].duration": "" }
+      $unset: { "calls.$[].duration": "" }
     };
     const result = await myColl.updateOne(query, updateDocument);
     // end allArrayElement example
@@ -61,22 +61,20 @@ async function runAllArrayElements() {
 async function arrayFiltersIdentifier() {
   try {
     const myDB = client.db("test");
-    const myColl = myDB.collection("radioCallers");
+    const myColl = myDB.collection("testColl");
 
     console.log(JSON.stringify(await (await myColl.find()).toArray()));
 
     // start arrayFiltersIdentifier example
-    const query = { date: "5/15/2023" };
+    const query = { date: "11/12/2023" };
     const updateDocument = {
-      $inc: {
-        "callers.$[c].contestEntries": 1,
-      }
+      $mul: { "items.$[i].quantity": 2 }
     };
     const options = {
       arrayFilters: [
         {
-          "c.state": { $in: ["New Jersey", "Texas"] },
-          "c.phoneNumber": { $exists: true }
+          "i.recipe": "Fried rice",
+          "i.item": { $not: { $regex: "oil" } },
         }
       ]
     };
