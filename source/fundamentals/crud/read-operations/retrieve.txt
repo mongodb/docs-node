@@ -49,10 +49,10 @@ method accepts a query document that describes the documents you want to
 retrieve. For more information on how to specify your query document,
 see our guide on how to :doc:`Specify a Query </fundamentals/crud/query-document>`.
 
-.. tip:: No Matching Criteria
+.. tip:: No Query Criteria
    
-   To execute a find operation that has no matching criteria, you can
-   pass an empty query or omit the query in your find
+   To execute a find operation that has no query criteria, you can
+   pass an empty query or omit the query document in your find
    method parameters.
 
    The following operations both return all documents in the
@@ -65,7 +65,7 @@ see our guide on how to :doc:`Specify a Query </fundamentals/crud/query-document
    
    If you don't pass a query or pass an empty query
    to the ``findOne()`` method, the operation returns the first
-   document in a collection.
+   document of a collection.
 
    Even if you pass an empty query in a find operation, you can
    specify options. For example, the following code shows how you can
