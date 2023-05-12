@@ -46,6 +46,8 @@ New features of the 5.5 {+driver-short+} release include:
 
 - The driver now accurately detects Function-as-a-Service (FaaS)
   environments in AWS.
+- You must upgrade ``mongodb-client-encryption`` to version 2.8.0 or
+  later if you want to create a QE collection while using this driver version.
 
 .. _version-5.4:
 
