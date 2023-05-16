@@ -52,10 +52,10 @@ fields. The following command creates a text index on two fields in the
 .. tip:: Specify Field Weights in a Text Index
    
    When creating a compound text index, you can specify a weight option to
-   prioritize certain text fields in your index relative to the other
-   indexed fields. When you execute a text search, the field weights
-   influence how MongoDB calculates the :ref:`text search score
-   <node-text-search-score>` for each matching document.
+   prioritize certain text fields in your index. When you execute a text
+   search, the field weights influence how MongoDB calculates the
+   :ref:`text search score <node-text-search-score>` for each matching
+   document.
 
    To learn more about specifying field weights when creating a text
    index, see the :ref:`Text Indexes <node-fundamentals-text-indexes>`
@@ -64,8 +64,8 @@ fields. The following command creates a text index on two fields in the
 You can only create *one* text index per collection. Every text search
 queries all the fields specified in that index for matches.
 
-See the MongoDB server manual to learn more about :manual:`text indexes
-</core/index-text/>`.
+To learn more about text indexes, see :manual:`Text Indexes
+</core/index-text>` in the Server manual.
 
 Query for Words
 ~~~~~~~~~~~~~~~

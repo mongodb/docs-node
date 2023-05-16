@@ -198,10 +198,10 @@ can include any field whose value is a string or an array of string elements.
 MongoDB supports text search for various languages, so you can specify the
 default language as an option when creating the index. You can also
 specify a weight option to prioritize certain text fields in your
-index relative to the other indexed fields.
+index. These weights denote the significance of fields relative to the
+other indexed fields.
 
-Read our guide on :ref:`text search queries <node-fundamentals-text>` for
-more information.
+To learn more about text searches, see our guide on :ref:`text search queries <node-fundamentals-text>`.
 
 The following example uses the ``createIndex()`` method to perform the
 following actions:
@@ -217,8 +217,7 @@ following actions:
    :end-before: end-idx
    :dedent:
 
-The following is an example of a query that uses the text index created
-in the previous code:
+The following query uses the text index created in the preceding code:
 
 .. literalinclude:: /code-snippets/indexes/text.js
    :language: js
