@@ -374,10 +374,9 @@ What's New in 4.8
 
 .. important:: Upgrade from v4.8.0 to v4.8.1
 
-   Version 4.8.1 includes a fix to a type regression issue that was
-   introduced in v4.8.0. By upgrading to v4.8.1, you can specify ``_id``
-   values and sub-documents when performing updates with the ``$set`` or
-   ``$setOnInsert`` operators.
+   Version 4.8.1 fixes a type regression issue introduced in v4.8.0. By
+   upgrading to v4.8.1, you can specify ``_id`` values and sub-documents
+   when performing updates with the ``$set`` or ``$setOnInsert`` operators.
 
 New features of the 4.8 {+driver-short+} release include:
 
