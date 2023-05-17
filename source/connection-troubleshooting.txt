@@ -85,16 +85,16 @@ your ``mongod`` in ``IPV6`` mode with
 or setting the ``net.ipv6`` option to ``true``
 :manual:`in your configuration file </reference/configuration-options/#mongodb-setting-net.ipv6>`.
 
-  .. code-block:: sh
-     :caption: Starting mongod with the --ipv6 flag
+.. code-block:: sh
+   :caption: Starting mongod with the --ipv6 flag
 
-     mongod --ipv6
+   mongod --ipv6
 
-  .. code-block:: yaml
-     :caption: Setting the net.ipv6 option in the configuration file
+.. code-block:: yaml
+   :caption: Setting the net.ipv6 option in the configuration file
 
-     net:
-       ipv6: true
+   net:
+     ipv6: true
 
 Use IPV4 with Your Mongo Client
 -------------------------------
@@ -103,11 +103,11 @@ Beginning with version 17, Node.js defaults to using ``IPV6``. You can
 explicitly use ``IPV4`` with your client by specifying ``family: 4`` as an
 `option to your MongoClient <{+api+}/interfaces/MongoClientOptions.html#family>`__.
 
-  .. code-block:: js
+.. code-block:: js
 
-      const client = new MongoClient(uri, {
-        family: 4,
-      });
+   const client = new MongoClient(uri, {
+     family: 4,
+   });
 
 ECONNRESET Error
 ~~~~~~~~~~~~~~~~
