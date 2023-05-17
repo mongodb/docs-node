@@ -296,20 +296,26 @@ similar to the following message:
 If you receive this error, try the following methods to resolve the
 issue.
 
-Set Timeout Option
-------------------
+Set connectTimeoutMS
+--------------------
 
-You can specify the ``timeoutMS`` option in your connection string to define
-how long the driver will wait to connect.
+To prevent the driver from hanging during connection or to prevent the
+driver from spending too long trying to reach unreachable replica sets,
+you can set the ``connectTimeoutMS`` option of your
+:ref:`connection options <node-connection-options>`.
+You should ensure the ``connectTimeoutMS`` setting is not lower than
+the longest network latency you have to a member of the set. If one of the
+secondary members is on the other side of the planet and has a latency of 10000
+milliseconds, setting the ``connectTimeoutMS`` to anything lower will
+prevent the driver from ever connecting to that member.
 
-The following example sets the single timeout value to 5 seconds using the
-connection string option:
+The following example sets ``connectTimeoutMS`` to 10000 milliseconds.
 
 .. code-block:: javascript
 
-   const { MongoClient } = require("mongodb");
-   const uri = "mongodb://<username>:<password>@<hostname>:<port>/?timeoutMS=5000";
-   const client = new MongoClient(uri);
+   const client = new MongoClient(uri, {
+     connectTimeoutMS: 10000,
+   });
 
 Check the Number of Connections
 -------------------------------
