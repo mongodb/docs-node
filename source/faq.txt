@@ -18,6 +18,13 @@ This page contains frequently asked questions and their corresponding answers.
    see the :ref:`node-issues-help` page for next steps and more
    resources.
 
+Why Am I Getting Errors While Connecting to MongoDB?
+----------------------------------------------------
+
+If you have trouble connecting to a MongoDB deployment, see
+the :ref:`Connection Troubleshooting Guide <node-connection-troubleshooting>`
+for possible solutions.
+
 .. _node-faq-connection-pool:
 
 How Does Connection Pooling Work in the Node Driver?
@@ -98,35 +105,6 @@ use as they are returned to the pool. Calling ``MongoClient.close()``
 closes only inactive sockets, so you cannot interrupt or terminate
 any ongoing operations by using this method. The driver closes these
 sockets only when the process completes.
-
-How to fix a "MongoServerSelectionError: connect ECONNREFUSED ::1:27017" error?
--------------------------------------------------------------------------------
-
-Beginning with version 17, Node.js defaults to using ``IPV6``. You have a few
-options to resolve this error:
-
-- Start your ``mongod`` in ``IPV6`` mode with :manual:`the --ipv6 flag </reference/program/mongod/#std-option-mongod.--ipv6>`, or
-  setting the ``net.ipv6`` option to ``true`` :manual:`in your configuration file </reference/configuration-options/#mongodb-setting-net.ipv6>`.
-
-  .. code-block:: sh
-     :caption: Starting mongod with the --ipv6 flag
-
-     mongod --ipv6
-
-  .. code-block:: yaml
-     :caption: Setting the net.ipv6 option in the configuration file
-
-     net:
-       ipv6: true
-
-- Explicitly use ``IPV4`` by specifying ``family: 4`` as an
-  `option to your MongoClient <{+api+}/interfaces/MongoClientOptions.html#family>`__.
-
-  .. code-block:: js
-
-      const client = new MongoClient(uri, {
-        family: 4,
-      });
 
 What Is the Difference Between "connectTimeoutMS", "socketTimeoutMS" and "maxTimeMS"?
 -------------------------------------------------------------------------------------
