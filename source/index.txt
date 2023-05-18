@@ -76,9 +76,8 @@ section.
 Connection Troubleshooting
 --------------------------
 
-For solutions to some issues you might see when connecting to a MongoDB
-deployment while using the {+driver-long+}, see
-:ref:`node-connection-troubleshooting`.
+For solutions to issues you might encounter when using the driver to connect to
+a MongoDB deployment, see the :ref:`node-connection-troubleshooting` section.
 
 Issues & Help
 -------------
