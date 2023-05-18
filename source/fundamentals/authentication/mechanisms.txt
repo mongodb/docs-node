@@ -235,7 +235,7 @@ The driver checks for your credentials in the following sources in order:
       .. literalinclude:: /code-snippets/authentication/aws-env-variable.js
          :language: javascript
 
-.. important:: Retrieval of AWS credentials
+.. important:: Retrieval of AWS Credentials
    
    Starting in version 4.11, when you install the optional
    ``aws-sdk/credential-providers`` dependency, the driver uses the AWS SDK
