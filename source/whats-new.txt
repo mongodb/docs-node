@@ -174,7 +174,7 @@ New features of the 5.0 {+driver-short+} release include:
      This change is for Typescript only, and does not affect queries or operations
      at runtime.
 
-- Optional installation of ``@aws-sdk/credential-providers`` as a dependency.
+- Optional installation of ``@aws-sdk/credential-providers`` as a peer dependency.
 
   - The driver no longer includes AWS SDK modules by default. Use the
     following ``npm`` command to install the SDK:
@@ -270,9 +270,25 @@ To learn more, see the `v4.12.0 Release Highlights <https://github.com/mongodb/n
 What's New in 4.11
 ------------------
 
+Prioritization Order in Monitoring
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 When connecting to MongoDB Server version 6.0 or later, the driver prioritizes
 ``electionId`` settings before ``setVersion`` settings during Server Discovery and
 Monitoring events. In previous versions, the prioritization order was reversed.
+
+Changes to AWS Authentication
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When you install the optional ``aws-sdk/credential-providers``
+dependency, the driver uses the AWS SDK to retrieve AWS credentials from the
+environment.
+
+To learn more about this behavior, see the :ref:`MONGODB-AWS
+<mongodb-aws>` section of the Authentication Mechanisms guide.
+
+Mutually Recursive Schema Type Checking
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This release also includes added support for **mutually
 recursive** collection schema types. The driver also provides type safety for
@@ -281,8 +297,8 @@ than or equal to eight, Typescript successfully compiles your code but does not
 provide type safety. This depth limit on recursive types is a current limitation
 of TypeScript.
 
-Mutually Recursive Schema Type Checking Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example
+```````
 
 Suppose we have a collection of type ``Collection<Author>`` that contains the
 following mutually recursive types:
