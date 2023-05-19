@@ -29,9 +29,10 @@ using the {+driver-long+} to connect to a MongoDB deployment.
 Connection Error
 ~~~~~~~~~~~~~~~~
 
-The following error message is a general message indicating that the driver
-cannot connect to a server on the specified hostname or port. In this sample
-error message, the hostname is ``127.0.0.1`` and the port is ``27017``:
+The following error message indicates that the driver cannot connect to a server
+on the specified hostname or port. Multiple situations can generate this error
+message. In this sample error message, the hostname is ``127.0.0.1`` and the
+port is ``27017``:
 
 .. code-block:: none
    :copyable: false
@@ -74,27 +75,27 @@ instance, it generates this error message:
 .. code-block:: none
    :copyable: false
 
-   MongoServerSelectionError: connect ECONNREFUSED ::<IP address>:<port>
+   MongoServerSelectionError: connect ECONNREFUSED <IPv6 address>:<port>
 
 The following sections describe actions you can take to potentially resolve the
 issue.
 
-Start MongoDB in IPv6 Mode
---------------------------
+Ensure MongoDB and Your Client Use the Same Protocol
+----------------------------------------------------
 
 In Node.js v17 and later, the DNS resolver uses ``IPv6`` by default when both
-the client and host support both. You can configure your MongoDB deployment
-to use ``IPv6`` mode when starting with ``mongod`` or ``mongos``. For more
-information about how to specify ``IPv6`` mode, see
+the client and host support both. If MongoDB uses one mode (such as IPv4) and your
+client uses a different mode (such as IPv6), this will result in the error message
+above.
+
+You can configure your MongoDB deployment to use ``IPv6`` mode when starting
+with ``mongod`` or ``mongos``. For more information about how to specify
+``IPv6`` mode, see
 :manual:`IP Binding </core/security-mongodb-configuration/>` in the server
 manual.
 
-Use IPv4 with Your Mongo Client
--------------------------------
-
-In Node.js v17 and later, the DNS resolver uses ``IPv6`` by default when both
-the client and host support both. You can explicitly use ``IPv4`` with your
-client by specifying ``family: 4`` as an
+As an alternative, you can explicitly use ``IPv4`` with your client by
+specifying ``family: 4`` as an
 `option to your MongoClient <{+api+}/interfaces/MongoClientOptions.html#family>`__.
 
 .. code-block:: js
@@ -116,8 +117,8 @@ generates this error message:
 
 The following section describes a method that may help resolve the issue.
 
-Increase the Number of File Descriptors
----------------------------------------
+Control the Number of File Descriptors
+--------------------------------------
 
 A file descriptor is a unique identifier associated with an open process. In most
 operating systems, each open connection from the driver is associated with a
@@ -125,18 +126,8 @@ file descriptor. Operating systems typically have a limit on the number of file
 descriptors used by a single process. An ``ECONNRESET`` error can occur
 if the number of connections exceeds this limit.
 
-Consider the following example that creates a client and attempts to connect to
-a local deployment:
-
-.. literalinclude:: /code-snippets/faq/econnresetWithClientConnect-example.js
-  :language: javascript
-  :linenos:
-
-This operation can create a maximum number of 5000 connections as indicated by
-the inclusion of ``maxPoolSize`` on the URI. If the operating system has a file
-descriptor limit of 4000, this can cause an ``ECONNRESET`` error.
-
-To resolve this error, you can decrease the number of maximum allowed connections
+You can set the maxmimum number of connections by setting ``maxPoolSize``. To
+resolve this error, you can decrease the number of maximum allowed connections
 by setting the value of ``maxPoolSize``. Alternatively, you could increase the
 file descriptor limit in your operating system.
 
@@ -183,22 +174,27 @@ issues when attempting to connect to MongoDB using ``SCRAM-SHA-256``.
    see :ref:`Connection URI <node-connection-uri>` in the Connection Guide.
 
 If your connection string contains a username and password, ensure that they
-are in the correct format.
+are in the correct format. If the username or password includes any of the
+following characters, they must be
+`percent encoded <https://tools.ietf.org/html/rfc3986#section-2.1>`__:
 
-.. note::
+.. code-block:: none
 
-   If the username or password includes any of the following characters, they
-   must be `percent encoded <https://tools.ietf.org/html/rfc3986#section-2.1>`__:
+    : / ? # [ ] @
 
-   .. code-block:: none
+The following example shows how to percent encode "#MyP@assword?":
 
-      : / ? # [ ] @
+.. code-block:: javascript
 
-   The following example shows how to percent encode "P@assword":
+    const password = '#MyP@assword?';
+    const encodedPassword = encodeURIComponent(password);
+    console.log(encodedPassword);
 
-   .. code-block:: none
+This results in the following output:
 
-      password = "P%40ssword"
+.. code-block:: none
+
+    > "%23MyP%40assword%3F"
 
 .. _node-troubleshooting-connection-admin:
 
@@ -237,31 +233,26 @@ it may display the following error message:
 The following sections describe actions you can take to potentially resolve the
 issue.
 
-Check User Permissions
-----------------------
+Check the User Permissions
+--------------------------
 
-Verify that you've accessed the MongoDB deployment with the correct user. The driver
-might generate an error message if you are using a user that does not have
-permissions to send the message.
+Verify that you've accessed the MongoDB deployment with the correct user. The
+term "message" in the error can be a command sent by the driver.
+If you are using a user that doesn't have permissions to send the command, the
+driver could generate this error.
 
 Also ensure that the user has the appropriate permissions for the message you
 are sending. MongoDB uses Role-Based Access Control (RBAC) to control access
-to a MongoDB system. For more information about how to configure RBAC in MongoDB,
+to a MongoDB deployment. For more information about how to configure RBAC in MongoDB,
 see :manual:`Default MongoDB Port </core/authorization/>`.
-
-Verify the User Is in the Authentication Database
--------------------------------------------------
-
-Verify the user is in the correct authentication database. For more
-information about the authentication database, see
-:ref:`Authentication Error <node-troubleshooting-connection-admin>`.
 
 Configure Your Firewall
 -----------------------
 
 The firewall needs to have an open port for communicating with the MongoDB
 instance. For more information about configuring the firewall, see
-:ref:`Connection Error <node-troubleshooting-connection-firewall>`.
+:ref:`Configure Your Firewall <node-troubleshooting-connection-firewall>` in
+the Connection Error section.
 
 .. _node-troubleshooting-connection-number-connections:
 
@@ -297,13 +288,14 @@ Check the Number of Connections
 
 If you need to create more open connections, increase ``maxPoolSize``. For more
 information about checking the number of connections, see
-:ref:`Error Sending Message <node-troubleshooting-connection-number-connections>`.
+:ref:`Check the Number of Connections <node-troubleshooting-connection-number-connections>`
+in the Error Sending Message section.
 
 Timeout Error
 ~~~~~~~~~~~~~
 
-Sometimes when you send a request through the driver to the server, the request
-times out. When this happens, you might receive an error message
+When the network is not able to deliver a request from the driver to the server
+quickly enough, it can time out. When this happens, you might receive an error message
 similar to the following message:
 
 .. code-block:: none
@@ -317,15 +309,17 @@ issue.
 Set connectTimeoutMS
 --------------------
 
-To prevent the driver from hanging during connection or to prevent the
-driver from spending too much time attempting to reach unreachable replica set
-nodes, you can set the ``connectTimeoutMS`` option of your
-:ref:`connection options <node-connection-options>`.
+The driver may hang when it is unable to to establish a connection because it
+takes too long attempting to reach unreachable replica set nodes. You can limit the
+time the driver spends attempting to establish the connection by using the
+``connectTimeMS`` setting. To learn more about this setting, see the
+:ref:`connection options ` guide."
+
 You should ensure the ``connectTimeoutMS`` setting is not lower than
 the highest network latency you have to a member of the set. If one of the
-secondary members is on the other side of the planet and has a latency of 10000
-milliseconds, setting the ``connectTimeoutMS`` to 9000 prevents the driver from
-ever connecting to that member.
+secondary members has a latency of 10000 milliseconds, setting the
+``connectTimeoutMS`` to 9000 prevents the driver from ever connecting to that
+member.
 
 The following example sets ``connectTimeoutMS`` to 10000 milliseconds.
 
@@ -340,4 +334,5 @@ Check the Number of Connections
 
 The number of connections to the server may exceed ``maxPoolSize``. For more
 information about checking the number of connections, see
-:ref:`Error Sending Message <node-troubleshooting-connection-number-connections>`.
+:ref:`Check the Number of Connections <node-troubleshooting-connection-number-connections>`
+in the Error Sending Message section.
