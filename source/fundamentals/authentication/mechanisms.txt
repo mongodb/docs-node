@@ -241,13 +241,15 @@ The driver checks for your credentials in the following sources in order:
    ``aws-sdk/credential-providers`` dependency, the driver uses the AWS SDK
    to retrieve credentials from the environment. As a result, if you
    have a shared AWS credentials file or config file, the driver will
-   use those credentials by default if there are no AWS authentication
-   environment variables set.
+   use those credentials by default.
    
-   To override this behavior, you can perform one of the following actions:
+   You can override this behavior by performing one of the following
+   actions:
    
-   - Set ``AWS_SHARED_CREDENTIALS_FILE`` in your shell or set the
-     equivalent environment variable value in your application.
+   - Set ``AWS_SHARED_CREDENTIALS_FILE`` variable in your shell to point
+     to your credentials file.
+   - Set the equivalent environment variable in your application to point
+     to your credentials file.
    - Create an AWS profile for your MongoDB credentials and set the
      ``AWS_PROFILE`` environment variable to that profile name.
 

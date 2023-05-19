@@ -290,7 +290,7 @@ To learn more about this behavior, see the :ref:`MONGODB-AWS
 Mutually Recursive Schema Type Checking
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This release also includes added support for **mutually
+This release includes added support for **mutually
 recursive** collection schema types. The driver also provides type safety for
 dot-notation queries up to a depth of eight in this release. At a depth greater
 than or equal to eight, Typescript successfully compiles your code but does not
