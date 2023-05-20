@@ -84,9 +84,8 @@ Ensure MongoDB and Your Client Use the Same Protocol
 ----------------------------------------------------
 
 In Node.js v17 and later, the DNS resolver uses ``IPv6`` by default when both
-the client and host support both. If MongoDB uses one mode (such as IPv4) and your
-client uses a different mode (such as IPv6), this will result in the error message
-above.
+the client and host support both. For example, if MongoDB uses IPv4 and your
+client uses IPv6, the driver returns the previous error message.
 
 You can configure your MongoDB deployment to use ``IPv6`` mode when starting
 with ``mongod`` or ``mongos``. For more information about how to specify
@@ -186,15 +185,13 @@ The following example shows how to percent encode "#MyP@assword?":
 
 .. code-block:: javascript
 
-    const password = '#MyP@assword?';
-    const encodedPassword = encodeURIComponent(password);
-    console.log(encodedPassword);
+   console.log(encodeURIComponent('#MyP@assword?'));
 
 This results in the following output:
 
 .. code-block:: none
 
-    > "%23MyP%40assword%3F"
+   "%23MyP%40assword%3F"
 
 .. _node-troubleshooting-connection-admin:
 
@@ -309,7 +306,7 @@ issue.
 Set connectTimeoutMS
 --------------------
 
-The driver may hang when it is unable to to establish a connection because it
+The driver may hang when it's unable to establish a connection because it
 takes too long attempting to reach unreachable replica set nodes. You can limit the
 time the driver spends attempting to establish the connection by using the
 ``connectTimeMS`` setting. To learn more about this setting, see the
