@@ -310,7 +310,8 @@ The driver may hang when it's unable to establish a connection because it
 takes too long attempting to reach unreachable replica set nodes. You can limit the
 time the driver spends attempting to establish the connection by using the
 ``connectTimeMS`` setting. To learn more about this setting, see the
-:ref:`connection options ` guide."
+:manual:`Timeout Options </reference/connection-string/#timeout-options>` in
+the server manual.
 
 You should ensure the ``connectTimeoutMS`` setting is not lower than
 the highest network latency you have to a member of the set. If one of the
