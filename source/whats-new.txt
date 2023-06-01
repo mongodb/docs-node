@@ -57,7 +57,7 @@ The {+driver-short+} v5.6 release includes the following features:
   `bucketRoundingSeconds <{+api+}/interfaces/TimeSeriesCollectionOptions.html#bucketRoundingSeconds>`__.
   To learn more about these time series collection options, see the
   `Set Granularity for Time Series Data <https://www.mongodb.com/docs/upcoming/core/timeseries/timeseries-granularity/#set-granularity-for-time-series-data>`__
-  Server Manual documentation.
+  Server manual documentation.
 
 To learn more about this release, see the `v5.6.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v5.6.0>`__.
 
