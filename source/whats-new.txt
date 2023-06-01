@@ -52,9 +52,9 @@ The {+driver-short+} v5.6 release includes the following features:
   see the `runCursorCommand API documentation <{+api+}/5.6/classes/Db.html#command>`__.
 
 - Support for specifying time series collection creation options
-  `bucketMaxSpanSeconds <{+api+}/5.6/interfaces/TimeSeriesCollectionOptions.html#bucketMaxSpanSeconds>`__
+  `bucketMaxSpanSeconds <{+api+}/interfaces/TimeSeriesCollectionOptions.html#bucketMaxSpanSeconds>`__
   and
-  `bucketRoundingSeconds <{+api}/5.6/interfaces/TimeSeriesCollectionOptions.html#bucketRoundingSeconds>`__.
+  `bucketRoundingSeconds <{+api}/interfaces/TimeSeriesCollectionOptions.html#bucketRoundingSeconds>`__.
   To learn more about these time series collection options, see the
   `Set Granularity for Time Series Data <https://www.mongodb.com/docs/upcoming/core/timeseries/timeseries-granularity/#set-granularity-for-time-series-data>`__
   Server Manual documentation.
