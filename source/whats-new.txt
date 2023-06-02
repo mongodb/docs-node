@@ -47,17 +47,17 @@ The {+driver-short+} v5.6 release includes the following features:
 
 - The driver now supports Node.js v20.
 
-- The driver can return a cursor as the response to a server command by
-  calling the ``runCursorCommand()`` method. To learn more about this feature,
-  see the `runCursorCommand API documentation <{+api+}/classes/Db.html#command>`__.
+- The driver can return a cursor as the response to a server command when you
+  call the ``runCursorCommand()`` method. To learn more about this feature,
+  see the `runCursorCommand API documentation <{+api+}/classes/Db.html#runCursorCommand>`__.
 
 - Support for specifying time series collection creation options
   `bucketMaxSpanSeconds <{+api+}/interfaces/TimeSeriesCollectionOptions.html#bucketMaxSpanSeconds>`__
   and
   `bucketRoundingSeconds <{+api+}/interfaces/TimeSeriesCollectionOptions.html#bucketRoundingSeconds>`__.
-  To learn more about these time series collection options, see the
+  To learn more about these time series collection options, see
   `Set Granularity for Time Series Data <https://www.mongodb.com/docs/upcoming/core/timeseries/timeseries-granularity/#set-granularity-for-time-series-data>`__
-  Server manual documentation.
+  in the Server manual.
 
 To learn more about this release, see the `v5.6.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v5.6.0>`__.
 
