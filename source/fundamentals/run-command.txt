@@ -18,6 +18,13 @@ In this guide, you can learn how to run a database command with the
 administrative and diagnostic tasks, such as fetching server statistics,
 initializing a replica set, or running an aggregation pipeline.
 
+.. important:: Use Driver Methods if Possible
+
+   The driver provides wrapper methods that produce the same results as
+   many database commands. We recommend that you check if there
+   is a driver method available to perform your desired action before you
+   execute a raw database command.
+
 Execute a Command
 -----------------
 
@@ -29,7 +36,7 @@ to run database commands:
 - ``command()``, which returns the command response as a
   ``Document`` type. You can use this method with any database command.
 - ``runCursorCommand()``, which returns the command response as an iterable
-  ``RunCommandCursor`` type. You can use this method if your database command
+  ``RunCommandCursor`` type. You can use this method only if your database command
   returns multiple result documents.
 
 The following code shows how you can use the ``command()``
@@ -47,12 +54,20 @@ the :ref:`Additional Information section <addl-info-runcommand>`.
 
    ``command()`` and ``runCursorCommand()`` do not obey the read
    preference you may have set on your ``Db`` object elsewhere in
-   your code. You can set a read preference for command execution by
-   passing the relevant options object to either method:
+   your code. By default, these methods use the ``primary`` read
+   preference.
+   
+   You can set a read preference for command execution by
+   passing an options object to either method. The ``command()`` method
+   takes a ``RunCommandOptions`` object, and the ``runCursorCommand()`` method
+   takes a ``RunCursorCommandOptions`` object.
+
+   The following code shows how to specify a read preference and pass it
+   as an option to the ``command()`` method:
    
    .. code-block:: javascript
 
-      const commandOptions = { readPreference: "primary" };
+      const commandOptions = { readPreference: "nearest" };
       const result = await myDB.command(commandDoc, commandOptions);
    
    For more information on read preference options, see :manual:`Read
@@ -107,7 +122,7 @@ Example
 
 The following code shows how you can use the ``runCursorCommand()`` method to
 run the ``checkMetadataConsistency`` command on the ``testDB`` database
-and iterates through the results:
+and iterate through the results:
 
 .. literalinclude:: /code-snippets/crud/runCommand.js
    :language: javascript
