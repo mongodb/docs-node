@@ -13,7 +13,6 @@ CRUD Operations
    /fundamentals/crud/write-operations
    /fundamentals/crud/query-document
    /fundamentals/crud/compound-operations
-   /fundamentals/crud/run-command
 
 CRUD (Create, Read, Update, Delete) operations allow you to work with
 the data stored in MongoDB.
@@ -28,8 +27,6 @@ The CRUD operation documentation is categorized in two sections:
 Some operations combine aspects of read and write operations. See our
 guide on :doc:`compound operations </fundamentals/crud/compound-operations>`
 to learn more about these hybrid methods.
-
-To learn how to run database commands, see our :ref:`node-run-command` guide.
 
 .. note::
 
