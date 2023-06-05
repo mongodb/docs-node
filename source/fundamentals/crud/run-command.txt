@@ -121,7 +121,7 @@ Output
 The output contains the contents of the cursor object. The documents
 describe any metadata inconsistencies in the database:
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
      type: ...,
@@ -141,6 +141,12 @@ describe any metadata inconsistencies in the database:
        ...
      }
    }
+
+.. note::
+
+   If you store the command response in a cursor, you see only the
+   command result documents when you access the contents of the cursor. You won't
+   see the ``ok``, ``operationTime``, and ``$clusterTime`` fields.
 
 .. _addl-info-runcommand:
 
