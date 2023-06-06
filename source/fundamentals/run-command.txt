@@ -18,12 +18,26 @@ In this guide, you can learn how to run a database command with the
 administrative and diagnostic tasks, such as fetching server statistics,
 initializing a replica set, or running an aggregation pipeline.
 
-.. important:: Use Driver Methods if Possible
+.. important:: Prefer Driver Methods to Database Commands
 
-   The driver provides wrapper methods that produce the same results as
-   many database commands. We recommend that you check if there
-   is a driver method available to perform your desired action before you
-   execute a raw database command.
+   The driver provides wrapper methods for many database commands.
+   We recommend using driver methods instead of executing database
+   commands when possible.
+   
+   To perform administrative tasks, use the :mongosh:`MongoDB Shell </>`
+   instead of the {+driver-short+}. Calling the ``db.runCommand()``
+   method inside the shell is the preferred method to issue database
+   commands, as it provides a consistent interface between the shell and
+   drivers.
+
+.. tip::
+
+    Use the :mongosh:`MongoDB Shell </>` for
+    administrative tasks instead of the Java driver whenever possible,
+    since these tasks are often quicker and easier to implement with the
+    shell than in a Java application. This is the preferred method to
+    issue database commands, as it provides a consistent interface
+    between the shell and drivers.
 
 Execute a Command
 -----------------
