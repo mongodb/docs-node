@@ -26,10 +26,12 @@ MongoDB Node Driver
 Introduction
 ------------
 
-Welcome to the documentation site for the official MongoDB Node.js 
-driver. You can add the driver to your application to work with MongoDB 
-in JavaScript. Download it using `npm <https://www.npmjs.com/>`__ 
-or set up a runnable project by following our Quick Start guide.
+Welcome to the documentation site for the official {+driver-long+}.
+You can add the driver to your application to work with MongoDB
+in JavaScript or TypeScript. For more information about downloading and
+installing the {+driver-short+}, see
+:ref:`Download and Install <node-quick-start-download-and-install>` in the
+Quick Start guide.
 
 
 Quick Start
