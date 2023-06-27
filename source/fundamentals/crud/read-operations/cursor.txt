@@ -124,7 +124,7 @@ collection. ``listSearchIndex()`` has an optional string parameter, ``name``, to
 return only the indexes with matching index names. It also has an
 optional ``aggregateOptions`` parameter. For more information, visit the
 `API Documentation 
-<https://mongodb.github.io/node-mongodb-native/Next/interfaces/AggregateOptions.html>'.
+<https://mongodb.github.io/node-mongodb-native/Next/interfaces/AggregateOptions.html>'. 
  
 
 Stream API
