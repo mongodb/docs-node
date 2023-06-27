@@ -114,6 +114,19 @@ through results rather than returning all documents at once.
    :start-after: start fetchAll cursor example
    :end-before: end fetchAll cursor example
 
+Return Search Indexes of Collection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When using a v7.0 and later {+mbd-server+} cluster, you can use the new `listSearchIndex()
+<https://mongodb.github.io/node-mongodb-native/Next/classes/Collection.html#listSearchIndexes>`__
+to return a cursor with all the search indexes for the current
+collection. ``listSearchIndex()`` has an optional string parameter, ``name``, to
+return only the indexes with matching index names. It also has an
+optional ``aggregateOptions`` parameter. For more information, visit the
+`API Documentation 
+<https://mongodb.github.io/node-mongodb-native/Next/interfaces/AggregateOptions.html>'.
+ 
+
 Stream API
 ~~~~~~~~~~
 

@@ -60,6 +60,17 @@ async function rewind(myColl) {
   // end rewind cursor example
 }
 
+async function listIndexSearch(myColl){
+  // start listIndexSearch example
+  const allSearchIndexesCursor = myColl.listIndexSearch().toArray();
+  var indexes = "";
+  for (i in allSearchIndexesCursor){
+    indexes += i;
+  }
+  console.log("All the search indexes in the collection: " + indexes);
+  // end listIndexSearch example
+}
+
 async function close(myColl) {
   const cursor = myColl.find({});
 
@@ -80,6 +91,7 @@ async function run() {
     await fetchAll(orders);
     await rewind(orders);
     await count(orders);
+    //await listIndexSearch(orders);
   } finally {
     await client.close();
   }
