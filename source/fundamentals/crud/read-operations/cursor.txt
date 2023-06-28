@@ -125,6 +125,11 @@ return only the indexes with matching index names. It also has an
 optional ``aggregateOptions`` parameter. For more information, visit the
 `API Documentation 
 <https://mongodb.github.io/node-mongodb-native/Next/interfaces/AggregateOptions.html>`__. 
+
+.. literalinclude:: /code-snippets/crud/cursor.js
+   :language: javascript
+   :start-after: start listIndexSearch example
+   :end-before: end listIndexSearch example
  
 
 Stream API

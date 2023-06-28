@@ -62,12 +62,11 @@ async function rewind(myColl) {
 
 async function listIndexSearch(myColl){
   // start listIndexSearch example
-  const allSearchIndexesCursor = myColl.listIndexSearch().toArray();
-  var indexes = "";
-  for (i in allSearchIndexesCursor){
-    indexes += i;
+  const cursor = myColl.listIndexSearch();
+  console.log("All the search indexes in the collection: ");
+  for await (const doc of cursor){
+    console.log(doc);
   }
-  console.log("All the search indexes in the collection: " + indexes);
   // end listIndexSearch example
 }
 
