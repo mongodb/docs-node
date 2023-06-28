@@ -15,9 +15,9 @@ async function run() {
   try {
     // start listSearchIndexes example
     const result = await collection.listSearchIndexes().toArray();
-    console.log("The search indexes in the collection are: ");
+    console.log("Existing search indexes:\n");
     for(const doc in result){
-    console.log(doc);
+        console.log(doc);
     }
     // end listSearchIndexes example
   } finally {
