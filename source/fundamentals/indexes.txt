@@ -344,7 +344,7 @@ optional `aggregateOptions
 <https://mongodb.github.io/node-mongodb-native/Next/interfaces/AggregateOptions.html>`__
 parameter.
 
-The following example uses the ``listSearchIndexes()` method to list all
+The following example uses the ``listSearchIndexes()`` method to list all
 the search indexes in the collection.
 
 .. literalinclude:: /code-snippets/indexes/listSearchIndexes.js
