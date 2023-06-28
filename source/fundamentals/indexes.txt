@@ -312,3 +312,42 @@ the following:
    E11000 duplicate key error index
 
 To learn more, see :manual:`Unique Indexes </core/index-unique>`.
+
+List Indexes
+~~~~~~~~~~~~
+
+The ``listIndexes()`` method allows you to list all the indexes'
+information in the collection. The ``listIndexes()`` method takes an
+optional parameter, `ListIndexesOptions
+<{+api+}/interfaces/ListIndexesOptions.html>`__, to set optional
+settings for the method. The ``listIndexes()`` method returns an
+object of type `ListIndexesCursor
+<{+api+}/classes/ListIndexesCursor.html>`__.
+
+The following example uses the ``listIndexes()`` method to list all the
+indexes' information in the collection.
+
+.. literalinclude:: /code-snippets/indexes/listIndexes.js
+   :language: javascript
+   :start-after: start listIndexes example
+   :end-before: end listIndexes example
+
+List Search Indexes
+~~~~~~~~~~~~~~~~~~~
+
+When connecting to {+mdb-server+} version 7.0 or later, you can use the new `listSearchIndexes()
+<https://mongodb.github.io/node-mongodb-native/Next/classes/Collection.html#listSearchIndexes>`__
+method to return a cursor that contains the search indexes for the current
+collection. The ``listSearchIndexes()`` method takes an optional string parameter, ``name``, to
+return only the indexes with matching index names. It also takes an
+optional `aggregateOptions
+<https://mongodb.github.io/node-mongodb-native/Next/interfaces/AggregateOptions.html>`__
+parameter.
+
+The following example uses the ``listSearchIndexes()` method to list all
+the search indexes in the collection.
+
+.. literalinclude:: /code-snippets/indexes/listSearchIndexes.js
+   :language: javascript
+   :start-after: start listSearchIndexes example
+   :end-before: end listSearchIndexes example
