@@ -314,7 +314,7 @@ the following:
 To learn more, see :manual:`Unique Indexes </core/index-unique>`.
 
 List Indexes
-~~~~~~~~~~~~
+------------
 
 You can use the ``listIndexes()`` method to list all of the indexes for
 a collection. The `listIndexes()
