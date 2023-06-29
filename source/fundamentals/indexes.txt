@@ -271,3 +271,9 @@ the following:
 
 Refer to the :manual:`Unique Indexes page </core/index-unique>` in the
 MongoDB server manual for more information.
+
+.. literalinclude:: /code-snippets/indexes/listIndexes.js
+   :language: js
+   :start-after: start-listIndexes-example
+   :end-before: end-listIndexes-example
+   :dedent: 
