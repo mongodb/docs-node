@@ -4,8 +4,6 @@
 Indexes
 =======
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -149,6 +147,8 @@ query coverage, index bound computation, and sort behavior. For a full
 explanation of multikey indexes, including a discussion of their behavior
 and limitations, refer to the :manual:`Multikey Indexes page
 </core/index-multikey>` in the MongoDB Server manual.
+
+.. _node-fundamentals-text-indexes:
 
 Text Indexes
 ~~~~~~~~~~~~
