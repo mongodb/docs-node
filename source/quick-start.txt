@@ -4,8 +4,6 @@
 Quick Start
 ===========
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -26,6 +24,8 @@ required) MongoDB instance with this guide.
 
 Follow the steps below to connect a sample Node.js application to a MongoDB
 instance on MongoDB Atlas.
+
+.. _node-quick-start-download-and-install:
 
 Set up Your Project
 -------------------

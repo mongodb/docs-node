@@ -4,8 +4,6 @@
 Indexes
 =======
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -150,6 +148,8 @@ explanation of multikey indexes, including a discussion of their behavior
 and limitations, refer to the :manual:`Multikey Indexes page
 </core/index-multikey>` in the MongoDB Server manual.
 
+.. _node-fundamentals-text-indexes:
+
 Text Indexes
 ~~~~~~~~~~~~
 
@@ -271,6 +271,19 @@ the following:
 
 Refer to the :manual:`Unique Indexes page </core/index-unique>` in the
 MongoDB server manual for more information.
+
+List Indexes
+------------
+
+You can use the ``listIndexes()`` method to list all of the indexes for
+a collection. The `listIndexes()
+<{+api+}/classes/Collection.html#listIndexes>`__ method takes an optional
+`ListIndexesOptions <{+api+}/interfaces/ListIndexesOptions.html>`__
+parameter. The ``listIndexes()`` method returns an object of type
+`ListIndexesCursor <{+api+}/classes/ListIndexesCursor.html>`__.
+
+The following code uses the ``listIndexes()`` method to list all the
+indexes in a collection:
 
 .. literalinclude:: /code-snippets/indexes/listIndexes.js
    :language: js
