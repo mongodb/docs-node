@@ -318,7 +318,7 @@ List Indexes
 
 You can use the ``listIndexes()`` method to list all of the indexes for
 a collection. The `listIndexes()
-<{+api+}/classes/Collection.html#listIndexes>`__ takes an optional
+<{+api+}/classes/Collection.html#listIndexes>`__ method takes an optional
 `ListIndexesOptions <{+api+}/interfaces/ListIndexesOptions.html>`__
 parameter. The ``listIndexes()`` method returns an object of type
 `ListIndexesCursor <{+api+}/classes/ListIndexesCursor.html>`__.
