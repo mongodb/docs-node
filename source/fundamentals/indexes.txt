@@ -387,7 +387,7 @@ names. It also takes an optional `aggregateOptions
 The following code uses the ``listSearchIndexes()`` method to list the
 Search indexes in a collection:
 
-.. literalinclude:: /code-snippets/indexes/listSearchIndexes.js
+.. literalinclude:: /code-snippets/indexes/searchIndexes.js
    :language: javascript
    :dedent:
    :start-after: start listSearchIndexes example
