@@ -1,4 +1,4 @@
-.. _node-crud-compound-operations::
+.. _node-crud-compound-operations:
 
 ===================
 Compound Operations
@@ -28,7 +28,7 @@ more difficult. When your application has to handle potential errors at
 any stage of the process, it can become brittle and difficult
 to test.
 
-.. _node-compound-operations-built-in::
+.. _node-compound-operations-builtin:
 
 Built-in Methods
 ----------------

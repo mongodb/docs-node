@@ -65,7 +65,7 @@ The {+driver-short+} v5.7 release includes the following features:
 
 - A new option for ``findOneAnd...`` methods. The ``includeResultMetaData``
   option allows you to specify whether to include information about the
-  operation result. See :ref:`Compound Operations Built-in Methods <node-compound-operations-built-in>`
+  operation result. See :ref:`Compound Operations Built-in Methods <node-compound-operations-builtin>`
   section for more information.
 
 - Support for change stream split events which enables processing change
