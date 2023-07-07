@@ -22,8 +22,8 @@ between a read and a subsequent write.
 If you execute each operation separately, another request may alter the
 data between the read and write operations. These data changes may not
 prevent your operation from succeeding, but they can make error handling
-more difficult. When you application has to handle potential errors at
-any stage of the process, your application can become brittle and difficult
+more difficult. When your application has to handle potential errors at
+any stage of the process, it can become brittle and difficult
 to test.
 
 Built-in Methods
@@ -36,9 +36,9 @@ operations:
 - `findOneAndUpdate() <{+api+}/classes/Collection.html#findOneAndUpdate>`__
 - `findOneAndReplace() <{+api+}/classes/Collection.html#findOneAndReplace>`__
 
-All three methods accept an optional ``options`` object with
-configurable :doc:`sort </fundamentals/crud/read-operations/sort>` and
-:doc:`projection </fundamentals/crud/read-operations/project>` options.
+These methods accept an optional ``options`` object with
+configurable :ref:`sort <node-fundamentals-sort>` and
+:ref:`projection <node-fundamentals-project>` options.
 
 .. note:: includeResultMetadata Option
    
