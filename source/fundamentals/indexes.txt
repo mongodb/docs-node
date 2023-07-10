@@ -343,8 +343,7 @@ Before you can perform a search on an Atlas collection, you must first
 create an Atlas Search index on the collection. An Atlas Search
 index is a data structure that categorizes data in a searchable format.
 
-Starting in version 5.7 of the {+driver-short+}, you can manage your
-Search indexes using the following methods: 
+You can use the following methods to manage your Search indexes:
 
 - ``createSearchIndex()``
 - ``createSearchIndexes()``
@@ -352,10 +351,10 @@ Search indexes using the following methods:
 - ``updateSearchIndex()``
 - ``dropSearchIndex()``
 
-The following sections provide example code using each of the preceding
+The following sections provide code samples that use each of the preceding
 methods to manage Search indexes.
 
-Create Search Indexes
+Create a Search Index
 ~~~~~~~~~~~~~~~~~~~~~
 
 You can use the `createSearchIndex()
@@ -378,11 +377,10 @@ List Search Indexes
 
 You can use the `listSearchIndexes()
 <{+api+}/classes/Collection.html#listSearchIndexes>`__
-method to return a cursor that contains the search indexes of a given
+method to return a cursor that contains the Search indexes of a given
 collection. The ``listSearchIndexes()`` method takes an optional string
-parameter, ``name``, to return only the indexes with matching index
-names. It also takes an optional `aggregateOptions
-<{+api+}/interfaces/AggregateOptions.html>`__ parameter.
+parameter, ``name``, to return only the indexes with matching names. It
+also takes an optional `aggregateOptions <{+api+}/interfaces/AggregateOptions.html>`__ parameter.
 
 The following code uses the ``listSearchIndexes()`` method to list the
 Search indexes in a collection:
@@ -393,7 +391,7 @@ Search indexes in a collection:
    :start-after: start listSearchIndexes example
    :end-before: end listSearchIndexes example
 
-Update Search Indexes
+Update a Search Index
 ~~~~~~~~~~~~~~~~~~~~~
 
 You can use the `updateSearchIndex()
@@ -410,8 +408,8 @@ use the ``updateSearchIndex()`` method to update an index called
    :start-after: start dropSearchIndex example
    :end-before: end dropSearchIndex example
 
-Remove Search Indexes
-~~~~~~~~~~~~~~~~~~~~~
+Drop a Search Index
+~~~~~~~~~~~~~~~~~~~
 
 You can use the `dropSearchIndex()
 <{+api+}/classes/Collection.html#dropSearchIndex>`__ method to remove a Search
