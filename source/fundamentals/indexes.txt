@@ -405,8 +405,8 @@ use the ``updateSearchIndex()`` method to update an index called
 .. literalinclude:: /code-snippets/indexes/searchIndexes.js
    :language: javascript
    :dedent:
-   :start-after: start dropSearchIndex example
-   :end-before: end dropSearchIndex example
+   :start-after: start updateSearchIndex example
+   :end-before: end updateSearchIndex example
 
 Drop a Search Index
 ~~~~~~~~~~~~~~~~~~~

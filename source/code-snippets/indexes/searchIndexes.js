@@ -10,8 +10,6 @@ const client = new MongoClient(uri);
 import {
     MongoClient
 } from "mongodb";
-const database = client.db("<databaseName>");
-const collection = database.collection("<collectionName>");
 
 async function run() {
     try {
