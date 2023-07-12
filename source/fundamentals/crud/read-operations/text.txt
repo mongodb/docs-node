@@ -58,7 +58,7 @@ fields. The following command creates a text index on two fields in the
    document.
 
    To learn more about specifying field weights when creating a text
-   index, see the :ref:`Text Indexes <node-fundamentals-text-indexes>`
+   index, see the :manual:`Text Indexes </index-text/#specify-weights>`
    section in the Indexes guide.
 
 You can only create *one* text index per collection. Every text search
