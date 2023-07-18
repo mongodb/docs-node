@@ -1,0 +1,107 @@
+.. _node-driver-vs-mongoose:
+
+Comparing Node.js Driver and Mongoose
+=====================================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+
+Overview
+--------
+
+In this page, you can identify the differences and similarities between
+the official MongoDB Node.js driver and the third-party library called
+Mongoose.
+
+The MongoDB Node.js driver is the officially developed, supported, and maintained
+MongoDB driver for Node.js. The Node.js driver is a library of functions
+that you can use to connect to and communicate with MongoDB.
+
+Moongoose is a popular community-developed Object Data Modeling (ODM)
+library that is built on top of the {+driver-short+}. While you don't
+need to use an ODM tool to work with MongoDB, some developers prefer them. 
+
+This page contains a high-level comparison of most of the ways the two differ.
+
+Schema Validation
+-----------------
+
+Both the {+driver-long+} and Mongoose lets you apply schema validation
+to your collection. However, the biggest difference between the two are
+the way they each handle and manage schema validation.
+
+While the {+driver-long+} applies the schema validation at the database level, Mongoose
+applies schema validation at the application level. In the
+{+driver-short+} schema validation works on individual collections by
+using either `JSON Schema Validation
+<https://www.mongodb.com/docs/manual/core/schema-validation/specify-json-schema/>`__
+or `Schema Validation with Query Operators
+<https://www.mongodb.com/docs/manual/core/schema-validation/specify-query-expression-rules/>`__.
+Validation with query operators is useful for dynamic validation rules
+calculated at runtime, while JSON validation is useful for, among other
+reasons, being an open standard which makes it easy to connect to
+third-party libraries.
+
+Mongoose applies the schema validation in a twofold procedure; firstly by telling your
+application what data types and fields are allowed to be in a particular
+collection, then it confirms the data matches the set criteria. Mongoose's
+schema validation works on the application level, meaning MongoDB
+doesn't know it exists.
+
+.. tip::
+   
+   While Mongoose can be more efficient to create schemas,
+   {+driver-long+} is generally twice as fast at reading and writing
+   operations. This means for larger, more performance-intensive
+   projects the {+driver-short+} is likely the better option.
+
+Similarities
+------------
+
+Since Mongoose is built upon the {+driver-long+}, they share many
+capabilities. Even if you use Mongoose, you always have the option to
+use any native function or command built into the {+driver-short+}
+alongside Mongoose. Mongoose also offers its own methods that are quite
+similar to the {+driver-short+}, such as ``updateOne()`` and
+``replaceOne()``, though these methods work differently under the hood.
+
+Differences
+-----------
+While MongoDB was designed with a flexible data model in mind, Mongoose
+forces a semi-rigid ``schema`` from the beginning. With Mongoose, developers
+must define a ``schema`` and ``model``. Also, read and write operations are handled
+differently between the two, leaving Mongoose generally running half as
+slow. 
+
+.. tip::
+   
+   There are many other Mongoose specific methods not discussed. For
+   more information on how to use Mongoose, check out the official `Mongoose
+   documentation <https://mongoosejs.com/docs/>`__.
+
+Conclusion
+----------
+
+Both Mongoose and the {+driver-long+} offer comparable features
+and capabilities. While Mongoose helps ease MongoDB development for
+newcomers, it employs various automated processes behind the scenes that
+may lead to unforeseen consequences down the line.
+
+The {+driver-long+} seamlessly integrates with your MongoDB
+database, providing an exceptional and adaptable development experience.
+By leveraging the driver, you enable your database to excel at its core
+functionality, allowing your application to prioritize its own
+strengths.
+   
+.. tip::
+   
+   To learn how to start using the {+driver-long+}, visit the
+   :ref:`Quick Start guide <node-quick-start>`. To learn how to get
+   started with Mongoose, see the `Getting Started with MongoDB &
+   Mongoose
+   <https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/>`__
+   page.
