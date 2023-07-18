@@ -100,7 +100,7 @@ strengths.
 .. tip::
    
    To learn how to start using the {+driver-long+}, visit the
-   :ref:`Quick Start guide <node-quick-start>`. To learn how to get
+   :ref:`Quick Start guide <node-quickstart>`. To learn how to get
    started with Mongoose, see the `Getting Started with MongoDB &
    Mongoose
    <https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/>`__
