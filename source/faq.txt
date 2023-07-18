@@ -29,15 +29,14 @@ What is the difference between the Node.js Driver and Mongoose?
 ---------------------------------------------------------------
 
 The MongoDB Node.js driver is the officially developed, supported, and maintained
-MongoDB driver for Node.js. The Node.js driver is a library of functions
-that you can use to connect to and communicate with MongoDB.
+MongoDB driver for Node.js.
 
 Mongoose is a popular Node.js-based third-party Object Data Modeling
-(ODM) library for MongoDB. The problem that Mongoose aims to solve is
-allowing developers to enforce a specific schema at the application
-layer. In addition to enforcing a schema, Mongoose also offers a variety
-of hooks, model validation, and other features aimed at making it easier
-to work with MongoDB. 
+(ODM) library for MongoDB. Mongoose allows developers to enforce a
+specific schema at the application layer, meaning MongoDB does not
+interact with the schema set with Mongoose. The {+driver-long+} instead
+directly interacts with MongoDB when setting schemas, and is flexible on
+the model and schema of documents.
 
 For more information, visit the :ref:`Differences between Node.js Driver and
 Mongoose <node-driver-vs-mongoose>` page.

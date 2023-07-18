@@ -13,36 +13,32 @@ Comparing the Node.js Driver and Mongoose
 Overview
 --------
 
-In this page, you can identify the differences and similarities between
+On this page, you can learn about the comparison between
 the official MongoDB Node.js driver and the third-party library called
 Mongoose.
 
 The MongoDB Node.js driver is the officially developed, supported, and maintained
-MongoDB driver for Node.js. The Node.js driver is a library of functions
-that you can use to connect to and communicate with MongoDB.
+MongoDB driver for Node.js. 
 
 Moongoose is a popular community-developed Object Data Modeling (ODM)
-library that is built on top of the {+driver-short+}. While you don't
-need to use an ODM tool to work with MongoDB, some developers prefer them. 
-
-This page contains a high-level comparison of most of the ways the two differ.
+library that is built on top of the {+driver-short+}. Though you don't
+need to use an ODM tool to work with MongoDB, some developers prefer
+them as it is similar to working with a relational database. 
 
 Schema Validation
 -----------------
 
-Both the {+driver-long+} and Mongoose lets you apply schema validation
+Both the {+driver-long+} and Mongoose let you apply schema validation
 to your collection. However, the biggest difference between the two are
-the way they each handle and manage schema validation.
+the way they each set and manage schema validation.
 
-While the {+driver-long+} applies the schema validation at the database level, Mongoose
-applies schema validation at the application level. In the
+The {+driver-long+} applies the schema validation at the database
+level. In comparison, Mongoose applies schema validation at the application level. In the
 {+driver-short+} schema validation works on individual collections by
-using either `JSON Schema Validation
-<https://www.mongodb.com/docs/manual/core/schema-validation/specify-json-schema/>`__
-or `Schema Validation with Query Operators
-<https://www.mongodb.com/docs/manual/core/schema-validation/specify-query-expression-rules/>`__.
+using either `JSON Schema Validation <https://www.mongodb.com/docs/manual/core/schema-validation/specify-json-schema/>`__
+or `Schema Validation with Query Operators <https://www.mongodb.com/docs/manual/core/schema-validation/specify-query-expression-rules/>`__.
 Validation with query operators is useful for dynamic validation rules
-calculated at runtime, while JSON validation is useful for, among other
+calculated at runtime. By contrast, JSON validation is useful for, among other
 reasons, being an open standard which makes it easy to connect to
 third-party libraries.
 
@@ -54,7 +50,7 @@ doesn't know it exists.
 
 .. tip::
    
-   While Mongoose can be more efficient to create schemas,
+   Though Mongoose can be more efficient to create schemas,
    the {+driver-long+} is generally twice as fast at reading and writing
    operations. This means for larger, more performance-intensive
    projects the {+driver-short+} is likely the better option.
@@ -62,7 +58,7 @@ doesn't know it exists.
 Similarities
 ------------
 
-Since Mongoose is built upon the {+driver-long+}, they share many
+As Mongoose is built upon the {+driver-long+}, they share many
 capabilities. Even if you use Mongoose, you always have the option to
 use any native function or command built into the {+driver-short+}
 alongside Mongoose. Mongoose also offers its own methods that are quite
@@ -71,11 +67,11 @@ similar to the {+driver-short+}, such as ``updateOne()`` and
 
 Differences
 -----------
-While MongoDB was designed with a flexible data model in mind, Mongoose
+Though MongoDB was designed with a flexible data model in mind, Mongoose
 forces a semi-rigid ``schema`` from the beginning. With Mongoose, developers
-must define a ``schema`` and ``model``. Also, read and write operations are handled
-differently between the two, leaving Mongoose generally running half as
-slow. 
+must define a ``schema`` and ``model``. Moreover, the handling of read
+and write operations differs between the two, resulting in the
+{+driver-short+} generally running twice as fast as Mongoose. 
 
 .. tip::
    
@@ -89,7 +85,7 @@ Conclusion
 Both Mongoose and the {+driver-long+} offer comparable features
 and capabilities. While Mongoose helps ease MongoDB development for
 newcomers, it employs various automated processes behind the scenes that
-may lead to unforeseen consequences down the line.
+might lead to unforeseen consequences down the line.
 
 The {+driver-long+} seamlessly integrates with your MongoDB
 database, providing an exceptional and adaptable development experience.
