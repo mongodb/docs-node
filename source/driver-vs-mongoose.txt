@@ -1,7 +1,7 @@
 .. _node-driver-vs-mongoose:
 
-Comparing Node.js Driver and Mongoose
-=====================================
+Comparing the Node.js Driver and Mongoose
+=========================================
 
 .. contents:: On this page
    :local:

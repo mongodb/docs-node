@@ -18,6 +18,7 @@ MongoDB Node Driver
   /connection-troubleshooting
   /issues-and-help
   /compatibility
+  /driver-vs-mongoose
   /upgrade
   Release Notes <https://github.com/mongodb/node-mongodb-native/releases/>
   View the Source <https://github.com/mongodb/node-mongodb-native/>
@@ -93,6 +94,12 @@ Compatibility
 For the compatibility tables that show the recommended {+driver-short+}
 version for each MongoDB Server version, see the
 :doc:`Compatibility </compatibility>` section.
+
+Comparing the Node.js Driver and Mongoose
+-----------------------------------------
+
+Learn the difference between the Node.js Driver and the third-party
+library Mongoose in the :ref:`<node-driver-vs-mongoose>` section.
 
 Upgrade Driver Versions
 -----------------------
