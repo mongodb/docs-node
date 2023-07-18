@@ -55,7 +55,7 @@ doesn't know it exists.
 .. tip::
    
    While Mongoose can be more efficient to create schemas,
-   {+driver-long+} is generally twice as fast at reading and writing
+   the {+driver-long+} is generally twice as fast at reading and writing
    operations. This means for larger, more performance-intensive
    projects the {+driver-short+} is likely the better option.
 
