@@ -20,7 +20,7 @@ Mongoose.
 The MongoDB Node.js official driver is a library of functions used to
 connect to and communicate with MongoDB. 
 
-Moongoose is a popular community-developed Object-Document Modeling (ODM)
+Moongoose is a popular community-developed Object-Document Mapper (ODM)
 library that is built on top of the {+driver-short+}. Though you don't
 need to use an ODM tool to work with MongoDB, some developers prefer
 them as it is similar to working with a relational database. 
