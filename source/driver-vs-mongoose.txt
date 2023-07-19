@@ -43,17 +43,16 @@ calculated at runtime. By contrast, JSON validation is useful for, among other
 reasons, being an open standard which makes it easy to connect to
 third-party libraries.
 
-Mongoose applies the schema validation in a twofold procedure; firstly by telling your
+Unlike the {+driver-long+}, Mongoose's schema validation occurs
+client-side. Schema validation is applied by first telling your
 application what data types and fields are allowed to be in a particular
-collection, then it confirms the data matches the set criteria. Mongoose's
-schema validation works on the application level, meaning MongoDB
-doesn't know it exists.
+collection, then by confirming the data matches the set criteria.
 
 .. tip::
    
    Though Mongoose can be more efficient to create schemas,
-   the {+driver-long+} is generally twice as fast at reading and writing
-   operations. This means for larger, more performance-intensive
+   the {+driver-long+} is much faster at reading and writing
+   operations on larger data sets. This means for larger, more performance-intensive
    projects the {+driver-short+} is likely the better option.
 
 Similarities
@@ -68,7 +67,7 @@ similar to the {+driver-short+}, such as ``updateOne()`` and
 
 .. tip::
    
-   There are many other Mongoose specific methods not discussed. For
+   There are many other Mongoose specific methods and APIs not discussed. For
    more information on how to use Mongoose, check out the official `Mongoose
    documentation <https://mongoosejs.com/docs/>`__.
 
@@ -76,9 +75,7 @@ Differences
 -----------
 Though MongoDB was designed with a flexible data model in mind, Mongoose
 forces a semi-rigid ``schema`` from the beginning. With Mongoose, developers
-must define a ``schema`` and ``model``. Moreover, the handling of read
-and write operations differs between the two, resulting in the
-{+driver-short+} generally running twice as fast as Mongoose. 
+must define a ``schema`` and ``model``. 
 
 Conclusion
 ----------
