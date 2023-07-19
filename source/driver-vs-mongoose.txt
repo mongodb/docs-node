@@ -23,7 +23,8 @@ connect to and communicate with MongoDB.
 Moongoose is a popular community-developed Object-Document Mapper (ODM)
 library that is built on top of the {+driver-short+}. Though you don't
 need to use an ODM tool to work with MongoDB, some developers prefer
-them as it is similar to working with a relational database. 
+them as it is similar to using an ORM which they've likely used when
+working with a relational database.
 
 Schema Validation
 -----------------
