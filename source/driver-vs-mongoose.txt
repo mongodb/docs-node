@@ -65,6 +65,12 @@ alongside Mongoose. Mongoose also offers its own methods that are quite
 similar to the {+driver-short+}, such as ``updateOne()`` and
 ``replaceOne()``, though these methods work differently under the hood.
 
+.. tip::
+   
+   There are many other Mongoose specific methods not discussed. For
+   more information on how to use Mongoose, check out the official `Mongoose
+   documentation <https://mongoosejs.com/docs/>`__.
+
 Differences
 -----------
 Though MongoDB was designed with a flexible data model in mind, Mongoose
@@ -72,12 +78,6 @@ forces a semi-rigid ``schema`` from the beginning. With Mongoose, developers
 must define a ``schema`` and ``model``. Moreover, the handling of read
 and write operations differs between the two, resulting in the
 {+driver-short+} generally running twice as fast as Mongoose. 
-
-.. tip::
-   
-   There are many other Mongoose specific methods not discussed. For
-   more information on how to use Mongoose, check out the official `Mongoose
-   documentation <https://mongoosejs.com/docs/>`__.
 
 Conclusion
 ----------
