@@ -17,8 +17,8 @@ On this page, you can learn about the comparison between
 the official MongoDB Node.js driver and the third-party library called
 Mongoose.
 
-The MongoDB Node.js driver is the officially developed, supported, and maintained
-MongoDB driver for Node.js. 
+The MongoDB Node.js official driver is a library of functions used to
+connect to and communicate with MongoDB. 
 
 Moongoose is a popular community-developed Object Data Modeling (ODM)
 library that is built on top of the {+driver-short+}. Though you don't
