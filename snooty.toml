@@ -1,7 +1,10 @@
+eol = true
 name = "node"
 title = "Node.js"
-intersphinx = ["https://mongodb.com/docs/manual/objects.inv",
-              "https://mongodb.com/docs/drivers/objects.inv"]
+intersphinx = [
+    "https://mongodb.com/docs/manual/objects.inv",
+    "https://mongodb.com/docs/drivers/objects.inv",
+]
 
 toc_landing_pages = [
     "/fundamentals/authentication",
@@ -23,3 +26,11 @@ driver = "node"
 driver-long = "MongoDB Node.js driver"
 driver-short = "Node.js driver"
 mdb-server = "MongoDB Server"
+current-url-base = "https://www.mongodb.com/docs/drivers/node/current"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <{+current-url-base+}>`__ to learn how to `upgrade your version of the {+driver-long+} <{+current-url-base+}/upgrade/>`__.\
+    """
