@@ -1,3 +1,4 @@
+eol = true
 name = "node"
 title = "Node.js"
 intersphinx = [
@@ -26,3 +27,10 @@ driver = "node"
 driver-long = "MongoDB Node.js driver"
 driver-short = "Node.js driver"
 stable-api = "Stable API"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <link>`__ to learn how to `upgrade your version of [product name] <link>`__.\
+    """
