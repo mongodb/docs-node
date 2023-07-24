@@ -1,3 +1,4 @@
+eol = true
 name = "node"
 title = "Node.js"
 intersphinx = [
@@ -35,3 +36,11 @@ cmk-long = "Customer Master Key"
 dek-long = "Data Encryption Key"
 csfle-short = "CSFLE"
 csfle-long = "Client-side Field Level Encryption (CSFLE)"
+current-url-base = "https://www.mongodb.com/docs/drivers/node/current"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <{+current-url-base+}>`__ to learn how to `upgrade your version of the {+driver-long+} <{+current-url-base+}/upgrade/>`__.\
+    """
