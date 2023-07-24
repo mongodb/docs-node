@@ -1,3 +1,4 @@
+eol = true
 name = "node"
 title = "Node.js"
 intersphinx = [
