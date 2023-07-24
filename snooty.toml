@@ -1,3 +1,4 @@
+eol = true
 name = "node"
 title = "Node.js"
 intersphinx = ["https://mongodb.com/docs/manual/objects.inv",
@@ -23,3 +24,10 @@ driver = "node"
 driver-long = "MongoDB Node.js driver"
 driver-short = "Node.js driver"
 mdb-server = "MongoDB Server"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <link>`__ to learn how to `upgrade your version of [product name] <link>`__.\
+    """
