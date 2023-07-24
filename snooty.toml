@@ -1,3 +1,4 @@
+eol = true
 name = "node"
 title = "Node.js"
 intersphinx = [
@@ -27,3 +28,11 @@ driver-short = "Node.js driver"
 mdb-server = "MongoDB Server"
 node-legacy = "`MongoDB Node.js driver with optional callback support <https://www.npmjs.com/package/mongodb-legacy>`__"
 stable-api = "Stable API"
+current-url-base = "https://www.mongodb.com/docs/drivers/node/current"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <{+current-url-base+}>`__ to learn how to `upgrade your version of the {+driver-long+} <{+current-url-base+}/upgrade/>`__.\
+    """
