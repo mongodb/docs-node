@@ -190,7 +190,7 @@ will close the socket. We recommend that you select a value
 for ``socketTimeoutMS`` that is two to three times as long as the
 expected duration of the slowest operation that your application executes.
 
-How Can I Prevent Sockets From Timing out Before They Become Active?
+How Can I Prevent Sockets From Timing Out Before They Become Active?
 --------------------------------------------------------------------
 
 Having a large connection pool does not always reduce reconnection
@@ -267,20 +267,34 @@ are some things to check:
 How Can I Prevent a Slow Operation From Delaying Other Operations?
 ------------------------------------------------------------------
 
+You can prevent an operation from slowing down your application by
+specifying the size of the connection pool, which is the cache of
+connections that the driver maintains at any time. By increasing the
+maximum connection pool size, you can reduce application latency.
+
 To control the maximum size of a connection pool, you can set the
 ``maxPoolSize`` option in the :ref:`connection options
 <node-connection-options>`. The default value of ``maxPoolSize`` is
 ``100``. If the number of in-use connections to a server reaches
 ``maxPoolSize``, the next request to that server will wait 
-until a connection becomes available. To prevent long-running operations
-from slowing down your application, you can increase ``maxPoolSize``.
+until a connection becomes available. The following code sets
+``maxPoolSize`` to ``150`` when creating a new ``MongoClient``:
 
-The driver does not limit the number of requests that can wait for
-sockets to become available. Requests wait for the amount of time
-specified in the ``waitQueueTimeoutMS`` option, which
-defaults to ``0`` (no limit). You should set this option if it is
-more important to stop long-running operations than it is to complete
-every operation.
+.. code-block:: js
+   
+   const client = new MongoClient(uri, { maxPoolSize: 150 });
+
+You can also limit application latency by specifying the amount of time
+(in milliseconds) that requests wait for socket availability. The driver
+does not limit this wait time by default, but to specify a value, you
+can set the ``waitQueueTimeoutMS`` option. You should set this option if
+it is more important to stop long-running operations than it is to
+complete every operation. The following code sets ``waitQueueTimeoutMS``
+to ``100`` when creating a new ``MongoClient``:
+
+.. code-block:: js
+   
+   const client = new MongoClient(uri, { waitQueueTimeoutMS: 100 });
 
 .. tip::
    
