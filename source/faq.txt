@@ -298,8 +298,9 @@ to ``100`` when creating a new ``MongoClient``:
 
 .. tip::
    
-   To learn more about connection pooling, see :ref:`How Does Connection
-   Pooling Work in the Node Driver? <node-faq-connection-pool>`.
+   To learn more about connection pooling, see the :ref:`How Does Connection
+   Pooling Work in the Node Driver? <node-faq-connection-pool>` entry on
+   this page.
 
 How Can I Ensure My Connection String Is Valid for a Replica Set?
 -----------------------------------------------------------------
