@@ -48,9 +48,9 @@ What's New in 6.0
 
 The {+driver-short+} v6.0 release includes the following features:
 
-- This release removes support for the ``addUser()`` helper command. Use the
-  :manual:`createUser</reference/command/createUser>` command instead.
-- This release removes support for the ``collStats`` helper command. Use the
+- Removes support for the ``addUser()`` helper command. Use the
+  :manual:`createUser </reference/command/createUser>` MongoDB Shell command instead.
+- Removes support for the ``collStats`` operation. Use the
   :manual:`$collStats </reference/operator/aggregation/collStats>` aggregation operator
   instead. 
 

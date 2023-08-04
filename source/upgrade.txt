@@ -57,8 +57,8 @@ Version 6.x Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - The driver removes support for the ``addUser()`` helper command. Use the
-  :manual:`createUser</reference/command/createUser>` command instead.
-- The driver removes support for the ``collStats`` helper command. Use the
+  :manual:`createUser </reference/command/createUser>` MongoDB Shell command instead.
+- The driver removes support for the ``collStats`` operation. Use the
   :manual:`$collStats </reference/operator/aggregation/collStats>` aggregation operator
   instead. 
 
