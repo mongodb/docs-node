@@ -283,8 +283,8 @@ Pass the location of your client certificate file as the value of
 
 .. tip::
    
-   To learn more about enabling TLS on a connection, see the
-   :ref:`fundamentals page <node-connect-tls>`.
+   To learn more about enabling TLS on a connection, see
+   :ref:`node-connect-tls`.
 
 TLS Options
 ~~~~~~~~~~~
