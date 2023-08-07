@@ -17,7 +17,21 @@
      - Node.js v0.10.X
      - Node.js v0.8.X
 
-   * - >= 5.6.X
+   * - 6.0.x [#latest-note]_
+     - ✓
+     - ✓
+     - ✓
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+     -
+
+   * - 5.6.X to 5.7.x
      - ✓
      - ✓
      - ✓
@@ -226,3 +240,5 @@
      - ✓
      - ✓
 
+.. [#latest-note] Version 6.0.x of the {+driver-short+} requires the latest version
+   of Node.js v16 or later.

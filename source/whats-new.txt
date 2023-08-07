@@ -46,6 +46,11 @@ Learn what's new in:
 What's New in 6.0
 -----------------
 
+.. important:: Breaking Changes in v6.0
+
+   Version 6.0 of the {+driver-short+} requires the latest version of Node.js v16 or
+   later.
+
 The {+driver-short+} v6.0 release includes the following features:
 
 - Removes support for the ``addUser()`` helper command. Use the
