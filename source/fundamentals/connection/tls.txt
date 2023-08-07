@@ -198,7 +198,6 @@ in your ``MongoClient``:
    const client = new MongoClient(uri, {
      tls: true,
      tlsCAFile: `<path to CA certificate>`,
-     tlsCertificateFile: `<path to public client certificate>`,
      tlsCertificateKeyFile: `<path to private client key>`,
    });
 
