@@ -55,7 +55,7 @@ The {+driver-short+} v6.0 release includes the following features:
    is deprecated.
 
    Instead, you should store your certificates in a ``SecureContext``
-   object or using the ``tls`` prefixed options in a
+   object or set the ``tls`` prefixed options in your
    ``MongoClientOptions`` instance. To learn more, see :ref:`node-connect-tls`.
 
 - Removes support for the ``addUser()`` helper command. Use the
