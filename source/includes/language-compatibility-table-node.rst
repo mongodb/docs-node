@@ -240,5 +240,4 @@
      - ✓
      - ✓
 
-.. [#latest-note] Version 6.0.x of the {+driver-short+} requires the latest version
-   of Node.js v16 or later.
+.. [#latest-note] Version 6.0 of the {+driver-short+} requires Node.js v16.20.1 or later.
