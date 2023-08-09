@@ -90,7 +90,8 @@ Additional Functionality Provided by Mongoose
 ---------------------------------------------
 
 On top of schema management, there is a multitude of additional
-functionality provided by Mongoose.
+functionality provided by Mongoose. In this section, we will go over a
+few of the additional functionalities.
 
 Data Modeling
 ~~~~~~~~~~~~~
@@ -116,7 +117,8 @@ In Mongoose, a virtual is a property that is not stored in MongoDB.
 Virtuals are typically used for computed properties on
 documents. Virtuals are additional fields for a given model; their values
 can be set manually or automatically with defined functionality. They
-only exist logically and are not written to the document or collection.
+only exist logically and are not written to the document, collection, or
+database.
 
 
 Conclusion
