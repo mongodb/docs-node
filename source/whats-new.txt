@@ -80,8 +80,8 @@ The {+driver-short+} v6.0 release includes the following features:
   - ``waitQueueTimeoutMS``
 
 - The driver asynchronously reads files set in the ``tlsCAFile`` and
-  ``tlsCertificateKeyFile`` connection options when you first call
-  the ``MongoClient.connect()`` method, instead of when you create a
+  ``tlsCertificateKeyFile`` connection options when you call
+  the ``MongoClient.connect()`` method, not when you create a
   ``MongoClient`` instance.
 
 .. _version-5.7:
