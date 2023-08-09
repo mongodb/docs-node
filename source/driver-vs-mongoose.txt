@@ -23,15 +23,42 @@ connect to and communicate with MongoDB.
 Moongoose is a popular community-developed Object-Document Mapper (ODM)
 library that is built on top of the {+driver-short+}. Though you don't
 need to use an ODM tool to work with MongoDB, some developers prefer
-them as it is similar to using an ORM which they've likely used when
-working with a relational database.
+them as it is similar to using an Object-Relational Mapper, or ORM,
+which they've likely used when working with a relational database.
 
-Schema Validation
+The official MongoDB native driver provides direct low-level access to
+MongoDB, allows for more flexibility and control but requires more
+manual effort for data modeling and validation. On the other hand,
+Mongoose abstracts away many complexities, providing data modeling,
+schema validation, middleware support, and other convenient features,
+making it easier to work with MongoDB in Node.js applications. The
+choice between the two depends on your specific project requirements and
+how much control and flexibility you need in database interactions.
+
+What is Mongoose?
 -----------------
+
+Mongoose is an Object-Document Mapping (ODM) library for Node.js,
+specifically designed to work with MongoDB. It provides a higher-level
+abstraction over MongoDB's native driver, simplifying interactions with
+the database. With Mongoose, you can define data schemas and models,
+allowing you to work with MongoDB in a more structured and intuitive
+manner. 
+
+Differences in Schema Management
+--------------------------------
 
 Both the {+driver-long+} and Mongoose let you apply schema validation
 to your collection. However, the biggest difference between the two are
 the way they each set and manage schema validation.
+
+Mongoose allows you to define data schemas using its schema notation.
+These schemas define the structure of the documents to be stored in
+MongoDB, along with data types, default values, and validation rules.
+Mongoose provides built-in support for data validation based on the
+defined schema rules. It ensures that the data being saved to the
+database adheres to the specified schema, preventing invalid data from
+being stored. 
 
 The {+driver-long+} applies the schema validation at the database
 level. In comparison, Mongoose applies schema validation at the application level. In the
@@ -43,18 +70,6 @@ calculated at runtime. By contrast, JSON validation is useful for, among other
 reasons, being an open standard which makes it easy to connect to
 third-party libraries.
 
-Unlike the {+driver-long+}, Mongoose's schema validation occurs
-client-side. Schema validation is applied by first telling your
-application what data types and fields are allowed to be in a particular
-collection, then by confirming the data matches the set criteria.
-
-.. tip::
-   
-   Though Mongoose can be more efficient to create schemas,
-   the {+driver-long+} is much faster at reading and writing
-   operations on larger data sets. This means for larger, more performance-intensive
-   projects the {+driver-short+} is likely the better option.
-
 Similarities
 ------------
 
@@ -63,7 +78,7 @@ capabilities. Even if you use Mongoose, you always have the option to
 use any native function or command built into the {+driver-short+}
 alongside Mongoose. Mongoose also offers its own methods that are quite
 similar to the {+driver-short+}, such as ``updateOne()`` and
-``replaceOne()``, though these methods work differently under the hood.
+``replaceOne()``.
 
 .. tip::
    
@@ -71,11 +86,38 @@ similar to the {+driver-short+}, such as ``updateOne()`` and
    more information on how to use Mongoose, check out the official `Mongoose
    documentation <https://mongoosejs.com/docs/>`__.
 
-Differences
------------
-Though MongoDB was designed with a flexible data model in mind, Mongoose
-forces a semi-rigid ``schema`` from the beginning. With Mongoose, developers
-must define a ``schema`` and ``model``. 
+Additional Functionality Provided by Mongoose
+---------------------------------------------
+
+On top of schema management, there is a multitude of additional
+functionality provided by Mongoose.
+
+Data Modeling
+~~~~~~~~~~~~~
+
+Mongoose introduces the concept of models, which are JavaScript classes
+defined based on schemas. Models act as an interface to interact
+with MongoDB collections, abstracting away the complexities of database
+operations.
+
+Middleware Hooks
+~~~~~~~~~~~~~~~~
+
+Mongoose supports middleware hooks, both pre and post-hooks, that allow you
+to add custom logic before or after certain database operations like
+save, update, and remove. This is useful for implementing additional
+actions or validations. Mongoose supports adding custom plugins and
+middleware functions to extend its functionality further. 
+
+Virtuals
+~~~~~~~~
+
+In Mongoose, a virtual is a property that is not stored in MongoDB.
+Virtuals are typically used for computed properties on
+documents. Virtuals are additional fields for a given model; their values
+can be set manually or automatically with defined functionality. They
+only exist logically and are not written to the document or collection.
+
 
 Conclusion
 ----------
