@@ -226,44 +226,53 @@ parameters of the connection URI to specify the behavior of the client.
      - ``false``
      - Specifies whether TLS is required for connections to the server.
        Using a ``srvServiceName`` of  ``"mongodb+srv"``, or specifying other
-       ``tls`` prefixed options will default ``tls`` to ``true``.
+       ``tls`` prefixed options will default ``tls`` to ``true``. To
+       learn more about this connection option, see
+       :ref:`node-connect-tls`.
 
    * - **tlsAllowInvalidCertificates**
      - boolean
      - ``false``
      - Specifies whether the driver should error when the server’s
-       TLS certificate is invalid.
+       TLS certificate is invalid. To learn more about this connection
+       option, see :ref:`node-connect-tls`.
 
    * - **tlsAllowInvalidHostnames**
      - boolean
      - ``false``
      - Specifies whether the driver should error when there is a mismatch
        between the server’s hostname and the hostname specified by the
-       TLS certificate.
+       TLS certificate. To learn more about this connection option, see
+       :ref:`node-connect-tls`.
 
    * - **tlsCAFile**
      - string
      - ``null``
      - Specifies the path to a file with either a single or bundle of certificate
-       authorities to trust when making a TLS connection.
+       authorities to trust when making a TLS connection. To learn more
+       about this connection option, see :ref:`node-connect-tls`.
 
    * - **tlsCertificateKeyFile**
      - string
      - ``null``
      - Specifies the path to the client certificate file or the client
-       private key file. If you need both, you must concatenate the files.
+       private key file. If you need both, you must concatenate the
+       files. To learn more about this connection option, see
+       :ref:`node-connect-tls`.
 
    * - **tlsCertificateKeyFilePassword**
      - string
      - ``null``
      - Specifies the password to decrypt the client private key to be used
-       for TLS connections.
+       for TLS connections. To learn more about this connection option,
+       see :ref:`node-connect-tls`.
 
    * - **tlsInsecure**
      - boolean
      - ``false``
      - Specifies to relax TLS constraints as much as possible, such as
-       allowing invalid certificates or hostname mismatches.
+       allowing invalid certificates or hostname mismatches. To learn
+       more about this connection option, see :ref:`node-connect-tls`.
 
    * - **w**
      - non-negative integer or string
