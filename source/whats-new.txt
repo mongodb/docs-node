@@ -62,10 +62,10 @@ The {+driver-short+} v6.0 release includes the following features:
    object or set the ``tls``-prefixed options in your
    ``MongoClientOptions`` instance. To learn more, see :ref:`node-connect-tls`.
 
-- Removes support for the ``addUser()`` helper command. Use the
+- Removal of support for the ``addUser()`` helper command. Use the
   :manual:`createUser </reference/command/createUser>` MongoDB Shell command instead.
 
-- Removes support for the ``collStats`` operation. Use the
+- Removal of support for the ``collStats`` operation. Use the
   :manual:`$collStats </reference/operator/aggregation/collStats>` aggregation operator
   instead.
 
@@ -83,6 +83,13 @@ The {+driver-short+} v6.0 release includes the following features:
   ``tlsCertificateKeyFile`` connection options when you call
   the ``MongoClient.connect()`` method, not when you create a
   ``MongoClient`` instance.
+
+- Removal of the ``keepAlive`` and ``keepAliveInitialDelay`` connection
+  options. Internally, the value of ``keepAlive`` is set to ``true`` and the
+  value of ``keepAliveInitialDelay`` is set to 300000 milliseconds (300
+  seconds). To learn how to set keepalive settings at a system level,
+  see the :manual:`Does TCP keepalive time affect MongoDB Deployments? </faq/diagnostics/#does-tcp-keepalive-time-affect-mongodb-deployments->`
+  FAQ entry in the Server manual.
 
 .. _version-5.7:
 
