@@ -55,17 +55,46 @@ the current member's role in the replica set, on a database:
 For a full list of database commands and corresponding parameters, see
 the :ref:`Additional Information section <addl-info-runcommand>`.
 
+.. _node-command-options:
+
+Command Options
+---------------
+
+You can set options when executing a database command by
+passing an options object to either command method. The ``command()`` method
+takes a ``RunCommandOptions`` object, and the ``runCursorCommand()`` method
+takes a ``RunCursorCommandOptions`` object.
+
+Starting in version 6.0 of the {+driver-short+}, you can pass only the
+following options directly to the ``command()`` method:
+
+- ``comment``
+- ``enableUtf8Validation``
+- ``raw``
+- ``readPreference``
+- ``session``
+
+You can set command-specific options, including a write or read
+concern, in the command document that you pass to ``command()``. The
+following code shows how to specify the ``maxTimeMS`` option in the
+command document for a ``find`` command:
+
+.. code-block:: javascript
+   :emphasize-lines: 4
+
+   const commandDoc = {
+     find: "values",
+     filter: { x: "abc" },
+     maxTimeMS: 2000,
+   };
+   const result = await myDB.command(commandDoc);
+
 .. note:: Read Preference
 
-   ``command()`` and ``runCursorCommand()`` do not obey the read
+   The ``command()`` and ``runCursorCommand()`` methods do not obey the read
    preference you may have set on your ``Db`` object elsewhere in
    your code. By default, these methods use the ``primary`` read
    preference.
-   
-   You can set a read preference for command execution by
-   passing an options object to either method. The ``command()`` method
-   takes a ``RunCommandOptions`` object, and the ``runCursorCommand()`` method
-   takes a ``RunCursorCommandOptions`` object.
 
    The following code shows how to specify a read preference and pass it
    as an option to the ``command()`` method:
@@ -178,6 +207,7 @@ For more information about the concepts in this guide, see the following documen
 - :manual:`db.runCommand() </reference/method/db.runCommand/>`
 - :manual:`Database Commands </reference/command/>`
 - :manual:`hello Command </reference/command/hello/>`
+- :manual:`find Command </reference/command/find/>`
 
 .. - :manual:`checkMetadataConsistency Command </reference/command/checkMetadataConsistency/>`
 
