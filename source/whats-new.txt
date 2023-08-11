@@ -52,10 +52,10 @@ What's New in 6.0
    
    - The major version number of ``mongodb-client-encryption`` must now be the
      same as the major version number of the {+driver-short+}. For example,
-     {+driver-short+} v6.x.x requires ``mongodb-client-encryption`` v6.x.x.
+     {+driver v6.x.x requires ``mongodb-client-encryption`` v6.x.x.
    
-   - Automatic Encryption methods have been moved to the driver. You must now
-     import these methods from the {+driver-short+} rather than from
+   - Automatic Encryption methods are now in the {+driver-short+}. You must now
+     import these methods from the driver rather than from
      ``mongodb-client-encryption``.
 
 The {+driver-short+} v6.0 release includes the following features:
