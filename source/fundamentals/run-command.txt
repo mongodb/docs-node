@@ -60,10 +60,15 @@ the :ref:`Additional Information section <addl-info-runcommand>`.
 Command Options
 ---------------
 
-You can set options when executing a database command by
-passing an options object to either command method. The ``command()`` method
-takes a ``RunCommandOptions`` object, and the ``runCursorCommand()`` method
-takes a ``RunCursorCommandOptions`` object.
+You can specify optional command behavior for the ``command()``
+and ``runCursorCommand()`` methods.
+
+The ``command()`` method accepts a ``RunCommandOptions`` object. To learn
+more about the ``RunCommandOptions`` type, see the `API documentation <{+api+}/types/RunCommandOptions.html>`__.
+
+The ``runCursorCommand() method`` accepts a ``RunCursorCommandOptions``
+object. To learn more about the ``RunCursorCommandOptions`` type, see
+the `API documentation <{+api+}/types/RunCursorCommandOptions.html>`__.
 
 Starting in version 6.0 of the {+driver-short+}, you can pass only the
 following options directly to the ``command()`` method:

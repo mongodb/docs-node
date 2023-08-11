@@ -99,7 +99,7 @@ The {+driver-short+} v6.0 release includes the following features:
   - ``authdb``
   - ``noResponse``
 
-  Even though these options are no longer applicable to the
+  Although you cannot pass these options to the
   ``Db.command()`` method, you can still set them in the command
   document. To learn more, see the :ref:`Command Options
   <node-command-options>` section of the Run a Command guide.

@@ -9,13 +9,14 @@ You can run database operations by using the
 ``command()`` method with your command document on an instance of a
 database.
 
-.. note::
-    Use the :mongosh:`MongoDB Shell </>` for administrative tasks instead of
-    the {+driver-short+} whenever possible.
+.. tip::
+   
+   Use the :mongosh:`MongoDB Shell </>` for administrative tasks instead of
+   the {+driver-short+} whenever possible.
 
-You can specify additional options in the ``options`` object you can
-pass to the ``command()`` method. To learn more about
-the supported options, see the
+You can specify optional command behavior by passing a
+``RunCommandOptions`` object to the ``command()`` method. To learn more
+about the supported options, see the
 `Db.command() API documentation <{+api+}/classes/Db.html#command>`__.
 
 Example
