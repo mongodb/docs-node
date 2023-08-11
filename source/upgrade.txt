@@ -71,7 +71,7 @@ Version 6.x Breaking Changes
   ``MongoClient.connect()`` method, not when you create the
   ``MongoClient`` instance.
 - If you add ``mongodb-client-encryption`` as a dependency,
-  the major version number must match that of the {+driver-short}. For example,
+  the major version number must match that of the {+driver-short+}. For example,
   {+driver-short+} v6.x.x requires ``mongodb-client-encryption`` v6.x.x.
 - Automatic Encryption methods are now in the {+driver-short+}. You must
   import these methods from the driver instead of from
