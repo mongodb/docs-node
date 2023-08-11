@@ -70,11 +70,11 @@ Version 6.x Breaking Changes
   ``tlsCertificateKeyFile`` connection options when you call the
   ``MongoClient.connect()`` method, not when you create the
   ``MongoClient`` instance.
-- The major version number of ``mongodb-client-encryption`` must now be the
-  same as the major version number of the {+driver-short+}. For example,
+- If you add ``mongodb-client-encryption`` as a dependency,
+  the major version number must match that of the {+driver-short}. For example,
   {+driver-short+} v6.x.x requires ``mongodb-client-encryption`` v6.x.x.
-- Automatic Encryption methods are now in the {+driver-short+}. You must now
-  import these methods from the driver rather than from
+- Automatic Encryption methods are now in the {+driver-short+}. You must
+  import these methods from the driver instead of from
   ``mongodb-client-encryption``.
 
 .. _node-breaking-changes-v5.x:
