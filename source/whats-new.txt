@@ -12,6 +12,7 @@ What's New
 
 Learn what's new in:
 
+* :ref:`Version 4.17 <version-4.17>`
 * :ref:`Version 4.15 <version-4.15>`
 * :ref:`Version 4.14 <version-4.14>`
 * :ref:`Version 4.13 <version-4.13>`
@@ -31,6 +32,19 @@ Learn what's new in:
 * :ref:`Version 3.7 <version-3.7>`
 * :ref:`Version 3.6 <version-3.6>`
 
+.. _version-4.17:
+
+What's New in 4.17
+------------------
+
+New features of the 4.17 {+driver-short+} release include:
+
+- Adds the ``mongodb-js/saslprep`` package as a driver dependency.
+- Improves compatibility with the Queryable Encryption feature.
+
+To learn more, see the `v4.17.0 Release Highlights
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v4.17.0>`__.
+
 .. _version-4.15:
 
 What's New in 4.15
@@ -41,7 +55,7 @@ New features of the 4.15 {+driver-short+} release include:
 - Support for AWS IAM roles for service accounts.
 
 To learn more, see the `v4.15.0 Release Highlights
-<https://github.com/mongodb/node-mongodb-native/releases/tag/v4.15.0>`__. 
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v4.15.0>`__.
 
 .. _version-4.14:
 
