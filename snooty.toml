@@ -17,11 +17,8 @@ toc_landing_pages = [
 sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
 
 [constants]
-version = "4.15"
-package-name-org = "mongodb-org"
+version = "4.16"
 api = "https://mongodb.github.io/node-mongodb-native/{+version+}"
-mongosh = "``mongosh``"
-driver = "node"
 driver-long = "MongoDB Node.js driver"
 driver-short = "Node.js driver"
 mdb-server = "MongoDB Server"
