@@ -76,16 +76,18 @@ Version 6.x Breaking Changes
 - Automatic Encryption methods are now in the {+driver-short+}. You must
   import these methods from the driver instead of from
   ``mongodb-client-encryption``.
-- Removes support for strings with a length of 12 from the ``ObjectId``
+- Removed support for strings with a length of 12 from the ``ObjectId``
   constructor.
-- The ``abortTransaction`` and ``commitTransaction`` methods now return
+- The ``abortTransaction`` and ``commitTransaction`` methods return
   ``null`` instead of the raw command results.
-- Connection strings and the ``MongoClient`` constructor now accept only
-  the boolean values ``true`` and ``false``. Other values such as ``1``, or ``"yes"``
-  are no longer valid.
-- The ``Binary`` BSON type no longer accepts a string as a constructor argument.
-- The ``Binary.write`` method  no longer accepts a string as an argument.
-- ``ClientEncryption`` APIs now return promises instead of callbacks.
+- Removed connection option helpers that recognized values other than ``true``
+  or  ``false`` as booleans. You must provide either ``true`` or ``false`` values for
+  options that expect boolean values in the connection string or MongoClient
+  constructor.
+- Removed the Binary BSON type constructor that accepted a string.
+- The ``Binary.write`` method no longer accepts a string to write to the binary
+  BSON object.
+- The ``ClientEncryption`` API returns promises instead of callbacks.
 
 .. _node-breaking-changes-v5.x:
 
