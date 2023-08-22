@@ -79,10 +79,11 @@ following options directly to the ``command()`` method:
 - ``readPreference``
 - ``session``
 
-You can set additional options on certain commands, including a write or read
-concern, in the command document that you pass to the ``command()``
-method. See the Server manual :manual:`entry </reference/command/>` for
-any command to learn about its associated options.
+You can set additional options, including a write or read
+concern, in the command document that you pass to
+the ``command()`` method. See the Server manual :manual:`entry
+</reference/command/>` for a command to learn about its associated
+options.
 
 The following code shows how to specify a write concern
 in the command document for a ``delete`` command:
