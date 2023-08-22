@@ -79,25 +79,28 @@ following options directly to the ``command()`` method:
 - ``readPreference``
 - ``session``
 
-You can set command-specific options, including a write or read
-concern, in the command document that you pass to ``command()``. The
-following code shows how to specify the ``maxTimeMS`` option in the
-command document for a ``find`` command:
+You can set additional options on certain commands, including a write or read
+concern, in the command document that you pass to the ``command()``
+method. See the Server manual :manual:`entry </reference/command/>` for
+any command to learn about its associated options.
+
+The following code shows how to specify a write concern
+in the command document for a ``delete`` command:
 
 .. code-block:: javascript
    :emphasize-lines: 4
 
    const commandDoc = {
-     find: "values",
-     filter: { x: "abc" },
-     maxTimeMS: 2000,
+       delete: "values",
+       deletes: [ { q: { x: "abc" }, limit: 0 } ],
+       writeConcern: { w: "majority", wtimeout: 5000 }
    };
    const result = await myDB.command(commandDoc);
 
 .. note:: Read Preference
 
-   The ``command()`` and ``runCursorCommand()`` methods do not obey the read
-   preference you may have set on your ``Db`` object elsewhere in
+   The ``command()`` and ``runCursorCommand()`` methods do execute with
+   the read preference you may have set on your ``Db`` object earlier in
    your code. By default, these methods use the ``primary`` read
    preference.
 
