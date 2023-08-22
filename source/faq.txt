@@ -245,18 +245,18 @@ What Does the keepAlive Option Do?
 
 The ``keepAlive`` connection option specifies whether to enable
 :wikipedia:`Transmission Control Protocol (TCP) keepalives
-<Keepalive#TCP_keepalive>` on a TCP socket.
-
-The ``keepAliveInitialDelay`` option sets the number of
-milliseconds that the driver waits before initiating a keepalive.
-If you enable keepalives, the driver checks if the connection is active
-by sending periodic pings to MongoDB. This functionality only works if your
+<Keepalive#TCP_keepalive>` on a TCP socket. If you enable keepalives,
+the driver checks whether the connection is active by sending periodic pings
+to your MongoDB deployment. This functionality only works if your
 operating system supports the ``SO_KEEPALIVE`` socket option.
 
-The 5.3 driver version release deprecated these options, and the 6.0
-driver version release removed them. Starting in version 6.0 of the
-driver, the ``keepAlive`` option is permanently set to ``true``, and the
-``keepAliveInitialDelay`` is set to 300000 milliseconds (300 seconds).
+The ``keepAliveInitialDelay`` option specifies the number of
+milliseconds that the driver waits before initiating a keepalive.
+
+The 5.3 driver version release deprecated these options. Starting in
+version 6.0 of the driver, the ``keepAlive`` option is permanently set
+to ``true``, and the ``keepAliveInitialDelay`` is set to 300000
+milliseconds (300 seconds).
 
 .. warning::
    
@@ -271,13 +271,12 @@ your application and MongoDB is misconfigured. These firewalls can be
 overly aggressive in their removal of connections, which can lead to
 unexpected errors.
 
-To check if the firewall might be causing connection issues, confirm
-that it exhibits the following behavior:
+Confirm that your firewall exhibits the following behavior:
 
-- The firewall should send a ``FIN`` packet when closing a connection,
+- The firewall sends a ``FIN`` packet when closing a connection,
   informing the driver that the socket is closed.
 
-- The firewall should allow keepalive messages.
+- The firewall allows keepalive messages.
 
 .. tip::
    

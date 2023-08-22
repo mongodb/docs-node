@@ -85,9 +85,11 @@ The {+driver-short+} v6.0 release includes the following features:
   ``MongoClient`` instance.
 
 - Removal of the ``keepAlive`` and ``keepAliveInitialDelay`` connection
-  options. Internally, the value of ``keepAlive`` is set to ``true`` and the
+  options. The value of ``keepAlive`` is permanently set to ``true`` and the
   value of ``keepAliveInitialDelay`` is set to 300000 milliseconds (300
-  seconds). To learn how to set keepalive settings at a system level,
+  seconds).
+  
+  To learn how to set keepalive settings at a system level,
   see the :manual:`Does TCP keepalive time affect MongoDB Deployments? </faq/diagnostics/#does-tcp-keepalive-time-affect-mongodb-deployments->`
   FAQ entry in the Server manual.
 
