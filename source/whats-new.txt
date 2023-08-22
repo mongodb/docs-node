@@ -58,23 +58,21 @@ What's New in 6.0
      import these methods from the driver instead of from
      ``mongodb-client-encryption``.
 
-   - Removed support for strings with a length of 12 from the ``ObjectId``
-     constructor.
+   - Removed the ``ObjectId`` constructor that accepted a 12-character string.
 
-   - The ``abortTransaction`` and ``commitTransaction`` methods return
+   - The ``abortTransaction()`` and ``commitTransaction()`` methods return
      ``null`` instead of the raw command results.
 
-   - Removed connection option helpers that recognized values other than ``true``
-     or  ``false`` as booleans. You must provide either ``true`` or ``false`` values for
-     options that expect boolean values in the connection string or MongoClient
-     constructor.
+   - Removed connection option helpers that accepted values other than ``true``
+     or ``false`` as booleans. You must provide either ``true`` or ``false`` values in
+     the connection string or to the MongoClient constructor.
 
    - Removed the Binary BSON type constructor that accepted a string.
 
-   - The ``Binary.write`` method no longer accepts a string to write
-     to the binary BSON object.
+   - Removed the ``Binary.write()`` method that accepted a string to
+      write as a binary BSON object.
 
-   - ``ClientEncryption`` APIs return promises instead of callbacks.
+   - The ClientEncryption API returns promises instead of callbacks.
 
 The {+driver-short+} v6.0 release includes the following features:
 
