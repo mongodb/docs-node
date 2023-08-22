@@ -100,7 +100,7 @@ in the command document for a ``delete`` command:
 
 .. note:: Read Preference
 
-   The ``command()`` and ``runCursorCommand()`` methods do execute with
+   The ``command()`` and ``runCursorCommand()`` methods do not execute with
    the read preference you may have set on your ``Db`` object earlier in
    your code. By default, these methods use the ``primary`` read
    preference.
