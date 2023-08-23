@@ -1,0 +1,26 @@
+.. _node-connect-socks:
+
+===========================
+Enable SOCKS5 Proxy Support
+===========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to connect to MongoDB instances with
+SOCKS5 proxy support. SOCKS5 is a standardized protocol for connecting
+to network services through a separate proxy server.
+
+To use SOCKS5 functionality in your application, you must manually load
+the ``socks`` dependency.
+
+.. tip::
+   
+   To learn more about SOCKS, see the Wikipedia entry on
+   :wikipedia:`SOCKS <SOCKS>`.
