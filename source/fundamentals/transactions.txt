@@ -27,8 +27,8 @@ Multi-document transactions are **ACID compliant** because MongoDB
 guarantees that the data involved in your transaction operations remains
 consistent, even if the driver encounters unexpected errors.
 
-To learn more about ACID compliance and transactions, see our :website:`article about
-ACID transactions </basics/acid-transactions>`__.
+To learn more about ACID compliance and transactions, see our :website:`article on
+ACID transactions </basics/acid-transactions>`.
 
 .. note::
 
