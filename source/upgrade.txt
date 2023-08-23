@@ -90,6 +90,9 @@ Version 6.x Breaking Changes
 - The ``Binary.write()`` method no longer accepts a string to write to the binary
   BSON object.
 - The ClientEncryption API returns promises instead of callbacks.
+- If you pass a session that was started on one
+  client to a different client, the driver throws an error when you
+  perform any operations in that session.
 
 .. _node-breaking-changes-v5.x:
 
