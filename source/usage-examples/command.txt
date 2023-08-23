@@ -9,7 +9,7 @@ You can execute database commands by using the
 instance.
 
 You can specify a command and options in a command document. To run the
-command, pass the command to the ``command()`` method. To see a full
+command, pass the command document to the ``command()`` method. To see a full
 list of database commands, see :manual:`Database Commands
 </reference/command/>` in the Server manual.
 
