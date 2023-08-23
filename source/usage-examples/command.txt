@@ -4,10 +4,14 @@
 Run a Command
 =============
 
-You can run database operations by using the
-`Db.command() <{+api+}/classes/Db.html#command>`__ method. Call the
-``command()`` method with your command document on an instance of a
-database.
+You can execute database commands by using the
+`command() <{+api+}/classes/Db.html#command>`__ method on a ``Db``
+instance.
+
+You can specify a command and options in a command document. To run the
+command, pass the command to the ``command()`` method. To see a full
+list of database commands, see :manual:`Database Commands
+</reference/command/>` in the Server manual.
 
 .. tip::
    

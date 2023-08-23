@@ -71,7 +71,7 @@ object. To learn more about the ``RunCursorCommandOptions`` type, see
 the `API documentation <{+api+}/types/RunCursorCommandOptions.html>`__.
 
 Starting in version 6.0 of the {+driver-short+}, you can pass only the
-following options directly to the ``command()`` method:
+following options to the ``command()`` method:
 
 - ``comment``
 - ``enableUtf8Validation``
@@ -81,7 +81,11 @@ following options directly to the ``command()`` method:
 
 You can set additional options, including a write or read
 concern, in the command document that you pass to
-the ``command()`` method. See the Server manual :manual:`entry
+the ``command()`` method. To learn more about the available options for
+a command, select it from the list of commands on the :manual:`Database
+Commands </reference/command/>` page of the Server manual.
+
+See the Server manual :manual:`entry
 </reference/command/>` for a command to learn about its associated
 options.
 
@@ -100,10 +104,9 @@ in the command document for a ``delete`` command:
 
 .. note:: Read Preference
 
-   The ``command()`` and ``runCursorCommand()`` methods do not execute with
-   the read preference you may have set on your ``Db`` object earlier in
-   your code. By default, these methods use the ``primary`` read
-   preference.
+   The ``command()`` and ``runCursorCommand()`` methods ignore
+   the read preference setting you may have set on your ``Db`` object.
+   By default, these methods use the ``primary`` read preference.
 
    The following code shows how to specify a read preference and pass it
    as an option to the ``command()`` method:

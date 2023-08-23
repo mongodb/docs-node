@@ -70,7 +70,7 @@ Version 6.x Breaking Changes
   ``tlsCertificateKeyFile`` connection options when you call the
   ``MongoClient.connect()`` method, not when you create the
   ``MongoClient`` instance.
-- The ``Db.command()`` method only accepts options that are not related
+- The ``Db.command()`` method accepts only options that are not related
   to a specific command. To learn more about these options, see the  
   :ref:`Command Options <node-command-options>` section of the Run a
   Command guide.
