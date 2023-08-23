@@ -81,13 +81,9 @@ following options to the ``command()`` method:
 
 You can set additional options, including a write or read
 concern, in the command document that you pass to
-the ``command()`` method. To learn more about the available options for
-a command, select it from the list of commands on the :manual:`Database
-Commands </reference/command/>` page of the Server manual.
-
-See the Server manual :manual:`entry
-</reference/command/>` for a command to learn about its associated
-options.
+the ``command()`` method. To learn more about a command and the additional options that it
+accepts, locate the command and follow the link on the :manual:`Database
+Commands </reference/command/>` section of the Server manual.
 
 The following code shows how to specify a write concern
 in the command document for a ``delete`` command:
