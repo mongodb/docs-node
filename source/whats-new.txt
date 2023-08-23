@@ -118,6 +118,9 @@ The {+driver-short+} v5.8 release includes the following features:
 - Lowers the ``@aws-sdk/credential-providers`` version to 3.188.0
   and ``zstd`` to ^1.0.0.
 
+To learn more about this release, see the
+`v5.8.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v5.8.0>`__.
+
 .. _version-5.7:
 
 What's New in 5.7
