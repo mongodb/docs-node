@@ -76,9 +76,10 @@ What's New in 6.0
 
    - The ClientEncryption API returns promises instead of callbacks.
 
-   - The ``socks`` dependency is a peer-optional dependency. To use
-   ``socks`` functionality in your application, you must manually load the
-   module. To learn more, see the guide on :ref:``.
+   - The ``socks`` dependency, which enables SOCKS5 proxy support, is a
+     peer-optional dependency. To use ``socks`` functionality in your
+     application, you must manually load the module. To learn more, see
+     :ref:`node-connect-socks`.
 
 The {+driver-short+} v6.0 release includes the following features:
 

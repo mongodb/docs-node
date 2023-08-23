@@ -17,10 +17,123 @@ In this guide, you can learn how to connect to MongoDB instances with
 SOCKS5 proxy support. SOCKS5 is a standardized protocol for connecting
 to network services through a separate proxy server.
 
-To use SOCKS5 functionality in your application, you must manually load
-the ``socks`` dependency.
-
 .. tip::
    
    To learn more about SOCKS, see the Wikipedia entry on
    :wikipedia:`SOCKS <SOCKS>`.
+
+Load the socks Module
+---------------------
+
+Starting in version 6.0 of the {+driver-short+}, you must *manually* load
+the ``socks`` dependency to use SOCKS5 proxy support in your
+application. You can install ``socks`` by running the following command
+in your terminal:
+
+.. code-block:: bash
+   
+   npm i socks
+
+SOCKS5 Client Options
+---------------------
+
+You can set options in your ``MongoClientOptions`` instance or
+parameters in your connection URI to configure SOCKS5 proxy support for 
+your connection. The following table describes the client options
+related to SOCKS5.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 1 1 1 1
+
+   * - Name
+     - Accepted Values
+     - Default Value
+     - Description
+
+   * - **proxyHost**
+     - string
+     - ``null``
+     - Specifies the IPv4/IPv6 address or domain name on which a SOCKS5
+       proxy is listening.
+
+   * - **proxyPort**
+     - non-negative integer
+     - ``null``
+     - Specifies the TCP port number of the SOCKS5 proxy server specified in the
+       ``proxyHost`` option. If you have set the ``proxyHost`` option,
+       this value of this option defaults to ``1080``.
+
+   * - **proxyUsername**
+     - string
+     - ``null``
+     - Specifies the username for username and password authentication to the SOCKS5
+       proxy server specified in the ``proxyHost`` option. If you set
+       this option to a zero-length string, the driver ignores it.
+
+   * - **proxyPassword**
+     - string
+     - ``null``
+     - Specifies the password for username and password authentication to the SOCKS5
+       proxy server specified in the ``proxyHost`` option. If you set
+       this option to a zero-length string, the driver ignores it.
+
+.. important::
+   
+   The driver will throw an error if you set the ``proxyPort``,
+   ``proxyUsername``, or ``proxyPassword`` options without setting the
+   ``proxyHost`` option.
+
+Example
+-------
+
+This example shows how to instantiate a ``MongoClient`` that uses SOCKS5
+proxy support. The example connects to MongoDB and executes a find
+query:
+
+.. code-block:: js
+   
+   import { MongoClient } from "mongodb";
+   
+   // Replace the uri string with your connection string.
+   const uri = "<connection uri>";
+   
+   // Replace the placeholders with your SOCKS5 proxy server information.
+   const socksOptions = {
+     proxyHost: "<host>",
+     proxyPort: 1010,
+     proxyUsername: "<username>",
+     proxyPassword: "<password>",
+   };
+   
+   // Create a client with the socksOptions object
+   const client = new MongoClient(uri, socksOptions);
+   
+   async function run() {
+     try {
+       const db = client.db("myDB");
+       const myColl = db.collection("myColl");
+       const doc = await myColl.findOne({});
+       console.log(doc);
+     } finally {
+       await client.close();
+     }
+   }
+   run().catch(console.dir);
+
+Additional Information
+----------------------
+
+For more information about SOCKS5 proxy support, see the
+`MongoDB SOCKS5 specification <https://github.com/mongodb/specifications/blob/master/source/socks5-support/socks5.rst>`__.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `ProxyOptions <{+api+}/interfaces/ProxyOptions.html>`__
+- `proxyHost client option <{+api+}/interfaces/ProxyOptions.html#proxyHost>`__
+- `proxyPassword client option <{+api+}/interfaces/ProxyOptions.html#proxyPassword>`__
+- `proxyPort client option <{+api+}/interfaces/ProxyOptions.html#proxyPort>`__
+- `proxyUsername client option <{+api+}/interfaces/ProxyOptions.html#proxyUsername>`__
