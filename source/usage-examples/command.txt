@@ -8,8 +8,8 @@ You can execute database commands by using the
 `command() <{+api+}/classes/Db.html#command>`__ method on a ``Db``
 instance.
 
-You can specify a command and options in a command document. To run the
-command, pass the command document to the ``command()`` method. To see a full
+You can specify a command and options in a document. To run the
+command, pass this document to the ``command()`` method. To see a full
 list of database commands, see :manual:`Database Commands
 </reference/command/>` in the Server manual.
 

@@ -34,7 +34,7 @@ Execute a Command
 -----------------
 
 To run a database command, you must specify the command and any relevant
-parameters in a command document, then pass the command document to a
+parameters in a document, then pass this document to a
 command execution method. The {+driver-short+} provides the following methods
 to run database commands:
 
@@ -79,22 +79,22 @@ following options to the ``command()`` method:
 - ``readPreference``
 - ``session``
 
-You can set additional options, including a write or read
-concern, in the command document that you pass to
-the ``command()`` method. To learn more about a command and the additional options that it
-accepts, locate the command and follow the link on the :manual:`Database
-Commands </reference/command/>` section of the Server manual.
+You can set additional options in the document that you pass to
+the ``command()`` method. To learn more about a command and the
+additional options that it accepts, locate the command and follow the
+link on the :manual:`Database Commands </reference/command/>` section of
+the Server manual.
 
-The following code shows how to specify a write concern
-in the command document for a ``delete`` command:
+The following code shows how to specify a ``grantRolesToUser`` command
+that executes with a ``majority`` write concern:
 
 .. code-block:: javascript
    :emphasize-lines: 4
 
    const commandDoc = {
-       delete: "values",
-       deletes: [ { q: { x: "abc" }, limit: 0 } ],
-       writeConcern: { w: "majority", wtimeout: 5000 }
+       grantRolesToUser: "user011",
+       roles: [ "readWrite" ],
+       writeConcern: { w: "majority" }
    };
    const result = await myDB.command(commandDoc);
 
