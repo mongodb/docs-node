@@ -13,7 +13,7 @@ What's New
 Learn what's new in:
 
 * :ref:`Version 6.0 <version-6.0>`
-* :ref:`Version 5.7 <version-5.7>`
+* :ref:`Version 5.8 <version-5.8>`
 * :ref:`Version 5.7 <version-5.7>`
 * :ref:`Version 5.6 <version-5.6>`
 * :ref:`Version 5.5 <version-5.5>`
@@ -59,6 +59,22 @@ What's New in 6.0
    - Automatic Encryption methods are now in the {+driver-short+}. You must
      import these methods from the driver instead of from
      ``mongodb-client-encryption``.
+
+   - Removed the ``ObjectId`` constructor that accepted a 12-character string.
+
+   - Modified ``abortTransaction()`` and ``commitTransaction()`` methods to return
+     ``null`` instead of the raw command results.
+
+   - Removed connection option helpers that accepted values other than ``true``
+     or ``false`` as booleans. You must provide either ``true`` or ``false`` values in
+     the connection string or to the MongoClient constructor.
+
+   - Removed the ``Binary`` BSON type constructor that accepted a string.
+
+   - The ``Binary.write()`` method no longer accepts a string to write
+     to the binary BSON object.
+
+   - The ClientEncryption API returns promises instead of callbacks.
 
 The {+driver-short+} v6.0 release includes the following features:
 
@@ -113,6 +129,33 @@ The {+driver-short+} v6.0 release includes the following features:
   ``Db.command()`` method, you can still set them in the command
   document. To learn more, see the :ref:`Command Options
   <node-command-options>` section of the Run a Command guide.
+
+.. _version-5.8:
+
+What's New in 5.8
+-----------------
+
+The {+driver-short+} v5.8 release includes the following features:
+
+.. important:: Deprecation Notice
+
+   The ``AutoEncrypter`` interface is deprecated.
+
+- Support for Kerberos versions 1.x and 2.x.
+
+- Deprecation errors are not emitted for the
+  ``tlsCertificateFile`` property when you set the
+  ``tlsCertificateKeyFile`` property.
+
+- Removes credential availability in the
+  ``ConnectionPoolCreatedEvent`` type. You can still access credentials
+  through the ``credentials`` property of a ``MongoOptions`` instance.
+
+- Lowers the ``@aws-sdk/credential-providers`` version to 3.188.0
+  and ``zstd`` to ^1.0.0.
+
+To learn more about this release, see the
+`v5.8.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v5.8.0>`__.
 
 .. _version-5.7:
 
