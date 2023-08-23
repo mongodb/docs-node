@@ -13,7 +13,7 @@ What's New
 Learn what's new in:
 
 * :ref:`Version 6.0 <version-6.0>`
-* :ref:`Version 5.7 <version-5.7>`
+* :ref:`Version 5.8 <version-5.8>`
 * :ref:`Version 5.7 <version-5.7>`
 * :ref:`Version 5.6 <version-5.6>`
 * :ref:`Version 5.5 <version-5.5>`
@@ -22,6 +22,8 @@ Learn what's new in:
 * :ref:`Version 5.2 <version-5.2>`
 * :ref:`Version 5.1 <version-5.1>`
 * :ref:`Version 5.0 <version-5.0>`
+* :ref:`Version 4.17 <version-4.17>`
+* :ref:`Version 4.16 <version-4.16>`
 * :ref:`Version 4.15 <version-4.15>`
 * :ref:`Version 4.14 <version-4.14>`
 * :ref:`Version 4.13 <version-4.13>`
@@ -48,12 +50,36 @@ What's New in 6.0
 
 .. important:: Breaking Changes in v6.0
 
-   Version 6.0 of the {+driver-short+} requires Node.js v16.20.1 or later.
+   - Version 6.0 of the {+driver-short+} requires Node.js v16.20.1 or later.
+
+   - If you add ``mongodb-client-encryption`` as a dependency,
+     the major version number must match that of the {+driver-short+}. For example,
+     {+driver-short+} v6.x.x requires ``mongodb-client-encryption`` v6.x.x.
+
+   - Automatic Encryption methods are now in the {+driver-short+}. You must
+     import these methods from the driver instead of from
+     ``mongodb-client-encryption``.
+
+   - Removed the ``ObjectId`` constructor that accepted a 12-character string.
+
+   - Modified ``abortTransaction()`` and ``commitTransaction()`` methods to return
+     ``null`` instead of the raw command results.
+
+   - Removed connection option helpers that accepted values other than ``true``
+     or ``false`` as booleans. You must provide either ``true`` or ``false`` values in
+     the connection string or to the MongoClient constructor.
+
+   - Removed the ``Binary`` BSON type constructor that accepted a string.
+
+   - The ``Binary.write()`` method no longer accepts a string to write
+     to the binary BSON object.
+
+   - The ClientEncryption API returns promises instead of callbacks.
 
 The {+driver-short+} v6.0 release includes the following features:
 
 .. important:: Deprecation Notice
-   
+
    All of the ``ssl``-prefixed options in the ``MongoClientOptions``
    type are deprecated. In addition, the ``tlsCertificateFile`` option
    is deprecated.
@@ -92,6 +118,53 @@ The {+driver-short+} v6.0 release includes the following features:
   To learn how to set keepalive settings at a system level,
   see the :manual:`Does TCP keepalive time affect MongoDB Deployments? </faq/diagnostics/#does-tcp-keepalive-time-affect-mongodb-deployments->`
   FAQ entry in the Server manual.
+
+- Removes the following options for the ``Db.command()`` method:
+  
+  - ``willRetryWrite``
+  - ``omitReadPreference``
+  - ``writeConcern``
+  - ``explain``
+  - ``readConcern``
+  - ``collation``
+  - ``maxTimeMS``
+  - ``comment``
+  - ``retryWrites``
+  - ``dbName``
+  - ``authdb``
+  - ``noResponse``
+
+  Although you cannot pass these options to the
+  ``Db.command()`` method, you can still set them in the command
+  document. To learn more, see the :ref:`Command Options
+  <node-command-options>` section of the Run a Command guide.
+
+.. _version-5.8:
+
+What's New in 5.8
+-----------------
+
+The {+driver-short+} v5.8 release includes the following features:
+
+.. important:: Deprecation Notice
+
+   The ``AutoEncrypter`` interface is deprecated.
+
+- Support for Kerberos versions 1.x and 2.x.
+
+- Deprecation errors are not emitted for the
+  ``tlsCertificateFile`` property when you set the
+  ``tlsCertificateKeyFile`` property.
+
+- Removes credential availability in the
+  ``ConnectionPoolCreatedEvent`` type. You can still access credentials
+  through the ``credentials`` property of a ``MongoOptions`` instance.
+
+- Lowers the ``@aws-sdk/credential-providers`` version to 3.188.0
+  and ``zstd`` to ^1.0.0.
+
+To learn more about this release, see the
+`v5.8.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v5.8.0>`__.
 
 .. _version-5.7:
 
@@ -305,6 +378,33 @@ New features of the 5.0 {+driver-short+} release include:
     installed is incompatible with the driver. Once you install the
     dependency successfully, the driver uses the AWS SDK itself to
     manage credentials from the environment.
+
+.. _version-4.17:
+
+What's New in 4.17
+------------------
+
+New features of the 4.17 {+driver-short+} release include:
+
+- Adds the ``mongodb-js/saslprep`` package as a driver dependency.
+- Improves compatibility with the Queryable Encryption feature.
+
+To learn more, see the `v4.17.0 Release Highlights
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v4.17.0>`__.
+
+.. _version-4.16:
+
+What's New in 4.16
+------------------
+
+New features of the 4.16 {+driver-short+} release include:
+
+- Includes Function-as-a-Service (FaaS) platform information in the driver
+  handshake metadata.
+- Identifies Deno runtime usage in the client metdata.
+
+To learn more, see the `v4.16.0 Release Highlights
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v4.16.0>`__.
 
 .. _version-4.15:
 
