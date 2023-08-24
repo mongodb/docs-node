@@ -44,7 +44,7 @@ related to SOCKS5:
 
 .. list-table::
    :header-rows: 1
-   :widths: 30 10 10 50
+   :widths: 15 20 10 55
 
    * - Name
      - Accepted Values
