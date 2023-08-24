@@ -87,7 +87,7 @@ Version 6.x Breaking Changes
   BSON object.
 - The ClientEncryption API returns promises instead of callbacks.
 - The ``socks`` package, which enables SOCKS5 proxy support, is a
-  peer-optional dependency. You must manually install the package to enable
+  peer-optional dependency. You must install the package to enable
   SOCKS5 in your application.
 
 .. _node-breaking-changes-v5.x:

@@ -78,7 +78,7 @@ What's New in 6.0
 
    - The ``socks`` package, which enables SOCKS5 proxy support, is a
      peer-optional dependency. To use ``socks`` functionality in your
-     application, you must manually install the package. To learn more, see
+     application, you must install the package. To learn more, see
      :ref:`node-connect-socks`.
 
 The {+driver-short+} v6.0 release includes the following features:

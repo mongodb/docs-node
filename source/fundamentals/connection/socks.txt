@@ -25,7 +25,7 @@ to network services through a proxy server.
 Install the socks Package
 -------------------------
 
-Starting in version 6.0 of the {+driver-short+}, you must *manually* install
+Starting in version 6.0 of the {+driver-short+}, you must install
 the ``socks`` package to use SOCKS5 proxy support in your
 application. You can install ``socks`` by running the following command
 in your shell:
@@ -61,7 +61,7 @@ related to SOCKS5:
      - non-negative integer
      - ``null``
      - Specifies the TCP port number of the SOCKS5 proxy server. If you
-       set the ``proxyHost`` option, this value of this option defaults
+       set the ``proxyHost`` option, the value of this option defaults
        to ``1080``.
 
    * - **proxyUsername**

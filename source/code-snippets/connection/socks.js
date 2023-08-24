@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 // start-socks
-const uri = "<connection uri>";
+const uri = "<connection string uri>";
 
 const socksOptions = {
   proxyHost: "<host>",
