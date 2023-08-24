@@ -76,9 +76,9 @@ What's New in 6.0
 
    - The ClientEncryption API returns promises instead of callbacks.
 
-   - If you pass a session that was started on one
-     client to a different client, the driver throws an error when you
-     perform any operations in that session.
+   - If you start a session on a client, then pass that session to a
+     different client, the driver throws an error when you
+     perform any operations in the session.
 
 The {+driver-short+} v6.0 release includes the following features:
 

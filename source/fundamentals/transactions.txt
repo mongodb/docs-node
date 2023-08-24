@@ -13,12 +13,12 @@ Transactions
 Overview
 --------
 
-In this guide, you can learn how to use **transactions** with the
-{+driver-short+}. Transactions allow you
+In this guide, you can learn how to use the
+{+driver-short+} to perform **transactions**. Transactions allow you
 to run a series of operations that do not change any data until the
 entire transaction is committed. If any operation in the transaction fails, the 
 driver aborts the transaction and discards all data changes before they
-ever become visible. This behavior is called **atomicity**.
+ever become visible. This feature is called **atomicity**.
 
 Since all write operations on a single document in MongoDB are atomic, you
 might want to use transactions to make an atomic change that
@@ -254,7 +254,7 @@ shows how you can perform the following:
 You must pass the session object to each CRUD operation that
 you want to run on that session.
 
-.. important:: Use a Session with the Client that Started It
+.. important:: Use a Session with the Client That Started It
    
    Starting in version 6.0 of the {+driver-short+}, the driver 
    throws an error if you provide a session from one ``MongoClient``
