@@ -79,6 +79,11 @@ What's New in 6.0
    - If you start a session on a client, then pass that session to a
      different client, the driver throws an error when you
      perform any operations in the session.
+   
+   - The ``includeResultMetadata`` option for ``findOneAnd...``
+     compound methods is ``false`` by default. See the :ref:`Built-in
+     Methods <node-compound-operations-builtin>` section of the Compound
+     Operations guide for more information.
 
 The {+driver-short+} v6.0 release includes the following features:
 
@@ -196,9 +201,9 @@ The {+driver-short+} v5.7 release includes the following features:
 
 - A new option for ``findOneAnd...`` compound methods. The ``includeResultMetaData``
   option allows you to specify whether to include information about the
-  operation result. See the
-  :ref:`Compound Operations Built-in Methods <node-compound-operations-builtin>`
-  section for more information.
+  operation result. See the :ref:`Built-in Methods
+  <node-compound-operations-builtin>` section of the Compound Operations
+  guide for more information.
 
 - Support for change stream split events which enables processing change
   stream documents that exceed the 16MB maximum BSON size limit.
