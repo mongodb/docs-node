@@ -70,6 +70,14 @@ Version 6.x Breaking Changes
   ``tlsCertificateKeyFile`` connection options when you call the
   ``MongoClient.connect()`` method, not when you create the
   ``MongoClient`` instance.
+- The driver removes the ``keepAlive`` and ``keepAliveInitialDelay`` connection
+  options. The value of ``keepAlive`` is permanently set to ``true`` and the
+  value of ``keepAliveInitialDelay`` is set to 300000 milliseconds (300
+  seconds).
+- The ``Db.command()`` method accepts only options that are not related
+  to a specific command. To learn more about these options, see the  
+  :ref:`Command Options <node-command-options>` section of the Run a
+  Command guide.
 - If you add ``mongodb-client-encryption`` as a dependency,
   the major version number must match that of the {+driver-short+}. For example,
   {+driver-short+} v6.x.x requires ``mongodb-client-encryption`` v6.x.x.
@@ -89,6 +97,9 @@ Version 6.x Breaking Changes
 - The ``socks`` package, which enables SOCKS5 proxy support, is a
   peer-optional dependency. You must install the package to enable
   SOCKS5 in your application.
+- If you start a session on a client, then pass that session to a
+  different client, the driver throws an error when you
+  perform any operations in the session.
 
 .. _node-breaking-changes-v5.x:
 

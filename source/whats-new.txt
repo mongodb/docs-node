@@ -13,7 +13,7 @@ What's New
 Learn what's new in:
 
 * :ref:`Version 6.0 <version-6.0>`
-* :ref:`Version 5.7 <version-5.7>`
+* :ref:`Version 5.8 <version-5.8>`
 * :ref:`Version 5.7 <version-5.7>`
 * :ref:`Version 5.6 <version-5.6>`
 * :ref:`Version 5.5 <version-5.5>`
@@ -80,6 +80,10 @@ What's New in 6.0
      peer-optional dependency. To use ``socks`` functionality in your
      application, you must install the package. To learn more, see
      :ref:`node-connect-socks`.
+     
+   - If you start a session on a client, then pass that session to a
+     different client, the driver throws an error when you
+     perform any operations in the session.
 
 The {+driver-short+} v6.0 release includes the following features:
 
@@ -93,10 +97,10 @@ The {+driver-short+} v6.0 release includes the following features:
    object or set the ``tls``-prefixed options in your
    ``MongoClientOptions`` instance. To learn more, see :ref:`node-connect-tls`.
 
-- Removes support for the ``addUser()`` helper command. Use the
+- Removal of support for the ``addUser()`` helper command. Use the
   :manual:`createUser </reference/command/createUser>` MongoDB Shell command instead.
 
-- Removes support for the ``collStats`` operation. Use the
+- Removal of support for the ``collStats`` operation. Use the
   :manual:`$collStats </reference/operator/aggregation/collStats>` aggregation operator
   instead.
 
@@ -114,6 +118,62 @@ The {+driver-short+} v6.0 release includes the following features:
   ``tlsCertificateKeyFile`` connection options when you call
   the ``MongoClient.connect()`` method, not when you create a
   ``MongoClient`` instance.
+
+- Removal of the ``keepAlive`` and ``keepAliveInitialDelay`` connection
+  options. The value of ``keepAlive`` is permanently set to ``true`` and the
+  value of ``keepAliveInitialDelay`` is set to 300000 milliseconds (300
+  seconds).
+  
+  To learn how to set keepalive settings at a system level,
+  see the :manual:`Does TCP keepalive time affect MongoDB Deployments? </faq/diagnostics/#does-tcp-keepalive-time-affect-mongodb-deployments->`
+  FAQ entry in the Server manual.
+
+- Removes the following options for the ``Db.command()`` method:
+  
+  - ``willRetryWrite``
+  - ``omitReadPreference``
+  - ``writeConcern``
+  - ``explain``
+  - ``readConcern``
+  - ``collation``
+  - ``maxTimeMS``
+  - ``comment``
+  - ``retryWrites``
+  - ``dbName``
+  - ``authdb``
+  - ``noResponse``
+
+  Although you cannot pass these options to the
+  ``Db.command()`` method, you can still set them in the command
+  document. To learn more, see the :ref:`Command Options
+  <node-command-options>` section of the Run a Command guide.
+
+.. _version-5.8:
+
+What's New in 5.8
+-----------------
+
+The {+driver-short+} v5.8 release includes the following features:
+
+.. important:: Deprecation Notice
+
+   The ``AutoEncrypter`` interface is deprecated.
+
+- Support for Kerberos versions 1.x and 2.x.
+
+- Deprecation errors are not emitted for the
+  ``tlsCertificateFile`` property when you set the
+  ``tlsCertificateKeyFile`` property.
+
+- Removes credential availability in the
+  ``ConnectionPoolCreatedEvent`` type. You can still access credentials
+  through the ``credentials`` property of a ``MongoOptions`` instance.
+
+- Lowers the ``@aws-sdk/credential-providers`` version to 3.188.0
+  and ``zstd`` to ^1.0.0.
+
+To learn more about this release, see the
+`v5.8.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v5.8.0>`__.
 
 .. _version-5.7:
 
