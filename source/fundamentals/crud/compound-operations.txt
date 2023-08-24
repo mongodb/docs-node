@@ -51,12 +51,13 @@ configurable :ref:`sort <node-fundamentals-sort>` and
    of these methods.
    
    Starting in version 6.0, this setting defaults to ``false``, which
-   means each method returns either the matched document or ``null`` if no
-   document is found. If you set ``includeResultMetadata`` to
-   ``true``, the method returns a ``ModifyResult`` type that contains
-   the found document and additional metadata.
+   means that each method returns either the matched document or
+   ``null`` if no document is found. If you set
+   ``includeResultMetadata`` to ``true``, the method returns a
+   ``ModifyResult`` type that contains the found document and additional
+   metadata.
 
-   Suppose a collection contains the following document:
+   Suppose a collection contains only the following document:
 
    .. code-block:: json
 
@@ -77,7 +78,7 @@ configurable :ref:`sort <node-fundamentals-sort>` and
 
       // no document matched
       // returns null
-      await coll.findOneAndDelete({ x: "off" }, { includeResultMetadata: false });
+      await coll.findOneAndDelete({ x: "off" });
 
 You can set the ``returnDocument`` setting in the ``options`` object for the
 ``findOneAndUpdate()`` and ``findOneAndDelete()`` methods, which lets
