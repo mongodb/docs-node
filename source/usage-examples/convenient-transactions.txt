@@ -31,10 +31,26 @@ The {+driver-short+} provides the following helper methods to perform a
 transaction by using the Convenient Transaction API:
 
 - ``withSession()``: Runs a given operation within an implicitly created
-  session. You do not have to handle the creation or ending of the session.
+  session. You do not have to handle the creation or ending of the
+  session.
 - ``withTransaction()``: Starts a transaction and runs a provided
   function. This method ensures that the ``commitTransaction()`` method
   is called when all of the operations in the function have completed.
+
+.. important:: Return Types and Values
+   
+   Starting in version 6.0 of the {+driver-short+}, these methods return
+   the value that the provided function returns.
+
+   For example, if a function you provide to the ``withTransaction()``
+   method returns a ``Document`` type, then the ``withTransaction()``
+   method returns that object. Furthermore, if you perform this
+   transaction within the function you provide to the ``withSession()``
+   method, then the ``withSession()`` method also returns the
+   ``Document`` object.
+
+   If you structure your code in this way, you can propagate return
+   values out of the session and work with them elsewhere in your code.
 
 Example
 -------
