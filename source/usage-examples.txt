@@ -23,6 +23,7 @@ Usage Examples
    /usage-examples/command
    /usage-examples/changeStream
    /usage-examples/bulkWrite
+   /usage-examples/convenient-transactions
 
 Overview
 --------
@@ -71,7 +72,6 @@ by adding the following key-value pair to your package.json file:
 
    "type": "module"
    
-
 .. note:: CommonJS
 
    You can use any usage example with CommonJS ``require``. To use CommonJS ``require``, you
@@ -120,3 +120,4 @@ Available Usage Examples
 - :doc:`Run a Command </usage-examples/command>`
 - :doc:`Watch for Changes </usage-examples/changeStream>`
 - :doc:`Perform Bulk Operations </usage-examples/bulkWrite>`
+- :doc:`Perform a Convenient Transaction </usage-examples/convenient-transactions>`

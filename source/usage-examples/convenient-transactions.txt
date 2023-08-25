@@ -86,6 +86,11 @@ This example code performs a transaction through the following actions:
 4. Prints the return type of ``withSession()``, which is either the
    error message or the acknowledgment that the transaction completed.
 
+.. note::
+   
+   You must pass the session instance to each operation that
+   you want to run in that session.
+
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
    :linenos:

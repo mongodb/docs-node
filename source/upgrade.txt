@@ -102,6 +102,12 @@ Version 6.x Breaking Changes
   perform any operations in the session.
 - The ``includeResultMetadata`` option for compound operation methods is
   ``false`` by default.
+- The ``withSession()`` method returns the value that the provided
+  function returns. Previously, this function returned ``void``.
+  The ``withTransaction()`` method returns the value that the
+  provided function returns. Previously, this function returned the
+  server command response, which depended on the MongoDB Server version or type
+  the driver was connected to.
 
 .. _node-breaking-changes-v5.x:
 

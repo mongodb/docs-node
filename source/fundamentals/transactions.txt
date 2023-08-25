@@ -123,10 +123,9 @@ specify the behavior for a transaction when creating it:
          </reference/write-concern/>` in the Server manual.
 
    * - ``readPreference``
-     - | Specifies how to route read operations to the
-         members of a replica set.
+     - | Specifies how to route read operations to members of a replica set.
        | To learn more, see :manual:`Read Preference
-       | </core/read-preference/#read-preference>` in the Server manual.
+         </core/read-preference/#read-preference>` in the Server manual.
 
    * - ``maxCommitTimeMS``
      - Specifies the maximum amount of time that a commit action on a
