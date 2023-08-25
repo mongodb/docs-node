@@ -65,6 +65,7 @@ You record the inventory in the ``inventory`` collection of the
 the following documents:
 
 .. code-block:: json
+   :copyable: false
 
    { item: "sunblock, 8 oz", qty: 85, price: 6.0 },
    { item: "beach chair", qty: 30, price: 25.0 },
@@ -119,12 +120,14 @@ Suppose a customer sends the following order:
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
    :dedent:
+   :copyable: false
    :start-after: start-order-successful
    :end-before: end-order-successful
 
 Given this order, the code outputs the following result:
 
-.. code-block:: bash
+.. code-block:: none
+   :copyable: false
    
    Order successfully completed and recorded!
    Here is the receipt:
@@ -148,12 +151,14 @@ Suppose a different customer sends the following order:
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
    :dedent:
+   :copyable: false
    :start-after: start-order-fail
    :end-before: end-order-fail
 
 Given this order, the code outputs the following result:
 
-.. code-block:: bash
+.. code-block:: none
+   :copyable: false
    
    Item not found or insufficient quantity.
 

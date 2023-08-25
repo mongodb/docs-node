@@ -13,18 +13,18 @@ await client
     { item: "beach chair", qty: 30, price: 25.0 },
   ]);
 
-// start-order-successful
 const order1 = [
+// start-order-successful
   { item: "sunblock, 8 oz", qty: 3 },
   { item: "beach chair", qty: 1 }
-];
 // end-order-successful
-
-// start-order-fail
-const order2 = [
-  { item: "volleyball", qty: 1 }
 ];
+
+const order2 = [
+// start-order-fail
+  { item: "volleyball", qty: 1 }
 // end-order-fail
+];
 
 // start-transaction
 const txnResult = await client.withSession(async (session) =>
@@ -34,8 +34,8 @@ const txnResult = await client.withSession(async (session) =>
       const recColl = client.db("testdb").collection("records");
 
       let total = 0;
-      for (let i = 0; i < order1.length; i++) {
-        const item = order1[i];
+      for (let i = 0; i < order.length; i++) {
+        const item = order[i];
 
         // Abort the transaction if the item
         // does not exist or has insufficient inventory
