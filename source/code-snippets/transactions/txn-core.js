@@ -18,8 +18,8 @@ async function setup(client) {
     await customerColl.insertOne({ _id: 98765, orders: [] });
 
     await inventoryColl.insertMany([
-      { name: 'sunblock', sku: 5432, qty: 85 },
-      { name: 'beach towel', sku: 7865, qty: 41 },
+      { item: 'sunblock', sku: 5432, qty: 85 },
+      { item: 'beach towel', sku: 7865, qty: 41 },
     ]);
   } catch (e) {
     console.log('Unable to insert test data: ' + e);
@@ -118,8 +118,8 @@ async function run() {
   await setup(client);
 
   const cart = [
-    { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
-    { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
+    { item: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
+    { item: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
   ];
   const payment = { customer: 98765, total: 37.17 };
 

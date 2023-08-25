@@ -45,16 +45,16 @@ you want to execute sequentially. We recommend you reuse
 your client for multiple sessions and transactions instead of
 instantiating a new client each time.
 
-When combined with majority read and
-write concerns, the driver can guarantee causal consistency between the
-operations. See the server manual guide on
-:manual:`Client Sessions and Causal Consistency Guarantees </core/read-isolation-consistency-recency/#std-label-sessions>`
-for more information.
+When combined with ``majority`` read and
+write concerns, the driver guarantees causal consistency between the
+operations. To learn more, see :manual:`Client Sessions and Causal Consistency Guarantees
+</core/read-isolation-consistency-recency/#client-sessions-and-causal-consistency-guarantees>` in the
+Server manual.
 
-Learn more about how to use the driver to run multi-document transactions on
-MongoDB in the following sections of this guide:
+Learn more about how to use the driver to perform multi-document
+transactions in the following sections of this guide:
 
-- :ref:`Transaction APIs <nodejs-transaction-apis>`
+- :ref:`Transaction API <nodejs-transaction-apis>`
 - :ref:`Transaction Settings <nodejs-transaction-settings>`
 - :ref:`Core API Examples <nodejs-transaction-examples>`
 
@@ -63,40 +63,45 @@ MongoDB in the following sections of this guide:
 Transaction APIs
 ----------------
 
-Use the **Core API** to implement a transaction with the driver. To use the Core
-API, you declare the start and commit points of the transaction.
+The driver provides multiple APIs for performing transactions, including
+the **Core API** and Convenient Transaction API. To begin using the Core
+API, declare the start and commit points of the transaction.
+
+To see an example that uses the Convenient Transaction API, see the
+:ref:`Convenient Transactions <>` usage example.
 
 Core API
 ~~~~~~~~
 
-The Core API features methods to start, cancel, or commit a transaction.
-When you commit the transaction, you send a request to the server to make the
+The Core API provides methods to start, cancel, or commit transactions.
+When you commit a transaction, you send a request to the server to make the
 changes from your operations atomically. When using this API, you must handle
 certain transaction errors returned by the server manually.
 
-See
-:manual:`TransientTransactionError </core/transactions-in-applications/#std-label-transient-transaction-error>`
-and
-:manual:`UnknownTransactionCommitResult </core/transactions-in-applications/#-unknowntransactioncommitresult->`
-for more information on these errors.
+To learn more about these error types, see
+:manual:`TransientTransactionError
+</core/transactions-in-applications/#std-label-transient-transaction-error>`
+and :manual:`UnknownTransactionCommitResult
+</core/transactions-in-applications/#-unknowntransactioncommitresult->`
+in the Server manual.
 
-To start, cancel, or commit your transaction, you can call the corresponding
-method on the ``Session`` object:
+Once you create a ``Session`` instance, to start, cancel, or commit your
+transaction, call the necessary method on the session:
 
 - ``startTransaction()``
 - ``commitTransaction()``
 - ``abortTransaction()``
 
-See the :ref:`Core API example <nodejs-transaction-core-api-example>` for
-a sample transaction implementation.
+To see a sample implementation that uses this API, see the :ref:`Core
+API example <nodejs-transaction-core-api-example>`.
 
 .. _nodejs-transaction-settings:
 
-Transaction Settings
---------------------
+Transaction Options
+-------------------
 
-When you instantiate a transaction, you can specify the following options to
-set the default behavior for that transaction:
+You can specify the following options to
+specify the behavior for a transaction when creating it:
 
 .. list-table::
    :widths: 25 75
@@ -106,29 +111,35 @@ set the default behavior for that transaction:
      - Description
 
    * - ``readConcern``
-     - Specifies how to check for the consistency of the data that the
-       read operations retrieve from replica sets.
-
-       See :manual:`Read Concern </reference/read-concern/>` in the server
-       manual for more information.
+     - | Controls the consistency of the data that
+         read operations retrieve from a replica set.
+       |
+       | To learn more, see :manual:`Read Concern
+         </reference/read-concern/>` in the Server manual.
 
    * - ``writeConcern``
-     - Specifies conditions in which to acknowledge the write.
-       See :manual:`Write Concern </reference/write-concern/>` in the
-       server manual for more information.
+     - | Specifies the level of acknowledgment requested from MongoDB
+         for write operations to a replica set.
+       |
+       | To learn more, see :manual:`Write Concern
+         </reference/write-concern/>` in the Server manual.
 
    * - ``readPreference``
-     - See :manual:`Read Preference </core/read-preference/#read-preference>`
-       in the server manual for more information.
+     - | Specifies how to route read operations to the
+         members of a replica set.
+       |
+       | To learn more, see :manual:`Read Preference
+       | </core/read-preference/#read-preference>` in the Server manual.
 
    * - ``maxCommitTimeMS``
-     - Specifies the maximum amount of time to allow a commit action on a
-       transaction to run in milliseconds.
+     - Specifies the maximum amount of time that a commit action on a
+       transaction can run, in milliseconds.
 
-If you do not provide values, the driver uses the client settings.
+If you do not provide values, the driver inherits settings from your
+``MongoClient`` instance.
 
-You can specify the transaction options in the Core API using code that
-resembles the following:
+The following code shows how to define and pass transaction options to
+the ``startTransaction()`` method:
 
 .. code-block:: javascript
 
@@ -142,13 +153,16 @@ resembles the following:
 
 .. _nodejs-transaction-examples:
 
-Examples
---------
+Example
+-------
 
-Consider a scenario in which a customer purchases items from your online
-store. To record the purchase, your application needs to update
-information related to inventory, the customer's orders, and register the
-order details. Suppose you organize the data updates as follows:
+Consider a situation where a customer purchases items from your online
+store. To record the purchase, your application must update
+information related to inventory and the customer's orders. Your
+application also needs to register the order details.
+
+The following table describes a way that you might organize the data
+updates:
 
 .. list-table::
    :widths: 25 25 50
@@ -163,86 +177,88 @@ order details. Suppose you organize the data updates as follows:
      - Record the purchase information
 
    * - ``customers``
-     - update
-     - Append the order id to associate it with the customer
+     - update or upsert
+     - Append the order ``_id`` to the document for a customer
 
    * - ``inventory``
      - update
-     - Subtract quantity of ordered items
+     - Reduce the quantities to reflect the number of items ordered
 
-A purchase can fail several ways such as if there's insufficient quantity of
-the item in inventory, if the order couldn't be completed, or if your
-payment system is offline.
+A purchase can fail for the following reasons:
 
-If the payment fails, you can use a transaction to make sure that you
-avoid exposing any partial updates that might cause data consistency issues
-for other operations that depend on that data.
+- There is an insufficient quantity of the item in the inventory
+- The order couldn't be completed
+- The payment system is offline
+
+If the payment fails, you can perform a transaction that includes all of
+the data changes to ensure you avoid making any partial updates that
+might cause data consistency issues for future operations.
 
 Sample Data
 ~~~~~~~~~~~
 
-The code examples require the following sample data in the ``testdb``
-database to run the multi-document payment transaction:
+The code examples use the following sample data in the ``testdb``
+database:
 
 - A document in the ``customers`` collection that describes a customer and
   their orders.
-- Documents in the ``inventory`` collection that each track quantity and
-  description of an item.
+- Documents in the ``inventory`` collection that include quantities and
+  descriptions of all items.
 
-The document in the ``customers`` collection in this example contains the
-following:
+The following document is in the ``customers`` collection:
 
 .. code-block:: json
 
    { _id: 98765, orders: [] }
 
-The documents in the ``inventory`` collection in this example contain the
-following:
+The following documents are in the ``inventory`` collection:
 
 .. code-block:: json
 
-   [
-    { name: "sunblock", sku: 5432, qty: 85 },
-    { name: "beach towel", sku: 7865, qty: 41 }
-   ]
+   { item: "sunblock", sku: 5432, qty: 85 },
+   { item: "beach towel", sku: 7865, qty: 41 }
 
 The code examples also perform operations on the ``orders`` collection, but
-do not require any prior sample documents.
+this collection does not contain any data before the transaction is
+performed.
 
 The code examples use the ``cart`` and ``payment`` variables to represent
-a sample list of items purchased and the order payment details as follows:
+a sample list of items purchased and the order payment details. The
+following code describes the contents of the ``cart`` and ``payment`` variables:
 
 .. code-block:: javascript
 
    const cart = [
-     { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
-     { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
+     { item: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
+     { item: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
    ];
    const payment = { customer: 98765, total: 37.17 };
 
 .. important::
-
-   The examples in the following sections require that you create the
-   collections outside of the transaction or that you are using MongoDB 4.4 or
-   later. For more information on creating collections inside a transaction,
-   see the
-   :manual:`Create Collections and Indexes in a Transaction </core/transactions/#std-label-transactions-create-collections-indexes>`
-   server guide.
+   
+   If you are connected to a deployment running MongoDB Server version
+   4.4 or later, you can create collections within transactions.
+   Otherwise, you must create the collections outside of the
+   transaction. To learn more about creating collections inside a
+   transaction, see :manual:`Create Collections and Indexes in a
+   Transaction
+   </core/transactions/#std-label-transactions-create-collections-indexes>`
+   in the Server manual.
 
 .. _nodejs-transaction-core-api-example:
 
 Core API Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The code example in this section demonstrates how you can use the Core API to
-run the multi-document payment transaction in a session. This function
-shows how you can perform the following:
+The code example in this section demonstrates how to use the Core API to
+perform the multi-document transaction in a session. This example
+shows how to perform the following actions:
 
 1. Start a session
-#. Start a transaction, specifying transaction options
-#. Perform data operations in the same session
-#. Commit a transaction, or cancel it if the driver encounters an error
-#. End a session
+#. Start a transaction with transaction options
+#. Perform data operations in the session
+#. Commit the transaction, or abort it if the driver encounters an error
+#. End the session
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
@@ -252,7 +268,7 @@ shows how you can perform the following:
    :end-before: end placeOrder
 
 You must pass the session object to each CRUD operation that
-you want to run on that session.
+you want to run in that session.
 
 .. important:: Use a Session with the Client That Started It
    
@@ -281,17 +297,17 @@ code as shown in the following sample import statement:
    const { MongoError, MongoClient } = require('mongodb');
 
 See the :ref:`Payment Transaction Result <nodejs-transaction-example-payment-result>`
-section to see what your collections should contain after you run the
-transaction.
+section to see what your collections should contain after you
+successfully perform the transaction.
 
 .. _nodejs-transaction-example-payment-result:
 
 Payment Transaction Result
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If your application completes the payment transaction, your
-database should contain all the updates, and if an exception interrupted your
-transaction, none of the changes should exist in your database.
+If your application completed the payment transaction, the collections
+in the database should contain updated data. If an error interrupted the
+transaction, none of the changes should be visible in your database.
 
 The ``customers`` collection should contain the customer document with an
 order id appended to the orders field:
@@ -315,13 +331,13 @@ items "sunblock" and "beach towel":
    [
      {
        "_id": ...,
-       "name": "sunblock",
+       "item": "sunblock",
        "sku": 5432,
        "qty": 84
      },
      {
        "_id": ...,
-       "name": "beach towel",
+       "item": "beach towel",
        "sku": 7865,
        "qty": 39
      }
@@ -339,13 +355,13 @@ information:
        "customer": 98765,
        "items": [
          {
-           "name": "sunblock",
+           "item": "sunblock",
            "sku": 5432,
            "qty": 1,
            "price": 5.19
          },
          {
-           "name": "beach towel",
+           "item": "beach towel",
            "sku": 7865,
            "qty": 2,
            "price": 15.99
