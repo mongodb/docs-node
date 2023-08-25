@@ -9,8 +9,10 @@ await client
   .db("testdb")
   .collection("inventory")
   .insertMany([
+    // start-inventory
     { item: "sunblock, 8 oz", qty: 85, price: 6.0 },
-    { item: "beach chair", qty: 30, price: 25.0 },
+    { item: "beach chair", qty: 30, price: 25.0 }
+    // end-inventory
   ]);
 
 const order1 = [

@@ -64,11 +64,12 @@ You record the inventory in the ``inventory`` collection of the
 ``testdb`` database. Before any transactions, this collection contains
 the following documents:
 
-.. code-block:: json
+.. literalinclude:: /code-snippets/transactions/txn-convenient.js
+   :language: javascript
+   :dedent:
    :copyable: false
-
-   { item: "sunblock, 8 oz", qty: 85, price: 6.0 },
-   { item: "beach chair", qty: 30, price: 25.0 },
+   :start-after: start-inventory
+   :end-before: end-inventory
 
 You store purchase records in the ``records`` collection of the
 ``testdb`` database. This collection is empty, as there have been no
