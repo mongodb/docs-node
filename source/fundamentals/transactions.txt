@@ -113,21 +113,18 @@ specify the behavior for a transaction when creating it:
    * - ``readConcern``
      - | Controls the consistency of the data that
          read operations retrieve from a replica set.
-       |
        | To learn more, see :manual:`Read Concern
          </reference/read-concern/>` in the Server manual.
 
    * - ``writeConcern``
      - | Specifies the level of acknowledgment requested from MongoDB
          for write operations to a replica set.
-       |
        | To learn more, see :manual:`Write Concern
          </reference/write-concern/>` in the Server manual.
 
    * - ``readPreference``
      - | Specifies how to route read operations to the
          members of a replica set.
-       |
        | To learn more, see :manual:`Read Preference
        | </core/read-preference/#read-preference>` in the Server manual.
 
