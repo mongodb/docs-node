@@ -1,0 +1,137 @@
+.. _node-usage-convenient-txn:
+
+================================
+Perform a Convenient Transaction
+================================
+
+The {+driver-short+} provides two APIs to perform transactions, the Core
+API and the **Convenient Transaction API**. By using the Convenient Transaction
+API, you can perform a transaction without being responsible for
+ensuring the transaction was committed or aborted. This API
+automatically incorporates error handling logic for certain error types,
+such as ``TransientTransactionError`` and ``UnknownTransactionCommitResult``.
+
+This usage example provides sample code that uses the Convenient
+Transaction API. To learn more about the Core API and view an example,
+see the :ref:`nodejs-transactions` guide.
+
+.. tip::
+   
+   To learn more about the ``TransientTransactionError`` error, see the
+   :manual:`TransientTransactionError description
+   </core/transactions-in-applications/#transienttransactionerror>` on
+   the Driver API page in the Server manual.
+
+   To learn more about the ``UnknownTransactionCommitResult`` error, see the
+   :manual:`UnknownTransactionCommitResult description
+   </core/transactions-in-applications/#unknowntransactioncommitresult>` on
+   the Driver API page in the Server manual.
+
+The {+driver-short+} provides the following helper methods to perform a
+transaction by using the Convenient Transaction API:
+
+- ``withSession()``: Runs a given operation within an implicitly created
+  session. You do not have to handle the creation or ending of the session.
+- ``withTransaction()``: Starts a transaction and runs a provided
+  function. This method ensures that the ``commitTransaction()`` method
+  is called when all of the operations in the function have completed.
+
+Example
+-------
+
+Consider a situation where a customer purchases items from your store.
+Whenever a customer attempts to purchase an item, your application must
+check if the items are available, and if so, record details about the
+purchase.
+
+You record the inventory in the ``inventory`` collection of the
+``testdb`` database. Before any transactions, this collection contains
+the following documents:
+
+.. code-block:: json
+
+   { item: "sunblock, 8 oz", qty: 85, price: 6.0 },
+   { item: "beach chair", qty: 30, price: 25.0 },
+
+You store purchase records in the ``records`` collection of the
+``testdb`` database. This collection is empty, as there have been no
+purchases.
+
+This example code performs a transaction through the following actions:
+
+1. Calls the ``withSession()`` method on the client to implicitly create
+   the session and include the transaction within this session.
+#. Calls the ``withTransaction()`` method on the session to create a
+   transaction, run the specified operations, and commit the
+   transaction. If the transaction fails, this method aborts the
+   transaction and returns an error message.
+#. Performs the following operations within the transaction:
+   - Processing a predefined ``order`` variable that specifies the item and
+     quantity that the customer wants, the first operation checks if
+     sufficient inventory is available to fulfill the purchase.
+   - If the items are not available or there are not enough items, the
+     transaction aborts and the function returns an error message.
+   - If the inventory is sufficient for the order, the code performs an
+     update operation in the ``inventory`` collection to reduce the
+     quantities of the items purchased.
+   - The code inserts a record of the purchase to the ``records``
+     collection that includes a timestamp, a list of the purchased
+     items, and a total price for the purchase.
+   - The code returns a message acknowledging that the transaction
+     committed successfully with a copy of the purchase record.
+#. Prints the return type of ``withSession()``, which is either the
+   error message or the acknowledgment that the transaction completed.
+
+.. literalinclude:: /code-snippets/transactions/txn-convenient.js
+   :language: javascript
+   :linenos:
+   :dedent:
+   :start-after: start-transaction
+   :end-before: end-transaction
+
+Suppose a customer sends the following order:
+
+.. literalinclude:: /code-snippets/transactions/txn-convenient.js
+   :language: javascript
+   :dedent:
+   :start-after: start-order-successful
+   :end-before: end-order-successful
+
+Given this order, the code outputs the following result:
+
+.. code-block:: bash
+   
+   Order successfully completed and recorded!
+   Here is the receipt:
+   {
+     "date": "2023-08-25T20:06:52.564Z",
+     "items": [
+       { "item": "sunblock, 8 oz", "qty": 3 },
+       { "item": "beach chair", "qty": 1 }
+     ],
+     "total": 43,
+     "_id": "..."
+   }
+
+In the ``inventory`` collection, you should see that the quantity of
+``"sunblock, 8 oz"`` is now ``82`` and the quantity of ``"beach chair"``
+is ``29``. The ``records`` collection should contain the record of the
+purchase.
+
+Suppose a different customer sends the following order:
+
+.. literalinclude:: /code-snippets/transactions/txn-convenient.js
+   :language: javascript
+   :dedent:
+   :start-after: start-order-fail
+   :end-before: end-order-fail
+
+Given this order, the code outputs the following result:
+
+.. code-block:: bash
+   
+   Item not found or insufficient quantity.
+
+You should not see any changes in the ``inventory`` collection, and the
+``records`` collection should still be empty.
+

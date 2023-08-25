@@ -68,7 +68,7 @@ the **Core API** and Convenient Transaction API. To begin using the Core
 API, declare the start and commit points of the transaction.
 
 To see an example that uses the Convenient Transaction API, see the
-:ref:`Convenient Transactions <>` usage example.
+:ref:`Perform a Convenient Transaction <node-usage-convenient-txn>` usage example.
 
 Core API
 ~~~~~~~~
@@ -300,6 +300,12 @@ See the :ref:`Payment Transaction Result <nodejs-transaction-example-payment-res
 section to see what your collections should contain after you
 successfully perform the transaction.
 
+.. tip::
+   
+   To view an implementation of a simplified example that uses the
+   Convenient Transaction API, see the :ref:`Perform a Convenient
+   Transaction <node-usage-convenient-txn>` usage example.
+
 .. _nodejs-transaction-example-payment-result:
 
 Payment Transaction Result
@@ -310,7 +316,7 @@ in the database should contain updated data. If an error interrupted the
 transaction, none of the changes should be visible in your database.
 
 The ``customers`` collection should contain the customer document with an
-order id appended to the orders field:
+order ``_id`` appended to the orders field:
 
 .. code-block:: json
    :copyable: false
@@ -323,7 +329,7 @@ order id appended to the orders field:
    }
 
 The ``inventory`` collection should contain updated quantities for the
-items "sunblock" and "beach towel":
+items ``"sunblock"`` and ``"beach towel"``:
 
 .. code-block:: json
    :copyable: false
