@@ -30,12 +30,11 @@ see the :ref:`nodejs-transactions` guide.
 The {+driver-short+} provides the following helper methods to perform a
 transaction by using the Convenient Transaction API:
 
-- ``withSession()``: Runs a given operation within an implicitly created
-  session. You do not have to handle the creation or ending of the
-  session.
+- ``withSession()``: Runs a given operation within a session. You do not
+  have to handle the creation or termination of the session.
 - ``withTransaction()``: Starts a transaction and runs a provided
   function. This method ensures that the ``commitTransaction()`` method
-  is called when all of the operations in the function have completed.
+  is called when all of the operations in the function complete.
 
 .. important:: Return Types and Values
    
@@ -104,10 +103,17 @@ This example code performs a transaction through the following actions:
 4. Prints the return type of ``withSession()``, which is either the
    error message or the acknowledgment that the transaction completed.
 
-.. note::
+.. important::
    
-   You must pass the session instance to each operation that
-   you want to run in that session.
+   You must implement the following code patterns when using this API:
+
+   - You must pass the session instance to each operation that
+     you want to run in that session.
+   - You must use the async ``await`` syntax for each operation in the
+     session.
+   - You cannot use parallelism, such as calling the
+     ``Promise.all()`` method. This is because you cannot use sessions
+     in parallel, as this usually leads to server errors.
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
@@ -164,5 +170,5 @@ Given this order, the code outputs the following result:
    Item not found or insufficient quantity.
 
 You should not see any changes in the ``inventory`` collection, and the
-``records`` collection should still be empty.
+``records`` collection should not have a new entry for this order.
 

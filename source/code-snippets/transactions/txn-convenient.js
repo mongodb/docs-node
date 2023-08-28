@@ -28,17 +28,17 @@ const order2 = [
 // end-order-fail
 ];
 
+let order = order1;
+
 // start-transaction
 const txnResult = await client.withSession(async (session) =>
   session
-    .withTransaction(async () => {
+    .withTransaction(async (session) => {
       const invColl = client.db("testdb").collection("inventory");
       const recColl = client.db("testdb").collection("records");
 
       let total = 0;
-      for (let i = 0; i < order.length; i++) {
-        const item = order[i];
-
+      for (const item of order) {
         // Abort the transaction if the item
         // does not exist or has insufficient inventory
         const checkInventory = await invColl.findOne(
