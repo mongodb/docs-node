@@ -126,6 +126,14 @@ a connection with TLS:
    * - Passphrase
      - The password to decrypt the private client key if it is encrypted.
 
+.. note:: CRL Files
+   
+   Your TLS configuration might require that you present a certificate
+   revocation list (CRL) when connecting to MongoDB. Starting in version
+   6.0 of the driver, you can pass the filepath of your CRL file to the
+   ``tlsCRLFile`` option in your connection string or your
+   ``MongoClientOptions`` instance.
+
 .. tip::
    
    To learn more about the PEM format, see the Wikipedia entry on
