@@ -102,6 +102,8 @@ Version 6.x Breaking Changes
   perform any operations in the session.
 - The ``includeResultMetadata`` option for compound operation methods is
   ``false`` by default.
+- Raised optional Kerberos dependency minimum version to 2.0.1 and
+  removed support for version 1.x.
 
 .. _node-breaking-changes-v5.x:
 
