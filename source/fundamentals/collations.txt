@@ -157,7 +157,7 @@ The following query uses the index we created:
    :start-after: start query index collation
    :end-before: end query index collation
 
-The following queries **do not** use the index that we created.  The first
+The following queries **do not** use the index that we created. The first
 query does not include a collation and the second contains a different
 strength value than the collation on the index.
 
