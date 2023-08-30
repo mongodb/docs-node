@@ -1,3 +1,5 @@
+/* Change stream listener */
+
 import { MongoClient } from "mongodb";
 
 // Replace the uri string with your MongoDB deployment's connection string.
@@ -19,7 +21,7 @@ async function run() {
     // open a Change Stream on the "haikus" collection
     changeStream = haikus.watch();
 
-    // set up a listener when change events are emitted
+    // set up a change stream listener when change events are emitted
     changeStream.on("change", next => {
       // process any change event
       console.log("received a change to the collection: \t", next);
@@ -27,6 +29,7 @@ async function run() {
 
     await simulateAsyncPause();
 
+    // Insert a new document into the collection
     await myColl.insertOne({
       title: "Record of a Shriveled Datum",
       content: "No bytes, no problem. Just insert a document, in MongoDB",
@@ -38,6 +41,7 @@ async function run() {
     
     console.log("closed the change stream");
   } finally {
+    // Close the database connection on completion or error
     await client.close();
   }
 }
