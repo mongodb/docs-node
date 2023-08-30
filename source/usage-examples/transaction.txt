@@ -8,8 +8,10 @@ The {+driver-short+} provides two APIs to perform transactions, the Core
 API and the Convenient Transaction API. This usage example provides
 sample code that uses the Convenient Transaction API.
 
-To learn moreabout the Core API and view an example, see the
-:ref:`nodejs-transactions` guide.
+.. tip::
+   
+   To learn more about the Core API and view an example, see the
+   :ref:`nodejs-transactions` guide.
 
 Example
 -------
