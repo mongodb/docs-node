@@ -8,30 +8,30 @@ const uri =
 const client = new MongoClient(uri);
 // Asynchronous iteration using cursor methods
 async function asyncIteration(myColl) {
-  // Start async cursor example
+  // start async cursor example
   const cursor = myColl.find({});
   console.log("async");
   for await (const doc of cursor) {
     console.log(doc);
   }
-  // End async cursor example
+  // end async cursor example
 }
 // Manual iteration using cursor methods
 async function manualIteration(myColl) {
-  // Start manual cursor example
+  // start manual cursor example
   const cursor = myColl.find({});
 
   while (await cursor.hasNext()) {
     console.log(await cursor.next());
   }
-  // End manual cursor example
+  // end manual cursor example
 }
 // Streaming documents using the stream API
 async function streamAPI(myColl) {
-  // Start stream cursor example
+  // start stream cursor example
   const cursor = myColl.find({});
   cursor.stream().on("data", doc => console.log(doc));
-  // End stream cursor example
+  // end stream cursor example
 }
 // Event-based iteration using cursor events
 async function eventAPI(myColl) {
@@ -43,22 +43,22 @@ async function eventAPI(myColl) {
 }
 // Fetch all documents as an array using the toArray method
 async function fetchAll(myColl) {
-  // Start fetchAll cursor example
+  // start fetchAll cursor example
   const cursor = myColl.find({});
   const allValues = await cursor.toArray();
-  // End fetchAll cursor example
+  // end fetchAll cursor example
   console.log(allValues.length);
 }
 // Rewinding the cursor to the beginning
 async function rewind(myColl) {
-  // Start rewind cursor example
+  // start rewind cursor example
   const cursor = myColl.find({});
   const firstResult = await cursor.toArray();
   console.log("First count: " + firstResult.length);
   await cursor.rewind();
   const secondResult = await cursor.toArray();
   console.log("Second count: " + secondResult.length);
-  // End rewind cursor example
+  // end rewind cursor example
 }
 // Close a cursor
 async function close(myColl) {

@@ -5,7 +5,7 @@ const { MongoClient } = require("mongodb");
 const uri =
   "mongodb+srv://<user>:<password>@<cluster-url>?writeConcern=majority";
 const client = new MongoClient(uri);
-
+// start proximity geo example
 // Find theaters within a certain proximity
 async function proximity(theaters) {
   // Define the query to find theaters near a specific location
@@ -17,7 +17,6 @@ async function proximity(theaters) {
       },
     },
   };
-
   // Find documents based on our query
   const cursor = theaters.find(query);
   // end proximity geo example
@@ -31,6 +30,7 @@ async function proximity(theaters) {
     console.dir(doc);
   } 
 }
+// start range geo example
 // Find theaters within a specific geographic range
 async function range(theaters) {
   // Define the query to find theaters within a specified polygon
@@ -54,7 +54,7 @@ async function range(theaters) {
 
   // Find documents based on our query
   const cursor = theaters.find(query);
-  // End of range geo example
+  // end range geo example
 
   // Print a message if no documents were found
   if ((await theaters.countDocuments(query)) === 0) {
