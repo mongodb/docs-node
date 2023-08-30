@@ -108,6 +108,9 @@ Version 6.x Breaking Changes
   provided function returns. In previous driver versions, this function
   returns the server command response, which varies depending on the MongoDB
   Server version or type that the driver connects to.
+- Raised the optional ``kerberos`` dependency minimum version to 2.0.1 and
+  removed support for version 1.x.
+- Raised the optional ``zstd`` dependency minimum version to 1.1.0.
 
 .. _node-breaking-changes-v5.x:
 
