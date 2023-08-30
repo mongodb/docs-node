@@ -125,4 +125,4 @@ API Documentation
 
 - `withSession() <{+api+}/classes/MongoClient.html#withSession>`__
 - `withTransaction() <{+api+}/classes/ClientSession.html#withTransaction>`__
-- `abortTransaction() <{+api+}/classes/ClientSession.html#abortTransaction>`__
+- `abortTransaction() <{+api+}/classes/ClientSession.html#abortTransaction>`__"
