@@ -41,28 +41,28 @@ This example code performs a transaction through the following actions:
 1. Calls the ``withSession()`` method on the client to implicitly create
    the session and include the transaction within this session.
 
-2. Calls the ``withTransaction()`` method on the session to create a
+#. Calls the ``withTransaction()`` method on the session to create a
    transaction, run the specified operations, and commit the
    transaction. If the transaction fails, this method ends the
    transaction and returns an error message.
 
-3. Performs the following operations within the transaction:
+#. Performs the following operations within the transaction:
 
-- Processing a predefined ``order`` variable that specifies the item and
-  quantity that the customer wants, the first operation checks if
-  sufficient inventory is available to fulfill the purchase.
-- If the items are not available or there are not enough items, the
-  transaction ends and the function returns an error message.
-- If the inventory is sufficient for the order, the code performs an
-  update operation in the ``inventory`` collection to reduce the
-  quantities of the items purchased.
-- The code inserts a record of the purchase to the ``records``
-  collection that includes a timestamp, a list of the purchased
-  items, and a total price for the purchase.
-- The code returns a message acknowledging that the transaction
-  committed successfully with a copy of the purchase record.
+   * To process a predefined ``order`` variable that specifies the item and
+     quantity that the customer wants, the first operation checks if there
+     sufficient inventory to fulfill the purchase.
+   * If the items are not available or there are not enough items, the
+     transaction ends and the function returns an error message.
+   * If the inventory is sufficient for the order, the code performs an
+     update operation in the ``inventory`` collection to reduce the
+     quantities of the items purchased.
+   * The code inserts a record of the purchase to the ``records``
+     collection that includes a timestamp, a list of the purchased
+     items, and a total price for the purchase.
+   * The code returns a message acknowledging that the transaction
+     committed successfully with a copy of the purchase record.
 
-4. Prints the return type of ``withSession()``, which is either the
+#. Prints the return type of ``withSession()``, which is either the
    error message or the acknowledgment that the transaction completed.
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
