@@ -72,7 +72,7 @@ const txnResult = await client.withSession(async (session) =>
       };
       await recColl.insertOne(receipt, { session });
       return (
-        "Order successfully completed and recorded!\nHere is the receipt:\n" +
+        "Order successfully completed and recorded!\nReceipt:\n" +
         JSON.stringify(receipt, null, 1)
       );
     }, null)
