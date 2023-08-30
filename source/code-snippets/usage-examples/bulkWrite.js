@@ -12,7 +12,7 @@ async function run() {
   try {
     const database = client.db("sample_mflix");
     const theaters = database.collection("theaters");
-    
+
     // Insert a new document into the collection
     const result = await theaters.bulkWrite([
       {
@@ -63,5 +63,4 @@ async function run() {
     await client.close();
   }
 }
-// Call the "run" function and handle any errors that occur during execution 
 run().catch(console.dir);
