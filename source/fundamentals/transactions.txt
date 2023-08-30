@@ -32,7 +32,7 @@ ACID transactions </basics/acid-transactions>`.
 
 .. note::
 
-   To execute a multi-document transactions, you must be connected to a
+   To execute a multi-document transaction, you must be connected to a
    deployment running MongoDB Server version 4.0 or later.
 
    For a detailed list of limitations, see the :manual:`Transactions and
