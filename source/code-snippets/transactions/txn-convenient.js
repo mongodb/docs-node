@@ -10,14 +10,14 @@ await client
   .collection("inventory")
   .insertMany([
     // start-inventory
-    { item: "sunblock, 8 oz", qty: 85, price: 6.0 },
+    { item: "sunblock", qty: 85, price: 6.0 },
     { item: "beach chair", qty: 30, price: 25.0 }
     // end-inventory
   ]);
 
 const order1 = [
 // start-order-successful
-  { item: "sunblock, 8 oz", qty: 3 },
+  { item: "sunblock", qty: 3 },
   { item: "beach chair", qty: 1 }
 // end-order-successful
 ];
@@ -39,16 +39,16 @@ const txnResult = await client.withSession(async (session) =>
 
       let total = 0;
       for (const item of order) {
-        // Abort the transaction if the item
+        // End the transaction if the item
         // does not exist or has insufficient inventory
-        const checkInventory = await invColl.findOne(
+        const isInStock = await invColl.findOne(
           {
             item: item.item,
             qty: { $gte: item.qty },
           },
           { session }
         );
-        if (checkInventory === null) {
+        if (isInStock === null) {
           await session.abortTransaction();
           return "Item not found or insufficient quantity.";
         }
@@ -60,8 +60,8 @@ const txnResult = await client.withSession(async (session) =>
           { $inc: { qty: -item.qty } },
           { session }
         );
-        const totalPerItem = item.qty * checkInventory.price;
-        total = total + totalPerItem;
+        const subTotal = item.qty * isInStock.price;
+        total = total + subTotal;
       }
 
       // Create a record of the purchase.

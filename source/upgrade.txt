@@ -103,11 +103,11 @@ Version 6.x Breaking Changes
 - The ``includeResultMetadata`` option for compound operation methods is
   ``false`` by default.
 - The ``withSession()`` method returns the value that the provided
-  function returns. Previously, this function returned ``void``.
-  The ``withTransaction()`` method returns the value that the
-  provided function returns. Previously, this function returned the
-  server command response, which depended on the MongoDB Server version or type
-  the driver was connected to.
+  function returns. In previous driver versions, this function returns
+  ``void``. The ``withTransaction()`` method returns the value that the
+  provided function returns. In previous driver versions, this function
+  returns the server command response, which varies depending on the MongoDB
+  Server version or type that the driver connects to.
 
 .. _node-breaking-changes-v5.x:
 

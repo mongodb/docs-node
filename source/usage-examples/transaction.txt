@@ -1,60 +1,20 @@
 .. _node-usage-convenient-txn:
 
-================================
-Perform a Convenient Transaction
-================================
+=====================
+Perform a Transaction
+=====================
 
 The {+driver-short+} provides two APIs to perform transactions, the Core
-API and the **Convenient Transaction API**. By using the Convenient Transaction
-API, you can perform a transaction without being responsible for
-ensuring the transaction was committed or aborted. This API
-automatically incorporates error handling logic for certain error types,
-such as ``TransientTransactionError`` and ``UnknownTransactionCommitResult``.
+API and the Convenient Transaction API. This usage example provides
+sample code that uses the Convenient Transaction API.
 
-This usage example provides sample code that uses the Convenient
-Transaction API. To learn more about the Core API and view an example,
-see the :ref:`nodejs-transactions` guide.
-
-.. tip::
-   
-   To learn more about the ``TransientTransactionError`` error, see the
-   :manual:`TransientTransactionError description
-   </core/transactions-in-applications/#transienttransactionerror>` on
-   the Driver API page in the Server manual.
-
-   To learn more about the ``UnknownTransactionCommitResult`` error, see the
-   :manual:`UnknownTransactionCommitResult description
-   </core/transactions-in-applications/#unknowntransactioncommitresult>` on
-   the Driver API page in the Server manual.
-
-The {+driver-short+} provides the following helper methods to perform a
-transaction by using the Convenient Transaction API:
-
-- ``withSession()``: Runs a given operation within a session. You do not
-  have to handle the creation or termination of the session.
-- ``withTransaction()``: Starts a transaction and runs a provided
-  function. This method ensures that the ``commitTransaction()`` method
-  is called when all of the operations in the function complete.
-
-.. important:: Return Types and Values
-   
-   Starting in version 6.0 of the {+driver-short+}, these methods return
-   the value that the provided function returns.
-
-   For example, if a function you provide to the ``withTransaction()``
-   method returns a ``Document`` type, then the ``withTransaction()``
-   method returns that object. Furthermore, if you perform this
-   transaction within the function you provide to the ``withSession()``
-   method, then the ``withSession()`` method also returns the
-   ``Document`` object.
-
-   If you structure your code in this way, you can propagate return
-   values out of the session and work with them elsewhere in your code.
+To learn moreabout the Core API and view an example, see the
+:ref:`nodejs-transactions` guide.
 
 Example
 -------
 
-Consider a situation where a customer purchases items from your store.
+Consider a situation in which a customer purchases items from your store.
 Whenever a customer attempts to purchase an item, your application must
 check if the items are available, and if so, record details about the
 purchase.
@@ -81,7 +41,7 @@ This example code performs a transaction through the following actions:
 
 2. Calls the ``withTransaction()`` method on the session to create a
    transaction, run the specified operations, and commit the
-   transaction. If the transaction fails, this method aborts the
+   transaction. If the transaction fails, this method ends the
    transaction and returns an error message.
 
 3. Performs the following operations within the transaction:
@@ -90,7 +50,7 @@ This example code performs a transaction through the following actions:
   quantity that the customer wants, the first operation checks if
   sufficient inventory is available to fulfill the purchase.
 - If the items are not available or there are not enough items, the
-  transaction aborts and the function returns an error message.
+  transaction ends and the function returns an error message.
 - If the inventory is sufficient for the order, the code performs an
   update operation in the ``inventory`` collection to reduce the
   quantities of the items purchased.
@@ -102,18 +62,6 @@ This example code performs a transaction through the following actions:
 
 4. Prints the return type of ``withSession()``, which is either the
    error message or the acknowledgment that the transaction completed.
-
-.. important::
-   
-   You must implement the following code patterns when using this API:
-
-   - You must pass the session instance to each operation that
-     you want to run in that session.
-   - You must use the async ``await`` syntax for each operation in the
-     session.
-   - You cannot use parallelism, such as calling the
-     ``Promise.all()`` method. This is because you cannot use sessions
-     in parallel, as this usually leads to server errors.
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
@@ -141,7 +89,7 @@ Given this order, the code outputs the following result:
    {
      "date": "2023-08-25T20:06:52.564Z",
      "items": [
-       { "item": "sunblock, 8 oz", "qty": 3 },
+       { "item": "sunblock", "qty": 3 },
        { "item": "beach chair", "qty": 1 }
      ],
      "total": 43,
@@ -149,7 +97,7 @@ Given this order, the code outputs the following result:
    }
 
 In the ``inventory`` collection, you should see that the quantity of
-``"sunblock, 8 oz"`` is now ``82`` and the quantity of ``"beach chair"``
+``"sunblock"`` is now ``82`` and the quantity of ``"beach chair"``
 is ``29``. The ``records`` collection should contain the record of the
 purchase.
 
@@ -172,3 +120,9 @@ Given this order, the code outputs the following result:
 You should not see any changes in the ``inventory`` collection, and the
 ``records`` collection should not have a new entry for this order.
 
+API Documentation
+-----------------
+
+- `withSession() <{+api+}/classes/MongoClient.html#withSession>`__
+- `withTransaction() <{+api+}/classes/ClientSession.html#withTransaction>`__
+- `abortTransaction() <{+api+}/classes/ClientSession.html#abortTransaction>`__

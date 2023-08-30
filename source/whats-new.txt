@@ -91,12 +91,12 @@ What's New in 6.0
      Operations guide for more information.
 
    - The ``withSession()`` method returns the value that the provided
-     function returns. Previously, this function returned ``void``.
-     The ``withTransaction()`` method returns the value that the
-     provided function returns. Previously, this function returned the
-     server command response, which depended on the MongoDB Server version or type
-     the driver was connected to. To learn more about performing
-     transactions, see the :ref:`node-usage-convenient-txn` usage
+     function returns. In previous driver versions, this function returns
+     ``void``. The ``withTransaction()`` method returns the value that the
+     provided function returns. In previous driver versions, this function
+     returns the server command response, which varies depending on the MongoDB
+     Server version or type that the driver connects to. To learn more
+     about transactions, see the :ref:`node-usage-convenient-txn` usage
      example and the :ref:`nodejs-transactions` guide.
 
 The {+driver-short+} v6.0 release includes the following features:

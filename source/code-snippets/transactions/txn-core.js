@@ -18,8 +18,8 @@ async function setup(client) {
     await customerColl.insertOne({ _id: 98765, orders: [] });
 
     await inventoryColl.insertMany([
-      { item: 'sunblock', sku: 5432, qty: 85 },
-      { item: 'beach towel', sku: 7865, qty: 41 },
+      { item: 'sunblock', item_id: 5432, qty: 85 },
+      { item: 'beach towel', item_id: 7865, qty: 41 },
     ]);
   } catch (e) {
     console.log('Unable to insert test data: ' + e);
@@ -67,19 +67,19 @@ async function placeOrder(client, cart, payment) {
       const item = cart[i];
 
       // Cancel the transaction when you have insufficient inventory
-      const checkInventory = await inventoryCollection.findOne(
+      const isInStock = await inventoryCollection.findOne(
         {
-          sku: item.sku,
-          qty: { $gte: item.qty }
+          item_id: item.item_id,
+          item_id: { $gte: item.qty }
         },
         { session }
       )
-      if (checkInventory === null) {
-        throw new Error('Insufficient quantity or SKU not found.');
+      if (isInStock === null) {
+        throw new Error('Insufficient quantity or item ID not found.');
       }
 
       await inventoryCollection.updateOne(
-        { sku: item.sku },
+        { item_id: item.item_id },
         { $inc: { 'qty': -item.qty }},
         { session }
       );
@@ -118,8 +118,8 @@ async function run() {
   await setup(client);
 
   const cart = [
-    { item: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
-    { item: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
+    { item: 'sunblock', item_id: 5432, qty: 1, price: 5.19 },
+    { item: 'beach towel', item_id: 7865, qty: 2, price: 15.99 }
   ];
   const payment = { customer: 98765, total: 37.17 };
 
