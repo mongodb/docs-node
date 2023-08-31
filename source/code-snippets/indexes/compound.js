@@ -5,10 +5,9 @@ const { MongoClient } = require("mongodb");
 const uri =
   "mongodb+srv://<user>:<password>@<cluster-url>?writeConcern=majority";
 
-// Create a new instance of the MongoClient using the provided URI
+// Create a new client and connect to MongoDB
 const client = new MongoClient(uri);
 
-// Define a function to interact with the MongoDB database
 async function run() {
   try {
     // begin-idx
@@ -28,7 +27,7 @@ async function run() {
     const query = { type: "movie", genre: "Drama" };
     // Define sorting criteria for the query results
     const sort = { type: 1, genre: 1 };
-    // Include the type and genre fields in the query results
+    // Include only the type and genre fields in the query results
     const projection = { _id: 0, type: 1, genre: 1 };
 
     // Execute the query using the defined criteria and projection
@@ -43,5 +42,5 @@ async function run() {
     await client.close();
   }
 }
-// Call the "run" function and handle any errors using console.dir
+// Run the function and handle any errors
 run().catch(console.dir);
