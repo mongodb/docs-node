@@ -9,7 +9,6 @@ myColl.find({"year": 1980}, {"collation" : {"locale" : "en_US" }})
 // end query index collation
 
 // start query without index collation
-// no collation specified
 /*
    Retrieve documents that match the "year" value "1980"
    in descending order of the value of the "title" field
@@ -18,7 +17,6 @@ myColl.find({"year": 1980}, {"collation" : {"locale" : "en_US" }})
 myColl.find({"year": 1980})
   .sort({"title": -1});
 
-// collation differs from the one on the index
 /*
    Retrieve documents that match the "year" value "1980"
    in descending order of the value of the "title" field,

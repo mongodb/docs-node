@@ -156,6 +156,7 @@ The following query uses the index we created:
    :language: javascript
    :start-after: start query index collation
    :end-before: end query index collation
+   :emphasize-lines: 6-7
 
 The following queries **do not** use the index that we created. The first
 query does not include a collation and the second contains a different
@@ -165,6 +166,7 @@ strength value than the collation on the index.
    :language: javascript
    :start-after: start query without index collation
    :end-before: end query without index collation
+
 
 Collation Query Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~

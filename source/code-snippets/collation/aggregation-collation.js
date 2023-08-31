@@ -1,4 +1,7 @@
-// Retrieve the total matching names, grouped by the first_name field and sorted by using the German phonebook collation
+/*
+  Retrieve the total number of matching names, grouped by the first_name
+  field and sorted by using the German phonebook collation.
+*/
 myColl.aggregate(
   [
     { $group: { "_id": "$first_name", "nameCount": { "$sum": 1 } } },
