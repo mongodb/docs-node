@@ -1,4 +1,4 @@
-/* Search Index operations */ 
+// Search Index operations 
 const { MongoClient } = require("mongodb");
 
 // Replace the following with your MongoDB deployment's connection string

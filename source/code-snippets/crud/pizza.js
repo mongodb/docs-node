@@ -1,4 +1,4 @@
-/* CRUD (Create, Read, Update, Delete) operations */ 
+// CRUD (Create, Read, Update, Delete) operations 
 const { MongoClient } = require("mongodb");
 
 // Replace the following string with your MongoDB deployment's connection string.

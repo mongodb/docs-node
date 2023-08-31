@@ -1,4 +1,4 @@
-/* Geospatial queries using proximity to a location and a specific geographic range */ 
+// Geospatial queries using proximity to a location and a specific geographic range 
 const { MongoClient } = require("mongodb");
 
 // Replace the following string with your MongoDB deployment's connection string.

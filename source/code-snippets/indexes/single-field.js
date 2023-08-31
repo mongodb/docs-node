@@ -1,4 +1,4 @@
-/* Creating single field indexes*/ 
+// Creating single field indexes 
 const { MongoClient } = require("mongodb");
 
 // Replace the following with your MongoDB deployment's connection string

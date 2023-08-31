@@ -1,4 +1,4 @@
-/* Cursor-based document retrieval */ 
+// Cursor-based document retrieval */ 
 const { MongoClient } = require("mongodb");
 const stream = require("stream");
 
