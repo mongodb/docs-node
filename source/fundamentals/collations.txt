@@ -149,6 +149,7 @@ a collection with a collation set to the "``en_US``" locale.
 
 .. literalinclude:: /code-snippets/collation/index-collation.js
    :language: javascript
+   :lineno-start: 5
 
 The following query uses the index we created:
 
@@ -157,6 +158,7 @@ The following query uses the index we created:
    :start-after: start query index collation
    :end-before: end query index collation
    :emphasize-lines: 6-7
+
 
 The following queries **do not** use the index that we created. The first
 query does not include a collation and the second contains a different
@@ -254,6 +256,8 @@ lexical order.
 
 .. literalinclude:: /code-snippets/collation/findOneAndDelete-collation.js
    :language: javascript
+   :lineno-start: 6
+
    :start-after: start findOneAndDelete example with collation
    :end-before: end findOneAndDelete example with collation
 
@@ -270,10 +274,9 @@ collection of three documents, it matches documents based on the lexical value
 of the strings ("``16``", "``84``", and "``179``"), and deletes the first
 document it finds that matches the query criteria.
 
-.. literalinclude:: /code-snippets/collation/findOneAndDelete-collation.js
+.. literalinclude:: /code-snippets/collation/findOneAndDelete-no-collation.js
    :language: javascript
-   :start-after: start findOneAndDelete example without collation
-   :end-before: end findOneAndDelete example without collation
+   :lineno-start: 6
 
 Since all the documents contain lexical values in the ``a`` field that
 match the criteria (greater than the lexical value of "``100``"), the operation
