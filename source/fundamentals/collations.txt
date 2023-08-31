@@ -120,26 +120,23 @@ collection.
 
 .. literalinclude:: /code-snippets/collation/collection-collation.js
    :language: javascript
-   :start-after: start create collection with collation
-   :end-before: end create collection with collation
+   :lineno-start: 2
 
 Any of the operations that support collations automatically apply the collation
 defined on the collection. The query below searches the ``souvenirs``
 collection and applies the "``fr_CA``" locale collation:
 
-.. literalinclude:: /code-snippets/collation/collection-collation.js
+.. literalinclude:: /code-snippets/collation/collection-auto-collation.js
    :language: javascript
-   :start-after: start collection query without collation
-   :end-before: end collection query without collation
+   :lineno-start: 2
 
 You can specify a different collation as a parameter in an operation that
 supports collations. The following query specifies the "``is``" Iceland locale
 and ``caseFirst`` optional parameter with the value "``upper``":
 
-.. literalinclude:: /code-snippets/collation/collection-collation.js
+.. literalinclude:: /code-snippets/collation/collection-specify-collation.js
    :language: javascript
-   :start-after: start collection query with collation
-   :end-before: end collection query with collation
+   :lineno-start: 5
 
 Assign a Collation to an Index
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -155,20 +152,19 @@ The following query uses the index we created:
 
 .. literalinclude:: /code-snippets/collation/query-index-collation.js
    :language: javascript
-   :start-after: start query index collation
-   :end-before: end query index collation
-   :emphasize-lines: 6-7
-
+   :lineno-start: 6
 
 The following queries **do not** use the index that we created. The first
 query does not include a collation and the second contains a different
 strength value than the collation on the index.
 
-.. literalinclude:: /code-snippets/collation/query-index-collation.js
+.. literalinclude:: /code-snippets/collation/query-index-not-indexed-collation.js
    :language: javascript
-   :start-after: start query without index collation
-   :end-before: end query without index collation
+   :lineno-start: 6
 
+.. literalinclude:: /code-snippets/collation/query-index-no-collation.js
+   :language: javascript
+   :lineno-start: 6
 
 Collation Query Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -205,10 +201,9 @@ following documents:
 Consider the following ``findOneAndUpdate()`` operation on this collection
 which **does not** specify a collation:
 
-.. literalinclude:: /code-snippets/collation/findOneAndUpdate-collation.js
+.. literalinclude:: /code-snippets/collation/findOneAndUpdate-default-order-collation.js
    :language: javascript
-   :start-after: start findOneAndUpdate without collation
-   :end-before: end findOneAndUpdate without collation
+   :lineno-start: 6
 
 Since "Gunter" is the first sorted result when using a binary collation, none
 of the documents come lexically before and match the ``$lt`` comparison
@@ -224,8 +219,7 @@ umlauts.
 
 .. literalinclude:: /code-snippets/collation/findOneAndUpdate-collation.js
    :language: javascript
-   :start-after: start findOneAndUpdate with collation
-   :end-before: end findOneAndUpdate with collation
+   :lineno-start: 6
 
 Since "Günter" lexically comes before "Gunter" using the
 ``de@collation=phonebook`` collation specified in ``findOneAndUpdate()``,
