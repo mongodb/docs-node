@@ -25,7 +25,7 @@ async function run() {
       console.log("No documents matched the query. Deleted 0 documents.");
     }
   } finally {
-    // Close the connection after the operation completes.
+    // Close the connection after the operation completes
     await client.close();
   }
 }
