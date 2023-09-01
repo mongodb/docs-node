@@ -2,7 +2,7 @@
 
 import { MongoClient } from "mongodb";
 
-// Replace the uri string with your MongoDB deployment's connection string.
+// Replace the uri string with your MongoDB deployment's connection string
 const uri = "<connection string uri>";
 
 const client = new MongoClient(uri);
@@ -18,15 +18,16 @@ async function run() {
     const database = client.db("insertDB");
     const haikus = database.collection("haikus");
 
-    // open a Change Stream on the "haikus" collection
+    // Open a Change Stream on the "haikus" collection
     changeStream = haikus.watch();
 
-    // set up a change stream listener when change events are emitted
+    // Set up a change stream listener when change events are emitted
     changeStream.on("change", next => {
-      // process any change event
+      // Print any change event
       console.log("received a change to the collection: \t", next);
     });
 
+    // Pause before inserting a document
     await simulateAsyncPause();
 
     // Insert a new document into the collection
@@ -35,10 +36,11 @@ async function run() {
       content: "No bytes, no problem. Just insert a document, in MongoDB",
     });
 
+    // Pause before closing the change stream
     await simulateAsyncPause();
 
-    await changeStream.close();
-    
+    // Close the change stream and print a message to the console when it is closed
+    await changeStream.close();    
     console.log("closed the change stream");
   } finally {
     // Close the database connection on completion or error

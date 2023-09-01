@@ -2,13 +2,13 @@
 
 const { MongoClient } = require("mongodb");
 
-// Replace the following string with your MongoDB deployment's connection string.
+// Replace the following string with your MongoDB deployment's connection string
 const uri = "mongodb+srv://<user>:<password>@<cluster-url>?writeConcern=majority";
 const client = new MongoClient(uri);
 
 async function word(movies) {
   // start word text example
-  // Create a query that searches for the specified string
+  // Create a query that searches for the string "trek"
   const query = { $text: { $search: "trek" } };
 
   // Return only the `title` of each matched document
@@ -33,7 +33,7 @@ async function word(movies) {
 
 async function phrase(movies) {
   // start phrase text example
-  // Create a query that searches for the specified phrase
+  // Create a query that searches for the phrase "star trek"
   const query = { $text: { $search: "\"star trek\"" } };
 
   // Return only the `title` of each matched document
@@ -58,7 +58,7 @@ async function phrase(movies) {
 
 async function negation(movies) {
   // start negation text example
-  // Create a query that searches for a specified phrase while omitting another
+  // Create a query that searches for the phrase "star trek" while omitting "into darkness"
   const query = { $text: { $search: "\"star trek\"  -\"into darkness\"" } };
 
   // Include only the `title` field of each matched document
@@ -83,7 +83,7 @@ async function negation(movies) {
 
 async function relevance(movies) {
   // start relevance text example
-  // Create a query that searches for a specified phrase while omitting another
+  // Create a query that searches for the phrase "star trek" while omitting "into darkness"r
   const query = { $text: { $search: "\"star trek\"  -\"into darkness\"" } };
 
   // Sort returned documents by descending text relevance score

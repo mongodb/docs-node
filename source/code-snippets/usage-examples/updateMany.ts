@@ -23,6 +23,7 @@ interface Movie {
 
 async function run() {
   try {
+    // Get the "movies" collection in the "sample_mflix" database
     const database = client.db("sample_mflix");
     const movies = database.collection<Movie>("movies");
 

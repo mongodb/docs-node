@@ -2,15 +2,17 @@
 
 import { MongoClient } from "mongodb";
 
-// Replace the uri string with your MongoDB deployment's connection string.
+// Replace the uri string with your MongoDB deployment's connection string
 const uri = "<connection string uri>";
 
 const client = new MongoClient(uri);
 
 async function run() {
   try {
+    // Get the "sample_mflix" database
     const db = client.db("sample_mflix");
-    // find and print the storage statistics for the "sample_mflix" database using the 'dbStats' command
+
+    // Find and print the storage statistics for the "sample_mflix" database using the 'dbStats' command
     const result = await db.command({
       dbStats: 1,
     });
