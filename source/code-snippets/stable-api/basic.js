@@ -1,11 +1,9 @@
-/* Stable API - no options */
+// Stable API - no options
 
 // begin serverApiVersion
-// Import the MongoClient and ServerApiVersion types from the mongodb
-// package.
 const { MongoClient, ServerApiVersion } = require("mongodb");
 
-// Replace the placeholders in the connection string uri with your credentials.
+// Replace the placeholders in the connection string uri with your credentials
 const uri = "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 
 // Create a client with options to specify Stable API Version 1
