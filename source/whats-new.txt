@@ -48,7 +48,7 @@ Learn what's new in:
 What's New in 6.0
 -----------------
 
-.. important:: Breaking Changes in v6.0
+.. warning:: Breaking Changes in v6.0
 
    This driver version has breaking changes. For a list of these changes, see 
    the :ref:`Version 6.x Breaking Changes section <node-breaking-changes-v6.x>` in the 
@@ -306,7 +306,7 @@ To learn more, see the `v5.1.0 Release Highlights
 What's New in 5.0
 -----------------
 
-.. important:: Breaking Changes in v5.0
+.. warning:: Breaking Changes in v5.0
 
    This driver version has breaking changes. For a list of these changes, see 
    the :ref:`Version 5.x Breaking Changes section <node-breaking-changes-v5.x>` in the 
@@ -680,7 +680,7 @@ New features of the 4.1 Node.js driver release include:
 What's New in 4.0
 -----------------
 
-.. important:: Breaking Changes in v4.0
+.. warning:: Breaking Changes in v4.0
 
    This driver version has breaking changes. For a list of these changes, see 
    the :ref:`Version 4.x Breaking Changes section <node-breaking-changes-v4.x>` in 
