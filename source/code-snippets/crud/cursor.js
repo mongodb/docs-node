@@ -49,7 +49,7 @@ async function fetchAll(myColl) {
   // end fetchAll cursor example
   console.log(allValues.length);
 }
-// Rewinding the cursor to the beginning
+// Rewind the cursor
 async function rewind(myColl) {
   // start rewind cursor example
   const cursor = myColl.find({});
