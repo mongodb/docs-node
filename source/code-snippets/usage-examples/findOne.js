@@ -25,7 +25,7 @@ async function run() {
     // Execute query
     const movie = await movies.findOne(query, options);
 
-    // Since this method returns the matched document, not a cursor, print it directly
+    // Print the document returned by findOne()
     console.log(movie);
   } finally {
     await client.close();

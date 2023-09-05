@@ -15,7 +15,7 @@ async function run() {
     // Specify the document field to find distinct values for
     const fieldName = "year";
 
-    // Specify an optional query document to limit results
+    // Specify an optional query document to narrow results
     const query = { directors: "Barbra Streisand" };
 
     // Execute the distinct operation

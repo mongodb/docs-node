@@ -30,7 +30,7 @@ async function runFirstArrayElement() {
     console.log(JSON.stringify(await myColl.find().toArray()));
 
     // start firstArrayElement example
-    // Query for all elements in entries array where x is a string
+    // Query for all elements in entries array where the value of x is a string
     const query = { "entries.x": { $type : "string" } };
 
     // For each matched element, increase value of y by 33
@@ -42,7 +42,7 @@ async function runFirstArrayElement() {
     const result = await myColl.updateOne(query, updateDocument);
     // end firstArrayElement example
 
-    // Print the result
+    // Print all documents
     console.log(result.modifiedCount);
     console.log(JSON.stringify(await myColl.find().toArray()));
   } finally {
@@ -61,10 +61,10 @@ async function runAllArrayElements() {
     console.log(JSON.stringify(await myColl.find().toArray()));
 
     // start allArrayElement example
-    // Query for all documents where date is May 15, 2023
+    // Query for all documents where date is the string "5/15/2023"
     const query = { date: "5/15/2023" };
 
-    // For each matched document, remove duration field from calls array 
+    // For each matched document, remove duration field from all entries in calls array 
     const updateDocument = {
       $unset: { "calls.$[].duration": "" }
     };
@@ -93,7 +93,7 @@ async function arrayFiltersIdentifier() {
     console.log(JSON.stringify(await myColl.find().toArray()));
 
     // start arrayFiltersIdentifier example
-    // Query for all documents where date is November 12, 2023
+    // Query for all documents where date is the string "11/12/2023"
     const query = { date: "11/12/2023" };
     
     // For each matched document, change the quantity of items to 2 

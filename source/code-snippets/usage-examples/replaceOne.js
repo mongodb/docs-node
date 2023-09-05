@@ -12,7 +12,7 @@ async function run() {
     const database = client.db("sample_mflix");
     const movies = database.collection("movies");
 
-    // Create a query to find the document to update
+    // Create a query for documents where the title contains "The Cat from"
     const query = { title: { $regex: "The Cat from" } };
     
     // Create the document that will replace the existing document
