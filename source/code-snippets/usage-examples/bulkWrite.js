@@ -13,7 +13,7 @@ async function run() {
     const database = client.db("sample_mflix");
     const theaters = database.collection("theaters");
 
-    // Insert a new document into the collection
+    // Insert a new document into the "theaters" collection
     const result = await theaters.bulkWrite([
       {
         insertOne: {
