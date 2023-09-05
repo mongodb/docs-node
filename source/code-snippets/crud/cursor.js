@@ -6,7 +6,7 @@ const stream = require("stream");
 const uri =
   "mongodb+srv://<user>:<password>@<cluster-url>?writeConcern=majority";
 const client = new MongoClient(uri);
-// Asynchronous iteration using cursor methods
+// Asynchronous iteration by using cursor methods
 async function asyncIteration(myColl) {
   // start async cursor example
   const cursor = myColl.find({});
