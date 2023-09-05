@@ -1,6 +1,8 @@
+/* Performs multiple write operations in a transaction */
+
 const { MongoError, MongoClient } = require('mongodb');
 
-// Drop the "customers", "inventory", and "orders" collections from the "testdb" database.
+// Drop the "customers", "inventory", and "orders" collections from the "testdb" database
 async function cleanUp(client) {
   await Promise.all( ['customers', 'inventory', 'orders'].map(async c => {
     try {
@@ -29,7 +31,7 @@ async function setup(client) {
   }
 }
 
-// Print all documents in the "customers", "inventory", and "orders" collections.
+// Print all documents in the "customers", "inventory", and "orders" collections
 async function queryData() {
   const uri = process.env.MONGODB_URI;
   const client = new MongoClient(uri);
@@ -125,41 +127,41 @@ async function placeOrder(client, cart, payment) {
     } else {
       console.log('An error occured in the transaction, performing a data rollback:' + error);
     }
-    // End the transaction without making the updates performed in the session.
+    // End the transaction without making the updates performed in the session
     await session.abortTransaction();
   } finally {
-    // End the transaction making all the changes performed in the session.
+    // End the transaction making all the changes performed in the session
     await session.endSession();
   }
 }
 // end placeOrder
 
 
-// Run the full transaction example.
+// Run the full transaction example
 async function run() {
   const uri = process.env.MONGODB_URI;
   const client = new MongoClient(uri);
 
-  // Call a method that removes data from prior runs of this example.
+  // Call a method that removes data from prior runs of this example
   await cleanUp(client);
 
-  // Call a method that creates sample inventory data for this example.
+  // Call a method that creates sample inventory data for this example
   await setup(client);
 
-  // Create sample data for a customer's shopping cart that includes "sunblock" and "beach towel" items.
+  // Create sample data for a customer's shopping cart that includes "sunblock" and "beach towel" items
   const cart = [
     { name: 'sunblock', sku: 5432, qty: 1, price: 5.19 },
     { name: 'beach towel', sku: 7865, qty: 2, price: 15.99 }
   ];
 
-  // Create sample data for a customer's payment, calculated from the contents of their cart.
+  // Create sample data for a customer's payment, calculated from the contents of their cart
   const payment = { customer: 98765, total: 37.17 };
 
   try {
-    // Call the method that updates the customer and inventory in a transaction.
+    // Call the method that updates the customer and inventory in a transaction
     await placeOrder(client, cart, payment);
   } finally {
-    // Call a method that removes data from prior runs of this example.
+    // Call a method that removes data from prior runs of this example
     await cleanUp(client);
 
     // Close the database connection
