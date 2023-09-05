@@ -26,7 +26,7 @@ async function manualIteration(myColl) {
   }
   // end manual cursor example
 }
-// Streaming documents using the stream API
+// Stream documents
 async function streamAPI(myColl) {
   // start stream cursor example
   const cursor = myColl.find({});
