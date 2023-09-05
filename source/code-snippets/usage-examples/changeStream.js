@@ -18,7 +18,7 @@ async function run() {
     // Open a Change Stream on the "haikus" collection
     changeStream = haikus.watch();
 
-    // Print change events as they occur.
+    // Print change events as they occur
     for await (const change of changeStream) {
       console.log("Received change:\n", change);
     }
