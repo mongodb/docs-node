@@ -12,10 +12,11 @@ const socksOptions = {
   proxyPassword: "<password>",
 };
 
+// Create a new client with the proxy server details
 const client = new MongoClient(uri, socksOptions);
 // end-socks
 
-// Retrieve the first document from the "myDB.myColl" namespace in MongoDB and print it to the console
+// Retrieve the first document from the MongoDB collection and print it
 async function run() {
   try {
     const db = client.db("myDB");
@@ -23,6 +24,7 @@ async function run() {
     const doc = await myColl.findOne({});
     console.log(doc);
   } finally {
+    // Close the connection after the operation completes
     await client.close();
   }
 }
