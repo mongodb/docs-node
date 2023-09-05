@@ -33,7 +33,7 @@ async function runFirstArrayElement() {
     // Query for all elements in entries array where the value of x is a string
     const query = { "entries.x": { $type : "string" } };
 
-    // For each matched element, increase value of y by 33
+    // On first matched element, increase value of y by 33
     const updateDocument = {
       $inc: { "entries.$.y": 33 }
     };
