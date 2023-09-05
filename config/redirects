@@ -9,5 +9,16 @@ raw: ${prefix}/stable -> ${base}/current/
 
 [*-master]: ${prefix}/${version}/fundamentals/versioned-api/ -> ${base}/${version}/fundamentals/stable-api/
 [*-master]: ${prefix}/${version}/fundamentals/connection/lambda/ -> ${base}/${version}/fundamentals/connection/
-[v4.7-*]: ${prefix}/${version}/fundamentals/csfle -> ${base}/${version}/fundamentals/encrypt-fields/
-[*-v4.6]: ${prefix}/${version}/fundamentals/encrypt-fields -> ${base}/${version}/fundamentals/csfle/
+[*-master]: ${prefix}/${version}/fundamentals/csfle -> ${base}/${version}/fundamentals/encrypt-fields/
+
+[*-v5.0]: ${prefix}/${version}/quick-start/connect-to-mongodb/ -> ${base}/${version}/quick-start/
+[*-v5.0]: ${prefix}/${version}/quick-start/create-a-connection-string/ -> ${base}/${version}/quick-start/
+[*-v5.0]: ${prefix}/${version}/quick-start/create-a-deployment/ -> ${base}/${version}/quick-start/
+[*-v5.0]: ${prefix}/${version}/quick-start/download-and-install/ -> ${base}/${version}/quick-start/
+[*-v5.0]: ${prefix}/${version}/quick-start/next-steps/ -> ${base}/${version}/quick-start/
+
+[v4.3-master]: ${prefix}/${version}/fundamentals/utf8-validation/ -> ${base}/${version}/fundamentals/bson/utf8-validation/
+[*-v4.2]: ${prefix}/${version}/fundamentals/utf8-validation/ -> ${base}/${version}/
+
+[*-v5.5]: ${prefix}/${version}/fundamentals/run-command/ -> ${base}/${version}/usage-examples/command/
+[*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/change-a-document/ -> ${base}/${version}/fundamentals/crud/write-operations/modify/
