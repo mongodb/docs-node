@@ -111,26 +111,26 @@ async function placeOrder(client, cart, payment) {
       { session }
     );
 
-    // Commit the transaction
+    // Commit the transaction to apply all updates performed within it
     await session.commitTransaction();
     console.log('Transaction successfully committed.');
 
   } catch (error) {
-    // Handle the UnknownTransactionCommitResult exception
+    /*
+      Handle any exceptions thrown during the transaction and end the
+      transaction. Roll back all the updates performed in the transaction.
+    */
     if (error instanceof MongoError && error.hasErrorLabel('UnknownTransactionCommitResult')) {
       // add your logic to retry or handle the error
     }
-    // Handle the TransientTransactionError exception
     else if (error instanceof MongoError && error.hasErrorLabel('TransientTransactionError')) {
       // add your logic to retry or handle the error
-    // Handle any other exception
     } else {
       console.log('An error occured in the transaction, performing a data rollback:' + error);
     }
-    // End the transaction without making the updates performed in the session
     await session.abortTransaction();
   } finally {
-    // End the transaction making all the changes performed in the session
+    // End the session so that no further calls can be made on it
     await session.endSession();
   }
 }
