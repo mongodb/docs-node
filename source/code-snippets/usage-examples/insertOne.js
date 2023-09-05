@@ -3,10 +3,9 @@ import { MongoClient } from "mongodb";
 // Replace the uri string with your MongoDB deployment's connection string.
 const uri = "<connection string uri>";
 
-// Create a new instance of the MongoClient using the provided URI
+// Create a new client and connect to MongoDB
 const client = new MongoClient(uri);
 
-// Define a function to interact with the MongoDB database
 async function run() {
   try {
     // Connect to the "insertDB" database and access its "haiku" collection
@@ -28,5 +27,5 @@ async function run() {
     await client.close();
   }
 }
-// Call the "run" function and handle errors with console.dir
+// Run the function and handle any errors
 run().catch(console.dir);
