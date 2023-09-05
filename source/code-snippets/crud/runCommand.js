@@ -3,10 +3,9 @@ import { MongoClient } from "mongodb";
 // Replace the uri string with your MongoDB deployment's connection string
 const uri = "<connection string uri>";
 
-// Create a new instance of the MongoClient using the provided URI
+// Create a new client and connect to MongoDB
 const client = new MongoClient(uri);
 
-// Define a function to interact with the MongoDB database
 async function run() {
   try {
     // start-runcommand
@@ -17,7 +16,7 @@ async function run() {
     const cursor = await db.runCursorCommand({
         checkMetadataConsistency: 1,
     });
-    // Iterate through the cursor's results and log each document
+    // Iterate through the cursor's results and print the contents
     for await (const doc of cursor) {
       console.log(doc);
     }
@@ -27,6 +26,6 @@ async function run() {
     await client.close();
   }
 }
-// Call the "run" function and handle any errors using console.dir
+// Run the function and handle any errors
 run().catch(console.dir);
 
