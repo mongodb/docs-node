@@ -1,4 +1,4 @@
-/* Watching for changes in a collection using a change stream */ 
+// Watch for changes in a collection by using a change stream
 import { MongoClient } from "mongodb";
 
 // Replace the uri string with your MongoDB deployment's connection string.
