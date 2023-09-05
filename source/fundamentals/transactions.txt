@@ -247,7 +247,7 @@ shows how you can perform the following:
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
    :linenos:
-   :emphasize-lines: 3-7,13,24,40,51,61,65,70-71,74-75,81,84
+   :emphasize-lines: 3-7,13,24,40,51,61,65,73-74,76-77,81,84
    :start-after: start placeOrder
    :end-before: end placeOrder
 
