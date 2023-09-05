@@ -985,13 +985,6 @@ The ``instrument()`` method is now removed. Use command monitoring instead.
 See our guide on :doc:`command monitoring </fundamentals/monitoring/command-monitoring>`
 for more information.
 
-
-Detailed List
-~~~~~~~~~~~~~
-
-To view a full list of breaking changes introduced in this version, see the :ref:`Breaking
-Changes section <node-breaking-changes-v4.x>` in the Upgrade guide.
-
 .. _version-3.7:
 
 What's New in 3.7
