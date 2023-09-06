@@ -29,6 +29,16 @@ Before you upgrade, perform the following actions:
   more about the {+mdb-server+} release compatibility changes, see the 
   :ref:`<node-server-support-changes>` section.
 
+After completing the preceding steps, run the following command to upgrade 
+your driver version:
+
+.. code-block:: bash
+   
+    npm install mongodb@{+version+}
+
+To upgrade to a different version of the driver, replace ``{+version+}`` with 
+your preferred version number.
+
 .. tip::
 
    You can minimize the amount of changes that you need to make to your
