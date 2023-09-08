@@ -55,8 +55,8 @@ Learn more about how to use the driver to perform multi-document
 transactions in the following sections of this guide:
 
 - :ref:`Transaction APIs <nodejs-transaction-apis>`
-- :ref:`Transaction Settings <nodejs-transaction-settings>`
-- :ref:`Core API Examples <nodejs-transaction-examples>`
+- :ref:`Transaction Options <nodejs-transaction-settings>`
+- :ref:`Transaction Errors <nodejs-transaction-errors>`
 
 .. _nodejs-transaction-apis:
 
@@ -64,7 +64,7 @@ Transaction APIs
 ----------------
 
 The driver provides two APIs for performing transactions, the **Core
-API** and **Convenient Transaction API**.
+API** and the **Convenient Transaction API**.
 
 The :ref:`Core API <node-txn-core-api>` is a framework that enables
 you to create, commit, and terminate transactions. When using this API,
@@ -165,11 +165,10 @@ implement transactions:
   Runs the callback passed to it within a transaction and calls the 
   ``commitTransaction()`` method when the callback returns.
 
-These methods return the value that the callback returns.
-
-For example, if a callback you pass to the ``withTransaction()``
-method returns a ``Document`` type, then the ``withTransaction()``
-method returns that object.
+These methods return the value that the callback returns. For example,
+if a callback you pass to the ``withTransaction()`` method returns a
+``Document`` type, then the ``withTransaction()`` method returns that
+object.
 
 When you use the Convenient Transaction API, you
 can propagate return values from the callback as the return values of

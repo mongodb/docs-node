@@ -4,14 +4,23 @@
 Use the Core API
 ================
 
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
 The {+driver-short+} provides the Core API and the Convenient
 Transaction API to perform transactions. This usage example provides
 sample code that uses the **Core API**.
 
 .. seealso::
    
-   To learn more about the transaction APIs available in the
+   To learn more about the performing transactions in the
    {+driver-short+}, see the :ref:`nodejs-transactions` guide.
+
+   To learn how to use the Convenient Transaction API to perform transactions, see the
+   :ref:`node-usage-convenient-txn` usage example.
 
 .. _nodejs-transaction-examples:
 
