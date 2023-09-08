@@ -35,7 +35,7 @@ const txnResult = await client.withSession(async (session) =>
   session
     .withTransaction(async (session) => {
       const invColl = client.db("testdb").collection("inventory");
-      const recColl = client.db("testdb").collection("records");
+      const recColl = client.db("testdb").collection("orders");
 
       let total = 0;
       for (const item of order) {

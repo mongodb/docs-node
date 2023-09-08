@@ -54,9 +54,9 @@ A purchase can fail for the following reasons:
 - An order could not be completed
 - The system went offline
 
-If the payment fails, you can perform a transaction that includes all of
-the data changes to ensure you avoid making any partial updates that
-might cause data consistency issues for future operations.
+You can perform a transaction to ensure you avoid
+making any partial updates if any single operation in the transaction
+fails.
 
 Sample Data
 ~~~~~~~~~~~
@@ -103,7 +103,7 @@ This example code performs a transaction through the following actions:
    * If the inventory is sufficient for the order, the code performs an
      update operation in the ``inventory`` collection to reduce the
      quantities of the items purchased.
-   * The code inserts a record of the purchase to the ``records``
+   * The code inserts a record of the purchase to the ``orders``
      collection that includes a timestamp, a list of the purchased
      items, and a total price for the purchase.
    * The code returns a message acknowledging that the transaction
@@ -123,9 +123,9 @@ Sample Orders and Transaction Results
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When your application completes the payment transaction, the collections
-in the database should contain the inventory and order updates. 
-If an error interrupts the transaction, none of the changes should be
-visible in your database.
+in the database contains the inventory and order updates. 
+If an error interrupts the transaction, none of the changes appear in
+your database.
 
 Suppose a customer sends the following order:
 
@@ -153,9 +153,9 @@ Given this order, the code outputs the following result:
      "_id": "..."
    }
 
-In the ``inventory`` collection, you should see that the quantity of
+In the ``inventory`` collection, the quantity of
 ``"sunblock"`` is now ``82`` and the quantity of ``"beach chair"``
-is ``29``. The ``records`` collection should contain the record of the
+is ``29``. The ``orders`` collection contains the record of the
 purchase.
 
 Suppose a different customer sends the following order:
@@ -175,7 +175,7 @@ Given this order, the code outputs the following result:
    Item not found or insufficient quantity.
 
 You should not see any changes in the ``inventory`` collection, and the
-``records`` collection should not have a new entry for this order.
+``orders`` collection should not have a new entry for this order.
 
 API Documentation
 -----------------

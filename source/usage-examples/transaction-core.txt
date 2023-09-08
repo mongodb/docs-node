@@ -62,9 +62,9 @@ A purchase can fail for the following reasons:
 - An order could not be completed
 - The system went offline
 
-If the payment fails, you can perform a transaction that includes all of
-the data changes to ensure you avoid making any partial updates that
-might cause data consistency issues for future operations.
+You can perform a transaction to ensure you avoid
+making any partial updates if any single operation in the transaction
+fails.
 
 Sample Data
 ~~~~~~~~~~~
@@ -159,11 +159,10 @@ Transaction Results
 ~~~~~~~~~~~~~~~~~~~
 
 When your application completes the payment transaction, the collections
-in the database should contain the customer and order updates. 
-If an error interrupts the transaction, none of the changes should be
-visible in your database.
+in the database contains the customer and order updates. 
+If an error interrupts the transaction, none of the changes appear in your database.
 
-The ``customers`` collection should contain the customer document with an
+The ``customers`` collection contains the customer document with an
 order ``_id`` appended to the orders field:
 
 .. code-block:: json
@@ -176,7 +175,7 @@ order ``_id`` appended to the orders field:
      ]
    }
 
-The ``inventory`` collection should contain updated quantities for the
+The ``inventory`` collection contains updated quantities for the
 items ``"sunblock"`` and ``"beach towel"``:
 
 .. code-block:: json
@@ -197,7 +196,7 @@ items ``"sunblock"`` and ``"beach towel"``:
      }
    ]
 
-The ``orders`` collection should contain the order and payment
+The ``orders`` collection contains the order and payment
 information:
 
 .. code-block:: json
