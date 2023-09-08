@@ -87,8 +87,8 @@ This example code performs a transaction through the following actions:
 #. Performs the following operations within the transaction:
 
    * To process a predefined ``order`` variable that specifies the item and
-     quantity that the customer wants, the first operation checks if there
-     sufficient inventory to fulfill the purchase.
+     quantity that the customer wants, the first operation checks if
+     there is sufficient inventory to fulfill the purchase.
    * If the items are not available or there are not enough items, the
      transaction ends and the function returns an error message.
    * If the inventory is sufficient for the order, the code performs an

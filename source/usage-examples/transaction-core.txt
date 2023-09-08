@@ -109,32 +109,33 @@ your store.
 
 This example code performs a transaction through the following actions:
 
-1. Calls the ``withSession()`` method on the client to implicitly create
-   the session and include the transaction within this session.
+1. Calls the ``startSession()`` method to create a new session.
 
-#. Calls the ``withTransaction()`` method on the session to create a
-   transaction, run the specified operations, and commit the
-   transaction. If the transaction fails, this method ends the
-   transaction and returns an error message.
+#. Calls the ``startTransaction()`` method with an options parameter to
+   create a new transaction.
 
 #. Performs the following operations within the transaction:
 
-   * To process a predefined ``order`` variable that specifies the item and
-     quantity that the customer wants, the first operation checks if there
-     sufficient inventory to fulfill the purchase.
-   * If the items are not available or there are not enough items, the
-     transaction ends and the function returns an error message.
+   * Inserts a document to the ``orders`` collection that contains information
+     about the customer, items purchased, and order total.
+   * Checks if there is sufficient inventory to fulfill the purchase.
+   * Returns an error message if the items are not available or there
+     are not enough items.
    * If the inventory is sufficient for the order, the code performs an
      update operation in the ``inventory`` collection to reduce the
      quantities of the items purchased.
-   * The code inserts a record of the purchase to the ``records``
-     collection that includes a timestamp, a list of the purchased
-     items, and a total price for the purchase.
-   * The code returns a message acknowledging that the transaction
+   * Adds the ID of the order to the list of past orders for the customer.
+   * Returns a message acknowledging that the transaction
      committed successfully with a copy of the purchase record.
 
-#. Prints the return type of ``withSession()``, which is either the
-   error message or the acknowledgment that the transaction completed.
+#. Calls the ``commitTransaction()`` method to commit the transaction if
+   all operations complete successfully.
+
+#. Implements a ``catch`` block that contains error-handling logic.
+
+#. Calls the ``abortTransaction()`` method to terminate the transaction.
+
+#. Calls the ``endSession()`` method to terminate the session.
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
@@ -223,4 +224,4 @@ usage example, see the following API Documentation:
 
 - `withSession() <{+api+}/classes/MongoClient.html#withSession>`__
 - `withTransaction() <{+api+}/classes/ClientSession.html#withTransaction>`__
-- `abortTransaction() <{+api+}/classes/ClientSession.html#abortTransaction>`__"
+- `abortTransaction() <{+api+}/classes/ClientSession.html#abortTransaction>`__

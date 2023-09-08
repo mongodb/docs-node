@@ -63,26 +63,21 @@ async function placeOrder(client, cart, payment) {
     );
 
     const inventoryCollection = client.db('testdb').collection('inventory');
-    for (let i=0; i<cart.length; i++) {
-      const item = cart[i];
-
-      // Cancel the transaction when you have insufficient inventory
-      const isInStock = await inventoryCollection.findOne(
+    for (const item of order) {
+      
+      /* Terminate the transaction if there is insufficient inventory or
+      update the inventory to reflect the purchase */
+      const isInStock = await inventoryCollection.findOneAndUpdate(
         {
           item_id: item.item_id,
           item_id: { $gte: item.qty }
         },
+        { $inc: { 'qty': -item.qty }},
         { session }
       )
       if (isInStock === null) {
         throw new Error('Insufficient quantity or item ID not found.');
       }
-
-      await inventoryCollection.updateOne(
-        { item_id: item.item_id },
-        { $inc: { 'qty': -item.qty }},
-        { session }
-      );
     }
 
     const customerCollection = client.db('testdb').collection('customers');

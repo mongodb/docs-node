@@ -39,32 +39,26 @@ const txnResult = await client.withSession(async (session) =>
 
       let total = 0;
       for (const item of order) {
-        // End the transaction if the item
-        // does not exist or has insufficient inventory
-        const isInStock = await invColl.findOne(
+        /* End the transaction if the item
+        does not exist or has insufficient inventory or update the
+        inventory to reflect the purchase */
+        const isInStock = await invColl.findOneAndUpdate(
           {
             item: item.item,
             qty: { $gte: item.qty },
           },
+          { $inc: { qty: -item.qty } },
           { session }
         );
         if (isInStock === null) {
           await session.abortTransaction();
           return "Item not found or insufficient quantity.";
         }
-
-        // If inventory is sufficient, update inventory
-        // to account for the purchase.
-        await invColl.updateOne(
-          { item: item.item },
-          { $inc: { qty: -item.qty } },
-          { session }
-        );
         const subTotal = item.qty * isInStock.price;
         total = total + subTotal;
       }
 
-      // Create a record of the purchase.
+      // Create a record of the purchase
       const receipt = {
         date: new Date(),
         items: order,

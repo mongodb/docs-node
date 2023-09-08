@@ -98,16 +98,19 @@ Core API
 The Core API provides the following methods to implement transactions:
 
 - `startSession() <{+api+}/classes/MongoClient.html#startSession>`__:
-  Creates a new ``ClientSession`` instance.
+  Creates a new ``ClientSession`` instance
 - `startTransaction()
   <{+api+}/classes/ClientSession.html#startTransaction>`__: Starts a new
-  transaction.
+  transaction
 - `commitTransaction()
   <{+api+}/classes/ClientSession.html#commitTransaction>`__: Commits the
-  active transaction in the session that it was created in.
+  active transaction in the session that it was created in
 - `abortTransaction()
   <{+api+}/classes/ClientSession.html#abortTransaction>`__: Terminates the
-  active transaction in the session that it was created in.
+  active transaction in the session that it was created in
+- `endSession()
+  <{+api+}/classes/ClientSession.html#endSession>`__: Terminates the
+  active session
 
 .. important::
    
@@ -117,6 +120,32 @@ The Core API provides the following methods to implement transactions:
      you want to run in that session
    - Implement a ``catch`` block in which you identify
      server transaction errors and implement error-handling logic
+
+The following code demonstrates how to perform a transaction by using
+the Core API:
+
+.. literalinclude:: /code-snippets/transactions/txn-simple.js
+   :language: javascript
+   :linenos:
+   :emphasize-lines: 1
+   :start-after: begin-core
+   :end-before: end-core
+
+.. important:: Use a Session with the Client That Started It
+   
+   The driver throws an error if you provide a session from one ``MongoClient``
+   instance to a different client instance.
+
+   For example, the following code generates an
+   ``MongoInvalidArgumentError`` error because it creates
+   a ``ClientSession`` instance from the ``client1`` client, but provides
+   this session to the ``client2`` client for a write operation:
+
+   .. code-block:: js
+      :emphasize-lines: 2
+      
+      const session = client1.startSession();
+      client2.db('myDB').collection('myColl').insertOne({ name: 'Jane Eyre' }, { session });
 
 To see a fully runnable example that uses this API, see the
 :ref:`node-usage-core-txn` usage example. 
@@ -157,6 +186,16 @@ work with them elsewhere in your code.
      session.
    - Avoid parallelism, such as calling the ``Promise.all()`` method.
      Using sessions in parallel usually leads to server errors.
+
+The following code demonstrates how to perform a transaction by using
+the Convenient Transaction API:
+
+.. literalinclude:: /code-snippets/transactions/txn-simple.js
+   :language: javascript
+   :linenos:
+   :emphasize-lines: 1
+   :start-after: begin-conv
+   :end-before: end-conv
 
 To see a fully runnable example that uses this API, see the
 :ref:`node-usage-convenient-txn` usage example.
@@ -223,32 +262,24 @@ the ``startTransaction()`` method:
    };
    session.startTransaction(txnOpts);
 
+.. _nodejs-transaction-errors:
 
-.. tip::
-   
-   To learn more about the ``TransientTransactionError`` error, see the
-   :manual:`TransientTransactionError description
-   </core/transactions-in-applications/#transienttransactionerror>` on
-   the Driver API page in the Server manual.
+Transaction Errors
+------------------
 
-   To learn more about the ``UnknownTransactionCommitResult`` error, see the
-   :manual:`UnknownTransactionCommitResult description
-   </core/transactions-in-applications/#unknowntransactioncommitresult>` on
-   the Driver API page in the Server manual.
+If you are using the Core API to perform a transaction, you must incorporate
+error-handling logic into your application for the following errors:
 
-.. important:: Use a Session with the Client That Started It
-   
-   Starting in version 6.0 of the {+driver-short+}, the driver 
-   throws an error if you provide a session from one ``MongoClient``
-   instance to a different client instance.
+- ``TransientTransactionError``: Raised if a write operation errors
+  before the driver commits the transaction. To learn more about this error, see the
+  :manual:`TransientTransactionError description
+  </core/transactions-in-applications/#transienttransactionerror>` on
+  the Driver API page in the Server manual.
+- ``UnknownTransactionCommitResult``: Raised if the commit operation
+  encounters an error. To learn more about this error, see the
+  :manual:`UnknownTransactionCommitResult description
+  </core/transactions-in-applications/#unknowntransactioncommitresult>` on
+  the Driver API page in the Server manual.
 
-   For example, the following code generates an
-   ``MongoInvalidArgumentError`` error because it creates
-   a ``ClientSession`` instance from the ``client1`` client, but provides
-   this session to the ``client2`` client for a write operation:
-
-   .. code-block:: js
-      :emphasize-lines: 2
-      
-      const session = client1.startSession();
-      client2.db('myDB').collection('myColl').insertOne({ name: 'Jane Eyre' }, { session });
+The Convenient Transaction API incorporates retry logic for these error
+types, so the driver retries the transaction until there is a successful commit.
