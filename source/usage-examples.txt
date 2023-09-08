@@ -21,8 +21,7 @@ Usage Examples
    /usage-examples/command
    /usage-examples/changeStream
    /usage-examples/bulkWrite
-   /usage-examples/transaction-conv
-   /usage-examples/transaction-core
+   /usage-examples/transactions
 
 Overview
 --------

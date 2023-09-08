@@ -4,11 +4,14 @@
 Perform a Transaction
 =====================
 
-- :ref:`node-usage-convenient-txn`
-- :ref:`node-usage-core-txn`
-
 .. toctree::
    :caption: Transaction Usage Examples
 
    /usage-examples/transaction-conv
    /usage-examples/transaction-core
+
+The following usage examples demonstrate how to perform transactions by
+using the transaction APIs in the {+driver-short+}:
+
+- :ref:`node-usage-convenient-txn`
+- :ref:`node-usage-core-txn`
