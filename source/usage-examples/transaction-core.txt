@@ -145,8 +145,8 @@ This example code performs a transaction through the following actions:
 
 .. _nodejs-transaction-example-payment-result:
 
-Results
-~~~~~~~
+Transaction Results
+~~~~~~~~~~~~~~~~~~~
 
 When your application completes the payment transaction, the collections
 in the database should contain the customer and order updates. 
