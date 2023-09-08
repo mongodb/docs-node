@@ -149,7 +149,7 @@ This example code performs a transaction through the following actions:
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
    :linenos:
-   :emphasize-lines: 2-6,8,10,19,33,44,46,50-54,58,60
+   :emphasize-lines: 3-7,10,13,24,38,51,55,58-67,71,74
    :start-after: start placeOrder
    :end-before: end placeOrder
 
