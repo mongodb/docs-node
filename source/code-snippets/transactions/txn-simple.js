@@ -14,7 +14,7 @@ async function coreTest(client) {
     await session.commitTransaction();
     console.log("Transaction committed.");
   } catch (error) {
-    console.log("An error occurred while performing the transaction:" + error);
+    console.log("An error occurred during the transaction:" + error);
     await session.abortTransaction();
   } finally {
     await session.endSession();

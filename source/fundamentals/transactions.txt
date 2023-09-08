@@ -127,7 +127,7 @@ the Core API:
 .. literalinclude:: /code-snippets/transactions/txn-simple.js
    :language: javascript
    :linenos:
-   :emphasize-lines: 1
+   :emphasize-lines: 2,4,7,11,15,17 
    :start-after: begin-core
    :end-before: end-core
 
@@ -193,7 +193,7 @@ the Convenient Transaction API:
 .. literalinclude:: /code-snippets/transactions/txn-simple.js
    :language: javascript
    :linenos:
-   :emphasize-lines: 1
+   :emphasize-lines: 2-3,5
    :start-after: begin-conv
    :end-before: end-conv
 

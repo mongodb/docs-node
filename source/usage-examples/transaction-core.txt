@@ -140,7 +140,7 @@ This example code performs a transaction through the following actions:
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
    :linenos:
-   :emphasize-lines: 2-6,8,10,19,32,41,49,51,55-59,63,65
+   :emphasize-lines: 2-6,8,10,19,33,44,46,50-54,58,60
    :start-after: start placeOrder
    :end-before: end placeOrder
 
@@ -222,6 +222,10 @@ API Documentation
 To learn more about any of the methods or types discussed in this
 usage example, see the following API Documentation:
 
-- `withSession() <{+api+}/classes/MongoClient.html#withSession>`__
-- `withTransaction() <{+api+}/classes/ClientSession.html#withTransaction>`__
+- `TransactionOptions <{+api+}/interfaces/TransactionOptions.html>`__
+- `ClientSession <{+api+}/classes/ClientSession.html>`__
+- `startSession() <{+api+}/classes/MongoClient.html#startSession>`__
+- `startTransaction() <{+api+}/classes/ClientSession.html#startTransaction>`__
+- `commitTransaction() <{+api+}/classes/ClientSession.html#commitTransaction>`__
 - `abortTransaction() <{+api+}/classes/ClientSession.html#abortTransaction>`__
+- `endSession() <{+api+}/classes/ClientSession.html#endSession>`__
