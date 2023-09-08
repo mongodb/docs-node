@@ -1,8 +1,8 @@
 .. _node-usage-convenient-txn:
 
-=====================
-Perform a Transaction
-=====================
+==================================
+Use the Convenient Transaction API
+==================================
 
 The {+driver-short+} provides the Core API and the Convenient
 Transaction API to perform transactions. This usage example provides
@@ -10,25 +10,50 @@ sample code that uses the **Convenient Transaction API**.
 
 .. seealso::
    
-   To learn about the Convenient Transaction API in more detail, see the
-   :ref:`Convenient Transaction API <node-txn-convenient-api>` section of the
-   Transactions guide.
-
-   To learn about the Core API and view an example, see the
-   :ref:`Core API <node-txn-core-api>` section of the
-   Transactions guide.
+   To learn more about the transaction APIs available in the
+   {+driver-short+}, see the :ref:`nodejs-transactions` guide.
 
 Example
 -------
 
 Consider a situation in which a customer purchases items from your store.
-Whenever a customer attempts to purchase an item, your application must
-check if the items are available, and if so, record details about the
-purchase.
+To record the purchase, your application must update
+your inventory and record the order information.
 
-You record the inventory in the ``inventory`` collection of the
-``testdb`` database. Before any transactions, this collection contains
-the following documents:
+The following table describes the collections that store purchase data
+and how a purchase changes the data in each collection.
+
+.. list-table::
+   :widths: 25 25 50
+   :header-rows: 1
+
+   * - Collection
+     - Operation
+     - Description of the Change
+
+   * - ``orders``
+     - insert
+     - Insert a document that describes the order
+
+   * - ``inventory``
+     - update
+     - Update the quantities of items available after a purchase
+
+A purchase can fail for the following reasons:
+
+- Insufficient inventory for an item
+- An order could not be completed
+- The system went offline
+
+If the payment fails, you can perform a transaction that includes all of
+the data changes to ensure you avoid making any partial updates that
+might cause data consistency issues for future operations.
+
+Sample Data
+~~~~~~~~~~~
+
+Before any transactions, the ``inventory`` collection contains the
+following documents:
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
@@ -37,9 +62,17 @@ the following documents:
    :start-after: start-inventory
    :end-before: end-inventory
 
-You store purchase records in the ``records`` collection of the
+You store purchase records in the ``orders`` collection of the
 ``testdb`` database. This collection is empty, as there have been no
 purchases.
+
+Implementation
+~~~~~~~~~~~~~~
+
+The code example in this section demonstrates how to use the Convenient
+Transaction API to perform a multi-document transaction in a session. In
+this example, the transaction reflects the actions needed when a
+customer purchases items from your store.
 
 This example code performs a transaction through the following actions:
 
@@ -77,8 +110,13 @@ This example code performs a transaction through the following actions:
    :start-after: start-transaction
    :end-before: end-transaction
 
-Sample Orders and Results
--------------------------
+Sample Orders and Transaction Results
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When your application completes the payment transaction, the collections
+in the database should contain the inventory and order updates. 
+If an error interrupts the transaction, none of the changes should be
+visible in your database.
 
 Suppose a customer sends the following order:
 

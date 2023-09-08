@@ -97,12 +97,12 @@ What's New in 6.0
 
    - The ``withSession()`` method returns the value that the provided
      function returns. In previous driver versions, this function returns
-     ``void``. The ``withTransaction()`` method returns the value that the
+     ``undefined``. The ``withTransaction()`` method returns the value that the
      provided function returns. In previous driver versions, this function
      returns the server command response, which varies depending on the MongoDB
      Server version or type that the driver connects to. To learn more
-     about transactions, see the :ref:`node-usage-convenient-txn` usage
-     example and the :ref:`nodejs-transactions` guide.
+     about transactions, see the :ref:`node-usage-txns` usage
+     examples and the :ref:`nodejs-transactions` guide.
 
    To learn more about the breaking changes included in this release, see the
    `v6.0.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v6.0.0>`__.

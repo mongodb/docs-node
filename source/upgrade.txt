@@ -104,7 +104,7 @@ Version 6.x Breaking Changes
   ``false`` by default.
 - The ``withSession()`` method returns the value that the provided
   function returns. In previous driver versions, this function returns
-  ``void``. The ``withTransaction()`` method returns the value that the
+  ``undefined``. The ``withTransaction()`` method returns the value that the
   provided function returns. In previous driver versions, this function
   returns the server command response, which varies depending on the MongoDB
   Server version or type that the driver connects to.
