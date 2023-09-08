@@ -49,7 +49,7 @@ async function queryData() {
 
 // start placeOrder
 async function placeOrder(client, cart, payment) {
-  // Specify readConcern, writeConcern, and readPreference transaction options
+  // Specify transaction options
   const transactionOptions = {
     readConcern: { level: 'snapshot' },
     writeConcern: { w: 'majority' },
@@ -63,8 +63,8 @@ async function placeOrder(client, cart, payment) {
     session.startTransaction(transactionOptions);
 
     const ordersCollection = client.db('testdb').collection('orders');
-    // Within the session, insert an order that contains information about the
-    // customer, items purchased, and the total payment.
+    /* Within the session, insert an order that contains information about the
+    customer, items purchased, and the total payment */
     const orderResult = await ordersCollection.insertOne(
       {
         customer: payment.customer,
@@ -94,7 +94,7 @@ async function placeOrder(client, cart, payment) {
 
     const customerCollection = client.db('testdb').collection('customers');
 
-    // Within the session, add the order details to the "orders" array of the customer document.
+    // Within the session, add the order details to the "orders" array of the customer document
     await customerCollection.updateOne(
       { _id: payment.customer },
       { $push:  { orders: orderResult.insertedId }},
@@ -111,10 +111,10 @@ async function placeOrder(client, cart, payment) {
       transaction. Roll back all the updates performed in the transaction.
     */
     if (error instanceof MongoError && error.hasErrorLabel('UnknownTransactionCommitResult')) {
-      // add your logic to retry or handle the error
+      // add logic to retry or handle the error
     }
     else if (error instanceof MongoError && error.hasErrorLabel('TransientTransactionError')) {
-      // add your logic to retry or handle the error
+      // add logic to retry or handle the error
     } else {
       console.log('An error occured in the transaction, performing a data rollback:' + error);
     }
