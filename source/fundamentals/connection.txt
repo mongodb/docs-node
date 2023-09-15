@@ -38,8 +38,8 @@ learn:
 Compatibility
 -------------
 
-.. |page-topic| replace:: use the Node.js driver
-.. |link-topic-ing| replace:: connecting using drivers
+.. |page-topic| replace:: use the {+driver-short+}
+.. |link-topic-ing| replace:: using drivers to connect
 
 .. |atlas-url| replace:: :atlas:`Connect Your Application </driver-connection>`
 

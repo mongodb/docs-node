@@ -31,8 +31,8 @@ to learn more about these hybrid methods.
 Compatibility
 -------------
 
-.. |page-topic| replace:: use CRUD operations
-.. |link-topic-ing| replace:: using CRUD operations in the Atlas UI
+.. |page-topic| replace:: perform CRUD operations
+.. |link-topic-ing| replace:: performing CRUD operations in the Atlas UI
 
 .. |atlas-url| replace:: :atlas:`Create, View, Update, and Delete Documents </atlas-ui/documents>`
 

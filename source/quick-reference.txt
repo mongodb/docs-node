@@ -12,8 +12,8 @@ their related reference and API documentation.
 Compatibility
 -------------
 
-.. |page-topic| replace:: use the following driver syntax
-.. |link-topic-ing| replace:: using common CRUD operations in the Atlas UI
+.. |page-topic| replace:: execute commands
+.. |link-topic-ing| replace:: performing common CRUD operations in the Atlas UI
 
 .. |atlas-url| replace:: :atlas:`Create, View, Update, and Delete Documents </atlas-ui/documents>`
 

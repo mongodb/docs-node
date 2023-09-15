@@ -44,10 +44,10 @@ matching data is inserted.
 Compatibility
 -------------
 
-.. |page-topic| replace:: use read operations
-.. |link-topic-ing| replace:: using read operations in the Atlas UI
+.. |page-topic| replace:: perform read operations
+.. |link-topic-ing| replace:: performing read operations in the Atlas UI
 
-.. |atlas-url| replace:: :atlas:`Create, View, Update, and Delete Documents </atlas-ui/documents/#view--filter--and-sort-documents>`
+.. |atlas-url| replace:: :atlas:`View, Filter, and Sort Documents </atlas-ui/documents/#view--filter--and-sort-documents>`
 
 .. include:: /includes/fact-atlas-compatible.rst
 .. include:: /includes/fact-atlas-link.rst
