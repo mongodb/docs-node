@@ -51,7 +51,7 @@ What's New in 6.1
 
 The {+driver-short+} v6.1 release includes the following features:
 
-- Raises the `bson` package version to 6.1.0 to expose the
+- Raises the ``bson`` package version to 6.1.0 to expose the
   ``Decimal128.fromStringWithRounding()`` method. To learn more, see the
   `v6.1.0 bson release notes <https://github.com/mongodb/js-bson/releases/tag/v6.1.0>`__.
 
