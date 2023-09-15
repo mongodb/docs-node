@@ -41,7 +41,7 @@ Compatibility
 .. |page-topic| replace:: use the Node.js driver
 .. |link-topic-ing| replace:: connecting using drivers
 
-.. |atlas-url| replace:: :atlas:`Connect via Your Application </driver-connection>`
+.. |atlas-url| replace:: :atlas:`Connect Your Application </driver-connection>`
 
 .. include:: /includes/fact-atlas-compatible.rst
 .. include:: /includes/fact-atlas-link.rst
