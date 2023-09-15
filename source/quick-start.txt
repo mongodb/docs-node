@@ -4,8 +4,6 @@
 Quick Start
 ===========
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -29,6 +27,8 @@ instance on MongoDB Atlas.
 
 Set up Your Project
 -------------------
+
+.. _node-quickstart-install-node:
 
 Install Node and npm
 ~~~~~~~~~~~~~~~~~~~~
@@ -60,6 +60,8 @@ Next, initialize your project:
 .. code-block:: bash
 
    npm init -y
+
+.. _node-quickstart-mongodb-install:
 
 Add MongoDB as a Dependency
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
