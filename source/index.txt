@@ -4,8 +4,6 @@ MongoDB Node Driver
 
 .. _node-driver-landing:
 
-.. default-domain:: mongodb
-
 .. include:: /includes/unicode-checkmark.rst
 
 .. toctree::
@@ -31,8 +29,9 @@ Introduction
 Welcome to the documentation site for the official {+driver-long+}.
 You can add the driver to your application to work with MongoDB
 in JavaScript or TypeScript. For more information about downloading and
-installing the {+driver-short+}, see the :ref:`<node-quickstart>`.
-
+installing the {+driver-short+}, see the
+:ref:`Add MongoDB as a Dependency <node-quickstart-mongodb-install>`
+section of the Quick Start guide.
 
 You can connect using the {+driver-short+} for
 deployments hosted in the following environments:
