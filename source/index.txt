@@ -34,6 +34,11 @@ in JavaScript or TypeScript. For more information about downloading and
 installing the {+driver-short+}, see the :ref:`<node-quickstart>`.
 
 
+You can connect using the {+driver-short+} for
+deployments hosted in the following environments:
+
+.. include:: /includes/fact-environments.rst
+
 Quick Start
 -----------
 
