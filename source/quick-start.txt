@@ -4,8 +4,6 @@
 Quick Start
 ===========
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -29,6 +27,8 @@ instance on MongoDB Atlas.
 
 Set up Your Project
 -------------------
+
+.. _node-quickstart-install-node:
 
 Install Node and npm
 ~~~~~~~~~~~~~~~~~~~~
