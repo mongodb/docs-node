@@ -252,7 +252,7 @@ New features of the 5.5 {+driver-short+} release include:
   Queryable Encryption feature.
 
 To learn more about this release, see the `v5.5.0 Release Highlights
-<https://github.com/mongodb/node-mongodb-native/releases/tag/v5.4.0>`__.
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v5.5.0>`__.
 
 .. _version-5.4:
 
