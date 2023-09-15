@@ -30,8 +30,8 @@ Welcome to the documentation site for the official {+driver-long+}.
 You can add the driver to your application to work with MongoDB
 in JavaScript or TypeScript. For more information about downloading and
 installing the {+driver-short+}, see the
-:ref:`Install Node and npm <node-quickstart-install-node>` section of the
-Quick Start guide.
+:ref:`Add MongoDB as a Dependency <node-quickstart-mongodb-install>`
+section of the Quick Start guide.
 
 You can connect using the {+driver-short+} for
 deployments hosted in the following environments:

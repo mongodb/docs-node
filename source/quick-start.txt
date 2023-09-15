@@ -61,6 +61,8 @@ Next, initialize your project:
 
    npm init -y
 
+.. _node-quickstart-mongodb-install:
+
 Add MongoDB as a Dependency
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
