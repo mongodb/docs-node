@@ -3,7 +3,7 @@
    :stub-columns: 1
    :class: compatibility-large
 
-   * - Node.js Driver Versions 
+   * - Node.js Driver Version
      - Node.js v20.x.x
      - Node.js v18.x.x
      - Node.js v16.x.x
@@ -241,3 +241,4 @@
      - ✓
 
 .. [#latest-note] Version 6.0 of the {+driver-short+} requires Node.js v16.20.1 or later.
+
