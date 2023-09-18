@@ -1,7 +1,7 @@
 name: Copy Files to docs-shared
 
 on:
-  pull_request:
+  push:
     paths:
       - 'source/includes/mongodb-compatibility-table-node.rst'
       - 'source/includes/language-compatibility-table-node.rst'
