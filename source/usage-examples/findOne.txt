@@ -6,6 +6,13 @@ Find a Document
 
 .. default-domain:: mongodb
 
+.. facet::
+   :name: genre
+   :values: tutorial
+
+.. meta:: 
+   :keywords: code example, node.js, sample dataset
+
 .. note::
    If you specify a callback method, ``findOne()`` returns nothing. If you do
    not specify one, this method returns a ``Promise`` that resolves to the
