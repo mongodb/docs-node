@@ -5,7 +5,7 @@ Connection Guide
 ================
 
 .. facet::
-   :type: genre
+   :name: genre
    :values: reference
 
 .. meta:: 
