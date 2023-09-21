@@ -10,22 +10,23 @@ Use the Convenient Transaction API
    :depth: 2
    :class: singlecol
 
-The {+driver-short+} provides the Core API and the Convenient
-Transaction API to perform transactions. This usage example provides
-sample code that uses the **Convenient Transaction API**.
+You can perform a transaction to run a series of operations that do not
+change any data until the entire transaction is committed. This usage
+example uses the **Convenient Transaction API** to perform a transaction.
 
 .. seealso::
    
    To learn more about the performing transactions in the
    {+driver-short+}, see the :ref:`nodejs-transactions` guide.
 
-   To learn how to use the Core API to perform transactions, see the
+   The {+driver-short+} also provides the Core API to perform
+   transactions. To learn more about the Core API, see the
    :ref:`node-usage-core-txn` usage example.
 
 Example
 -------
 
-Consider a situation in which a customer purchases items from your store.
+Consider a situation in which a customer purchases items from your shop.
 To record the purchase, your application must update
 your inventory and record the order information.
 
@@ -48,20 +49,10 @@ and how a purchase changes the data in each collection.
      - update
      - Update the quantities of items available after a purchase
 
-A purchase can fail for the following reasons:
-
-- Insufficient inventory for an item
-- An order could not be completed
-- The system went offline
-
-You can perform a transaction to ensure you avoid
-making any partial updates if any single operation in the transaction
-fails.
-
 Sample Data
 ~~~~~~~~~~~
 
-Before any transactions, the ``inventory`` collection contains the
+The ``inventory`` collection contains the
 following documents:
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
@@ -80,37 +71,37 @@ Implementation
 
 The code example in this section demonstrates how to use the Convenient
 Transaction API to perform a multi-document transaction in a session. In
-this example, the transaction reflects the actions needed when a
-customer purchases items from your store.
+this example, the transaction makes the changes needed when a
+customer purchases items from your shop.
 
 This example code performs a transaction through the following actions:
 
 1. Calls the ``withSession()`` method on the client to implicitly create
-   the session and include the transaction within this session.
+   the session and run the callback passed to it within the session.
 
 #. Calls the ``withTransaction()`` method on the session to create a
-   transaction, run the specified operations, and commit the
+   transaction, run the callback passed to it, and commit the
    transaction. If the transaction fails, this method ends the
    transaction and returns an error message.
 
 #. Performs the following operations within the transaction:
 
-   * To process a predefined ``order`` variable that specifies the item and
-     quantity that the customer wants, the first operation checks if
-     there is sufficient inventory to fulfill the purchase.
-   * If the items are not available or there are not enough items, the
-     transaction ends and the function returns an error message.
-   * If the inventory is sufficient for the order, the code performs an
-     update operation in the ``inventory`` collection to reduce the
-     quantities of the items purchased.
-   * The code inserts a record of the purchase to the ``orders``
-     collection that includes a timestamp, a list of the purchased
-     items, and a total price for the purchase.
-   * The code returns a message acknowledging that the transaction
-     committed successfully with a copy of the purchase record.
+   * Updates the ``inventory`` and ``orders`` collections if there is
+     sufficient inventory to fulfill the purchase
+   * Ends the transaction and throws an exception if there isn't
+     sufficient inventory for any item in the order
+   * Returns a message acknowledging that the transaction
+     committed successfully with a copy of the purchase record
 
 #. Prints the return type of ``withSession()``, which is either the
    error message or the acknowledgment that the transaction completed.
+
+.. note::
+
+   You can use this example to connect to an instance of MongoDB
+   and interact with a database that contains sample data. To learn more
+   about connecting to your MongoDB instance, see the :doc:`Usage Examples
+   guide </usage-examples>`.
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
@@ -122,12 +113,11 @@ This example code performs a transaction through the following actions:
 Sample Orders and Transaction Results
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When your application completes the payment transaction, the collections
-in the database contains the inventory and order updates. 
-If an error interrupts the transaction, none of the changes appear in
-your database.
+This section describes the results of the transactions performed for two
+sample orders.
 
-Suppose a customer sends the following order:
+Sufficient inventory exists for the following order, so the transaction
+successfully completes:
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
@@ -136,7 +126,8 @@ Suppose a customer sends the following order:
    :start-after: start-order-successful
    :end-before: end-order-successful
 
-Given this order, the code outputs the following result:
+After passing this order to the example transaction code, the code
+outputs the following result:
 
 .. code-block:: none
    :copyable: false
@@ -158,7 +149,8 @@ In the ``inventory`` collection, the quantity of
 is ``29``. The ``orders`` collection contains the record of the
 purchase.
 
-Suppose a different customer sends the following order:
+There is not sufficient inventory for the following order, so the
+driver terminates the transaction:
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript

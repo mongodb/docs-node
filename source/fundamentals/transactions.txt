@@ -68,25 +68,27 @@ API** and the **Convenient Transaction API**.
 
 The :ref:`Core API <node-txn-core-api>` is a framework that enables
 you to create, commit, and terminate transactions. When using this API,
-you must explicitly handle the following aspects of a transaction:
+you must explicitly perform the following actions:
 
-- Creating, committing, and ending the transaction
-- Creating and terminating the session in which you run the transaction
-- Implementing error-handling logic
+- Create, commit, and end the transaction.
+- Create and terminate the session in which you run the transaction.
+- Implement error-handling logic.
 
 The :ref:`Convenient Transaction API <node-txn-convenient-api>` is a
 framework that enables you to perform transactions without being
 responsible for committing or ending them. This API automatically
-incorporates error-handling logic.
+incorporates error-handling logic to retry operations when the server
+raises certain error types. To learn more about this behavior, see the
+:ref:`Transaction Errors <nodejs-transaction-errors>` section of this guide.
 
 .. important::
    
-   If you are connected to a deployment running MongoDB Server version
-   4.2 or earlier, you can perform write operations in a transaction
-   only on collections that already exist. Starting in Server version 4.4, the
-   server automatically creates collections when you perform operations
-   on them in a transaction. To learn more about this behavior,
-   see :manual:`Create Collections and Indexes in a Transaction
+   When you connect to  MongoDB Server version 4.2 or
+   earlier, you can perform write operations in a transaction only on
+   collections that already exist. When you connect to MongoDB Server
+   version 4.4 and later, the server automatically creates collections
+   when you perform write operations in a transaction. To learn more
+   about this behavior, see :manual:`Create Collections and Indexes in a Transaction
    </core/transactions/#create-collections-and-indexes-in-a-transaction>`
    in the Server manual.
 
@@ -98,33 +100,31 @@ Core API
 The Core API provides the following methods to implement transactions:
 
 - `startSession() <{+api+}/classes/MongoClient.html#startSession>`__:
-  Creates a new ``ClientSession`` instance
+  creates a new ``ClientSession`` instance
 - `startTransaction()
-  <{+api+}/classes/ClientSession.html#startTransaction>`__: Starts a new
+  <{+api+}/classes/ClientSession.html#startTransaction>`__: starts a new
   transaction
 - `commitTransaction()
-  <{+api+}/classes/ClientSession.html#commitTransaction>`__: Commits the
+  <{+api+}/classes/ClientSession.html#commitTransaction>`__: commits the
   active transaction in the session that it was created in
 - `abortTransaction()
-  <{+api+}/classes/ClientSession.html#abortTransaction>`__: Terminates the
+  <{+api+}/classes/ClientSession.html#abortTransaction>`__: terminates the
   active transaction in the session that it was created in
 - `endSession()
-  <{+api+}/classes/ClientSession.html#endSession>`__: Terminates the
+  <{+api+}/classes/ClientSession.html#endSession>`__: terminates the
   active session
-
-.. important::
    
-   You must implement the following code patterns when using this API:
+You must perform the following steps when using this API:
 
-   - Pass the session instance to each operation that
-     you want to run in that session
-   - Implement a ``catch`` block in which you identify
-     server transaction errors and implement error-handling logic
+- Pass the session instance to each operation that
+  you want to run in that session.
+- Implement a ``catch`` block in which you identify
+  server transaction errors and implement error-handling logic.
 
 The following code demonstrates how to perform a transaction by using
 the Core API:
 
-.. literalinclude:: /code-snippets/transactions/txn-simple.js
+.. literalinclude:: /code-snippets/transactions/txn-api-examples.js
    :language: javascript
    :linenos:
    :emphasize-lines: 2,4,7,11,15,17 
@@ -159,37 +159,35 @@ The Convenient Transaction API provides the following methods to
 implement transactions:
 
 - `withSession() <{+api+}/classes/MongoClient.html#withSession>`__: Runs
-  a given operation within a session. The API handles the creation and
+  the callback passed to it within a session. The API handles the creation and
   termination of the session automatically.
 - `withTransaction() <{+api+}/classes/ClientSession.html#withTransaction>`__:
   Runs the callback passed to it within a transaction and calls the 
   ``commitTransaction()`` method when the callback returns.
 
 These methods return the value that the callback returns. For example,
-if a callback you pass to the ``withTransaction()`` method returns a
-``Document`` type, then the ``withTransaction()`` method returns that
-object.
+if a callback you pass to the ``withTransaction()`` method returns the
+document ``{ hello: "world" }``, then the ``withTransaction()`` method
+also returns that document.
 
 When you use the Convenient Transaction API, you
 can propagate return values from the callback as the return values of
 the ``withTransaction()`` and ``withSession()`` methods to
 work with them elsewhere in your code.
 
-.. important::
-   
-   You must implement the following code patterns when using this API:
+You must perform the following steps when using this API:
 
-   - Pass the session instance to each operation that
-     you want to run in that session.
-   - Implement the async ``await`` syntax for each operation in the
-     session.
-   - Avoid parallelism, such as calling the ``Promise.all()`` method.
-     Using sessions in parallel usually leads to server errors.
+- Pass the session instance to each operation that
+  you want to run in that session.
+- Implement the async ``await`` syntax for each operation in the
+  session.
+- Avoid parallelism, such as calling the ``Promise.all()`` method.
+  Using sessions in parallel usually leads to server errors.
 
 The following code demonstrates how to perform a transaction by using
 the Convenient Transaction API:
 
-.. literalinclude:: /code-snippets/transactions/txn-simple.js
+.. literalinclude:: /code-snippets/transactions/txn-api-examples.js
    :language: javascript
    :linenos:
    :emphasize-lines: 2-3,5
@@ -241,7 +239,7 @@ in a ``TransactionOptions`` instance:
        transaction can run, in milliseconds.
 
 For a full list of options, see the API documentation for
-`TransactionOptions <{+api}/interfaces/TransactionOptions.html>`__.
+`TransactionOptions <{+api+}/interfaces/TransactionOptions.html>`__.
 
 .. note::
 

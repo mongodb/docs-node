@@ -49,7 +49,6 @@ async function queryData() {
 
 // start placeOrder
 async function placeOrder(client, cart, payment) {
-  // Specify transaction options
   const transactionOptions = {
     readConcern: { level: 'snapshot' },
     writeConcern: { w: 'majority' },
@@ -77,8 +76,8 @@ async function placeOrder(client, cart, payment) {
     const inventoryCollection = client.db('testdb').collection('inventory');
     
     for (const item of order) {  
-      /* Terminate the transaction if there is insufficient inventory or
-      update the inventory to reflect the purchase */
+      /* Update the inventory for the purchased items. End the
+      transaction if the quantity of a purchased item is insufficient. */
       const inStock = await inventoryCollection.findOneAndUpdate(
         {
           item_id: item.item_id,
