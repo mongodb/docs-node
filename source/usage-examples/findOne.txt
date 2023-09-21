@@ -6,6 +6,13 @@ Find a Document
 
 .. default-domain:: mongodb
 
+.. facet::
+   :name: genre
+   :values: tutorial
+
+.. meta:: 
+   :keywords: code example, node.js, sample dataset
+
 You can query for a single document in a collection with the
 ``collection.findOne()`` method. The ``findOne()`` method uses a query
 document that you provide to match only the subset of the documents in the
@@ -22,6 +29,17 @@ to configure the returned document. You can specify the additional options
 in the ``options`` object passed as the second parameter of the
 ``findOne`` method. For detailed reference documentation, see
 `collection.findOne() <{+api+}/classes/Collection.html#findOne>`__.
+
+Compatibility
+-------------
+
+.. |page-topic| replace:: use the ``findOne()`` method
+.. |link-topic-ing| replace:: finding documents in the Atlas UI
+
+.. |atlas-url| replace:: :atlas:`Create, View, Update, and Delete Documents </atlas-ui/documents/#view--filter--and-sort-documents>`
+
+.. include:: /includes/fact-atlas-compatible.rst
+.. include:: /includes/fact-atlas-link.rst
 
 Example
 -------

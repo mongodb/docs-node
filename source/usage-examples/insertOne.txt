@@ -6,6 +6,13 @@ Insert a Document
 
 .. default-domain:: mongodb
 
+.. facet::
+   :name: genre
+   :values: tutorial
+
+.. meta:: 
+   :keywords: code example, node.js, sample dataset
+
 You can insert a document into a collection using the
 `collection.insertOne() <{+api+}/classes/Collection.html#insertOne>`__ method. To
 insert a document, define an object that contains the fields and values that
@@ -21,6 +28,17 @@ For more information on this method, see the
 If the operation successfully inserts a document, it appends an
 ``insertedId`` field to the object passed in the method call, and sets the
 value of the field to the ``_id`` of the inserted document.
+
+Compatibility
+-------------
+
+.. |page-topic| replace:: use the ``insertOne()`` method
+.. |link-topic-ing| replace:: inserting documents in the Atlas UI
+
+.. |atlas-url| replace:: :atlas:`Create, View, Update, and Delete Documents </atlas-ui/documents/#insert-documents>`
+
+.. include:: /includes/fact-atlas-compatible.rst
+.. include:: /includes/fact-atlas-link.rst
 
 Example
 -------

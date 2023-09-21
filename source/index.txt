@@ -2,6 +2,9 @@
 MongoDB Node Driver
 ===================
 
+.. meta:: 
+   :keywords: node.js
+
 .. _node-driver-landing:
 
 .. toctree::
@@ -31,6 +34,11 @@ in JavaScript or TypeScript. For more information about downloading and
 installing the {+driver-short+}, see
 :ref:`Download and Install <node-quick-start-download-and-install>` in the
 Quick Start guide.
+
+You can connect using the {+driver-short+} for
+deployments hosted in the following environments:
+
+.. include:: /includes/fact-environments.rst
 
 Quick Start
 -----------
