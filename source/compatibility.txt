@@ -24,7 +24,7 @@ the {+driver-long+} for use with MongoDB.
 
 The first column lists the driver version.
 
-.. include:: /includes/lifecycle-schedule-callout.rst
+.. sharedinclude:: dbx/lifecycle-schedule-callout.rst
 
 .. sharedinclude:: dbx/compatibility-table-legend.rst
 
