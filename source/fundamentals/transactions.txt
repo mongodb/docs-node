@@ -67,11 +67,11 @@ The driver provides two APIs for performing transactions, the **Core
 API** and the **Convenient Transaction API**.
 
 The :ref:`Core API <node-txn-core-api>` is a framework that enables
-you to create, commit, and terminate transactions. When using this API,
+you to create, commit, and end transactions. When using this API,
 you must explicitly perform the following actions:
 
 - Create, commit, and end the transaction.
-- Create and terminate the session in which you run the transaction.
+- Create and end the session in which you run the transaction.
 - Implement error-handling logic.
 
 The :ref:`Convenient Transaction API <node-txn-convenient-api>` is a
@@ -83,13 +83,14 @@ raises certain error types. To learn more about this behavior, see the
 
 .. important::
    
-   When you connect to  MongoDB Server version 4.2 or
+   When you connect to MongoDB Server version 4.2 or
    earlier, you can perform write operations in a transaction only on
    collections that already exist. When you connect to MongoDB Server
    version 4.4 and later, the server automatically creates collections
-   when you perform write operations in a transaction. To learn more
-   about this behavior, see :manual:`Create Collections and Indexes in a Transaction
-   </core/transactions/#create-collections-and-indexes-in-a-transaction>`
+   as necessary when you perform write operations in a transaction. To
+   learn more about this behavior, see :manual:`Create Collections and
+   Indexes in a Transaction
+   </core/transactions/#create-collections-and-indexes-in-a-transaction>` 
    in the Server manual.
 
 .. _node-txn-core-api:
@@ -108,10 +109,10 @@ The Core API provides the following methods to implement transactions:
   <{+api+}/classes/ClientSession.html#commitTransaction>`__: commits the
   active transaction in the session that it was created in
 - `abortTransaction()
-  <{+api+}/classes/ClientSession.html#abortTransaction>`__: terminates the
+  <{+api+}/classes/ClientSession.html#abortTransaction>`__: ends the
   active transaction in the session that it was created in
 - `endSession()
-  <{+api+}/classes/ClientSession.html#endSession>`__: terminates the
+  <{+api+}/classes/ClientSession.html#endSession>`__: ends the
   active session
    
 You must perform the following steps when using this API:

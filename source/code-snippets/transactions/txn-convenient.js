@@ -40,7 +40,8 @@ const txnResult = await client.withSession(async (session) =>
       let total = 0;
       for (const item of order) {
         /* Update the inventory for the purchased items. End the
-        transaction if the quantity of a purchased item is insufficient. */
+        transaction if the quantity of an item in the inventory is
+        insufficient to complete the purchase. */
         const inStock = await invColl.findOneAndUpdate(
           {
             item: item.item,

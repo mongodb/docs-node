@@ -43,11 +43,11 @@ and how a purchase changes the data in each collection.
 
    * - ``orders``
      - insert
-     - Insert a document that describes the order
+     - Inserts a document that describes the order
 
    * - ``inventory``
      - update
-     - Update the quantities of items available after a purchase
+     - Updates the quantities of items available after a purchase
 
 Sample Data
 ~~~~~~~~~~~
@@ -96,16 +96,8 @@ This example code performs a transaction through the following actions:
 #. Prints the return type of ``withSession()``, which is either the
    error message or the acknowledgment that the transaction completed.
 
-.. note::
-
-   You can use this example to connect to an instance of MongoDB
-   and interact with a database that contains sample data. To learn more
-   about connecting to your MongoDB instance, see the :doc:`Usage Examples
-   guide </usage-examples>`.
-
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
-   :linenos:
    :dedent:
    :start-after: start-transaction
    :end-before: end-transaction
@@ -150,7 +142,7 @@ is ``29``. The ``orders`` collection contains the record of the
 purchase.
 
 There is not sufficient inventory for the following order, so the
-driver terminates the transaction:
+driver ends the transaction:
 
 .. literalinclude:: /code-snippets/transactions/txn-convenient.js
    :language: javascript
@@ -166,8 +158,8 @@ Given this order, the code outputs the following result:
    
    Item not found or insufficient quantity.
 
-You should not see any changes in the ``inventory`` collection, and the
-``orders`` collection should not have a new entry for this order.
+Since the driver ends the transaction, there are no changes to
+the ``inventory`` and ``orders`` collections.
 
 API Documentation
 -----------------

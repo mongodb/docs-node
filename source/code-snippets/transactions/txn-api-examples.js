@@ -6,8 +6,17 @@ async function coreTest(client) {
   try {
     session.startTransaction();
 
-    const myColl = client.db("testdb").collection("coll");
-    await myColl.insertOne({ x: 1, y: 6 }, { session });
+    const savingsColl = client.db("bank").collection("savings_accounts");
+    await savingsColl.findOneAndUpdate(
+      {account_id: "9876"}, 
+      {$inc: {amount: -100 }}, 
+      { session });
+
+    const checkingColl = client.db("bank").collection("checking_accounts");
+    await checkingColl.findOneAndUpdate(
+      {account_id: "9876"}, 
+      {$inc: {amount: 100 }}, 
+      { session });
 
     // ... perform other operations
 
@@ -26,8 +35,17 @@ async function coreTest(client) {
 async function convTest(client) {
   let txnRes = await client.withSession(async (session) =>
     session.withTransaction(async (session) => {
-      const myColl = client.db("testdb").collection("coll");
-      await myColl.insertOne({ a: 1, b: 6 }, { session });
+      const savingsColl = client.db("bank").collection("savings_accounts");
+      await savingsColl.findOneAndUpdate(
+        {account_id: "9876"}, 
+        {$inc: {amount: -100 }}, 
+        { session });
+  
+      const checkingColl = client.db("bank").collection("checking_accounts");
+      await checkingColl.findOneAndUpdate(
+        {account_id: "9876"}, 
+        {$inc: {amount: 100 }}, 
+        { session });
 
       // ... perform other operations
 

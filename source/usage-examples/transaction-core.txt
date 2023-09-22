@@ -31,7 +31,7 @@ Example
 Consider a situation in which a customer purchases items from your online
 shop. To record the purchase, your application must update
 your inventory and the customer's orders. Your
-application also needs to register the order details.
+application also needs to save the order details.
 
 The following table describes the collections that store purchase data
 and how a purchase changes the data in each collection.
@@ -46,16 +46,16 @@ and how a purchase changes the data in each collection.
 
    * - ``orders``
      - insert
-     - Insert a document that describes the order
+     - Inserts a document that describes the order
 
    * - ``customers``
      - update or upsert
-     - Append the ``_id`` from the order document to the order history
+     - Appends the ``_id`` from the order document to the order history
        in the customer document
 
    * - ``inventory``
      - update
-     - Update the quantities of items available after a purchase
+     - Updates the quantities of items available after a purchase
 
 Sample Data
 ~~~~~~~~~~~
@@ -131,21 +131,12 @@ This example code performs a transaction through the following actions:
 
 #. Implements a ``catch`` block that contains error-handling logic
 
-#. Calls the ``abortTransaction()`` method to terminate the transaction
+#. Calls the ``abortTransaction()`` method to end the transaction
 
-#. Calls the ``endSession()`` method to terminate the session
-
-.. note::
-
-   You can use this example to connect to an instance of MongoDB
-   and interact with a database that contains sample data. To learn more
-   about connecting to your MongoDB instance, see the :doc:`Usage Examples
-   guide </usage-examples>`.
+#. Calls the ``endSession()`` method to end the session
 
 .. literalinclude:: /code-snippets/transactions/txn-core.js
    :language: javascript
-   :linenos:
-   :emphasize-lines: 3-7,10,13,24,38,51,55,58-67,71,74
    :start-after: start placeOrder
    :end-before: end placeOrder
 

@@ -2,7 +2,8 @@
 
 const { MongoError, MongoClient } = require('mongodb');
 
-// Drop the "customers", "inventory", and "orders" collections from the "testdb" database
+/* Drop the "customers", "inventory", and "orders" collections from the
+"testdb" database */
 async function cleanUp(client) {
   await Promise.all( ['customers', 'inventory', 'orders'].map(async c => {
     try {
@@ -42,7 +43,7 @@ async function queryData() {
     }, client));
 
   } finally {
-    // Close the database connection
+    // Close your connection
     client.close();
   }
 }
@@ -77,7 +78,8 @@ async function placeOrder(client, cart, payment) {
     
     for (const item of order) {  
       /* Update the inventory for the purchased items. End the
-      transaction if the quantity of a purchased item is insufficient. */
+      transaction if the quantity of an item in the inventory is
+      insufficient to complete the purchase. */
       const inStock = await inventoryCollection.findOneAndUpdate(
         {
           item_id: item.item_id,
@@ -110,16 +112,16 @@ async function placeOrder(client, cart, payment) {
       transaction. Roll back all the updates performed in the transaction.
     */
     if (error instanceof MongoError && error.hasErrorLabel('UnknownTransactionCommitResult')) {
-      // add logic to retry or handle the error
+      // Add your logic to retry or handle the error
     }
     else if (error instanceof MongoError && error.hasErrorLabel('TransientTransactionError')) {
-      // add logic to retry or handle the error
+      // Add your logic to retry or handle the error
     } else {
       console.log('An error occured in the transaction, performing a data rollback:' + error);
     }
     await session.abortTransaction();
   } finally {
-    // End the session so that no further calls can be made on it
+    // End the session
     await session.endSession();
   }
 }
@@ -137,13 +139,14 @@ async function run() {
   // Call a method that creates sample inventory data for this example
   await setup(client);
 
-  // Create sample data for a customer's shopping cart that includes "sunblock" and "beach towel" items
+  // Create sample data for a customer's shopping cart
   const cart = [
     { item: 'sunblock', item_id: 5432, qty: 1, price: 5.19 },
     { item: 'beach towel', item_id: 7865, qty: 2, price: 15.99 }
   ];
 
-  // Create sample data for a customer's payment, calculated from the contents of their cart
+  /* Create sample data for a customer's payment based on the contents
+  of their cart */
   const payment = { customer: 98765, total: 37.17 };
 
   try {
@@ -153,7 +156,7 @@ async function run() {
     // Call a method that removes data from prior runs of this example
     await cleanUp(client);
 
-    // Close the database connection
+    // Close your connection
     await client.close();
   }
 }
