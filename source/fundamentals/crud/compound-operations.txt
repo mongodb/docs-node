@@ -77,7 +77,7 @@ Suppose a collection contains only the following document:
 
 The following table shows how the value of the
 ``includeResultMetadata`` option changes the return type of
-the ``findOneAndDelete()`` method.
+the ``findOneAndDelete()`` method:
 
 .. list-table::
    :header-rows: 1
