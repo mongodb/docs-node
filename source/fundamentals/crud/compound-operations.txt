@@ -75,19 +75,63 @@ Suppose a collection contains only the following document:
 
    { _id: 1, x: "on" }
 
-The following code shows how the value of the
+The following table shows how the value of the
 ``includeResultMetadata`` option changes the return type of
-the ``findOneAndDelete()`` method:
+the ``findOneAndDelete()`` method.
 
-.. code-block:: js
+.. list-table::
+   :header-rows: 1
+   :widths: 15 20 65
 
-   // default behavior
-   // returns { _id: 1, x: 'on' }
-   await coll.findOneAndDelete({ x: "on" });
+   * - Option Value
+     - Syntax and Output
 
-   // returns { lastErrorObject: { n: 1 }, value: { _id: 1, x: 'on' }, ok: 1, ... }
-   await coll.findOneAndDelete({ x: "on" }, { includeResultMetadata: true });
+   * - Default: ``false``
 
-   // no document matched
-   // returns null
-   await coll.findOneAndDelete({ x: "off" });
+     - *Document matched*
+
+       .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             await coll.findOneAndDelete({ x: "on" });
+
+          .. output::
+             :language: js
+             :visible: false
+
+             { _id: 1, x: 'on' }
+
+       *No document matched*
+
+       .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             await coll.findOneAndDelete({ x: "off" });
+
+          .. output::
+             :language: js
+             :visible: false
+
+             null   
+
+   * - ``true``
+
+     - .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             await coll.findOneAndDelete({ x: "on" }, { includeResultMetadata: true });
+
+          .. output::
+             :language: js
+             :visible: false
+
+             { lastErrorObject: { n: 1 }, value: { _id: 1, x: 'on' }, ok: 1, ... }
