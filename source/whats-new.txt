@@ -52,26 +52,26 @@ What's New in 6.2
 
 The {+driver-short+} v6.2 release includes the following features:
 
-- Updates the ``bson`` package version to 6.2.0. This version includes
+- Updates the ``bson`` package version to 6.2.0 to include
   color visualization of types, as shown in the following image:
 
   .. figure:: /includes/figures/bson-color.png
      :alt: A screenshot of the terminal that shows printing in color
 
-  To learn more, see the `v6.2.0 bson release notes
+  To learn more, see the `bson v6.2.0 release notes
   <https://github.com/mongodb/js-bson/releases/tag/v6.2.0>`__.
 
 - Ensures that the ``result.insertedIds`` property of a bulk write error type
   contains the ``_id`` values of successfully inserted documents. In
-  previous versions, even if a bulk write operation rejects any insert
-  operation, the ``result.insertedIds`` property still contains the
-  ``_id`` of each attempted insert.
+  previous versions, when a bulk write operation rejected an insert
+  operation, the ``result.insertedIds`` property contained the
+  ``_id`` values for all attempted inserts.
 
 - Closes the implicit session created when running the ``findOne()``
   method on a time series collection regardless of the outcome of the
-  find operation.
+  operation.
 
-- Allows you to create collections with names that start or end with the
+- Allows the creation of collections that have names that start or end with the
   ``.`` character. This change aligns the driver's database and
   collection name-checking behavior with the server's.
 
