@@ -1,4 +1,4 @@
-.. node-aggregation-one-to-one
+.. _node-aggregation-one-to-one:
 
 ===============
 One-to-One Join
@@ -68,7 +68,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
       ``products`` collection. Paste this code into the ``try`` block of your application:
 
       .. literalinclude:: /includes/aggregation/one-to-one-join.js
-         copyable: true
+         :copyable: true
          :start-after: // start-insert-products
          :end-before: // end-insert-products
          :dedent:
@@ -91,7 +91,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
             First, create a ``pipeline`` variable and add a ``$match`` stage that
             matches only orders made in 2020.
 
-            .. literalinclude: /includes/aggregation/one-to-one-join.js
+            .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :copyable: true
                :start-after: // start-match
                :end-before: // end-match
@@ -104,7 +104,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
             collection, to the ``id`` field in the ``products`` collection. The
             following code adds a ``$lookup`` stage to the pipeline:
 
-            .. literalinclude: /includes/aggregation/one-to-one-join.js
+            .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :copyable: true
                :start-after: // start-lookup
                :end-before: // end-lookup
@@ -129,7 +129,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
             ``product_category`` field from the values in the
             ``product_mapping`` object.
 
-            .. literalinclude: /includes/aggregation/one-to-one-join.js
+            .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :copyable: true
                :start-after: // start-set
                :end-before: // end-set
@@ -141,7 +141,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
             ``$unset`` stage removes unnecessary fields from the final result.
             Add the final stage as shown in the following example:
             
-            .. literalinclude: /includes/aggregation/one-to-one-join.js
+            .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :copyable: true
                :start-after: // start-unset
                :end-before: // end-unset
@@ -152,7 +152,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
       The following code runs the aggregation pipeline and prints the results to
       the console.
 
-      .. literalinclude: /includes/aggregation/one-to-one-join.js
+      .. literalinclude:: /includes/aggregation/one-to-one-join.js
          :copyable: true
          :start-after: // start-run-aggregation
          :end-before: // end-run-aggregation
