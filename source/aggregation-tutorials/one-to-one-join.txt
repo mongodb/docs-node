@@ -10,12 +10,21 @@ One-to-One Join
    :depth: 2
    :class: singlecol
 
-Overview
---------
+Introduction
+------------
 
-In this guide, you will learn how to perform a one-to-one join with the
-{+driver-long+}. A one-to-one join queries two different collections and
-combines related data based on one specific field in each collection.
+In this tutorial, you can learn how to perform a one-to-one join using
+aggregation with the {+driver-long+}. A one-to-one join queries two different
+collections and combines related data based on one specific field in each
+collection. 
+
+This example uses two collections, ``products`` and ``orders``. The
+``products`` collection contains documents detailing a shop's available products. The
+``orders`` collection contains documents describing an individual order for a
+product at that shop. The goal of the aggregation is to list all orders
+made in 2020, along with the product information associated with each order.
+Because one order can be for only one product, the aggregation uses a
+one-to-one join.
 
 Before You Get Started
 ----------------------
@@ -124,14 +133,6 @@ One-to-One Join Tutorial
             object created from the previous ``$lookup``
             stage. 
 
-            .. tip::
-
-               Because this is a one-to-one join, the ``$lookup`` stage
-               adds only one array element to the input document. The pipeline
-               uses the ``$first`` operator to retrieve the data from this
-               element. To see an example performing a one-to-many join, see the
-               :ref:`<node-aggregation-multi-field>` tutorial.
-
             The second ``$set`` stage creates a new ``product_name`` and
             ``product_category`` field from the values in the
             ``product_mapping`` object.
@@ -142,6 +143,14 @@ One-to-One Join Tutorial
                :start-after: // start-set
                :end-before: // end-set
                :dedent:
+
+            .. tip::
+
+               Because this is a one-to-one join, the ``$lookup`` stage
+               adds only one array element to the input document. The pipeline
+               uses the ``$first`` operator to retrieve the data from this
+               element. To see an example performing a one-to-many join, see the
+               :ref:`<node-aggregation-multi-field>` tutorial.
 
          .. step::
 
@@ -169,9 +178,8 @@ One-to-One Join Tutorial
          :dedent:
 
       Running the full application prints three documents. The documents
-      represent customer orders that occured in 2020, with each order's
-      ``product_id`` field replaced by two new fields, ``product_name`` and
-      ``product_category``.
+      represent customer orders that occurred in 2020, with the ``product_name`` and
+      ``product_category`` of the product that was ordered.
 
       .. code-block:: sh
          :copyable: false
@@ -197,3 +205,10 @@ One-to-One Join Tutorial
            product_name: 'Asus Laptop',
            product_category: 'ELECTRONICS'
          }
+
+      The result consists of joined documents containing fields from the
+      ``orders`` collection and fields from the ``products`` collection, joined
+      by matching the ``product_id`` field present in each original document.
+
+To see the complete code for the application made in this tutorial, see the
+`Complete Node.js Tutorial <https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/one-to-one-join.js>`__.

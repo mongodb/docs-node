@@ -7,7 +7,8 @@ const client = new MongoClient(uri);
 async function run() {
   try {
     // Drop any collections from a previous run
-    await client.db("sample_joins").dropDatabase();
+    await client.db("sample_joins").dropCollection("products");
+    await client.db("sample_joins").dropCollection("orders");
 
     const joinDatabase = client.db("sample_joins");
     const products = await joinDatabase.collection("products");
@@ -116,7 +117,7 @@ async function run() {
             product_category: "$product_mapping.category",
           },
         }
-      );
+      );``
     // end-set
 
     // start-unset
