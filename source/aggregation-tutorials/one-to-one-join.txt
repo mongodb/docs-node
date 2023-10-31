@@ -68,6 +68,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
       ``products`` collection. Paste this code into the ``try`` block of your application:
 
       .. literalinclude:: /includes/aggregation/one-to-one-join.js
+         :language: javascript
          :copyable: true
          :start-after: // start-insert-products
          :end-before: // end-insert-products
@@ -76,6 +77,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
       Next, insert the following sample data into the ``orders`` collection:
 
       .. literalinclude:: /includes/aggregation/one-to-one-join.js
+         :language: javascript
          :copyable: true
          :start-after: // start-insert-orders
          :end-before: // end-insert-orders
@@ -92,6 +94,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
             matches only orders made in 2020.
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
+               :language: javascript
                :copyable: true
                :start-after: // start-match
                :end-before: // end-match
@@ -105,6 +108,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
             following code adds a ``$lookup`` stage to the pipeline:
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
+               :language: javascript
                :copyable: true
                :start-after: // start-lookup
                :end-before: // end-lookup
@@ -130,6 +134,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
             ``product_mapping`` object.
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
+               :language: javascript
                :copyable: true
                :start-after: // start-set
                :end-before: // end-set
@@ -142,6 +147,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
             Add the final stage as shown in the following example:
             
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
+               :language: javascript
                :copyable: true
                :start-after: // start-unset
                :end-before: // end-unset
@@ -153,6 +159,7 @@ started with the {+driver-short+}, see the :ref:`node-quickstart`.
       the console.
 
       .. literalinclude:: /includes/aggregation/one-to-one-join.js
+         :language: javascript
          :copyable: true
          :start-after: // start-run-aggregation
          :end-before: // end-run-aggregation
