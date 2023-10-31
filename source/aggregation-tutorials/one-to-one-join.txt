@@ -1,0 +1,192 @@
+.. node-aggregation-one-to-one
+
+===============
+One-to-One Join
+===============
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you will learn how to perform a one-to-one join with the
+{+driver-long+}. A one-to-one join queries two different collections and
+combines related data based on one specific field in each collection.
+
+Before You Get Started
+----------------------
+
+Before you start this tutorial, create a MongoDB deployment on MongoDB Atlas, or
+on a local MongoDB instance. To learn how to get started with a free Atlas
+cluster, see the :atlas:`Get Started with Atlas <getting-started>` guide.
+
+Once you have a MongoDB deployment set up, create a new Node.js project and
+install the {+driver-long+}. For more information about installation and getting
+started with the {+driver-short+}, see the :ref:`node-quickstart`.
+
+Set Up Your Application
+-----------------------
+
+.. procedure::
+   :style: normal
+
+   .. step:: Set Up Your Application
+
+      Once you have created a new Node.js project with the {+driver-short+} installed,
+      use the following code example to connect to your MongoDB deployment and set up
+      your application.
+ 
+      .. code-block:: javascript
+      
+         const { MongoClient } = require("mongodb");
+         
+         // Replace the URI string with your connection string.
+         const uri = "<Your connection URI>";
+         const client = new MongoClient(uri);
+         
+         async function run() {
+           try {
+      
+             const joinDatabase = client.db("sample_joins");
+             const product = database.collection("products");
+             const orders = database.collection("orders");
+      
+             // Place application code here
+         
+           } finally {
+             await client.close();
+           }
+         }
+
+         run().catch(console.dir);
+
+   .. step:: Insert Sample Data
+
+      This guide uses sample data in two separate collections: ``products`` and
+      ``orders``. The following code example inserts the sample data into the
+      ``products`` collection. Paste this code into the ``try`` block of your application:
+
+      .. literalinclude:: /includes/aggregation/one-to-one-join.js
+         copyable: true
+         :start-after: // start-insert-products
+         :end-before: // end-insert-products
+         :dedent:
+
+      Next, insert the following sample data into the ``orders`` collection:
+
+      .. literalinclude:: /includes/aggregation/one-to-one-join.js
+         :copyable: true
+         :start-after: // start-insert-orders
+         :end-before: // end-insert-orders
+         :dedent:
+
+   .. step:: Build The Aggregation Pipeline
+
+      .. procedure::
+         :style: connected
+
+         .. step::
+
+            First, create a ``pipeline`` variable and add a ``$match`` stage that
+            matches only orders made in 2020.
+
+            .. literalinclude: /includes/aggregation/one-to-one-join.js
+               :copyable: true
+               :start-after: // start-match
+               :end-before: // end-match
+               :dedent:
+
+         .. step::
+
+            The next stage in the pipeline is a ``$lookup`` stage. The
+            ``$lookup`` stage joins the ``product_id`` field in the ``orders``
+            collection, to the ``id`` field in the ``products`` collection. The
+            following code adds a ``$lookup`` stage to the pipeline:
+
+            .. literalinclude: /includes/aggregation/one-to-one-join.js
+               :copyable: true
+               :start-after: // start-lookup
+               :end-before: // end-lookup
+               :dedent:
+
+         .. step::
+
+            Add two ``$set`` stages to the pipeline. The first ``$set`` stage,
+            creates a ``product_mapping`` field from the ``product_mapping``
+            object created from the previous ``$lookup``
+            stage. 
+
+            .. tip::
+
+               Because this is a one-to-one join, the ``$lookup`` stage
+               adds only one array element to the input document. The pipeline
+               uses the ``$first`` operator to retrieve the data from this
+               element. To see an example performing a one-to-many join, see the
+               :ref:`<node-aggregation-multi-field>` tutorial.
+
+            The second ``$set`` stage creates a new ``product_name`` and
+            ``product_category`` field from the values in the
+            ``product_mapping`` object.
+
+            .. literalinclude: /includes/aggregation/one-to-one-join.js
+               :copyable: true
+               :start-after: // start-set
+               :end-before: // end-set
+               :dedent:
+
+         .. step::
+
+            The final stage in the pipeline is an ``$unset`` stage. The
+            ``$unset`` stage removes unnecessary fields from the final result.
+            Add the final stage as shown in the following example:
+            
+            .. literalinclude: /includes/aggregation/one-to-one-join.js
+               :copyable: true
+               :start-after: // start-unset
+               :end-before: // end-unset
+               :dedent:
+
+   .. step:: Run the Aggregation Pipeline
+
+      The following code runs the aggregation pipeline and prints the results to
+      the console.
+
+      .. literalinclude: /includes/aggregation/one-to-one-join.js
+         :copyable: true
+         :start-after: // start-run-aggregation
+         :end-before: // end-run-aggregation
+         :dedent:
+
+      Running the full application prints three documents. The documents
+      represent customer orders that occured in 2020, with each order's
+      ``product_id`` field replaced by two new fields, ``product_name`` and
+      ``product_category``.
+
+      .. code-block:: json
+         :copyable: false
+         
+         {
+           customer_id: 'elise_smith@myemail.com',
+           orderdate: 2020-05-30T08:35:52.000Z,
+           value: 431.43,
+           product_name: 'Asus Laptop',
+           product_category: 'ELECTRONICS'
+         }
+         {
+           customer_id: 'oranieri@warmmail.com',
+           orderdate: 2020-01-01T08:25:37.000Z,
+           value: 63.13,
+           product_name: 'Morphy Richardds Food Mixer',
+           product_category: 'KITCHENWARE'
+         }
+         {
+           customer_id: 'jjones@tepidmail.com',
+           orderdate: 2020-12-26T08:55:46.000Z,
+           value: 429.65,
+           product_name: 'Asus Laptop',
+           product_category: 'ELECTRONICS'
+         }
