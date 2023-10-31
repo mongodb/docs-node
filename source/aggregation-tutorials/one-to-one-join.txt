@@ -28,9 +28,6 @@ Once you have a MongoDB deployment set up, create a new Node.js project and
 install the {+driver-long+}. For more information about installation and getting
 started with the {+driver-short+}, see the :ref:`node-quickstart`.
 
-Set Up Your Application
------------------------
-
 .. procedure::
    :style: normal
 
