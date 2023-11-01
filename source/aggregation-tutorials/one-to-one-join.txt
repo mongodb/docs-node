@@ -73,8 +73,8 @@ One-to-One Join Tutorial
 
          .. step::
 
-            First, create a ``pipeline`` variable and add a ``$match`` stage that
-            matches only orders made in 2020.
+            First, create a ``pipeline`` variable and add a :manual:`$match
+            </reference/operator/aggregation/match>` stage that matches orders made in 2020.
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
@@ -85,7 +85,8 @@ One-to-One Join Tutorial
 
          .. step::
 
-            The next stage in the pipeline is a ``$lookup`` stage. The
+            The next stage in the pipeline is a :manual:`$lookup
+            </reference/operator/aggregation/lookup>` stage. The
             ``$lookup`` stage joins the ``product_id`` field in the ``orders``
             collection, to the ``id`` field in the ``products`` collection. The
             following code adds a ``$lookup`` stage to the pipeline:
@@ -99,7 +100,8 @@ One-to-One Join Tutorial
 
          .. step::
 
-            Add two ``$set`` stages to the pipeline. The first ``$set`` stage,
+            Next, add two :manual:`$set </reference/operator/aggregation/set>`
+            stages to the pipeline. The first ``$set`` stage,
             creates a ``product_mapping`` field from the ``product_mapping``
             object created from the previous ``$lookup``
             stage. 
@@ -119,13 +121,13 @@ One-to-One Join Tutorial
 
                Because this is a one-to-one join, the ``$lookup`` stage
                adds only one array element to the input document. The pipeline
-               uses the ``$first`` operator to retrieve the data from this
-               element. To see an example performing a one-to-many join, see the
-               :ref:`<node-aggregation-multi-field>` tutorial.
+               uses the :manual:`$first </reference/operator/aggregation/first>`
+               operator to retrieve the data from this element.
 
          .. step::
 
-            The final stage in the pipeline is an ``$unset`` stage. The
+            The final stage in the pipeline is an :manual:`$unset
+            </reference/operator/aggregation/unset>` stage. The
             ``$unset`` stage removes unnecessary fields from the final result.
             Add the final stage as shown in the following example:
             
