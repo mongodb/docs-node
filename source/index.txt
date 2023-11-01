@@ -52,7 +52,7 @@ database interactions and improve the developer experience. These ODMs include:
 - **Prisma**, which helps ensure data consistency by offering a type-safe database client
   and an intuitive schema. 
 
-For information about these ODMs, see the `Mongoose <https://mongoosejs.com/>`__ and 
+For more information about these ODMs, see the `Mongoose <https://mongoosejs.com/>`__ and 
 `Prisma <https://www.prisma.io/docs>`__ documentation.
 
 Components
