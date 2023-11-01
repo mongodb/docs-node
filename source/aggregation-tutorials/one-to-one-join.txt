@@ -29,71 +29,42 @@ one-to-one join.
 Before You Get Started
 ----------------------
 
-Before you start this tutorial, create a MongoDB deployment on MongoDB Atlas, or
-on a local MongoDB instance. To learn how to get started with a free Atlas
-cluster, see the :atlas:`Get Started with Atlas <getting-started>` guide.
+Before you get started with this tutorial, you will need a Node.js application
+with the {+driver-short+} installed that connects to a MongoDB deployment.
 
-Once you have a MongoDB deployment set up, create a new Node.js project and
-install the {+driver-long+}. For more information about installation and getting
-started with the {+driver-short+}, see the :ref:`node-quickstart`.
+To learn how to create a MongoDB deployment on MongoDB Atlas, or
+on a local MongoDB instance, see the :ref:`Connection Guide <node-connect-to-mongodb>`.
+
+To learn how to get started using MongoDB with a new Node.js project, see the
+:ref:`node-quickstart`.
+
+This guide uses sample data stored in two separate collections: ``products`` and
+``orders``. Insert the following sample data into a collection called
+``products``:
+
+.. literalinclude:: /includes/aggregation/one-to-one-join.js
+   :language: javascript
+   :copyable: true
+   :start-after: // start-products
+   :end-before: // end-products
+   :dedent:
+
+Insert the following data into a collection called ``orders``:
+
+.. literalinclude:: /includes/aggregation/one-to-one-join.js
+   :language: javascript
+   :copyable: true
+   :start-after: // start-orders
+   :end-before: // end-orders
+   :dedent:
+
+For more information about inserting documents into a collection, see :ref:`node-fundamentals-insert-data`.
 
 One-to-One Join Tutorial
 ------------------------
 
 .. procedure::
    :style: normal
-
-   .. step:: Set Up Your Application
-
-      Once you have created a new Node.js project with the {+driver-short+} installed,
-      use the following code example to connect to your MongoDB deployment and set up
-      your application.
- 
-      .. code-block:: javascript
-      
-         const { MongoClient } = require("mongodb");
-         
-         // Replace the URI string with your connection string.
-         const uri = "<Your connection URI>";
-         const client = new MongoClient(uri);
-         
-         async function run() {
-           try {
-      
-             const joinDatabase = client.db("sample_joins");
-             const product = database.collection("products");
-             const orders = database.collection("orders");
-      
-             // Place application code here
-         
-           } finally {
-             await client.close();
-           }
-         }
-
-         run().catch(console.dir);
-
-   .. step:: Insert Sample Data
-
-      This guide uses sample data in two separate collections: ``products`` and
-      ``orders``. The following code example inserts the sample data into the
-      ``products`` collection. Paste this code into the ``try`` block of your application:
-
-      .. literalinclude:: /includes/aggregation/one-to-one-join.js
-         :language: javascript
-         :copyable: true
-         :start-after: // start-insert-products
-         :end-before: // end-insert-products
-         :dedent:
-
-      Next, insert the following sample data into the ``orders`` collection:
-
-      .. literalinclude:: /includes/aggregation/one-to-one-join.js
-         :language: javascript
-         :copyable: true
-         :start-after: // start-insert-orders
-         :end-before: // end-insert-orders
-         :dedent:
 
    .. step:: Build The Aggregation Pipeline
 

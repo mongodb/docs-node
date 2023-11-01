@@ -14,10 +14,10 @@ async function run() {
     const products = await joinDatabase.collection("products");
     const orders = await joinDatabase.collection("orders");
 
-    // start-insert-products
+    
     products.createIndex({ id: 1 });
-
     const productDocuments = [
+      // start-products
       {
         id: "a1b2c3d4",
         name: "Asus Laptop",
@@ -42,15 +42,16 @@ async function run() {
         category: "GARDEN",
         description: "Hose + nosels + winder for tidy storage",
       },
+      // end-products
     ];
 
     await products.insertMany(productDocuments);
-    // end-insert-products
+    
 
-    // start-insert-orders
     orders.createIndex({ orderdate: -1 });
 
     const orderDocuments = [
+      // start-orders
       {
         customer_id: "elise_smith@myemail.com",
         orderdate: new Date("2020-05-30T08:35:52Z"),
@@ -75,10 +76,11 @@ async function run() {
         product_id: "a1b2c3d4",
         value: 429.65,
       },
+      // end-orders
     ];
 
     await orders.insertMany(orderDocuments);
-    // end-insert-orders
+    
 
     // start-match
     const pipeline = [];
