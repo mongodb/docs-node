@@ -55,16 +55,16 @@ database interactions and improve the developer experience. These ODMs include:
 For information about these ODMs, see the `Mongoose <https://mongoosejs.com/>`__ and 
 `Prisma <https://www.prisma.io/docs>`__ documentation.
 
-Libraries
-~~~~~~~~~
+Components
+~~~~~~~~~~
 
-MongoDB offers the following libraries that expand the functionality of the {+driver-short+}:
+MongoDB offers the following components that expand the functionality of the {+driver-short+}:
 
 .. list-table::
    :header-rows: 1
    :widths: 1 1 1
 
-   * - Library
+   * - Component
      - Description
      - Node Package Manager (npm) Link
 
