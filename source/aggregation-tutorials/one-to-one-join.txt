@@ -30,7 +30,7 @@ Before You Get Started
 ----------------------
 
 Before you get started with this tutorial, you will need a Node.js application
-with the {+driver-short+} installed that connects to a MongoDB deployment.
+with the {+driver-long+} installed that connects to a MongoDB deployment.
 
 To learn how to create a MongoDB deployment on MongoDB Atlas, or
 on a local MongoDB instance, see the :ref:`Connection Guide <node-connect-to-mongodb>`.
@@ -38,8 +38,8 @@ on a local MongoDB instance, see the :ref:`Connection Guide <node-connect-to-mon
 To learn how to get started using MongoDB with a new Node.js project, see the
 :ref:`node-quickstart`.
 
-This guide uses sample data stored in two separate collections: ``products`` and
-``orders``. Insert the following sample data into a collection called
+This tutorial uses sample data stored in two separate collections. Insert the
+following sample data into a collection called
 ``products``:
 
 .. literalinclude:: /includes/aggregation/one-to-one-join.js
@@ -102,8 +102,8 @@ One-to-One Join Tutorial
 
             Next, add two :manual:`$set </reference/operator/aggregation/set>`
             stages to the pipeline. The first ``$set`` stage,
-            creates a ``product_mapping`` field from the ``product_mapping``
-            object created from the previous ``$lookup``
+            sets the ``product_mapping`` field to the first element in the
+            ``product_mapping`` object created in the previous ``$lookup``
             stage. 
 
             The second ``$set`` stage creates a new ``product_name`` and
@@ -128,8 +128,8 @@ One-to-One Join Tutorial
 
             The final stage in the pipeline is an :manual:`$unset
             </reference/operator/aggregation/unset>` stage. The
-            ``$unset`` stage removes unnecessary fields from the final result.
-            Add the final stage as shown in the following example:
+            ``$unset`` stage removes unnecessary fields from the document.
+            Add the ``$unset`` stage as shown in the following example:
             
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
@@ -152,7 +152,7 @@ One-to-One Join Tutorial
 
       Running the full application prints three documents. The documents
       represent customer orders that occurred in 2020, with the ``product_name`` and
-      ``product_category`` of the product that was ordered.
+      ``product_category`` of the ordered product.
 
       .. code-block:: sh
          :copyable: false
