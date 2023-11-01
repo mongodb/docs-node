@@ -46,13 +46,13 @@ Object Document Mappers
 MongoDB provides several Object Document Mappers (ODMs) for Node.js that simplify
 database interactions and improve the developer experience. These ODMs include:
 
-- Mongoose, which helps enforce a semi-rigid schema at the application level. Mongoose
+- **Mongoose**, which helps enforce a semi-rigid schema at the application level. Mongoose
   also provides features to assist with data modeling and general data
   manipulation.
-- Prisma, which helps ensure data consistency by offering a type-safe database client
+- **Prisma**, which helps ensure data consistency by offering a type-safe database client
   and an intuitive schema. 
 
-For information on these ODMs, see the `Mongoose <https://mongoosejs.com/>`__ and 
+For information about these ODMs, see the `Mongoose <https://mongoosejs.com/>`__ and 
 `Prisma <https://www.prisma.io/docs>`__ documentation.
 
 Libraries
@@ -64,29 +64,28 @@ Libraries
 
    * - Library
      - Description
-     - Link
+     - npm (Node Package Manager) Link
 
    * - **bson**
      - A BSON serialization and deserialization library used by the official
        {+driver-long+}
-     - https://www.npmjs.com/package/bson
+     - `npm Documentation <https://www.npmjs.com/package/bson>`__
 
    * - **kerberos**
      - A C++ extension for Node.js that provides support for kerberos authentication
-     - https://www.npmjs.com/package/kerberos 
+     - `npm Documentation <https://www.npmjs.com/package/kerberos>`__
 
    * - **mongodb-client-encryption**
-     - A wrapper for libmongocrypt that offers client-side encryption functionality
-       for the {+driver-short+}
-     - https://www.npmjs.com/package/mongodb-client-encryption 
+     - A library that offers client-side encryption functionality
+     - `npm Documentation <https://www.npmjs.com/package/mongodb-client-encryption>`__ 
 
    * - **mongodb-legacy**
-     - A wrapper for the mongodb driver that assists in migration to promise-based APIs
-     - https://www.npmjs.com/package/mongodb-legacy 
+     - A package that supports callbacks to ease the migration process to the Promise-only API
+     - `npm Documentation <https://www.npmjs.com/package/mongodb-legacy>`__ 
 
    * - **@mongodb-js/zstd**
      - A Zstandard compression library for Node.js
-     - https://www.npmjs.com/package/@mongodb-js/zstd
+     - `npm Documentation <https://www.npmjs.com/package/@mongodb-js/zstd>`__
 
 Quick Start
 -----------
