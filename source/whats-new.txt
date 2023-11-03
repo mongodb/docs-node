@@ -216,6 +216,11 @@ To learn more about this release, see the
 What's New in 5.8
 -----------------
 
+.. important:: Upgrade from v5.8 to v5.9
+
+   This version includes a fix to a memory leak introduced in v5.7.
+   We recommend upgrading to v5.9.
+
 The {+driver-short+} v5.8 release includes the following features:
 
 .. important:: Deprecation Notice
