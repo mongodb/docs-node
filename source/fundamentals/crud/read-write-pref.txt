@@ -38,7 +38,8 @@ For more information, see :manual:`Write Concern </reference/write-concern/>`
 Contructor
 ~~~~~~~~~~
 
-.. code-block:: node
+.. code-block:: js
+  
    new WriteConcern(w?, wtimeoutMS?, journal?): WriteConcern
 
 .. list-table::
@@ -63,7 +64,8 @@ Methods
 ``apply``
 `````````
 
-.. code-block:: node
+.. code-block:: js
+
    apply(command, writeConcern): Document
 
 .. list-table::
@@ -81,7 +83,8 @@ Methods
 ``fromOptions``
 ```````````````
 
-.. code-block:: node
+.. code-block:: js
+
    fromOptions(options?, inherit?): undefined | WriteConcern
 
 .. list-table::
