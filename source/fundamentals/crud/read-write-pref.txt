@@ -39,7 +39,7 @@ Contructor
 ~~~~~~~~~~
 
 .. code-block:: js
-  
+
    new WriteConcern(w?, wtimeoutMS?, journal?): WriteConcern
 
 .. list-table::
