@@ -1,0 +1,114 @@
+.. _node-crud-write-read-pref:
+
+===================================
+Modify Execution of CRUD Operations
+===================================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to modify the way that the {+driver-long+} executes create, read, update, and delete (CRUD) operations using **write concern**, **read concern**, and **read preference** configurations for replica sets.
+
+You can set write concern, read concern, and read preference options at
+the following levels:
+
+- Client level, which sets the *default for all operation executions*
+  unless overridden
+- Session level
+- Transaction level
+- Database level
+- Collection level
+
+These options allow you to customize the consistency and availability of the data in your replica sets.
+
+Write Concern
+-------------
+
+A write concern describes the level of acknowledgement requested from MongoDB for write operations, such as an insert or update, before the operation is returned as successful. 
+Operations which do not specify an explicit write concern inherit the global default write concern settings.
+
+For more information, see :manual:`Write Concern </reference/write-concern/>`
+
+Contructor
+~~~~~~~~~~
+
+.. code-block:: node
+   new WriteConcern(w?, wtimeoutMS?, journal?): WriteConcern
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter
+     - Description
+  
+   * - ``w`` *(optional)*
+     - request acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags | **Type:** W ***************** https://mongodb.github.io/node-mongodb-native/5.7/types/W.html ?
+
+   *  - ``wtimeoutMS`` *(optional)*
+      - specify a time limit to prevent write operations from blocking indefinitely | **Type:** number
+
+   * - ``journal`` *(optional)*
+     - request acknowledgment that the write operation has been written to the on-disk journal | **Type:** boolean
+
+
+Methods
+~~~~~~~
+
+``apply``
+`````````
+
+.. code-block:: node
+   apply(command, writeConcern): Document
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter
+     - Description
+
+   * - ``command``
+     - | **Type:** Document
+
+   * - ``writeConcern``
+     - | **Type:** WriteConcern
+
+``fromOptions``
+```````````````
+
+.. code-block:: node
+   fromOptions(options?, inherit?): undefined | WriteConcern
+
+.. list-table::
+   :header-rows: 1
+
+   * - Parameter
+     - Description
+
+   * - ``options`` *(optional)*
+     - | **Type:** W \| WriteConcernOptions \| WriteConcern
+
+   * - ``inherit`` *(optional)*
+     - | **Type:** WriteConcernOptions \| WriteConcern
+
+
+Read Concern
+------------
+
+The read concern determines which data the client returns from a query. The default read concern level is 
+"local", meaning that the client returns the instance’s most recent data, with no guarantee that the data 
+has been written to a majority of the replica set members.
+
+For more information, see :manual:`Read Concern </reference/read-concern/>`
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+- `API WriteConcern <{+api+}/mongo/writeconcern#WriteConcern>`__
+- `API ReadConcern <{+api+}/mongo/readconcern#ReadConcern>`__
+- `API ReadPref <{+api+}/mongo/readpref#ReadPref>`__
