@@ -40,6 +40,9 @@ deployments hosted in the following environments:
 
 .. include:: /includes/fact-environments.rst
 
+Ecosystem Compatibility
+-----------------------
+
 Object Document Mappers
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -52,8 +55,11 @@ database interactions and improve the developer experience. These ODMs include:
 - **Prisma**, which helps ensure data consistency by offering a type-safe database client
   and an intuitive schema. 
 
-For more information about these ODMs, see the `Mongoose <https://mongoosejs.com/>`__ and 
-`Prisma <https://www.prisma.io/docs>`__ documentation.
+For more information about these ODMs, see the following resources:
+
+- :website:`MongoDB ORMs, ODMs, and Libraries </developer/products/mongodb/mongodb-orms-odms-libraries/>` article
+- `Mongoose <https://mongoosejs.com/>`__ documentation
+- `Prisma <https://www.prisma.io/docs>`__ documentation
 
 Components
 ~~~~~~~~~~
@@ -89,8 +95,9 @@ MongoDB offers the following components that expand the functionality of the {+d
      - A Zstandard compression library for Node.js
      - `npm Documentation <https://www.npmjs.com/package/@mongodb-js/zstd>`__
 
-For information about version compatibility, see the `Component Support Matrix <{+api+}/#md:component-support-matrix>`__
-in the API documentation.
+For information about version compatibility, see the :github:`Component Support Matrix
+</mongodb/node-mongodb-native#component-support-matrix>` in the {+driver-short+} Github
+repository.
 
 Quick Start
 -----------
@@ -182,15 +189,21 @@ MongoDB University
 
 MongoDB University provides free courses to teach everyone how to use MongoDB.
 
-Take the free online course taught by MongoDB instructors
-`````````````````````````````````````````````````````````
+Take the following free online courses taught by MongoDB instructors
+````````````````````````````````````````````````````````````````````
 
 .. list-table::
 
    * - .. figure:: /includes/figures/M220JS_hero.jpg
-          :alt: Banner for the MongoDB University Node.js Course
+          :alt: Banner for the Beginner's MongoDB University Node.js Course
      
      - `Using MongoDB with Node.js <https://learn.mongodb.com/learning-paths/using-mongodb-with-nodejs>`_
         
        Learn the essentials of Node.js application development with MongoDB.
+   * - .. figure:: /includes/figures/M220P_hero.jpg
+          :alt: Banner for the MongoDB University Node.js Developer Path
+     
+     - `MongoDB Node.js Developer Path <https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path>`_
+        
+       Learn how to build a Node.js application using MongoDB as your database.
 
