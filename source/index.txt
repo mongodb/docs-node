@@ -40,8 +40,8 @@ deployments hosted in the following environments:
 
 .. include:: /includes/fact-environments.rst
 
-Ecosystem Compatibility
------------------------
+Related Tools
+-------------
 
 Object Document Mappers
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -189,8 +189,8 @@ MongoDB University
 
 MongoDB University provides free courses to teach everyone how to use MongoDB.
 
-Take the following free online courses taught by MongoDB instructors
-````````````````````````````````````````````````````````````````````
+Take the following free online courses taught by MongoDB instructors:
+`````````````````````````````````````````````````````````````````````
 
 .. list-table::
 
