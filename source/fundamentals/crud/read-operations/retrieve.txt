@@ -20,6 +20,12 @@ To request results based on a set of criteria from the existing set of
 data, you can use a find operation such as the ``find()`` or
 ``findOne()`` methods.
 
+.. tip:: Interactive Lab
+   
+   You can complete an interactive lab that uses the
+   ``find()`` method to retrieve data in the
+   :ref:`node-retrieve-instruqt-lab` section of this guide.
+
 You can also further specify the information you are requesting by
 including additional parameters or by chaining other methods, as shown
 in the following guides:
@@ -46,15 +52,6 @@ matching data is inserted.
 
 .. include:: /includes/fact-atlas-compatible.rst
 .. include:: /includes/fact-atlas-link.rst
-
-Interactive Find Operation Lab
-------------------------------
-
-This lab helps you understand how to perform read operations in MongoDB
-by using the ``find()`` method. You do not need to install
-MongoDB or a code editor to complete the lab.
-
-.. instruqt:: /mongodb-docs/tracks/find-node?token=em_OVNHWCPNPMLwNOCm
 
 Find
 ----
@@ -203,6 +200,16 @@ data whenever write operations are executed on the collection.
       :start-after: start watch crud example
       :end-before: end watch crud example
 
-
 For a runnable example of the ``watch()`` method using the NodeJS driver, see
 the :ref:`change streams <node-usage-watch>` usage example.
+
+.. _node-retrieve-instruqt-lab:
+
+Interactive Find Operation Lab
+------------------------------
+
+This lab helps you understand how to perform read operations in MongoDB
+by using the ``find()`` method. You do not need to install
+MongoDB or a code editor to complete the lab.
+
+.. instruqt:: /mongodb-docs/tracks/find-node?token=em_OVNHWCPNPMLwNOCm

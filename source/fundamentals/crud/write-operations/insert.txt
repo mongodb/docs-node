@@ -1,10 +1,8 @@
 .. _node-fundamentals-insert-data:
 
-=================
-Insert a Document
-=================
-
-.. default-domain:: mongodb
+================
+Insert Documents
+================
 
 .. contents:: On this page
    :local:
@@ -24,6 +22,12 @@ you need to first perform an **insert operation**.
 
 An insert operation inserts a single or multiple documents in MongoDB
 using the ``insertOne()``, ``insertMany()`` and ``bulkWrite()`` methods.
+
+.. tip:: Interactive Lab
+   
+   You can complete an interactive lab that uses the
+   ``insertOne()`` method to insert data in the
+   :ref:`node-insert-instruqt-lab` section of this guide.
 
 The following sections focus on ``insertOne()`` and ``insertMany()``. For an
 example on how to use the ``bulkWrite()`` method, see our runnable :doc:`Bulk
@@ -221,3 +225,14 @@ section, see the following resources:
 - API Documentation on `PkFactory <{+api+}/interfaces/PkFactory.html>`__
 - Server Manual Entry on :manual:`insertMany() </reference/method/db.collection.insertMany/>`
 - Runnable :doc:`Insert Multiple Documents Example </usage-examples/insertMany>`
+
+.. _node-insert-instruqt-lab:
+
+Interactive Insert Operation Lab
+--------------------------------
+
+This lab helps you understand how to perform insert operations in MongoDB
+by using the ``insertOne()`` method. You do not need to install
+MongoDB or a code editor to complete the lab.
+
+.. instruqt:: /mongodb-docs/tracks/insert-node?token=em_S6rjcmIzxGB4Sz_y
