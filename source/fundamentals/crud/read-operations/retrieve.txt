@@ -4,8 +4,6 @@
 Retrieve Data
 =============
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -18,13 +16,13 @@ Overview
 --------
 
 You can use read operations to retrieve data from your MongoDB database.
-There are multiple types of read operations that access the data in
-different ways. If you want to request results based on a set of criteria
-from the existing set of data, you can use a find operation such as the
-``find()`` or ``findOne()`` methods.
+To request results based on a set of criteria from the existing set of
+data, you can use a find operation such as the ``find()`` or
+``findOne()`` methods.
 
 You can also further specify the information you are requesting by
-including additional parameters or by chaining other methods such as:
+including additional parameters or by chaining other methods, as shown
+in the following guides:
 
 - :ref:`node-fundamentals-sort`
 - :ref:`node-fundamentals-skip`
@@ -41,9 +39,6 @@ matching data is inserted.
 
 .. include:: /includes/access-cursor-note.rst
 
-Compatibility
--------------
-
 .. |page-topic| replace:: perform read operations
 .. |link-topic-ing| replace:: performing read operations in the Atlas UI
 
@@ -51,6 +46,15 @@ Compatibility
 
 .. include:: /includes/fact-atlas-compatible.rst
 .. include:: /includes/fact-atlas-link.rst
+
+Interactive Find Operation Lab
+------------------------------
+
+This lab helps you understand how to perform read operations in MongoDB
+by using the ``find()`` method. You do not need to install
+MongoDB or a code editor to complete the lab.
+
+.. instruqt:: /mongodb-docs/tracks/find-node?token=em_OVNHWCPNPMLwNOCm
 
 Find
 ----
