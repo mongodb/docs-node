@@ -46,9 +46,8 @@ Related Tools and Libraries
 Object Document Mappers
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-MongoDB, as well as our partners and community, provides several Object Document Mappers
-(ODMs) for Node.js that simplify database interactions and improve the developer experience.
-These ODMs include:
+MongoDB and our partners provide several Object Document Mappers (ODMs) for Node.js that
+simplify database interactions and improve the developer experience. These ODMs include:
 
 - **Mongoose**, which helps enforce a semi-rigid schema at the application level. Mongoose
   also provides features to assist with data modeling and general data
