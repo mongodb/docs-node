@@ -31,8 +31,8 @@ are then combined into one document.
    A one-to-one join does not require the entities to have a :wikipedia:`One-to-one relationship
    </One-to-one_(data_model)>`.
 
-The goal of the aggregation is to list all orders
-made in 2020, along with the product information associated with each order.
+The goal of this aggregation tutorial is to list all orders
+made in 2020, with the product information associated with each order.
 
 This example uses two collections:
 
