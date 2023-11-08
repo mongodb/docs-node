@@ -35,8 +35,8 @@ Operations which do not specify an explicit write concern inherit the global def
 
 For more information, see :manual:`Write Concern </reference/write-concern/>`
 
-Contructor
-~~~~~~~~~~
+Constructor
+~~~~~~~~~~~
 
 .. code-block:: js
 
@@ -44,18 +44,22 @@ Contructor
 
 .. list-table::
    :header-rows: 1
+   :widths: 25 75
 
    * - Parameter
      - Description
   
    * - ``w`` *(optional)*
-     - request acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags | **Type:** W ***************** https://mongodb.github.io/node-mongodb-native/5.7/types/W.html ?
+     - | request acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags 
+       | **Type:** W ***************** https://mongodb.github.io/node-mongodb-native/5.7/types/W.html ?
 
    *  - ``wtimeoutMS`` *(optional)*
-      - specify a time limit to prevent write operations from blocking indefinitely | **Type:** number
+      - | specify a time limit to prevent write operations from blocking indefinitely
+        | **Type:** number
 
    * - ``journal`` *(optional)*
-     - request acknowledgment that the write operation has been written to the on-disk journal | **Type:** boolean
+     - | request acknowledgment that the write operation has been written to the on-disk journal
+       | **Type:** boolean
 
 
 Methods
@@ -63,6 +67,7 @@ Methods
 
 ``apply``
 `````````
+Adds a new write concern to a command document.
 
 .. code-block:: js
 
@@ -70,6 +75,7 @@ Methods
 
 .. list-table::
    :header-rows: 1
+   :widths: 25 75
 
    * - Parameter
      - Description
@@ -80,24 +86,25 @@ Methods
    * - ``writeConcern``
      - | **Type:** WriteConcern
 
-``fromOptions``
-```````````````
+Update a ``WriteConcern`` for an existing document
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+This code updates the write concern of an existing document:
 
 .. code-block:: js
 
-   fromOptions(options?, inherit?): undefined | WriteConcern
+   document = {}
+   writeConcern = new WriteConcern(2, 30, true)
+   WriteConcern.apply(document, writeConcern)
 
-.. list-table::
-   :header-rows: 1
 
-   * - Parameter
-     - Description
+.. important::
+   
+   Use the ``fromOptions`` method to construct a ``WriteConcern`` from an existing set of options or ``WriteConcern``:
 
-   * - ``options`` *(optional)*
-     - | **Type:** W \| WriteConcernOptions \| WriteConcern
+   .. code-block:: js
 
-   * - ``inherit`` *(optional)*
-     - | **Type:** WriteConcernOptions \| WriteConcern
+      WriteConcern.fromOptions(options)
 
 
 Read Concern
