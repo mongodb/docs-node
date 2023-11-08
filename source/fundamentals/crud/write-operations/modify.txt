@@ -1,3 +1,5 @@
+:template: instruqt
+
 .. _node-fundamentals-change-a-document:
 
 ================
@@ -217,8 +219,6 @@ a value that violates a unique index constraint. See the MongoDB Server manual
 for more information on :manual:`unique indexes </core/index-unique/>`.
 
 .. _node-update-instruqt-lab:
-
-:template: instruqt
 
 Interactive Update Operation Lab
 --------------------------------

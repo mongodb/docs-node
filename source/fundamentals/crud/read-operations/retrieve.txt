@@ -1,3 +1,5 @@
+:template: instruqt
+
 .. _node-fundamentals-retrieve-data:
 
 =============
@@ -203,8 +205,6 @@ For a runnable example of the ``watch()`` method using the NodeJS driver, see
 the :ref:`change streams <node-usage-watch>` usage example.
 
 .. _node-retrieve-instruqt-lab:
-
-:template: instruqt
 
 Interactive Find Operation Lab
 ------------------------------

@@ -1,3 +1,5 @@
+:template: instruqt
+
 .. _node-fundamentals-insert-data:
 
 ================
@@ -232,8 +234,6 @@ section, see the following resources:
 - Runnable :doc:`Insert Multiple Documents Example </usage-examples/insertMany>`
 
 .. _node-insert-instruqt-lab:
-
-:template: instruqt
 
 Interactive Insert Operation Lab
 --------------------------------
