@@ -20,8 +20,13 @@ perform any of those operations, that information, such as user profiles
 and orders, needs to exist in MongoDB. For that information to exist,
 you need to first perform an **insert operation**.
 
-An insert operation inserts a single or multiple documents in MongoDB
-using the ``insertOne()``, ``insertMany()`` and ``bulkWrite()`` methods.
+An insert operation inserts one or more documents into a MongoDB collection.
+The {+driver-short+} provides the following methods to perform insert
+operations:
+
+- ``insertOne()``
+- ``insertMany()``
+- ``bulkWrite()``
 
 .. tip:: Interactive Lab
    
