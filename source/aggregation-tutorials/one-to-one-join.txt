@@ -10,6 +10,13 @@ One-to-One Join
    :depth: 2
    :class: singlecol
 
+.. facet::
+   :name: genre
+   :values: tutorial
+
+.. meta::
+   :keywords: code example, node.js, lookup, aggregation
+
 Introduction
 ------------
 
