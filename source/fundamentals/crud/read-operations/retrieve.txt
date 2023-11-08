@@ -204,6 +204,8 @@ the :ref:`change streams <node-usage-watch>` usage example.
 
 .. _node-retrieve-instruqt-lab:
 
+:template: instruqt
+
 Interactive Find Operation Lab
 ------------------------------
 

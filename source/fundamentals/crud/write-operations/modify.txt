@@ -218,6 +218,8 @@ for more information on :manual:`unique indexes </core/index-unique/>`.
 
 .. _node-update-instruqt-lab:
 
+:template: instruqt
+
 Interactive Update Operation Lab
 --------------------------------
 

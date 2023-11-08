@@ -233,6 +233,8 @@ section, see the following resources:
 
 .. _node-insert-instruqt-lab:
 
+:template: instruqt
+
 Interactive Insert Operation Lab
 --------------------------------
 
