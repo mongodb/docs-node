@@ -14,17 +14,31 @@ Introduction
 ------------
 
 In this tutorial, you can learn how to perform a one-to-one join using
-aggregation with the {+driver-long+}. A one-to-one join queries two different
-collections and combines related data based on one specific field in each
-collection. 
+aggregation with the {+driver-long+}. A one-to-one join occurs when a document
+in one collection has a field value that matches to a single document with the
+same field value in another collection. The two documents with matching fields
+are then combined into one document.
 
-This example uses two collections, ``products`` and ``orders``. The
-``products`` collection contains documents detailing a shop's available products. The
-``orders`` collection contains documents describing an individual order for a
-product at that shop. The goal of the aggregation is to list all orders
+.. tip::
+
+   A one-to-one join does not require the entities to have a :wikipedia:`One-to-one relationship
+   </One-to-one_(data_model)>`.
+
+The goal of the aggregation is to list all orders
 made in 2020, along with the product information associated with each order.
-Because one order can be for only one product, the aggregation uses a
-one-to-one join.
+
+This example uses two collections:
+
+- ``products`` which contains documents detailing a shop's available products.
+- ``orders`` which contains documents describing an individual order for a product at that shop.
+
+Because an order can be for only one product, the aggregation uses a
+one-to-one join to match an order document to the document for the ordered
+product. The collections are joined using a field called ``product_id`` that exists in
+the documents in both collections.
+
+The examples and sample data in this tutorial are sourced from the `Practical MongoDB
+Aggregations Book <https://www.practical-mongodb-aggregations.com/>`__.
 
 Before You Get Started
 ----------------------
