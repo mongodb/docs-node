@@ -232,7 +232,7 @@ Interactive Insert Operation Lab
 --------------------------------
 
 This lab helps you understand how to perform insert operations in MongoDB
-by using the ``insertOne()`` method. You do not need to install
-MongoDB or a code editor to complete the lab.
+by using the ``insertOne()`` method. You can complete this lab without
+installing MongoDB or a code editor.
 
 .. instruqt:: /mongodb-docs/tracks/insert-node?token=em_S6rjcmIzxGB4Sz_y

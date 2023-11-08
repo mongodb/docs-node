@@ -222,7 +222,7 @@ Interactive Update Operation Lab
 --------------------------------
 
 This lab helps you understand how to perform update operations in MongoDB
-by using the ``updateMany()`` method. You do not need to install
-MongoDB or a code editor to complete the lab.
+by using the ``updateMany()`` method. You can complete this lab without
+installing MongoDB or a code editor.
 
 .. instruqt:: /mongodb-docs/tracks/update-node?token=em_FEr9KfMh4WQ0VosU

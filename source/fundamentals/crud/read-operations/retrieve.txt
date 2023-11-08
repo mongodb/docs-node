@@ -15,10 +15,9 @@ Retrieve Data
 Overview
 --------
 
-You can use read operations to retrieve data from your MongoDB database.
-To request results based on a set of criteria from the existing set of
-data, you can use a find operation such as the ``find()`` or
-``findOne()`` methods.
+You can perform find operations to retrieve data from your MongoDB database.
+You can perform a find operation to match documents on a set of criteria
+by calling the ``find()`` or ``findOne()`` method.
 
 .. tip:: Interactive Lab
    
@@ -26,9 +25,9 @@ data, you can use a find operation such as the ``find()`` or
    ``find()`` method to retrieve data in the
    :ref:`node-retrieve-instruqt-lab` section of this guide.
 
-You can also further specify the information you are requesting by
-including additional parameters or by chaining other methods, as shown
-in the following guides:
+You can also further specify the information that the find operation
+returns by specifying optional parameters or by chaining other methods,
+as shown in the following guides:
 
 - :ref:`node-fundamentals-sort`
 - :ref:`node-fundamentals-skip`
@@ -209,7 +208,7 @@ Interactive Find Operation Lab
 ------------------------------
 
 This lab helps you understand how to perform read operations in MongoDB
-by using the ``find()`` method. You do not need to install
-MongoDB or a code editor to complete the lab.
+by using the ``find()`` method. You can complete this lab without
+installing MongoDB or a code editor.
 
 .. instruqt:: /mongodb-docs/tracks/find-node?token=em_OVNHWCPNPMLwNOCm
