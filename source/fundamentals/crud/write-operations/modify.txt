@@ -1,5 +1,3 @@
-:template: instruqt
-
 .. _node-fundamentals-change-a-document:
 
 ================
