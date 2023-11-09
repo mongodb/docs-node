@@ -4,6 +4,17 @@ Logging
 
 .. default-domain:: mongodb
 
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. facet::
+   :name: programming_language
+   :values: javascript/typescript
+ 
+.. meta::
+   :keywords: code example, deprecated, replace
+
 .. contents:: On this page
    :local:
    :backlinks: none
