@@ -16,6 +16,7 @@ MongoDB Node Driver
   /whats-new
   /usage-examples
   /fundamentals
+  /aggregation-tutorials
   API Documentation <{+api+}>
   /faq
   /connection-troubleshooting

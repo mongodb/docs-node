@@ -1,0 +1,12 @@
+=====================
+Aggregation Tutorials
+=====================
+
+.. toctree::
+
+   /aggregation-tutorials/one-to-one-join.txt
+
+Read the following tutorials to learn how perform specific tasks using
+aggregation:
+
+- :ref:`node-aggregation-one-to-one`
