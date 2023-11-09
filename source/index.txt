@@ -184,11 +184,8 @@ Take the following free online courses taught by MongoDB instructors:
 `````````````````````````````````````````````````````````````````````
 
 .. list-table::
-
-   * - .. figure:: /includes/figures/M220JS_hero.jpg
-          :alt: Banner for the MongoDB University Node.js Course
      
-     - `Using MongoDB with Node.js <https://learn.mongodb.com/learning-paths/using-mongodb-with-nodejs>`_
+   * - `Using MongoDB with Node.js <https://learn.mongodb.com/learning-paths/using-mongodb-with-nodejs>`_
         
        Learn the essentials of Node.js application development with MongoDB.
      
