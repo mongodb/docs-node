@@ -7,7 +7,7 @@ Modify Execution of CRUD Operations
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
@@ -63,12 +63,8 @@ A ``WriteConcern`` can define all, some or none of its accepted parameters:
      - | request acknowledgment that the write operation has been written to the on-disk journal
        | **Type:** boolean
 
-
-Methods
-~~~~~~~
-
-``apply`` *(static)*
-````````````````````
+``apply`` Method *(static)*
+````````````````````````````
 
 This method defines or updates the ``WriteConcern`` of a command document.
 
@@ -90,7 +86,7 @@ This method defines or updates the ``WriteConcern`` of a command document.
      - | **Type:** WriteConcern
 
 Update a ``WriteConcern`` for an existing document
-++++++++++++++++++++++++++++++++++++++++++++++++++
+``````````````````````````````````````````````````
 
 This code updates the write concern of an existing document:
 
@@ -107,7 +103,7 @@ This code updates the write concern of an existing document:
 
    .. code-block:: js
 
-      writerConcern2 = WriteConcern.fromOptions(writeConcern1)
+      writeConcern2 = WriteConcern.fromOptions(writeConcern1)
 
 
 Read Concern
@@ -135,25 +131,39 @@ The levels are defined by an enumerable set of the following options:
    * - ReadConcernLevel
      - Description
 
-   * - ``"available"``
+   * - ``'available'``
      - The query returns data from the instance with no guarantee that the data has been written to a majority of the replica set members. 
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-available/#mongodb-readconcern-readconcern.-available->`.
 
-   * - ``"linearizable"``
+   * - ``'linearizable'``
      - | The query returns data that reflects all successful writes issued with a write concern of ``majority`` and acknowledged prior to the start of the read operation. 
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable->`.
 
-   * - ``"local"``
+   * - ``'local'``
      - | The query returns the instance’s most recent data.
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-local/#mongodb-readconcern-readconcern.-local->`.
 
-   * - ``"majority"``
+   * - ``'majority'``
      - | The query returns the instance’s most recent data acknowledged as having been written to a majority of members in the replica set.  
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-majority/#mongodb-readconcern-readconcern.-majority->`.
 
-   * - ``"snapshot"``
+   * - ``'snapshot'``
      - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions.  
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
+
+Specify a ``ReadConcern`` for a collection
+``````````````````````````````````````````
+
+This code specifies the read concern level of an existing collection to ``'majority'``:
+
+.. code-block:: js
+
+   rc = new ReadConcern('majority')
+   db.collection.options{ readConcern: rc }
+
+Read Preference
+---------------
+
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
