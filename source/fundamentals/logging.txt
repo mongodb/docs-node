@@ -8,10 +8,6 @@ Logging
    :name: genre
    :values: reference
  
-.. facet::
-   :name: programming_language
-   :values: javascript/typescript
- 
 .. meta::
    :keywords: code example, deprecated, replace
 
