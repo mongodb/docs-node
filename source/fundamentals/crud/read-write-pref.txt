@@ -33,14 +33,16 @@ Write Concern
 A write concern describes the level of acknowledgement requested from MongoDB for write operations, such as an insert or update, before the operation is returned as successful. 
 Operations which do not specify an explicit write concern inherit the global default write concern settings.
 
-For more information, see :manual:`Write Concern </reference/write-concern/>`
+For more information, see :manual:`Write Concern </reference/write-concern/>`. For more detailed API descriptions, see `API WriteConcern <{+api+}classes/WriteConcern.html>`__
 
 Constructor
 ~~~~~~~~~~~
 
+A ``WriteConcern`` can define all, some or none of its accepted parameters:
+
 .. code-block:: js
 
-   new WriteConcern(w?, wtimeoutMS?, journal?): WriteConcern
+   new WriteConcern(w, wtimeoutMS, journal)
 
 .. list-table::
    :header-rows: 1
@@ -51,7 +53,7 @@ Constructor
   
    * - ``w`` *(optional)*
      - | request acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags 
-       | **Type:** W ***************** https://mongodb.github.io/node-mongodb-native/5.7/types/W.html ?
+       | **Type:** `W ***************** <{+api+}/types/W.html>`__
 
    *  - ``wtimeoutMS`` *(optional)*
       - | specify a time limit to prevent write operations from blocking indefinitely
@@ -65,9 +67,10 @@ Constructor
 Methods
 ~~~~~~~
 
-``apply``
-`````````
-Adds a new write concern to a command document.
+``apply`` *(static)*
+````````````````````
+
+This method defines or updates the ``WriteConcern`` of a command document.
 
 .. code-block:: js
 
@@ -98,27 +101,63 @@ This code updates the write concern of an existing document:
    WriteConcern.apply(document, writeConcern)
 
 
-.. important::
+.. tip::
    
    Use the ``fromOptions`` method to construct a ``WriteConcern`` from an existing set of options or ``WriteConcern``:
 
    .. code-block:: js
 
-      WriteConcern.fromOptions(options)
+      writerConcern2 = WriteConcern.fromOptions(writeConcern1)
 
 
 Read Concern
 ------------
 
-The read concern determines which data the client returns from a query. The default read concern level is 
-"local", meaning that the client returns the instance’s most recent data, with no guarantee that the data 
-has been written to a majority of the replica set members.
+The read concern determines which location the client retrives data from (i.e. which replica set or replica set shard is read) during a query. The default read concern level is ``local``, meaning that the client returns the instance’s most recent data, with no guarantee that the data has been written to a majority of the replica set members.
 
-For more information, see :manual:`Read Concern </reference/read-concern/>`
+For more information, see :manual:`Read Concern </reference/read-concern/>`. For more detailed API descriptions, see `API ReadConcern <{+api+}/classes/ReadConcern.html>`__
+
+Constructor
+~~~~~~~~~~~
+
+A new ``ReadConcern`` takes a ``ReadConcernLevel`` string as a parameter. 
+
+.. code-block:: js
+
+   new ReadConcern(readConcernLevel)
+   
+The levels are defined by an enumerable set of the following options:
+
+.. list-table::
+   :widths: 25 75
+   :header-rows: 1
+
+   * - ReadConcernLevel
+     - Description
+
+   * - ``"available"``
+     - The query returns data from the instance with no guarantee that the data has been written to a majority of the replica set members. 
+       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-available/#mongodb-readconcern-readconcern.-available->`.
+
+   * - ``"linearizable"``
+     - | The query returns data that reflects all successful writes issued with a write concern of ``majority`` and acknowledged prior to the start of the read operation. 
+       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable->`.
+
+   * - ``"local"``
+     - | The query returns the instance’s most recent data.
+       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-local/#mongodb-readconcern-readconcern.-local->`.
+
+   * - ``"majority"``
+     - | The query returns the instance’s most recent data acknowledged as having been written to a majority of members in the replica set.  
+       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-majority/#mongodb-readconcern-readconcern.-majority->`.
+
+   * - ``"snapshot"``
+     - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions.  
+       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-- `API WriteConcern <{+api+}/mongo/writeconcern#WriteConcern>`__
-- `API ReadConcern <{+api+}/mongo/readconcern#ReadConcern>`__
+- `API WriteConcern <{+api+}classes/WriteConcern.html>`__
+- `API ReadConcern <{+api+}/classes/ReadConcern.html>`__
 - `API ReadPref <{+api+}/mongo/readpref#ReadPref>`__
