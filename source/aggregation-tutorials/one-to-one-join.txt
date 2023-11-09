@@ -20,7 +20,7 @@ One-to-One Join
 Introduction
 ------------
 
-In this tutorial, you can learn how to perform a one-to-one join using
+In this tutorial, you will learn how to perform a one-to-one join using
 aggregation with the {+driver-long+}. A one-to-one join occurs when a document
 in one collection has a field value that matches to a single document with the
 same field value in another collection. The two documents with matching fields
@@ -109,8 +109,7 @@ One-to-One Join Tutorial
             The next stage in the pipeline is a :manual:`$lookup
             </reference/operator/aggregation/lookup>` stage. The
             ``$lookup`` stage joins the ``product_id`` field in the ``orders``
-            collection, to the ``id`` field in the ``products`` collection. The
-            following code adds a ``$lookup`` stage to the pipeline:
+            collection, to the ``id`` field in the ``products`` collection.
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
