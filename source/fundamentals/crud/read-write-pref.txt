@@ -109,7 +109,7 @@ This code updates the write concern of an existing document:
 Read Concern
 ------------
 
-The read concern determines which location the client retrives data from (i.e. which replica set or replica set shard is read) during a query. The default read concern level is ``local``, meaning that the client returns the instance’s most recent data, with no guarantee that the data has been written to a majority of the replica set members.
+The read concern determines the level of consistency across replica sets will be maintained during a query during a query. Lower consistency requirements may reduce latency. The default read concern level is ``local``, meaning that the client returns the instance’s most recent data, with no guarantee that the data has been written to a majority of the replica set members.
 
 For more information, see :manual:`Read Concern </reference/read-concern/>`. For more detailed API descriptions, see `API ReadConcern <{+api+}/classes/ReadConcern.html>`__
 
@@ -131,21 +131,21 @@ The levels are defined by an enumerable set of the following options:
    * - ReadConcernLevel
      - Description
 
-   * - ``'available'``
-     - The query returns data from the instance with no guarantee that the data has been written to a majority of the replica set members. 
-       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-available/#mongodb-readconcern-readconcern.-available->`.
-
-   * - ``'linearizable'``
-     - | The query returns data that reflects all successful writes issued with a write concern of ``majority`` and acknowledged prior to the start of the read operation. 
-       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable->`.
-
    * - ``'local'``
      - | The query returns the instance’s most recent data.
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-local/#mongodb-readconcern-readconcern.-local->`.
 
+   * - ``'available'``
+     - The query returns data from the instance with no guarantee that the data has been written to a majority of the replica set members. 
+       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-available/#mongodb-readconcern-readconcern.-available->`.
+
    * - ``'majority'``
      - | The query returns the instance’s most recent data acknowledged as having been written to a majority of members in the replica set.  
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-majority/#mongodb-readconcern-readconcern.-majority->`.
+
+   * - ``'linearizable'``
+     - | The query returns data that reflects all successful writes issued with a write concern of ``majority`` and acknowledged prior to the start of the read operation. 
+       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable->`.
 
    * - ``'snapshot'``
      - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions.  
@@ -159,11 +159,51 @@ This code specifies the read concern level of an existing collection to ``'major
 .. code-block:: js
 
    rc = new ReadConcern('majority')
-   db.collection.options{ readConcern: rc }
+   db.collection.find({}).options{ readConcern: rc }
 
 Read Preference
 ---------------
 
+The read concern determines how queries are routed (i.e. which member of a replica set is read). The default mode is to read from the primary member of a replica set.
+
+The preference modes are defined by an enumerable set of the following options. More detailed descriptions can be found in the :manual:`Read Preference Modes guide </core/read-preference/#read-preference-modes-1>`
+
+.. list-table::
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Mode
+     - Description
+
+   * - ``'primary'``
+     - All operations read from the primary member of the replica set.
+
+   * - ``'primaryPreferred'``
+     - Most operations read from the primary member. However, if the primary member is busy, the operation reads from a secondary member that meets the :ref:`max_staleness_seconds` criteria.
+
+   * - ``'secondary'``
+     - All operations read from a secondary member of the replica set. If a :ref:`max_staleness_seconds` value is defined, it will be used to determine an appropriate member. We recommend setting a ``maxStalenessSeconds`` value to avoid returning stale data.
+
+   * - ``'secondaryPreferred'``
+     - Most operations read from a secondary member of the replica set. If a :ref:`max_staleness_seconds` value is defined, it will be used to determine an appropriate member. If none of the secondary members meet the staleness criteria, the operation reads from the primary.
+
+   * - ``'nearest'``
+     - Operations read from a member that has a latency within the acceptable range. Whether a member is primary or secondary is not considered. We recommend setting a :ref:`max_staleness_seconds` value to avoid returning stale data.
+
+ReadPreference options
+~~~~~~~~~~~~~~~~~~~~~~
+
+``hedge``
+`````````
+Sends queries to multiple shards and returns the first response.
+For more information, see :manual:`Hedged Read Option </core/read-preference-hedge-option/>`.
+
+.. _max_staleness_seconds:
+
+``maxStalenessSeconds``
+```````````````````````
+The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend using this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data.
+For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
