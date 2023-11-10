@@ -166,6 +166,16 @@ Read Preference
 
 The read concern determines how queries are routed (i.e. which member of a replica set is read). The default mode is to read from the primary member of a replica set.
 
+Constructor
+~~~~~~~~~~~
+
+.. code-block:: js
+
+   new ReadPreference(mode, tags?, options?)
+
+``mode``
+`````````
+
 The preference modes are defined by an enumerable set of the following options. More detailed descriptions can be found in the :manual:`Read Preference Modes guide </core/read-preference/#read-preference-modes-1>`
 
 .. list-table::
@@ -179,34 +189,54 @@ The preference modes are defined by an enumerable set of the following options. 
      - All operations read from the primary member of the replica set.
 
    * - ``'primaryPreferred'``
-     - Most operations read from the primary member. However, if the primary member is busy, the operation reads from a secondary member that meets the :ref:`max_staleness_seconds` criteria.
+     - Most operations read from the primary member. However, if the primary member is busy, the operation reads from a secondary member that meets the :ref:`<read_preference_options>` criteria.
 
    * - ``'secondary'``
-     - All operations read from a secondary member of the replica set. If a :ref:`max_staleness_seconds` value is defined, it will be used to determine an appropriate member. We recommend setting a ``maxStalenessSeconds`` value to avoid returning stale data.
+     - All operations read from a secondary member of the replica set. If a :ref:`read_preference_options` value is defined, it will be used to determine an appropriate member. We recommend setting a ``maxStalenessSeconds`` value to avoid returning stale data.
 
    * - ``'secondaryPreferred'``
-     - Most operations read from a secondary member of the replica set. If a :ref:`max_staleness_seconds` value is defined, it will be used to determine an appropriate member. If none of the secondary members meet the staleness criteria, the operation reads from the primary.
+     - Most operations read from a secondary member of the replica set. If a :ref:`read_preference_options` value is defined, it will be used to determine an appropriate member. If none of the secondary members meet the staleness criteria, the operation reads from the primary.
 
    * - ``'nearest'``
-     - Operations read from a member that has a latency within the acceptable range. Whether a member is primary or secondary is not considered. We recommend setting a :ref:`max_staleness_seconds` value to avoid returning stale data.
+     - Operations read from a member that has a latency within the acceptable range. Whether a member is primary or secondary is not considered. We recommend setting a :ref:`read_preference_options` value to avoid returning stale data.
 
-ReadPreference options
-~~~~~~~~~~~~~~~~~~~~~~
-
-``hedge``
-`````````
-Sends queries to multiple shards and returns the first response.
-For more information, see :manual:`Hedged Read Option </core/read-preference-hedge-option/>`.
-
-.. _max_staleness_seconds:
-
-``maxStalenessSeconds``
+``tags`` **(optional)**
 ```````````````````````
-The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend using this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data.
-For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
+
+A list of tags used to prioritize secondary members using tags associated with each member. Tags cannot be used with  ``'primary'`` mode.
+For more information about tag sets or managing member tags, see :manual:`Read Preference Tag Set Lists </core/read-preference-tags/#read-preference-tag-set-lists/>`.
+
+.. _read_preference_options:
+
+``options`` **(optional)**
+``````````````````````````
+
+.. list-table::
+   :widths: 25 75
+   :header-rows: 1
+
+   * - Mode
+     - Description
+
+   * - ``hedge``
+     - | Sends queries to multiple shards and returns the first response. 
+       | For more information, see :manual:`Hedged Read Option </core read-preference-hedge-option/>`.
+
+   * - ``maxStalenessSeconds``
+     - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend using this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data.
+       | For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
+
+Setting Global Read Preferences 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This code sets the read preference mode to ``'secondaryPreferred'``:
+
+.. code-block:: js
+
+   TBD
 
 API Documentation
-~~~~~~~~~~~~~~~~~
+-----------------
 
 - `API WriteConcern <{+api+}classes/WriteConcern.html>`__
 - `API ReadConcern <{+api+}/classes/ReadConcern.html>`__
