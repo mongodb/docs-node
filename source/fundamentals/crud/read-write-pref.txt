@@ -4,6 +4,13 @@
 Modify Execution of CRUD Operations
 ===================================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: node.js, customize, preferences, replica set, consistency
+
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -42,7 +49,7 @@ A ``WriteConcern`` can define all, some or none of its accepted parameters:
 
 .. code-block:: js
 
-   new WriteConcern(w, wtimeoutMS, journal)
+   new WriteConcern(w, wtimeoutMS, journal): WriteConcern
 
 .. list-table::
    :header-rows: 1
@@ -120,7 +127,7 @@ A new ``ReadConcern`` takes a ``ReadConcernLevel`` string as a parameter.
 
 .. code-block:: js
 
-   new ReadConcern(readConcernLevel)
+   new ReadConcern(readConcernLevel): ReadConcern
    
 The levels are defined by an enumerable set of the following options:
 
@@ -171,7 +178,7 @@ Constructor
 
 .. code-block:: js
 
-   new ReadPreference(mode, tags?, options?)
+   new ReadPreference(mode, tags?, options?): ReadPreference
 
 ``mode``
 `````````
@@ -200,16 +207,18 @@ The preference modes are defined by an enumerable set of the following options. 
    * - ``'nearest'``
      - Operations read from a member that has a latency within the acceptable range. Whether a member is primary or secondary is not considered. We recommend setting a :ref:`read_preference_options` value to avoid returning stale data.
 
-``tags`` **(optional)**
-```````````````````````
+``tags`` *(optional)*
+`````````````````````
 
 A list of tags used to prioritize secondary members using tags associated with each member. Tags cannot be used with  ``'primary'`` mode.
 For more information about tag sets or managing member tags, see :manual:`Read Preference Tag Set Lists </core/read-preference-tags/#read-preference-tag-set-lists/>`.
 
 .. _read_preference_options:
 
-``options`` **(optional)**
-``````````````````````````
+``options`` *(optional)*
+````````````````````````
+
+The following options additional are available:
 
 .. list-table::
    :widths: 25 75
@@ -219,7 +228,7 @@ For more information about tag sets or managing member tags, see :manual:`Read P
      - Description
 
    * - ``hedge``
-     - | Sends queries to multiple shards and returns the first response. 
+     - | Sends each query to multiple shards and returns the first response. 
        | For more information, see :manual:`Hedged Read Option </core read-preference-hedge-option/>`.
 
    * - ``maxStalenessSeconds``
