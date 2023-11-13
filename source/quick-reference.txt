@@ -22,7 +22,7 @@ Connect to a Compatible MongoDB Deployment
 .. |page-topic| replace:: run commands
 .. |link-topic-ing| replace:: run read and write operations directly from the Atlas UI
 
-.. |atlas-url| replace:: :atlas:`atlas-ui/documents/`
+.. |atlas-url| replace:: :atlas:`Create, View, Update, and Delete Documents <atlas-ui/documents/>`
 
 .. include:: /includes/fact-atlas-compatible.rst
 .. include:: /includes/fact-atlas-link.rst
