@@ -40,7 +40,7 @@ Write Concern
 A write concern describes the level of acknowledgement requested from MongoDB for write operations, such as an insert or update, before the operation is returned as successful. 
 Operations which do not specify an explicit write concern inherit the global default write concern settings.
 
-For more information, see :manual:`Write Concern </reference/write-concern/>`. For more detailed API descriptions, see `API WriteConcern <{+api+}classes/WriteConcern.html>`__
+For more information, see :manual:`Write Concern </reference/write-concern/>`. For more detailed API descriptions, see `API WriteConcern <{+api+}/classes/WriteConcern.html>`__
 
 Constructor
 ~~~~~~~~~~~
@@ -229,7 +229,7 @@ The following options additional are available:
 
    * - ``hedge``
      - | Sends each query to multiple shards and returns the first response. 
-       | For more information, see :manual:`Hedged Read Option </core read-preference-hedge-option/>`.
+       | For more information, see :manual:`Hedged Read Option </core/read-preference-hedge-option/>`.
 
    * - ``maxStalenessSeconds``
      - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend using this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data.
@@ -247,6 +247,6 @@ This code sets the read preference mode to ``'secondaryPreferred'``:
 API Documentation
 -----------------
 
-- `API WriteConcern <{+api+}classes/WriteConcern.html>`__
+- `API WriteConcern <{+api+}/classes/WriteConcern.html>`__
 - `API ReadConcern <{+api+}/classes/ReadConcern.html>`__
-- `API ReadPref <{+api+}/mongo/readpref#ReadPref>`__
+- `API ReadPref <{+api+}/classes/ReadPreference.html>`__
