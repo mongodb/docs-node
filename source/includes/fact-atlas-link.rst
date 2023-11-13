@@ -1,2 +1,2 @@
-To learn more about |link-topic-ing| for deployments hosted in MongoDB
-Atlas, see |atlas-url|.
+You can |link-topic-ing| when you connect to a MongoDB Atlas deployment. 
+To learn more, see the |atlas-url| Atlas UI tutorial.
