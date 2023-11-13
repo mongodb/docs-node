@@ -16,15 +16,13 @@ Quick Reference
 This page shows the driver syntax for several MongoDB commands and links to
 their related reference and API documentation.
 
-Connect to a Compatible Deployment
-Use the Node.js Driver to 
-Compatibility
--------------
+Connect to a Compatible MongoDB Deployment
+------------------------------------------
 
 .. |page-topic| replace:: run commands
 .. |link-topic-ing| replace:: run read and write operations directly from the Atlas UI
 
-.. |atlas-url| replace:: :atlas:`Create, View, Update, and Delete Documents </atlas-ui/documents>`
+.. |atlas-url| replace:: :atlas:`atlas-ui/documents/`
 
 .. include:: /includes/fact-atlas-compatible.rst
 .. include:: /includes/fact-atlas-link.rst
