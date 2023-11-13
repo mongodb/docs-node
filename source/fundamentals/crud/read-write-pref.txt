@@ -171,7 +171,7 @@ This code specifies the read concern level of an existing collection to ``'major
 Read Preference
 ---------------
 
-The read concern determines how queries are routed, that is, which member of a replica set is read. The default mode is to read from the primary member of a replica set.
+The read concern determines how queries are routed, that is which member of a replica set is read. The default mode is to read from the primary member of a replica set.
 
 Constructor
 ~~~~~~~~~~~
@@ -218,7 +218,7 @@ For more information about tag sets or managing member tags, see :manual:`Read P
 ``options`` *(optional)*
 ````````````````````````
 
-The following options may be sent as a `ReadPreferenceOptions <{+api+}/interfaces/ReadPreferenceOptions.html>` object:
+The following options may be sent as a `ReadPreferenceOptions <{+api+}/interfaces/ReadPreferenceOptions.html>`__ object:
 
 .. list-table::
    :widths: 25 75
