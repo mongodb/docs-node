@@ -151,7 +151,7 @@ The levels are defined by an enumerable set of the following options:
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-majority/#mongodb-readconcern-readconcern.-majority->`.
 
    * - ``'linearizable'``
-     - | The query returns data that reflects all successful writes issued with a write concern of ``majority`` and acknowledged prior to the start of the read operation. 
+     - | The query returns data that reflects all successful writes issued that had a write concern of ``majority`` and were acknowledged before the start of the read operation. 
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable->`.
 
    * - ``'snapshot'``
@@ -171,7 +171,7 @@ This code specifies the read concern level of an existing collection to ``'major
 Read Preference
 ---------------
 
-The read concern determines how queries are routed (i.e. which member of a replica set is read). The default mode is to read from the primary member of a replica set.
+The read concern determines how queries are routed, that is, which member of a replica set is read. The default mode is to read from the primary member of a replica set.
 
 Constructor
 ~~~~~~~~~~~
@@ -218,7 +218,7 @@ For more information about tag sets or managing member tags, see :manual:`Read P
 ``options`` *(optional)*
 ````````````````````````
 
-The following options additional are available:
+The following options may be sent as a `ReadPreferenceOptions <{+api+}/interfaces/ReadPreferenceOptions.html>` object:
 
 .. list-table::
    :widths: 25 75
