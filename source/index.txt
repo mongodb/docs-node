@@ -133,6 +133,7 @@ You can install the following packages to expand the functionality of the {+driv
 
 .. list-table::
    :header-rows: 1
+   :stub-columns: 1
    :widths: 1 2
 
    * - Package
