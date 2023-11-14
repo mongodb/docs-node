@@ -171,7 +171,7 @@ This code specifies the read concern level of an existing collection to ``'major
 Read Preference
 ---------------
 
-The read concern determines how queries are routed, that is which member of a replica set is read. The default mode is to read from the primary member of a replica set.
+The read concern determines which member of a replica set is read. The default mode is to read from the primary member of a replica set.
 
 Constructor
 ~~~~~~~~~~~
@@ -249,4 +249,4 @@ API Documentation
 
 - `API WriteConcern <{+api+}/classes/WriteConcern.html>`__
 - `API ReadConcern <{+api+}/classes/ReadConcern.html>`__
-- `API ReadPref <{+api+}/classes/ReadPreference.html>`__
+- `API ReadPreference <{+api+}/classes/ReadPreference.html>`__
