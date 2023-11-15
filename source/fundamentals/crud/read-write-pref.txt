@@ -71,7 +71,7 @@ A ``WriteConcern`` can define all, some or none of its accepted parameters:
        | **Type:** boolean
 
 ``apply`` Method *(static)*
-````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This method defines or updates the ``WriteConcern`` of a command document.
 
@@ -163,7 +163,7 @@ The levels are defined by an enumerable set of the following options:
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
 Set a ``ReadConcern`` of a cluster
-```````````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This code sets the ``ReadConcern`` level of an existing cluster to ``'majority'``:
 
