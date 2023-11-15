@@ -92,17 +92,21 @@ This method defines or updates the ``WriteConcern`` of a command document.
    * - ``writeConcern``
      - | **Type:** WriteConcern
 
-Update a ``WriteConcern`` for an existing document
+Update a ``WriteConcern`` for an existing cluster
 ``````````````````````````````````````````````````
 
-This code updates the write concern of an existing document:
+This code uses a custom write concern while creating new a document:
 
 .. code-block:: js
 
-   document = {}
-   writeConcern = new WriteConcern(2, 30, true)
-   WriteConcern.apply(document, writeConcern)
-
+   db.planets.insertOne( 
+      {
+        name: 'NewPlanet'
+      }, 
+      {
+        writeConcern: { w: 2, wtimeout: 5000 }
+      } 
+   )
 
 .. tip::
    
@@ -158,15 +162,14 @@ The levels are defined by an enumerable set of the following options:
      - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions.  
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
-Specify a ``ReadConcern`` for a collection
-``````````````````````````````````````````
+Specify a ``ReadConcern`` for a cluster
+```````````````````````````````````````
 
-This code specifies the read concern level of an existing collection to ``'majority'``:
+This code specifies the read concern level of an existing cluster to ``'majority'``:
 
 .. code-block:: js
 
-   rc = new ReadConcern('majority')
-   db.collection.find({}).options{ readConcern: rc }
+   atlas clusters advancedSettings update myCluster --readConcern 'majority'
 
 Read Preference
 ---------------
@@ -235,14 +238,18 @@ The following options may be sent as a `ReadPreferenceOptions <{+api+}/interface
      - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend using this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data.
        | For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
 
-Setting Global Read Preferences 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Setting the ``ReadPreferences`` for a session 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This code sets the read preference mode to ``'secondaryPreferred'``:
 
 .. code-block:: js
 
-   TBD
+    const txnOpts = {
+      readPreference: 'secondaryPreferred'
+    };
+    session.startTransaction(txnOpts);
+    ...
 
 API Documentation
 -----------------
