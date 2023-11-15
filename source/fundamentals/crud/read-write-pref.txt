@@ -92,16 +92,16 @@ This method defines or updates the ``WriteConcern`` of a command document.
    * - ``writeConcern``
      - | **Type:** WriteConcern
 
-Update a ``WriteConcern`` for an existing cluster
-``````````````````````````````````````````````````
+Set a ``WriteConcern`` for a single write operation
+````````````````````````````````````````````````````
 
-This code uses a custom write concern while creating new a document:
+This code uses a custom ``WriteConcern`` while creating new a document:
 
 .. code-block:: js
 
-   db.planets.insertOne( 
+   db.myCollection.insertOne( 
       {
-        name: 'NewPlanet'
+        name: 'anotherDocumentName'
       }, 
       {
         writeConcern: { w: 2, wtimeout: 5000 }
@@ -162,10 +162,10 @@ The levels are defined by an enumerable set of the following options:
      - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions.  
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
-Specify a ``ReadConcern`` for a cluster
-```````````````````````````````````````
+Set a ``ReadConcern`` of a cluster
+```````````````````````````````````
 
-This code specifies the read concern level of an existing cluster to ``'majority'``:
+This code sets the ``ReadConcern`` level of an existing cluster to ``'majority'``:
 
 .. code-block:: js
 
@@ -238,8 +238,8 @@ The following options may be sent as a `ReadPreferenceOptions <{+api+}/interface
      - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend using this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data.
        | For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
 
-Setting the ``ReadPreferences`` for a session 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Set the ``ReadPreferences`` for a session 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This code sets the read preference mode to ``'secondaryPreferred'``:
 
