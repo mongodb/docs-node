@@ -1,8 +1,8 @@
 .. _node-crud-write-read-pref:
 
-===================================
-Modify Execution of CRUD Operations
-===================================
+===============================================
+Specify How CRUD Operations Run on Replica Sets
+===============================================
 
 .. facet::
    :name: genre
@@ -20,27 +20,27 @@ Modify Execution of CRUD Operations
 Overview
 --------
 
-In this guide, you can learn how to modify the way that the {+driver-long+} executes create, read, update, and delete (CRUD) operations using **write concern**, **read concern**, and **read preference** configurations for replica sets.
+In this guide, you can learn how to use the **write concern**, **read concern**, and **read preference** configurations to modify the way that the {+driver-long+} executes create, read, update, and delete (CRUD) operations on replica sets.
 
 You can set write concern, read concern, and read preference options at
 the following levels:
 
-- Client level, which sets the *default for all operation executions*
+- Client, which sets the *default for all operation executions*
   unless overridden
-- Session level
-- Transaction level
-- Database level
-- Collection level
+- Session
+- Transaction
+- Database
+- Collection
 
 These options allow you to customize the consistency and availability of the data in your replica sets.
 
 Write Concern
 -------------
 
-A write concern describes the level of acknowledgement requested from MongoDB for write operations, such as an insert or update, before the operation is returned as successful. 
-Operations which do not specify an explicit write concern inherit the global default write concern settings.
+The write concern specifies the level of acknowledgement requested from MongoDB for write operations, such as an insert or update, before the operation successfully returns.  
+Operations that do not specify an explicit write concern inherit the global default write concern settings.
 
-For more information, see :manual:`Write Concern </reference/write-concern/>`. For more detailed API descriptions, see `API WriteConcern <{+api+}/classes/WriteConcern.html>`__
+For more information, see :manual:`Write Concern </reference/write-concern/>` in the server manual. For more detailed API descriptions, see the `WriteConcern API documentation <{+api+}/classes/WriteConcern.html>`__.
 
 Constructor
 ~~~~~~~~~~~
@@ -49,7 +49,7 @@ A ``WriteConcern`` can define all, some or none of its accepted parameters:
 
 .. code-block:: js
 
-   new WriteConcern(w, wtimeoutMS, journal): WriteConcern
+   new WriteConcern(w?, wtimeoutMS?, journal?): WriteConcern
 
 .. list-table::
    :header-rows: 1
@@ -60,7 +60,7 @@ A ``WriteConcern`` can define all, some or none of its accepted parameters:
   
    * - ``w`` *(optional)*
      - | request acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags 
-       | **Type:** `W ***************** <{+api+}/types/W.html>`__
+       | **Type:** `W <{+api+}/types/W.html>`__
 
    *  - ``wtimeoutMS`` *(optional)*
       - | specify a time limit to prevent write operations from blocking indefinitely
@@ -213,7 +213,7 @@ The preference modes are defined by an enumerable set of the following options. 
 ``tags`` *(optional)*
 `````````````````````
 
-A list of tags used to prioritize secondary members using tags associated with each member. Tags cannot be used with  ``'primary'`` mode.
+A list of tags used to prioritize secondary members by using tags associated with each member. Tags cannot be used with  ``'primary'`` mode.
 For more information about tag sets or managing member tags, see :manual:`Read Preference Tag Set Lists </core/read-preference-tags/#read-preference-tag-set-lists/>`.
 
 .. _read_preference_options:
@@ -235,7 +235,7 @@ The following options may be sent as a `ReadPreferenceOptions <{+api+}/interface
        | For more information, see :manual:`Hedged Read Option </core/read-preference-hedge-option/>`.
 
    * - ``maxStalenessSeconds``
-     - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend using this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data.
+     - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend setting this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data.
        | For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
 
 Set the ``ReadPreferences`` for a session 
