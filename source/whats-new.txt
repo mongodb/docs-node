@@ -62,12 +62,10 @@ What's New in 6.3
 The {+driver-short+} v6.3 release includes the following features:
 
 - Adds the ``serverMonitoringMode`` client option to control the
-  behavior of the monitoring connection between each node in a topology.
+  behavior of the monitoring connection among the nodes in a topology.
   This option takes a value of ``auto`` (default), ``poll``, or
-  ``stream``. When the setting is ``auto``, the environment the driver
-  runs in determines the monitoring mode. Function-as-a-service (FaaS)
-  environments prefer the polling mode and all others prefer the
-  streaming mode.
+  ``stream``. To learn more, see the entry for this option in the
+  :ref:`node-connection-options` guide.
 
   You can set the ``serverMonitoringMode`` option in a
   ``MongoClientOptions`` instance or as a connection string option. The
@@ -79,13 +77,10 @@ The {+driver-short+} v6.3 release includes the following features:
      new MongoClient('<connection string>', { serverMonitoringMode: 'stream' });
 
 - Fixes a connection leak when the ``serverApi`` client option is set.
-  In previous versions, the driver sent a legacy command to the server
-  that returned an error, and the error-handling logic didn't correctly
-  remove the socket causing the connection leak.
 
 - Deprecates the ``contentType`` and ``aliases`` GridFS options. To
-  store this information, add corresponding fields to the ``metadata``
-  document.
+  store the content type and aliases of a file, add ``contentType`` and ``aliases``
+  fields to the ``metadata`` document.
 
 To learn more about this release, see the
 `v6.3.0 Release Highlights
