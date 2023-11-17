@@ -44,12 +44,12 @@ includes the product details associated with each order.
 
 This example uses two collections:
 
-- ``products``, which contains documents detailing a shop's available
-  products
-- ``orders``, which contains documents describing an individual order
-  for a product at that shop
+- ``orders``, which contains documents describing an order
+  for a product from a shop
+- ``products``, which contains documents that describe the available
+  products from a shop
 
-An order an only contain one product, so the aggregation uses a
+An order can only contain one product, so the aggregation uses a
 one-to-one join to match an order document to the document for the ordered
 product. The collections are joined by a field called ``product_id``
 that exists in documents in both collections.
@@ -71,24 +71,24 @@ Get a handle on the ``products`` and ``orders`` collections:
    :end-before: end-colls
    :dedent:
 
-Insert sample data into the ``products`` collection by
-pasting the following sample documents into the ``sampleData1`` array:
-
-.. literalinclude:: /includes/aggregation/one-to-one-join.js
-   :language: javascript
-   :copyable: true
-   :start-after: start-products
-   :end-before: end-products
-   :dedent:
-
 Insert sample data into the ``orders`` collection by
-pasting the following sample documents into the ``sampleData2`` array:
+pasting the following sample documents into the ``sampleData1`` array:
 
 .. literalinclude:: /includes/aggregation/one-to-one-join.js
    :language: javascript
    :copyable: true
    :start-after: start-orders
    :end-before: end-orders
+   :dedent:
+
+Insert sample data into the ``products`` collection by
+pasting the following sample documents into the ``sampleData2`` array:
+
+.. literalinclude:: /includes/aggregation/one-to-one-join.js
+   :language: javascript
+   :copyable: true
+   :start-after: start-products
+   :end-before: end-products
    :dedent:
 
 Tutorial
@@ -171,16 +171,17 @@ Tutorial
 
    .. step:: Run the Aggregation Pipeline
 
-      Run the application by running the following command in your
-      terminal:
+      Perform the aggregation on the ``orders`` collection by running the
+      following command in your terminal to run the ``agg_tutorial.js``
+      file:
 
       .. code-block:: bash
       
          node agg_tutorial.js
 
       The aggregated result contains three documents. The documents
-      represent customer orders that occurred in 2020, with the ``product_name`` and
-      ``product_category`` of the ordered product:
+      represent customer orders that occurred in 2020, with the
+      ``product_name`` and ``product_category`` of the ordered product:
 
       .. code-block:: javascript
          :copyable: false

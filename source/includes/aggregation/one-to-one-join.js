@@ -9,40 +9,11 @@ async function run() {
     const aggDB = client.db("agg_tutorials_db");
 
     // start-colls
-    const collName1 = await aggDB.collection("products");
-    const collName2 = await aggDB.collection("orders");
+    const collName1 = await aggDB.collection("orders");
+    const collName2 = await aggDB.collection("products");
     // end-colls
 
     const sampleData1 = [
-      // start-products
-      {
-        id: "a1b2c3d4",
-        name: "Asus Laptop",
-        category: "ELECTRONICS",
-        description: "Good value laptop for students",
-      },
-      {
-        id: "z9y8x7w6",
-        name: "The Day Of The Triffids",
-        category: "BOOKS",
-        description: "Classic post-apocalyptic novel",
-      },
-      {
-        id: "ff11gg22hh33",
-        name: "Morphy Richardds Food Mixer",
-        category: "KITCHENWARE",
-        description: "Luxury mixer turning good cakes into great",
-      },
-      {
-        id: "pqr678st",
-        name: "Karcher Hose Set",
-        category: "GARDEN",
-        description: "Hose + nosels + winder for tidy storage",
-      },
-      // end-products
-    ];
-    
-    const sampleData2 = [
       // start-orders
       {
         customer_id: "elise_smith@myemail.com",
@@ -69,6 +40,35 @@ async function run() {
         value: 429.65,
       },
       // end-orders
+    ];
+
+    const sampleData2 = [
+      // start-products
+      {
+        id: "a1b2c3d4",
+        name: "Asus Laptop",
+        category: "ELECTRONICS",
+        description: "Good value laptop for students",
+      },
+      {
+        id: "z9y8x7w6",
+        name: "The Day Of The Triffids",
+        category: "BOOKS",
+        description: "Classic post-apocalyptic novel",
+      },
+      {
+        id: "ff11gg22hh33",
+        name: "Morphy Richardds Food Mixer",
+        category: "KITCHENWARE",
+        description: "Luxury mixer turning good cakes into great",
+      },
+      {
+        id: "pqr678st",
+        name: "Karcher Hose Set",
+        category: "GARDEN",
+        description: "Hose + nosels + winder for tidy storage",
+      },
+      // end-products
     ];
 
     await collName1.deleteMany({});
@@ -114,7 +114,7 @@ async function run() {
             product_category: "$product_mapping.category",
           },
         }
-      );``
+      );
     // end-set
 
     // start-unset
