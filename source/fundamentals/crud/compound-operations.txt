@@ -13,9 +13,9 @@ Compound Operations
 Overview
 --------
 
-Most database requests need to either read data out of a database or
-write data into a database. However, there are instances where you may
-need to read and write data in a single interaction.
+Most database requests either read data out of a database or write data into
+a database. However, there are instances where you may require a single
+operation that reads and writes data.
 
 **Compound operations** combine read and write operations
 in a single atomic statement, so there's no chance of data changing in

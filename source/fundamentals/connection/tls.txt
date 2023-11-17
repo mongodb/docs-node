@@ -101,7 +101,7 @@ files.
    certificates generated and signed by the same certificate authority.
    For testing, you can use self-signed certificates.
 
-The following list describes the components that you need to establish
+The following list describes the components required to establish
 a connection with TLS:
 
 .. list-table::
