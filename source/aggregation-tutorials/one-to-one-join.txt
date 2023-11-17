@@ -35,7 +35,7 @@ into one document.
    <w/index.php?title=One-to-one_(data_model)&oldid=1096960092>`.
 
 Aggregation Task Summary
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 This aggregation tutorial demonstrates how to join data from two
 collections related to product information and customer orders.
@@ -71,7 +71,8 @@ Get a handle on the ``products`` and ``orders`` collections:
    :end-before: end-colls
    :dedent:
 
-Insert the following sample data into the ``products`` collection:
+Insert sample data into the ``products`` collection by
+pasting the following sample documents into the ``sampleData1`` array:
 
 .. literalinclude:: /includes/aggregation/one-to-one-join.js
    :language: javascript
@@ -80,7 +81,8 @@ Insert the following sample data into the ``products`` collection:
    :end-before: end-products
    :dedent:
 
-Insert the following sample data into the ``orders`` collection:
+Insert sample data into the ``orders`` collection by
+pasting the following sample documents into the ``sampleData2`` array:
 
 .. literalinclude:: /includes/aggregation/one-to-one-join.js
    :language: javascript
@@ -102,9 +104,9 @@ Tutorial
 
          .. step::
 
-            First, create a ``pipeline`` variable and add a :manual:`$match
+            Add a :manual:`$match
             </reference/operator/aggregation/match>` stage that matches
-            orders placed in 2020.
+            orders placed in 2020:
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
@@ -115,10 +117,10 @@ Tutorial
 
          .. step::
 
-            The next stage in the pipeline is a :manual:`$lookup
+            Next, add a :manual:`$lookup
             </reference/operator/aggregation/lookup>` stage. The
             ``$lookup`` stage joins the ``product_id`` field in the ``orders``
-            collection, to the ``id`` field in the ``products`` collection.
+            collection, to the ``id`` field in the ``products`` collection:
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
@@ -130,14 +132,15 @@ Tutorial
          .. step::
 
             Next, add two :manual:`$set </reference/operator/aggregation/set>`
-            stages to the pipeline. The first ``$set`` stage,
-            sets the ``product_mapping`` field to the first element in the
-            ``product_mapping`` object created in the previous ``$lookup``
-            stage. 
+            stages to the pipeline.
+            
+            The first ``$set`` stage, sets the ``product_mapping`` field
+            to the first element in the ``product_mapping`` object
+            created in the previous ``$lookup`` stage. 
 
             The second ``$set`` stage creates a new ``product_name`` and
             ``product_category`` field from the values in the
-            ``product_mapping`` object.
+            ``product_mapping`` object:
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
@@ -155,10 +158,9 @@ Tutorial
 
          .. step::
 
-            The final stage in the pipeline is an :manual:`$unset
+            Finally, add an :manual:`$unset
             </reference/operator/aggregation/unset>` stage. The
-            ``$unset`` stage removes unnecessary fields from the document.
-            Add the ``$unset`` stage as shown in the following example:
+            ``$unset`` stage removes unnecessary fields from the document:
             
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
@@ -176,7 +178,7 @@ Tutorial
       
          node agg_tutorial.js
 
-      The aggregated result includes three documents. The documents
+      The aggregated result contains three documents. The documents
       represent customer orders that occurred in 2020, with the ``product_name`` and
       ``product_category`` of the ordered product:
 
@@ -210,6 +212,5 @@ Tutorial
       collection, joined by matching the ``product_id`` field present in
       each original document.
 
-To see the complete code for the application made in this tutorial, see the
-`Complete One-to-one Join Tutorial
+To see the complete code for this tutorial, see the `Complete One-to-one Join Tutorial
 <https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/one-to-one-join.js>`__.
