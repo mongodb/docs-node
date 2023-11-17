@@ -1,12 +1,67 @@
+.. _node-aggregation-tutorials-landing:
+
 =====================
 Aggregation Tutorials
 =====================
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: node.js
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
 
 .. toctree::
 
    /aggregation-tutorials/one-to-one-join.txt
 
-Read the following tutorials to learn how perform specific tasks using
-aggregation:
+Overview
+--------
+
+Aggregation tutorials provide detailed explanations of common
+aggregation tasks in a step-by-step format. The tutorials are adapted
+from examples in the `Practical MongoDB Aggregations book
+<https://www.practical-mongodb-aggregations.com/>`__ by Paul Done.
+
+Each tutorial includes the following sections:
+
+1. Introduction, which describes the purpose and common use cases of the
+   aggregation type. This section also describes the example and desired
+   outcome that the tutorial demonstrates.
+
+#. Before You Get Started, which describes the necessary databases,
+   collections, and sample data that you must insert before building the
+   aggregation pipeline and performing the aggregation.
+
+#. Aggregation Tutorial, which describes how to build and run the aggregation
+   pipeline. This section describes each stage of the completed
+   aggregation tutorial, and then explains how to run and interpret the
+   output of the aggregation.
+
+At the end of each aggregation tutorial, you can find a link to a fully
+runnable Node.js code file that you can run in your environment.
+
+Aggregation Template App
+------------------------
+
+Before you begin following an aggregation tutorial, set up an app that
+you can use to insert sample data into MongoDB and run the aggregation
+pipeline.
+
+.. tip:: 
+   
+   To learn how to install the driver and connect to MongoDB,
+   see the :ref:`node-quick-start-download-and-install` and
+   :ref:`node-quick-start-create-deployment` steps of the
+   Quick Start guide.
+
+Once you install the driver, create a file called
+``aggregation.js``.
 
 - :ref:`node-aggregation-one-to-one`
