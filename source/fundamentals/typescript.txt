@@ -159,7 +159,7 @@ Referencing Keys that Incorporate Variables
 
 To query a collection or perform another operation with a key that incorporates
 variables, you must use an ``as const`` assertion when specifying the key. This
-mechanism allows your code to compile successfully as long as the input types are
+mechanism allows your code to compile successfully if the input types are
 correct.
 
 The following code snippet defines the ``ClassificationPet`` interface
