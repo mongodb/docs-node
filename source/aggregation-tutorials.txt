@@ -31,18 +31,18 @@ from examples in the `Practical MongoDB Aggregations book
 
 Each tutorial includes the following sections:
 
-1. Introduction, which describes the purpose and common use cases of the
-   aggregation type. This section also describes the example and desired
-   outcome that the tutorial demonstrates.
+- Introduction, which describes the purpose and common use cases of the
+  aggregation type. This section also describes the example and desired
+  outcome that the tutorial demonstrates.
 
-#. Before You Get Started, which describes the necessary databases,
-   collections, and sample data that you must insert before building the
-   aggregation pipeline and performing the aggregation.
+- Before You Get Started, which describes the necessary databases,
+  collections, and sample data that you must insert before building the
+  aggregation pipeline and performing the aggregation.
 
-#. Aggregation Tutorial, which describes how to build and run the aggregation
-   pipeline. This section describes each stage of the completed
-   aggregation tutorial, and then explains how to run and interpret the
-   output of the aggregation.
+- Aggregation Tutorial, which describes how to build and run the aggregation
+  pipeline. This section describes each stage of the completed
+  aggregation tutorial, and then explains how to run and interpret the
+  output of the aggregation.
 
 At the end of each aggregation tutorial, you can find a link to a fully
 runnable Node.js code file that you can run in your environment.
@@ -62,6 +62,36 @@ pipeline.
    Quick Start guide.
 
 Once you install the driver, create a file called
-``aggregation.js``.
+``agg_tutorial.js``. Paste the following code in this file to create an
+app template for the aggregation tutorials:
+
+.. literalinclude:: /includes/aggregation/template-app.js
+   :language: javascript
+   :copyable: true
+
+.. important::
+
+   In the preceding code, read the code comments to find the sections of
+   the code that you must modify for the tutorial you are following.
+
+For every tutorial, you must replace the connection string placeholder with
+your deployment's connection string. For example, if your connection string is
+``"mongodb+srv://mongodb-example:27017"``, your connection string assignment resembles
+the following:
+
+.. code-block:: javascript
+   :copyable: false
+
+   const uri = "mongodb+srv://mongodb-example:27017";
+
+To run the completed file after you modify the template for a
+tutorial, run the following command in your terminal:
+
+.. code-block:: bash
+
+   node agg_tutorial.js
+
+Available Tutorials
+-------------------
 
 - :ref:`node-aggregation-one-to-one`
