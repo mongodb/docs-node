@@ -194,7 +194,7 @@ Take the following free online courses taught by MongoDB instructors:
        Learn the essentials of Node.js application development with MongoDB.
 
    * - .. figure:: /includes/figures/Node_LP_Catalog.png
-          :alt: MongoDB University Node.js Course graphic
+          :alt: MongoDB University Node.js Learning Path graphic
      
      - `MongoDB Node.js Developer Path <https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path>`_
         
