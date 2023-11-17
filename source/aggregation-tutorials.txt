@@ -9,7 +9,7 @@ Aggregation Tutorials
    :values: reference
 
 .. meta::
-   :keywords: node.js
+   :keywords: node.js, code example, runnable app
 
 .. contents:: On this page
    :local:
@@ -39,13 +39,20 @@ Each tutorial includes the following sections:
   collections, and sample data that you must insert before building the
   aggregation pipeline and performing the aggregation.
 
-- Aggregation Tutorial, which describes how to build and run the aggregation
+- Tutorial, which describes how to build and run the aggregation
   pipeline. This section describes each stage of the completed
   aggregation tutorial, and then explains how to run and interpret the
   output of the aggregation.
 
 At the end of each aggregation tutorial, you can find a link to a fully
 runnable Node.js code file that you can run in your environment.
+
+.. tip::
+
+   To learn more about performing aggregations, see the
+   :ref:`node-aggregation` guide.
+
+.. _node-agg-tutorial-template-app:
 
 Aggregation Template App
 ------------------------

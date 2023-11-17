@@ -20,69 +20,77 @@ One-to-One Join
 Introduction
 ------------
 
-In this tutorial, you will learn how to perform a one-to-one join using
-aggregation with the {+driver-long+}. A one-to-one join occurs when a document
-in one collection has a field value that matches to a single document with the
-same field value in another collection. The two documents with matching fields
-are then combined into one document.
+In this tutorial, you can learn how to use the {+driver-short+} to
+perform a one-to-one join. A one-to-one join occurs when a document
+in one collection has a field value that matches a single document in
+another collection with the same field value. The aggregation matches
+these documents on the field value and combines information from both
+into one document.
 
 .. tip::
 
-   A one-to-one join does not require the entities to have a :wikipedia:`One-to-one relationship
-   </One-to-one_(data_model)>`.
+   A one-to-one join does not require the documents to have a
+   One-to-one relationship. To learn more about this data relationship,
+   see the Wikipedia entry about :wikipedia:`One-to-one (data model)
+   <w/index.php?title=One-to-one_(data_model)&oldid=1096960092>`.
 
-The goal of this aggregation tutorial is to list all orders
-made in 2020, with the product information associated with each order.
+Aggregation Task Summary
+------------------------
+
+This aggregation tutorial demonstrates how to join data from two
+collections related to product information and customer orders.
+The aggregated result is a list of all orders placed in 2020 that
+includes the product details associated with each order.
 
 This example uses two collections:
 
-- ``products`` which contains documents detailing a shop's available products.
-- ``orders`` which contains documents describing an individual order for a product at that shop.
+- ``products``, which contains documents detailing a shop's available
+  products
+- ``orders``, which contains documents describing an individual order
+  for a product at that shop
 
-Because an order can be for only one product, the aggregation uses a
+An order an only contain one product, so the aggregation uses a
 one-to-one join to match an order document to the document for the ordered
-product. The collections are joined using a field called ``product_id`` that exists in
-the documents in both collections.
-
-The examples and sample data in this tutorial are sourced from the `Practical MongoDB
-Aggregations Book <https://www.practical-mongodb-aggregations.com/>`__.
+product. The collections are joined by a field called ``product_id``
+that exists in documents in both collections.
 
 Before You Get Started
 ----------------------
 
-Before you get started with this tutorial, you will need a Node.js application
-with the {+driver-long+} installed that connects to a MongoDB deployment.
+Before you start following this tutorial, set up the aggregation
+tutorial template app in file called ``agg_tutorial.js`` by following the
+instructions in the :ref:`node-agg-tutorial-template-app` section of the
+Aggregation Tutorials landing page.
 
-To learn how to create a MongoDB deployment on MongoDB Atlas, or
-on a local MongoDB instance, see the :ref:`Connection Guide <node-connect-to-mongodb>`.
-
-To learn how to get started using MongoDB with a new Node.js project, see the
-:ref:`node-quickstart`.
-
-This tutorial uses sample data stored in two separate collections. Insert the
-following sample data into a collection called
-``products``:
+Get a handle on the ``products`` and ``orders`` collections:
 
 .. literalinclude:: /includes/aggregation/one-to-one-join.js
    :language: javascript
    :copyable: true
-   :start-after: // start-products
-   :end-before: // end-products
+   :start-after: start-colls
+   :end-before: end-colls
    :dedent:
 
-Insert the following data into a collection called ``orders``:
+Insert the following sample data into the ``products`` collection:
 
 .. literalinclude:: /includes/aggregation/one-to-one-join.js
    :language: javascript
    :copyable: true
-   :start-after: // start-orders
-   :end-before: // end-orders
+   :start-after: start-products
+   :end-before: end-products
    :dedent:
 
-For more information about inserting documents into a collection, see :ref:`node-fundamentals-insert-data`.
+Insert the following sample data into the ``orders`` collection:
 
-One-to-One Join Tutorial
-------------------------
+.. literalinclude:: /includes/aggregation/one-to-one-join.js
+   :language: javascript
+   :copyable: true
+   :start-after: start-orders
+   :end-before: end-orders
+   :dedent:
+
+Tutorial
+--------
 
 .. procedure::
    :style: normal
@@ -95,13 +103,14 @@ One-to-One Join Tutorial
          .. step::
 
             First, create a ``pipeline`` variable and add a :manual:`$match
-            </reference/operator/aggregation/match>` stage that matches orders made in 2020.
+            </reference/operator/aggregation/match>` stage that matches
+            orders placed in 2020.
 
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
                :copyable: true
-               :start-after: // start-match
-               :end-before: // end-match
+               :start-after: start-match
+               :end-before: end-match
                :dedent:
 
          .. step::
@@ -114,8 +123,8 @@ One-to-One Join Tutorial
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
                :copyable: true
-               :start-after: // start-lookup
-               :end-before: // end-lookup
+               :start-after: start-lookup
+               :end-before: end-lookup
                :dedent:
 
          .. step::
@@ -133,8 +142,8 @@ One-to-One Join Tutorial
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
                :copyable: true
-               :start-after: // start-set
-               :end-before: // end-set
+               :start-after: start-set
+               :end-before: end-set
                :dedent:
 
             .. tip::
@@ -154,27 +163,24 @@ One-to-One Join Tutorial
             .. literalinclude:: /includes/aggregation/one-to-one-join.js
                :language: javascript
                :copyable: true
-               :start-after: // start-unset
-               :end-before: // end-unset
+               :start-after: start-unset
+               :end-before: end-unset
                :dedent:
 
    .. step:: Run the Aggregation Pipeline
 
-      The following code runs the aggregation pipeline and prints the results to
-      the console.
+      Run the application by running the following command in your
+      terminal:
 
-      .. literalinclude:: /includes/aggregation/one-to-one-join.js
-         :language: javascript
-         :copyable: true
-         :start-after: // start-run-aggregation
-         :end-before: // end-run-aggregation
-         :dedent:
+      .. code-block:: bash
+      
+         node agg_tutorial.js
 
-      Running the full application prints three documents. The documents
+      The aggregated result includes three documents. The documents
       represent customer orders that occurred in 2020, with the ``product_name`` and
-      ``product_category`` of the ordered product.
+      ``product_category`` of the ordered product:
 
-      .. code-block:: sh
+      .. code-block:: javascript
          :copyable: false
          
          {
@@ -199,9 +205,11 @@ One-to-One Join Tutorial
            product_category: 'ELECTRONICS'
          }
 
-      The result consists of joined documents containing fields from the
-      ``orders`` collection and fields from the ``products`` collection, joined
-      by matching the ``product_id`` field present in each original document.
+      The result consists of documents that contain fields from
+      documents in the ``orders`` collection and the ``products``
+      collection, joined by matching the ``product_id`` field present in
+      each original document.
 
 To see the complete code for the application made in this tutorial, see the
-`Complete Node.js Tutorial <https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/one-to-one-join.js>`__.
+`Complete One-to-one Join Tutorial
+<https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/one-to-one-join.js>`__.

@@ -1,22 +1,19 @@
 const { MongoClient } = require("mongodb");
 
-// Replace the URI string with your connection string.
-const uri = "<Your MongoDB URI>";
+const uri = "<connection string>";
 const client = new MongoClient(uri);
 
 async function run() {
   try {
-    // Drop any collections from a previous run
-    await client.db("sample_joins").dropCollection("products");
-    await client.db("sample_joins").dropCollection("orders");
 
-    const joinDatabase = client.db("sample_joins");
-    const products = await joinDatabase.collection("products");
-    const orders = await joinDatabase.collection("orders");
+    const aggDB = client.db("agg_tutorials_db");
 
-    
-    products.createIndex({ id: 1 });
-    const productDocuments = [
+    // start-colls
+    const collName1 = await aggDB.collection("products");
+    const collName2 = await aggDB.collection("orders");
+    // end-colls
+
+    const sampleData1 = [
       // start-products
       {
         id: "a1b2c3d4",
@@ -44,13 +41,8 @@ async function run() {
       },
       // end-products
     ];
-
-    await products.insertMany(productDocuments);
     
-
-    orders.createIndex({ orderdate: -1 });
-
-    const orderDocuments = [
+    const sampleData2 = [
       // start-orders
       {
         customer_id: "elise_smith@myemail.com",
@@ -79,12 +71,15 @@ async function run() {
       // end-orders
     ];
 
-    await orders.insertMany(orderDocuments);
-    
+    await collName1.deleteMany({});
+    await collName2.deleteMany({});
 
-    // start-match
+    await collName1.insertMany(sampleData1);
+    await collName2.insertMany(sampleData2);
+
     const pipeline = [];
 
+    // start-match
     pipeline.push({
       $match: {
         orderdate: {
@@ -126,13 +121,10 @@ async function run() {
     pipeline.push({ $unset: ["_id", "product_id", "product_mapping"] });
     // end-unset
 
-    // start-run-aggregation
-    const aggregationResult = await orders.aggregate(pipeline);
-
+    const aggregationResult = await collName1.aggregate(pipeline);
     for await (const document of aggregationResult) {
       console.log(document);
     }
-    // end-run-aggregation
   } finally {
     await client.close();
   }
