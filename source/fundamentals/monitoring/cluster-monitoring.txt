@@ -9,7 +9,7 @@ Cluster Monitoring
    :values: reference
 
 .. meta:: 
-   :keywords: code example, node.js, watch, deployment
+   :keywords: code example, node.js, watch
 
 .. contents:: On this page
    :local:
