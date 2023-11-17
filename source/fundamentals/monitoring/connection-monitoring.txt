@@ -4,6 +4,13 @@
 Connection Pool Monitoring
 ==========================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, watch, deployment
+
 .. contents:: On this page
    :local:
    :backlinks: none

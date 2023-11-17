@@ -4,7 +4,12 @@
 Promises
 ========
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, operation status, chain
 
 .. contents:: On this page
    :local:

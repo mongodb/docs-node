@@ -4,6 +4,13 @@
 Enable TLS on a Connection
 ==========================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, security, encrypt
+
 .. contents:: On this page
    :local:
    :backlinks: none

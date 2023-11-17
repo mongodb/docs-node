@@ -4,7 +4,12 @@
 Cluster Monitoring
 ==================
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, watch, deployment
 
 .. contents:: On this page
    :local:

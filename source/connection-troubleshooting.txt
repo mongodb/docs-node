@@ -4,6 +4,13 @@
 Connection Troubleshooting
 ==========================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, disconnected, help
+
 .. contents:: On this page
    :local:
    :backlinks: none

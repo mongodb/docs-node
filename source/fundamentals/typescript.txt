@@ -4,6 +4,13 @@
 TypeScript
 ==========
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, static typing
+
 .. contents:: On this page
    :local:
    :backlinks: none

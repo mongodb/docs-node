@@ -4,7 +4,12 @@
 {+stable-api+}
 ==============
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, safe, breaking change
 
 .. contents:: On this page
    :local:
@@ -16,7 +21,7 @@
 
    The {+stable-api+} feature requires MongoDB Server 5.0 or later.
 
-   You should only use the {+stable-api+} feature if all the MongoDB
+   Only use the {+stable-api+} feature if all the MongoDB
    servers you are connecting to support this feature.
 
 Overview

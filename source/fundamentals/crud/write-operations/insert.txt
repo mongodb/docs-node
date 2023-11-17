@@ -4,6 +4,13 @@
 Insert Documents
 ================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, add data
+
 .. contents:: On this page
    :local:
    :backlinks: none
