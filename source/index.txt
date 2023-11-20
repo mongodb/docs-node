@@ -7,7 +7,7 @@ MongoDB Node Driver
    :values: reference
 
 .. meta:: 
-   :keywords: overview, node.js, ORM
+   :keywords: node.js, object-relational, object-document
 
 .. _node-driver-landing:
 
@@ -202,4 +202,5 @@ Take the Following Free Online Courses Taught by MongoDB Instructors
      
      - `MongoDB Node.js Developer Path <https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path>`_
         
-       Learn how to build a Node.js application that uses MongoDB as a database.
+       Gain a comprehensive understanding of Node.js application development, complex operations, interactions
+       with MongoDB Atlas datasets, and more.
