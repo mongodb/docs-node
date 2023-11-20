@@ -2,7 +2,12 @@
 Compound Operations
 ===================
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: node.js, atomic operation, read, write
 
 .. contents:: On this page
    :local:
@@ -13,9 +18,9 @@ Compound Operations
 Overview
 --------
 
-Most database requests only need to read data out of a database or
-write data into a database. However, client applications sometimes need
-to read and write data in a single interaction with the database.
+Most database requests either read data from a database or write data into
+a database. However, there are instances where you may require a single
+operation that reads and writes data.
 
 Compound operations combine read and write operations
 in a single atomic statement, so there's no chance of data changing in
