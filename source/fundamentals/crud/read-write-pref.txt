@@ -69,30 +69,8 @@ A ``WriteConcern`` accepts the following parameters:
      - | request acknowledgment that the write operation has been written to the on-disk journal 
        | **Type:** boolean
 
-``apply`` Method *(static)*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This method defines or updates the ``WriteConcern`` of a command document.
-
-.. code-block:: js
-
-   apply(command, writeConcern): Document
-
-.. list-table::
-   :header-rows: 1
-   :widths: 25 75
-
-   * - Parameter
-     - Description
-
-   * - ``command``
-     - | **Type:** Document
-
-   * - ``writeConcern``
-     - | **Type:** WriteConcern
-
-Set a ``WriteConcern`` for a Single Write Operation Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example: Set a ``WriteConcern`` for a Single Write Operation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This code uses custom ``WriteConcern`` settings while creating new a document. Note that
 in this case, the parameters are included as a Hash, rather than in an instantiated object:
@@ -107,8 +85,8 @@ in this case, the parameters are included as a Hash, rather than in an instantia
       } 
    )
 
-Create a New ``WriteConcern`` from an Existing Entity's ``WriteConcern`` Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example: Create a New ``WriteConcern`` from an Existing Database's ``WriteConcern``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
 Use the ``fromOptions`` method to construct a ``WriteConcern`` from an existing set of
 options or ``WriteConcern``:
@@ -125,10 +103,12 @@ The read concern determines the level of `consistency
 <https://www.mongodb.com/docs/current/core/causal-consistency-read-write-concerns/>`__
 across replica sets and the `isolation
 <https://www.mongodb.com/docs/current/core/read-isolation-consistency-recency/>`__
-guarantees maintained during a query. Lower consistency requirements may reduce latency.
-The default read concern level is ``local``. This means that the client returns the data
-from the local instance, with no guarantee that the data has been written to all replica
-set members.
+guarantees maintained during a query. You can specify your read concern level by
+constructing an instance of a ``ReadConcern`` or by specifying the options in an object. 
+
+Lower consistency requirements may reduce latency. The default read concern level is
+``local``. This means that the client returns the data from the local instance, with no
+guarantee that the data has been written to all replica set members.
 
 For more information about read concerns or read concern levels, see 
 :manual:`Read Concern </reference/read-concern/>` in the server manual. For more detailed 
@@ -164,19 +144,19 @@ The levels are defined by an enumerable set of the following options:
      - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions. 
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
-Set the ``ReadConcern`` of a Cluster Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example: Set the read concern level of a Cluster
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code sets the ``ReadConcern`` level of an existing cluster to ``'majority'``:
+This code sets the read concern level of an existing cluster to ``'majority'``:
 
 .. code-block:: js
 
    atlas clusters advancedSettings update myCluster --readConcern 'majority'
 
-Set the ``ReadConcern`` of an Aggregation Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example: Set the read concern level of an Aggregation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code sets the ``ReadConcern`` level of an an aggregation on a collection called ``products``:
+This code sets the read concern level of an an aggregation to ``'majority'``:
 
 .. code-block:: js
 
@@ -190,7 +170,7 @@ This code sets the ``ReadConcern`` level of an an aggregation on a collection ca
       ]}
     ]; 
    
-   result = await adb.collection("products").aggregate(pipeline, { readConcern: { level: "available" } } );
+   result = await db.collection("mycollection").aggregate(pipeline, { readConcern: { level: 'available' } } );
 
 Read Preference
 ---------------
@@ -198,16 +178,11 @@ Read Preference
 The read concern determines which member of a replica set is read. The default mode is to
 read from the primary member of a replica set.
 
-Constructor
-~~~~~~~~~~~
-
-.. code-block:: js
-
-   new ReadPreference(mode, tags?, options?): ReadPreference
+Read Preference Options
+~~~~~~~~~~~~~~~~~~~~~~~
 
 ``mode``
 `````````
-
 The preference modes are defined by an enumerable set of the following options. More
 detailed descriptions can be found in the :manual:`Read Preference Modes guide
 </core/read-preference/#read-preference-modes-1>`
@@ -268,30 +243,36 @@ The following options may be sent as a `ReadPreferenceOptions
      - Description
 
    * - ``hedge``
-     - | Sends each query to multiple shards and returns the first response. | For more
-       information, see :manual:`Hedged Read Option
-       </core/read-preference-hedge-option/>`.
+     - | Sends each query to multiple shards and returns the first response. 
+       | For more information, see :manual:`Hedged Read Option </core/read-preference-hedge-option/>`.
 
    * - ``maxStalenessSeconds``
-     - | The maximum number of seconds a secondary member can lag behind the primary
-       member before the data is considered stale. We recommend setting this option for
-       ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning
-       stale data. | For more information, see :manual:`Read Preference
-       maxStalenessSeconds </core/read-preference-staleness/>`.
+     - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend setting this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data. 
+       | For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
 
-Set the ``ReadPreferences`` for a session 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example: Set the ``ReadPreferences`` for a Session 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code sets the read preference mode to ``'secondaryPreferred'``:
+This code sets the read preference mode of a session to ``'secondaryPreferred'``:
 
 .. code-block:: js
 
-    const txnOpts = {
-      readPreference: 'secondaryPreferred'
-    }; session.startTransaction(txnOpts); ...
+    const session = client.startSession({ 
+        defaultTransactionOptions: { readConcern: { level: 'secondaryPreferred' } } 
+    });
+    session.withTransaction(
+      async () => {
+        const collection = client.db('test').collection('mycollection');
+        const result = await collection.findOne({ name: 'John Doe' }).withReadPreference('secondary');
+        console.log(result);
+    });
+
 
 API Documentation
 -----------------
+
+To learn more about the methods and types mentioned in this guide, see the following API
+documentation:
 
 - `API WriteConcern <{+api+}/classes/WriteConcern.html>`__
 - `API ReadConcern <{+api+}/classes/ReadConcern.html>`__
