@@ -58,22 +58,21 @@ A ``WriteConcern`` accepts the following parameters:
      - Description
   
    * - ``w`` *(optional)*
-     - | request acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags 
+     - | Requests acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags 
        | **Type:** `W <{+api+}/types/W.html>`__
 
    *  - ``wtimeoutMS`` *(optional)*
-      - | specify a time limit to prevent write operations from blocking indefinitely 
+      - | Specifies a time limit to prevent write operations from blocking indefinitely 
         | **Type:** number
 
    * - ``journal`` *(optional)*
-     - | request acknowledgment that the write operation has been written to the on-disk journal 
+     - | Requests acknowledgment that the write operation has been written to the on-disk journal 
        | **Type:** boolean
 
 Example: Set a ``WriteConcern`` for a Single Write Operation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code uses custom ``WriteConcern`` settings while creating new a document. Note that
-in this case, the parameters are included as a Hash, rather than in an instantiated object:
+This code uses custom ``WriteConcern`` settings while creating new a document:
 
 .. code-block:: js
 
@@ -95,6 +94,14 @@ options or ``WriteConcern``:
 
   newWriteConcern = WriteConcern.fromOptions(db.writeConcern)
 
+Example: Set the Write Concern Level of a Database
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This code sets the write concern level of a database to ``'majority'``:
+
+.. code-block:: js
+
+   await db.command({ setParameter: 1, writeConcern: { w: 'majority' } });
 
 Read Concern
 ------------
@@ -144,16 +151,20 @@ The levels are defined by an enumerable set of the following options:
      - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions. 
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
-Example: Set the read concern level of a Cluster
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example: Set the Read Concern Level of a Cluster in the Connection String
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code sets the read concern level of an existing cluster to ``'majority'``:
+This code sets the read concern level of a existing cluster to ``'local'``:
 
 .. code-block:: js
 
-   atlas clusters advancedSettings update myCluster --readConcern 'majority'
+   const uri = "mongodb+srv://<user_name>:<password>@<hostname_or_IP_and_port>/?retryWrites=true&w=2&readConcernLevel=local";
+   const client = new MongoClient(uri);
 
-Example: Set the read concern level of an Aggregation
+This example also sets the ``retryWrites`` and ``w`` options. For more information about connection string options, see the :manual:`Connection String Options <https://www.mongodb.com/docs/manual/reference/connection-string/#connection-string-options>`
+section in the manual.
+
+Example: Set the Read Concern Level of an Aggregation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This code sets the read concern level of an an aggregation to ``'majority'``:
@@ -250,22 +261,24 @@ The following options may be sent as a `ReadPreferenceOptions
      - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend setting this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data. 
        | For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
 
-Example: Set the ``ReadPreferences`` for a Session 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This code sets the read preference mode of a session to ``'secondaryPreferred'``:
+Example: Set Read Preferences and Concerns for a Transaction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: js
 
-    const session = client.startSession({ 
-        defaultTransactionOptions: { readConcern: { level: 'secondaryPreferred' } } 
-    });
-    session.withTransaction(
-      async () => {
-        const collection = client.db('test').collection('mycollection');
-        const result = await collection.findOne({ name: 'John Doe' }).withReadPreference('secondary');
-        console.log(result);
-    });
+    const transactionOptions = {
+      readPreference: 'primary',
+      readConcern: { level: 'local' },
+      writeConcern: { w: 'majority' },
+    };
+
+    const session = client.startSession();
+    session.startTransaction(transactionOptions);
+    ...
+    await session.commitTransaction();
+    await session.endSession();
+
+For more information about transactions, see :ref:`nodejs-transactions`.
 
 
 API Documentation
