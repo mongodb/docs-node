@@ -81,6 +81,9 @@ app template for the aggregation tutorials:
    In the preceding code, read the code comments to find the sections of
    the code that you must modify for the tutorial you are following.
 
+   If you attempt to run the code without making any changes, you will
+   encounter a connection error.
+
 For every tutorial, you must replace the connection string placeholder with
 your deployment's connection string. For example, if your connection string is
 ``"mongodb+srv://mongodb-example:27017"``, your connection string assignment resembles

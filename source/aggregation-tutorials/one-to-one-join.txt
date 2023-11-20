@@ -30,7 +30,7 @@ into one document.
 .. tip::
 
    A one-to-one join does not require the documents to have a
-   One-to-one relationship. To learn more about this data relationship,
+   one-to-one relationship. To learn more about this data relationship,
    see the Wikipedia entry about :wikipedia:`One-to-one (data model)
    <w/index.php?title=One-to-one_(data_model)&oldid=1096960092>`.
 
@@ -45,9 +45,9 @@ includes the product details associated with each order.
 This example uses two collections:
 
 - ``orders``, which contains documents describing an order
-  for a product from a shop
-- ``products``, which contains documents that describe the available
-  products from a shop
+  for a product in a shop
+- ``products``, which contains documents that describe the products that
+  a shop sells
 
 An order can only contain one product, so the aggregation uses a
 one-to-one join to match an order document to the document for the ordered
@@ -57,12 +57,12 @@ that exists in documents in both collections.
 Before You Get Started
 ----------------------
 
-Before you start following this tutorial, set up the aggregation
-tutorial template app in file called ``agg_tutorial.js`` by following the
+Before you start following this tutorial, follow the
 instructions in the :ref:`node-agg-tutorial-template-app` section of the
-Aggregation Tutorials landing page.
+Aggregation Tutorials page to set up the aggregation tutorial template
+app.
 
-Get a handle on the ``products`` and ``orders`` collections:
+Access the ``products`` and ``orders`` collections:
 
 .. literalinclude:: /includes/aggregation/one-to-one-join.js
    :language: javascript
