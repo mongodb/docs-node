@@ -1,8 +1,15 @@
+.. _node-driver-landing:
+
 ===================
 MongoDB Node Driver
 ===================
 
-.. _node-driver-landing:
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: node.js, object-relational, object-document
 
 .. toctree::
   :titlesonly:
@@ -178,8 +185,8 @@ MongoDB University
 
 MongoDB University provides free courses to teach everyone how to use MongoDB.
 
-Take the following free online courses taught by MongoDB instructors:
-`````````````````````````````````````````````````````````````````````
+Take the Following Free Online Courses Taught by MongoDB Instructors
+````````````````````````````````````````````````````````````````````
 
 .. list-table::
 
@@ -195,4 +202,5 @@ Take the following free online courses taught by MongoDB instructors:
      
      - `MongoDB Node.js Developer Path <https://learn.mongodb.com/learning-paths/mongodb-nodejs-developer-path>`_
         
-       Learn how to build a Node.js application using MongoDB as your database.
+       Gain a comprehensive understanding of Node.js application development, complex operations, interactions
+       with MongoDB Atlas datasets, and more.
