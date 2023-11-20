@@ -2,8 +2,12 @@
 MongoDB Node Driver
 ===================
 
+.. facet::
+   :name: genre
+   :values: reference
+
 .. meta:: 
-   :keywords: node.js
+   :keywords: overview, node.js, ORM
 
 .. _node-driver-landing:
 
