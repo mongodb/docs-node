@@ -1,5 +1,5 @@
-If you want to run a MongoDB server on your local machine instead of
-using an Atlas cluster, complete the following steps:
+To connect to a MongoDB deployment on your local machine, complete the following
+steps:
 
 1. Download the `Community <https://www.mongodb.com/try/download/community>`__
    or `Enterprise <https://www.mongodb.com/try/download/enterprise>`__ version

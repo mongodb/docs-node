@@ -21,8 +21,8 @@ Overview
 --------
 
 If your application stores and modifies data in MongoDB, you probably use
-insert and update operations. In certain workflows, you may want to perform
-an insert or update operation depending on whether the document exists.
+insert and update operations. In certain workflows, whether you perform
+an insert or update operation depends on whether the document exists.
 In these cases, you can streamline your application logic by using the
 ``upsert`` option available in the following methods:
 

@@ -20,7 +20,7 @@ Compound Operations
 Overview
 --------
 
-Most database requests either read data out of a database or write data into
+Most database requests either read data from a database or write data into
 a database. However, there are instances where you may require a single
 operation that reads and writes data.
 

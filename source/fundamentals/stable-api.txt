@@ -21,7 +21,7 @@
 
    The {+stable-api+} feature requires MongoDB Server 5.0 or later.
 
-   Only use the {+stable-api+} feature if all the MongoDB
+   Use the {+stable-api+} feature only if all the MongoDB
    servers you are connecting to support this feature.
 
 Overview
@@ -56,8 +56,8 @@ version of the {+stable-api+}.
 
 .. tip::
 
-   To run commands using more than one version of the {+stable-api+},
-   instantiate a separate client with that version.
+   You must create a new client for each version of the {+stable-api+} on
+	which you need to run a command.
 
    To run commands that are not covered by the {+stable-api+}, make sure the
    "strict" option is disabled. See the section on
