@@ -57,7 +57,7 @@ version of the {+stable-api+}.
 .. tip::
 
    You must create a new client for each version of the {+stable-api+} on
-	which you need to run a command.
+	which you want to run a command.
 
    To run commands that are not covered by the {+stable-api+}, make sure the
    "strict" option is disabled. See the section on
