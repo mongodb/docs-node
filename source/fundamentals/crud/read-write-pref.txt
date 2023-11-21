@@ -151,19 +151,6 @@ The levels are defined by an enumerable set of the following options:
      - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions. 
        | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
 
-Example: Set the Read Concern Level of a Cluster in the Connection String
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This code sets the read concern level of a existing cluster to ``'local'``:
-
-.. code-block:: js
-
-   const uri = "mongodb+srv://<user_name>:<password>@<hostname_or_IP_and_port>/?retryWrites=true&w=2&readConcernLevel=local";
-   const client = new MongoClient(uri);
-
-This example also sets the ``retryWrites`` and ``w`` options. For more information about connection string options, see the :manual:`Connection String Options <https://www.mongodb.com/docs/manual/reference/connection-string/#connection-string-options>`
-section in the manual.
-
 Example: Set the Read Concern Level of an Aggregation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -181,7 +168,20 @@ This code sets the read concern level of an an aggregation to ``'majority'``:
       ]}
     ]; 
    
-   result = await db.collection("mycollection").aggregate(pipeline, { readConcern: { level: 'available' } } );
+   result = await db.collection("mycollection").aggregate(pipeline, { readConcern: {
+   level: 'available' } } );
+
+For more information about aggregates, see the :ref:`nodejs-aggregation` page.
+   
+Example: Change the Read Concern of a Database
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This code changes the read concern level of a database ot ``'local'``:
+
+.. code-block:: js
+
+   const options = { readConcern: { level: 'local' } };
+   const db = client.db("db_name", options);
 
 Read Preference
 ---------------
@@ -280,6 +280,18 @@ Example: Set Read Preferences and Concerns for a Transaction
 
 For more information about transactions, see :ref:`nodejs-transactions`.
 
+Example: Set the Read Preference of a Cluster in the Connection String
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This code sets the read preference mode of a existing cluster to ``'secondary'``:
+
+.. code-block:: js
+
+   const uri = "mongodb+srv://<user_name>:<password>@<hostname_or_IP_and_port>/?readPreference=secondary&maxStalenessSeconds=120";
+   const client = new MongoClient(uri);
+
+This example also sets the ``maxStalenessSeconds`` option. For more information about connection string options, see the :manual:`Connection String Options <https://www.mongodb.com/docs/manual/reference/connection-string/#connection-string-options>`
+section in the manual.
 
 API Documentation
 -----------------
