@@ -69,7 +69,7 @@ A ``WriteConcern`` accepts the following parameters:
      - | Requests acknowledgment that the write operation has been written to the on-disk journal 
        | **Type:** boolean
 
-Example: Set a ``WriteConcern`` for a Single Write Operation
+Example: Set the Write Concern for a Single Write Operation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This code uses custom ``WriteConcern`` settings while creating new a document:
@@ -87,21 +87,12 @@ This code uses custom ``WriteConcern`` settings while creating new a document:
 Example: Create a New ``WriteConcern`` from an Existing Database's ``WriteConcern``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
-Use the ``fromOptions`` method to construct a ``WriteConcern`` from an existing set of
-options or ``WriteConcern``:
+Use the ``fromOptions`` method to construct a ``WriteConcern`` from an existing entity's
+options:
 
 .. code-block:: js
 
-  newWriteConcern = WriteConcern.fromOptions(db.writeConcern)
-
-Example: Set the Write Concern Level of a Database
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This code sets the write concern level of a database to ``'majority'``:
-
-.. code-block:: js
-
-   await db.command({ setParameter: 1, writeConcern: { w: 'majority' } });
+  const newWriteConcern = WriteConcern.fromOptions(db);
 
 Read Concern
 ------------
