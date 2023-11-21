@@ -4,6 +4,14 @@
 Retrieve Data
 =============
 
+.. meta::
+   :description: Hands-on tutorial performing find operations to retrieve data from your MongoDB database.
+   :keywords: node.js, lab
+
+.. facet::
+   :name: genre
+   :values: tutorial
+
 .. contents:: On this page
    :local:
    :backlinks: none

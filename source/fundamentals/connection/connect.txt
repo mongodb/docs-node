@@ -9,6 +9,7 @@ Connection Guide
    :values: reference
 
 .. meta::
+   :description: How to connect to a MongoDB Atlas deployment, a MongoDB instance, or a replica set using the Node.js driver.
    :keywords: node.js, code example, connection string, local connection, Stable API, Atlas
 
 .. contents:: On this page

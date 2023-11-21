@@ -11,6 +11,7 @@ Connection
    :values: reference
 
 .. meta:: 
+   :description: An overview about configuring your application's connection to a MongoDB deployment using the Node.js driver.
    :keywords: node.js
 
 .. toctree::

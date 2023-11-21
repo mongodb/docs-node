@@ -9,6 +9,7 @@ Quick Start
    :values: tutorial 
 
 .. meta:: 
+   :description: An overiew of the Node.js Driver quick start tutorial.
    :keywords: node.js
 
 .. contents:: On this page
