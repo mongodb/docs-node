@@ -21,7 +21,7 @@ Overview
 --------
 
 In this guide, you can learn how to use the **write concern**, **read concern**, and
-**read preference** configurations to modify the way that the {+driver-long+} executes
+**read preference** configurations to modify the way that MongoDB executes
 create, read, update, and delete (CRUD) operations on replica sets.
 
 You can set write concern, read concern, and read preference options at the following
@@ -45,7 +45,7 @@ Operations that do not specify an explicit write concern inherit the global defa
 concern settings.
 
 For more information, see :manual:`Write Concern </reference/write-concern/>` in the
-server manual. For more detailed API descriptions, see the `WriteConcern API documentation
+Server manual. For more detailed API descriptions, see the `WriteConcern API documentation
 <{+api+}/classes/WriteConcern.html>`__.
 
 A ``WriteConcern`` accepts the following parameters:
@@ -76,76 +76,51 @@ This code uses custom ``WriteConcern`` settings while creating new a document:
 
 .. code-block:: js
 
-   db.myCollection.insertOne( 
+   myDB.myCollection.insertOne( 
       {
-        name: 'anotherDocumentName'
+        name: "anotherDocumentName"
       }, {
         writeConcern: { w: 2, wtimeoutMS: 5000 }
       } 
-   )
+   );
 
-Example: Create a New ``WriteConcern`` from an Existing Database's ``WriteConcern``
+Example: Create and Use a New Write Concern using the fromOptions and apply Methods
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
-Use the ``fromOptions`` method to construct a ``WriteConcern`` from an existing entity's
-options:
+This code use the ``fromOptions`` method to construct a ``WriteConcern`` from the options of an
+existing database, ``myDB``. Note that ``myDB`` could be replaced with any entity that
+includes a write concern option.
 
 .. code-block:: js
 
-  const newWriteConcern = WriteConcern.fromOptions(db);
+   const newWriteConcern = WriteConcern.fromOptions(myDB);
+   const myDoc { name: "New Document" };
+   WriteConcern.apply(myDoc,newWriteConcern);
 
 Read Concern
 ------------
 
-The read concern determines the level of `consistency
-<https://www.mongodb.com/docs/current/core/causal-consistency-read-write-concerns/>`__
-across replica sets and the `isolation
-<https://www.mongodb.com/docs/current/core/read-isolation-consistency-recency/>`__
-guarantees maintained during a query. You can specify your read concern level by
-constructing an instance of a ``ReadConcern`` or by specifying the options in an object. 
+The read concern specifies:
+
+- the level of `consistency <https://www.mongodb.com/docs/current/core causal-consistency-read-write-concerns/>`__ across replica sets
+
+- the `isolation
+  <https://www.mongodb.com/docs/current/core/read-isolation-consistency-recency/>`__
+  guarantees maintained during a query 
 
 Lower consistency requirements may reduce latency. The default read concern level is
-``local``. This means that the client returns the data from the local instance, with no
-guarantee that the data has been written to all replica set members.
+``local``. This means that the client returns the data from the replica set member that the
+client is connected to, with no guarantee that the data has been written to all replica set members.
 
 For more information about read concerns or read concern levels, see 
-:manual:`Read Concern </reference/read-concern/>` in the server manual. For more detailed 
-API descriptions, see the `ReadConcern API documentation <{+api+}/classes/ReadConcern.html>`__.
-   
-The levels are defined by an enumerable set of the following options:
-
-.. list-table::
-   :widths: 25 75
-   :header-rows: 1
-
-   * - ReadConcernLevel
-     - Description
-
-   * - ``'local'``
-     - | The query returns the instance’s most recent data. 
-       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-local/#mongodb-readconcern-readconcern.-local->`.
-
-   * - ``'available'``
-     - The query returns data from the instance with no guarantee that the data has been
-       written to a majority of the replica set members. 
-       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-available/#mongodb-readconcern-readconcern.-available->`.
-
-   * - ``'majority'``
-     - | The query returns the instance’s most recent data acknowledged as having been written to a majority of members in the replica set. 
-       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-majority/#mongodb-readconcern-readconcern.-majority->`.
-
-   * - ``'linearizable'``
-     - | The query returns data that reflects all successful writes issued that had a write concern of ``majority`` and were acknowledged before the start of the read operation. 
-       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-linearizable/#mongodb-readconcern-readconcern.-linearizable->`.
-
-   * - ``'snapshot'``
-     - | The query returns a complete copy of the data in a ``mongod`` instance at a specific point in time. Only available for operations within multi-document transactions. 
-       | For more information, see the :rapid:`Read Concern specification </reference/read-concern-snapshot/#mongodb-readconcern-readconcern.-snapshot->`.
+:manual:`Read Concern </reference/read-concern/>` in the Server manual. For more detail on
+the ``ReadConcern`` type and definitions of the read concern levels, see the `ReadConcern <{+api+}/classes/ReadConcern.html>`__ in
+the API documentation.
 
 Example: Set the Read Concern Level of an Aggregation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code sets the read concern level of an an aggregation to ``'majority'``:
+This code sets the read concern level of an an aggregation to ``"majority"``:
 
 .. code-block:: js
 
@@ -159,35 +134,41 @@ This code sets the read concern level of an an aggregation to ``'majority'``:
       ]}
     ]; 
    
-   result = await db.collection("mycollection").aggregate(pipeline, { readConcern: {
-   level: 'available' } } );
+   result = await myDB.collection("mycollection")
+      .aggregate(
+        pipeline, 
+        { readConcern: {
+          level: "available" 
+          } 
+        } 
+      );
 
 For more information about aggregates, see the :ref:`nodejs-aggregation` page.
    
 Example: Change the Read Concern of a Database
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code changes the read concern level of a database ot ``'local'``:
+This code changes the read concern level of a database to ``"local"``:
 
 .. code-block:: js
 
-   const options = { readConcern: { level: 'local' } };
-   const db = client.db("db_name", options);
+   const options = { readConcern: { level: "local" } };
+   const myDB = client.db("db_name", options);
 
 Read Preference
 ---------------
 
-The read concern determines which member of a replica set is read. The default mode is to
-read from the primary member of a replica set.
+The read concern determines which member of a replica set MongoDB reads when executing a
+query. The default mode, ``primary``, specifies that operations are read from the primary member of the replica set.
 
 Read Preference Options
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ``mode``
 `````````
-The preference modes are defined by an enumerable set of the following options. More
-detailed descriptions can be found in the :manual:`Read Preference Modes guide
-</core/read-preference/#read-preference-modes-1>`
+The preference modes are defined by an enumerable set of the following options. For
+descriptions of the available modes, see :manual:`Read Preference
+</core/read-preference/#read-preference-modes-1>` in the Server manual.
 
 .. list-table::
    :widths: 25 75
@@ -196,27 +177,27 @@ detailed descriptions can be found in the :manual:`Read Preference Modes guide
    * - Mode
      - Description
 
-   * - ``'primary'``
+   * - ``"primary"``
      - All operations read from the primary member of the replica set.
 
-   * - ``'primaryPreferred'``
+   * - ``"primaryPreferred"``
      - Most operations read from the primary member. However, if the primary member is
        busy, the operation reads from a secondary member that meets the
        :ref:`<read_preference_options>` criteria.
 
-   * - ``'secondary'``
+   * - ``"secondary"``
      - All operations read from a secondary member of the replica set. If a
        :ref:`read_preference_options` value is defined, it will be used to determine an
        appropriate member. We recommend setting a ``maxStalenessSeconds`` value to avoid
        returning stale data.
 
-   * - ``'secondaryPreferred'``
+   * - ``"secondaryPreferred"``
      - Most operations read from a secondary member of the replica set. If a
        :ref:`read_preference_options` value is defined, it will be used to determine an
        appropriate member. If none of the secondary members meet the staleness criteria,
        the operation reads from the primary.
 
-   * - ``'nearest'``
+   * - ``"nearest"``
      - Operations read from a member that has a latency within the acceptable range.
        Whether a member is primary or secondary is not considered. We recommend setting a
        :ref:`read_preference_options` value to avoid returning stale data.
@@ -225,7 +206,7 @@ detailed descriptions can be found in the :manual:`Read Preference Modes guide
 `````````````````````
 
 A list of tags used to prioritize secondary members by using tags associated with each
-member. Tags cannot be used with  ``'primary'`` mode. For more information about tag sets
+member. Tags cannot be used with  ``"primary"`` mode. For more information about tag sets
 or managing member tags, see :manual:`Read Preference Tag Set Lists
 </core/read-preference-tags/#read-preference-tag-set-lists/>`.
 
@@ -252,33 +233,35 @@ The following options may be sent as a `ReadPreferenceOptions
      - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend setting this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data. 
        | For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
 
-Example: Set Read Preferences and Concerns for a Transaction
+Example: Set Read Preference and Concerns for a Transaction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This code sets the read preference, read concern, and write concern of a transaction:
 
 .. code-block:: js
 
-    const transactionOptions = {
-      readPreference: 'primary',
-      readConcern: { level: 'local' },
-      writeConcern: { w: 'majority' },
-    };
+   const transactionOptions = {
+      readPreference: "primary",
+      readConcern: { level: "local" },
+      writeConcern: { w: "majority" },
+   };
 
-    const session = client.startSession();
-    session.startTransaction(transactionOptions);
+   const session = client.startSession();
+   session.startTransaction(transactionOptions);
     ...
-    await session.commitTransaction();
-    await session.endSession();
+   await session.commitTransaction();
+   await session.endSession();
 
 For more information about transactions, see :ref:`nodejs-transactions`.
 
 Example: Set the Read Preference of a Cluster in the Connection String
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code sets the read preference mode of a existing cluster to ``'secondary'``:
+This code sets the read preference mode of a existing cluster to ``"secondary"``:
 
 .. code-block:: js
 
-   const uri = "mongodb+srv://<user_name>:<password>@<hostname_or_IP_and_port>/?readPreference=secondary&maxStalenessSeconds=120";
+   const uri = "mongodb+srv://<user>:<password>@@<cluster-url>?readPreference=secondary&maxStalenessSeconds=120";
    const client = new MongoClient(uri);
 
 This example also sets the ``maxStalenessSeconds`` option. For more information about connection string options, see the :manual:`Connection String Options <https://www.mongodb.com/docs/manual/reference/connection-string/#connection-string-options>`
