@@ -263,7 +263,7 @@ geospatial data with the MongoDB Node.js driver, read our
 
 To create a 2dsphere index, you must specify a field that contains
 only **GeoJSON objects**. For more details on this type, see the MongoDB
-server manual page on :manual:`GeoJSON objects </reference/geojson>`.
+Server manual page on :manual:`GeoJSON objects </reference/geojson>`.
 
 The ``location.geo`` field in following sample document from the
 ``theaters`` collection in the ``sample_mflix`` database is a GeoJSON Point
