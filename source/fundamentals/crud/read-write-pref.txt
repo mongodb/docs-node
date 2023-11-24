@@ -264,7 +264,7 @@ This code sets the read preference mode of a existing cluster to ``"secondary"``
    const uri = "mongodb+srv://<user>:<password>@@<cluster-url>?readPreference=secondary&maxStalenessSeconds=120";
    const client = new MongoClient(uri);
 
-This example also sets the ``maxStalenessSeconds`` option. For more information about connection string options, see the :manual:`Connection String Options <https://www.mongodb.com/docs/manual/reference/connection-string/#connection-string-options>`
+This example also sets the ``maxStalenessSeconds`` option. For more information about connection string options, see the :manual:`Connection String Options </reference/connection-string/#connection-string-options>`
 section in the manual.
 
 API Documentation
