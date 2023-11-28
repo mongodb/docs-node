@@ -1,56 +1,19 @@
 const { MongoClient } = require("mongodb");
 
-// Replace the URI string with your connection string.
-const uri = "<Your MongoDB URI>";
+const uri = "<connection string>";
 const client = new MongoClient(uri);
 
 async function run() {
   try {
-    // Drop any collections from a previous run
-    await client.db("sample_joins").dropCollection("products");
-    await client.db("sample_joins").dropCollection("orders");
 
-    const joinDatabase = client.db("sample_joins");
-    const products = await joinDatabase.collection("products");
-    const orders = await joinDatabase.collection("orders");
+    const aggDB = client.db("agg_tutorials_db");
 
-    
-    products.createIndex({ id: 1 });
-    const productDocuments = [
-      // start-products
-      {
-        id: "a1b2c3d4",
-        name: "Asus Laptop",
-        category: "ELECTRONICS",
-        description: "Good value laptop for students",
-      },
-      {
-        id: "z9y8x7w6",
-        name: "The Day Of The Triffids",
-        category: "BOOKS",
-        description: "Classic post-apocalyptic novel",
-      },
-      {
-        id: "ff11gg22hh33",
-        name: "Morphy Richardds Food Mixer",
-        category: "KITCHENWARE",
-        description: "Luxury mixer turning good cakes into great",
-      },
-      {
-        id: "pqr678st",
-        name: "Karcher Hose Set",
-        category: "GARDEN",
-        description: "Hose + nosels + winder for tidy storage",
-      },
-      // end-products
-    ];
+    // start-colls
+    const collName1 = await aggDB.collection("orders");
+    const collName2 = await aggDB.collection("products");
+    // end-colls
 
-    await products.insertMany(productDocuments);
-    
-
-    orders.createIndex({ orderdate: -1 });
-
-    const orderDocuments = [
+    const sampleData1 = [
       // start-orders
       {
         customer_id: "elise_smith@myemail.com",
@@ -79,12 +42,44 @@ async function run() {
       // end-orders
     ];
 
-    await orders.insertMany(orderDocuments);
-    
+    const sampleData2 = [
+      // start-products
+      {
+        id: "a1b2c3d4",
+        name: "Asus Laptop",
+        category: "ELECTRONICS",
+        description: "Good value laptop for students",
+      },
+      {
+        id: "z9y8x7w6",
+        name: "The Day Of The Triffids",
+        category: "BOOKS",
+        description: "Classic post-apocalyptic novel",
+      },
+      {
+        id: "ff11gg22hh33",
+        name: "Morphy Richardds Food Mixer",
+        category: "KITCHENWARE",
+        description: "Luxury mixer turning good cakes into great",
+      },
+      {
+        id: "pqr678st",
+        name: "Karcher Hose Set",
+        category: "GARDEN",
+        description: "Hose + nosels + winder for tidy storage",
+      },
+      // end-products
+    ];
 
-    // start-match
+    await collName1.deleteMany({});
+    await collName2.deleteMany({});
+
+    await collName1.insertMany(sampleData1);
+    await collName2.insertMany(sampleData2);
+
     const pipeline = [];
 
+    // start-match
     pipeline.push({
       $match: {
         orderdate: {
@@ -119,20 +114,17 @@ async function run() {
             product_category: "$product_mapping.category",
           },
         }
-      );``
+      );
     // end-set
 
     // start-unset
     pipeline.push({ $unset: ["_id", "product_id", "product_mapping"] });
     // end-unset
 
-    // start-run-aggregation
-    const aggregationResult = await orders.aggregate(pipeline);
-
+    const aggregationResult = await collName1.aggregate(pipeline);
     for await (const document of aggregationResult) {
       console.log(document);
     }
-    // end-run-aggregation
   } finally {
     await client.close();
   }
