@@ -57,9 +57,10 @@ runnable Node.js code file that you can run in your environment.
 Aggregation Template App
 ------------------------
 
-Before you begin following an aggregation tutorial, set up an app that
-you can use to insert sample data into MongoDB and run the aggregation
-pipeline.
+Before you begin following an aggregation tutorial, you must set up a
+new Node.js app. You can use this app to connect to a MongoDB
+deployment, insert sample data into MongoDB, and run the aggregation
+pipeline in each tutorial.
 
 .. tip:: 
    
@@ -85,7 +86,14 @@ app template for the aggregation tutorials:
    encounter a connection error.
 
 For every tutorial, you must replace the connection string placeholder with
-your deployment's connection string. For example, if your connection string is
+your deployment's connection string.
+
+.. tip::
+   
+   To learn how to locate your deployment's connection string, see the
+   :ref:`node-quick-start-connection-string` step of the Quick Start guide.
+
+For example, if your connection string is
 ``"mongodb+srv://mongodb-example:27017"``, your connection string assignment resembles
 the following:
 
@@ -95,7 +103,7 @@ the following:
    const uri = "mongodb+srv://mongodb-example:27017";
 
 To run the completed file after you modify the template for a
-tutorial, run the following command in your terminal:
+tutorial, run the following command in your shell:
 
 .. code-block:: bash
 
