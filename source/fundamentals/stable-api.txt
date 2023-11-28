@@ -82,9 +82,9 @@ following operations:
 
 .. warning::
 
-   If you specify an API version and connect to a MongoDB server that does
+   If you specify an API version and connect to a MongoDB Server that does
    not support the {+stable-api+}, your application may throw an error when
-   connecting to your MongoDB server with the following text:
+   connecting to your MongoDB Server with the following text:
 
    .. code-block:: none
       :copyable: false

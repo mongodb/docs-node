@@ -62,7 +62,7 @@ when a write operation updates an indexed field, MongoDB also has to update
 the related index.
 
 For more information on designing your data model and choosing indexes
-appropriate for your application, see the MongoDB server documentation on
+appropriate for your application, see the MongoDB Server documentation on
 :manual:`Indexing Strategies </applications/indexes>` and
 :manual:`Data Modeling and Indexes </core/data-model-operations/#data-model-indexes>`.
 

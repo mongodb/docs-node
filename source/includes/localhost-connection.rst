@@ -11,11 +11,11 @@ steps:
 
 .. important::
 
-   Always secure your MongoDB server from malicious attacks. See our
+   Always secure your MongoDB Server from malicious attacks. See our
    :manual:`Security Checklist </administration/security-checklist/>` for a
    list of security recommendations.
 
-After you successfully start your MongoDB server, specify your connection
+After you successfully start your MongoDB Server, specify your connection
 string in your driver connection code.
 
 If your MongoDB Server is running locally, you can use the following

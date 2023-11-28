@@ -103,7 +103,7 @@ API feature, see the :ref:`{+stable-api+} page <nodejs-stable-api>`.
 Other Ways to Connect to MongoDB
 --------------------------------
 
-If you are connecting to a single MongoDB server instance or replica set
+If you are connecting to a single MongoDB Server instance or replica set
 that is not hosted on Atlas, see the following sections to find out how to
 connect.
 
