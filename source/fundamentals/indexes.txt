@@ -62,7 +62,7 @@ when a write operation updates an indexed field, MongoDB also has to update
 the related index.
 
 For more information on designing your data model and choosing indexes
-appropriate for your application, see the MongoDB Server documentation on
+appropriate for your application, see the {+mdb-server+} documentation on
 :manual:`Indexing Strategies </applications/indexes>` and
 :manual:`Data Modeling and Indexes </core/data-model-operations/#data-model-indexes>`.
 
@@ -179,7 +179,7 @@ Multikey indexes behave differently from non-multikey indexes in terms of
 query coverage, index bound computation, and sort behavior. For a full
 explanation of multikey indexes, including a discussion of their behavior
 and limitations, refer to the :manual:`Multikey Indexes page
-</core/index-multikey>` in the MongoDB Server manual.
+</core/index-multikey>` in the {+mdb-server+} manual.
 
 Clustered Indexes
 ~~~~~~~~~~~~~~~~~
