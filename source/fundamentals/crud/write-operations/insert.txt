@@ -69,7 +69,7 @@ you let the driver automatically generate ``_id`` values.
    Duplicate ``_id`` values violate unique index constraints, resulting
    in a ``WriteError``.
 
-For additional information about ``_id``, see the Server manual entry on
+For more information about ``_id``, see the Server manual entry on
 :manual:`Unique Indexes </core/index-unique/>`.
 
 Insert a Single Document
