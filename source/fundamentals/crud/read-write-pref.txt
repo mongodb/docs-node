@@ -21,7 +21,7 @@ Overview
 --------
 
 In this guide, you can learn how to use the **write concern**, **read concern**, and
-**read preference** configurations to modify the way that MongoDB executes
+**read preference** configurations to modify the way that MongoDB runs
 create, read, update, and delete (CRUD) operations on replica sets.
 
 You can set write concern, read concern, and read preference options at the following
@@ -77,10 +77,9 @@ This code uses custom ``WriteConcern`` settings while creating new a document:
 .. code-block:: js
 
    myDB.myCollection.insertOne( 
-      {
-        name: "anotherDocumentName"
-      }, {
-        writeConcern: { w: 2, wtimeoutMS: 5000 }
+      { name: "anotherDocumentName" }, 
+      { writeConcern: 
+        { w: 2, wtimeoutMS: 5000 } 
       } 
    );
 
@@ -94,17 +93,17 @@ includes a write concern option.
 .. code-block:: js
 
    const newWriteConcern = WriteConcern.fromOptions(myDB);
-   const myDoc { name: "New Document" };
+   const myDoc = { name: "New Document" };
    WriteConcern.apply(myDoc,newWriteConcern);
 
 Read Concern
 ------------
 
-The read concern specifies:
+The read concern specifies the following behaviors:
 
-- the level of `consistency <https://www.mongodb.com/docs/current/core causal-consistency-read-write-concerns/>`__ across replica sets
+- Level of :manual:`consistency </core/causal-consistency-read-write-concerns/>` across replica sets
 
-- the `isolation
+- `Isolation
   <https://www.mongodb.com/docs/current/core/read-isolation-consistency-recency/>`__
   guarantees maintained during a query 
 
@@ -137,9 +136,8 @@ This code sets the read concern level of an an aggregation to ``"majority"``:
    result = await myDB.collection("mycollection")
       .aggregate(
         pipeline, 
-        { readConcern: {
-          level: "available" 
-          } 
+        { readConcern: 
+          { level: "available" } 
         } 
       );
 
@@ -153,22 +151,20 @@ This code changes the read concern level of a database to ``"local"``:
 .. code-block:: js
 
    const options = { readConcern: { level: "local" } };
-   const myDB = client.db("db_name", options);
+   const myDB = client.db("db-name", options);
 
 Read Preference
 ---------------
 
-The read concern determines which member of a replica set MongoDB reads when executing a
-query. The default mode, ``primary``, specifies that operations are read from the primary member of the replica set.
+The read preference determines which member of a replica set MongoDB reads when running a
+query. The default mode, ``primary``, specifies that operations read from the primary member of the replica set.
 
 Read Preference Options
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ``mode``
 `````````
-The preference modes are defined by an enumerable set of the following options. For
-descriptions of the available modes, see :manual:`Read Preference
-</core/read-preference/#read-preference-modes-1>` in the Server manual.
+
 
 .. list-table::
    :widths: 25 75
@@ -177,61 +173,21 @@ descriptions of the available modes, see :manual:`Read Preference
    * - Mode
      - Description
 
-   * - ``"primary"``
-     - All operations read from the primary member of the replica set.
+   * - ``mode``
+     - The preference modes are defined by an enumerable set of the following options. For
+       descriptions of the available modes, see :manual:`Read Preference
+       </core/read-preference/#read-preference-modes-1>` in the Server manual.
 
-   * - ``"primaryPreferred"``
-     - Most operations read from the primary member. However, if the primary member is
-       busy, the operation reads from a secondary member that meets the
-       :ref:`<read_preference_options>` criteria.
+   * - ``tags`` *(optional)*
+     - A list of tags used to prioritize secondary members by using tags associated with
+       each member. Tags cannot be used with  ``"primary"`` mode. For more information
+       about tag sets or managing member tags, see :manual:`Read Preference Tag Set Lists </core/read-preference-tags/#read-preference-tag-set-lists/>`.
 
-   * - ``"secondary"``
-     - All operations read from a secondary member of the replica set. If a
-       :ref:`read_preference_options` value is defined, it will be used to determine an
-       appropriate member. We recommend setting a ``maxStalenessSeconds`` value to avoid
-       returning stale data.
-
-   * - ``"secondaryPreferred"``
-     - Most operations read from a secondary member of the replica set. If a
-       :ref:`read_preference_options` value is defined, it will be used to determine an
-       appropriate member. If none of the secondary members meet the staleness criteria,
-       the operation reads from the primary.
-
-   * - ``"nearest"``
-     - Operations read from a member that has a latency within the acceptable range.
-       Whether a member is primary or secondary is not considered. We recommend setting a
-       :ref:`read_preference_options` value to avoid returning stale data.
-
-``tags`` *(optional)*
-`````````````````````
-
-A list of tags used to prioritize secondary members by using tags associated with each
-member. Tags cannot be used with  ``"primary"`` mode. For more information about tag sets
-or managing member tags, see :manual:`Read Preference Tag Set Lists
-</core/read-preference-tags/#read-preference-tag-set-lists/>`.
-
-.. _read_preference_options:
-
-``options`` *(optional)*
-````````````````````````
-
-The following options may be sent as a `ReadPreferenceOptions
-<{+api+}/interfaces/ReadPreferenceOptions.html>`__ object:
-
-.. list-table::
-   :widths: 25 75
-   :header-rows: 1
-
-   * - Mode
-     - Description
-
-   * - ``hedge``
-     - | Sends each query to multiple shards and returns the first response. 
-       | For more information, see :manual:`Hedged Read Option </core/read-preference-hedge-option/>`.
-
-   * - ``maxStalenessSeconds``
-     - | The maximum number of seconds a secondary member can lag behind the primary member before the data is considered stale. We recommend setting this option for ``secondary``, ``secondaryPreferred``, and ``nearest`` modes to avoid returning stale data. 
-       | For more information, see :manual:`Read Preference maxStalenessSeconds </core/read-preference-staleness/>`.
+   * - ``options`` *(optional)*
+     - Various options, including ``hedge`` and ``maxStalenessSeconds``, that can be
+       applied to your read preference. For detailed descriptions of all options, see the
+       `ReadPreferenceOptions <ReadPreferenceOptions
+       {+api+}/interfaces/ReadPreferenceOptions.html>`__ API guide.
 
 Example: Set Read Preference and Concerns for a Transaction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -248,7 +204,7 @@ This code sets the read preference, read concern, and write concern of a transac
 
    const session = client.startSession();
    session.startTransaction(transactionOptions);
-    ...
+   // ...
    await session.commitTransaction();
    await session.endSession();
 
@@ -257,7 +213,8 @@ For more information about transactions, see :ref:`nodejs-transactions`.
 Example: Set the Read Preference of a Cluster in the Connection String
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This code sets the read preference mode of a existing cluster to ``"secondary"``:
+This code example creates a MongoClient that uses the "secondary" read preference mode
+when performing queries on a cluster:
 
 .. code-block:: js
 
