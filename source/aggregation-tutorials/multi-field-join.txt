@@ -29,8 +29,9 @@ field values and combines information from both into one document.
 .. tip:: One-to-many Joins
 
    A one-to-many join is a variety of a multi-field join. When you
-   perform a one-to-many join, you do not need to use multiple fields on
-   each side of the join. To learn more about these data relationships,
+   perform a one-to-many join, you select one field from a document that
+   matches a field value in multiple documents on the other side of the
+   join. To learn more about these data relationships,
    see the Wikipedia entries about :wikipedia:`One-to-many (data model)
    <w/index.php?title=One-to-many_(data_model)&oldid=1112674599>` and
    :wikipedia:`Many-to-many (data model)
