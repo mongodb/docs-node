@@ -44,9 +44,9 @@ includes the product details associated with each order.
 
 This example uses two collections:
 
-- ``orders``, which contains documents describing an order
-  for a product in a shop
-- ``products``, which contains documents that describe the products that
+- ``orders``, which contains documents describing individual orders
+  for products in a shop
+- ``products``, which contains documents describing the products that
   a shop sells
 
 An order can only contain one product, so the aggregation uses a

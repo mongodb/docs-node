@@ -19,7 +19,8 @@ Aggregation Tutorials
 
 .. toctree::
 
-   /aggregation-tutorials/one-to-one-join.txt
+   /aggregation-tutorials/one-to-one-join/
+   /aggregation-tutorials/multi-field-join/
 
 Overview
 --------
