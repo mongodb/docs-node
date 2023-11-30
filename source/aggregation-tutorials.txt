@@ -114,3 +114,4 @@ Available Tutorials
 -------------------
 
 - :ref:`node-aggregation-one-to-one`
+- :ref:`node-aggregation-multi-field`
