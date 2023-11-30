@@ -22,7 +22,7 @@ async function run() {
       },
       {
         name: "Asus Laptop",
-        variation: "Normal Display",
+        variation: "Standard Display",
         category: "ELECTRONICS",
         description: "Good value laptop for students",
       },
@@ -53,7 +53,7 @@ async function run() {
         customer_id: "elise_smith@myemail.com",
         orderdate: new Date("2020-05-30T08:35:52Z"),
         product_name: "Asus Laptop",
-        product_variation: "Normal Display",
+        product_variation: "Standard Display",
         value: 431.43,
       },
       {
@@ -74,7 +74,7 @@ async function run() {
         customer_id: "jjones@tepidmail.com",
         orderdate: new Date("2020-12-26T08:55:46Z"),
         product_name: "Asus Laptop",
-        product_variation: "Normal Display",
+        product_variation: "Standard Display",
         value: 429.65,
       },
       // end-orders
@@ -144,7 +144,7 @@ async function run() {
 
     // start-unset
     pipeline.push({
-      $unset: ["_id"],
+      $unset: ["_id", "description"],
     });
     // end-unset
 

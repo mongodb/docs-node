@@ -101,7 +101,7 @@ Tutorial
 --------
 
 .. procedure::
-   :style: normal
+   :style: connected
 
    .. step:: Build The Aggregation Pipeline
 
@@ -207,9 +207,8 @@ Tutorial
          
          {
            name: 'Asus Laptop',
-           variation: 'Normal Display',
+           variation: 'Standard Display',
            category: 'ELECTRONICS',
-           description: 'Good value laptop for students',
            orders: [
              {
                customer_id: 'elise_smith@myemail.com',
@@ -227,7 +226,6 @@ Tutorial
            name: 'Morphy Richards Food Mixer',
            variation: 'Deluxe',
            category: 'KITCHENWARE',
-           description: 'Luxury mixer turning good cakes into great',
            orders: [
              {
                customer_id: 'oranieri@warmmail.com',
