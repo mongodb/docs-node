@@ -183,7 +183,8 @@ Tutorial
 
             Finally, add an :manual:`$unset
             </reference/operator/aggregation/unset>` stage. The
-            ``$unset`` stage removes the ``_id`` field from the result documents:
+            ``$unset`` stage removes the ``_id`` and ``description``
+            fields from the result documents:
             
             .. literalinclude:: /includes/aggregation/multi-field-join.js
                :language: javascript
