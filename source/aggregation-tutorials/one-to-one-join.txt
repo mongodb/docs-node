@@ -96,7 +96,7 @@ Tutorial
 --------
 
 .. procedure::
-   :style: normal
+   :style: connected
 
    .. step:: Build The Aggregation Pipeline
 
