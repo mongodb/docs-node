@@ -21,6 +21,7 @@ Aggregation Tutorials
 
    /aggregation-tutorials/one-to-one-join/
    /aggregation-tutorials/multi-field-join/
+   /aggregation-tutorials/filtered-subset.txt
 
 Overview
 --------
