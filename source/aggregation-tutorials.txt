@@ -19,9 +19,9 @@ Aggregation Tutorials
 
 .. toctree::
 
+   /aggregation-tutorials/filtered-subset/
    /aggregation-tutorials/one-to-one-join/
    /aggregation-tutorials/multi-field-join/
-   /aggregation-tutorials/filtered-subset.txt
 
 Overview
 --------
@@ -114,6 +114,6 @@ tutorial, run the following command in your shell:
 Available Tutorials
 -------------------
 
+- :ref:`node-aggregation-filtered-subset`
 - :ref:`node-aggregation-one-to-one`
 - :ref:`node-aggregation-multi-field`
-- :ref:`node-aggregation-filtered-subset`

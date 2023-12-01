@@ -21,26 +21,27 @@ Introduction
 ------------
 
 In this tutorial, you can learn how to use the {+driver-short+} to
-find a subset of documents in a collection by using aggregation.
+find a subset of documents in a collection and format results by using
+aggregation.
 
 .. tip::
 
-   You can also query for a subset of documents in a collection by using MongoDB
-   Query Language (MQL). To learn how to specify a query using MQL, see the 
-   :ref:`read operation guides <node-read-operations>`.
+   You can also query for a subset of documents in a collection by using the
+   Query API. To learn how to specify a query, see the 
+   :ref:`Read Operations guides <node-read-operations>`.
 
 Aggregation Task Summary
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 This aggregation tutorial demonstrates how to query a collection for a specific
-subset of documents in a collection that details people's personal information, including
-their employment and age. The aggregated result is the three youngest
-people who have the job title of "ENGINEER".
+subset of documents in a collection. The collection contains documents that
+include details about people's occupation, age, and home addresses. The
+aggregated result contains documents that describe
+the three youngest people who are engineers.
 
-This example uses the following collection:
-
-- ``persons``, which contains documents describing a person's information,
-  including their name, date of birth, vocation, and address
+This example uses the one collection, called ``persons``, which contains
+documents describing a person's information, including their name, date of
+birth, vocation, and address.
 
 Before You Get Started
 ----------------------
@@ -60,6 +61,12 @@ the following code:
    :end-before: end-collection
    :dedent:
 
+.. note::
+   
+   Since this tutorial accesses documents in only one collection, you
+   should delete any lines in the template app that reference a second
+   collection.
+
 Insert sample data into the ``persons`` collection by
 pasting the following sample documents into the ``sampleData1`` array:
 
@@ -70,22 +77,11 @@ pasting the following sample documents into the ``sampleData1`` array:
    :end-before: end-persons
    :dedent:
 
-After inserting the data into the collection, create a compound index on the
-``vocation`` and ``dateofbirth`` fields to
-improve query performance, as shown in the following code:
-
-.. literalinclude:: /includes/aggregation/filtered-subset.js
-   :language: javascript
-   :copyable: true
-   :start-after: start-index
-   :end-before: end-index
-   :dedent:
-
 Tutorial
 --------
 
 .. procedure::
-   :style: normal
+   :style: connected
 
    .. step:: Build The Aggregation Pipeline
 
@@ -94,9 +90,9 @@ Tutorial
 
          .. step::
 
-            Add a :manual:`$match
-            </reference/operator/aggregation/match>` stage that matches
-            people with the vocation of "ENGINEER":
+            First, add a :manual:`$match
+            </reference/operator/aggregation/match>` stage that documents in which
+            the value of the ``vocation`` field is ``"ENGINEER"``:
 
             .. literalinclude:: /includes/aggregation/filtered-subset.js
                :language: javascript
@@ -109,7 +105,8 @@ Tutorial
 
             Next, add a :manual:`$sort
             </reference/operator/aggregation/sort>` stage that sorts the
-            documents in descending order by their date of birth:
+            documents in descending order by the ``dateofbirth`` field to
+            list the youngest people first:
 
             .. literalinclude:: /includes/aggregation/filtered-subset.js
                :language: javascript
@@ -121,8 +118,8 @@ Tutorial
          .. step::
 
             Next, add a :manual:`$limit </reference/operator/aggregation/limit>`
-            stage to the pipeline that limits the number of documents returned
-            to three.
+            stage to the pipeline to only include the first three documents in
+            the result.
 
             .. literalinclude:: /includes/aggregation/filtered-subset.js
                :language: javascript
@@ -135,7 +132,7 @@ Tutorial
 
             Finally, add an :manual:`$unset
             </reference/operator/aggregation/unset>` stage. The
-            ``$unset`` stage removes unnecessary fields from the document:
+            ``$unset`` stage removes unnecessary fields from the result documents:
             
             .. literalinclude:: /includes/aggregation/filtered-subset.js
                :language: javascript
@@ -147,8 +144,8 @@ Tutorial
             .. tip::
 
                Use an ``$unset`` stage instead of a ``$project`` to avoid
-               needing to modify the aggregation pipeline if documents with
-               varying fields are added. 
+               modifying the aggregation pipeline if documents with
+               different fields are added to the collection. 
 
    .. step:: Run the Aggregation Pipeline
 
@@ -161,8 +158,8 @@ Tutorial
 
       The aggregated result contains three documents. The documents
       represent the three youngest people with the vocation of "ENGINEER",
-      ordered from youngest to oldest, omitting the ``_id`` and ``address``
-      fields. 
+      ordered from youngest to oldest. The results omit the ``_id`` and ``address``
+      fields.
 
       .. code-block:: javascript
          :copyable: false
