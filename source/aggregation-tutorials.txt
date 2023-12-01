@@ -19,6 +19,7 @@ Aggregation Tutorials
 
 .. toctree::
 
+   /aggregation-tutorials/group-total/
    /aggregation-tutorials/one-to-one-join/
    /aggregation-tutorials/multi-field-join/
 
@@ -113,5 +114,6 @@ tutorial, run the following command in your shell:
 Available Tutorials
 -------------------
 
+- :ref:`node-aggregation-group-total`
 - :ref:`node-aggregation-one-to-one`
 - :ref:`node-aggregation-multi-field`

@@ -1,0 +1,225 @@
+.. _node-aggregation-group-total:
+
+===============
+Group and Total
+===============
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: tutorial
+
+.. meta::
+   :keywords: code example, node.js, analyze, aggregation
+
+Introduction
+------------
+
+In this tutorial, you can learn how to use the {+driver-short+} to
+group documents and create totals from these groups. The aggregation
+groups documents on a common field and combines information
+from the documents to create new fields.
+
+Aggregation Task Summary
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This aggregation tutorial demonstrates how to group and analyze data
+describing customer orders. The aggregated result is a list of customers
+who purchased items in 2020. The results include information about
+each customer's order history.
+
+This example one collection, ``orders``, which contains documents
+describing individual orders for products in a shop.
+
+An order can only correspond to one customer, so the documents are
+grouped by the ``customer_id`` field, which provides the email address
+of the customer.
+
+Before You Get Started
+----------------------
+
+Before you start following this tutorial, follow the
+instructions in the :ref:`node-agg-tutorial-template-app` section of the
+Aggregation Tutorials page to set up the template app.
+
+Once you set up the app, access the ``orders`` collection by updating
+the collection name placeholder, as shown in the following code:
+
+.. literalinclude:: /includes/aggregation/group-total.js
+   :language: javascript
+   :copyable: true
+   :start-after: start-coll
+   :end-before: end-coll
+   :dedent:
+
+.. note::
+   
+   Since this tutorial accesses documents in only one collection, you
+   should delete any lines in the template app that reference a second
+   collection.
+
+Insert sample data into the ``orders`` collection by
+pasting the following sample documents into the ``sampleData1`` array:
+
+.. literalinclude:: /includes/aggregation/multi-field-join.js
+   :language: javascript
+   :copyable: true
+   :start-after: start-orders
+   :end-before: end-orders
+   :dedent:
+
+Tutorial
+--------
+
+.. procedure::
+   :style: connected
+
+   .. step:: Build The Aggregation Pipeline
+
+      .. procedure::
+         :style: connected
+
+         .. step::
+
+            First, add a :manual:`$match
+            </reference/operator/aggregation/match>` stage that matches
+            orders placed in 2020:
+
+            .. literalinclude:: /includes/aggregation/group-total.js
+               :language: javascript
+               :copyable: true
+               :start-after: start-match
+               :end-before: end-match
+               :dedent:
+
+         .. step::
+
+            Next, add a :manual:`$sort
+            </reference/operator/aggregation/sort>` stage to set an
+            ascending sort on the ``orderdate`` field, so that you can
+            find the first purchase data for each customer in the next
+            stage:
+
+            .. literalinclude:: /includes/aggregation/group-total.js
+               :language: javascript
+               :copyable: true
+               :start-after: start-sort1
+               :end-before: end-sort1
+               :dedent:
+
+         .. step::
+
+            Add a :manual:`$group
+            </reference/operator/aggregation/group>` stage to group
+            orders by the value of the ``customer_id`` field. In this
+            stage, calculate the following new fields:
+
+            - ``first_purchase_date``: the date of the customer's first purchase
+            - ``total_value``: the total value of all of the customer's purchases
+            - ``total_orders``: the total number of the customer's purchases
+            - ``orders``: the list of all of the customer's purchases,
+              including the date and value of each purchase
+
+            .. literalinclude:: /includes/aggregation/group-total.js
+               :language: javascript
+               :copyable: true
+               :start-after: start-group
+               :end-before: end-group
+               :dedent:
+
+         .. step::
+
+            Next, add another :manual:`$sort
+            </reference/operator/aggregation/sort>` stage to set an
+            ascending sort on the ``first_purchase_date`` field:
+
+            .. literalinclude:: /includes/aggregation/group-total.js
+               :language: javascript
+               :copyable: true
+               :start-after: start-sort2
+               :end-before: end-sort2
+               :dedent:
+
+         .. step::
+
+            Add a :manual:`$set
+            </reference/operator/aggregation/set>` stage to recreate the
+            ``customer_id`` field from the values in the ``_id`` field
+            that were set during the ``$group`` stage:
+
+            .. literalinclude:: /includes/aggregation/group-total.js
+               :language: javascript
+               :copyable: true
+               :start-after: start-set
+               :end-before: end-set
+               :dedent:
+
+         .. step::
+
+            Finally, add an :manual:`$unset
+            </reference/operator/aggregation/unset>` stage. The
+            ``$unset`` stage removes the ``_id`` field from the result
+            documents:
+            
+            .. literalinclude:: /includes/aggregation/group-total.js
+               :language: javascript
+               :copyable: true
+               :start-after: start-unset
+               :end-before: end-unset
+               :dedent:
+
+   .. step:: Run the Aggregation Pipeline
+
+      Run the following command in your shell to perform the aggregation
+      on the ``products`` collection:
+
+      .. code-block:: bash
+      
+         node agg_tutorial.js
+
+      The aggregated result contains three documents. The documents
+      describe customers and a summary of their orders:
+
+      .. code-block:: javascript
+         :copyable: false
+         
+         {
+           first_purchase_date: 2020-01-01T08:25:37.000Z,
+           total_value: 63.13,
+           total_orders: 1,
+           orders: [ { orderdate: 2020-01-01T08:25:37.000Z, value: 63.13 } ],
+           customer_id: 'oranieri@warmmail.com'
+         }
+         {
+           first_purchase_date: 2020-01-13T09:32:07.000Z,
+           total_value: 482.15999999999997,
+           total_orders: 4,
+           orders: [
+             { orderdate: 2020-01-13T09:32:07.000Z, value: 99.99 },
+             { orderdate: 2020-05-30T08:35:52.000Z, value: 231.43 },
+             { orderdate: 2020-10-03T13:49:44.000Z, value: 102.24 },
+             { orderdate: 2020-12-26T08:55:46.000Z, value: 48.5 }
+           ],
+           customer_id: 'elise_smith@myemail.com'
+         }
+         {
+           first_purchase_date: 2020-08-18T23:04:48.000Z,
+           total_value: 192.58,
+           total_orders: 2,
+           orders: [
+             { orderdate: 2020-08-18T23:04:48.000Z, value: 4.59 },
+             { orderdate: 2020-11-23T22:56:53.000Z, value: 187.99 }
+           ],
+           customer_id: 'tj@wheresmyemail.com'
+         }
+
+      The result documents contain details from all of the documents for
+      a given customer, grouped by the customer's email address.
+
+To see the complete code for this tutorial, see the `Complete Group and Total Tutorial
+<https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/group-total.js>`__.
