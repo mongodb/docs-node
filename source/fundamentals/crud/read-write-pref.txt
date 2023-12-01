@@ -48,26 +48,27 @@ For more information, see :manual:`Write Concern </reference/write-concern/>` in
 Server manual. For more detailed API descriptions, see the `WriteConcern API documentation
 <{+api+}/classes/WriteConcern.html>`__.
 
-A ``WriteConcern`` accepts the following parameters:
+The following table describes the ``WriteConcern`` parameters:
 
 .. list-table::
    :header-rows: 1
-   :widths: 25 75
+   :widths: 25 25 50
 
    * - Parameter
+     - Type
      - Description
   
    * - ``w`` *(optional)*
-     - | Requests acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags 
-       | **Type:** `W <{+api+}/types/W.html>`__
+     - `W <{+api+}/types/W.html>`__
+     - Requests acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags
 
-   *  - ``wtimeoutMS`` *(optional)*
-      - | Specifies a time limit to prevent write operations from blocking indefinitely 
-        | **Type:** number
+   * - ``wtimeoutMS`` *(optional)*
+     - number
+     - Specifies a time limit to prevent write operations from blocking indefinitely
 
    * - ``journal`` *(optional)*
-     - | Requests acknowledgment that the write operation has been written to the on-disk journal 
-       | **Type:** boolean
+     - boolean
+     - Requests acknowledgment that the write operation has been written to the on-disk journal 
 
 Example: Set the Write Concern for a Single Write Operation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -157,37 +158,37 @@ Read Preference
 ---------------
 
 The read preference determines which member of a replica set MongoDB reads when running a
-query. The default mode, ``primary``, specifies that operations read from the primary member of the replica set.
+query. You can also customize how the server evaluates members. 
 
-Read Preference Options
-~~~~~~~~~~~~~~~~~~~~~~~
+The default mode, ``primary``, specifies that operations read from the primary member of
+the replica set. For more detailed API descriptions, see the `ReadPreference API
+documentation <{+api+}/classes/ReadPreference.html>`__.
 
-``mode``
-`````````
-
+The following table describes the ``ReadPreference`` parameters:
 
 .. list-table::
-   :widths: 25 75
+   :widths: 25 25 50
    :header-rows: 1
 
    * - Mode
+     - Type
      - Description
 
    * - ``mode``
-     - The preference modes are defined by an enumerable set of the following options. For
-       descriptions of the available modes, see :manual:`Read Preference
-       </core/read-preference/#read-preference-modes-1>` in the Server manual.
+     - `ReadPreferenceMode </core/read-preference/#read-preference-modes-1>`__
+     - Specifies a requirement or preference for which replica set
+       member the server reads from.
 
    * - ``tags`` *(optional)*
-     - A list of tags used to prioritize secondary members by using tags associated with
-       each member. Tags cannot be used with  ``"primary"`` mode. For more information
-       about tag sets or managing member tags, see :manual:`Read Preference Tag Set Lists </core/read-preference-tags/#read-preference-tag-set-lists/>`.
+     - :manual:`TagSet List </core/read-preference-tags/#read-preference-tag-set-lists/>`
+     - Assigns tags to secondary replica set members to customize how the server evaluates
+       them. Tags cannot be used with the ``primary`` read preference mode setting.
 
    * - ``options`` *(optional)*
-     - Various options, including ``hedge`` and ``maxStalenessSeconds``, that can be
-       applied to your read preference. For detailed descriptions of all options, see the
-       `ReadPreferenceOptions <ReadPreferenceOptions
-       {+api+}/interfaces/ReadPreferenceOptions.html>`__ API guide.
+     - `ReadPreferenceOptions <{+api+}/interfaces/ReadPreferenceOptions.html>`__
+     - Sets various options, including :manual:`hedge </core/read-preference-hedge-option/>`
+       and :manual:`maxStalenessSeconds </core/read-preference-staleness/>`, that can be
+       applied to your read preference.
 
 Example: Set Read Preference and Concerns for a Transaction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
