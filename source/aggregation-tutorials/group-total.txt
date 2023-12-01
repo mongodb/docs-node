@@ -33,7 +33,7 @@ describing customer orders. The aggregated result is a list of customers
 who purchased items in 2020. The results include information about
 each customer's order history.
 
-This example one collection, ``orders``, which contains documents
+This example uses one collection, ``orders``, which contains documents
 describing individual orders for products in a shop.
 
 An order can only correspond to one customer, so the documents are
@@ -60,7 +60,7 @@ the collection name placeholder, as shown in the following code:
 .. note::
    
    Since this tutorial accesses documents in only one collection, you
-   should delete any lines in the template app that reference a second
+   can delete any lines in the template app that reference a second
    collection.
 
 Insert sample data into the ``orders`` collection by
@@ -120,9 +120,9 @@ Tutorial
             stage, calculate the following new fields:
 
             - ``first_purchase_date``: the date of the customer's first purchase
-            - ``total_value``: the total value of all of the customer's purchases
+            - ``total_value``: the total value of all the customer's purchases
             - ``total_orders``: the total number of the customer's purchases
-            - ``orders``: the list of all of the customer's purchases,
+            - ``orders``: the list of all the customer's purchases,
               including the date and value of each purchase
 
             .. literalinclude:: /includes/aggregation/group-total.js
@@ -218,7 +218,7 @@ Tutorial
            customer_id: 'tj@wheresmyemail.com'
          }
 
-      The result documents contain details from all of the documents for
+      The result documents contain details from all the orders from
       a given customer, grouped by the customer's email address.
 
 To see the complete code for this tutorial, see the `Complete Group and Total Tutorial
