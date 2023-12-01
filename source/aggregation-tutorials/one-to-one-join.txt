@@ -44,9 +44,9 @@ includes the product details associated with each order.
 
 This example uses two collections:
 
-- ``orders``, which contains documents describing an order
-  for a product in a shop
-- ``products``, which contains documents that describe the products that
+- ``orders``, which contains documents describing individual orders
+  for products in a shop
+- ``products``, which contains documents describing the products that
   a shop sells
 
 An order can only contain one product, so the aggregation uses a
@@ -96,7 +96,7 @@ Tutorial
 --------
 
 .. procedure::
-   :style: normal
+   :style: connected
 
    .. step:: Build The Aggregation Pipeline
 
@@ -172,9 +172,8 @@ Tutorial
 
    .. step:: Run the Aggregation Pipeline
 
-      Perform the aggregation on the ``orders`` collection by running the
-      following command in your shell to run the ``agg_tutorial.js``
-      file:
+      Run the following command in your shell to perform the aggregation
+      on the ``products`` collection:
 
       .. code-block:: bash
       
