@@ -160,8 +160,7 @@ Read Preference
 The read preference determines which member of a replica set MongoDB reads when running a
 query. You can also customize how the server evaluates members. 
 
-The default mode, ``primary``, specifies that operations read from the primary member of
-the replica set. For more detailed API descriptions, see the `ReadPreference API
+For more detailed API descriptions, see the `ReadPreference API
 documentation <{+api+}/classes/ReadPreference.html>`__.
 
 The following table describes the ``ReadPreference`` parameters:
@@ -177,7 +176,8 @@ The following table describes the ``ReadPreference`` parameters:
    * - ``mode``
      - `ReadPreferenceMode </core/read-preference/#read-preference-modes-1>`__
      - Specifies a requirement or preference for which replica set
-       member the server reads from.
+       member the server reads from. The default mode, ``primary``, specifies that
+       operations read from the primary member of the replica set.
 
    * - ``tags`` *(optional)*
      - :manual:`TagSet List </core/read-preference-tags/#read-preference-tag-set-lists/>`
