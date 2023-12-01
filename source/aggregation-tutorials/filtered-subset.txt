@@ -160,7 +160,9 @@ Tutorial
          node agg_tutorial.js
 
       The aggregated result contains three documents. The documents
-      represent the three youngest people with the vocation of "ENGINEER":
+      represent the three youngest people with the vocation of "ENGINEER",
+      ordered from youngest to oldest, omitting the ``_id`` and ``address``
+      fields. 
 
       .. code-block:: javascript
          :copyable: false
@@ -187,9 +189,6 @@ Tutorial
            dateofbirth: 1972-01-13T09:32:07.000Z,
            vocation: 'ENGINEER'
          }
-
-      The result consists of documents ordered from youngest to oldest,
-      omitting the ``_id`` and ``address`` fields. 
 
 To see the complete code for this tutorial, see the `Complete Filtered Subset Tutorial
 <https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/filtered-subset.js>`__.

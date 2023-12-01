@@ -94,14 +94,16 @@ async function run() {
     await collName1.insertMany(sampleData1);
 
     // start-index
-    collName1.createIndex({"vocation": 1, "dateofbirth": 1});
+    collName1.createIndex({ "vocation": 1, "dateofbirth": 1 });
     // end-index
 
     const pipeline = [];
 
     // start-match
     pipeline.push({
-      $match: {"vocation": "ENGINEER"},
+      $match: {
+        "vocation": "ENGINEER"
+      },
     });
     // end-match
 
