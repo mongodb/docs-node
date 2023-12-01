@@ -63,9 +63,8 @@ the following code:
 
 .. note::
    
-   Since this tutorial accesses documents in only one collection, you
-   should delete any lines in the template app that reference a second
-   collection.
+   Since this tutorial accesses documents in only one collection, delete any lines
+   in the template app that reference a second collection.
 
 Insert sample data into the ``persons`` collection by
 pasting the following sample documents into the ``sampleData1`` array:
