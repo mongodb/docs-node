@@ -33,8 +33,8 @@ levels:
 - Database
 - Collection
 
-These options allow you to customize the consistency and availability of the data in your
-replica sets.
+These options allow you to customize the causal consistency and availability of the data
+in your replica sets.
 
 Write Concern
 -------------
@@ -60,7 +60,8 @@ The following table describes the ``WriteConcern`` parameters:
   
    * - ``w`` *(optional)*
      - `W <{+api+}/types/W.html>`__
-     - Requests acknowledgment that the write operation has propagated to a specified number of mongod instances or to mongod instances with specified tags
+     - Requests acknowledgment that the write operation has propagated to a specified
+       number of ``mongod`` instances or to ``mongod`` instances that are labelled specified tags
 
    * - ``wtimeoutMS`` *(optional)*
      - number
@@ -88,9 +89,9 @@ Example: Retrieve and Apply an Existing Write Concern
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
 This code uses the ``fromOptions()`` method to construct a ``WriteConcern`` from the
-options of an existing database, ``myDB``. Note that ``myDB`` could be replaced with any
-entity that accepts a write concern option. Then the new write concern is applied to a
-document, ``myDoc``.
+options of an existing database reference, ``myDB``. Note that ``myDB`` could be replaced
+with a reference to any entity that accepts a write concern option. Then the new write
+concern is applied to a document, ``myDoc``.
 
 .. code-block:: js
 
@@ -108,9 +109,11 @@ The read concern specifies the following behaviors:
 - `Isolation guarantees
   <https://www.mongodb.com/docs/current/core/read-isolation-consistency-recency/>`__ maintained during a query 
 
-Lower consistency requirements may reduce latency. The default read concern level is
-``local``. This means that the client returns the data from the replica set member that the
-client is connected to, with no guarantee that the data has been written to all replica set members.
+You can specify the read concern setting by using the ``level`` parameter. The default
+read concern level is ``local``. This means that the client returns the data from the
+replica set member that the client is connected to, with no guarantee that the data has
+been written to all replica set members. Note that lower read concern level requirements
+may reduce latency. 
 
 For more information about read concerns or read concern levels, see 
 :manual:`Read Concern </reference/read-concern/>` in the Server manual. For more detail on
@@ -160,7 +163,7 @@ Read Preference
 The read preference determines which member of a replica set MongoDB reads when running a
 query. You can also customize how the server evaluates members. 
 
-For more detailed API descriptions, see the `ReadPreference API
+For more detailed API documentation, see the `ReadPreference API
 documentation <{+api+}/classes/ReadPreference.html>`__.
 
 The following table describes the ``ReadPreference`` parameters:
@@ -169,12 +172,12 @@ The following table describes the ``ReadPreference`` parameters:
    :widths: 25 25 50
    :header-rows: 1
 
-   * - Mode
+   * - Parameter
      - Type
      - Description
 
    * - ``mode``
-     - `ReadPreferenceMode </core/read-preference/#read-preference-modes-1>`__
+     - :manual:`ReadPreferenceMode </core/read-preference/#read-preference-modes-1>`__
      - Specifies a requirement or preference for which replica set
        member the server reads from. The default mode, ``primary``, specifies that
        operations read from the primary member of the replica set.
