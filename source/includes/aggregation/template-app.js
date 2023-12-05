@@ -16,6 +16,10 @@ async function run() {
     const collName1 = await aggDB.collection("<collection 1>");
     const collName2 = await aggDB.collection("<if used, collection 2>");
 
+    // Delete any existing documents in collections.
+    await collName1.deleteMany({});
+    await collName2.deleteMany({});
+
     const sampleData1 = [
       // Paste sample data for collection 1 here.
     ];
@@ -23,10 +27,6 @@ async function run() {
     const sampleData2 = [
       // Paste sample data for collection 2 here.
     ];
-
-    // Delete any existing documents in collections.
-    await collName1.deleteMany({});
-    await collName2.deleteMany({});
 
     // Insert sample data into collections.
     await collName1.insertMany(sampleData1);
