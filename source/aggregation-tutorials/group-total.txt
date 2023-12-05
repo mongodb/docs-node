@@ -21,7 +21,8 @@ Introduction
 ------------
 
 In this tutorial, you can learn how to use the {+driver-short+} to
-group documents and perform calculations on data from these groups. The
+construct an aggregation pipeline to group documents, run this
+aggregation on a collection, and print the results. The
 aggregation performs the following operations:
 
 - Matches a subset of documents by a field value
@@ -31,7 +32,7 @@ aggregation performs the following operations:
 Aggregation Task Summary
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This tutorial shows how to group and analyze customer order data. The
+This tutorial demonstrates how to group and analyze customer order data. The
 results show the list of customers who purchased items in 2020 and
 includes each customer's order history for 2020.
 
