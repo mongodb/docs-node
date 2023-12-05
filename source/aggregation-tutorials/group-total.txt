@@ -66,7 +66,7 @@ the lines in the template app that reference a second collection.
 Insert sample data into the ``orders`` collection as shown in the
 following code:
 
-.. literalinclude:: /includes/aggregation/multi-field-join.js
+.. literalinclude:: /includes/aggregation/group-total.js
    :language: javascript
    :copyable: true
    :start-after: start-insert-orders
@@ -216,6 +216,6 @@ Tutorial
       The result documents contain details from all the orders from
       a given customer, grouped by the customer's email address.
 
-To view the complete code for this tutorial, see the `Complete Group and Total App
+To view the complete code for this tutorial, see the `Completed Group and Total App
 <https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/group-total.js>`__
 on Github.
