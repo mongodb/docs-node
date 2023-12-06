@@ -21,7 +21,7 @@ Introduction
 ------------
 
 In this tutorial, you can learn how to use the {+driver-short+} to
-construct an aggregation pipeline to group documents, perform the
+construct an aggregation pipeline, perform the
 aggregation on a collection, and print the results by completing and
 running a sample app. The aggregation performs the following operations:
 
@@ -37,11 +37,9 @@ results show the list of customers who purchased items in 2020 and
 includes each customer's order history for 2020.
 
 This example uses one collection, ``orders``, which contains documents
-describing individual product orders.
-
-Since each order can correspond to only one customer, the order documents are
-grouped by the ``customer_id`` field, which contains the customer's
-email address.
+describing individual product orders. Since each order can correspond to
+only one customer, the order documents are grouped by the
+``customer_id`` field, which contains customer email addresses.
 
 Before You Get Started
 ----------------------
@@ -51,7 +49,7 @@ Before you start this tutorial, complete the
 Node.js application.
 
 After you set up the app, access the ``orders`` collection by adding the
-following code to the body of the application:
+following code to the application:
 
 .. literalinclude:: /includes/aggregation/group-total.js
    :language: javascript
