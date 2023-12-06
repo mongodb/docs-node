@@ -20,6 +20,7 @@ Aggregation Tutorials
 .. toctree::
 
    /aggregation-tutorials/filtered-subset/
+   /aggregation-tutorials/group-total/
    /aggregation-tutorials/one-to-one-join/
    /aggregation-tutorials/multi-field-join/
 
@@ -115,5 +116,6 @@ Available Tutorials
 -------------------
 
 - :ref:`node-aggregation-filtered-subset`
+- :ref:`node-aggregation-group-total`
 - :ref:`node-aggregation-one-to-one`
 - :ref:`node-aggregation-multi-field`

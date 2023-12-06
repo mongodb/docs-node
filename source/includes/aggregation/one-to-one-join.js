@@ -13,6 +13,9 @@ async function run() {
     const collName2 = await aggDB.collection("products");
     // end-colls
 
+    await collName1.deleteMany({});
+    await collName2.deleteMany({});
+
     const sampleData1 = [
       // start-orders
       {
@@ -70,9 +73,6 @@ async function run() {
       },
       // end-products
     ];
-
-    await collName1.deleteMany({});
-    await collName2.deleteMany({});
 
     await collName1.insertMany(sampleData1);
     await collName2.insertMany(sampleData2);

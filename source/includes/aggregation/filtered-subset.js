@@ -11,6 +11,8 @@ async function run() {
     const collName1 = await aggDB.collection("persons");
     // end-collection
 
+    await collName1.deleteMany({});
+
     const sampleData1 = [
       // start-persons
       {
@@ -88,8 +90,6 @@ async function run() {
       },
       // end-persons
     ];
-
-    await collName1.deleteMany({});
 
     await collName1.insertMany(sampleData1);
 
