@@ -8,38 +8,26 @@ async function run() {
   try {
     const aggDB = client.db("agg_tutorials_db");
 
-    /* 
-       Get a reference to relevant collections.
-       If the tutorial uses only one collection, delete or comment out
-       any lines that reference collection 2
-    */
-    const collName1 = await aggDB.collection("<collection 1>");
-    const collName2 = await aggDB.collection("<if used, collection 2>");
+    // Get a reference to relevant collections.
+    // ... const someColl =
+    // ... const anotherColl =
 
     // Delete any existing documents in collections.
-    await collName1.deleteMany({});
-    await collName2.deleteMany({});
+    // ... await someColl.deleteMany({});
 
-    const sampleData1 = [
-      // Paste sample data for collection 1 here.
-    ];
+    // Insert sample data into the collection or collections.
+    // ... const someData = [ ... ];
 
-    const sampleData2 = [
-      // Paste sample data for collection 2 here.
-    ];
-
-    // Insert sample data into collections.
-    await collName1.insertMany(sampleData1);
-    await collName2.insertMany(sampleData2);
+    // ... await collName1.insertMany(sampleData1);
 
     // Create an empty pipeline array.
     const pipeline = [];
 
-    // PASTE PIPELINE STAGE CODE HERE.
+    // Add code to create pipeline stages.
     // ... pipeline.push({ ... })
 
     // Run the aggregation.
-    const aggregationResult = await collName1.aggregate(pipeline);
+    // ... const aggregationResult = ...
 
     // Print the aggregation results.
     for await (const document of aggregationResult) {

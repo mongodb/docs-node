@@ -8,13 +8,13 @@ async function run() {
     const aggDB = client.db("agg_tutorials_db");
 
     // start-coll
-    const collName1 = await aggDB.collection("orders");
+    const ordersColl = await aggDB.collection("orders");
     // end-coll
 
-    await collName1.deleteMany({});
-
     // start-insert-orders
-    const sampleData1 = [
+    await ordersColl.deleteMany({});
+
+    const orderData = [
       {
         customer_id: "elise_smith@myemail.com",
         orderdate: new Date("2020-05-30T08:35:52Z"),
@@ -62,7 +62,7 @@ async function run() {
       },
     ];
 
-    await collName1.insertMany(sampleData1);
+    await ordersColl.insertMany(orderData);
     // end-insert-orders
 
     const pipeline = [];
@@ -123,7 +123,10 @@ async function run() {
     pipeline.push({ $unset: ["_id"] });
     // end-unset
 
-    const aggregationResult = await collName1.aggregate(pipeline);
+    // start-run-agg
+    const aggregationResult = await ordersColl.aggregate(pipeline);
+    // end-run-agg
+
     for await (const document of aggregationResult) {
       console.log(document);
     }

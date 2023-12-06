@@ -21,9 +21,9 @@ Introduction
 ------------
 
 In this tutorial, you can learn how to use the {+driver-short+} to
-construct an aggregation pipeline to group documents, run this
-aggregation on a collection, and print the results. The
-aggregation performs the following operations:
+construct an aggregation pipeline to group documents, perform the
+aggregation on a collection, and print the results by completing and
+running a sample app. The aggregation performs the following operations:
 
 - Matches a subset of documents by a field value
 - Groups documents by common field values
@@ -50,9 +50,8 @@ Before you start this tutorial, complete the
 :ref:`node-agg-tutorial-template-app` instructions to set up a working
 Node.js application.
 
-After you set up the app, access the ``orders`` collection by updating
-the collection name placeholder ``<collection 1>`` as shown in the
-following code:
+After you set up the app, access the ``orders`` collection by adding the
+following code to the body of the application:
 
 .. literalinclude:: /includes/aggregation/group-total.js
    :language: javascript
@@ -61,11 +60,8 @@ following code:
    :end-before: end-coll
    :dedent:
 
-Since this tutorial accesses documents in only one collection, delete
-the lines in the template app that reference a second collection.
-
-Insert sample data into the ``orders`` collection as shown in the
-following code:
+Delete any existing data in the collections and insert sample data into
+the ``orders`` collection as shown in the following code:
 
 .. literalinclude:: /includes/aggregation/group-total.js
    :language: javascript
@@ -171,8 +167,18 @@ Tutorial
 
    .. step:: Run the Aggregation Pipeline
 
-      Run the following command in your shell to perform the aggregation
-      on the ``orders`` collection:
+      Add the following code to the end of your application to perform
+      the aggregation on the ``orders`` collection:
+
+      .. literalinclude:: /includes/aggregation/group-total.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-run-agg
+         :end-before: end-run-agg
+         :dedent:
+
+      Finally, run the following command in your shell to start your
+      application:
 
       .. code-block:: bash
       
