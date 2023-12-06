@@ -163,7 +163,7 @@ Tutorial
          :end-before: end-unset
          :dedent:
 
-   .. step:: Run the Aggregation Pipeline
+   .. step:: Run the aggregation pipeline
 
       Add the following code to the end of your application to perform
       the aggregation on the ``orders`` collection:
