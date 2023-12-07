@@ -34,8 +34,8 @@ levels:
 - Collection
 
 This list also indicates the increasing order of precedence of the option settings. For
-example, if you set the read concern for a transaction, it will override a read concern
-set by the client.
+example, if you set a read concern level for a transaction, it will override a read
+concern level set by the client.
 
 These options allow you to customize the causal consistency and availability of the data
 in your replica sets.
