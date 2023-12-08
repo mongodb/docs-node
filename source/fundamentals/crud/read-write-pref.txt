@@ -181,7 +181,7 @@ The following table describes the ``ReadPreference`` parameters:
      - Description
 
    * - ``mode``
-     - :manual:`ReadPreferenceMode </core/read-preference/#read-preference-modes-1>`__
+     - :manual:`ReadPreferenceMode </core/read-preference/#read-preference-modes-1>`
      - Specifies a requirement or preference for which replica set
        member the server reads from. The default mode, ``primary``, specifies that
        operations read from the primary member of the replica set.
@@ -194,7 +194,7 @@ The following table describes the ``ReadPreference`` parameters:
    * - ``options`` *(optional)*
      - `ReadPreferenceOptions <{+api+}/interfaces/ReadPreferenceOptions.html>`__
      - Sets various options, including :manual:`hedge </core/read-preference-hedge-option/>`
-       and :manual:`maxStalenessSeconds </core/read-preference-staleness/>`, that can be
+       and :manual:`maxStalenessSeconds </core/read-preference-staleness/>` that can be
        applied to your read preference.
 
 Example: Set Read Preference and Concerns for a Transaction
