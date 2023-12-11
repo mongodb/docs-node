@@ -35,8 +35,8 @@ Aggregation Task Summary
  
 This tutorial demonstrates how to create insights from customer order
 data. The results show the list of products ordered that cost more than
-$15, along with the number of units sold and the total sale value for each
-product.
+$15, and each document contains the number of units sold and the total
+sale value for each product.
 
 This example uses one collection, ``orders``, which contains documents
 describing product orders. Since each order contains multiple products,
