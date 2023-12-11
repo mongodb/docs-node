@@ -21,6 +21,7 @@ Aggregation Tutorials
 
    /aggregation-tutorials/filtered-subset/
    /aggregation-tutorials/group-total/
+   /aggregation-tutorials/unpack-arrays/
    /aggregation-tutorials/one-to-one-join/
    /aggregation-tutorials/multi-field-join/
 
@@ -117,5 +118,6 @@ Available Tutorials
 
 - :ref:`node-aggregation-filtered-subset`
 - :ref:`node-aggregation-group-total`
+- :ref:`node-aggregation-arrays`
 - :ref:`node-aggregation-one-to-one`
 - :ref:`node-aggregation-multi-field`
