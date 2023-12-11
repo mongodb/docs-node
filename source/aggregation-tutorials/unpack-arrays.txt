@@ -25,7 +25,7 @@ construct an aggregation pipeline, perform the
 aggregation on a collection, and print the results by completing and
 running a sample app. This aggregation performs the following operations:
 
-- Unwind an array field into separate documents
+- Unwinds an array field into separate documents
 - Matches a subset of documents by a field value
 - Groups documents by common field values
 - Adds computed fields to each result document
