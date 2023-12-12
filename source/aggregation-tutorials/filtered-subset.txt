@@ -42,8 +42,8 @@ subset of documents in a collection. The results contain
 documents that describe the three youngest people who are engineers.
 
 This example uses one collection, ``persons``, which contains
-documents describing people that include details such as their names,
-dates of birth, vocations, and addresses.
+documents describing people. Each document includes a person's name,
+date of birth, vocation, and other details.
 
 Before You Get Started
 ----------------------
@@ -81,7 +81,7 @@ Tutorial
    .. step:: Add a match stage for people who are engineers
 
       First, add a :manual:`$match
-      </reference/operator/aggregation/match>` stage that documents in which
+      </reference/operator/aggregation/match>` stage that finds documents in which
       the value of the ``vocation`` field is ``"ENGINEER"``:
 
       .. literalinclude:: /includes/aggregation/filtered-subset.js
@@ -108,8 +108,8 @@ Tutorial
    .. step:: Add a limit stage to see only three results
 
       Next, add a :manual:`$limit </reference/operator/aggregation/limit>`
-      stage to the pipeline to only include the first three documents in
-      the result.
+      stage to the pipeline to output only the first three documents in
+      the results.
 
       .. literalinclude:: /includes/aggregation/filtered-subset.js
          :language: javascript
@@ -133,9 +133,9 @@ Tutorial
 
       .. tip::
 
-         Use an ``$unset`` stage instead of a ``$project`` to avoid
+         Use the ``$unset`` operator instead of ``$project`` to avoid
          modifying the aggregation pipeline if documents with
-         different fields are added to the collection. 
+         different fields are added to the collection.
 
    .. step:: Run the aggregation pipeline
 

@@ -44,10 +44,10 @@ field values and combines information from both into one document.
 Aggregation Task Summary
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This tutorial demonstrates how to join data from two
-collections related to product information and customer orders.
-The results show a list of products ordered in 2020 that also
-contains details about each order.
+This tutorial demonstrates how to combine data from a collection that
+describes product information with another collection that describes
+customer orders. The results show a list of products ordered in 2020
+that also contains details about each order.
 
 This example uses two collections:
 

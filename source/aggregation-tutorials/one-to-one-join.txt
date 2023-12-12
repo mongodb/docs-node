@@ -41,9 +41,9 @@ information from both sources into one result.
 Aggregation Task Summary
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This tutorial demonstrates how to join data from two
-collections describing product information and customer orders.
-The results show a list of all orders placed in 2020 that
+This tutorial demonstrates how to combine data from a collection that
+describes product information with another collection that describes
+customer orders. The results show a list of all orders placed in 2020 that
 includes the product details associated with each order.
 
 This example uses two collections:
@@ -119,7 +119,7 @@ Tutorial
       Next, add a :manual:`$lookup
       </reference/operator/aggregation/lookup>` stage. The
       ``$lookup`` stage joins the ``product_id`` field in the ``orders``
-      collection, to the ``id`` field in the ``products`` collection:
+      collection to the ``id`` field in the ``products`` collection:
 
       .. literalinclude:: /includes/aggregation/one-to-one-join.js
          :language: javascript
@@ -132,14 +132,14 @@ Tutorial
 
       Next, add two :manual:`$set </reference/operator/aggregation/set>`
       stages to the pipeline.
-            
-      The first ``$set`` stage, sets the ``product_mapping`` field
+
+      The first ``$set`` stage sets the ``product_mapping`` field
       to the first element in the ``product_mapping`` object
       created in the previous ``$lookup`` stage. 
 
-      The second ``$set`` stage creates a new ``product_name`` and
-      ``product_category`` field from the values in the
-      ``product_mapping`` object:
+      The second ``$set`` stage creates two new fields, ``product_name``
+      and ``product_category``, from the values in the
+      ``product_mapping`` object field:
 
       .. literalinclude:: /includes/aggregation/one-to-one-join.js
          :language: javascript
