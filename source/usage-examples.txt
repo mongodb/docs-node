@@ -9,7 +9,7 @@ Usage Examples
    :values: reference
 
 .. meta:: 
-   :description: An overview of sample data usage examples for the Node.js driver and Atlas database deployments.
+   :description: Learn how to set up sample data in Atlas database deployments for the Node.js driver usage examples.
    :keywords: node.js
 
 .. contents:: On this page
