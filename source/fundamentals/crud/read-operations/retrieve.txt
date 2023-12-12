@@ -5,7 +5,7 @@ Retrieve Data
 =============
 
 .. meta::
-   :description: Hands-on tutorial performing find operations to retrieve data from your MongoDB database.
+   :description: Learn how to perform find operations to retrieve data from your MongoDB database by following this tutorial.
    :keywords: node.js, lab
 
 .. facet::
