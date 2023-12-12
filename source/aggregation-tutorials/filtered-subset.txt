@@ -42,8 +42,8 @@ subset of documents in a collection. The results contain
 documents that describe the three youngest people who are engineers.
 
 This example uses one collection, ``persons``, which contains
-documents describing people, such as their names, dates of
-birth, vocations, and addresses.
+documents describing people that include details such as their names,
+dates of birth, vocations, and addresses.
 
 Before You Get Started
 ----------------------
