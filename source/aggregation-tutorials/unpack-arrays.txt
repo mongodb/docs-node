@@ -76,11 +76,11 @@ Tutorial
 .. procedure::
    :style: connected
 
-   .. step:: Add an unwind stage to unpack array of product orders
+   .. step:: Add an unwind stage to unpack the array of product orders
 
       First, add an :manual:`$unwind
-      </reference/operator/aggregation/unwind>` stage that separates the
-      array entries in the ``products`` array into individual documents:
+      </reference/operator/aggregation/unwind>` stage to separate the
+      entries in the ``products`` array into individual documents:
 
       .. literalinclude:: /includes/aggregation/unpack-arrays.js
          :language: javascript
@@ -167,6 +167,8 @@ Tutorial
       .. code-block:: bash
       
          node agg_tutorial.js
+
+   .. step:: Interpret results
 
       The aggregation returns the following summary of customers' orders
       from 2020:

@@ -210,6 +210,8 @@ Tutorial
       
          node agg_tutorial.js
 
+   .. step:: Interpret results
+
       The aggregated result contains two documents. The documents
       represent products for which there were orders placed in 2020.
       Each document contains an ``orders`` array field that lists details

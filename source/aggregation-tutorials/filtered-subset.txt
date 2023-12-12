@@ -156,6 +156,8 @@ Tutorial
       
          node agg_tutorial.js
 
+   .. step:: Interpret results
+
       The aggregated result contains three documents. The documents
       represent the three youngest people with the vocation of ``"ENGINEER"``,
       ordered from youngest to oldest. The results omit the ``_id`` and ``address``

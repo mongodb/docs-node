@@ -182,6 +182,8 @@ Tutorial
       
          node agg_tutorial.js
 
+   .. step:: Interpret results
+
       The aggregation returns the following summary of customers' orders
       from 2020:
 
