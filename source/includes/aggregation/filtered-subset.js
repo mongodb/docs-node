@@ -8,13 +8,13 @@ async function run() {
     const aggDB = client.db("agg_tutorials_db");
 
     // start-collection
-    const collName1 = await aggDB.collection("persons");
+    const personColl = await aggDB.collection("persons");
     // end-collection
 
-    await collName1.deleteMany({});
+    // start-insert-persons
+    await personColl.deleteMany({});
 
-    const sampleData1 = [
-      // start-persons
+    const personData = [
       {
         person_id: "6392529400",
         firstname: "Elise",
@@ -88,10 +88,10 @@ async function run() {
           city: "Kenningford",
         },
       },
-      // end-persons
     ];
 
-    await collName1.insertMany(sampleData1);
+    await personColl.insertMany(personData);
+    // end-insert-persons
 
     const pipeline = [];
 
@@ -126,7 +126,9 @@ async function run() {
     });
     // end-unset
 
-    const aggregationResult = await collName1.aggregate(pipeline);
+    // start-run-agg
+    const aggregationResult = await personColl.aggregate(pipeline);
+    // end-run-agg
 
     for await (const document of aggregationResult) {
       console.log(document);

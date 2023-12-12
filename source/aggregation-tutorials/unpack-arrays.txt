@@ -60,7 +60,7 @@ following code to the application:
    :end-before: end-coll
    :dedent:
 
-Delete any existing data in the collections and insert sample data into
+Delete any existing data and insert sample data into
 the ``orders`` collection as shown in the following code:
 
 .. literalinclude:: /includes/aggregation/unpack-arrays.js

@@ -21,7 +21,11 @@ Introduction
 ------------
 
 In this tutorial, you can learn how to use the {+driver-short+} to
-perform a multi-field join. A multi-field join occurs when there are
+construct an aggregation pipeline, perform the
+aggregation on a collection, and print the results by completing and
+running a sample app.
+
+This aggregation performs a multi-field join. A multi-field join occurs when there are
 multiple corresponding fields in the documents of two collections that you use to
 match documents together. The aggregation matches these documents on the
 field values and combines information from both into one document.
@@ -40,9 +44,9 @@ field values and combines information from both into one document.
 Aggregation Task Summary
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This aggregation tutorial demonstrates how to join data from two
+This tutorial demonstrates how to join data from two
 collections related to product information and customer orders.
-The aggregated result is a list of products ordered in 2020 that also
+The results show a list of products ordered in 2020 that also
 contains details about each order.
 
 This example uses two collections:
@@ -62,13 +66,12 @@ the ``orders`` collection.
 Before You Get Started
 ----------------------
 
-Before you start following this tutorial, follow the
-instructions in the :ref:`node-agg-tutorial-template-app` section of the
-Aggregation Tutorials page to set up the template app.
+Before you start this tutorial, complete the
+:ref:`node-agg-tutorial-template-app` instructions to set up a working
+Node.js application.
 
-Once you set up the app, access the ``products`` and ``orders``
-collections by updating the collection name placeholders, as shown in
-the following code:
+After you set up the app, access the ``products`` and ``orders``
+collections by adding the following code to the application:
 
 .. literalinclude:: /includes/aggregation/multi-field-join.js
    :language: javascript
@@ -77,24 +80,24 @@ the following code:
    :end-before: end-colls
    :dedent:
 
-Insert sample data into the ``products`` collection by
-pasting the following sample documents into the ``sampleData1`` array:
+Delete any existing data and insert sample data into
+the ``products`` collection as shown in the following code:
 
 .. literalinclude:: /includes/aggregation/multi-field-join.js
    :language: javascript
    :copyable: true
-   :start-after: start-products
-   :end-before: end-products
+   :start-after: start-insert-products
+   :end-before: end-insert-products
    :dedent:
 
-Insert sample data into the ``orders`` collection by
-pasting the following sample documents into the ``sampleData2`` array:
+Delete any existing data and insert sample data into
+the ``orders`` collection as shown in the following code:
 
 .. literalinclude:: /includes/aggregation/multi-field-join.js
    :language: javascript
    :copyable: true
-   :start-after: start-orders
-   :end-before: end-orders
+   :start-after: start-insert-orders
+   :end-before: end-insert-orders
    :dedent:
 
 Tutorial
@@ -103,100 +106,105 @@ Tutorial
 .. procedure::
    :style: connected
 
-   .. step:: Build The Aggregation Pipeline
+   .. step:: Add a lookup stage to link the collections and import fields
 
-      .. procedure::
-         :style: connected
-
-         .. step::
-
-            The first stage of the pipeline is a :manual:`$lookup
-            </reference/operator/aggregation/lookup>` stage to join the
-            ``orders`` collection to the ``products`` collection by two
-            fields in each collection. The lookup stage contains an
-            embedded pipeline to configure the join.
+      The first stage of the pipeline is a :manual:`$lookup
+      </reference/operator/aggregation/lookup>` stage to join the
+      ``orders`` collection to the ``products`` collection by two
+      fields in each collection. The lookup stage contains an
+      embedded pipeline to configure the join.
             
-            Within the embedded pipeline, add a :manual:`$match
-            </reference/operator/aggregation/match>` stage to match the
-            values of two fields on each side of the join. Note that the following
-            code uses aliases for the ``name`` and ``variation`` fields
-            set when :ref:`creating the $lookup stage <node-multi-field-agg-lookup-stage>`:
+      Within the embedded pipeline, add a :manual:`$match
+      </reference/operator/aggregation/match>` stage to match the
+      values of two fields on each side of the join. Note that the following
+      code uses aliases for the ``name`` and ``variation`` fields
+      set when :ref:`creating the $lookup stage <node-multi-field-agg-lookup-stage>`:
 
-            .. literalinclude:: /includes/aggregation/multi-field-join.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-embedded-pl-match1
-               :end-before: end-embedded-pl-match1
-               :dedent:
+      .. literalinclude:: /includes/aggregation/multi-field-join.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-embedded-pl-match1
+         :end-before: end-embedded-pl-match1
+         :dedent:
 
-            Within the embedded pipeline, add another :manual:`$match
-            </reference/operator/aggregation/match>` stage to match
-            orders placed in 2020:
+      Within the embedded pipeline, add another :manual:`$match
+      </reference/operator/aggregation/match>` stage to match
+      orders placed in 2020:
 
-            .. literalinclude:: /includes/aggregation/multi-field-join.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-embedded-pl-match2
-               :end-before: end-embedded-pl-match2
-               :dedent:
+      .. literalinclude:: /includes/aggregation/multi-field-join.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-embedded-pl-match2
+         :end-before: end-embedded-pl-match2
+         :dedent:
 
-            Within the embedded pipeline, add an :manual:`$unset
-            </reference/operator/aggregation/unset>` stage to remove
-            unneeded fields from the ``orders`` collection side of the join:
+      Within the embedded pipeline, add an :manual:`$unset
+      </reference/operator/aggregation/unset>` stage to remove
+      unneeded fields from the ``orders`` collection side of the join:
 
-            .. literalinclude:: /includes/aggregation/multi-field-join.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-embedded-pl-unset
-               :end-before: end-embedded-pl-unset
-               :dedent:
+      .. literalinclude:: /includes/aggregation/multi-field-join.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-embedded-pl-unset
+         :end-before: end-embedded-pl-unset
+         :dedent:
 
-            .. _node-multi-field-agg-lookup-stage:
+      .. _node-multi-field-agg-lookup-stage:
 
-            After the embedded pipeline is completed, add the
-            ``$lookup`` stage to the main aggregation pipeline.
-            Configure this stage to store the processed lookup fields in
-            an array field called ``orders``:
+      After the embedded pipeline is completed, add the
+      ``$lookup`` stage to the main aggregation pipeline.
+      Configure this stage to store the processed lookup fields in
+      an array field called ``orders``:
 
-            .. literalinclude:: /includes/aggregation/multi-field-join.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-lookup
-               :end-before: end-lookup
-               :dedent:
+      .. literalinclude:: /includes/aggregation/multi-field-join.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-lookup
+         :end-before: end-lookup
+         :dedent:
 
-         .. step::
+   .. step:: Add a match stage for products ordered in 2020
 
-            Next, add a :manual:`$match
-            </reference/operator/aggregation/match>` stage to only show
-            products for which there is at least one order in 2020,
-            based on the ``orders`` array calculated in the previous step:
+      Next, add a :manual:`$match
+      </reference/operator/aggregation/match>` stage to only show
+      products for which there is at least one order in 2020,
+      based on the ``orders`` array calculated in the previous step:
 
-            .. literalinclude:: /includes/aggregation/multi-field-join.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-match
-               :end-before: end-match
-               :dedent:
+      .. literalinclude:: /includes/aggregation/multi-field-join.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-match
+         :end-before: end-match
+         :dedent:
 
-         .. step::
+   .. step:: Add an unset stage to remove unneeded fields
 
-            Finally, add an :manual:`$unset
-            </reference/operator/aggregation/unset>` stage. The
-            ``$unset`` stage removes the ``_id`` and ``description``
-            fields from the result documents:
+      Finally, add an :manual:`$unset
+      </reference/operator/aggregation/unset>` stage. The
+      ``$unset`` stage removes the ``_id`` and ``description``
+      fields from the result documents:
             
-            .. literalinclude:: /includes/aggregation/multi-field-join.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-unset
-               :end-before: end-unset
-               :dedent:
+      .. literalinclude:: /includes/aggregation/multi-field-join.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-unset
+         :end-before: end-unset
+         :dedent:
 
-   .. step:: Run the Aggregation Pipeline
+   .. step:: Run the aggregation pipeline
 
-      Run the following command in your shell to perform the aggregation
-      on the ``products`` collection:
+      Add the following code to the end of your application to perform
+      the aggregation on the ``products`` collection:
+
+      .. literalinclude:: /includes/aggregation/multi-field-join.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-run-agg
+         :end-before: end-run-agg
+         :dedent:
+
+      Finally, run the following command in your shell to start your
+      application:
 
       .. code-block:: bash
       
