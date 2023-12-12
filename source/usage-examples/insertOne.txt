@@ -11,7 +11,7 @@ Insert a Document
    :values: tutorial
 
 .. meta:: 
-   :description: How to insert a document into your MongoDB collection using the Node.js driver.
+   :description: Learn how to insert a document into your MongoDB collection by using the Node.js driver.
    :keywords: code example, node.js, sample dataset
 
 You can insert a document into a collection using the
