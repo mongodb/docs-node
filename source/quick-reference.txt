@@ -11,7 +11,7 @@ Quick Reference
    :values: reference
 
 .. meta:: 
-   :description: Node.js Driver syntax for several MongoDB commands and links to their related reference and API documentation.
+   :description: See Node.js driver code examples of frequently-used MongoDB commands and links to their related reference and API documentation.
    :keywords: node.js, code example
 
 This page shows the driver syntax for several MongoDB commands and links to
