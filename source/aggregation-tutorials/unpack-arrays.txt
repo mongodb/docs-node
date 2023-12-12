@@ -76,7 +76,7 @@ Tutorial
 .. procedure::
    :style: connected
 
-   .. step:: Add an unwind stage to separate product orders
+   .. step:: Add an unwind stage to unpack array of product orders
 
       First, add an :manual:`$unwind
       </reference/operator/aggregation/unwind>` stage that separates the
@@ -93,7 +93,7 @@ Tutorial
 
       Next, add a :manual:`$match
       </reference/operator/aggregation/match>` stage that matches
-      products with a ``price`` value greater than ``15``:
+      products with a ``products.price`` value greater than ``15``:
 
       .. literalinclude:: /includes/aggregation/unpack-arrays.js
          :language: javascript
@@ -204,4 +204,4 @@ Tutorial
 
 To view the complete code for this tutorial, see the `Completed Unpack Arrays App
 <https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/unpack-arrays.js>`__
-on Github.
+on GitHub.

@@ -223,4 +223,4 @@ Tutorial
 
 To view the complete code for this tutorial, see the `Completed Group and Total App
 <https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/group-total.js>`__
-on Github.
+on GitHub.

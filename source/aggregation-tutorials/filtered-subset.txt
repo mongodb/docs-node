@@ -187,5 +187,6 @@ Tutorial
            vocation: 'ENGINEER'
          }
 
-To see the complete code for this tutorial, see the `Complete Filtered Subset Tutorial
-<https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/filtered-subset.js>`__.
+To view the complete code for this tutorial, see the `Completed Filtered Subset App
+<https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/filtered-subset.js>`__
+on GitHub.

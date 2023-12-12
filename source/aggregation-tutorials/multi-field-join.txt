@@ -252,5 +252,6 @@ Tutorial
       ``orders`` collection and the ``products`` collection, joined by
       the product names and variations.
 
-To see the complete code for this tutorial, see the `Complete Multi-field Join Tutorial
-<https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/multi-field-join.js>`__.
+To view the complete code for this tutorial, see the `Completed Multi-field Join App
+<https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/multi-field-join.js>`__
+on GitHub.
