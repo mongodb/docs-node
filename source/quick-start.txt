@@ -9,7 +9,7 @@ Quick Start
    :values: tutorial 
 
 .. meta:: 
-   :description: An overiew of the Node.js Driver quick start tutorial.
+   :description: Read about the objectives of the Node.js driver quick start tutorial.
    :keywords: node.js
 
 .. contents:: On this page
