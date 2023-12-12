@@ -9,7 +9,7 @@ Find Multiple Documents
    :values: reference
 
 .. meta:: 
-   :description: Example of find operations in MongoDB using the Node.js driver.
+   :description: Follow examples of performing find operations in MongoDB by using the Node.js driver.
    :keywords: code example, node.js, sample dataset
 
 You can query for multiple documents in a collection with
