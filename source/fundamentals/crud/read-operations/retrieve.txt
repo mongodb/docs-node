@@ -4,8 +4,6 @@
 Retrieve Data
 =============
 
-.. default-domain:: mongodb
-
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -17,14 +15,20 @@ Retrieve Data
 Overview
 --------
 
-You can use read operations to retrieve data from your MongoDB database.
-There are multiple types of read operations that access the data in
-different ways. If you want to request results based on a set of criteria
-from the existing set of data, you can use a find operation such as the
-``find()`` or ``findOne()`` methods.
+You can perform find operations to retrieve data from your MongoDB database.
+You can perform a find operation to match documents on a set of criteria
+by calling the ``find()`` or ``findOne()`` method.
 
-You can also further specify the information you are requesting by
-including additional parameters or by chaining other methods such as:
+.. tip:: Interactive Lab
+   
+   You can complete a short interactive lesson that demonstrates how to
+   retrieve data by using the ``find()`` method in an in-browser coding
+   experience. To learn more, see the :ref:`node-retrieve-instruqt-lab`
+   section of this guide.
+
+You can also further specify the information that the find operation
+returns by specifying optional parameters or by chaining other methods,
+as shown in the following guides:
 
 - :ref:`node-fundamentals-sort`
 - :ref:`node-fundamentals-skip`
@@ -41,9 +45,6 @@ matching data is inserted.
 
 .. include:: /includes/access-cursor-note.rst
 
-Compatibility
--------------
-
 .. |page-topic| replace:: perform read operations
 .. |link-topic-ing| replace:: performing read operations in the Atlas UI
 
@@ -52,8 +53,8 @@ Compatibility
 .. include:: /includes/fact-atlas-compatible.rst
 .. include:: /includes/fact-atlas-link.rst
 
-Find
-----
+Find Documents
+--------------
 
 You can call the ``find()`` method on a ``Collection`` object. The
 method accepts a query document that describes the documents you want to
@@ -131,8 +132,8 @@ matching document or ``null`` if there are no matches.
 See the :ref:`find() <node-usage-find>` and :ref:`findOne()
 <node-usage-findone>` for fully-runnable examples.
 
-Aggregate
----------
+Aggregate Data from Documents
+-----------------------------
 
 If you want to run a custom processing pipeline to retrieve data from your
 database, you can use the ``aggregate()`` method. This method accepts
@@ -172,13 +173,13 @@ group, and arrange the result data from a collection.
         { _id: 'created', count: 9 }
       ]
 
-See the MongoDB server manual pages on :manual:`aggregation </aggregation>`
+See the {+mdb-server+} manual pages on :manual:`aggregation </aggregation>`
 for more information on how to construct an aggregation pipeline.
 
 .. _node-fundamentals-watch:
 
-Watch / Subscribe
------------------
+Monitor Data Changes
+--------------------
 
 You can use the ``watch()`` method to monitor a collection for changes to
 a collection that match certain criteria. These changes include inserted,
@@ -199,6 +200,21 @@ data whenever write operations are executed on the collection.
       :start-after: start watch crud example
       :end-before: end watch crud example
 
-
 For a runnable example of the ``watch()`` method using the NodeJS driver, see
 the :ref:`change streams <node-usage-watch>` usage example.
+
+.. _node-retrieve-instruqt-lab:
+
+Complete an Interactive Lesson
+------------------------------
+
+This lab helps you understand how to perform read operations in MongoDB
+by using the ``find()`` method. You can complete this lab directly in
+your browser window without installing MongoDB or a code editor.
+
+.. tip::
+   
+   To expand the lab to a full-screen format, click the full-screen
+   button, :guilabel:`⛶`, in the lower-right corner of the lab pane.
+
+.. instruqt:: /mongodb-docs/tracks/find-node?token=em_OVNHWCPNPMLwNOCm

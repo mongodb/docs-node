@@ -1,4 +1,5 @@
 .. _node-aggregation:
+.. _nodejs-aggregation:
 
 ===========
 Aggregation
