@@ -13,7 +13,9 @@ toc_landing_pages = [
     "/fundamentals/crud",
     "/fundamentals/bson",
     "/usage-examples",
+    "/aggregation-tutorials",
 ]
+
 sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
 
 [constants]
