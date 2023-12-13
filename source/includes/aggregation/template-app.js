@@ -18,7 +18,7 @@ async function run() {
     // Insert sample data into the collection or collections.
     // ... const someData = [ ... ];
 
-    // ... await collName1.insertMany(sampleData1);
+    // ... await someColl.insertMany(someData);
 
     // Create an empty pipeline array.
     const pipeline = [];

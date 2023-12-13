@@ -60,7 +60,7 @@ following code to the application:
    :end-before: end-coll
    :dedent:
 
-Delete any existing data in the collections and insert sample data into
+Delete any existing data and insert sample data into
 the ``orders`` collection as shown in the following code:
 
 .. literalinclude:: /includes/aggregation/unpack-arrays.js
@@ -76,11 +76,11 @@ Tutorial
 .. procedure::
    :style: connected
 
-   .. step:: Add an unwind stage to separate product orders
+   .. step:: Add an unwind stage to unpack the array of product orders
 
       First, add an :manual:`$unwind
-      </reference/operator/aggregation/unwind>` stage that separates the
-      array entries in the ``products`` array into individual documents:
+      </reference/operator/aggregation/unwind>` stage to separate the
+      entries in the ``products`` array into individual documents:
 
       .. literalinclude:: /includes/aggregation/unpack-arrays.js
          :language: javascript
@@ -93,7 +93,7 @@ Tutorial
 
       Next, add a :manual:`$match
       </reference/operator/aggregation/match>` stage that matches
-      products with a ``price`` value greater than ``15``:
+      products with a ``products.price`` value greater than ``15``:
 
       .. literalinclude:: /includes/aggregation/unpack-arrays.js
          :language: javascript
@@ -168,6 +168,8 @@ Tutorial
       
          node agg_tutorial.js
 
+   .. step:: Interpret results
+
       The aggregation returns the following summary of customers' orders
       from 2020:
 
@@ -204,4 +206,4 @@ Tutorial
 
 To view the complete code for this tutorial, see the `Completed Unpack Arrays App
 <https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/unpack-arrays.js>`__
-on Github.
+on GitHub.

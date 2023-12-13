@@ -40,7 +40,7 @@ Each tutorial includes the following sections:
   outcome that the tutorial demonstrates.
 
 - **Before You Get Started**, which describes the necessary databases,
-  collections, and sample data that you must insert before building the
+  collections, and sample data that you must have before building the
   aggregation pipeline and performing the aggregation.
 
 - **Tutorial**, which describes how to build and run the aggregation

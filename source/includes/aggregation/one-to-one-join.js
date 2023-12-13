@@ -5,19 +5,17 @@ const client = new MongoClient(uri);
 
 async function run() {
   try {
-
     const aggDB = client.db("agg_tutorials_db");
 
     // start-colls
-    const collName1 = await aggDB.collection("orders");
-    const collName2 = await aggDB.collection("products");
+    const ordersColl = await aggDB.collection("orders");
+    const productsColl = await aggDB.collection("products");
     // end-colls
 
-    await collName1.deleteMany({});
-    await collName2.deleteMany({});
+    // start-insert-orders
+    await ordersColl.deleteMany({});
 
-    const sampleData1 = [
-      // start-orders
+    const orderData = [
       {
         customer_id: "elise_smith@myemail.com",
         orderdate: new Date("2020-05-30T08:35:52Z"),
@@ -42,11 +40,15 @@ async function run() {
         product_id: "a1b2c3d4",
         value: 429.65,
       },
-      // end-orders
     ];
 
-    const sampleData2 = [
-      // start-products
+    await ordersColl.insertMany(orderData);
+    // end-insert-orders
+
+    // start-insert-products
+    await productsColl.deleteMany({});
+
+    const productData = [
       {
         id: "a1b2c3d4",
         name: "Asus Laptop",
@@ -71,11 +73,10 @@ async function run() {
         category: "GARDEN",
         description: "Hose + nosels + winder for tidy storage",
       },
-      // end-products
     ];
 
-    await collName1.insertMany(sampleData1);
-    await collName2.insertMany(sampleData2);
+    await productsColl.insertMany(productData);
+    // end-insert-products
 
     const pipeline = [];
 
@@ -121,7 +122,10 @@ async function run() {
     pipeline.push({ $unset: ["_id", "product_id", "product_mapping"] });
     // end-unset
 
-    const aggregationResult = await collName1.aggregate(pipeline);
+    // start-run-agg
+    const aggregationResult = await ordersColl.aggregate(pipeline);
+    // end-run-agg
+    
     for await (const document of aggregationResult) {
       console.log(document);
     }

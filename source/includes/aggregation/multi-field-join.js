@@ -8,15 +8,14 @@ async function run() {
     const aggDB = client.db("agg_tutorials_db");
 
     // start-colls
-    const collName1 = await aggDB.collection("products");
-    const collName2 = await aggDB.collection("orders");
+    const productsColl = await aggDB.collection("products");
+    const ordersColl = await aggDB.collection("orders");
     // end-colls
 
-    await collName1.deleteMany({});
-    await collName2.deleteMany({});
+    // start-insert-products
+    await productsColl.deleteMany({});
 
-    const sampleData1 = [
-      // start-products
+    const productsData = [
       {
         name: "Asus Laptop",
         variation: "Ultra HD",
@@ -47,11 +46,15 @@ async function run() {
         category: "KITCHENWARE",
         description: "Luxury mixer turning good cakes into great",
       },
-      // end-products
     ];
 
-    const sampleData2 = [
-      // start-orders
+    await productsColl.insertMany(productsData);
+    // end-insert-products
+
+    // start-insert-orders
+    await ordersColl.deleteMany({});
+
+    const orderData = [
       {
         customer_id: "elise_smith@myemail.com",
         orderdate: new Date("2020-05-30T08:35:52Z"),
@@ -80,11 +83,10 @@ async function run() {
         product_variation: "Standard Display",
         value: 429.65,
       },
-      // end-orders
     ];
 
-    await collName1.insertMany(sampleData1);
-    await collName2.insertMany(sampleData2);
+    await ordersColl.insertMany(orderData);
+    // end-insert-orders
 
     const pipeline = [];
 
@@ -148,7 +150,10 @@ async function run() {
     });
     // end-unset
 
-    const aggregationResult = await collName1.aggregate(pipeline);
+    // start-run-agg
+    const aggregationResult = await productsColl.aggregate(pipeline);
+    // end-run-agg
+
     for await (const document of aggregationResult) {
       console.log(document);
     }

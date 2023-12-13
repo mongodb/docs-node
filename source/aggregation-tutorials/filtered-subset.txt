@@ -21,8 +21,12 @@ Introduction
 ------------
 
 In this tutorial, you can learn how to use the {+driver-short+} to
-find a subset of documents in a collection and format results by using
-aggregation.
+construct an aggregation pipeline, perform the
+aggregation on a collection, and print the results by completing and
+running a sample app. This aggregation performs the following operations:
+
+- Matches a subset of documents by a field value
+- Formats result documents
 
 .. tip::
 
@@ -33,26 +37,23 @@ aggregation.
 Aggregation Task Summary
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-This aggregation tutorial demonstrates how to query a collection for a specific
-subset of documents in a collection. The collection contains documents that
-include details about people's occupation, age, and home addresses. The
-aggregated result contains documents that describe
-the three youngest people who are engineers.
+This tutorial demonstrates how to query a collection for a specific
+subset of documents in a collection. The results contain
+documents that describe the three youngest people who are engineers.
 
-This example uses the one collection, called ``persons``, which contains
-documents describing a person's information, including their name, date of
-birth, vocation, and address.
+This example uses one collection, ``persons``, which contains
+documents describing people. Each document includes a person's name,
+date of birth, vocation, and other details.
 
 Before You Get Started
 ----------------------
 
-Before you start following this tutorial, follow the
-instructions in the :ref:`node-agg-tutorial-template-app` section of the
-Aggregation Tutorials page to set up the template app.
+Before you start this tutorial, complete the
+:ref:`node-agg-tutorial-template-app` instructions to set up a working
+Node.js application.
 
-Once you set up the app, access the ``persons``
-collection by updating the collection name placeholder, as shown in
-the following code:
+After you set up the app, access the ``persons`` collection by adding the
+following code to the application:
 
 .. literalinclude:: /includes/aggregation/filtered-subset.js
    :language: javascript
@@ -61,19 +62,14 @@ the following code:
    :end-before: end-collection
    :dedent:
 
-.. note::
-   
-   Since this tutorial accesses documents in only one collection, delete any lines
-   in the template app that reference a second collection.
-
-Insert sample data into the ``persons`` collection by
-pasting the following sample documents into the ``sampleData1`` array:
+Delete any existing data in the collections and insert sample data into
+the ``persons`` collection as shown in the following code:
 
 .. literalinclude:: /includes/aggregation/filtered-subset.js
    :language: javascript
    :copyable: true
-   :start-after: start-persons
-   :end-before: end-persons
+   :start-after: start-insert-persons
+   :end-before: end-insert-persons
    :dedent:
 
 Tutorial
@@ -82,81 +78,88 @@ Tutorial
 .. procedure::
    :style: connected
 
-   .. step:: Build The Aggregation Pipeline
+   .. step:: Add a match stage for people who are engineers
 
-      .. procedure::
-         :style: connected
+      First, add a :manual:`$match
+      </reference/operator/aggregation/match>` stage that finds documents in which
+      the value of the ``vocation`` field is ``"ENGINEER"``:
 
-         .. step::
+      .. literalinclude:: /includes/aggregation/filtered-subset.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-match
+         :end-before: end-match
+         :dedent:
 
-            First, add a :manual:`$match
-            </reference/operator/aggregation/match>` stage that documents in which
-            the value of the ``vocation`` field is ``"ENGINEER"``:
+   .. step:: Add a sort stage to sort from youngest to oldest
 
-            .. literalinclude:: /includes/aggregation/filtered-subset.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-match
-               :end-before: end-match
-               :dedent:
+      Next, add a :manual:`$sort
+      </reference/operator/aggregation/sort>` stage that sorts the
+      documents in descending order by the ``dateofbirth`` field to
+      list the youngest people first:
 
-         .. step::
+      .. literalinclude:: /includes/aggregation/filtered-subset.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-sort
+         :end-before: end-sort
+         :dedent:
 
-            Next, add a :manual:`$sort
-            </reference/operator/aggregation/sort>` stage that sorts the
-            documents in descending order by the ``dateofbirth`` field to
-            list the youngest people first:
+   .. step:: Add a limit stage to see only three results
 
-            .. literalinclude:: /includes/aggregation/filtered-subset.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-sort
-               :end-before: end-sort
-               :dedent:
+      Next, add a :manual:`$limit </reference/operator/aggregation/limit>`
+      stage to the pipeline to output only the first three documents in
+      the results.
 
-         .. step::
+      .. literalinclude:: /includes/aggregation/filtered-subset.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-limit
+         :end-before: end-limit
+         :dedent:
 
-            Next, add a :manual:`$limit </reference/operator/aggregation/limit>`
-            stage to the pipeline to only include the first three documents in
-            the result.
+   .. step:: Add an unset stage to remove unneeded fields
 
-            .. literalinclude:: /includes/aggregation/filtered-subset.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-limit
-               :end-before: end-limit
-               :dedent:
-
-         .. step::
-
-            Finally, add an :manual:`$unset
-            </reference/operator/aggregation/unset>` stage. The
-            ``$unset`` stage removes unnecessary fields from the result documents:
+      Finally, add an :manual:`$unset
+      </reference/operator/aggregation/unset>` stage. The
+      ``$unset`` stage removes unnecessary fields from the result documents:
             
-            .. literalinclude:: /includes/aggregation/filtered-subset.js
-               :language: javascript
-               :copyable: true
-               :start-after: start-unset
-               :end-before: end-unset
-               :dedent:
+      .. literalinclude:: /includes/aggregation/filtered-subset.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-unset
+         :end-before: end-unset
+         :dedent:
 
-            .. tip::
+      .. tip::
 
-               Use an ``$unset`` stage instead of a ``$project`` to avoid
-               modifying the aggregation pipeline if documents with
-               different fields are added to the collection. 
+         Use the ``$unset`` operator instead of ``$project`` to avoid
+         modifying the aggregation pipeline if documents with
+         different fields are added to the collection.
 
-   .. step:: Run the Aggregation Pipeline
+   .. step:: Run the aggregation pipeline
 
-      Run the following command in your shell to perform the aggregation
-      on the ``products`` collection:
+      Add the following code to the end of your application to perform
+      the aggregation on the ``persons`` collection:
+
+      .. literalinclude:: /includes/aggregation/filtered-subset.js
+         :language: javascript
+         :copyable: true
+         :start-after: start-run-agg
+         :end-before: end-run-agg
+         :dedent:
+
+      Finally, run the following command in your shell to start your
+      application:
 
       .. code-block:: bash
       
          node agg_tutorial.js
 
+   .. step:: Interpret results
+
       The aggregated result contains three documents. The documents
-      represent the three youngest people with the vocation of "ENGINEER",
+      represent the three youngest people with the vocation of ``"ENGINEER"``,
       ordered from youngest to oldest. The results omit the ``_id`` and ``address``
       fields.
 
@@ -186,5 +189,6 @@ Tutorial
            vocation: 'ENGINEER'
          }
 
-To see the complete code for this tutorial, see the `Complete Filtered Subset Tutorial
-<https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/filtered-subset.js>`__.
+To view the complete code for this tutorial, see the `Completed Filtered Subset App
+<https://github.com/mongodb/docs-node/tree/master/source/includes/aggregation/filtered-subset.js>`__
+on GitHub.
