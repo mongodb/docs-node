@@ -73,6 +73,26 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies whether to force dispatch **all** operations to the host
        specified in the connection URI.
 
+   * - **enableUtf8Validation**
+     - boolean
+     - ``true``
+     - Possible values are:
+
+       - ``true``. Enables utf8 validation for the connection. 
+         If utf8 validation is enabled, MongoDB throws an error when it 
+         attempts to convert data that contains invalid 
+         `UTF-8 characters <https://en.wikipedia.org/wiki/UTF-8>`__. 
+         The validation adds processing overhead since it needs to check 
+         the data.
+    
+       - ``false``. Disables utf8 validation for the connection. 
+
+         .. warning::
+
+           If you disable validation, your application avoids the 
+           validation processing overhead but cannot guarantee consistent 
+           presentation of invalid UTF-8 data.
+
    * - **heartbeatFrequencyMS**
      - integer greater than or equal to 500
      - ``null``
