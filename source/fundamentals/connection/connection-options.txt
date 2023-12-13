@@ -77,18 +77,16 @@ parameters of the connection URI to specify the behavior of the client.
      - boolean
      - ``true``
      -   Specifies if utf8 validation for the connection is enabled. 
-         When utf8 validation is enabled, MongoDB throws an error when 
+         When enabled, MongoDB throws an error when 
          it attempts to convert data that contains invalid 
          `UTF-8 characters <https://en.wikipedia.org/wiki/UTF-8>`__. 
          The validation adds processing overhead since it needs to check 
          the data.
 
          Specifying ``false``. Disables utf8 validation for the 
-         connection. 
-
-         If you disable validation, your application avoids the 
-         validation processing overhead but cannot guarantee consistent 
-         presentation of invalid UTF-8 data.
+         connection. If you disable validation, your application avoids 
+         the validation processing overhead but cannot guarantee 
+         consistent presentation of invalid UTF-8 data.
 
    * - **heartbeatFrequencyMS**
      - integer greater than or equal to 500
