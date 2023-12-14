@@ -47,7 +47,7 @@ Compatibility
 
 .. note::
 
-   If you are looking for additional resources for learning topics related
+   If you are looking for more resources for learning topics related
    to CRUD, check out the following posts on the `MongoDB Developer Hub <https://developer.mongodb.com>`__:
 
    - Learn how to apply `CRUD Operations <https://developer.mongodb.com/quickstart/node-crud-tutorial>`__

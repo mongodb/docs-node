@@ -16,7 +16,7 @@ to delete all documents in a collection, consider using
 `drop() <{+api+}/classes/Collection.html#drop>`__ instead for better performance
 and clearer code.
 
-You can specify additional options in the ``options`` object passed in
+You can specify more options in the ``options`` object passed in
 the second parameter of the ``deleteMany()`` method. For more detailed
 information, see the
 `deleteMany() API documentation <{+api+}/classes/Collection.html#deleteMany>`__.
@@ -46,7 +46,7 @@ match and delete movies with the title "Santa Claus".
          :language: typescript
          :linenos:
 
-The first time you run the preceding example, you should see the following output:
+The first time you run the preceding example, you will see the following output:
 
 .. code-block:: none
    :copyable: false
@@ -54,7 +54,7 @@ The first time you run the preceding example, you should see the following outpu
    Deleted 19 documents
 
 On subsequent runs of the example, as you already deleted all relevant
-documents, you should see the following output:
+documents, you will see the following output:
 
 .. code-block:: none
    :copyable: false

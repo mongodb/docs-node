@@ -28,7 +28,7 @@ using the MongoDB Shell, see our
 
 .. .. important:: Use the MongoDB Shell For Administrative Commands
 ..
-..    You should not use the Node.js driver to perform administrative commands on
+..    Do not use the Node.js driver to perform administrative commands on
 ..    your MongoDB deployment. Use the MongoDB Shell to perform administrative
 ..    commands, such as:
 ..
