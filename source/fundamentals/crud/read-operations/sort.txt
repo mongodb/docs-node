@@ -99,10 +99,10 @@ repeatable way, add more fields to the sort document:
    }
 
 With the addition of the ``author`` field to the sort document, the read operation sorts
-matching documents first by ``length`` and, if there is a tie, then by ``author``. Matched
+matching documents first by ``length`` then, if there is a tie, by ``author``. Matched
 document fields are compared in the same order as fields are specified in the sort
 document. ``find()`` returns the following ordering of documents when this sort is used on
-the documents matching the query, sorting "Martin" before "Wallace" for the two books with
+the documents matching the query, sorting ``"Martin"`` before ``"Wallace"`` for the two books with
 the same length:
 
 .. code-block:: json

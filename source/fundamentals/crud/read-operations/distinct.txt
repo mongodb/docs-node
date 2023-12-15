@@ -152,7 +152,7 @@ those beginning with "B". The code outputs the following:
 
    [ "Äpfel", "Borgatti's", "Samba Kitchen", "Tanoreen", "Via Carota", "White Bear" ]
 
-If you do not specify the ``collation`` field, the output order will follow default
+If you do not specify the ``collation`` field, the output order follows default
 binary collation rules. These rules place words beginning with "Ä" after the those
 with unaccented first letters:
 

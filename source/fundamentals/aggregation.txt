@@ -36,8 +36,8 @@ assembles the initial parts and materials into finished products.
 The **aggregation pipeline** is the assembly line, **aggregation stages** are the assembly stations, and
 **operator expressions** are the specialized tools.
 
-Aggregation versus Query Operations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Comparing Aggregation and Query Operations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Using query operations, such as the ``find()`` method, you can perform the following actions:
 
@@ -58,7 +58,7 @@ Aggregation operations have some :manual:`limitations </core/aggregation-pipelin
 - Returned documents must not violate the :manual:`BSON-document size limit </reference/limits/#mongodb-limit-BSON-Document-Size>`
   of 16 megabytes.
 
-- Pipeline stages have a memory limit of 100 megabytes by default. You may exceed this
+- Pipeline stages have a memory limit of 100 megabytes by default. You can exceed this
   limit by setting the ``allowDiskUse`` property of ``AggregateOptions`` to ``true``. See
   the `AggregateOptions API documentation <{+api+}/interfaces/AggregateOptions.html>`__
   for more details.

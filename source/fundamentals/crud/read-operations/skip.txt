@@ -53,8 +53,8 @@ Example
 In the following example, we query the collection with a filter that
 matches all the documents and pass options that specifies ``sort`` and
 ``skip`` commands as query options. The sort option specifies that fruit
-documents with higher ratings will be returned before ones with lower
-ratings. The skip option specifies that the first 2 documents will be
+documents with higher ratings are returned before ones with lower
+ratings. The skip option specifies that the first 2 documents are
 omitted from the result:
 
 .. code-block:: javascript
@@ -73,9 +73,8 @@ omitted from the result:
      console.dir(doc);
    }
 
-Since we specified that the first ``2`` documents be skipped, the
-third and fourth highest rating documents are printed by the code snippet
-above:
+Since we specified that query skip the first ``2`` documents, the third and fourth highest
+rating documents are printed by the code snippet above:
 
 .. code-block:: json
    :copyable: false

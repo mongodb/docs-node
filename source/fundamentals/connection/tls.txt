@@ -104,7 +104,7 @@ files.
 
 .. important::
 
-   For production use, your MongoDB deployment uses valid
+   For production use, we recommend that your MongoDB deployment use valid
    certificates generated and signed by the same certificate authority.
    For testing, you can use self-signed certificates.
 

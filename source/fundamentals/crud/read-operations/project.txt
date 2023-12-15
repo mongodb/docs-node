@@ -84,16 +84,17 @@ results:
    { "_id": 4, "name": "avocados" }
 
 Although this projection only explicitly included the ``name`` field, the query returned
-the ``_id`` field as well!
+the ``_id`` field as well.
 
-This happens because the ``_id`` field is a special case: it is always included in every
-query unless explicitly specified otherwise. That's because ``_id`` is a unique identifier
-for each document, a property that is often used when constructing queries. The ``movies``
-collection is a good example of this: because remakes and even separate works can
-sometimes reuse movie titles, you need a unique ``_id`` value to reference any specific
-movie. ``_id`` is the only exception to the mutually exclusive include-exclude behavior in
-projections: you *can* explicitly exclude ``_id`` even when explicitly including other
-fields if you do not want ``_id`` to be present in returned documents.
+The ``_id`` field is a special case: it is always included in every query unless
+explicitly specified otherwise. This is because ``_id`` is a unique identifier for each
+document, a property that is often used when constructing queries. The ``movies``
+collection data demonstrates why this property is necessary: two or more movies can share
+the same title, such as movie remakes. Because of this, you need a unique ``_id`` value to
+reliably reference a specific movie. ``_id`` is the only exception to the mutually
+exclusive include-exclude behavior in projections: you *can* explicitly exclude ``_id``
+even when explicitly including other fields if you do not want ``_id`` to be present in
+returned documents.
 
 .. code-block:: javascript
    :emphasize-lines: 2

@@ -45,7 +45,7 @@ Read the sections below to learn how to set UTF-8 validation using the
 Specify the UTF-8 Validation Setting
 ------------------------------------
 
-You can specify whether the driver will perform UTF-8 validation by
+You can specify whether the driver performs UTF-8 validation by
 defining the ``enableUtf8Validation`` setting in the options parameter
 when you create a client, reference a database or collection, or call a
 CRUD operation. If you omit the setting, the driver enables UTF-8 validation.

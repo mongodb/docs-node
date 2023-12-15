@@ -289,7 +289,7 @@ How Can I Prevent a Slow Operation From Delaying Other Operations?
 When you use the same ``MongoClient`` instance to run multiple MongoDB
 operations concurrently, a slow operation can cause delays to other
 operations. Slow operations keep a connection to MongoDB occupied,
-which can cause other operations to wait until an more connection
+which can cause other operations to wait until an additional connection
 becomes available.
 
 If you suspect that slow MongoDB operations are causing delays, you
