@@ -97,7 +97,7 @@ document into the ``myDB.pizzaMenu`` collection:
       `A document was inserted with the _id: ${result.insertedId}`,
    );
 
-Your output will look similar to the following text:
+Your output looks similar to the following text:
 
 .. code-block::
    :copyable: false
