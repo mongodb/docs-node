@@ -77,7 +77,7 @@ collection. It uses the following parameters:
         :language: typescript
 
 
-If you run the preceding example, you will see the following output:
+Running the preceding example, you see the following output:
 
 .. code-block:: javascript
    :copyable: false

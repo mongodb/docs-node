@@ -97,7 +97,7 @@ document into the ``myDB.pizzaMenu`` collection:
       `A document was inserted with the _id: ${result.insertedId}`,
    );
 
-Your output will look something like this:
+Your output will look similar to the following text:
 
 .. code-block::
    :copyable: false
@@ -129,8 +129,8 @@ For example, assume you want to insert the following documents:
    { "_id": 1, "color": "yellow" }
    { "_id": 3, "color": "blue" }
 
-If you attempt to insert these documents, a ``WriteError`` will occur when the third
-document is processed, and the documents before the error will be inserted into your
+If you attempt to insert these documents, a ``WriteError`` occurs when the third
+document is processed, but the documents before the error are inserted into your
 collection.
 
 .. note::
@@ -167,8 +167,8 @@ collection.
          console.log(`Number of documents inserted: ${e.result.result.nInserted}`);
       }
 
-   The output consists of documents MongoDB can process and will look
-   something like this:
+   The output consists of documents MongoDB can process and looks similar to the
+   following:
 
    .. code-block::
       :copyable: false
@@ -218,7 +218,7 @@ documents into the ``myDB.pizzaMenu`` collection:
       console.log(`Inserted a document with id ${id}`);
    }
 
-Your output will look something like this:
+Your output looks similar to the following:
 
 .. code-block::
    :copyable: false

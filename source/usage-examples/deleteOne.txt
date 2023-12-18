@@ -58,15 +58,15 @@ to match movies with a ``title`` value of "Annie Hall".
    The JavaScript and TypeScript code snippets above are identical. There are no
    TypeScript specific features of the driver relevant to this use case.
 
-If you run the preceding example, you will see the following output:
+Running the preceding example, you see the following output:
 
 .. code-block:: none
    :copyable: false
 
    Successfully deleted one document.
 
-On subsequent runs of the preceding example, as you already deleted the document that
-matched your query, you will see the following output:
+If you run the example more than once, you see the following output because
+you deleted the matching document in the first run:
 
 .. code-block:: none
    :copyable: false

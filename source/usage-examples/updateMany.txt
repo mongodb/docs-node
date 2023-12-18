@@ -40,7 +40,7 @@ Example
          :language: typescript
          :linenos:
 
-If you run the preceding example, you will see the following output:
+Running the preceding example, you see the following output:
 
 .. code-block:: none
    :copyable: false

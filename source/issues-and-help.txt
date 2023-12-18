@@ -34,10 +34,9 @@ the :manual:`Create a Vulnerability Report </tutorial/create-a-vulnerability-rep
 Pull Requests
 -------------
 
-We are happy to accept contributions to help improve the driver.
-We will review user contributions to ensure they meet the standards of the codebase.
-Pull requests must pass the ``travis.ci`` checks and include documentation
-and tests.
+We are happy to accept contributions to help improve the driver. We will review user
+contributions to ensure they meet the standards of the codebase. Pull requests must pass
+the ``travis.ci`` checks, include documentation, and include tests.
 
 To get started check out the source and work on a branch:
 
@@ -55,8 +54,8 @@ For example, if you have a single server running at ``"mongodb://localhost:27017
 
    MONGODB_URI="mongodb://localhost:27017" npm test
 
-Note that, depending on the type of topology that you are running (standalone, replicaset,
-and so on), different tests will be run.
+Note that the tests run on your feature are different depending on the type of topology
+that you are running, such as for a standalone instance or replica set.
 
 .. note::
 

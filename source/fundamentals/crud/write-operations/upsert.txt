@@ -86,9 +86,9 @@ update the document, we can set ``upsert`` to ``true`` in our call to
    const options = { upsert: true };
    myColl.updateOne(query, update, options);
    
-After you run the operation above, your collection will resemble the
-following, whether the "Deli Llama" document existed in your collection
-beforehand:
+After you run the operation above, your collection looks similar to the
+following, even if the ``"Deli Llama"`` document did not exist in your collection
+before the operation:
 
 .. code-block:: javascript
    :emphasize-lines: 4
