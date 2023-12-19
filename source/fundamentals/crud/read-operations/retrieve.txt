@@ -99,6 +99,9 @@ see the :ref:`node-fundamentals-query-document` guide.
 
       const findResult = await myColl.findOne({}, options);
 
+   For more information about projecting document fields, see the
+   :ref:`node-fundamentals-project` guide.
+
 The ``find()`` method returns a ``Cursor`` instance from which you can
 access the matched documents. The ``findOne()`` method returns a ``Promise``
 instance, which you can resolve to access either the matching document or
