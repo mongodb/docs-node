@@ -116,7 +116,7 @@ multi-word phrase with escaped quotes (``\"<term>\"``):
    :start-after: start phrase text example
    :end-before: end phrase text example
 
-Querying by the phrase "star trek" instead of just the term "trek"
+Querying by the phrase ``"star trek"`` instead of just the term ``"trek"``
 matches the following documents:
 
 .. code-block:: javascript
@@ -136,7 +136,7 @@ matches the following documents:
    { title: 'Star Trek II: The Wrath of Khan' }
 
 These results include all movies in the database that contain the phrase
-``star trek``, which in this case results in only fictional Star Trek
+``"star trek"``, which in this case results in only fictional Star Trek
 movies. Unfortunately, this query returned ``"Star Trek Into
 Darkness"``, a movie that was not part of the original series of movies. To
 resolve this issue, we can omit that document with a **negation**.

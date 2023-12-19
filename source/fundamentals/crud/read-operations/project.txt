@@ -86,7 +86,7 @@ results:
 Although this projection only explicitly included the ``name`` field, the query returned
 the ``_id`` field as well.
 
-The ``_id`` field is a special case: it is always included in every query unless
+The ``_id`` field is a special case because it is always included in every query unless
 explicitly specified otherwise. This is because ``_id`` is a unique identifier for each
 document, a property that is often used when constructing queries. The ``movies``
 collection data demonstrates why this property is necessary: two or more movies can share

@@ -31,7 +31,7 @@ Temporary Alternative
 ---------------------
 
 We are developing a new logging framework. In the meantime, you can output monitor events
-using the following snippet:
+by using the following snippet:
 
 .. code-block:: javascript
 
