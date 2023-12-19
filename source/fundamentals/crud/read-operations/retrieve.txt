@@ -145,14 +145,14 @@ Additional Information
 For runnable code examples that demonstrate find operations, see the following
 usage examples:
 
-- :ref:`node-usage-find`
 - :ref:`node-usage-findone`
+- :ref:`node-usage-find`
 
-For more information about the find() and findOne() methods, see the following
-Server manual documentation:
+For more information about the ``findOne()`` and ``find()`` methods, see the
+following Server manual documentation:
 
-- :manual:`find() </reference/method/db.collection.find/>`
 - :manual:`findOne() </reference/method/db.collection.findOne/>`
+- :manual:`find() </reference/method/db.collection.find/>`
 
 Aggregate Data from Documents
 -----------------------------
@@ -199,7 +199,8 @@ Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~
 
 For more information on how to construct an aggregation pipeline, see
-:manual:`Aggregation Operations </aggregation>` in the Server manual.
+the :ref:`node-aggregation` guide or :manual:`Aggregation Operations </aggregation>`
+in the Server manual.
 
 .. _node-fundamentals-watch:
 
