@@ -139,11 +139,20 @@ a ``null`` value if there are no matches.
         ...
       ]
 
+Additional Information
+~~~~~~~~~~~~~~~~~~~~~~
+
 For runnable code examples that demonstrate find operations, see the following
 usage examples:
 
 - :ref:`node-usage-find`
 - :ref:`node-usage-findone`
+
+For more information about the find() and findOne() methods, see the following
+Server manual documentation:
+
+- :manual:`find() </reference/method/db.collection.find/>`
+- :manual:`findOne() </reference/method/db.collection.findOne/>`
 
 Aggregate Data from Documents
 -----------------------------
@@ -186,8 +195,11 @@ group, and arrange the result data from a collection.
         { _id: 'created', count: 9 }
       ]
 
-See the {+mdb-server+} manual pages on :manual:`aggregation </aggregation>`
-for more information on how to construct an aggregation pipeline.
+Additional Information
+~~~~~~~~~~~~~~~~~~~~~~
+
+For more information on how to construct an aggregation pipeline, see
+:manual:`Aggregation Operations </aggregation>` in the Server manual.
 
 .. _node-fundamentals-watch:
 
@@ -213,8 +225,11 @@ data whenever write operations are executed on the collection.
       :start-after: start watch crud example
       :end-before: end watch crud example
 
-For a runnable example of the ``watch()`` method using the NodeJS driver, see
-the :ref:`change streams <node-usage-watch>` usage example.
+Additional Information
+~~~~~~~~~~~~~~~~~~~~~~
+
+For a runnable example of the ``watch()`` method, see the
+:ref:`Watch for Changes <node-usage-watch>` usage example.
 
 .. _node-retrieve-instruqt-lab:
 
