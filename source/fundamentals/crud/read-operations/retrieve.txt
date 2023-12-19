@@ -4,6 +4,13 @@
 Retrieve Data
 =============
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: node.js, code example, find one, find many
+
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -129,8 +136,11 @@ a ``null`` value if there are no matches.
         ...
       ]
 
-See the :ref:`find() <node-usage-find>` and :ref:`findOne()
-<node-usage-findone>` for fully-runnable examples.
+For runnable code examples that demonstrate find operations, see the following
+usage examples:
+
+- :ref:`node-usage-find`
+- :ref:`node-usage-findone`
 
 Aggregate Data from Documents
 -----------------------------
