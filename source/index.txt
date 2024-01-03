@@ -7,7 +7,7 @@ MongoDB Node Driver
    :values: reference
 
 .. meta:: 
-   :description: Connect to your MongoDB Atlas, Enterprise, or Community database deployment by using JavaScript or TypeScript with the Node.js Driver.
+   :description: Learn how to connect to and interact with data stored in MongoDB by using JavaScript or TypeScript with the Node.js driver.
    :keywords: node.js, object-relational, object-document
 
 .. _node-driver-landing:
