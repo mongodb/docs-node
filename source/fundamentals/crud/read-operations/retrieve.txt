@@ -5,7 +5,7 @@ Retrieve Data
 =============
 
 .. meta::
-   :description: Learn how to perform find operations to retrieve data from your MongoDB database by following this tutorial.
+   :description: Learn how to retrieve data, aggregate data, and monitor data changes in MongoDB by using the Node.js driver.   
    :keywords: node.js, lab
 
 .. facet::
