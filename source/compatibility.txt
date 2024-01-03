@@ -9,7 +9,7 @@ Compatibility
    :values: reference
 
 .. meta:: 
-   :description: Use the compatibility tables to find the recommended versions of the Node.js driver that work with your version of MongoDB.
+   :description: Find the recommended versions of the Node.js driver that work with your version of MongoDB.
    :keywords: node.js
 
 .. contents:: On this page
