@@ -20,7 +20,7 @@ document), MongoDB returns all documents in the collection. For more
 information on querying MongoDB, see our
 :doc:`documentation on query documents </fundamentals/crud/query-document>`.
 
-You can also define additional query options such as
+You can also define more query options such as
 :doc:`sort </fundamentals/crud/read-operations/sort>`
 and
 :doc:`projection </fundamentals/crud/read-operations/project>`
@@ -87,7 +87,7 @@ uses the following parameters:
         :language: typescript
         :linenos:
 
-If you run the preceding example, you should see the following output:
+Running the preceding example, you see the following output:
 
 .. code-block:: javascript
    :copyable: false
@@ -99,7 +99,7 @@ If you run the preceding example, you should see the following output:
    ...
 
 The ``sort`` and ``projection`` options can also be specified as methods
-(``sort()`` and ``project()``, respectively) chained to the ``find()`` method.
+(``sort()`` and ``project()``) chained to the ``find()`` method.
 The following two commands are equivalent:
 
 .. code-block:: javascript

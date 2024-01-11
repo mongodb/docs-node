@@ -1,12 +1,5 @@
 .. _node-whats-new:
 
-.. facet::
-   :name: genre
-   :values: reference
- 
-.. meta::
-   :keywords: version, update, upgrade, backwards compatibility
-
 ==========
 What's New
 ==========
@@ -16,6 +9,14 @@ What's New
    :backlinks: none
    :depth: 1
    :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :keywords: version, update, upgrade, backwards compatibility
+
 
 Learn what's new in:
 
@@ -589,7 +590,7 @@ What's New in 4.11
 Prioritization Order in Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When connecting to MongoDB Server version 6.0 or later, the driver prioritizes
+When connecting to {+mdb-server+} version 6.0 or later, the driver prioritizes
 ``electionId`` settings before ``setVersion`` settings during Server Discovery and
 Monitoring events. In previous versions, the prioritization order was reversed.
 
