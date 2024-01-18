@@ -37,3 +37,12 @@ cmk-long = "Customer Master Key"
 dek-long = "Data Encryption Key"
 csfle-short = "CSFLE"
 csfle-long = "Client-side Field Level Encryption (CSFLE)"
+
+eol = true
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <link>`__ to learn how to `upgrade your version of [product name] <link>`__.\
+    """
