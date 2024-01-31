@@ -50,10 +50,10 @@ Limit
 -----
 
 The following example queries the collection to return the top three
-longest books. It matches all the documents with the query, applies
-a descending ``sort`` on the ``length`` field to longer books before
-shorter books, and then applies a ``limit`` to return only the ``3``
-first results:
+longest books. It matches all documents because the query filter is
+empty. Then, it applies a descending ``sort`` on the ``length`` field to
+return longer books before shorter books and a ``limit`` to
+return only the ``3`` first results:
 
 .. code-block:: javascript
    :emphasize-lines: 4
