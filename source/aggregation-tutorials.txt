@@ -69,8 +69,8 @@ pipeline in each tutorial.
 .. tip:: 
    
    To learn how to install the driver and connect to MongoDB,
-   see the :ref:`node-quick-start-download-and-install` and
-   :ref:`node-quick-start-create-deployment` steps of the
+   see the :ref:`node-quickstart-install-node` and
+   :ref:`node-quickstart-connect-cluster` steps of the
    Quick Start guide.
 
 Once you install the driver, create a file called
@@ -95,7 +95,7 @@ your deployment's connection string.
 .. tip::
    
    To learn how to locate your deployment's connection string, see the
-   :ref:`node-quick-start-connection-string` step of the Quick Start guide.
+   :ref:`node-quickstart-connect-cluster` step of the Quick Start guide.
 
 For example, if your connection string is
 ``"mongodb+srv://mongodb-example:27017"``, your connection string assignment resembles
