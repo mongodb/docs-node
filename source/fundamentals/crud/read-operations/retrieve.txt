@@ -249,3 +249,5 @@ your browser window without installing MongoDB or a code editor.
 
 .. instruqt:: /mongodb-docs/tracks/find-node?token=em_OVNHWCPNPMLwNOCm
    :title: find() Lesson
+   :drawer:
+   
