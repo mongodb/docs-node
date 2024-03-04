@@ -1,3 +1,5 @@
+:template: instruqt
+
 .. _node-fundamentals-retrieve-data:
 
 =============
