@@ -253,4 +253,3 @@ your browser window without installing MongoDB or a code editor.
 
 .. instruqt:: /mongodb-docs/tracks/insert-node?token=em_S6rjcmIzxGB4Sz_y
    :title: insertOne() Lesson
-   :drawer:

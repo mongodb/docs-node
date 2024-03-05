@@ -234,4 +234,3 @@ your browser window without installing MongoDB or a code editor.
 
 .. instruqt:: /mongodb-docs/tracks/update-node?token=em_FEr9KfMh4WQ0VosU
    :title: updateMany() Lesson
-   :drawer:
