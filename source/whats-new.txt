@@ -91,7 +91,7 @@ The {+driver-short+} v6.4 release includes the following features:
   ``Document`` or ``any``, or use properties of any type.
 
 - Fixes the ``ServerHeartbeatSucceeded`` and ``ServerHeartbeatFailed`` event
-  heartbeat duration so that is does not include the time to create the socket.
+  heartbeat duration so that it does not include the time to create the socket.
 
 - Appropriately emits errors from cursor transform streams, rather than
   absorbing them.
