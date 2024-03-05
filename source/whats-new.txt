@@ -63,7 +63,7 @@ What's New in 6.4
 
 The {+driver-short+} v6.4 release includes the following features:
 
-- When multiples ``mongos`` instances are available, different servers are used
+- When multiple ``mongos`` instances are available, different servers are used
   for read and write retry attempts.
 
 - Caches AWS credentials at the client level, rather than for each
@@ -87,7 +87,7 @@ The {+driver-short+} v6.4 release includes the following features:
   which enables autocompletion and helps prevent downstream typing issues.
 
 - Fixes a type error in the ``$addToSet`` option of the ``bulkWrite`` command.
-  The ``$addToSet`` validation is skipped when users extend their types from
+  The driver skips ``$addToSet`` validation you extend your types from
   ``Document`` or ``any``, or use properties of any type.
 
 - Fixes the ``ServerHeartbeatSucceeded`` and ``ServerHeartbeatFailed`` event
