@@ -64,7 +64,7 @@ What's New in 6.5
 
 The {+driver-short+} v6.5 release includes the following features:
 
-- Updates bulkl write operations to use the ``pkFactory`` class for document
+- Updates bulk write operations to use the ``pkFactory`` class for document
   ID generation.
 
 .. warning::
