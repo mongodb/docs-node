@@ -67,11 +67,11 @@ The {+driver-short+} v6.5 release includes the following features:
 - Moves ``ObjectId`` generation to the ``pkFactory`` class for bulk write
   operations.
 
-   .. warning::
+.. warning::
 
-      If you previously specified an instance of a ``pkFactory`` to handle
-      bulk writes, the ``_id`` fields of the documents inserted by using bulk
-      writes may be inconsistent with the behavior in this version.
+   If you previously specified an instance of a ``pkFactory`` to handle
+   bulk writes, the ``_id`` fields of the documents inserted by using bulk
+   writes may be inconsistent with the behavior in this version.
 
 - Fixes the read preference that is sent with read operations to 
   ``primaryPreferred`` when the driver is connected to a secondary node in
