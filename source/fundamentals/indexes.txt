@@ -384,7 +384,7 @@ more about this feature in the :atlas:`Atlas Vector Search documentation
 </atlas-vector-search/vector-search-overview/>`.
 
 The following code shows how to use the ``createSearchIndex()`` method
-to create a search index with the ``type`` field set to ``vector``:
+to create a search index with the ``type`` field set to ``vectorSearch``:
 
 .. literalinclude:: /code-snippets/indexes/searchIndexes.js
    :language: javascript
