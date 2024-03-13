@@ -33,7 +33,7 @@ async function run() {
         // Create a Vector Search index
         const vectorSearchIdx = {
             name: "vsidx1",
-            type: "vector",
+            type: "vectorSearch",
             definition: {
                 fields: [{
                     type: "vector",
@@ -43,6 +43,7 @@ async function run() {
                 }]
             }
         }
+        
         await collection.createSearchIndex(vectorSearchIdx);
         // end vectorSearchIdx example
 
