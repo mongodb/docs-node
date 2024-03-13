@@ -378,6 +378,20 @@ use the ``createSearchIndex()`` method to create an index called
    :start-after: start createSearchIndex example
    :end-before: end createSearchIndex example
 
+When connecting to {+mdb-server+} v6.0.11, v7.0.2, or later, you can use
+the driver to create an Atlas Vector Search Index on a collection. Learn
+more about this feature in the :atlas:`Atlas Vector Search documentation
+</atlas-vector-search/vector-search-overview/>`.
+
+The following code shows how to use the ``createSearchIndex()`` method
+to create a search index with the ``type`` field set to ``vector``:
+
+.. literalinclude:: /code-snippets/indexes/searchIndexes.js
+   :language: javascript
+   :dedent:
+   :start-after: start vectorSearchIdx example
+   :end-before: end vectorSearchIdx example
+
 List Search Indexes
 ~~~~~~~~~~~~~~~~~~~
 
