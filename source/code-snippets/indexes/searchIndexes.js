@@ -28,6 +28,24 @@ async function run() {
         await collection.createSearchIndex(index1);
         // end createSearchIndex example
 
+        // start vectorSearchIdx example
+        // Create a Vector Search index
+        const vectorSearchIdx = {
+            name: "vsidx1",
+            type: "vectorSearch",
+            definition: {
+                fields: [{
+                    type: "vector",
+                    numDimensions: 384,
+                    path: "summary",
+                    similarity: "dotProduct"
+                }]
+            }
+        }
+        
+        await collection.createSearchIndex(vectorSearchIdx);
+        // end vectorSearchIdx example
+
         // start listSearchIndexes example
         const result = await collection.listSearchIndexes().toArray();
         console.log("Existing search indexes:\n");
