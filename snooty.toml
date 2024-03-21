@@ -1,3 +1,5 @@
+eol = true
+
 name = "node"
 title = "Node.js"
 intersphinx = [
@@ -45,5 +47,5 @@ eol = true
 targets = ["*"]
 variant = "info"
 value = """\
-    This version of the documentation is archived and no longer supported. View the `current documentation <{+current-url-base+}>`__ to learn how to `upgrade your version of the {+driver-long+} <{+current-url-base+}upgrade/>.`__\
+    This version of the documentation is archived and no longer supported. View the `current documentation <https://www.mongodb.com/docs/drivers/node/current/>`__ to learn how to `upgrade your version of the {+driver-short+} <https://www.mongodb.com/docs/drivers/node/current/upgrade/>`__.\
     """
