@@ -41,8 +41,6 @@ csfle-short = "CSFLE"
 csfle-long = "Client-side Field Level Encryption (CSFLE)"
 current-url-base = "https://www.mongodb.com/docs/drivers/node/current/" 
 
-eol = true
-
 [[banners]]
 targets = ["*"]
 variant = "info"
