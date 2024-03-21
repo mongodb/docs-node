@@ -25,3 +25,12 @@ driver-short = "Node.js driver"
 mdb-server = "MongoDB Server"
 min-node-version = "v12"
 stable-api = "Stable API"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <https://www.mongodb.com/docs/drivers/node/current/>`__ to learn how to `upgrade your version of the {+driver-short+} <https://www.mongodb.com/docs/drivers/node/current/upgrade/>`__.\
+    """
+
+eol = true
