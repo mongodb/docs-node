@@ -4,6 +4,13 @@
 Upgrade Driver Versions
 =======================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: backwards compatibility, update
+
 .. contents:: On this page
    :local:
    :backlinks: none
