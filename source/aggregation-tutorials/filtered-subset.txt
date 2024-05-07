@@ -46,13 +46,13 @@ documents describing people. Each document includes a person's name,
 date of birth, vocation, and other details.
 
 Before You Get Started
-----------------------
+-----------------------
 
 Before you start this tutorial, complete the
 :ref:`node-agg-tutorial-template-app` instructions to set up a working
 Node.js application.
 
-After you set up the app, access the ``persons`` collection by adding the
+After you set up the app, access the ``people`` collection by adding the
 following code to the application:
 
 .. literalinclude:: /includes/aggregation/filtered-subset.js
