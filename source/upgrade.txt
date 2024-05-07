@@ -70,17 +70,17 @@ The breaking changes in this section are categorized by the major
 version releases that introduced them. When upgrading driver versions,
 address all the breaking changes between your current version and the
 planned upgrade version. For example, if you are upgrading the driver
-from v3.x to v5.x, address all breaking changes listed under v4.x and
-v5.x.
+from v3.x to v5.x, address all breaking changes listed under v4.0 and
+v5.0.
 
 .. _node-breaking-changes-v5.x:
+.. _node-breaking-changes-v5.0:
 
-Version 5.x Breaking Changes
+Version 5.0 Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Driver versions 5.x are not compatible with Node.js
-  v12 or earlier. If you want to use this version of the driver, you must
-  use Node.js v14.20.1 or greater.
+- The driver is no longer compatible with Node.js v12 or earlier. If you want to use
+  this version of the driver, you must use Node.js v14.20.1 or greater.
 
 - The driver removes support for callbacks in favor of a promise-based API.
   The following list provides some strategies for callback users to adopt this
@@ -128,13 +128,13 @@ Version 5.x Breaking Changes
   - ``AsyncIterator`` interface removed in favor of ``AsyncGenerator``
 
 .. _node-breaking-changes-v4.x:
+.. _node-breaking-changes-v4.0:
 
-Version 4.x Breaking Changes
+Version 4.0 Breaking Changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- Driver versions 4.x are not compatible with Node.js
-  v12.8 or earlier. If you want to use this version of the driver, You must
-  use Node.js v12.9 or greater.
+- The driver is no longer compatible with Node.js v12.8 or earlier. If you
+  want to use this version of the driver, you must use Node.js v12.9 or greater.
 
 - ``Cursor`` types no longer extend ``Readable`` directly.
 
