@@ -86,8 +86,8 @@ What's New in 6.0
 
 .. warning:: Breaking Changes in v6.0
 
-   This driver version introduces breaking changes. For a list of these changes, see 
-   the :ref:`Version 6.x Breaking Changes section <node-breaking-changes-v6.x>` in the 
+   This driver version introduces breaking changes. For a list of these changes, see
+   the :ref:`Version 6.0 Breaking Changes section <node-breaking-changes-v6.0>` in the
    Upgrade guide.
 
 The {+driver-short+} v6.0 release includes the following features:
@@ -380,8 +380,8 @@ What's New in 5.0
 
 .. warning:: Breaking Changes in v5.0
 
-   This driver version introduces breaking changes. For a list of these changes, see 
-   the :ref:`Version 5.x Breaking Changes section <node-breaking-changes-v5.x>` in the 
+   This driver version introduces breaking changes. For a list of these changes, see
+   the :ref:`Version 5.0 Breaking Changes section <node-breaking-changes-v5.0>` in the
    Upgrade guide.
 
 New features of the 5.0 {+driver-short+} release include:
@@ -754,8 +754,13 @@ What's New in 4.0
 
 .. warning:: Breaking Changes in v4.0
 
+<<<<<<< HEAD
    This driver version introduces breaking changes. For a list of these changes, see 
    the :ref:`Version 4.x Breaking Changes section <node-breaking-changes-v4.x>` in 
+=======
+   This driver version introduces breaking changes. For a list of these changes, see
+   the :ref:`Version 4.0 Breaking Changes section <node-breaking-changes-v4.0>` in
+>>>>>>> 6d2df34 (DOCSP-32561: Exact versions in upgrade guide (#887))
    the Upgrade guide.
 
 New features of the 4.0 Node.js driver release include:
