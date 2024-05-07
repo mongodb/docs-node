@@ -73,6 +73,7 @@ planned upgrade version. For example, if you are upgrading the driver
 from v3.x to v5.x, address all breaking changes listed under v4.0 and
 v5.0.
 
+.. _node-breaking-changes-v6.x:
 .. _node-breaking-changes-v6.0:
 
 Version 6.0 Breaking Changes
@@ -137,6 +138,7 @@ Version 6.0 Breaking Changes
   removed support for version 1.x.
 - Raised the optional ``zstd`` dependency minimum version to 1.1.0.
 
+.. _node-breaking-changes-v5.x:
 .. _node-breaking-changes-v5.0:
 
 Version 5.0 Breaking Changes
@@ -190,6 +192,7 @@ Version 5.0 Breaking Changes
   - ``ObjectID`` type removed in favor of ``ObjectId``
   - ``AsyncIterator`` interface removed in favor of ``AsyncGenerator``
 
+.. _node-breaking-changes-v4.x:
 .. _node-breaking-changes-v4.0:
 
 Version 4.0 Breaking Changes
