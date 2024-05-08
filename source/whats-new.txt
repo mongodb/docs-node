@@ -64,8 +64,8 @@ What's New in 6.6
 
 The {+driver-short+} v6.6 release includes the following features:
 
-- Adds the ``addStage()`` generic method to the fluid API. You can use this method to
-  add aggregation pipeline stages in a general manner, as shown in the following
+- Adds the ``addStage()`` method to the fluid aggregation API. You can use this method to
+  add aggregation pipeline stages individually, as shown in the following
   example:
 
   .. code-block:: javascript
@@ -73,23 +73,23 @@ The {+driver-short+} v6.6 release includes the following features:
      const documents = await users.aggregate().addStage({ $project: { name: true } }).toArray();
 
 - Adds the ``cause`` and ``dependencyName`` fields to the ``MongoMissingDependencyError``
-  class. You can use these fields to programmatically determine which package is missing
-  and why it didn't load.
+  class. You can use these fields to programmatically determine if a package is missing
+  or why a package didn't load.
 
 - Adds the ``minRoundTripTime`` property to the ``ServerDescription`` class. This
   property contains the minimum round-trip time over the last 10 heartbeats.
 
-- Adds a ``toJSON()`` method to the ``TopologyDescription`` class. You can now
+- Adds the ``toJSON()`` method to the ``TopologyDescription`` class. You can now
   stringify ``TopologyDescription`` objects to JSON.
 
 - Adds cursor support for the ``Collection.indexExists()``, ``Collection.indexes()``, and
   ``Collection.indexInformation()`` methods in Typescript.
 
 - Removes support for the ``readConcern`` and ``writeConcern`` options from the
-  ``Collection.listSearchIndexes()`` method. This is an Atlas-specific method, and Atlas
+  ``Collection.listSearchIndexes()`` method. ``listSearchIndexes()`` is an Atlas-specific method, and Atlas
   search indexes don't support these options.
 
-- The ``ServerDescription.roundTripTime`` property is now a moving average. Previously,
+- Redefines the ``ServerDescription.roundTripTime`` property as a moving average. Previously,
   it was a weighted average of the most recently observed heartbeat duration and the
   previous duration.
 
@@ -97,7 +97,7 @@ The {+driver-short+} v6.6 release includes the following features:
   in the following example:
 
   .. code-block:: js
-    :emphasize-lines: 3
+     :emphasize-lines: 3
     
      const indexName = await collection.createSearchIndex({
      name: 'my-vector-search-index',
@@ -107,7 +107,7 @@ The {+driver-short+} v6.6 release includes the following features:
      }});
 
 - The ``UpdateFilter.$currentDate`` property no longer throws an error when you pass
-  it to a ``findOneAndModify`` method on a collection with a limited schema.
+  it to a compound method, such as ``findOneAndUpdate()``, on a collection with a limited schema.
 
 - The driver now throws a ``MongoTransactionError`` only if you provide a
   ``ReadPreferenceMode`` other than ``primary`` and then try to perform a command that
@@ -118,7 +118,7 @@ The {+driver-short+} v6.6 release includes the following features:
 - The ``Collection.indexExists()`` method no longer supports the ``full`` option.
 
 - The ``Collection.indexInformation()``, ``Collection.indexes()``, and
-  ``Db.indexInformation()`` methods now return
+  ``Db.indexInformation()`` methods now have a return type of
   ``IndexDescriptionCompact | IndexDescriptionInfo[]`` in TypeScript. 
 
 - The driver no longer throws an error when it receives an AWS access key that includes
