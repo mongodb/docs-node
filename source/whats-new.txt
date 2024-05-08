@@ -100,11 +100,12 @@ The {+driver-short+} v6.6 release includes the following features:
      :emphasize-lines: 3
     
      const indexName = await collection.createSearchIndex({
-     name: 'my-vector-search-index',
-     type: 'vectorSearch',
-     definition: {
-       mappings: { dynamic: false }
-     }});
+         name: 'my-vector-search-index',
+         type: 'vectorSearch',
+         definition: {
+             mappings: { dynamic: false }
+         }
+     });
 
 - The ``UpdateFilter.$currentDate`` property no longer throws an error when you pass
   it to a compound method, such as ``findOneAndUpdate()``, on a collection with a limited schema.
