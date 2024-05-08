@@ -79,8 +79,8 @@ The {+driver-short+} v6.6 release includes the following features:
 - Adds the ``minRoundTripTime`` property to the ``ServerDescription`` class. This
   property contains the minimum round-trip time over the last 10 heartbeats.
 
-- Adds the ``toJSON()`` method to the ``TopologyDescription`` class. You can now
-  stringify ``TopologyDescription`` objects to JSON.
+- Adds the ``toJSON()`` method to the ``TopologyDescription`` class. You can use this
+  method to stringify ``TopologyDescription`` objects to JSON.
 
 - Adds cursor support for the ``Collection.indexExists()``, ``Collection.indexes()``, and
   ``Collection.indexInformation()`` methods in Typescript.
@@ -93,7 +93,7 @@ The {+driver-short+} v6.6 release includes the following features:
   it was a weighted average of the most recently observed heartbeat duration and the
   previous duration.
 
-- You can now specify the type of a search index when creating the index, as shown
+- You can specify the type of a search index when creating the index, as shown
   in the following example:
 
   .. code-block:: js
@@ -109,16 +109,16 @@ The {+driver-short+} v6.6 release includes the following features:
 - The ``UpdateFilter.$currentDate`` property no longer throws an error when you pass
   it to a compound method, such as ``findOneAndUpdate()``, on a collection with a limited schema.
 
-- The driver now throws a ``MongoTransactionError`` only if you provide a
+- The driver throws a ``MongoTransactionError`` only if you provide a
   ``ReadPreferenceMode`` other than ``primary`` and then try to perform a command that
   involves a read operation.
 
-- The data type of the ``TopologyDescription.error`` property is now ``MongoError``.
+- The data type of the ``TopologyDescription.error`` property is ``MongoError``.
 
 - The ``Collection.indexExists()`` method no longer supports the ``full`` option.
 
 - The ``Collection.indexInformation()``, ``Collection.indexes()``, and
-  ``Db.indexInformation()`` methods now have a return type of
+  ``Db.indexInformation()`` methods have a return type of
   ``IndexDescriptionCompact | IndexDescriptionInfo[]`` in TypeScript. 
 
 - The driver no longer throws an error when it receives an AWS access key that includes
