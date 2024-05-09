@@ -64,6 +64,12 @@ What's New in 6.6
 
 The {+driver-short+} v6.6 release includes the following features:
 
+- Upgrades to using BSON 6.7.0. For details about the new BSON features, see the
+  release notes for `BSON 6.5.0
+  <https://github.com/mongodb/js-bson/releases/tag/v6.5.0>`__,
+  `BSON 6.6.0 <https://github.com/mongodb/js-bson/releases/tag/v6.6.0>`__, and
+  `BSON 6.7.0 <https://github.com/mongodb/js-bson/releases/tag/v6.7.0>`__.
+
 - Adds the ``addStage()`` method to the fluid aggregation API. You can use this method to
   add aggregation pipeline stages individually, as shown in the following
   example:
@@ -130,6 +136,11 @@ The {+driver-short+} v6.6 release includes the following features:
 
 - The ``ClusterTime`` interface no longer defines the ``signature`` field as required in
   TypeScript.
+
+To learn more about this release, see the
+`v6.6.0 Release Highlights
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v6.5.0>`__ on
+GitHub.
 
 .. _version-6.5:
 
