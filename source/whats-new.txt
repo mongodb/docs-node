@@ -139,7 +139,7 @@ The {+driver-short+} v6.6 release includes the following features:
 
 To learn more about this release, see the
 `v6.6.0 Release Highlights
-<https://github.com/mongodb/node-mongodb-native/releases/tag/v6.5.0>`__ on
+<https://github.com/mongodb/node-mongodb-native/releases/tag/v6.6.0>`__ on
 GitHub.
 
 .. _version-6.5:
