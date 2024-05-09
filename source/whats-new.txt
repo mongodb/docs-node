@@ -79,11 +79,13 @@ The {+driver-short+} v6.6 release includes the following features:
 - Adds the ``minRoundTripTime`` property to the ``ServerDescription`` class. This
   property contains the minimum round-trip time over the last 10 heartbeats.
 
-- Adds the ``toJSON()`` method to the ``TopologyDescription`` class. You can use this
-  method to stringify ``TopologyDescription`` objects to JSON.
+- Adds the ``toJSON()`` method to the ``TopologyDescription`` class. Although you can use
+  this method to stringify ``TopologyDescription`` objects to JSON, we
+  recommend using Node's ``util.inspect()`` method instead, because it properly handles
+  all types used in JavaScript and the driver.
 
-- Adds cursor support for the ``Collection.indexExists()``, ``Collection.indexes()``, and
-  ``Collection.indexInformation()`` methods in Typescript.
+- Adds cursor options support for the ``Collection.indexExists()``,
+  ``Collection.indexes()``, and ``Collection.indexInformation()`` methods in Typescript.
 
 - Removes support for the ``readConcern`` and ``writeConcern`` options from the
   ``Collection.listSearchIndexes()`` method. ``listSearchIndexes()`` is an Atlas-specific method, and Atlas
@@ -122,7 +124,8 @@ The {+driver-short+} v6.6 release includes the following features:
   ``Db.indexInformation()`` methods have a return type of
   ``IndexDescriptionCompact | IndexDescriptionInfo[]`` in TypeScript. 
 
-- The driver no longer throws an error when it receives an AWS access key that includes
+- When retrieving AWS KMS (Key Management System) credentials, the driver no longer
+  throws an error when it receives an access key that includes
   an expiration timestamp.
 
 - The ``ClusterTime`` interface no longer defines the ``signature`` field as required in
