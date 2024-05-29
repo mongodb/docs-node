@@ -42,7 +42,7 @@ pool monitoring events created by the MongoDB deployment:
 
 Connection pool monitoring events can aid you in debugging and understanding
 the behavior of your application's connection pool. The following example
-demonstrates the use of monitoring events for a function that returns a count
+demonstrates a function that uses connection pool monitoring events to return a count
 of checked-out connections in the pool.
 
 .. literalinclude:: /code-snippets/monitoring/cpm-status.js
