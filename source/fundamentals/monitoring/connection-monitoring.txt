@@ -29,8 +29,8 @@ application run faster.
 The following sections demonstrate how to record connection pool events in your
 application or want to explore the information provided in these events.
 
-Event Subscription Example
---------------------------
+Event Subscription Examples
+---------------------------
 
 You can access one or more connection pool events using the driver by
 subscribing to them in your application. The following example demonstrates
@@ -38,6 +38,14 @@ connecting to a replica set and subscribing to one of the connection
 pool monitoring events created by the MongoDB deployment:
 
 .. literalinclude:: /code-snippets/monitoring/cpm-subscribe.js
+   :language: javascript
+
+Connection pool monitoring events can aid you in debugging and understanding
+the behavior of your application's connection pool. The following example
+demonstrates the use of monitoring events for a function that returns a count
+of checked-out connections in the pool.
+
+.. literalinclude:: /code-snippers/monitoring/c
    :language: javascript
 
 Event Descriptions
