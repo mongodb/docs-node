@@ -45,7 +45,7 @@ the behavior of your application's connection pool. The following example
 demonstrates the use of monitoring events for a function that returns a count
 of checked-out connections in the pool.
 
-.. literalinclude:: /code-snippers/monitoring/c
+.. literalinclude:: /code-snippets/monitoring/cpm-status.js
    :language: javascript
 
 Event Descriptions
