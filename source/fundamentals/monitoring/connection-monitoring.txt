@@ -27,7 +27,7 @@ network handshakes your application needs to perform and can help your
 application run faster.
 
 The following sections demonstrate how to record connection pool events in your
-application or want to explore the information provided in these events.
+application and explore the information provided in these events.
 
 Event Subscription Examples
 ---------------------------
@@ -41,9 +41,8 @@ pool monitoring events created by the MongoDB deployment:
    :language: javascript
 
 Connection pool monitoring events can aid you in debugging and understanding
-the behavior of your application's connection pool. The following example
-demonstrates a function that uses connection pool monitoring events to return a count
-of checked-out connections in the pool.
+the behavior of your application's connection pool. The following example uses connection
+pool monitoring events to return a count of checked-out connections in the pool:
 
 .. literalinclude:: /code-snippets/monitoring/cpm-status.js
    :language: javascript

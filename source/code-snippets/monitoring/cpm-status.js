@@ -16,10 +16,10 @@ function connectionPoolStatus(client) {
     checkedOut = NaN;
   }
 
-  // Increases count of active connection pool threads when connectionCheckedIn event is triggered
+  // Decreases count of connections checked out of the pool when connectionCheckedIn event is triggered
   client.on('connectionCheckedIn', onCheckin);
 
-  // Decreases count of active connection pool threads when connectionCheckedOut event is triggered
+  // Increases count of connections checked out of the pool when connectionCheckedOut event is triggered
   client.on('connectionCheckedOut', onCheckout);
 
   // Cleans up event listeners when client is closed
