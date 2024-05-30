@@ -66,8 +66,8 @@ What's New in 6.7
 The {+driver-short+} v6.7 release includes the following features:
 
 - Adds support for the ``MONGODB-OIDC`` authentication mechanism when connected to 
-  MongoDB Server v7.0 and later. The driver supports authentication with the
-  Azure machine authentication, GCP machine authentication, callback authentication,
+  MongoDB Server v7.0 and later. The driver supports authentication with Azure
+  machine authentication, GCP machine authentication, callback authentication,
   and human interaction callback authentication facets.
 
 - Fixes an issue where setting the ``useBigInt64`` flag to ``true`` caused the internal
