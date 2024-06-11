@@ -97,10 +97,10 @@ verify that the connection is successful:
 
 .. note::
 
-   As of {+driver-short+} v4.7, the driver automatically calls the ``MongoClient.connect()``
+   The {+driver-short+} automatically calls the ``MongoClient.connect()``
    method when using the client to perform CRUD operations on your MongoDB deployment.
-   Call the ``MongoClient.connect()`` method explicitly to verify that the connection is
-   successful.
+   Call the ``MongoClient.connect()`` method explicitly if you want to verify that the
+   connection is successful.
 
 To learn more about the Stable
 API feature, see the :ref:`{+stable-api+} page <nodejs-stable-api>`.
