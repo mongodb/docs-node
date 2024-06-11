@@ -95,10 +95,10 @@ verify that the connection is successful:
 .. literalinclude:: /code-snippets/connection/stable-api-connect.js
    :language: javascript
 
-.. note:: Calling ``MongoClient.connect()``
+.. note::
 
    As of v4.7, the {+driver-short+} will automatically call the ``MongoClient.connect()``
-   method when using the client to interact to your MongoDB instance, **except** when
+   method when using the client to interact with your MongoDB instance, **except** when
    you use the client to call bulk operations. We recommend manually calling
    ``MongoClient.connect()`` if you want granular control and insight over
    your application's connections.
