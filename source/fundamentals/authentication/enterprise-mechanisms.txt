@@ -211,13 +211,15 @@ The {+driver-short+} doesn't offer built-in support for all platforms, including
 Azure Functions and Azure Kubernetes Service (AKS). Instead, you
 must define a custom callback to use OIDC to authenticate from these platforms.
 
-First, define a custom function with the following signature:
+First, define a function that retrieves the access token to use for OIDC authentication.
+This function must have the following signature:
 
 .. code-block:: js
 
    const myCallback = (params: OIDCCallbackParams): Promise<OIDCResponse> => { }
 
-The ``OIDCCallbackParams`` object contains the following properties:
+The ``OIDCCallbackParams`` parameter contains the following properties, which you can
+access inside the function:
 
 .. list-table::
    :header-rows: 1
@@ -225,74 +227,56 @@ The ``OIDCCallbackParams`` object contains the following properties:
    * - Property
      - Value
    * - ``timeoutContext``
-     -
+     - An ``AbortSignal`` that aborts after 30 seconds 
+   * - ``version``
+     - The current OIDC API version
+   * - ``idpInfo``
+     - The IdP information returned from the server
+   * - ``username``
+     - The username included in the connection string, if any
+   * - ``refreshToken``
+     - The refresh token to request a new access token from the issuer, if any
 
+The callback function must return an ``OIDCResponse`` object. This object contains the
+following properties:
+
+.. list-table::
+   :header-rows: 1
+
+   * - Property
+     - Value
+   * - ``accessToken``
+     - The access token to use for authentication.
+   * - ``expiresInSeconds``
+     - *Optional.* The number of seconds until the access token expires.
+   * - ``refreshToken``
+     - *Optional.* The refresh token to request a new access token from the issuer.
+
+The following example shows a callback function that retrieves an OIDC access token
+from a file named ``access-token.dat`` in the local file system:
 
 .. code-block:: js
 
-const oidcCallBack = (params: OIDCCallbackParams): Promise<OIDCResponse> => {
-  // params.timeoutContext is an AbortSignal that will abort after 30 seconds for non-human and 5 minutes for human.
-  // params.version is the current OIDC API version.
-  // params.idpInfo is the IdP info returned from the server.
-  // params.username is the optional username.
+   import fs from "node:fs";
 
-  // Make a call to get a token.
-const token = ...;
-return {
-   accessToken: token,
-   expiresInSeconds: 300,
-   refreshToken: token
-};
-}
-
-const client = new MongoClient('mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC', {
-  authMechanismProperties: {
-    OIDC_CALLBACK: oidcCallback
-  }
-});
-
-contains two methods:
-
-- ``GetOidcAccessToken()``: This method accepts the parameters to the callback method
-  and returns the callback response. 
-- ``GetOidcAccessTokenAsync()``: This method is an asynchronous version of the previous
-  method. 
-
-The following code is an example implementation of the ``IOidcCallback`` interface.
-In this example, the methods retrieve an OIDC token from a file named ``"access-token.dat"``
-in the local file system.
-
-.. code-block:: csharp
-
-   public class MyCallback : IOidcCallback
-   {
-       public OidcAccessToken GetOidcAccessToken(
-           OidcCallbackParameters parameters,
-           CancellationToken cancellationToken)
-       {
-           var accessToken = File.ReadAllText("access-token.dat");
-           return new(accessToken, expiresIn: null);
-       }
-
-       public async Task<OidcAccessToken> GetOidcAccessTokenAsync(
-           OidcCallbackParameters parameters,
-           CancellationToken cancellationToken)
-       {
-           var accessToken = await File.ReadAllTextAsync(
-               "access-token.dat",
-               cancellationToken)
-               .ConfigureAwait(false);
-           return new(accessToken, expiresIn: null);
-       }
+   const myCallback = (params: OIDCCallbackParams): Promise<OIDCResponse> => {
+     const token = fs.readFileSync("access-token.dat", "utf8");
+     
+     return {
+       accessToken: token,
+       expiresInSeconds: 300,
+       refreshToken: token
+     };
    }
 
-After you define a class that contains your custom callback methods, call the
-``MongoCredential.CreateOidcCredential()`` method and pass in a new instance of your
-class. Store the result of this method call in the ``Credential`` property of your
-``MongoClientSettings`` object, as shown in the following code example:
+After you define your callback function, pass it to the ``MongoClient`` constructor
+as part of the ``authMechanismProperties`` parameter, as shown in the following
+example:
 
-.. code-block:: csharp
+.. code-block:: js
 
-   var mongoClientSettings = MongoClientSettings.FromConnectionString("mongodb://<hostname>[:port]");
-   mongoClientSettings.Credential = MongoCredential.CreateOidcCredential(new MyCallback());
-   var client = new MongoClient(mongoClientSettings);
+   const client = new MongoClient("mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC", {
+     authMechanismProperties: {
+       OIDC_CALLBACK: oidcCallback
+     }
+   });
