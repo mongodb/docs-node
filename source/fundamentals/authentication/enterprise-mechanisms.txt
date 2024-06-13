@@ -172,17 +172,21 @@ If your application runs on an Azure VM, or otherwise uses the
 (IMDS), you can authenticate to MongoDB by using the {+driver-short+}'s built-in Azure
 support.
 
-The following code example shows how to specify Azure IMDS OIDC authentication. 
+The following code example shows how to specify Azure IMDS OIDC as the authentication
+mechanism. 
 Replace the ``<audience>`` placeholder with the
 value of the ``audience`` parameter configured on your MongoDB deployment. 
 Optionally, replace the ``<username>`` placeholder with the client ID or application ID of the
 Azure managed identity or enterprise application.
       
 .. code-block:: js
+   :emphasize-lines: 3-4
 
-   const client = new MongoClient("mongodb+srv://<username>@<host>:<port>/?"
-                                  + "authMechanism=MONGODB-OIDC"
-                                  + "&authMechanismProperties=TOKEN_RESOURCE:<audience>,ENVIRONMENT=azure");
+   const { MongoClient } = require("mongodb");
+
+   const uri = "mongodb+srv://<username>@<host>:<port>/?authMechanism=MONGODB-OIDC"
+               + "&authMechanismProperties=TOKEN_RESOURCE:<audience>,ENVIRONMENT=azure";
+   const client = new MongoClient(uri);                                  
 
 .. _node-mongodb-oidc-gcp-imds:
 
@@ -194,15 +198,19 @@ If your application runs on a Google Compute Engine VM, or otherwise uses the
 you can authenticate to MongoDB by using the {+driver-short+}'s built-in GCP
 support.
 
-The following code example shows how to specify GCP IMDS OIDC authentication. 
+The following code example shows how to specify GCP IMDS OIDC as the authentication
+mechanism. 
 Replace the ``<audience>`` placeholder with the
 value of the ``audience`` parameter configured on your MongoDB deployment. 
 
 .. code-block:: js
+   :emphasize-lines: 3-4
 
-   const client = new MongoClient("mongodb+srv://<host>:<port>/?"
-                                  + "authMechanism=MONGODB-OIDC"
-                                  + "&authMechanismProperties=TOKEN_RESOURCE:<audience>,ENVIRONMENT=gcp");
+   const { MongoClient } = require("mongodb");
+
+   const uri = "mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC"
+               + "&authMechanismProperties=TOKEN_RESOURCE:<audience>,ENVIRONMENT=gcp"
+   const client = new MongoClient(uri);
 
 Custom Callback
 ~~~~~~~~~~~~~~~
@@ -227,7 +235,7 @@ access inside the function:
    * - Property
      - Value
    * - ``timeoutContext``
-     - An ``AbortSignal`` that aborts after 30 seconds 
+     - An ``AbortSignal`` that aborts the authentication workflow after 30 seconds 
    * - ``version``
      - The current OIDC API version
    * - ``idpInfo``
@@ -257,7 +265,7 @@ from a file named ``access-token.dat`` in the local file system:
 
 .. code-block:: js
 
-   import fs from "node:fs";
+   const fs = require("node:fs");
 
    const myCallback = (params: OIDCCallbackParams): Promise<OIDCResponse> => {
      const token = fs.readFileSync("access-token.dat", "utf8");
@@ -270,13 +278,64 @@ from a file named ``access-token.dat`` in the local file system:
    }
 
 After you define your callback function, pass it to the ``MongoClient`` constructor
-as part of the ``authMechanismProperties`` parameter, as shown in the following
-example:
+as part of the ``authMechanismProperties`` parameter. The {+driver-short+} supports
+the following authentication patterns:
 
-.. code-block:: js
+- **Machine authentication:** Used by web services and other applications that require
+  no human interaction. Select the :guilabel:`Machine Callback` tab to see an example of
+  this syntax.
+- **Human authentication:** Used by database tools, command-line utilities, and other
+  applications that involve direct human interaction. Select the :guilabel:`Human Callback`
+  tab to see an example of this syntax.
 
-   const client = new MongoClient("mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC", {
-     authMechanismProperties: {
-       OIDC_CALLBACK: oidcCallback
-     }
-   });
+.. tabs:: 
+
+   .. tab:: Machine Callback
+      :tabid: machine-callback
+
+      If your application is one that requires no human interaction, such as a web service,
+      assign the callback function to the
+      ``authMechanismProperties.OIDC_CALLBACK`` property, as shown in the following
+      example:
+      
+      .. code-block:: js
+         :emphasize-lines: 4-7
+     
+         const { MongoClient } = require("mongodb");
+     
+         const uri = "mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC";
+         const client = new MongoClient(uri, {
+           authMechanismProperties: {
+             OIDC_CALLBACK: myCallback
+           }
+         });
+
+   .. tab:: Human Callback
+      :tabid: human-callback
+
+      If your application is one that involves human interaction, such as a database tool
+      or command-line utility, assign the callback function to the
+      ``authMechanismProperties.OIDC_HUMAN_CALLBACK`` property, as shown in the following
+      example:
+   
+      .. code-block:: js
+         :emphasize-lines: 4-7
+   
+         const { MongoClient } = require("mongodb");
+   
+         const uri = "mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC";
+         const client = new MongoClient(uri, {
+           authMechanismProperties: {
+             OIDC_CALLBACK: myCallback
+         }
+         });
+   
+API Documentation
+-----------------
+
+To learn more about the methods and types discussed in this
+guide, see the following API documentation:
+
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `OIDCCallbackParams <{+api+}/interfaces/OIDCCallbackParams.html>`__
+- `OIDCResponse <{+api+}/interfaces/OIDCResponse.html>`__
