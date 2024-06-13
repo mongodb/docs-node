@@ -209,7 +209,7 @@ value of the ``audience`` parameter configured on your MongoDB deployment.
    const { MongoClient } = require("mongodb");
 
    const uri = "mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC"
-               + "&authMechanismProperties=TOKEN_RESOURCE:<audience>,ENVIRONMENT=gcp"
+               + "&authMechanismProperties=TOKEN_RESOURCE:<audience>,ENVIRONMENT=gcp";
    const client = new MongoClient(uri);
 
 Custom Callback
@@ -293,8 +293,7 @@ the following authentication patterns:
    .. tab:: Machine Callback
       :tabid: machine-callback
 
-      If your application is one that requires no human interaction, such as a web service,
-      assign the callback function to the
+      For machine authentication, assign the callback function to the
       ``authMechanismProperties.OIDC_CALLBACK`` property, as shown in the following
       example:
       
@@ -313,8 +312,7 @@ the following authentication patterns:
    .. tab:: Human Callback
       :tabid: human-callback
 
-      If your application is one that involves human interaction, such as a database tool
-      or command-line utility, assign the callback function to the
+      For human authentication, assign the callback function to the
       ``authMechanismProperties.OIDC_HUMAN_CALLBACK`` property, as shown in the following
       example:
    
@@ -327,7 +325,7 @@ the following authentication patterns:
          const client = new MongoClient(uri, {
            authMechanismProperties: {
              OIDC_CALLBACK: myCallback
-         }
+           }
          });
    
 API Documentation
