@@ -239,7 +239,7 @@ access inside the function:
    * - ``version``
      - The current OIDC API version
    * - ``idpInfo``
-     - The IdP information returned from the server
+     - The identity-provider information returned from the server
    * - ``username``
      - The username included in the connection string, if any
    * - ``refreshToken``
