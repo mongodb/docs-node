@@ -172,20 +172,28 @@ If your application runs on an Azure VM, or otherwise uses the
 (IMDS), you can authenticate to MongoDB by using the {+driver-short+}'s built-in Azure
 support.
 
-The following code example shows how to specify Azure IMDS OIDC as the authentication
-mechanism. 
-Replace the ``<audience>`` placeholder with the
-value of the ``audience`` parameter configured on your MongoDB deployment. 
-Optionally, replace the ``<username>`` placeholder with the client ID or application ID of the
-Azure managed identity or enterprise application.
-      
+To specify Azure IMDS OIDC as the authentication mechanism, set the following options
+in your connection string:
+
+- ``username``: If you're using an Azure managed identity, set this to the client ID
+  of the managed identity. If you're using a service principal to represent an
+  enterprise application, set this to the application ID of the service principal.
+  Otherwise, omit this option.
+- ``authMechanism``: Set to ``MONGODB-OIDC``.
+- ``authMechanismProperties``: Set to
+  ``ENVIRONMENT:azure,TOKEN_RESOURCE:<audience>``.
+  Replace the ``<audience>`` placeholder with the
+  value of the ``audience`` parameter configured on your MongoDB deployment. 
+
+The following code example shows how to set the preceding connection options:
+
 .. code-block:: js
    :emphasize-lines: 3-4
 
    const { MongoClient } = require("mongodb");
 
-   const uri = "mongodb+srv://<username>@<host>:<port>/?authMechanism=MONGODB-OIDC"
-               + "&authMechanismProperties=TOKEN_RESOURCE:<audience>,ENVIRONMENT=azure";
+   const uri = "mongodb+srv://<username>@<hostname>:<port>/?authMechanism=MONGODB-OIDC"
+               + "&authMechanismProperties=ENVIRONMENT:azure,TOKEN_RESOURCE:<audience>";
    const client = new MongoClient(uri);                                  
 
 .. _node-mongodb-oidc-gcp-imds:
@@ -198,10 +206,16 @@ If your application runs on a Google Compute Engine VM, or otherwise uses the
 you can authenticate to MongoDB by using the {+driver-short+}'s built-in GCP
 support.
 
-The following code example shows how to specify GCP IMDS OIDC as the authentication
-mechanism. 
-Replace the ``<audience>`` placeholder with the
-value of the ``audience`` parameter configured on your MongoDB deployment. 
+To specify GCP IMDS OIDC as the authentication mechanism, set the following options
+in your connection string:
+
+- ``authMechanism``: Set to ``MONGODB-OIDC``.
+- ``authMechanismProperties``: Set to
+  ``ENVIRONMENT:gcp,TOKEN_RESOURCE:<audience>``.
+  Replace the ``<audience>`` placeholder with the
+  value of the ``audience`` parameter configured on your MongoDB deployment. 
+
+The following code example shows how to set the preceding connection options:
 
 .. code-block:: js
    :emphasize-lines: 3-4
@@ -209,7 +223,7 @@ value of the ``audience`` parameter configured on your MongoDB deployment.
    const { MongoClient } = require("mongodb");
 
    const uri = "mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC"
-               + "&authMechanismProperties=TOKEN_RESOURCE:<audience>,ENVIRONMENT=gcp";
+               + "&authMechanismProperties=ENVIRONMENT:gcp,TOKEN_RESOURCE:<audience>";
    const client = new MongoClient(uri);
 
 Custom Callback
@@ -324,7 +338,7 @@ the following authentication patterns:
          const uri = "mongodb+srv://<host>:<port>/?authMechanism=MONGODB-OIDC";
          const client = new MongoClient(uri, {
            authMechanismProperties: {
-             OIDC_CALLBACK: myCallback
+             OIDC_HUMAN_CALLBACK: myCallback
            }
          });
    
