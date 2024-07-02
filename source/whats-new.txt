@@ -72,7 +72,7 @@ The {+driver-short+} v6.8 release includes the following features:
 
 - The ``ReadConcernMajorityNotAvailableYet`` error is now a retryable read error.
 
-- You can now associate a name, and provide multiple keys for, KMS providers.
+- You can now associate a name with, and provide multiple keys for, KMS providers.
   This feature requires ``mongodb-client-encryption`` v6.0.1 or later.
   You can't use named KMS providers if your application uses the automatic
   KMS provider refresh capability.
