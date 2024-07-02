@@ -73,8 +73,12 @@ The {+driver-short+} v6.7 release includes the following features:
 - The ``ReadConcernMajorityNotAvailableYet`` error is now a retryable read error.
 
 - KMS providers can now be associated with a name, and multiple keys can be provided
-  for each KMS provider. The following code example shows how to configure a
-  ``ClientEncryption`` object with multiple AWS keys:
+  for each KMS provider. This feature requires ``mongodb-client-encryption`` v6.0.1 or later.
+  You can't use named KMS providers if your application uses the automatic
+  KMS provider refresh capability.
+
+  The following code example shows how to configure a ``ClientEncryption`` object with
+  multiple AWS keys:
 
 .. code-block:: javascript
    :copyable: true
@@ -90,10 +94,6 @@ The {+driver-short+} v6.7 release includes the following features:
      },
   
    clientEncryption.createDataKey('aws:key-1', { ... });
-
-  You can't use named KMS providers if your application uses the automatic
-  KMS provider refresh capability.
-  This feature requires ``mongodb-client-encryption`` v6.0.1 or later.
 
 - When you create a KMIP data key, you can now specify the ``delegated`` option. If this
   option is set to ``true``, the KMIP provider performs encryption and decryption of
