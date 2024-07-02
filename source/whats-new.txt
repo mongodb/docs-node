@@ -80,20 +80,20 @@ The {+driver-short+} v6.7 release includes the following features:
   The following code example shows how to configure a ``ClientEncryption`` object with
   multiple AWS keys:
 
-.. code-block:: javascript
-   :copyable: true
+  .. code-block:: javascript
+     :copyable: true
    
-   const clientEncryption = new ClientEncryption(keyVaultClient, {
-     'aws:key1': {
-       accessKeyId: ...,
-       secretAccessKey: ...
-     },
-     'aws:key2': {
-       accessKeyId: ...,
-       secretAccessKey: ...
-     },
+     const clientEncryption = new ClientEncryption(keyVaultClient, {
+       'aws:key1': {
+         accessKeyId: ...,
+         secretAccessKey: ...
+       },
+       'aws:key2': {
+         accessKeyId: ...,
+         secretAccessKey: ...
+      },
   
-   clientEncryption.createDataKey('aws:key-1', { ... });
+     clientEncryption.createDataKey('aws:key-1', { ... });
 
 - When you create a KMIP data key, you can now specify the ``delegated`` option. If this
   option is set to ``true``, the KMIP provider performs encryption and decryption of
@@ -102,10 +102,10 @@ The {+driver-short+} v6.7 release includes the following features:
   
   The following code example shows how to specify this option:
 
-.. code-block:: javascript
-   :copyable: true
+  .. code-block:: javascript
+     :copyable: true
 
-   clientEncryption.createDataKey('kmip', { masterKey: { delegated: true } } );
+     clientEncryption.createDataKey('kmip', { masterKey: { delegated: true } } );
 
 - The driver now decodes BSON responses as the cursor iterates over them,
   rather than decoding the entire BSON response when it is received.
