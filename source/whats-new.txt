@@ -74,7 +74,8 @@ The {+driver-short+} v6.7 release includes the following features:
 
 - KMS providers can now be associated with a name, and multiple keys can be provided
   for each KMS provider. This feature requires ``mongodb-client-encryption`` v6.0.1 or
-  later.
+  later. You can't use named KMS providers if your application uses the automatic
+  KMS provider refresh capability.
 
   The following code example configures a ``ClientEncryption`` object with multiple AWS keys:
 
@@ -92,11 +93,6 @@ The {+driver-short+} v6.7 release includes the following features:
      },
   
    clientEncryption.createDataKey('aws:key-1', { ... });
-
-  .. note::
-    
-     You can't use named KMS providers if your application uses the automatic
-     KMS provider refresh capability.
 
 - When you create a KMIP data key, you can now specify the ``delegated`` option. If this
   option is set to ``true``, the KMIP provider performs encryption and decryption of
