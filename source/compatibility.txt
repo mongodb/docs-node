@@ -38,7 +38,7 @@ the {+driver-long+} for use with a specific version of Node.js.
 
 The first column lists the driver version.
 
-.. sharedinclude:: /dbx/language-compatibility-table-node.rst
+.. sharedinclude:: dbx/language-compatibility-table-node.rst
 
 Component Compatibility
 -----------------------
