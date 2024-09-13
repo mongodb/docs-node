@@ -67,8 +67,8 @@ What's New in 6.9
 
 - Support for {+mdb-server+} 3.6 is deprecated and will be removed in a future driver release.
 - The driver natively supports explicit resource management for cursors and the
-  ``MongoClient``, ``ClientSession``, and ``ChangeStream`` objects. On compatible Node.js
-  versions, you can use explicit resource management with the ``cursor.stream()``
+  ``MongoClient``, ``ClientSession``, and ``ChangeStream`` objects. When using a compatible Node.js
+  version, you can implement explicit resource management by using the ``cursor.stream()``
   method and ``GridFSDownloadStream`` class.
 
   To learn how to use explicit resource management, see the
@@ -89,20 +89,20 @@ What's New in 6.9
 
      const client = new MongoClient(process.env.MONGODB_URI, { autoSelectFamily: true, autoSelectFamilyTimeout: 100 });
 - The ``MongoClient`` constructor accepts the ``allowPartialTrustChain`` option. This option
-  controls the X509_V_FLAG_PARTIAL_CHAIN OpenSSL flag.
+  controls the ``X509_V_FLAG_PARTIAL_CHAIN`` OpenSSL flag.
 - The ``ConnectionCheckedOutEvent`` and ``ConnectionCheckFailedEvent`` now include a ``durationMS``
   property. This property indicates the time elapsed between the start and end of a
   connection checkout operation.
 - If you're using Node.js 18 or later, the driver ignores the ``cryptoCallbacks`` option
   and uses callbacks defined in C++ instead, significantly improving encryption
-  performance. This change is available in ``mongodb-client-encryption`` v6.1.0.
+  performance. This change is available in the v6.1.0 version of the ``mongodb-client-encryption`` package.
 - To enhance security, the options specifying the spawn path and arguments for
   ``mongocryptd`` must be own properties of ``autoEncryption.extraOptions``.
   This change helps prevent global prototype pollution bugs related to these options.
   For more information about own properties, see
   `Object.hasOwn() <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn>`__
   on MDN.
-- The driver officially supports Queryable Encryption (QE) range queries. To use this
+- Official support for Queryable Encryption (QE) range queries. To use this
   feature, your app must use ``mongodb-client-encryption`` v6.1.0 or later and must connect
   to {+mdb-server+} 8.0 or later. For more information about QE range queries, see
   :manual:`Queryable Encryption <core/queryable-encryption>` in the {+mdb-server+} manual.
@@ -120,7 +120,7 @@ What's New in 6.9
   with ``async``/``await`` execution and improves performance by up to 5% on average.
   This optimization doesn't apply if you provide a transform to the ``cursor.map()`` method
   before calling the ``toArray()`` method.
-- Fixes mixed use of the ``cursor.next()`` method along with ``for await`` syntax.
+- Fixes mixed use of the ``cursor.next()`` method with ``for await`` syntax.
 - Fixes the ``enableUtf8Validation`` when deserializing BSON.
 - Adds the ``durationMS`` property to the ``ConnectionReadyEvent`` class. This property
   represents the time between the connection creation event and when the ``ConnectionReadyEvent``
