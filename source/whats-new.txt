@@ -62,13 +62,13 @@ Learn what's new in:
 
 .. _version-6.9:
 
-What's New in 6.9.0
--------------------
+What's New in 6.9
+-----------------
 
 - Support for {+mdb-server+} 3.6 is deprecated and will be removed in a future driver release.
 - The driver natively supports explicit resource management for cursors and the
-  ``MongoClient``, ``ClientSession``, ``ChangeStream`` objects. On compatible Node.js
-  versions, you can use explicit resource management used with the ``cursor.stream()``
+  ``MongoClient``, ``ClientSession``, and ``ChangeStream`` objects. On compatible Node.js
+  versions, you can use explicit resource management with the ``cursor.stream()``
   method and ``GridFSDownloadStream`` class.
 
   To learn how to use explicit resource management, see the
@@ -79,7 +79,8 @@ What's New in 6.9.0
 - If you're using Node.js 18.13 or later, you can pass the ``autoSelectFamily`` and
   ``autoSelectFamilyTimeout`` options to the ``MongoClient`` constructor. When the
   ``autoSelectFamily`` option is ``true``, the driver automatically selects between
-  an IPv4 or IPv6 connection.
+  an IPv4 or IPv6 connection. The ``autoSelectFamilyTimeout`` option specifies the
+  timeout, in milliseconds, for the driver to select the connection family.
 
   The following code example shows how to use these options:
 
@@ -89,10 +90,6 @@ What's New in 6.9.0
      const client = new MongoClient(process.env.MONGODB_URI, { autoSelectFamily: true, autoSelectFamilyTimeout: 100 });
 - The ``MongoClient`` constructor accepts the ``allowPartialTrustChain`` option. This option
   controls the X509_V_FLAG_PARTIAL_CHAIN OpenSSL flag.
-- Fixes the ``enableUtf8Validation`` when deserializing BSON.
-- Adds the ``durationMS`` property to the ``ConnectionReadyEvent`` class. This property
-  represents the time between the connection creation event and when the ``ConnectionReadyEvent``
-  fires.
 - The ``ConnectionCheckedOutEvent`` and ``ConnectionCheckFailedEvent`` now include a ``durationMS``
   property. This property indicates the time elapsed between the start and end of a
   connection checkout operation.
@@ -111,7 +108,8 @@ What's New in 6.9.0
   :manual:`Queryable Encryption <core/queryable-encryption>` in the {+mdb-server+} manual.
 - The ``insertMany()`` and ``bulkWrite()`` methods accept ``ReadonlyArray`` inputs.
 - The driver retries writes based on the top-level code, found in ``error.code``, rather
-  than the nested code in ``error.result.writeConcernError.code``.
+  than the nested code in ``error.result.writeConcernError.code``. This fixes an issue
+  in sharded clusters running versions {+mdb-server+} earlier than 4.4.
 - The ``LocalKMSProviderConfiguration.key`` property accepts a ``BSON`` ``Binary`` instance
   for ``AutoEncryptionOptions``.
 - In TypeScript, the ``BulkOperationBase`` class reports the ``length`` getter property. 
@@ -123,9 +121,13 @@ What's New in 6.9.0
   This optimization doesn't apply if you provide a transform to the ``cursor.map()`` method
   before calling the ``toArray()`` method.
 - Fixes mixed use of the ``cursor.next()`` method along with ``for await`` syntax.
+- Fixes the ``enableUtf8Validation`` when deserializing BSON.
+- Adds the ``durationMS`` property to the ``ConnectionReadyEvent`` class. This property
+  represents the time between the connection creation event and when the ``ConnectionReadyEvent``
+  fires.
 
 To learn more about this release, see the
-:github:`v6.9.0 Release Notes <mongodb/node-mongodb-native/releases/tag/v6.9.0>` on
+:github:`v6.9 Release Notes <mongodb/node-mongodb-native/releases/tag/v6.9.0>` on
 GitHub.
 
 .. _version-6.8:
