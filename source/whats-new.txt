@@ -89,7 +89,7 @@ What's New in 6.9
   .. code-block:: javascript
      :copyable: true
 
-     const client = new MongoClient(url,
+     const client = new MongoClient(uri,
        { autoSelectFamily: true, autoSelectFamilyTimeout: 100 });
 
 - The ``MongoClient`` constructor accepts the ``allowPartialTrustChain`` option. This option

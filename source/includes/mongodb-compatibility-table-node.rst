@@ -25,7 +25,7 @@
      - ✓
      - ✓
      - ✓
-     - ✓ [#deprecated]_
+     - ✓ [#server-3.6-deprecated]_
      -
      -
      -
