@@ -1,3 +1,5 @@
+eol = true
+
 name = "node"
 title = "Node.js"
 intersphinx = [
@@ -26,3 +28,11 @@ driver-short = "Node.js driver"
 mdb-server = "MongoDB Server"
 min-node-version = "v12"
 stable-api = "Stable API"
+current-url =  "https://mongodb.com/docs/drivers/node/current/"
+
+[[banners]]
+targets = ["*"]
+variant = "info"
+value = """\
+    This version of the documentation is archived and no longer supported. View the `current documentation <{+current-url+}>`__ to learn how to `upgrade your version of the {+driver-short+} <{+current-url+}upgrade/>`__.\
+    """
