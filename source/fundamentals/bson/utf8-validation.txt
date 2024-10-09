@@ -25,9 +25,9 @@ processing overhead since it needs to check the data.
 If you *disable* validation, your application avoids the validation processing
 overhead, but cannot guarantee consistent presentation of invalid UTF-8 data.
 
-The driver enables UTF-8 validation by default for sdfjk. It checks documents for any
-characters that are not encoded in a valid UTF-8 format when it transfers data
-between your application and MongoDB.
+The driver enables UTF-8 validation on documents coming from MongoDB by default. 
+It checks incoming BSON strings for any characters that are not encoded in a 
+valid UTF-8 format when it transfers data from MongoDB to your application.
 
 .. note::
 
