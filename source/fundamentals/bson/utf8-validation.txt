@@ -18,11 +18,6 @@ In this guide, you can learn how to enable or disable the {+driver-short+}'s
 that ensures compatibility and consistent presentation across most operating
 systems, applications, and language character sets.
 
-.. warning::
-
-   There is a bug in Node v22.7.0 that can convert data to incorrect UTF-8,
-   resulting in invalid data being written to the database.
-
 If you *enable* validation, the driver throws an error when it attempts to
 convert data that contains invalid UTF-8 characters. The validation adds
 processing overhead since it needs to check the data.
