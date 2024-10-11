@@ -18,6 +18,11 @@ In this guide, you can learn how to enable or disable the {+driver-short+}'s
 that ensures compatibility and consistent presentation across most operating
 systems, applications, and language character sets.
 
+.. warning::
+
+   There is a bug in Node v22.7.0 that can convert data to incorrect UTF-8,
+   resulting in invalid data being written to the database.
+
 If you *enable* validation, the driver throws an error when it attempts to
 convert data that contains invalid UTF-8 characters. The validation adds
 processing overhead since it needs to check the data.
@@ -26,14 +31,15 @@ If you *disable* validation, your application avoids the validation processing
 overhead, but cannot guarantee consistent presentation of invalid UTF-8 data.
 
 By default, the driver enables UTF-8 validation on data from MongoDB. 
-It checks incoming strings for any characters that are not encoded in a 
-valid UTF-8 format when it transfers data from MongoDB to your application.
+It checks incoming documents for any characters that are not encoded in a 
+valid UTF-8 format when it parses data sent from MongoDB to your application.
 
 .. note::
 
-   The current version of the {+driver-short+} automatically substitutes
-   invalid UTF-8 characters with alternate valid UTF-8 ones before
-   validation when you send data to MongoDB. Therefore, the validation
+   The current version of the {+driver-short+} automatically substitutes invalid
+   `lone surrogates <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#utf-16_characters_unicode_code_points_and_grapheme_clusters>`__
+   with the `replacement character <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toWellFormed>`__ 
+   before validation when you send data to MongoDB. Therefore, the validation
    only throws an error when the setting is enabled and the driver
    receives invalid UTF-8 document data from MongoDB.
 
