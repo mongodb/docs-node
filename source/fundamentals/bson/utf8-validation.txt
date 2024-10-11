@@ -25,10 +25,9 @@ processing overhead since it needs to check the data.
 If you *disable* validation, your application avoids the validation processing
 overhead, but cannot guarantee consistent presentation of invalid UTF-8 data.
 
-By default, the driver enables UTF-8 validation on BSON strings in documents
-from MongoDB. It checks incoming strings for any characters that are not 
-encoded in a valid UTF-8 format when it transfers data from MongoDB to your 
-application.
+By default, the driver enables UTF-8 validation on data from MongoDB. 
+It checks incoming strings for any characters that are not encoded in a 
+valid UTF-8 format when it transfers data from MongoDB to your application.
 
 .. note::
 
