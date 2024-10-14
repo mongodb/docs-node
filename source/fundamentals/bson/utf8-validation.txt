@@ -31,7 +31,7 @@ valid UTF-8 format when it parses data sent from MongoDB to your application.
 
 .. note::
 
-   The current version of the {+driver-short+} automatically substitutes invalid
+   This version of the {+driver-short+} automatically substitutes invalid
    `lone surrogates <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#utf-16_characters_unicode_code_points_and_grapheme_clusters>`__
    with the `replacement character <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toWellFormed>`__ 
    before validation when you send data to MongoDB. Therefore, the validation
