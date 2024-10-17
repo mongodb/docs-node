@@ -4,6 +4,14 @@
 Compatibility
 =============
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :description: Find the recommended versions of the Node.js driver that work with your version of MongoDB.
+   :keywords: node.js
+
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -16,6 +24,8 @@ The following compatibility table specifies the recommended versions of
 the {+driver-long+} for use with MongoDB.
 
 The first column lists the driver version.
+
+.. sharedinclude:: dbx/lifecycle-schedule-callout.rst
 
 .. sharedinclude:: dbx/compatibility-table-legend.rst
 
@@ -40,4 +50,3 @@ unstable.
 
 For more information on how to read the compatibility tables, see our guide
 about :ref:`MongoDB Compatibility Tables <about-driver-compatibility>`.
-

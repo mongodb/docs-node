@@ -1,8 +1,16 @@
 .. _node-quickstart:
 
-===========
-Quick Start
-===========
+=======================
+Node Driver Quick Start
+=======================
+
+.. facet::
+   :name: genre
+   :values: tutorial 
+
+.. meta:: 
+   :description: Learn how to create an app to connect to MongoDB deployment by using the Node.js driver.
+   :keywords: node.js
 
 .. contents:: On this page
    :local:
@@ -27,9 +35,6 @@ required) MongoDB Atlas deployment by following the steps in this guide.
 
 Follow the steps in this guide to connect a sample Node.js application to
 a MongoDB Atlas deployment.
-
-.. button:: Next: Download and Install
-   :uri: /quick-start/download-and-install/
 
 .. toctree::
 

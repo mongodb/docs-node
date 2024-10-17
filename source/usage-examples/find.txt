@@ -4,7 +4,13 @@
 Find Multiple Documents
 =======================
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :description: Learn how to retrieve multiple documents from MongoDB by using the Node.js driver.
+   :keywords: code example, node.js, sample dataset
 
 You can query for multiple documents in a collection with
 ``collection.find()``. The ``find()`` method uses a query document that you
@@ -14,7 +20,7 @@ document), MongoDB returns all documents in the collection. For more
 information on querying MongoDB, see our
 :doc:`documentation on query documents </fundamentals/crud/query-document>`.
 
-You can also define additional query options such as
+You can also define more query options such as
 :doc:`sort </fundamentals/crud/read-operations/sort>`
 and
 :doc:`projection </fundamentals/crud/read-operations/project>`
@@ -32,6 +38,17 @@ documents using the ``for await...of`` syntax, or one of the following
 - ``toArray()``
 
 If no documents match the query, ``find()`` returns an empty cursor.
+
+Compatibility
+-------------
+
+.. |page-topic| replace:: use the ``find()`` method
+.. |link-topic-ing| replace:: finding documents in the Atlas UI
+
+.. |atlas-url| replace:: :atlas:`Create, View, Update, and Delete Documents </atlas-ui/documents/#view--filter--and-sort-documents>`
+
+.. include:: /includes/fact-atlas-compatible.rst
+.. include:: /includes/fact-atlas-link.rst
 
 Example
 -------
@@ -70,7 +87,7 @@ uses the following parameters:
         :language: typescript
         :linenos:
 
-If you run the preceding example, you should see the following output:
+Running the preceding example, you see the following output:
 
 .. code-block:: javascript
    :copyable: false
@@ -82,7 +99,7 @@ If you run the preceding example, you should see the following output:
    ...
 
 The ``sort`` and ``projection`` options can also be specified as methods
-(``sort()`` and ``project()``, respectively) chained to the ``find()`` method.
+(``sort()`` and ``project()``) chained to the ``find()`` method.
 The following two commands are equivalent:
 
 .. code-block:: javascript

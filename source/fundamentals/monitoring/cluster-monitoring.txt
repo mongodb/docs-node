@@ -4,7 +4,12 @@
 Cluster Monitoring
 ==================
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, watch
 
 .. contents:: On this page
    :local:
@@ -22,8 +27,8 @@ a change in the state of the instance or cluster that you connected to.
 For example, the driver creates an event when you establish a new connection
 or if the cluster elects a new primary.
 
-Read this guide if you need to record topology changes in your application or
-want to explore the information provided in these events.
+The following sections demonstrate how to record topology changes in your application
+and explore the information provided in these events.
 
 Event Subscription Example
 --------------------------
@@ -59,7 +64,7 @@ You can subscribe to any of the following SDAM events:
        primary).
 
    * - ``topologyOpening``
-     - Created prior to attempting a connection to an instance.
+     - Created before attempting a connection to an instance.
 
    * - ``topologyClosed``
      - Created after all instance connections in the topology close.
@@ -69,7 +74,7 @@ You can subscribe to any of the following SDAM events:
        primary or a **mongos** proxy disconnecting.
 
    * - ``serverHeartbeatStarted``
-     - Created prior to issuing a ``hello`` command to a MongoDB instance.
+     - Created before issuing a ``hello`` command to a MongoDB instance.
 
    * - ``serverHeartbeatSucceeded``
      - Created when the ``hello`` command returns successfully from a
@@ -160,10 +165,10 @@ one of the following possible values:
    * - ``RSArbiter``
      - Arbiter instance
    * - ``RSOther``
-     - See the `RSGhost specification <https://github.com/mongodb/specifications/blob/master/source/server-discovery-and-monitoring/server-discovery-and-monitoring.rst#rsghost-and-rsother>`_
+     - See the `RSGhost and RSOther specification <https://github.com/mongodb/specifications/blob/master/source/server-discovery-and-monitoring/server-discovery-and-monitoring.rst#rsghost-and-rsother>`__
        for more details
    * - ``RSGhost``
-     - See the `RSOther specification <https://github.com/mongodb/specifications/blob/master/source/server-discovery-and-monitoring/server-discovery-and-monitoring.rst#rsghost-and-rsother>`_
+     - See the `RSGhost and RSOther specification <https://github.com/mongodb/specifications/blob/master/source/server-discovery-and-monitoring/server-discovery-and-monitoring.rst#rsghost-and-rsother>`__
        for more details
 
 serverHeartbeatStarted
