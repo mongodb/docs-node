@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+// Bulk write operation
+
+// Import MongoClient from the MongoDB node driver package
+>>>>>>> 92c7dfa4819a34440a6dc8f8c9c7dca1c6dba71e
 const { MongoClient } = require("mongodb");
 
 // Replace the uri string with your MongoDB deployment's connection string.
