@@ -4,7 +4,13 @@
 Retrieve Data
 =============
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :description: Learn how to retrieve data, aggregate data, and monitor data changes in MongoDB by using the Node.js driver.   
+   :keywords: node.js, code example, find one, find many
 
 .. contents:: On this page
    :local:
@@ -17,14 +23,23 @@ Retrieve Data
 Overview
 --------
 
-You can use read operations to retrieve data from your MongoDB database.
-There are multiple types of read operations that access the data in
-different ways. If you want to request results based on a set of criteria
-from the existing set of data, you can use a find operation such as the
-``find()`` or ``findOne()`` methods.
+You can perform find operations to retrieve data from your MongoDB database.
+You can perform a find operation to match documents on a set of criteria
+by calling the ``find()`` or ``findOne()`` method.
 
-You can also further specify the information you are requesting by
-including additional parameters or by chaining other methods such as:
+.. tip:: Interactive Lab
+   
+   This page includes a short interactive lab that demonstrates how to
+   retrieve data by using the ``find()`` method. You can complete this lab
+   directly in your browser window without installing MongoDB or a code editor.
+
+   To start the lab, click the :guilabel:`Open Interactive Tutorial` button at the
+   top of the page. To expand the lab to a full-screen format, click the
+   full-screen button (:guilabel:`⛶`) in the top-right corner of the lab pane.
+
+You can also further specify the information that the find operation
+returns by specifying optional parameters or by chaining other methods,
+as shown in the following guides:
 
 - :ref:`node-fundamentals-sort`
 - :ref:`node-fundamentals-skip`
@@ -41,8 +56,16 @@ matching data is inserted.
 
 .. include:: /includes/access-cursor-note.rst
 
-Find
-----
+.. |page-topic| replace:: perform read operations
+.. |link-topic-ing| replace:: performing read operations in the Atlas UI
+
+.. |atlas-url| replace:: :atlas:`View, Filter, and Sort Documents </atlas-ui/documents/#view--filter--and-sort-documents>`
+
+.. include:: /includes/fact-atlas-compatible.rst
+.. include:: /includes/fact-atlas-link.rst
+
+Find Documents
+--------------
 
 You can call the ``find()`` method on a ``Collection`` object. The
 method accepts a query document that describes the documents you want to
@@ -60,8 +83,8 @@ see the :ref:`node-fundamentals-query-document` guide.
 
    .. code-block:: javascript
 
-      await myColl.find(); // no query
-      await myColl.find({}); // empty query
+      myColl.find(); // no query
+      myColl.find({}); // empty query
    
    If you don't pass a query or pass an empty query
    to the ``findOne()`` method, the operation returns a single
@@ -70,7 +93,7 @@ see the :ref:`node-fundamentals-query-document` guide.
    You can specify options in a find operation even when you pass an
    empty query. For example, the following code shows how you can
    specify a projection as an option while executing a find operation
-   with an empty query parameter:
+   that receives an empty query parameter:
 
    .. code-block:: javascript
 
@@ -80,10 +103,13 @@ see the :ref:`node-fundamentals-query-document` guide.
 
       const findResult = await myColl.findOne({}, options);
 
-If you resolve the ``Promise`` returned by ``find()``, you receive
-a reference to a ``Cursor`` with which you can navigate matched documents.
-If you resolve the ``Promise`` returned by ``findOne()``, you receive the
-matching document or ``null`` if there are no matches.
+   For more information about projecting document fields, see the
+   :ref:`node-fundamentals-project` guide.
+
+The ``find()`` method returns a ``Cursor`` instance from which you can
+access the matched documents. The ``findOne()`` method returns a ``Promise``
+instance, which you can resolve to access either the matching document or
+a ``null`` value if there are no matches.
 
 .. example::
 
@@ -117,11 +143,23 @@ matching document or ``null`` if there are no matches.
         ...
       ]
 
-See the :ref:`find() <node-usage-find>` and :ref:`findOne()
-<node-usage-findone>` for fully-runnable examples.
+Additional Information
+~~~~~~~~~~~~~~~~~~~~~~
 
-Aggregate
----------
+For runnable code examples that demonstrate find operations, see the following
+usage examples:
+
+- :ref:`node-usage-findone`
+- :ref:`node-usage-find`
+
+For more information about the ``findOne()`` and ``find()`` methods, see the
+following Server manual documentation:
+
+- :manual:`findOne() </reference/method/db.collection.findOne/>`
+- :manual:`find() </reference/method/db.collection.find/>`
+
+Aggregate Data from Documents
+-----------------------------
 
 If you want to run a custom processing pipeline to retrieve data from your
 database, you can use the ``aggregate()`` method. This method accepts
@@ -161,13 +199,17 @@ group, and arrange the result data from a collection.
         { _id: 'created', count: 9 }
       ]
 
-See the MongoDB server manual pages on :manual:`aggregation </aggregation>`
-for more information on how to construct an aggregation pipeline.
+Additional Information
+~~~~~~~~~~~~~~~~~~~~~~
+
+For more information on how to construct an aggregation pipeline, see
+the :ref:`node-aggregation` guide or :manual:`Aggregation Operations </aggregation>`
+in the Server manual.
 
 .. _node-fundamentals-watch:
 
-Watch / Subscribe
------------------
+Monitor Data Changes
+--------------------
 
 You can use the ``watch()`` method to monitor a collection for changes to
 a collection that match certain criteria. These changes include inserted,
@@ -188,6 +230,15 @@ data whenever write operations are executed on the collection.
       :start-after: start watch crud example
       :end-before: end watch crud example
 
+Additional Information
+~~~~~~~~~~~~~~~~~~~~~~
 
-For a runnable example of the ``watch()`` method using the NodeJS driver, see
-the :ref:`change streams <node-usage-watch>` usage example.
+For a runnable example of the ``watch()`` method, see the
+:ref:`Watch for Changes <node-usage-watch>` usage example.
+
+.. _node-retrieve-instruqt-lab:
+
+.. instruqt:: /mongodb-docs/tracks/find-node?token=em_OVNHWCPNPMLwNOCm
+   :title: find() Lesson
+   :drawer:
+   

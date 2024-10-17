@@ -21,9 +21,8 @@ across a collection.
 Sample Documents
 ~~~~~~~~~~~~~~~~
 
-To follow along with the examples in this guide, use the following code
-snippet to insert documents that describe restaurants into the
-``myDB.restaurants`` collection:
+To follow the examples in this guide, use the following code snippet to insert documents
+that describe restaurants into the ``myDB.restaurants`` collection:
 
 .. code-block:: javascript
 
@@ -59,7 +58,7 @@ Pass the name of the document field to return a list of the field's unique value
 Example
 ~~~~~~~
 
-The "``Queens``" and "``Manhattan``" borough values each appear more than
+The ``"Queens"`` and ``"Manhattan"`` borough values each appear more than
 once in the sample documents. However, the following example retrieves the
 unique values of the ``borough`` field:
 
@@ -91,7 +90,7 @@ Example
 ```````
 
 The following example outputs the distinct values of the ``cuisine`` field but
-excludes restaurants in "``Brooklyn``":
+excludes restaurants in ``"Brooklyn"``:
 
 .. code-block:: javascript
 
@@ -104,8 +103,8 @@ excludes restaurants in "``Brooklyn``":
      console.dir(doc);
    }
 
-In this case, the query filter matches every borough value except for "``Brooklyn``". This
-prevents ``distinct()`` from outputting one ``cuisine`` value, "``Middle Eastern``".
+In this case, the query filter matches every borough value except for ``"Brooklyn"``. This
+prevents ``distinct()`` from outputting one ``cuisine`` value, ``"Middle Eastern"``.
 The code outputs the following values:
 
 .. code-block:: json
@@ -153,7 +152,7 @@ those beginning with "B". The code outputs the following:
 
    [ "Äpfel", "Borgatti's", "Samba Kitchen", "Tanoreen", "Via Carota", "White Bear" ]
 
-Without specifying a ``collation`` field, the output order would follow default
+If you do not specify the ``collation`` field, the output order follows default
 binary collation rules. These rules place words beginning with "Ä" after the those
 with unaccented first letters:
 

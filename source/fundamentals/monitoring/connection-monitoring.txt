@@ -4,6 +4,13 @@
 Connection Pool Monitoring
 ==========================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, watch, deployment
+
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -19,11 +26,11 @@ with a MongoDB instance. Connection pools help reduce the number of
 network handshakes your application needs to perform and can help your
 application run faster.
 
-Read this guide if you need to record connection pool events in your
-application or want to explore the information provided in these events.
+The following sections demonstrate how to record connection pool events in your
+application and explore the information provided in these events.
 
-Event Subscription Example
---------------------------
+Event Subscription Examples
+---------------------------
 
 You can access one or more connection pool events using the driver by
 subscribing to them in your application. The following example demonstrates
@@ -31,6 +38,13 @@ connecting to a replica set and subscribing to one of the connection
 pool monitoring events created by the MongoDB deployment:
 
 .. literalinclude:: /code-snippets/monitoring/cpm-subscribe.js
+   :language: javascript
+
+Connection pool monitoring events can aid you in debugging and understanding
+the behavior of your application's connection pool. The following example uses connection
+pool monitoring events to return a count of checked-out connections in the pool:
+
+.. literalinclude:: /code-snippets/monitoring/cpm-status.js
    :language: javascript
 
 Event Descriptions
@@ -52,7 +66,7 @@ You can subscribe to any of the following connection pool monitoring events:
      - Created when a connection pool is ready.
 
    * - ``connectionPoolClosed``
-     - Created when a connection pool is closed, prior to server
+     - Created when a connection pool is closed before server
        instance destruction.
 
    * - ``connectionCreated``
@@ -146,7 +160,8 @@ connectionReady
    ConnectionReadyEvent {
      time: 2023-02-13T15:56:38.291Z,
      address: '...',
-     connectionId: 1
+     connectionId: 1,
+     durationMS: 60
    }
 
 connectionClosed
@@ -183,7 +198,8 @@ connectionCheckOutFailed
    ConnectionCheckOutFailedEvent {
      time: 2023-02-13T15:56:38.291Z,
      address: '...',
-     reason: ...
+     reason: ...,
+     durationMS: 60
    }
 
 connectionCheckedOut
@@ -195,7 +211,8 @@ connectionCheckedOut
    ConnectionCheckedOutEvent {
      time: 2023-02-13T15:54:07.188Z,
      address: '...',
-     connectionId: 1
+     connectionId: 1,
+     durationMS: 60
    }
 
 connectionCheckedIn

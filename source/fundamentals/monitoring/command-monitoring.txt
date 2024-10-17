@@ -4,7 +4,12 @@
 Command Monitoring
 ==================
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, watch, command status
 
 .. contents:: On this page
    :local:
@@ -18,8 +23,8 @@ Overview
 This guide shows you how to monitor the success or failure of commands
 sent by the driver to your MongoDB deployment.
 
-Read this guide if you need to record command status in your application
-or want to explore the information provided in these events.
+The following sections demonstrate how to record command status in your
+application and explore the information provided in these events.
 
 Event Subscription Example
 --------------------------
@@ -92,7 +97,7 @@ commandSucceeded
      commandName: "find",
      address: 'localhost:27017',
      connectionId: 812613,
-     duration: 1586380205,
+     duration: 15,
      reply: {
        cursor: {
          firstBatch: [
@@ -123,5 +128,5 @@ commandFailed
      address: 'localhost:27017',
      connectionId: 812613,
      failure: Error("something failed"),
-     duration: 1586380205
+     duration: 11
    }

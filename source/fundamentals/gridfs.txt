@@ -1,8 +1,15 @@
+.. _node-gridfs:
+
 ======
 GridFS
 ======
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: node.js, code example, file storage
 
 .. contents:: On this page
    :local:
@@ -20,9 +27,9 @@ and reassemble them during retrieval. The driver implementation of
 GridFS manages the operations and organization of
 the file storage.
 
-You should use GridFS if the size of your file exceeds the BSON-document
+Use GridFS if the size of your file exceeds the BSON-document
 size limit of 16 megabytes. For more detailed information on whether GridFS is
-suitable for your use case, see the :manual:`GridFS server manual page </core/gridfs>`.
+suitable for your use case, see the :manual:`GridFS Server manual page </core/gridfs>`.
 
 Navigate the following sections to learn more about GridFS operations
 and implementation:
@@ -53,7 +60,7 @@ collection to ensure efficient retrieval of files and related
 metadata. The driver only creates the GridFS bucket on the first write
 operation if it does not already exist. The driver only creates indexes if
 they do not exist and when the bucket is empty. For more information on
-GridFS indexes, see the server manual page on :manual:`GridFS Indexes </core/gridfs/#gridfs-indexes>`.
+GridFS indexes, see the Server manual page on :manual:`GridFS Indexes </core/gridfs/#gridfs-indexes>`.
 
 When storing files with GridFS, the driver splits the files into smaller
 pieces, each represented by a separate document in the ``chunks`` collection.
@@ -103,11 +110,12 @@ Upload Files
 
 Use the ``openUploadStream()`` method from ``GridFSBucket`` to create an upload
 stream for a given file name. You can use the ``pipe()`` method to
-connect a Node.js ``fs`` read stream to the upload stream. The
+connect a Node.js read stream to the upload stream. The
 ``openUploadStream()`` method allows you to specify configuration information
-such as file chunk size and other field/value pairs to store as metadata. Set
-these options as parameters of ``openUploadStream()`` as shown in the
-following code snippet:
+such as file chunk size and other field/value pairs to store as metadata.
+
+The following example shows how to pipe a Node.js read stream, represented by the
+variable ``fs``, to the ``openUploadStream()`` method of a ``GridFSBucket`` instance: 
 
 .. code-block:: javascript
 

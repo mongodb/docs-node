@@ -4,7 +4,13 @@
 Usage Examples
 ==============
 
-.. default-domain:: mongodb
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :description: Learn how to load sample data into a MongoDB Atlas deployment and run Node.js driver usage examples.
+   :keywords: node.js
 
 .. contents:: On this page
    :local:
@@ -23,20 +29,21 @@ Usage Examples
    /usage-examples/command
    /usage-examples/changeStream
    /usage-examples/bulkWrite
+   /usage-examples/transactions
 
 Overview
 --------
 
 Usage examples provide convenient starting points for popular MongoDB
-operations. Each example provides:
+operations. Each example provides the following information:
 
-- an explanation of the operation in the example showing the
+- Explanation of the operation in the example, including the
   purpose and a sample use case for the method
 
-- an explanation of how to use the operation, including parameters,
+- Explanation of how to use the operation, including parameters,
   return values, and common exceptions you might encounter
 
-- a full Node.js program that you can copy and paste to run the example
+- Full Node.js program that you can copy and paste to run the example
   in your own environment
 
 How to Use the Usage Examples
@@ -54,7 +61,7 @@ Once you have imported the dataset, you can copy and paste a usage
 example into your development environment of choice. You can follow the
 :doc:`quick start guide </quick-start>` to learn more about getting
 started with Node.js, npm, and the Node.js driver. Once you've copied
-a usage example, you'll have to edit one line to get the example running
+a usage example, you must edit one line to get the example running
 with your instance of MongoDB:
 
 .. code-block:: javascript
@@ -71,7 +78,6 @@ by adding the following key-value pair to your package.json file:
 
    "type": "module"
    
-
 .. note:: CommonJS
 
    You can use any usage example with CommonJS ``require``. To use CommonJS ``require``, you
@@ -120,3 +126,4 @@ Available Usage Examples
 - :doc:`Run a Command </usage-examples/command>`
 - :doc:`Watch for Changes </usage-examples/changeStream>`
 - :doc:`Perform Bulk Operations </usage-examples/bulkWrite>`
+- :doc:`Perform a Transaction </usage-examples/transactions>`

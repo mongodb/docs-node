@@ -4,26 +4,34 @@
 Connection Options
 ==================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: node.js, customize
+
 This section explains the MongoDB connection and authentication options
 supported by the driver. You can pass the connection options as
 parameters of the connection URI to specify the behavior of the client.
 
 .. list-table::
    :header-rows: 1
-   :widths: 1 1 1 1
+   :widths: 30 20 10 40
 
    * - Name
      - Accepted Values
      - Default Value
      - Description
 
-   * - **appname**
+   * - **appName**
      - string
      - ``null``
      - Specifies the app name the driver passes to the server in the client
-       metadata as part of the connection handshake. The server prints the
-       ``appname`` to the MongoDB logs upon establishing the connection.
-       It is also recorded in the slow query logs and profile collections.
+       metadata as part of the connection handshake. The driver sends the
+       ``appName`` value to MongoDB when establishing the connection.
+       This value is recorded in the log file, the slow query logs, and
+       profile collections.
 
    * - **authMechanism**
      - string
@@ -37,13 +45,13 @@ parameters of the connection URI to specify the behavior of the client.
    * - **authMechanismProperties**
      - comma separated key:value pairs, for example, "opt1:val1,opt2:val2"
      - ``null``
-     - Specifies additional options provided for authentication, such as
-       enabling hostname canonicalization for GSSAPI.
+     - Specifies other options provided for authentication, such as the option to enable
+       hostname canonicalization for GSSAPI.
 
    * - **authSource**
      - string
      - ``null``
-     - Specifies the database that connections should authenticate against.
+     - Specifies the database that connections authenticate against.
 
    * - **compressors**
      - comma separated list of strings, for example, "snappy,zlib,zstd"
@@ -64,6 +72,28 @@ parameters of the connection URI to specify the behavior of the client.
      - ``false``
      - Specifies whether to force dispatch **all** operations to the host
        specified in the connection URI.
+
+   * - **enableUtf8Validation**
+     - boolean
+     - ``true``
+     - 
+       Specifying ``true`` enables UTF-8 validation for the 
+       connection. MongoDB throws an error when 
+       it attempts to serialize string data that contains invalid 
+       UTF-8 characters to BSON. This applies to both document keys and 
+       document values, this validation adds processing overhead.
+
+       Specifying ``false`` disables UTF-8 validation for the 
+       connection. MongoDB does not throw errors when 
+       data contains invalid UTF-8 data. If you disable validation, 
+       your application avoids the validation processing overhead. 
+       **Editing data** while validation is disabled
+       can result in loss of data. Disabling UTF-8 validation is a 
+       temporary workaround to query or export data only.
+
+       You can also set UTF-8 validation in your :ref:`Node.js code
+       <nodejs-utf-8-validation>`. To learn more about UTF-8 characters, 
+       see `UTF-8 <https://en.wikipedia.org/wiki/UTF-8>`__ on Wikipedia.
 
    * - **heartbeatFrequencyMS**
      - integer greater than or equal to 500
@@ -117,8 +147,8 @@ parameters of the connection URI to specify the behavior of the client.
    * - **minPoolSize**
      - non-negative integer
      - ``0``
-     - Specifies the number of connections the driver should create and
-       maintain in the connection pool even when no operations are occurring.
+     - Specifies the number of connections the driver creates and
+       maintains in the connection pool even when no operations are occurring.
        This count includes connections in use.
 
    * - **proxyHost**
@@ -185,6 +215,15 @@ parameters of the connection URI to specify the behavior of the client.
      - ``true``
      - Enables retryable writes.
 
+   * - **serverMonitoringMode**
+     - ``auto``, ``stream``, ``poll``
+     - ``auto``
+     - Specifies the monitoring mode that the driver monitors use. When
+       this option is set to ``auto``, the monitoring mode is determined
+       by the environment in which the driver is running. The driver
+       uses polling mode in function-as-a-service (FaaS) environments
+       and the streaming mode in other environments.
+
    * - **serverSelectionTimeoutMS**
      - non-negative integer
      - ``30000``
@@ -220,11 +259,6 @@ parameters of the connection URI to specify the behavior of the client.
      - ``false``
      - The ``ssl`` is an alias for the ``tls`` option.
 
-   * - **timeoutMS**
-     - non-negative integer
-     - unset (feature is not enabled by default)
-     - Specifies the timeout, in milliseconds, for the full execution of an operation.
-
    * - **tls**
      - boolean
      - ``false``
@@ -236,17 +270,16 @@ parameters of the connection URI to specify the behavior of the client.
    * - **tlsAllowInvalidCertificates**
      - boolean
      - ``false``
-     - Specifies whether the driver should error when the server’s
-       TLS certificate is invalid. You should only set this option to
-       ``true`` for testing purposes.
+     - Specifies whether the driver generates an error when the server's
+       TLS certificate is invalid. Set this option to ``true`` for testing
+       purposes only.
 
    * - **tlsAllowInvalidHostnames**
      - boolean
      - ``false``
-     - Specifies whether the driver should error when there is a mismatch
-       between the server’s hostname and the hostname specified by the
-       TLS certificate. You should only set this option to
-       ``true`` for testing purposes.
+     - Specifies whether the driver generates an error when there is a mismatch
+       between the server's hostname and the hostname specified by the
+       TLS certificate. Set this option to ``true`` for testing purposes only.
 
    * - **tlsCAFile**
      - string
@@ -275,8 +308,8 @@ parameters of the connection URI to specify the behavior of the client.
      - boolean
      - ``false``
      - Specifies to relax TLS constraints as much as possible, such as
-       allowing invalid certificates or hostname mismatches. You should
-       only set this option to ``true`` for testing purposes.
+       allowing invalid certificates or hostname mismatches. Set this option
+       to ``true`` for testing purposes only.
 
    * - **w**
      - non-negative integer or string

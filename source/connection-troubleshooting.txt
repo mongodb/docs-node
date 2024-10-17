@@ -4,6 +4,13 @@
 Connection Troubleshooting
 ==========================
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, disconnected, help
+
 .. contents:: On this page
    :local:
    :backlinks: none
@@ -22,7 +29,7 @@ using the {+driver-long+} to connect to a MongoDB deployment.
      {+driver-short+}
    - The :ref:`Issues & Help <node-issues-help>` page, which has
      information about reporting bugs, contributing to the driver, and 
-     finding additional resources
+     finding more resources
    - The `MongoDB Community Forums <https://community.mongodb.com>`__ for
      questions, discussions, or general technical support
 
@@ -132,8 +139,7 @@ file descriptor limit in your operating system.
 
 .. warning::
 
-   Changing the configuration of your operating system should always be done
-   with caution.
+   Always be cautious when changing the configuration of your operating system.
 
 Authentication Error
 ~~~~~~~~~~~~~~~~~~~~
@@ -209,7 +215,7 @@ database:
    :copyable: true
 
    const { MongoClient } = require("mongodb");
-   const uri = "mongodb://<username>:<password>@<hostname>:<port>/?authSource=users";
+   const uri = "mongodb://<db_username>:<db_password>@<hostname>:<port>/?authSource=users";
    const client = new MongoClient(uri);
 
 You can check if this is the issue by attempting to connect to a MongoDB
@@ -283,7 +289,7 @@ The following section describes a method that may help resolve the issue.
 Check the Number of Connections
 -------------------------------
 
-If you need to create more open connections, increase ``maxPoolSize``. For more
+To create more open connections, increase the value of ``maxPoolSize``. For more
 information about checking the number of connections, see
 :ref:`Check the Number of Connections <node-troubleshooting-connection-number-connections>`
 in the Error Sending Message section.
@@ -311,10 +317,10 @@ takes too long attempting to reach unreachable replica set nodes. You can limit 
 time the driver spends attempting to establish the connection by using the
 ``connectTimeMS`` setting. To learn more about this setting, see the
 :manual:`Timeout Options </reference/connection-string/#timeout-options>` in
-the server manual.
+the Server manual.
 
-You should ensure the ``connectTimeoutMS`` setting is not lower than
-the highest network latency you have to a member of the set. If one of the
+Ensure the ``connectTimeoutMS`` setting is not lower than
+the highest network latency you have for a member of the set. If one of the
 secondary members has a latency of 10000 milliseconds, setting the
 ``connectTimeoutMS`` to 9000 prevents the driver from ever connecting to that
 member.
