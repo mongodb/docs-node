@@ -41,7 +41,7 @@ The {+driver-short+} v6.10 release is the first official release to support all 
 
 - Support for {+mdb-server+} 3.6 has been removed.
 
-- Adds support for the new {+mdb-server} 8.0 bulk write API, which supports bulk write
+- Adds support for the new {+mdb-server+} 8.0 bulk write API, which supports bulk write
   operations across multiple databases and collections in a single call.
 
 - The driver now allows SRV hostnames with fewer than three parts separated by ``.``
