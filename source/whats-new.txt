@@ -41,11 +41,11 @@ The {+driver-short+} v6.10 release is the first official release to support all 
 
 - Removes support for {+mdb-server+} 3.6.
 
-- Adds support for the new {+mdb-server+} 8.0 bulk write API, which supports bulk write
+- Adds support for the {+mdb-server+} 8.0 bulk write API, which supports bulk write
   operations across multiple databases and collections in a single call.
 
 - Allows SRV hostnames with fewer than three parts separated by ``.``
-  characters. For example, the driver now supports hostnames like
+  characters. For example, the driver now supports hostnames such as
   ``mongodb+srv://mongodb.local``.
 
 - Supports the explain option to retrieve an accurate ``maxTimeMS`` value for
