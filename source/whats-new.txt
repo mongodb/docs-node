@@ -36,7 +36,8 @@ Learn what's new in:
 What's New in 6.10
 ------------------
 
-The {+driver-short+} v6.10 release includes the following features:
+The {+driver-short+} v6.10 release is the first official release to support all {+mdb-server+}
+8.0 features, and includes the following:
 
 - Support for {+mdb-server+} 3.6 has been removed.
 
