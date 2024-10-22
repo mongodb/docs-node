@@ -37,18 +37,20 @@ What's New in 6.10
 ------------------
 
 The {+driver-short+} v6.10 release is the first official release to support all {+mdb-server+}
-8.0 features, and includes the following:
+8.0 features, and includes the following improvements and fixes:
 
-- Support for {+mdb-server+} 3.6 has been removed.
+- Removes support for {+mdb-server+} 3.6.
 
 - Adds support for the new {+mdb-server+} 8.0 bulk write API, which supports bulk write
   operations across multiple databases and collections in a single call.
 
-- The driver now allows SRV hostnames with fewer than three parts separated by ``.``
-  characters.
+- Allows SRV hostnames with fewer than three parts separated by ``.``
+  characters. For example, the driver now supports hostnames like
+  ``mongodb+srv://mongodb.local``.
 
-- You can now use the explain option to retrieve an accurate ``maxTimeMS`` value for
-  CRUD commands. The explain options for find and aggregate operations have been deprecated.
+- Supports the explain option to retrieve an accurate ``maxTimeMS`` value for
+  CRUD commands to describe the operation time. The explain options for find and aggregate
+  operations are deprecated.
 
 To learn more about this release, see the :github:`v6.10.0 Release Notes <mongodb/node-mongodb-native/releases/tag/v6.10.0>` on
 GitHub.
