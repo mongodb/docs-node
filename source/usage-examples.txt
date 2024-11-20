@@ -20,10 +20,10 @@ Usage Examples
    
 .. toctree::
 
-   Find Operations </usage-examples/find-operations>
-   Insert Operations </usage-examples/insert-operations>
-   Update & Replace Operations </usage-examples/update-and-replace-operations>
-   Delete Operations </usage-examples/delete-operations>
+   Find </usage-examples/find-operations>
+   Insert </usage-examples/insert-operations>
+   Update & Replace </usage-examples/update-and-replace-operations>
+   Delete </usage-examples/delete-operations>
    Count Documents </usage-examples/count>
    Distinct Field Values </usage-examples/distinct>
    Run a Command </usage-examples/command>
