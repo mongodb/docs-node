@@ -17,18 +17,10 @@ CRUD Operations
 .. toctree::
    :caption: CRUD Operations
 
-<<<<<<< HEAD
-   /fundamentals/crud/read-operations
-   /fundamentals/crud/write-operations
-   /fundamentals/crud/query-document
-   /fundamentals/crud/compound-operations
-=======
    Read </fundamentals/crud/read-operations>
    Write </fundamentals/crud/write-operations>
    Query </fundamentals/crud/query-document>
    Compound Operations </fundamentals/crud/compound-operations>
-   Operations on Replica Sets </fundamentals/crud/read-write-pref>
->>>>>>> 09afc55 (DOCSP-44947 TOC Relabel (#923))
 
 CRUD (Create, Read, Update, Delete) operations allow you to work with
 the data stored in MongoDB.
