@@ -39,19 +39,21 @@ What's New in 6.11
 
 The {+driver-short+} v6.11 release includes the following features:
 
-- Adds Client Side Operations Timeout (CSOT), which lets you apply a single timeout to all
-  steps needed to complete a server-side operation, including server selection,
-  connection checkout, serialization, and server-side execution.
+- Adds Client Side Operations Timeout (CSOT) functionality. This feature lets you apply
+  a single timeout to all steps needed to complete a server-side operation, including
+  server selection, connection checkout, serialization, and server-side execution.
 
 .. note:: Experimental Feature
 
     The CSOT feature is experimental and might change in future driver releases.
 
 - Adds OIDC authentication support for Kubernetes environments. To use OIDC to authenticate
+  to a Kubernetes environment, set the ``authMechanismProperties`` connection option
+  to ``ENVIRONMENT:k8s`` in your connection string. You can use this feature when connecting
   to an environment running in Amazon's EKS (Elastic Kubernetes Service), Google's GKE
-  (Google Kubernetes Engine), or Azure's AKS (Azure Kubernetes Service), set the
-  ``authMechanismProperties`` connection option to ``ENVIRONMENT:k8s`` in your
-  connection string. The following example shows how to use this option:
+  (Google Kubernetes Engine), or Azure's AKS (Azure Kubernetes Service).
+  
+  The following example shows how to specify this connection option:
 
   .. code-block:: javascript
      :copyable: true
