@@ -61,7 +61,7 @@ The {+driver-short+} v6.11 release includes the following features:
      const client = new MongoClient('mongodb://host:port/?authMechanism=MONGODB-OIDC&authMechanismProperties=ENVIRONMENT:k8s');
 
 - The ``bson`` package adds support for binary vector data. To learn more about this feature,
-  see the :github:`v6.10.0 Release Notes. <mongodb/js-bson/releases/tag/v6.10.0>` for the
+  see the :github:`v6.10.0 Release Notes <mongodb/js-bson/releases/tag/v6.10.0>` for the
   ``bson`` package on GitHub.
 
 - The driver emits ``ConnectionClosedEvents`` after ``PoolClearedEvents``.
