@@ -319,6 +319,6 @@ Server manual.
 Additional Information
 ----------------------
 
-For more complete information on connection options that you can set within the
+For more complete information on connection options that you can set within a
 ``MongoClientOptions`` instance, see `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__ 
 in the API Documentation. 
