@@ -12,8 +12,11 @@ Connection Options
    :keywords: node.js, customize
 
 This section explains the MongoDB connection and authentication options
-supported by the driver. You can pass the connection options as
-parameters of the connection URI to specify the behavior of the client.
+supported by the driver that you can set within a ``MongoClientOptions`` instance. 
+
+For more information on setting connection options directly in a connection 
+string, see :manual:`Connection Strings </reference/connection-string/>` in the 
+Server manual.
 
 .. list-table::
    :header-rows: 1
@@ -224,12 +227,6 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies the timeout, in milliseconds, to block for server selection
        before raising an error.
 
-   * - **serverSelectionTryOnce**
-     - boolean
-     - ``true``
-     - Specifies to scan the topology only once after a server selection
-       failure instead of repeatedly until the server selection times out.
-
    * - **socketTimeoutMS**
      - non-negative integer
      - ``0``
@@ -305,21 +302,11 @@ parameters of the connection URI to specify the behavior of the client.
        allowing invalid certificates or hostname mismatches. Set this option
        to ``true`` for testing purposes only.
 
-   * - **w**
-     - non-negative integer or string
-     - ``null``
-     - Specifies the default write concern ``"w"`` field for the client.
-
    * - **waitQueueTimeoutMS**
      - non-negative integer
      - ``0``
      - Specifies the amount of time, in milliseconds, spent attempting to check out a connection
        from a server's connection pool before timing out.
-
-   * - ** **
-     - dd
-     - dd 
-     - 
 
    * - **zlibCompressionLevel**
      - integer between ``-1`` and ``9`` (inclusive)
@@ -329,3 +316,9 @@ parameters of the connection URI to specify the behavior of the client.
        no compression, ``1`` signifies the fastest speed, and ``9`` signifies
        the best compression. See :ref:`node-network-compression` for more information.
 
+Additional Information
+----------------------
+
+For more complete information on connection options that you can set within the
+``MongoClientOptions`` instance, see `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__ 
+in the API Documentation. 
