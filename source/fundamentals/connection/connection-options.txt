@@ -100,12 +100,6 @@ parameters of the connection URI to specify the behavior of the client.
      - ``null``
      - Specifies the interval, in milliseconds, between regular server monitoring checks.
 
-   * - **journal**
-     - boolean
-     - ``null``
-     - Specifies the journal write concern for the client. See
-       :ref:`write concern <wc-j>` for more information.
-
    * - **loadBalanced**
      - boolean
      - ``null``
@@ -322,10 +316,10 @@ parameters of the connection URI to specify the behavior of the client.
      - Specifies the amount of time, in milliseconds, spent attempting to check out a connection
        from a server's connection pool before timing out.
 
-   * - **wTimeoutMS**
-     - non-negative integer
-     - ``null``
-     - Specifies the default write concern timeout field for the client.
+   * - ** **
+     - dd
+     - dd 
+     - 
 
    * - **zlibCompressionLevel**
      - integer between ``-1`` and ``9`` (inclusive)
