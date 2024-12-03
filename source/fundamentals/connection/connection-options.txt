@@ -12,11 +12,11 @@ Connection Options
    :keywords: node.js, customize
 
 This section explains the MongoDB connection and authentication options
-supported by the driver that you can set within a ``MongoClientOptions`` instance. 
+supported by the {+driver-short+} that you can set within a ``MongoClientOptions`` instance. 
 
 For more information on setting connection options directly in a connection 
 string, see :manual:`Connection Strings </reference/connection-string/>` in the 
-Server manual.
+{+mdb-server+} manual.
 
 .. list-table::
    :header-rows: 1
@@ -319,6 +319,6 @@ Server manual.
 Additional Information
 ----------------------
 
-For more complete information on connection options that you can set within a
+To learn more about connection options that you can set within a
 ``MongoClientOptions`` instance, see `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__ 
 in the API Documentation. 
