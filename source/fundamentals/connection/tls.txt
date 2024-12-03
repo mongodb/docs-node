@@ -77,7 +77,7 @@ in the following ways:
    see the :manual:`SRV Connection Format </reference/connection-string/#srv-connection-format>`
    section in the Server manual.
 
-.. note:: Workaround when Using OpenSSL Version 3.0 and Later
+.. note:: Workaround for the "unsafe legacy renegotiation disabled" error
 
    The {+driver-short+} depends on OpenSSL by default and can encounter "unsafe
    legacy renegotiation disabled" errors when using OpenSSL versions 3.0 and later,
