@@ -89,12 +89,12 @@ in the following ways:
       :emphasize-lines: 6
 
       import { MongoClient } from 'mongodb';
-      import { * as crypto } from 'crypto';
+      import crypto from 'crypto';
 
       const client = new MongoClient("mongodb+srv://...", {
-      secureContext: {
-         secureOptions: crypto.constants.SSL_OP_LEGACY_SERVER_CONNECT
-      }
+         secureContext: {
+            secureOptions: crypto.constants.SSL_OP_LEGACY_SERVER_CONNECT
+         }
       });
    
 In addition to the ``tls`` client option, the driver provides more
