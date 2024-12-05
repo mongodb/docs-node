@@ -33,12 +33,22 @@ The first column lists the driver version.
 
 Language Compatibility
 ----------------------
-The following compatibility table specifies the recommended versions of
+
+The following compatibility table specifies the supported versions of
 the {+driver-long+} for use with a specific version of Node.js.
 
 The first column lists the driver version.
 
 .. include:: /includes/language-compatibility-table-node.rst
+
+.. note:: The {+driver-long+} Supports Node.js Versions in the "Active LTS" Phase or Later
+
+   Upon release, Node.js versions have a "Current" status to allow library 
+   authors to add support for them. The {+driver-long+} officially supports new 
+   Node.js versions once their release status changes from "Current" to "Active LTS". 
+   To learn more about release statues for Node.js versions, see 
+   `Node.js Releases <https://nodejs.org/en/about/previous-releases>`__
+   on the Node.js site.
 
 Component Compatibility
 -----------------------
