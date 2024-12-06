@@ -41,13 +41,13 @@ The first column lists the driver version.
 
 .. include:: /includes/language-compatibility-table-node.rst
 
-.. note:: The {+driver-long+} Supports Node.js Versions in the "Active LTS" Phase or Later
+.. note:: The {+driver-short+} Supports Node.js Versions in the "Active LTS" Phase or Later
 
-   Upon release, Node.js versions have a "Current" status to allow library 
-   authors to add support for them. The {+driver-long+} officially supports new 
-   Node.js versions once their release status changes from "Current" to "Active LTS". 
-   To learn more about release statues for Node.js versions, see 
-   `Node.js Releases <https://nodejs.org/en/about/previous-releases>`__
+   Upon release, Node.js versions have a "Current" release status for six months 
+   to give library authors time to add support for them. The {+driver-long+} 
+   officially supports Node.js versions once their release status changes 
+   from "Current" to "Active LTS". To learn more about release statues for 
+   Node.js versions, see `Node.js Releases <https://nodejs.org/en/about/previous-releases>`__
    on the Node.js site.
 
 Component Compatibility
