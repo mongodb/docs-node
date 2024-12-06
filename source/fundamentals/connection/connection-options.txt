@@ -306,7 +306,7 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
      - non-negative integer
      - ``0``
      - Specifies the amount of time, in milliseconds, spent attempting to check out a connection
-       from a server's connection pool before timing out.
+       from a server's connection pool before timing out. Specifying ``0`` means no timeout.
 
    * - **zlibCompressionLevel**
      - integer between ``-1`` and ``9`` (inclusive)
