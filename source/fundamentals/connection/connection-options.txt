@@ -59,7 +59,7 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
    * - **autoSelectFamily**
      - boolean
      - ``true``
-     - If set to true, the socket attempts to connect to IPv6 and IPv4 addresses
+     - If set to ``true``, the socket attempts to connect to IPv6 and IPv4 addresses
        until a connection is established. If available, the driver will select 
        the first IPv6 address.
 
