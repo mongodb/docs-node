@@ -45,9 +45,10 @@ The first column lists the driver version.
 
    After release, Node.js versions have a "Current" release status for six months 
    to give library authors time to add support for them. The {+driver-long+} 
-   officially supports Node.js versions once their release status changes 
-   from "Current" to "Active LTS". To learn more about release statues for 
-   Node.js versions, see `Node.js Releases <https://nodejs.org/en/about/previous-releases>`__
+   officially supports a Node.js version once the release status moves 
+   to "Active LTS", which means the version is ready for general use. To learn 
+   more about release statuses for Node.js versions, see 
+   `Node.js Releases <https://nodejs.org/en/about/previous-releases>`__
    on the Node.js site.
 
 Component Compatibility
