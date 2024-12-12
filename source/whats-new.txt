@@ -42,7 +42,7 @@ The {+driver-short+} v6.12 release includes the following features:
 
 - Adds support for v2.0 of the ``zstd`` compression algorithm. For more information about
   ``zstd`` v2.0, see the ``zstd``
-  :github:`Release Notes <mongodb-js/zstd/releases/tag/v2.0.0>` package on GitHub.
+  :github:`Release Notes <mongodb-js/zstd/releases/tag/v2.0.0>` on GitHub.
 
 - Upgrades the ``bson`` package to v6.10.1. For more information about this release,
   see the :github:`v6.10.1 Release Notes <mongodb/js-bson/releases/tag/v6.10.1>` for the
