@@ -52,8 +52,7 @@ The {+driver-short+} v6.12 release includes the following features:
   replica-set member stale.
 
 - The driver reads socket data with a stream in object mode instead
-  of buffer mode. Reading in buffer mode can cause inaccurate data chunking,
-  which can cause message parsing errors in rare cases.
+  of buffer mode. This prevents message parsing errors caused by inaccurate data chunking.
 
 - If the driver encounters an error while connecting to a socks5 proxy, it no longer
   wraps the socks5 error in a ``MongoNetworkError``. This prevents the driver from
