@@ -48,11 +48,12 @@ The {+driver-short+} v6.12 release includes the following features:
   see the :github:`v6.10.1 Release Notes <mongodb/js-bson/releases/tag/v6.10.1>` for the
   ``bson`` package on GitHub.
 
-- The driver populates the ``ServerDescription.error`` field when marking a primary
-  replica-set member stale.
+- The driver populates the ``ServerDescription.error`` field with a more specific error 
+  type and message when marking a primary replica-set member stale.
 
 - The driver reads socket data with a stream in object mode instead
-  of buffer mode. This prevents message parsing errors caused by inaccurate data chunking.
+  of buffer mode. This prevents message parsing errors in rare cases caused by inaccurate
+  data chunking.
 
 - If the driver encounters an error while connecting to a socks5 proxy, it no longer
   wraps the socks5 error in a ``MongoNetworkError``. This prevents the driver from
