@@ -21,8 +21,8 @@ In this guide, you can find sample code for connection to MongoDB with each
 authentication mechanism available in the MongoDB Enterprise Edition:
 ``Kerberos (GSSAPI/SSPI)``, ``LDAP (PLAIN)``, and ``MONGODB-OIDC``.
 
-``Kerberos (GSSAPI/SSPI)``
---------------------------
+Kerberos (GSSAPI/SSPI)
+----------------------
 
 .. note::
    The Node.js driver supports Kerberos on UNIX using the MIT Kerberos library
@@ -102,8 +102,8 @@ The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
    `GSSAPI RFC-4652 <https://tools.ietf.org/html/rfc4752>`_, the SASL
    mechanism.
 
-``LDAP (PLAIN)``
-----------------
+LDAP (PLAIN)
+------------
 
 The ``PLAIN`` authentication mechanism uses your username and password to
 authenticate to a Lightweight Directory Access Protocol (LDAP) server.
@@ -241,11 +241,12 @@ options in your connection string:
 The following code example shows how to set the preceding connection options:
 
 .. code-block:: js
+  :emphasize-lines: 3-4
   
   const { MongoClient } = require("mongodb");
 
-  const uri = "mongodb://<hostname>:<port>/?authMechanism=MONGODB-OIDC" +
-    "&authMechanismProperties=ENVIRONMENT:k8s";
+  const uri = "mongodb://<hostname>:<port>/?authMechanism=MONGODB-OIDC" 
+              + "&authMechanismProperties=ENVIRONMENT:k8s";
   const client = new MongoClient(uri);
 
 Custom Callback
