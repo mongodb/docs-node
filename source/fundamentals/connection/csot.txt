@@ -157,8 +157,9 @@ shown in the following example:
 
 .. code-block:: javascript
 
-   for await (const doc of cappedCollection.find({}, {tailable: true, timeoutMS: 1000})) {
-     // Handle each document
+   for await (const doc of cappedCollection.find({}, 
+      {tailable: true, timeoutMS: 1000})) {
+      // Handle each document
    };
 
 API Documentation

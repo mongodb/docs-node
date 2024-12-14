@@ -14,10 +14,12 @@ async function run() {
     await client.connect();
 
     const db = client.db('test-db');
-    const coll = database.collection('test-collection');
+    const coll = db.collection('test-collection');
 
     // Performs a query operation with an operation-level timeoutMS configuration
-    const docs = await coll.find({}, { timeoutMS: 1000 }).toArray(); // Operation-level timeout: 1 second
+    const docs = await coll.find({}, 
+        { timeoutMS: 1000 }) // Operation-level timeout: 1 second
+        .toArray(); 
 
     console.log(docs);
   } finally {
