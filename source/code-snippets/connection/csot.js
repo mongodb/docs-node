@@ -3,22 +3,22 @@ import { MongoClient } from "mongodb";
 const { MongoClient } = require('mongodb');
 
 //start-csot
+// Creates a new MongoClient with a client-level timeoutMS configuration
+const uri = "<connection string uri>";
+const client = new MongoClient(uri, {
+  // Client-level timeout: 5 seconds
+  serverSelectionTimeoutMS: 5000
+});
+
 async function run() {
-  // Creates a new MongoClient with a client-level timeoutMS configuration
-  const uri = "<connection string uri>";
-  const client = new MongoClient(uri, {
-    serverSelectionTimeoutMS: 5000 // Client-level timeout: 5 seconds
-  });
-
   try {
-    await client.connect();
-
-    const db = client.db('test-db');
-    const coll = db.collection('test-collection');
+    const db = client.db("test-db");
+    const coll = db.collection("test-collection");
 
     // Performs a query operation with an operation-level timeoutMS configuration
     const docs = await coll.find({}, 
-        { timeoutMS: 1000 }) // Operation-level timeout: 1 second
+        // Operation-level timeout: 1 second
+        { timeoutMS: 1000 })
         .toArray(); 
 
     console.log(docs);
