@@ -35,14 +35,15 @@ You can specify a timeout by using the ``timeoutMS`` option.
 timeoutMS Option
 ----------------
 
-You can specify the ``timeoutMS`` option as a client, database, collection,
-session, and transaction option.
+You can specify the ``timeoutMS`` option in your ``MongoClientOptions``
+instance, or at the database, collection, session, transaction, or operation
+levels.
 
 To specify a timeout when connecting to a MongoDB deployment, set the
-``timeoutMS`` connection option to the timeout length, in milliseconds.
+``timeoutMS`` connection option to the timeout length in milliseconds.
 
-The following code examples use the ``timeoutMS`` option to specify a timeout of
-10 seconds:
+The following code example uses the ``timeoutMS`` option to specify a timeout of
+10 seconds when instatiating a new ``MongoClient`` instance:
 
 .. code-block:: javascript
 
@@ -81,11 +82,11 @@ Overrides
 The Node.js driver supports various levels of configuration to control the
 behavior and performance of database operations. 
 
-You can specify a ``timoutMS`` option at the operation level. This setting
-overrides the client-level configuration for that specific operation, allowing
-you to customize timeouts based on the needs of individual queries.
+You can specify a ``timoutMS`` option at the operation level to override the
+client-level configuration for a specific operation. This allows you to
+customize timeouts based on the needs of individual queries.
 
-The following example demonstrates how an operation level ``timeoutMS``
+The following example demonstrates how an operation-level ``timeoutMS``
 configuration can override a client-level ``timeoutMS`` configuration:
 
 .. literalinclude:: /code-snippets/connection/csot.js
@@ -132,7 +133,7 @@ cursor. This is the default timeout mode for non-tailable cursors (for example,
 of the cursor and all subsequent ``getMore`` calls must finish within the limit
 specified with ``timeoutMS``. If they do not, the system throws a timeout error. 
 
-Closing a cursor, either as part of a ``toArray()`` call or manually via the
+Closing a cursor, either as part of a ``toArray()`` call or manually using the
 ``close()`` method, resets the timeout before sending a ``killCursors``
 operation to the server.
 
