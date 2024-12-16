@@ -94,11 +94,27 @@ configuration can override a client-level ``timeoutMS`` configuration:
    :start-after: start-csot
    :end-before: end-csot
 
-.. tip:: Transactions and timeoutMS
+Transactions
+~~~~~~~~~~~~
 
-   If you try to override the ``timeoutMS`` option at the operation level for
-   operations using the explicit session inside the ``withTransaction``
-   callback, it throws an error.
+When you create a new ``ClientSession`` instance to implement a transaction, use
+the ``defaultTimeoutMS`` option. You can set ``defaultTimeoutMS`` to specify the
+``timeoutMS`` values to use for:
+
+- `commitTransaction()
+  <{+api+}/classes/ClientSession.html#commitTransaction>`__
+- `abortTransaction()
+  <{+api+}/classes/ClientSession.html#abortTransaction>`__
+- `withTransaction() <{+api+}/classes/ClientSession.html#withTransaction>`__
+- `endSession()
+  <{+api+}/classes/ClientSession.html#endSession>`__
+
+If you do not specify ``defaultTimeoutMS``, the driver uses the ``timeoutMS``
+value set on the parent ``MongoClient``.
+
+If you try to override ``defaultTimeoutMS`` by setting the ``timeoutMS`` option
+at the operation level for operations using the explicit session inside the
+``withTransaction()`` callback, it throws an error.
 
 ClientEncryption
 ~~~~~~~~~~~~~~~~~
@@ -171,3 +187,4 @@ API documentation:
 
 - `MongoClient <{+api+}/classes/MongoClient.html>`__
 - `timeoutMS <{+api+}/classes/MongoClient.html#timeoutMS>`__
+- `ClientSession <{+api+}/classes/ClientSession.html>`__
