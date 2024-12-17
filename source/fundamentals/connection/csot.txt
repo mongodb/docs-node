@@ -19,11 +19,12 @@ Limit Server Execution Time
 Overview
 --------
 
-When you use {+driver-short+} to perform a server operation, you can also limit the amount
-of time the server has to finish this operation. To do so, specify a
-**client-side operation timeout**. The timeout applies all steps needed to complete the
-operation, including server selection, connection checkout, serialization, and server-side
-execution. When the timeout expires, {+driver-short+} raises a timeout exception.
+When you use {+driver-short+} to perform a server operation, you can also limit
+the duration allowed for the server to finish the operation. To do so,
+specify a **client-side operation timeout**. The timeout applies to all steps
+needed to complete the operation, including server selection, connection
+checkout, serialization, and server-side execution. When the timeout expires,
+{+driver-short+} raises a timeout exception.
 
 You can specify a timeout by using the ``timeoutMS`` option.
 
@@ -185,8 +186,7 @@ of the cursor and all subsequent ``getMore`` calls must finish within the limit
 specified with ``timeoutMS``. If they do not, the system throws a timeout error. 
 
 Closing a cursor, either as part of a ``toArray()`` call or manually using the
-``close()`` method, resets the timeout before sending a ``killCursors``
-operation to the server.
+``close()`` method, resets the timeout.
 
 Set the ``timeoutMS`` option to ensure the cursor initialization and retrieval
 of all documents occur within 10 seconds, as shown in the following example:
