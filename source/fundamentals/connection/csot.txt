@@ -76,6 +76,41 @@ a timeout limit of 10 seconds at the collection level, then calls the
    :start-after: start-operation
    :end-before: end-operation
 
+Inheritance Behavior
+--------------------
+
+When you specify a ``timeoutMS`` option, the driver applies the timeout
+according to the same inheritance behaviors as other {+driver-short+} options.
+The following list describes how the timeout value is inherited:
+
+- **Operation Level**: The operation-level ``timeoutMS`` option takes the
+  highest precedence and will override this option set at any other layer.
+
+- **Transaction Level**: The transaction-level ``timeoutMS`` option takes
+  precedence over ``timeoutMS`` set at the session, collection, database, or
+  client level.
+
+- **Session Level**: The session-level ``timeoutMS`` option inherits down to all
+  transactions and operations within that session, unless the option is
+  overriden by options set at those levels.
+
+- **Collection Level**: The collection-level ``timeoutMS`` option inherits down
+  to all sessions nad operations on that collection, unless the option is overriden.
+
+- **Database Level**: The database-level ``timeoutMS`` option applies to all
+  collections within that database. It is inherited by all sessions,
+  collections, and operations within the collections on that database, unless
+  the option is overriden.
+
+- **Client Level**: The client-level ``timeoutMS`` option applies to all
+  databases, collections, sessions, transactions, and operations within that
+  client that do not otherwise specify ``timeoutMS``.
+
+For more information on overrides and specific options, see the :ref:`Overrides
+<node-csot-overrides>` section.
+
+.. _node-csot-overrides:
+
 Overrides
 ---------
 
