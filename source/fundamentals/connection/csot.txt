@@ -78,7 +78,7 @@ a timeout limit of 10 seconds at the collection level, then calls the
    :end-before: end-operation
 
 Inheritance Behavior
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 When you specify a ``timeoutMS`` option, the driver applies the timeout
 according to the same inheritance behaviors as other {+driver-short+} options.
