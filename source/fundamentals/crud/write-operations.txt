@@ -22,3 +22,4 @@ Write Operations
 - :doc:`/fundamentals/crud/write-operations/modify`
 - :doc:`/fundamentals/crud/write-operations/embedded-arrays`
 - :doc:`/fundamentals/crud/write-operations/upsert`
+- :doc:`/fundamentals/crud/write-operations/bulk.txt`

@@ -54,7 +54,7 @@ Sample data
 The examples in this guide use the following sample documents, which are stored
 in the ``movies`` collection in the ``sample_mflix`` database:
 
-.. literalinclude:: /includes/fundamentals/code-snippets/crud/bulk.rs
+.. literalinclude:: /includes/fundamentals/code-snippets/crud/bulk.js
    :language: node.js
    :dedent:
    :start-after: begin-sample-data
@@ -105,7 +105,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /includes/fundamentals/code-snippets/crud/bulk.rs
+   .. input:: /includes/fundamentals/code-snippets/crud/bulk.js
       :start-after: begin-insert
       :end-before: end-insert
       :language: node.js
@@ -171,7 +171,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /includes/fundamentals/code-snippets/crud/bulk.rs
+   .. input:: /includes/fundamentals/code-snippets/crud/bulk.js
       :start-after: begin-replace
       :end-before: end-replace
       :language: node.js
@@ -247,7 +247,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /includes/fundamentals/code-snippets/crud/bulk.rs
+   .. input:: /includes/fundamentals/code-snippets/crud/bulk.js
       :start-after: begin-update
       :end-before: end-update
       :language: node.js
@@ -377,7 +377,7 @@ A ``MongoBulkWriteError`` object contains the following properties:
      - | The underlying error object, which may contain more details.
        | Data Type: ``Error` 
 
-
+.. _node-bulk-addtl-info:
 
 Additional Information
 ----------------------
@@ -387,7 +387,7 @@ in the Server manual.
 
 
 API Documentation
-~~~~~~~~~~~~~~~~~
+-----------------
 
 To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
