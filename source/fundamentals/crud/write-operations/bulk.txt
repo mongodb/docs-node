@@ -387,16 +387,16 @@ API Documentation
 To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
 
-- `BulkWrite() <{+new-api-root+}/https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#bulkWrite>`__
-- `ClientBulkWriteOptions <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.ClientBulkWriteOptions.html>`__
-- `ClientBulkWriteResult <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.ClientBulkWriteResult.html>`__
-- `BulkWriteInsertOneModel <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteInsertOneModel-1.html>`__
-- `BulkWriteUpdateOneModel <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteUpdateOneModel-1.html>`__
-- `BulkWriteUpdateManyModel <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteUpdateManyModel-1.html>`__
-- `BulkWriteReplaceOneModel <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteReplaceOneModel-1.html>`__
-- `BulkWriteDeleteOneModel <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteDeleteOneModel-1.html>`__
-- `BulkWriteDeleteManyModel <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteDeleteManyModel-1.html>`__
-- `BulkWriteInsertOneResult <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteInsertOneResult.html>`__
-- `BulkWriteUpdateResult <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteUpdateResult.html>`__
-- `BulkWriteDeleteResult <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.BulkWriteDeleteResult.html>`__
-- `ClientBulkWriteException <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.ClientBulkWriteException.html>`__
+- `BulkWrite() </https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#bulkWrite>`__
+- `ClientBulkWriteResult <https://mongodb.github.io/node-mongodb-native/6.12/classes/BulkWriteResult.html>`__
+- `InsertOneModel <https://mongodb.github.io/node-mongodb-native/6.12/classes/OrderedBulkOperation.html#insert>`__
+- `InsertOne <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#insertOne>`__
+- `ReplaceOne <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#replaceOne>`__
+- `ReplaceOneModel <https://mongodb.github.io/node-mongodb-native/6.12/interfaces/ReplaceOneModel.html>`__
+- `UpdateOne <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#updateOne>`__
+- `UpdateMany <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#updateMany>`__
+- `UpdateOneModel <https://mongodb.github.io/node-mongodb-native/6.12/interfaces/UpdateOneModel.html>`__
+- `DeleteOne <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#deleteOne>`__
+- `DeleteMany <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#deleteMany>`__
+- `DeleteOneModel <https://mongodb.github.io/node-mongodb-native/6.12/interfaces/DeleteOneModel.html>`__
+- `ClientBulkWriteException <https://mongodb.github.io/node-mongodb-native/6.12/classes/MongoClientBulkWriteExecutionError.html>`__
