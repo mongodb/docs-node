@@ -366,16 +366,16 @@ A ``MongoBulkWriteError`` object contains the following properties:
 
    * - ``writeConcernErrors`` 
      - | Write concern errors that occured during execution of the bulk write operation.
-       | Data Type: ``WriteConnectionError[]`   
+       | Data Type: ``WriteConnectionError[]``   
 
    * - ``result`` 
      - | The results of any successful operations performed before the exception was 
          thrown.
-       | Data Type: ``BulkWriteResult[]`   
+       | Data Type: ``BulkWriteResult[]``   
 
    * - ``err`` 
      - | The underlying error object, which may contain more details.
-       | Data Type: ``Error` 
+       | Data Type: ``Error``
 
 .. _node-bulk-addtl-info:
 
