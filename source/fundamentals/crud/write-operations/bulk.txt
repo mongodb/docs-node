@@ -31,8 +31,6 @@ This guide includes the following sections:
   bulk operation examples
 - :ref:`node-bulk-operation-types` describes how to use different bulk operation 
   types to perform bulk insert, replace, update, and delete operations
-- :ref:`node-bulk-return-type` describes the return value of the ``bulkWrite()``
-  method and how to access information about the bulk operation
 - :ref:`node-bulk-handle-exceptions` describes the exceptions that occur if 
   any of the operations in a bulk write operation fail.
 - :ref:`node-bulk-addtl-info` provides links to resources and API documentation for
@@ -64,6 +62,9 @@ in the ``movies`` collection in the ``sample_mflix`` database:
 
 Bulk Operation Types
 --------------------
+
+Insert
+~~~~~~
 
 To perform a bulk insert operation, create a bulk operation object for each document
 you want to insert. Then, pass a list of these operations to the ``bulkWrite()``
@@ -100,7 +101,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /source/code-snippets/crud/bulk.js
+   .. input:: /code-snippets/crud/bulk.js
       :start-after: begin-insert
       :end-before: end-insert
       :language: node.js
@@ -154,8 +155,8 @@ their corresponding builder methods:
        | By default, this field is set to ``false``.
        | Type: ``Boolean``
 
-Example
-```````
+Replace Documents Example
+`````````````````````````
 This example performs the following actions:
 
 - Specifies two ``ReplaceOneModel`` instances in an array. The ``ReplaceOneModel`` instances
@@ -166,7 +167,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /source/code-snippets/crud/bulk.js
+   .. input:: /code-snippets/crud/bulk.js
       :start-after: begin-replace
       :end-before: end-replace
       :language: node.js
@@ -229,8 +230,8 @@ The following table describes the fields you can set for ``UpdateOneModel`` and
          By default, this field is set to ``false``.
        | Type: ``Boolean``
 
-Example
-```````
+Update Documents Example
+````````````````````````
 
 This example performs the following actions:
 
@@ -242,7 +243,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /source/code-snippets/crud/bulk.js
+   .. input:: /code-snippets/crud/bulk.js
       :start-after: begin-update
       :end-before: end-update
       :language: node.js
@@ -291,8 +292,8 @@ The following table describes the fields you can set for ``DeleteOneModel`` and
          indexes, see the :ref:`node-fundamentals-indexes` guide.
        | Type: ``String or Object``
 
-Example
-```````
+Delete Documents Example
+````````````````````````
 
 This example performs the following actions:
 
@@ -304,7 +305,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /source/code-snippets/crud/bulk.js
+   .. input:: /code-snippets/crud/bulk.js
       :start-after: begin-delete
       :end-before: end-delete
       :language: node.js
