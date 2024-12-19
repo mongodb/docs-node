@@ -54,16 +54,11 @@ Sample data
 The examples in this guide use the following sample documents, which are stored
 in the ``movies`` collection in the ``sample_mflix`` database:
 
-.. literalinclude:: /source/code-snippets/crud/bulk.js
+.. literalinclude:: /code-snippets/crud/bulk.js
    :language: node.js
    :dedent:
    :start-after: begin-sample-data
-   :end-before: end-sample-data
-
-You can also use custom object types to represent your sample data within Node.js
-applications. For an example that performs a bulk operation by using JavaScript 
-object literals to model the same data, see the :ref:`bulk-insert-structs-example`
-on this page. 
+   :end-before: end-sample-data 
 
 .. _node-bulk-operation-types:
 
