@@ -54,7 +54,7 @@ Sample data
 The examples in this guide use the following sample documents, which are stored
 in the ``movies`` collection in the ``sample_mflix`` database:
 
-.. literalinclude:: /includes/fundamentals/code-snippets/crud/bulk.js
+.. literalinclude:: /source/code-snippets/crud/bulk.js
    :language: node.js
    :dedent:
    :start-after: begin-sample-data
@@ -105,7 +105,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /includes/fundamentals/code-snippets/crud/bulk.js
+   .. input:: /source/code-snippets/crud/bulk.js
       :start-after: begin-insert
       :end-before: end-insert
       :language: node.js
@@ -171,7 +171,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /includes/fundamentals/code-snippets/crud/bulk.js
+   .. input:: /source/code-snippets/crud/bulk.js
       :start-after: begin-replace
       :end-before: end-replace
       :language: node.js
@@ -247,7 +247,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /includes/fundamentals/code-snippets/crud/bulk.js
+   .. input:: /source/code-snippets/crud/bulk.js
       :start-after: begin-update
       :end-before: end-update
       :language: node.js
@@ -309,7 +309,7 @@ This example performs the following actions:
 
 .. io-code-block::
 
-   .. input:: /includes/fundamentals/code-snippets/crud/bulk.rs
+   .. input:: /source/code-snippets/crud/bulk.js
       :start-after: begin-delete
       :end-before: end-delete
       :language: node.js
