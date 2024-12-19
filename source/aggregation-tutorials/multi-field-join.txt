@@ -20,7 +20,7 @@ Multi-Field Join
 Introduction
 ------------
 
-this tutorial, you can learn how to use the {+driver-short+} to
+In this tutorial, you can learn how to use the {+driver-short+} to
 construct an aggregation pipeline, perform the
 aggregation on a collection, and print the results by completing and
 running a sample app.
