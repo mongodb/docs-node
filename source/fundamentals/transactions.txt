@@ -208,6 +208,10 @@ the Convenient Transaction API:
 To see a fully runnable example that uses this API, see the
 :ref:`node-usage-convenient-txn` usage example.
 
+.. sharedinclude:: dbx/transactions-parallelism.rst
+
+   The {+driver-short+} does not support running parallel operations within a single transaction.
+
 .. _nodejs-transaction-settings:
 
 Transaction Options
