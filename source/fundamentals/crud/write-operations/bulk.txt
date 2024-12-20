@@ -17,10 +17,11 @@ In this guide, you can learn how to use the {+driver-short+} to
 perform **bulk operations**.
 
 Bulk operations perform multiple write operations against one or more
-**namespaces**. A namespace is a combination of the database name and
-the collection name, in the format ``<database>.<collection>``. Since
-you perform bulk operations on a ``MongoClient`` instance, you can perform
-bulk operations against any namespace in the cluster accessed by your client.
+collections within a database. In MongoDB, you refer to a collection by combining
+the database name and the collection name in the format ``<database>.<collection>``. 
+Since you perform bulk operations on a ``MongoClient`` instance, you can perform
+bulk operations against any database and colllection in the cluster accessed by 
+your client.
 
 Bulk operations help reduce the number of calls to the server. Instead of sending
 a request for each operation, you can perform multiple operations within one action.
@@ -31,6 +32,8 @@ This guide includes the following sections:
   bulk operation examples
 - :ref:`node-bulk-operation-types` describes how to use different bulk operation 
   types to perform bulk insert, replace, update, and delete operations
+- :ref:`_node-bulk-return-type` describes the return object that results from your
+  bulk write operations.
 - :ref:`node-bulk-handle-exceptions` describes the exceptions that occur if 
   any of the operations in a bulk write operation fail.
 - :ref:`node-bulk-addtl-info` provides links to resources and API documentation for
@@ -82,7 +85,7 @@ operation:
 
    * - ``insertOne`` 
      - | This represents an insert operation.
-       | Type: ``Namespace``
+       | Type: ``Operation``
 
    * - ``document`` 
      - | The document to insert.
@@ -94,8 +97,9 @@ Insert Documents Example
 ````````````````````````
 This example performs the following actions:
 
-- Specifies four ``InsertOneModel`` instances in an array. Each ``InsertOneModel`` represents
-  a document to be inserted into the ``db.movies`` namespace.
+- Specifies four ``InsertOneModel`` instances in an array. Each ``InsertOneModel`` 
+  represents a document to be inserted into the ``movies`` collection within the
+  ``db`` databse. 
 - Passes the array of models to the ``bulkWrite()`` method.
 - Prints the number of inserted documents.
 
@@ -141,8 +145,8 @@ their corresponding builder methods:
        | Type: ``Document``
 
    * - ``collation`` 
-     - | (Optional) The collation to use when sorting results. To learn more about collations,
-         see the :ref:`node-fundamentals-collations` guide.
+     - | (Optional) The collation to use when sorting results. To learn more 
+         about collations, see the :ref:`node-fundamentals-collations` guide.
        | Type: ``String or Object``
 
    * - ``hint`` 
@@ -159,9 +163,9 @@ Replace Documents Example
 `````````````````````````
 This example performs the following actions:
 
-- Specifies two ``ReplaceOneModel`` instances in an array. The ``ReplaceOneModel`` instances
-  contain instructions to replace documents representing theatres in the
-  ``db.theaters`` namespace.
+- Specifies two ``ReplaceOneModel`` instances in an array. The ``ReplaceOneModel`` 
+  instances contain instructions to replace documents representing movies in the
+  ``movies`` collection.
 - Passes the array of models to the ``bulkWrite()`` method.
 - Prints the number of modified documents.
 
@@ -201,9 +205,10 @@ The following table describes the fields you can set for ``UpdateOneModel`` and
      - Description
 
    * - ``filter`` 
-     - | The filter that matches one or more documents you want to update. When specified in an ``UpdateOneModel``,
-         only the first matching document will be updated. When specified in an ``UpdateManyModel``, all
-         matching documents will be updated.
+     - | The filter that matches one or more documents you want to update. When 
+         specified in an ``UpdateOneModel``, only the first matching document will 
+         be updated. When specified in an ``UpdateManyModel``, all matching documents
+         will be updated.
        | Type: ``Document``
 
    * - ``update`` 
@@ -211,13 +216,13 @@ The following table describes the fields you can set for ``UpdateOneModel`` and
        | Type: ``Document``
 
    * - ``arrayFilters`` 
-     - | (Optional) A set of filters specifying which array elements an update applies to if you are updating an
-         array-valued field.
+     - | (Optional) A set of filters specifying which array elements an update 
+         applies to if you are updating an array-valued field.
        | Type: ``Array``
 
    * - ``collation`` 
-     - | (Optional) The collation to use when sorting results. To learn more about collations,
-         see the :ref:`node-fundamentals-collations` guide.
+     - | (Optional) The collation to use when sorting results. To learn more about 
+         collations, see the :ref:`node-fundamentals-collations` guide.
        | Type: ``Object``
 
    * - ``hint`` 
@@ -277,14 +282,15 @@ The following table describes the fields you can set for ``DeleteOneModel`` and
      - Description
 
    * - ``filter`` 
-     - | The filter that matches one or more documents you want to delete. When specified in a ``DeleteOneModel``,
-         only the first matching document will be deleted. When specified in a ``DeleteManyModel``, all
-         matching documents will be deleted.
+     - | The filter that matches one or more documents you want to delete. When 
+         specified in a ``DeleteOneModel``, only the first matching document will
+         be deleted. When specified in a ``DeleteManyModel``, all matching documents
+         will be deleted.
        | Type: ``Document``
 
    * - ``collation`` 
-     - | (Optional) The collation to use when sorting results. To learn more about collations,
-         see the :ref:`node-fundamentals-collations` guide.
+     - | (Optional) The collation to use when sorting results. To learn more about 
+         collations, see the :ref:`node-fundamentals-collations` guide.
        | Type: ``Object``
 
    * - ``hint`` 
