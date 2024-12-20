@@ -32,7 +32,7 @@ This guide includes the following sections:
   bulk operation examples
 - :ref:`node-bulk-operation-types` describes how to use different bulk operation 
   types to perform bulk insert, replace, update, and delete operations
-- :ref:`_node-bulk-return-type` describes the return object that results from your
+- :ref:`node-bulk-return-type` describes the return object that results from your
   bulk write operations.
 - :ref:`node-bulk-handle-exceptions` describes the exceptions that occur if 
   any of the operations in a bulk write operation fail.
