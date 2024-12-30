@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 // start-operation
 const uri = "<connection string uri>";
 const client = new MongoClient(uri, {
-  timeoutMS: 1000
+  timeoutMS: 10000
 });
 
 async function run() {

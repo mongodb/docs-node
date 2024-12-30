@@ -37,7 +37,7 @@ timeoutMS Option
 ----------------
 
 You can specify the ``timeoutMS`` option in your ``MongoClientOptions``
-instance, or at the database, collection, session, transaction, or operation
+instance or at the database, collection, session, transaction, or operation
 levels.
 
 To specify a timeout when connecting to a MongoDB deployment, set the
@@ -50,7 +50,7 @@ The following code example uses the ``timeoutMS`` option to specify a timeout of
 
    const uri = "mongodb://<db_username>:<db_password>@<hostname:<port>";
    const client = new MongoClient(uri, {
-     timeoutMS: 1000
+     timeoutMS: 10000
     });
 
 When you specify the ``timeoutMS`` option, it always takes precedence over the
@@ -64,13 +64,14 @@ following options:
 
 .. note:: Experimental Feature
 
-   When the CSOT feature is no longer experimental, ``timeoutMS`` will deprecate
-   and supersede the preceding options.
+   When the CSOT feature is no longer experimental, the preceding options will
+   be deprecated. The ``timeoutMS`` option will superse the older, deprecated
+   options. 
 
 If you specify the ``timeoutMS`` option, the driver automatically applies the
 specified timeout to each server operation. The following code example specifies
-a timeout limit of 10 seconds at the collection level, then calls the
-``insertOne()`` method.
+a timeout limit of 10 seconds at the collection level, and then calls the
+``insertOne()`` method:
 
 .. literalinclude:: /code-snippets/connection/csot-operation.js
    :language: javascript
@@ -82,23 +83,24 @@ Inheritance Behavior
 
 When you specify a ``timeoutMS`` option, the driver applies the timeout
 according to the same inheritance behaviors as other {+driver-short+} options.
-The following list describes how the timeout value is inherited:
+The following list describes how the timeout value is inherited at each level:
 
-- **Operation Level**: Takes the highest precedence and will override this
-  option set at any other layer.
+- **Operation Level**: Takes the highest precedence and will override ``timeoutMS``
+  options set at any other level.
 
 - **Transaction Level**: Takes precedence over ``timeoutMS`` set at the session,
   collection, database, or client level.
 
-- **Session Level**: Inherits down to all transactions and operations within
+- **Session Level**: Inherits to all transactions and operations within
   that session, unless the option is overridden by options set at those levels.
 
-- **Collection Level**: Inherits down to all sessions and operations on that
-  collection, unless the option is overridden.
+- **Collection Level**: Inherits to all sessions and operations on that
+  collection, unless the option is overridden by options set at those levels.
 
 - **Database Level**: Applies to all collections within that database. It is
   inherited by all sessions, collections, and operations within the collections
-  on that database, unless the option is overridden.
+  on that database, unless the option is overridden by an option set at a level
+  with higher precedence.
 
 - **Client Level**: Applies to all databases, collections, sessions,
   transactions, and operations within that client that do not otherwise specify
@@ -145,11 +147,11 @@ the ``defaultTimeoutMS`` option. You can set ``defaultTimeoutMS`` to specify the
 If you do not specify ``defaultTimeoutMS``, the driver uses the ``timeoutMS``
 value set on the parent ``MongoClient``.
 
-If you try to override ``defaultTimeoutMS`` by setting the ``timeoutMS`` option
-at the operation level for operations using the explicit session inside the
-``withTransaction()`` callback, it throws an error.
+You cannot override ``defaultTimeoutMS`` by setting the ``timeoutMS`` option on an
+operation in a transaction session provided by the ``withTransaction()`` callback.
+Doing so throws an error.
 
-ClientEncryption
+Client Encryption
 ~~~~~~~~~~~~~~~~~
 
 When you use Client-Side Field Level Encryption (CSFLE), the driver uses the
@@ -171,14 +173,15 @@ Cursors
 
 Cursors require special handling when you use the CSOT feature. The
 ``timeOutMS`` option is configurable on a per-cursor basis. You can configure
-cursors to interact with CSOT in two ways.
+cursors to interact with CSOT by using etiher the cursor lifetime or cursor
+iteration mode.
 
 Cursor Lifetime Mode
 ~~~~~~~~~~~~~~~~~~~~
 
 The ``cursorLifetime`` mode uses ``timeoutMS`` to bound the entire lifetime of a
-cursor. This is the default timeout mode for non-tailable cursors (for example,
-``find()``, ``aggregate()``, ``listCollections()``). In this mode, the initialization
+cursor. This is the default timeout mode for non-tailable cursors, such as
+``find()``, ``aggregate()``, or ``listCollections()``. In this mode, the initialization
 of the cursor and all subsequent ``getMore()`` calls must finish within the limit
 specified with ``timeoutMS``. If they do not, the system throws a timeout error. 
 
@@ -197,17 +200,17 @@ Cursor Iteration Mode
 
 The iteration mode uses ``timeoutMS`` to bind each ``next()``, ``hasNext()``, or
 ``tryNext()`` call. The timeout refreshes after each call completes. This is the
-default mode for all tailable cursors, such as tailable find cursors on
+default mode for all tailable cursors, such as tailable ``find()`` cursors on
 capped collections or change streams.
 
-The cursor continues to fetch new documents as they are added to a collection,
-then times out if it takes longer than 10 seconds to retrieve documents, as
-shown in the following example:
+As shown in the following example, the cursor continues to fetch new documents
+as they are added to a collection, and then times out if it takes longer than 10
+seconds to retrieve documents:
 
 .. code-block:: javascript
 
    for await (const doc of cappedCollection.find({}, 
-      {tailable: true, timeoutMS: 1000})) {
+      {tailable: true, timeoutMS: 10000})) {
       // Handle each document
    };
 

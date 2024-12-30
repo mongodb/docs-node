@@ -6,8 +6,8 @@ const { MongoClient } = require('mongodb');
 // Creates a new MongoClient with a client-level timeoutMS configuration
 const uri = "<connection string uri>";
 const client = new MongoClient(uri, {
-  // Client-level timeout: 5 seconds
-  serverSelectionTimeoutMS: 5000
+  // Client-level timeout: 15 seconds
+  timeoutMS: 15000
 });
 
 async function run() {
@@ -17,8 +17,8 @@ async function run() {
 
     // Performs a query operation with an operation-level timeoutMS configuration
     const docs = await coll.find({}, 
-        // Operation-level timeout: 1 second
-        { timeoutMS: 1000 })
+        // Operation-level timeout: 10 second
+        { timeoutMS: 10000 })
         .toArray(); 
 
     console.log(docs);
