@@ -193,7 +193,7 @@ of all documents occur within 10 seconds, as shown in the following example:
 
 .. code-block:: javascript
 
-   const docs = await collection.find({}, {timeoutMS: 1000}).toArray();
+   const docs = await collection.find({}, {timeoutMS: 10000}).toArray();
 
 Cursor Iteration Mode
 ~~~~~~~~~~~~~~~~~~~~~

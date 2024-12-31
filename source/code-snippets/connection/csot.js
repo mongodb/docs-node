@@ -17,7 +17,7 @@ async function run() {
 
     // Performs a query operation with an operation-level timeoutMS configuration
     const docs = await coll.find({}, 
-        // Operation-level timeout: 10 second
+        // Operation-level timeout: 10 seconds
         { timeoutMS: 10000 })
         .toArray(); 
 
