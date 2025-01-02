@@ -210,8 +210,6 @@ To see a fully runnable example that uses this API, see the
 
 .. sharedinclude:: dbx/transactions-parallelism.rst
 
-   The {+driver-short+} does not support running parallel operations within a single transaction.
-
 .. _nodejs-transaction-settings:
 
 Transaction Options
