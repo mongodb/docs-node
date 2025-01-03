@@ -77,28 +77,35 @@ Timeout Inheritance
 
 When you specify a ``timeoutMS`` option, the driver applies the timeout
 according to the same inheritance behaviors as other {+driver-short+} options.
-The following list describes how the timeout value is inherited at each level:
+The following table describes how the timeout value is inherited at each level:
 
-- **Operation Level**: Takes the highest precedence and will override ``timeoutMS``
-  options set at any other level.
+.. list-table::
+   :header-rows: 1
+   :widths: 30 70
 
-- **Transaction Level**: Takes precedence over ``timeoutMS`` set at the session,
-  collection, database, or client level.
+   * - Level
+     - Inheritance Description
 
-- **Session Level**: Applies to all transactions and operations within
-  that session, unless the option is overridden by options set at those levels.
+   * - Operation
+     - Takes the highest precedence and will override ``timeoutMS``
+       options set at any other level.
 
-- **Collection Level**: Applies to all sessions and operations on that
-  collection, unless the option is overridden by options set at those levels.
+   * - Transaction
+     - Takes precedence over ``timeoutMS`` set at the session,
+       collection, database, or client level.
 
-- **Database Level**: Applies to all collections within that database. It is
-  inherited by all sessions, collections, and operations within the collections
-  on that database, unless the option is overridden by an option set at a level
-  with higher precedence.
+   * - Session
+     - Applies to all transactions and operations within
+       that session, unless the option is overridden by options set at those levels.
 
-- **Client Level**: Applies to all databases, collections, sessions,
-  transactions, and operations within that client that do not otherwise specify
-  ``timeoutMS``.
+   * - Collection
+     - Applies to all sessions and operations on that
+       collection, unless the option is overridden by options set at those levels.
+
+   * - Client
+     - Applies to all databases, collections, sessions, transactions, and
+       operations within that client that do not otherwise specify
+       ``timeoutMS``.
 
 For more information on overrides and specific options, see the :ref:`Overrides
 <node-csot-overrides>` section.
