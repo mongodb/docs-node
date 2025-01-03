@@ -108,7 +108,7 @@ This example performs the following actions:
    .. input:: /code-snippets/crud/bulk.js
       :start-after: begin-insert
       :end-before: end-insert
-      :language: node.js
+      :language: javascript
       :dedent:
 
    .. output:: 
@@ -174,7 +174,7 @@ This example performs the following actions:
    .. input:: /code-snippets/crud/bulk.js
       :start-after: begin-replace
       :end-before: end-replace
-      :language: node.js
+      :language: javascript
       :dedent:
 
    .. output:: 
@@ -251,7 +251,7 @@ This example performs the following actions:
    .. input:: /code-snippets/crud/bulk.js
       :start-after: begin-update
       :end-before: end-update
-      :language: node.js
+      :language: javascript
       :dedent:
 
    .. output:: 
@@ -314,7 +314,7 @@ This example performs the following actions:
    .. input:: /code-snippets/crud/bulk.js
       :start-after: begin-delete
       :end-before: end-delete
-      :language: node.js
+      :language: javascript
       :dedent:
 
    .. output:: 
