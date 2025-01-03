@@ -20,7 +20,7 @@ Bulk operations perform multiple write operations against one or more
 collections within a database. In MongoDB, you refer to a collection by combining
 the database name and the collection name in the format ``<database>.<collection>``. 
 Since you perform bulk operations on a ``MongoClient`` instance, you can perform
-bulk operations against any database and colllection in the cluster accessed by 
+bulk operations against any database and collection in the cluster accessed by 
 your client.
 
 Bulk operations help reduce the number of calls to the server. Instead of sending
@@ -29,15 +29,15 @@ a request for each operation, you can perform multiple operations within one act
 This guide includes the following sections:
 
 - :ref:`node-bulk-sample-data` presents the sample data that is used by the
-  bulk operation examples
+  bulk operation examples.
 - :ref:`node-bulk-operation-types` describes how to use different bulk operation 
-  types to perform bulk insert, replace, update, and delete operations
+  types to perform bulk insert, replace, update, and delete operations.
 - :ref:`node-bulk-return-type` describes the return object that results from your
   bulk write operations.
 - :ref:`node-bulk-handle-exceptions` describes the exceptions that occur if 
   any of the operations in a bulk write operation fail.
 - :ref:`node-bulk-addtl-info` provides links to resources and API documentation for
-  types and methods mentioned in this guide
+  types and methods mentioned in this guide.
 
 .. important::
 
@@ -56,7 +56,7 @@ The examples in this guide use the following sample documents, which are stored
 in the ``movies`` collection in the ``sample_mflix`` database:
 
 .. literalinclude:: /code-snippets/crud/bulk.js
-   :language: node.js
+   :language: javascript
    :dedent:
    :start-after: begin-sample-data
    :end-before: end-sample-data 
@@ -147,7 +147,7 @@ their corresponding builder methods:
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more 
          about collations, see the :ref:`node-fundamentals-collations` guide.
-       | Type: ``String or Object``
+       | Type: ``String`` or ``Object``
 
    * - ``hint`` 
      - | (Optional) The index to use for the operation. To learn more about
@@ -266,7 +266,7 @@ Delete
 ~~~~~~
 
 To perform a bulk delete operation, create a ``DeleteOneModel`` or ``DeleteManyModel``
-instance for each delete operation. Then, pass an array of thesemodels to the 
+instance for each delete operation. Then, pass an array of these models to the 
 ``bulkWrite()`` method. A ``DeleteOneModel`` deletes only one document that matches
 a filter, while a ``DeleteManyModel`` deletes all documents that match a filter.
 
@@ -304,7 +304,7 @@ Delete Documents Example
 This example performs the following actions:
 
 - Specifies a ``DeleteOneModel`` and a ``DeleteManyModel`` instance in an array. 
-  These modelscontain instructions to delete documents representing movies in the
+  These models contain instructions to delete documents representing movies in the
   ``movies`` collection.
 - Passes the array of models to the ``bulkWrite()`` method.
 - Prints the number of deleted documents.
@@ -328,8 +328,8 @@ This example performs the following actions:
 Return Type
 -----------
 
-The ``bulkWrite()`` method returns a ``BulkWriteResult`` object from which you can
-access information about your bulk operation.
+The ``bulkWrite()`` method returns a ``BulkWriteResult`` object, which provides
+information about your bulk operation.
 
 The ``BulkWriteResult`` object has the following fields:
 
@@ -360,24 +360,24 @@ A ``MongoBulkWriteError`` object contains the following properties:
 
    * - ``message`` 
      - | The error message. 
-       | Data Type: ``String``
+       | Type: ``String``
 
    * - ``writeErrors`` 
      - | An array of errors that occured during the bulk write operation.
-       | Data Type: ``BulkWriteError[]``
+       | Type: ``BulkWriteError[]``
 
    * - ``writeConcernErrors`` 
      - | Write concern errors that occured during execution of the bulk write operation.
-       | Data Type: ``WriteConnectionError[]``   
+       | Type: ``WriteConnectionError[]``   
 
    * - ``result`` 
      - | The results of any successful operations performed before the exception was 
          thrown.
-       | Data Type: ``BulkWriteResult[]``   
+       | Type: ``BulkWriteResult[]``   
 
    * - ``err`` 
      - | The underlying error object, which may contain more details.
-       | Data Type: ``Error``
+       | Type: ``Error``
 
 .. _node-bulk-addtl-info:
 
@@ -394,16 +394,16 @@ API Documentation
 To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
 
-- `BulkWrite() </https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#bulkWrite>`__
-- `ClientBulkWriteResult <https://mongodb.github.io/node-mongodb-native/6.12/classes/BulkWriteResult.html>`__
-- `InsertOneModel <https://mongodb.github.io/node-mongodb-native/6.12/classes/OrderedBulkOperation.html#insert>`__
-- `InsertOne <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#insertOne>`__
-- `ReplaceOne <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#replaceOne>`__
-- `ReplaceOneModel <https://mongodb.github.io/node-mongodb-native/6.12/interfaces/ReplaceOneModel.html>`__
-- `UpdateOne <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#updateOne>`__
-- `UpdateMany <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#updateMany>`__
-- `UpdateOneModel <https://mongodb.github.io/node-mongodb-native/6.12/interfaces/UpdateOneModel.html>`__
-- `DeleteOne <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#deleteOne>`__
-- `DeleteMany <https://mongodb.github.io/node-mongodb-native/6.12/classes/Collection.html#deleteMany>`__
-- `DeleteOneModel <https://mongodb.github.io/node-mongodb-native/6.12/interfaces/DeleteOneModel.html>`__
-- `ClientBulkWriteException <https://mongodb.github.io/node-mongodb-native/6.12/classes/MongoClientBulkWriteExecutionError.html>`__
+- `BulkWrite() <{+api+}/classes/Collection.html#bulkWrite>`__
+- `ClientBulkWriteResult <{+api+}/classes/BulkWriteResult.html>`__
+- `InsertOneModel <{+api+}/classes/OrderedBulkOperation.html#insert>`__
+- `InsertOne <{+api+}/classes/Collection.html#insertOne>`__
+- `ReplaceOne <{+api+}/classes/Collection.html#replaceOne>`__
+- `ReplaceOneModel <{+api+}/interfaces/ReplaceOneModel.html>`__
+- `UpdateOne <{+api+}/classes/Collection.html#updateOne>`__
+- `UpdateMany <{+api+}/classes/Collection.html#updateMany>`__
+- `UpdateOneModel <{+api+}/interfaces/UpdateOneModel.html>`__
+- `DeleteOne <{+api+}/classes/Collection.html#deleteOne>`__
+- `DeleteMany <{+api+}/classes/Collection.html#deleteMany>`__
+- `DeleteOneModel <{+api+}/interfaces/DeleteOneModel.html>`__
+- `ClientBulkWriteException <{+api+}/classes/MongoClientBulkWriteExecutionError.html>`__

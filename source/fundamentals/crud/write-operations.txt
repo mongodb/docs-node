@@ -15,7 +15,7 @@ Write Operations
    Modify </fundamentals/crud/write-operations/modify>
    Update Arrays </fundamentals/crud/write-operations/embedded-arrays>
    Upsert </fundamentals/crud/write-operations/upsert>
-   Bulk </fundamentals/crud/write-operations/bulk>
+   Bulk Operations </fundamentals/crud/write-operations/bulk>
 
 - :doc:`/fundamentals/crud/write-operations/insert`
 - :doc:`/fundamentals/crud/write-operations/pkFactory`
