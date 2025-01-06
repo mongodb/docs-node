@@ -15,6 +15,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
         await movies.deleteMany({});
 
         // begin-sample-data
+        // const movies = database.collection('movies');
+        
         const docs = [
         { title: "Inception", year: 2010, rated: "PG-13", released: "2010-07-16" },
         { title: "Interstellar", year: 2014, rated: "PG-13", released: "2014-11-07" },

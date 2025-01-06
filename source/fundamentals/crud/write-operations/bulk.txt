@@ -19,9 +19,6 @@ perform **bulk operations**.
 Bulk operations perform multiple write operations against one or more
 collections within a database. In MongoDB, you refer to a collection by combining
 the database name and the collection name in the format ``<database>.<collection>``. 
-Since you perform bulk operations on a ``MongoClient`` instance, you can perform
-bulk operations against any database and collection in the cluster accessed by 
-your client.
 
 Bulk operations help reduce the number of calls to the server. Instead of sending
 a request for each operation, you can perform multiple operations within one action.
@@ -395,7 +392,7 @@ To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
 
 - `BulkWrite() <{+api+}/classes/Collection.html#bulkWrite>`__
-- `ClientBulkWriteResult <{+api+}/classes/BulkWriteResult.html>`__
+- `BulkWriteResult <{+api+}/classes/BulkWriteResult.html>`__
 - `InsertOneModel <{+api+}/classes/OrderedBulkOperation.html#insert>`__
 - `InsertOne <{+api+}/classes/Collection.html#insertOne>`__
 - `ReplaceOne <{+api+}/classes/Collection.html#replaceOne>`__
@@ -406,4 +403,3 @@ guide, see the following API documentation:
 - `DeleteOne <{+api+}/classes/Collection.html#deleteOne>`__
 - `DeleteMany <{+api+}/classes/Collection.html#deleteMany>`__
 - `DeleteOneModel <{+api+}/interfaces/DeleteOneModel.html>`__
-- `ClientBulkWriteException <{+api+}/classes/MongoClientBulkWriteExecutionError.html>`__
