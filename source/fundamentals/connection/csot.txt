@@ -64,8 +64,8 @@ The following code example uses the ``timeoutMS`` option to specify a timeout of
 
 If you specify the ``timeoutMS`` option, the driver automatically applies the
 specified timeout to each server operation. The following code example specifies
-a timeout limit of 10 seconds at the client level, and then calls the
-``insertOne()`` method:
+a timeout of 10 seconds at the client level, and then calls the ``insertOne()``
+method:
 
 .. literalinclude:: /code-snippets/connection/csot-operation.js
    :language: javascript
@@ -181,7 +181,7 @@ Cursor Lifetime Mode
 
 The cursor lifetime mode uses ``timeoutMS`` to limit the entire lifetime of a
 cursor. This is the default timeout mode for non-tailable cursors, such as those
-returned by the ``find()``, ``aggregate()``, or ``listCollections()`` methods.
+returned by the ``find()``, ``aggregate()``, and ``listCollections()`` methods.
 In this mode, the initialization of the cursor and all subsequent calls to the
 ``getMore()`` method must finish within the limit specified by the ``timeoutMS``
 option. If they do not, the system throws a timeout error. 
