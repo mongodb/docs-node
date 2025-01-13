@@ -19,12 +19,12 @@ Limit Server Execution Time
 Overview
 --------
 
-When you use {+driver-short+} to perform a server operation, you can also limit
-the duration allowed for the server to finish the operation. To do so,
-specify a **client-side operation timeout (CSOT)**. The timeout applies to all steps
-needed to complete the operation, including server selection, connection
+When you use the {+driver-short+} to perform a server operation, you can also
+limit the duration allowed for the server to finish the operation. To do so,
+specify a **client-side operation timeout (CSOT)**. The timeout applies to all
+steps needed to complete the operation, including server selection, connection
 checkout, serialization, and server-side execution. When the timeout expires,
-{+driver-short+} raises a timeout exception.
+the {+driver-short+} raises a timeout exception.
 
 .. note:: Experimental Feature
 
@@ -76,7 +76,7 @@ Timeout Inheritance
 ~~~~~~~~~~~~~~~~~~~
 
 When you specify a ``timeoutMS`` option, the driver applies the timeout
-according to the same inheritance behaviors as other {+driver-short+} options.
+according to the same inheritance behaviors as the other {+driver-short+} options.
 The following table describes how the timeout value is inherited at each level:
 
 .. list-table::
@@ -186,7 +186,7 @@ In this mode, the initialization of the cursor and all subsequent calls to the
 ``getMore()`` method must finish within the limit specified by the ``timeoutMS``
 option. If they do not, the system throws a timeout error. 
 
-When you close a cursor by calling the  ``toArray()``or ``close()`` method, the
+When you close a cursor by calling the  ``toArray()`` or ``close()`` method, the
 timeout resets.
 
 The following example shows how to set the ``timeoutMS`` option to ensure that
@@ -206,7 +206,7 @@ such as the tailable cursors returned by the ``find()`` method on capped
 collections or change streams.
 
 As shown in the following example, the cursor continues to fetch new documents
-as they are added to a collection, and then times out if it takes longer than 10
+as they are added to a collection and times out if it takes longer than 10
 seconds to retrieve documents:
 
 .. code-block:: javascript
