@@ -23,8 +23,8 @@ When you use the {+driver-short+} to perform a server operation, you can also
 limit the duration allowed for the server to finish the operation. To do so,
 specify a **client-side operation timeout (CSOT)**. The timeout applies to all
 steps needed to complete the operation, including server selection, connection
-checkout, serialization, and server-side execution. When the timeout expires,
-the {+driver-short+} raises a timeout exception.
+checkout, and server-side execution. When the timeout expires, the
+{+driver-short+} raises a timeout exception.
 
 .. note:: Experimental Feature
 
@@ -35,18 +35,33 @@ timeoutMS Option
 
 To specify a timeout when connecting to a MongoDB deployment, set the
 ``timeoutMS`` connection option to the timeout length in milliseconds. You can
-specify the ``timeoutMS`` option in your ``MongoClientOptions`` instance or at
-the database, collection, session, transaction, or operation levels.
+do this in two ways: by passing an argument to the ``MongoClient`` constructor
+or through a parameter in your connection string.
 
-The following code example uses the ``timeoutMS`` option to specify a timeout of
-10 seconds when instantiating a new ``MongoClient`` instance:
+The following code examples use the ``timeoutMS`` option to specify a timeout of
+30 seconds:
 
-.. code-block:: javascript
+.. tabs::
 
-   const uri = "mongodb://<hostname:<port>";
-   const client = new MongoClient(uri, {
-     timeoutMS: 10000
-    });
+   .. tab:: MongoClient
+      :tabid: mongoclient
+
+      .. code-block:: javascript
+         :emphasize-lines: 3
+
+         const uri = "mongodb://<hostname:<port>";
+         const client = new MongoClient(uri, {
+         timeoutMS: 30000
+         });
+   
+   .. tab:: Connection String
+      :tabid: connection-string
+
+      .. code-block:: javascript
+         :emphasize-lines: 1
+
+         const uri = "mongodb://<hostname:<port>?timeoutMS=30000";
+         const client = new MongoClient(uri);
 
 .. note:: 
 
@@ -63,7 +78,7 @@ The following code example uses the ``timeoutMS`` option to specify a timeout of
    be deprecated. 
 
 If you specify the ``timeoutMS`` option, the driver automatically applies the
-specified timeout to each server operation. The following code example specifies
+specified timeout per each server operation. The following code example specifies
 a timeout of 10 seconds at the client level, and then calls the ``insertOne()``
 method:
 
@@ -97,6 +112,10 @@ The following table describes how the timeout value is inherited at each level:
    * - Session
      - Applies to all transactions and operations within
        that session, unless the option is overridden by options set at those levels.
+
+   * - Database
+     - Applies to all sessions and operations within that
+       database, unless the option is overridden by options set at those levels.
 
    * - Collection
      - Applies to all sessions and operations on that
@@ -172,22 +191,23 @@ precedence.
 Cursors
 -------
 
-Cursors require special handling when you use the CSOT feature. You can configure
-cursors to interact with CSOT by using either the cursor lifetime or cursor
-iteration mode.
+Cursors offer configurable timeout settings when using the CSOT feature. You can
+adjust cursor handling by configuring either the cursor lifetime or cursor
+iteration mode if needed. To configure the mode, set the ``timeoutMode`` option
+to ``cursorLifetime``, which is the default, or ``iteration``.
 
 Cursor Lifetime Mode
 ~~~~~~~~~~~~~~~~~~~~
 
 The cursor lifetime mode uses ``timeoutMS`` to limit the entire lifetime of a
-cursor. This is the default timeout mode for non-tailable cursors, such as those
-returned by the ``find()``, ``aggregate()``, and ``listCollections()`` methods.
-In this mode, the initialization of the cursor and all subsequent calls to the
-``getMore()`` method must finish within the limit specified by the ``timeoutMS``
-option. If they do not, the system throws a timeout error. 
+cursor. In this mode, the initialization of the cursor and all subsequent calls
+to the cursor methods must complete within the limit specified by the
+``timeoutMS`` option. All documents must be returned within this limit.
+Otherwise, the cursor's lifetime expires and a timeout error occurs.
 
 When you close a cursor by calling the  ``toArray()`` or ``close()`` method, the
-timeout resets.
+timeout resets for the ``killCursors`` command to ensure server-side resources are
+cleaned up.
 
 The following example shows how to set the ``timeoutMS`` option to ensure that
 the cursor is initialized and all documents are retrieved within 10 seconds:
@@ -205,16 +225,16 @@ after each call completes. This is the default mode for all tailable cursors,
 such as the tailable cursors returned by the ``find()`` method on capped
 collections or change streams.
 
-As shown in the following example, the cursor continues to fetch new documents
-as they are added to a collection and times out if it takes longer than 10
-seconds to retrieve documents:
+The following code example iterates over documents in the ``mflix`` collection
+using a cursor with the ``timeoutMode`` set to ``iteration``, and then fetches
+and logs the ``imdb_url`` for each movie document:
 
 .. code-block:: javascript
-
-   for await (const doc of cappedCollection.find({}, 
-      {tailable: true, timeoutMS: 10000})) {
-      // Handle each document
-   };
+   
+   for await (const movie of mflix.find({}, { timeoutMode: 'iteration' })) {
+      const imdbResponse = await fetch(movie.imdb_url);
+      console.log(await imdbResponse.text());
+   }
 
 API Documentation
 -----------------

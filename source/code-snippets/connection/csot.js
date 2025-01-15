@@ -1,7 +1,5 @@
 import { MongoClient } from "mongodb";
 
-const { MongoClient } = require('mongodb');
-
 //start-csot
 // Creates a new MongoClient with a client-level timeoutMS configuration
 const uri = "<connection string uri>";
