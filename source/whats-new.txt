@@ -59,7 +59,7 @@ The {+driver-short+} v6.13 release includes the following features:
   - ``collection.find()``
   - ``collection.findOne()``
   - ``collection.aggregate()``
-  - ``collection.coundDocuments()``
+  - ``collection.countDocuments()``
   - ``db.listCollections()``
   - ``db.command()``
 
