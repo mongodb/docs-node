@@ -52,7 +52,7 @@ The {+driver-short+} v6.13 release includes the following features:
 - Improves command monitoring performance by removing deep copies of command and
   reply objects.
 
-- Adds an experimental for an abort signal. You can pass the ``signal`` command
+- Adds an experimental abort signal feature. You can pass the ``signal`` command
   to the following methods to interrupt the execution of the method when the
   signal is triggered:
 
