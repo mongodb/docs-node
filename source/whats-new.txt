@@ -49,8 +49,11 @@ The {+driver-short+} v6.13 release includes the following features:
      
      env MONGODB_LOG_ALL=debug node server.mjs
 
+.. TODO: To learn more, see the :ref:`Logging <node-logging>` guide.
+
 - Improves command monitoring performance by removing deep copies of command and
-  reply objects.
+  reply objects. Modifying the command and response values might lead to
+  undefined behavior.
 
 - Adds an experimental abort signal feature. You can pass the ``signal`` command
   to the following methods to interrupt the execution of the method when the
@@ -70,7 +73,8 @@ The {+driver-short+} v6.13 release includes the following features:
   lookups when resolving ``mongodb+srv://`` connection strings.
 
 - ``MongoClient.close()`` also closes any associated cursors.
-- You can call ``MongoClient.close()`` concurrently. 
+- You can safely invoke ``MongoClient.close()`` concurrently, but we do not
+  recommend doing so if avoidable. 
 - Fixes an issue that caused ``MONGODB-OIDC`` authentication to not properly
   reauthenticate if the handshake includes speculative authentication.
 
