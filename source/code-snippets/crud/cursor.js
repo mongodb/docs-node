@@ -68,6 +68,17 @@ async function close(myColl) {
   await cursor.close();
   // end close cursor example
 }
+// Abort in-progress operations
+async function abort(myColl) {
+  // start abort cursor example
+  const abort = new AbortController();
+  const { signal } = abort;
+
+  await myColl.find({}, { signal });
+
+  abort.abort();
+  // end abort cursor example
+}
 
 async function run() {
   try {
