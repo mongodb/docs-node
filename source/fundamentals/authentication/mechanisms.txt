@@ -234,7 +234,7 @@ The driver checks for your credentials in the following sources in order:
       .. literalinclude:: /code-snippets/authentication/aws-env-variable.js
          :language: javascript
 
-      .. note:: How to Set the AWS Region
+      .. note:: How to Set the AWS Region for Regional Endpoints
 
          AWS recommends using regional AWS STS endpoints instead of global 
          endpoints to reduce latency, build-in redundancy, and increase session token validity.
