@@ -170,7 +170,7 @@ Abort
 ~~~~~
 
 You can manage a cursor's resources and cancel cursor operations if they're no
-longer needed using an `abort signal  <+api+/types/Abortable.html>`__. You can
+longer needed using an `abort signal <{+api+}/types/Abortable.html>`__. You can
 pass the ``signal`` command to the following methods:
 
 - ``collection.find()``
