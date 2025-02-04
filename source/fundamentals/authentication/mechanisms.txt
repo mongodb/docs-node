@@ -236,7 +236,7 @@ The driver checks for your credentials in the following sources in order:
 
       .. note:: How to Set the AWS Region
 
-         AWS recommends using Regional AWS STS endpoints instead of global 
+         AWS recommends using regional AWS STS endpoints instead of global 
          endpoints to reduce latency, build-in redundancy, and increase session token validity.
 
          To set the AWS region, set the following environment variables: 
