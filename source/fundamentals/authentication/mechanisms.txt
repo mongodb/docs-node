@@ -247,7 +247,6 @@ The driver checks for your credentials in the following sources in order:
            see the `AWS Regions <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.Regions>`__ 
            guide in the AWS documentation. 
 
-
          For more information on setting the AWS Region for regional endpoints, see 
          `How to use Regional AWS STS endpoints <https://aws.amazon.com/blogs/security/how-to-use-regional-aws-sts-endpoints/>`__
          on the AWS Security Blog. 
