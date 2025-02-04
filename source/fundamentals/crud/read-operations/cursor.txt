@@ -170,7 +170,7 @@ Abort
 ~~~~~
 
 You can manage a cursor's resources and cancel cursor operations if they're no
-longer needed using an `abort signal <{+api+}/types/Abortable.html>`__. You can
+longer needed using an `abort signal <{+api+}/types/Abortable.html>`__.  You can
 pass the ``signal`` command to the following methods:
 
 - ``collection.find()``
@@ -180,7 +180,7 @@ pass the ``signal`` command to the following methods:
 - ``db.listCollections()``
 - ``db.command()``
 
-Then, call the ``abort()`` method to fire the signal and close the cursor:
+Then, use the ``abort()`` method to fire the signal and close the cursor:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript
