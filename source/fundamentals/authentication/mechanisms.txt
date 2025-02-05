@@ -228,28 +228,29 @@ The driver checks for your credentials in the following sources in order:
 
          export AWS_WEB_IDENTITY_TOKEN_FILE=<absolute path to file containing your OIDC token>
 
-      After you've set the preceding environment variable, specify the ``MONGODB-AWS``
+      AWS recommends using regional AWS STS endpoints instead of global 
+      endpoints to reduce latency, build-in redundancy, and increase session token validity.
+      To set the AWS region, set ``AWS_REGION`` and ``AWS_STS_REGIONAL_ENDPOINTS``
+      as environment variables, as shown in the following example: 
+
+      .. code-block:: bash
+         
+         export AWS_STS_REGIONAL_ENDPOINTS=regional // Enables regional endpoints
+         export AWS_REGION=us-east-1 // Sets your AWS region
+         
+      For a list of available AWS regions, see the 
+      `AWS Regions <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.Regions>`__ 
+      guide in the AWS documentation. 
+
+      For more information on setting the AWS Region for regional endpoints, see 
+      `How to use Regional AWS STS endpoints <https://aws.amazon.com/blogs/security/how-to-use-regional-aws-sts-endpoints/>`__
+      on the AWS Security Blog. 
+
+      After you've set the preceding environment variables, specify the ``MONGODB-AWS``
       authentication mechanism in your connection string as shown in the following example:
 
       .. literalinclude:: /code-snippets/authentication/aws-env-variable.js
          :language: javascript
-
-      .. note:: How to Set the AWS Region for Regional Endpoints
-
-         AWS recommends using regional AWS STS endpoints instead of global 
-         endpoints to reduce latency, build-in redundancy, and increase session token validity.
-
-         To set the AWS region, set the following environment variables: 
-         
-         - ``AWS_STS_REGIONAL_ENDPOINTS``: Set to ``regional`` to enable regional endpoints. 
-   
-         - ``AWS_REGION``: Set to an AWS region, like ``us-east-2``. For a list of available AWS regions,
-           see the `AWS Regions <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.Regions>`__ 
-           guide in the AWS documentation. 
-
-         For more information on setting the AWS Region for regional endpoints, see 
-         `How to use Regional AWS STS endpoints <https://aws.amazon.com/blogs/security/how-to-use-regional-aws-sts-endpoints/>`__
-         on the AWS Security Blog. 
 
 .. important:: Retrieval of AWS Credentials
    
