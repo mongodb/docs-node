@@ -246,10 +246,9 @@ The driver checks for your credentials in the following sources in order:
 
       .. warning:: Consult your SDK's Documentation for Setting an AWS Region
 
-         Setting your AWS region by using the above method will not work for all 
-         SDKs. Some SDKs do not allow you to set an AWS region by using environment 
-         variables. See your SDK's specific documentation for configuring an AWS
-         region. 
+         You cannot set your AWS region with environment variables for all SDKs,
+         as in the above example. See your SDK's specific documentation for 
+         configuring an AWS region. 
 
       After you've set the preceding environment variables, specify the ``MONGODB-AWS``
       authentication mechanism in your connection string as shown in the following example:
