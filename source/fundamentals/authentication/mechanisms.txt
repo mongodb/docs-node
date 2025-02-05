@@ -244,11 +244,11 @@ The driver checks for your credentials in the following sources in order:
       `AWS Service Endpoints <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.Regions>`__ 
       reference in the AWS documentation. 
 
-      .. note:: Consult your SDK Documentation for Setting an AWS Region
+      .. warning:: Consult your SDK's Documentation for Setting an AWS Region
 
-         Some SDKs do not allow you to set an AWS region by using environment 
-         variables. When you configure an AWS region with other SDKs, 
-         see your SDK's specific documentation for configuring an AWS
+         Setting your AWS region by using the above method will not work for all 
+         SDKs. Some SDKs do not allow you to set an AWS region by using environment 
+         variables. See your SDK's specific documentation for configuring an AWS
          region. 
 
       After you've set the preceding environment variables, specify the ``MONGODB-AWS``
