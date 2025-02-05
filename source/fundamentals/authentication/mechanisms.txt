@@ -230,7 +230,8 @@ The driver checks for your credentials in the following sources in order:
 
       AWS recommends using regional AWS STS endpoints instead of global 
       endpoints to reduce latency, build-in redundancy, and increase session token validity.
-      To set the AWS region, set ``AWS_REGION`` and ``AWS_STS_REGIONAL_ENDPOINTS``
+      To set the AWS region, set `AWS_REGION <https://docs.aws.amazon.com/sdkref/latest/guide/feature-region.html>`__ 
+      and `AWS_STS_REGIONAL_ENDPOINTS <https://docs.aws.amazon.com/sdkref/latest/guide/feature-sts-regionalized-endpoints.html>`__
       as environment variables, as shown in the following example: 
 
       .. code-block:: bash
@@ -239,12 +240,8 @@ The driver checks for your credentials in the following sources in order:
          export AWS_REGION=us-east-1 // Sets your AWS region
          
       For a list of available AWS regions, see the 
-      `AWS Regions <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.Regions>`__ 
-      guide in the AWS documentation. 
-
-      For more information on setting the AWS Region for regional endpoints, see 
-      `How to use Regional AWS STS endpoints <https://aws.amazon.com/blogs/security/how-to-use-regional-aws-sts-endpoints/>`__
-      on the AWS Security Blog. 
+      `AWS Service Endpoints <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.Regions>`__ 
+      reference in the AWS documentation. 
 
       After you've set the preceding environment variables, specify the ``MONGODB-AWS``
       authentication mechanism in your connection string as shown in the following example:
