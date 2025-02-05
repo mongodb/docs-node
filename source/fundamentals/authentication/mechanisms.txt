@@ -239,7 +239,8 @@ The driver checks for your credentials in the following sources in order:
          export AWS_STS_REGIONAL_ENDPOINTS=regional // Enables regional endpoints
          export AWS_REGION=us-east-1 // Sets your AWS region
          
-      For a list of available AWS regions, see the 
+      If both these environment variables aren't set, the default region is 
+      ``us-east-1``. For a list of available AWS regions, see the 
       `AWS Service Endpoints <https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html#Concepts.RegionsAndAvailabilityZones.Regions>`__ 
       reference in the AWS documentation. 
 
