@@ -71,12 +71,28 @@ async function close(myColl) {
 // Abort in-progress operations
 async function abort(myColl) {
   // start abort cursor example
-  const abort = new AbortController();
-  const { signal } = abort;
+  const controller = new AbortController();
+  const { signal } = controller;
 
-  await myColl.find({}, { signal });
+  // Aborts operation after 20 seconds
+  setTimeout(() => controller.abort(), 20000);
 
-  abort.abort();
+  const cursor = myColl.find({}, { signal });
+
+  try {
+    while (await cursor.hasNext()) {
+      const doc = await cursor.next();
+      console.log(doc);
+    }
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      console.error('Cursor operation was aborted');
+    } else {
+      console.error('An error occurred:', error);
+    }
+  } finally {
+    await cursor.close();
+  }
   // end abort cursor example
 }
 
@@ -92,6 +108,7 @@ async function run() {
     await fetchAll(orders);
     await rewind(orders);
     await count(orders);
+    await abort(orders);
   } finally {
     await client.close();
   }
