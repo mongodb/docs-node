@@ -1,5 +1,4 @@
 PARSER_VERSION=0.18.13
-BRANCH = $(shell printenv BRANCH)
 # This make command curls the examples for certain repos.
 # If the rule doesn't exist, the error doesn't interrupt the build process.
 make examples
@@ -13,7 +12,7 @@ fi
 
 echo "======================================================================================================================================================================="
 echo "========================================================================== Running parser... =========================================================================="
-./snooty-parser/snooty/snooty build . --no-caching --output=./bundle.zip
+./snooty-parser/snooty/snooty build . --no-caching --output=./bundle.zip --branch="master"
 echo "========================================================================== Parser complete ============================================================================"
 echo "======================================================================================================================================================================="
 
