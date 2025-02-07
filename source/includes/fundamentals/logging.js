@@ -1,5 +1,5 @@
 // start-logger-client-options
-const client = new MongoClient("<connection string">, {
+const client = new MongoClient("<connection string>", {
   mongodbLogComponentSeverities: {
     all: "debug",
     command: "off"
@@ -23,5 +23,5 @@ const mongodbLogPath = {
   }
 }
 
-const client = new MongoClient("...", { mongodbLogPath });
+const client = new MongoClient("<connection string>", { mongodbLogPath });
 // end-custom-logger

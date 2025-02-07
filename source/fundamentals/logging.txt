@@ -12,15 +12,15 @@ Logging
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecols
 
 Overview
 --------
 
 In this guide, you can learn how to configure logging options with the
-{+driver-short+}. The driver allows you to log information that have the
-following severity levels:
+{+driver-short+}. The driver allows you to log information that are categorized
+by following severity levels:
 
 - ``emergency``
 - ``alert``
@@ -33,10 +33,10 @@ following severity levels:
 - ``trace``
 - ``off``
 
-The preceding list is ordered in decreasing severity level. Specifying a severity
-level also logs all messages with lower severity levels. For example, setting
-the log level to ``debug`` also logs messages with a severity level of
-``trace``.
+The preceding list is ordered by decreasing severity level. Specifying a severity
+level also logs all messages with higher severity levels. For example, setting
+the log level to ``critical`` also logs messages with severity levels of
+``emergency`` and ``alert``.
 
 The lower the severity level you specify, the more information the driver logs,
 which impacts performance of your application. For the best performance, ensure
@@ -75,7 +75,7 @@ the value of ``MONGODB_LOG_ALL``, which if not specified, is implicitly set to
 
 .. tip::
 
-   Logging at tge command level is the most performance-heavy logging option
+   Logging at the command level is the most performance-heavy logging option
    due to the frequency in which commands are sent to the server. Only
    specify this option if necessary for your application.
 
