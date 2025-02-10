@@ -7,6 +7,15 @@ const client = new MongoClient("<connection string>", {
 });
 // end-logger-client-options
 
+// start-log-location
+const mongodbLogComponentSeverities = {
+    all: "debug"
+};
+
+const mongodbLogPath = "stderr";
+const client = new MongoClient("<connection string>", { mongodbLogComponentSeverities, mongodbLogPath });
+// end-log-location
+
 // start-custom-logger
 import fs from 'node:fs/promises';
 import util from 'node:util';
@@ -25,3 +34,16 @@ const mongodbLogPath = {
 
 const client = new MongoClient("<connection string>", { mongodbLogPath });
 // end-custom-logger
+
+// start-log-length
+const mongodbLogComponentSeverities = {
+all: "debug"
+};
+
+const mongodbLogLength = 500;
+const client = new MongoClient("<connection string>", {
+    mongodbLogComponentSeverities,
+    mongodbLogLength
+  });
+// end-log-length
+
