@@ -3,4 +3,4 @@ name = "snooty-cache-plugin"
 
 [build]
 publish = "snooty/public"
-command = ". ./build.sh $BRANCH_NAME" 
+command = ". ./build.sh" 
