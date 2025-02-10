@@ -157,7 +157,7 @@ following example:
    :language: javascript
    :start-after: start-log-location
    :end-before: end-log-location
-   :emphasize-lines: 5-6
+   :emphasize-lines: 5-8
 
 By default, the driver logs to ``stdout``.
 
