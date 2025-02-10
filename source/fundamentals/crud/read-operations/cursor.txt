@@ -184,11 +184,10 @@ You can pass the ``signal`` command to the following methods:
 - ``db.command()``
 
 To use an abort signal, create an ``AbortController`` instance and extract the
-``signal`` from the controller. In this code example, the ``setTimeout()``
-method schedules an abort action after a specified time, and then calls the
-``abort()`` method to trigger the abort signal. You can pass the ``signal``
-command to the ``find()`` method to abort the cursor operation if needed as
-shown in the following example:
+``signal`` from the controller. In this code example, the process listens for a
+``SIGINT`` (``Ctrl+C``) to trigger the ``abort()`` method. You can pass the
+``signal`` option to the ``find()`` method to abort the cursor operation if the
+signal triggers, as shown in the following example:
 
 .. literalinclude:: /code-snippets/crud/cursor.js
    :language: javascript

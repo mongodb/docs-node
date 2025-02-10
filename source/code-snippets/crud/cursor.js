@@ -74,24 +74,19 @@ async function abort(myColl) {
   const controller = new AbortController();
   const { signal } = controller;
 
-  // Aborts operation after 20 seconds
-  setTimeout(() => controller.abort(), 20000);
-
-  const cursor = myColl.find({}, { signal });
+  process.on('SIGINT', () => controller.abort(new Error('^C pressed')));
 
   try {
-    while (await cursor.hasNext()) {
-      const doc = await cursor.next();
+    const cursor = myColl.find({}, { signal });
+    for await (const doc of cursor) {
       console.log(doc);
     }
   } catch (error) {
-    if (error.name === 'AbortError') {
-      console.error('Cursor operation was aborted');
+    if (error === signal.reason) {
+      console.error('Operation aborted:', error);
     } else {
-      console.error('An error occurred:', error);
+      console.error('Unexpected error:', error);
     }
-  } finally {
-    await cursor.close();
   }
   // end abort cursor example
 }
