@@ -35,7 +35,7 @@ at following severity levels:
 
 The preceding list is ordered by decreasing severity level. Specifying a severity
 level also logs all messages with higher severity levels. For example, setting
-the log level to ``critical`` also logs messages with severity levels of
+the log level to ``critical`` also results in log messages with severity levels of
 ``emergency`` and ``alert``.
 
 The lower the severity level you specify, the more information the driver logs,
@@ -105,7 +105,7 @@ Document Length
 The driver stringifies logged documents by using EJSON, which limits strings to
 1000 characters by default. You can specify a maximum document length for your
 logger by specifying the ``MONGODB_LOG_MAX_DOCUMENT`` environment variable. Set
-this variable to ``0`` to perform no truncation.
+this variable to ``0`` to not perform truncation.
 
 The following example sets the maximum document length to 500 characters:
 

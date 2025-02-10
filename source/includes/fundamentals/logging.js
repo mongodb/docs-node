@@ -1,9 +1,9 @@
 // start-logger-client-options
 const client = new MongoClient("<connection string>", {
-  mongodbLogComponentSeverities: {
-    all: "debug",
-    command: "off"
-  }
+    mongodbLogComponentSeverities: {
+        all: "debug",
+        command: "off"
+    }
 });
 // end-logger-client-options
 
@@ -13,7 +13,7 @@ const mongodbLogComponentSeverities = {
 };
 
 const mongodbLogPath = "stderr";
-const client = new MongoClient("<connection string>", 
+const client = new MongoClient("<connection string>",
     { mongodbLogComponentSeverities, mongodbLogPath }
 );
 // end-log-location
@@ -23,15 +23,15 @@ import fs from 'node:fs/promises';
 import util from 'node:util';
 
 const mongodbLogPath = {
-  file: await fs.open(`./server-${+new Date()}.logs`, 'w'),
-  async write(log) {
-    try {
-      await this.file?.appendFile(util.inspect(log) + '\n');
-    } catch (fileError) {
-      console.log('cannot log anymore', fileError);
-      this.file = null;
+    file: await fs.open(`./server-${+new Date()}.logs`, 'w'),
+    async write(log) {
+        try {
+            await this.file?.appendFile(util.inspect(log) + '\n');
+        } catch (fileError) {
+            console.log('cannot log anymore', fileError);
+            this.file = null;
+        }
     }
-  }
 }
 
 const client = new MongoClient("<connection string>", { mongodbLogPath });
@@ -39,13 +39,13 @@ const client = new MongoClient("<connection string>", { mongodbLogPath });
 
 // start-log-length
 const mongodbLogComponentSeverities = {
-all: "debug"
+    all: "debug"
 };
 
 const mongodbLogLength = 500;
 const client = new MongoClient("<connection string>", {
     mongodbLogComponentSeverities,
     mongodbLogLength
-  });
+});
 // end-log-length
 
