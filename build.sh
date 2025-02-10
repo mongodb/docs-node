@@ -2,6 +2,8 @@ PARSER_VERSION=0.18.14
 # This make command curls the examples for certain repos.
 # If the rule doesn't exist, the error doesn't interrupt the build process.
 make examples
+BRANCH_NAME=$1 
+echo "Printing branch name ${BRANCH_NAME}"
 
 if [ ! -d "snooty-parser" ]; then
   echo "snooty parser not installed, downloading..."
