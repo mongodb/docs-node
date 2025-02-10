@@ -6,7 +6,7 @@ make examples
 echo "Printing branch name ${BRANCH_NAME}"
 echo "branch using git branch ${BRANCH}"
 
-git rev-parse --abbrev-ref HEAD >> TEST_VAL
+TEST_VAL=git rev-parse --abbrev-ref HEAD
 echo "testing val ${TEST_VAL}"
 
 if [ ! -d "snooty-parser" ]; then
@@ -18,7 +18,7 @@ fi
 
 echo "======================================================================================================================================================================="
 echo "========================================================================== Running parser... =========================================================================="
-./snooty-parser/snooty/snooty build . --no-caching --output=./bundle.zip --branch="BRANCH_NAME"
+./snooty-parser/snooty/snooty build . --no-caching --output=./bundle.zip --branch="${BRANCH_NAME}"
 echo "========================================================================== Parser complete ============================================================================"
 echo "======================================================================================================================================================================="
 
