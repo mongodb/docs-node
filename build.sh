@@ -6,6 +6,9 @@ make examples
 echo "Printing branch name ${BRANCH_NAME}"
 echo "branch using git branch ${BRANCH}"
 
+git rev-parse --abbrev-ref HEAD >> TEST_VAL
+echo "testing val ${TEST_VAL}"
+
 if [ ! -d "snooty-parser" ]; then
   echo "snooty parser not installed, downloading..."
   curl -L -o snooty-parser.zip https://github.com/mongodb/snooty-parser/releases/download/v${PARSER_VERSION}/snooty-v${PARSER_VERSION}-linux_x86_64.zip
@@ -15,7 +18,7 @@ fi
 
 echo "======================================================================================================================================================================="
 echo "========================================================================== Running parser... =========================================================================="
-./snooty-parser/snooty/snooty build . --no-caching --output=./bundle.zip --branch=BRANCH_NAME
+./snooty-parser/snooty/snooty build . --no-caching --output=./bundle.zip --branch="BRANCH_NAME"
 echo "========================================================================== Parser complete ============================================================================"
 echo "======================================================================================================================================================================="
 
