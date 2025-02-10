@@ -13,7 +13,9 @@ const mongodbLogComponentSeverities = {
 };
 
 const mongodbLogPath = "stderr";
-const client = new MongoClient("<connection string>", { mongodbLogComponentSeverities, mongodbLogPath });
+const client = new MongoClient("<connection string>", 
+    { mongodbLogComponentSeverities, mongodbLogPath }
+);
 // end-log-location
 
 // start-custom-logger
