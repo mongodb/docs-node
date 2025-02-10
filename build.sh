@@ -4,6 +4,8 @@ PARSER_VERSION=0.18.14
 make examples
 
 echo "Printing branch name ${BRANCH_NAME}"
+BRANCH=git branch
+echo " branch using git branch ${BRANCH}"
 
 if [ ! -d "snooty-parser" ]; then
   echo "snooty parser not installed, downloading..."
