@@ -61,7 +61,7 @@ Environment Variables
 You can configure logging for different components of the driver by specifying
 a severity level in one or more of the following environment variables:
 
-- ``MONGODB_LOG_ALL``: Logs all events
+- ``MONGODB_LOG_ALL``: Specifies the default severity for any unset components 
 - ``MONGODB_LOG_COMMAND``: Logs all commands sent to the server
 - ``MONGODB_LOG_TOPOLOGY``: Logs any changes to the cluster topology
 - ``MONGODB_LOG_SERVER_SELECTION``: Logs the server selection process
@@ -76,7 +76,7 @@ the value of ``MONGODB_LOG_ALL``, which if not specified, is implicitly set to
 
    Logging at the command level is the most performance-heavy logging option
    due to the frequency in which commands are sent to the server. Only
-   specify this option if necessary for your application.
+   specify this option if necessary for debugging your application.
 
 The following example sets the log level for all components to ``debug`` except
 for ``MONGODB_LOG_COMMAND``:
@@ -97,7 +97,7 @@ as shown in the following example:
 
    export MONGODB_LOG_PATH="stderr"
 
-By default, the driver logs to ``stdout``.
+By default, the driver logs to ``stderr``.
 
 Document Length
 ```````````````
@@ -118,8 +118,8 @@ Client Options
 
 You can configure logging programmatically by specifying client options in the
 ``MongoClient`` constructor. Because client options take precedence over environment
-variables, only specify them in the client if you want to override any
-environment variables.
+variables, only specify them in the client if you no longer want the driver to
+respond to environment variables.
 
 .. tip::
 
@@ -130,7 +130,7 @@ environment variables.
 You can specify which component to configure logging for by specifying one or more of the
 following client options:
 
-- ``all``: Logs all events
+- ``default``: Specifies the default severity for any unset components
 - ``command``: Logs all commands sent to the server
 - ``topology``: Logs any changes to the cluster topology
 - ``serverSelection``: Logs the server selection process
@@ -159,7 +159,7 @@ following example:
    :end-before: end-log-location
    :emphasize-lines: 5-8
 
-By default, the driver logs to ``stdout``.
+By default, the driver logs to ``stderr``.
 
 You can also specify a custom log destination. The following example creates a
 custom log destination:
@@ -177,7 +177,7 @@ the preceding example.
 .. note::
 
    Logging can exhaust disk space if the proper log rotation system is not in
-   place. We recommend that you connect your custom write function to a known
+   place. We recommend that you connect your custom write function to a popular
    logging library.
 
 Document Length

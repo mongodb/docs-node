@@ -1,7 +1,7 @@
 // start-logger-client-options
 const client = new MongoClient("<connection string>", {
     mongodbLogComponentSeverities: {
-        all: "debug",
+        default: "debug",
         command: "off"
     }
 });
@@ -9,10 +9,10 @@ const client = new MongoClient("<connection string>", {
 
 // start-log-location
 const mongodbLogComponentSeverities = {
-    all: "debug"
+    default: "debug"
 };
 
-const mongodbLogPath = "stderr";
+const mongodbLogPath = "stdout";
 const client = new MongoClient("<connection string>",
     { mongodbLogComponentSeverities, mongodbLogPath }
 );
@@ -39,7 +39,7 @@ const client = new MongoClient("<connection string>", { mongodbLogPath });
 
 // start-log-length
 const mongodbLogComponentSeverities = {
-    all: "debug"
+    default: "debug"
 };
 
 const mongodbLogLength = 500;
