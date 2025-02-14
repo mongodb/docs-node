@@ -62,11 +62,8 @@ To learn how to create a free MongoDB Atlas cluster and load the sample datasets
 
 .. _node-bulk-operation-types:
 
-Bulk Operation Types
---------------------
-
-Insert
-~~~~~~
+Bulk Insert Operations
+----------------------
 
 To perform a bulk insert operation, create a bulk operation model for each document
 you want to insert. Then, pass a list of these models to the ``bulkWrite()``
@@ -80,7 +77,7 @@ This section describes how to perform the following types of bulk operations:
 .. _node-bulk-insert-collection:
 
 Collection-Level Bulk Insert
-````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk insert operation on your collection, create an ``InsertOneModel``
 for each operation. Then, call the ``bulkWrite()`` method on your collection
@@ -91,10 +88,11 @@ an ``InsertOneModel``:
    :copyable: false
 
    insertOne: {
-       document: {
-           // Include document fields and values here
-       }
+       document: <document to insert>
    }
+
+Example
+```````
 
 This example performs the following actions:
 
@@ -123,7 +121,7 @@ This example performs the following actions:
 .. _node-bulk-insert-client:
 
 Client-Level Bulk Insert
-````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk insert operation across multiple collections or
 databases, create a ``ClientBulkWriteModel`` for each operation. Then,
@@ -137,10 +135,11 @@ a ``ClientBulkWriteModel`` that specifies an insert operation:
    {
        namespace: '<db>.<collection>',
        name: 'insertOne',
-       document: {
-           // Include document fields and values here
-       }
+       document: <document to insert>
    }
+
+Example
+```````
 
 This example performs the following actions:
 
@@ -168,8 +167,8 @@ This example performs the following actions:
 
 .. _node-bulk-replace-operation:
 
-Replace
-~~~~~~~
+Bulk Replace Operations
+-----------------------
 
 To perform a bulk replace operation, create a bulk operation model for each document
 you want to replace. Then, pass a list of these models to the ``bulkWrite()``
@@ -183,7 +182,7 @@ This section describes how to perform the following types of bulk operations:
 .. _node-bulk-replace-collection:
 
 Collection-Level Bulk Replace
-`````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk replace operation on your collection, create a ``ReplaceOneModel``
 for each operation. Then, call the ``bulkWrite()`` method on your collection
@@ -222,6 +221,9 @@ The following table describes the fields that you can set in a
        | By default, this field is set to ``false``.
        | Type: ``Boolean``
 
+Example
+```````
+
 This example performs the following actions:
 
 - Specifies two ``ReplaceOneModel`` instances in an array. The ``ReplaceOneModel`` 
@@ -249,7 +251,7 @@ This example performs the following actions:
 .. _node-bulk-replace-client:
 
 Client-Level Bulk Replace
-`````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk replace operation across multiple collections or
 databases, create a ``ClientBulkWriteModel`` for each operation. Then,
@@ -258,6 +260,7 @@ models as a parameter. Use the following syntax to create
 a ``ClientBulkWriteModel`` that specifies an insert operation:
 
 .. code-block:: javascript
+   :copyable: false
 
    {
        namespace: '<db>.<collection>',
@@ -267,6 +270,9 @@ a ``ClientBulkWriteModel`` that specifies an insert operation:
        hint: <index for operation>,   // Optional
        collation: <collation document>   // Optional
    }
+
+Example
+```````
 
 This example performs the following actions:
 
@@ -294,8 +300,8 @@ This example performs the following actions:
 
 .. _node-bulk-update-operation:
 
-Update
-~~~~~~
+Bulk Update Operations
+----------------------
 
 To perform a bulk update operation, create a bulk operation model for each update
 you want to make. Then, pass a list of these models to the ``bulkWrite()``
@@ -309,7 +315,7 @@ This section describes how to perform the following types of bulk operations:
 .. _node-bulk-update-collection:
 
 Collection-Level Bulk Update
-````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk update operation on your collection, create an ``UpdateOneModel``
 or ``UpdateManyModel`` for each operation. Then, call the ``bulkWrite()`` method on
@@ -358,6 +364,9 @@ The following table describes the fields you can set in an ``UpdateOneModel`` or
          By default, this field is set to ``false``.
        | Type: ``Boolean``
 
+Example
+```````
+
 This example performs the following actions:
 
 - Specifies an ``UpdateOneModel`` and an ``UpdateManyModel`` instance in an array. 
@@ -385,7 +394,7 @@ This example performs the following actions:
 .. _node-bulk-update-client:
 
 Client-Level Bulk Update
-````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk update operation across multiple collections or
 databases, create a ``ClientBulkWriteModel`` for each operation. Then,
@@ -405,6 +414,9 @@ a ``ClientBulkWriteModel`` that specifies an update operation:
        collation: <collation document>   // Optional
        upsert: <true or false>   // Optional
    }
+
+Example
+```````
 
 This example performs the following actions:
 
@@ -433,8 +445,8 @@ This example performs the following actions:
 
 .. _node-bulk-delete-operation:
 
-Delete
-~~~~~~
+Bulk Delete Operations
+----------------------
 
 To perform a bulk delete operation, create a bulk operation model for each delete
 operation. Then, pass a list of these models to the ``bulkWrite()`` method.
@@ -447,7 +459,7 @@ This section describes how to perform the following types of bulk operations:
 .. _node-bulk-delete-collection:
 
 Collection-Level Bulk Delete
-````````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk delete operation on your collection, create a ``DeleteOneModel``
 or ``DeleteManyModel`` for each operation. Then, call the ``bulkWrite()`` method on
@@ -482,10 +494,13 @@ The following table describes the fields you can set in a ``DeleteOneModel`` or
          indexes, see the :ref:`node-fundamentals-indexes` guide.
        | Type: ``String or Object``
 
+Example
+```````
+
 This example performs the following actions:
 
 - Specifies a ``DeleteOneModel`` and a ``DeleteManyModel`` instance in an array. 
-  These models contain instructions to delete documents representing movies in the
+  These models contain instructions to delete documents in the
   ``movies`` collection.
 - Calls the ``bulkWrite()`` method on the ``movies`` collection and passes an
   array of models as a parameter.
@@ -508,7 +523,7 @@ This example performs the following actions:
 .. _node-bulk-delete-client:
 
 Client-Level Bulk Delete
-````````````````````````
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk delete operation across multiple collections or
 databases, create a ``ClientBulkWriteModel`` for each operation. Then,
@@ -527,6 +542,9 @@ a ``ClientBulkWriteModel`` that specifies a delete operation:
        collation: <collation document>   // Optional
    }
 
+Example
+```````
+
 This example performs the following actions:
 
 - Specifies two ``ClientBulkWriteModel`` instances in an array. The
@@ -541,8 +559,8 @@ This example performs the following actions:
    :copyable:
 
    .. input:: /code-snippets/crud/bulk.js
-      :start-after: begin-update-client
-      :end-before: end-update-client
+      :start-after: begin-delete-client
+      :end-before: end-delete-client
       :language: javascript
       :dedent:
 
@@ -589,7 +607,7 @@ Handling Exceptions
 Collection-Level Bulk Write Exceptions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If any of the operations in a collection bulk write operation are unsuccessful,
+If any bulk write operations called on a collection are unsuccessful,
 the {+driver-short+} throws a ``MongoBulkWriteError`` and does not perform any further operations if the 
 ``ordered`` option is set to ``true``. If ``ordered`` is set to ``false``, it will
 attempt to continue with subsequent operations.
@@ -608,7 +626,7 @@ A ``MongoBulkWriteError`` object contains the following properties:
        | Type: ``String``
 
    * - ``writeErrors`` 
-     - | An array of errors that occured during the bulk write operation.
+     - | An array of errors that occurred during the bulk write operation.
        | Type: ``BulkWriteError[]``
 
    * - ``writeConcernErrors`` 
@@ -627,7 +645,7 @@ A ``MongoBulkWriteError`` object contains the following properties:
 Client-Level Bulk Write Exceptions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If any client bulk write operations are unsuccessful, the {+driver-short+}
+If any bulk write operations called on your client are unsuccessful, the {+driver-short+}
 generates a ``MongoClientBulkWriteError``. By default, the driver does
 not perform any subsequent operations after encountering an error. If you
 pass the ``ordered`` option to the ``bulkWrite()`` method and set it to ``false``,
@@ -669,8 +687,8 @@ API Documentation
 To learn more about any of the methods or types discussed in this
 guide, see the following API documentation:
 
-- `Collection.BulkWrite() <{+api+}/classes/Collection.html#bulkWrite>`__
-- `MongoClient.BulkWrite() <{+api+}/classes/MongoClient.html#bulkWrite>`__
+- `Collection.bulkWrite() <{+api+}/classes/Collection.html#bulkWrite>`__
+- `MongoClient.bulkWrite() <{+api+}/classes/MongoClient.html#bulkWrite>`__
 - `BulkWriteResult <{+api+}/classes/BulkWriteResult.html>`__
 - `ClientBulkWriteResult <{+api+}/interfaces/ClientBulkWriteResult.html>`__
 - `ClientBulkWriteModel <{+api+}/types/ClientBulkWriteModel.html>`__
