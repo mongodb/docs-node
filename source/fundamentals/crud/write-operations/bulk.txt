@@ -78,8 +78,8 @@ This section describes how to perform the following types of bulk operations:
 
 .. _node-bulk-insert-collection:
 
-Collection-Level Bulk Insert
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Collection Bulk Inserts
+~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk insert operation on your collection, create an ``InsertOneModel``
 for each operation. Then, call the ``bulkWrite()`` method on your collection
@@ -122,8 +122,8 @@ This example performs the following actions:
 
 .. _node-bulk-insert-client:
 
-Client-Level Bulk Insert
-~~~~~~~~~~~~~~~~~~~~~~~~
+Client Bulk Inserts
+~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk insert operation across multiple collections or
 databases, create a ``ClientBulkWriteModel`` for each operation. Then,
@@ -135,8 +135,8 @@ a ``ClientBulkWriteModel`` that specifies an insert operation:
    :copyable: false
 
    {
-       namespace: '<db>.<collection>',
-       name: 'insertOne',
+       namespace: "<db>.<collection>",
+       name: "insertOne",
        document: <document to insert>
    }
 
@@ -183,8 +183,8 @@ This section describes how to perform the following types of bulk operations:
 
 .. _node-bulk-replace-collection:
 
-Collection-Level Bulk Replace
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Collection Bulk Replacements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk replace operation on your collection, create a ``ReplaceOneModel``
 for each operation. Then, call the ``bulkWrite()`` method on your collection
@@ -252,8 +252,8 @@ This example performs the following actions:
 
 .. _node-bulk-replace-client:
 
-Client-Level Bulk Replace
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Client Bulk Replacements
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk replace operation across multiple collections or
 databases, create a ``ClientBulkWriteModel`` for each operation. Then,
@@ -265,8 +265,8 @@ a ``ClientBulkWriteModel`` that specifies an insert operation:
    :copyable: false
 
    {
-       namespace: '<db>.<collection>',
-       name: 'replaceOne',
+       namespace: "<db>.<collection>",
+       name: "replaceOne",
        filter: <criteria for document to replace>,
        replacement: <new document>,
        hint: <index for operation>,   // Optional
@@ -316,8 +316,8 @@ This section describes how to perform the following types of bulk operations:
 
 .. _node-bulk-update-collection:
 
-Collection-Level Bulk Update
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Collection Bulk Updates
+~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk update operation on your collection, create an ``UpdateOneModel``
 or ``UpdateManyModel`` for each operation. Then, call the ``bulkWrite()`` method on
@@ -395,8 +395,8 @@ This example performs the following actions:
 
 .. _node-bulk-update-client:
 
-Client-Level Bulk Update
-~~~~~~~~~~~~~~~~~~~~~~~~
+Client Bulk Updates
+~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk update operation across multiple collections or
 databases, create a ``ClientBulkWriteModel`` for each operation. Then,
@@ -408,8 +408,8 @@ a ``ClientBulkWriteModel`` that specifies an update operation:
    :copyable: false
 
    {
-       namespace: '<db>.<collection>',
-       name: '<updateOne or updateMany>',
+       namespace: "<db>.<collection>",
+       name: "<updateOne or updateMany>",
        filter: <criteria for one or more documents to update>,
        update: <updated fields and values>,
        hint: <index for operation>,   // Optional
@@ -460,8 +460,8 @@ This section describes how to perform the following types of bulk operations:
 
 .. _node-bulk-delete-collection:
 
-Collection-Level Bulk Delete
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Collection Bulk Deletes
+~~~~~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk delete operation on your collection, create a ``DeleteOneModel``
 or ``DeleteManyModel`` for each operation. Then, call the ``bulkWrite()`` method on
@@ -524,8 +524,8 @@ This example performs the following actions:
 
 .. _node-bulk-delete-client:
 
-Client-Level Bulk Delete
-~~~~~~~~~~~~~~~~~~~~~~~~
+Client Bulk Deletes
+~~~~~~~~~~~~~~~~~~~
 
 To perform a bulk delete operation across multiple collections or
 databases, create a ``ClientBulkWriteModel`` for each operation. Then,
@@ -537,8 +537,8 @@ a ``ClientBulkWriteModel`` that specifies a delete operation:
    :copyable: false
 
    {
-       namespace: '<db>.<collection>',
-       name: '<deleteOne or deleteMany>',
+       namespace: "<db>.<collection>",
+       name: "<deleteOne or deleteMany>",
        filter: <criteria for one or more documents to delete>,
        hint: <index for operation>,   // Optional
        collation: <collation document>   // Optional
@@ -606,8 +606,8 @@ which has the following fields:
 Handling Exceptions
 -------------------
 
-Collection-Level Bulk Write Exceptions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Collection Bulk Write Exceptions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If any bulk write operations called on a collection are unsuccessful,
 the {+driver-short+} throws a ``MongoBulkWriteError`` and does not perform any further operations if the 
@@ -644,8 +644,8 @@ A ``MongoBulkWriteError`` object contains the following properties:
      - | The underlying error object, which may contain more details.
        | Type: ``Error``
 
-Client-Level Bulk Write Exceptions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Client Bulk Write Exceptions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If any bulk write operations called on your client are unsuccessful, the {+driver-short+}
 generates a ``MongoClientBulkWriteError``. By default, the driver does

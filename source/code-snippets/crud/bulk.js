@@ -44,8 +44,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
 
         // begin-insert-client
         const clientInserts = [{
-            namespace: 'sample_mflix.movies',
-            name: 'insertOne',
+            namespace: "sample_mflix.movies",
+            name: "insertOne",
             document: {
                 title: "The Favourite",
                 year: 2018,
@@ -53,8 +53,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
                 released: "2018-12-21"
             }
         }, {
-            namespace: 'sample_mflix.movies',
-            name: 'insertOne',
+            namespace: "sample_mflix.movies",
+            name: "insertOne",
             document: {
                 title: "I, Tonya",
                 year: 2017,
@@ -62,8 +62,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
                 released: "2017-12-08"
             }
         }, {
-            namespace: 'sample_mflix.users',
-            name: 'insertOne',
+            namespace: "sample_mflix.users",
+            name: "insertOne",
             document: {
                 name: "Brian Schwartz",
                 email: "bschwartz@example.com"
@@ -109,8 +109,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
 
         // begin-replace-client
         const clientReplacements = [{
-            namespace: 'sample_mflix.movies',
-            name: 'replaceOne',
+            namespace: "sample_mflix.movies",
+            name: "replaceOne",
             filter: {
                 title: "The Dark Knight"
             },
@@ -118,11 +118,10 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
                 title: "The Dark Knight Rises",
                 year: 2012,
                 rating: "PG-13"
-            },
-            upsert: false
+            }
         }, {
-            namespace: 'sample_mflix.movies',
-            name: 'replaceOne',
+            namespace: "sample_mflix.movies",
+            name: "replaceOne",
             filter: {
                 title: "Inception"
             },
@@ -130,11 +129,10 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
                 title: "Inception Reloaded",
                 year: 2010,
                 rating: "PG-13"
-            },
-            upsert: false
+            }
         }, {
-            namespace: 'sample_mflix.users',
-            name: 'replaceOne',
+            namespace: "sample_mflix.users",
+            name: "replaceOne",
             filter: {
                 name: "April Cole"
             },
@@ -182,8 +180,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
 
         // begin-update-client
         const clientUpdates = [{
-            namespace: 'sample_mflix.movies',
-            name: 'updateMany',
+            namespace: "sample_mflix.movies",
+            name: "updateMany",
             filter: {
                 rated: "PG-13"
             },
@@ -195,8 +193,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             },
             upsert: false
         }, {
-            namespace: 'sample_mflix.users',
-            name: 'updateOne',
+            namespace: "sample_mflix.users",
+            name: "updateOne",
             filter: {
                 name: "Jon Snow"
             },
@@ -233,14 +231,14 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
 
         // begin-delete-client
         const clientDeletes = [{
-            namespace: 'sample_mflix.movies',
-            name: 'deleteMany',
+            namespace: "sample_mflix.movies",
+            name: "deleteMany",
             filter: {
                 rated: "R"
             }
         }, {
-            namespace: 'sample_mflix.users',
-            name: 'deleteOne',
+            namespace: "sample_mflix.users",
+            name: "deleteOne",
             filter: {
                 email: "emilia_clarke@gameofthron.es"
             }
