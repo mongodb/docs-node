@@ -16,9 +16,11 @@ Overview
 In this guide, you can learn how to use the {+driver-short+} to
 perform **bulk operations**.
 
-Bulk operations perform multiple write operations against one or more
-collections within a database. In MongoDB, you refer to a collection by combining
-the database name and the collection name in the format ``<database>.<collection>``. 
+You can call bulk operations on a collection to perform multiple write
+operations in one method call. You can also call bulk operations on your
+client, which allows you to perform bulk writes across multiple namespaces.
+In MongoDB, a namespace consists of the database name and the collection
+name in the format ``<database>.<collection>``. 
 
 Bulk operations help reduce the number of calls to the server. Instead of sending
 a request for each operation, you can perform multiple operations within one action.
@@ -36,27 +38,27 @@ This guide includes the following sections:
 - :ref:`node-bulk-addtl-info` provides links to resources and API documentation for
   types and methods mentioned in this guide.
 
-.. important::
+.. important:: Server and Driver Version Requirements
 
-   To perform bulk write operations, ensure that your application meets the
-   following requirements:
+   Collection-level bulk write operations require the following versions:
 
-   - You are connected to MongoDB Server version 3.2 or later.
-   - You are using {+driver-short+} version 3.6 or later.
+   - {+mdb-server+} version 3.2 or later
+   - {+driver-short+} version 3.6 or later
+
+   Client-level bulk write operations require the following versions:
+
+   - {+mdb-server+} version 8.0 or later
+   - {+driver-short+} version 6.10 or later
 
 .. _node-bulk-sample-data:
 
-Sample data
+Sample Data
 -----------
 
-The examples in this guide use the following sample documents, which are stored
-in the ``movies`` collection in the ``sample_mflix`` database:
-
-.. literalinclude:: /code-snippets/crud/bulk.js
-   :language: javascript
-   :dedent:
-   :start-after: begin-sample-data
-   :end-before: end-sample-data 
+The examples in this guide use the ``movies`` and ``users`` collections in
+the ``sample_mflix`` database, which is included in the :atlas:`Atlas sample datasets </sample-data>`.
+To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
+:atlas:`Get Started with Atlas </getting-started>` guide.
 
 .. _node-bulk-operation-types:
 
@@ -66,45 +68,47 @@ Bulk Operation Types
 Insert
 ~~~~~~
 
-To perform a bulk insert operation, create a bulk operation object for each document
-you want to insert. Then, pass a list of these operations to the ``bulkWrite()``
+To perform a bulk insert operation, create a bulk operation model for each document
+you want to insert. Then, pass a list of these models to the ``bulkWrite()``
 method.
 
-The following table describes the fields of the bulk operation object for an insert
-operation:
+This section describes how to perform the following types of bulk operations:
 
-.. list-table::
-   :widths: 30 70
-   :header-rows: 1
+- :ref:`node-bulk-insert-collection`
+- :ref:`node-bulk-insert-client`
 
-   * - Field
-     - Description
+.. _node-bulk-insert-collection:
 
-   * - ``insertOne`` 
-     - | This represents an insert operation.
-       | Type: ``Operation``
+Collection-Level Bulk Insert
+````````````````````````````
 
-   * - ``document`` 
-     - | The document to insert.
-       | Type: ``Document``
+To perform a bulk insert operation on your collection, create an ``InsertOneModel``
+for each operation. Then, call the ``bulkWrite()`` method on your collection
+and pass an array of models as a parameter. Use the following syntax to create
+an ``InsertOneModel``:
 
-.. _bulk-insert-docs-example:
+.. code-block:: javascript
 
-Insert Documents Example
-````````````````````````
+   insertOne: {
+       document: {
+           // Include document fields and values here
+       }
+   }
+
 This example performs the following actions:
 
-- Specifies four ``InsertOneModel`` instances in an array. Each ``InsertOneModel`` 
-  represents a document to be inserted into the ``movies`` collection within the
-  ``db`` databse. 
+- Specifies two ``InsertOneModel`` instances in an array. Each ``InsertOneModel`` 
+  represents a document to insert into the ``movies`` collection in the
+  ``sample_mflix`` database. 
 - Passes the array of models to the ``bulkWrite()`` method.
 - Prints the number of inserted documents.
 
 .. io-code-block::
+   :copyable:
 
    .. input:: /code-snippets/crud/bulk.js
-      :start-after: begin-insert
-      :end-before: end-insert
+      :start-after: begin-insert-coll
+      :end-before: end-insert-coll
       :language: javascript
       :dedent:
 
@@ -112,19 +116,78 @@ This example performs the following actions:
       :language: console
       :visible: false
 
-      Inserted documents: 4
+      Inserted documents: 2
+
+.. _node-bulk-insert-client:
+
+Client-Level Bulk Insert
+````````````````````````
+
+To perform a bulk insert operation across multiple collections or
+databases, create a ``ClientBulkWriteModel`` for each operation. Then,
+call the ``bulkWrite()`` method on your client and pass an array of
+models as a parameter. Use the following syntax to create
+a ``ClientBulkWriteModel`` that specifies an insert operation:
+
+.. code-block:: javascript
+
+   {
+       namespace: '<db>.<collection>',
+       name: 'insertOne',
+       document: {
+           // Include document fields and values here
+       }
+   }
+
+This example performs the following actions:
+
+- Specifies three ``ClientBulkWriteModel`` instances in an array. The
+  first two models represent documents to insert into the ``movies`` collection,
+  and the last model represents a document to insert into the ``users`` collection.
+- Calls the ``bulkWrite()`` method on a client and passes an array of models as
+  a parameter.
+- Prints the number of inserted documents.
+
+.. io-code-block::
+   :copyable:
+
+   .. input:: /code-snippets/crud/bulk.js
+      :start-after: begin-insert-client
+      :end-before: end-insert-client
+      :language: javascript
+      :dedent:
+
+   .. output:: 
+      :language: console
+      :visible: false
+
+      Inserted documents: 2
 
 .. _node-bulk-replace-operation:
 
 Replace
 ~~~~~~~
 
-To perform a bulk replace operation, create a ``ReplaceOneModel`` object for 
-each document you want to replace. Then, pass a list of models to the ``bulkWrite()``
-method. 
+To perform a bulk replace operation, create a bulk operation model for each document
+you want to replace. Then, pass a list of these models to the ``bulkWrite()``
+method.
 
-The following table describes ``ReplaceOneModel`` fields that you can set by calling
-their corresponding builder methods:
+This section describes how to perform the following types of bulk operations:
+
+- :ref:`node-bulk-replace-collection`
+- :ref:`node-bulk-replace-client`
+
+.. _node-bulk-replace-collection:
+
+Collection-Level Bulk Replace
+`````````````````````````````
+
+To perform a bulk replace operation on your collection, create a ``ReplaceOneModel``
+for each operation. Then, call the ``bulkWrite()`` method on your collection
+and pass an array of models as a parameter. 
+
+The following table describes the fields that you can set in a
+``ReplaceOneModel``:
 
 .. list-table::
    :widths: 30 70
@@ -156,8 +219,6 @@ their corresponding builder methods:
        | By default, this field is set to ``false``.
        | Type: ``Boolean``
 
-Replace Documents Example
-`````````````````````````
 This example performs the following actions:
 
 - Specifies two ``ReplaceOneModel`` instances in an array. The ``ReplaceOneModel`` 
@@ -167,10 +228,11 @@ This example performs the following actions:
 - Prints the number of modified documents.
 
 .. io-code-block::
+   :copyable:
 
    .. input:: /code-snippets/crud/bulk.js
-      :start-after: begin-replace
-      :end-before: end-replace
+      :start-after: begin-replace-coll
+      :end-before: end-replace-coll
       :language: javascript
       :dedent:
 
@@ -179,6 +241,52 @@ This example performs the following actions:
       :visible: false
 
       Modified documents: 2
+
+.. _node-bulk-replace-client:
+
+Client-Level Bulk Replace
+`````````````````````````
+
+To perform a bulk replace operation across multiple collections or
+databases, create a ``ClientBulkWriteModel`` for each operation. Then,
+call the ``bulkWrite()`` method on your client and pass an array of
+models as a parameter. Use the following syntax to create
+a ``ClientBulkWriteModel`` that specifies an insert operation:
+
+.. code-block:: javascript
+
+   {
+       namespace: '<db>.<collection>',
+       name: 'replaceOne',
+       filter: <criteria for document to replace>,
+       replacement: <new document>,
+       hint: <index for operation>,   // Optional
+       collation: <collation document>   // Optional
+   }
+
+This example performs the following actions:
+
+- Specifies three ``ClientBulkWriteModel`` instances in an array. The
+  first two models contain replacement instructions for documents in the ``movies`` collection,
+  and the last model contains replacement instructions for a document in the ``users`` collection.
+- Calls the ``bulkWrite()`` method on a client and passes an array of models as
+  a parameter.
+- Prints the number of modified documents.
+
+.. io-code-block::
+   :copyable:
+
+   .. input:: /code-snippets/crud/bulk.js
+      :start-after: begin-replace-client
+      :end-before: end-replace-client
+      :language: javascript
+      :dedent:
+
+   .. output:: 
+      :language: console
+      :visible: false
+
+      Modified documents: 3
 
 .. _node-bulk-update-operation:
 
