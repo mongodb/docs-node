@@ -630,7 +630,7 @@ A ``MongoBulkWriteError`` object contains the following properties:
        | Type: ``BulkWriteError[]``
 
    * - ``writeConcernErrors`` 
-     - | Write concern errors that occured during execution of the bulk write operation.
+     - | Write concern errors that occurred during execution of the bulk write operation.
        | Type: ``WriteConnectionError[]``   
 
    * - ``result`` 

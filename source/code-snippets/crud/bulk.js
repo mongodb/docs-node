@@ -43,34 +43,31 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
         // end-insert-coll
 
         // begin-insert-client
-        const clientInserts = [
-            {
-              namespace: 'sample_mflix.movies',
-              name: 'insertOne',
-              document: {
+        const clientInserts = [{
+            namespace: 'sample_mflix.movies',
+            name: 'insertOne',
+            document: {
                 title: "The Favourite",
                 year: 2018,
                 rated: "R",
                 released: "2018-12-21"
-              }
-            },
-            {
-              namespace: 'sample_mflix.movies',
-              name: 'insertOne',
-              document: {
+            }
+        }, {
+            namespace: 'sample_mflix.movies',
+            name: 'insertOne',
+            document: {
                 title: "I, Tonya",
                 year: 2017,
                 rated: "R",
                 released: "2017-12-08"
-              }
-            },
-            {
-                namespace: 'sample_mflix.users',
-                name: 'insertOne',
-                document: {
-                    name: "Brian Schwartz",
-                    email: "bschwartz@example.com"
-                }
+            }
+        }, {
+            namespace: 'sample_mflix.users',
+            name: 'insertOne',
+            document: {
+                name: "Brian Schwartz",
+                email: "bschwartz@example.com"
+            }
         }];
 
         const client_insert_res = await client.bulkWrite(clientInserts);
@@ -111,43 +108,40 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
         // end-replace-coll
 
         // begin-replace-client
-        const clientReplacements = [
-            {
-                namespace: 'sample_mflix.movies',
-                name: 'replaceOne',
-                filter: {
-                  title: "The Dark Knight"
-                },
-                replacement: {
-                  title: "The Dark Knight Rises",
-                  year: 2012,
-                  rating: "PG-13"
-                },
-                upsert: false
-              },
-            {
-                namespace: 'sample_mflix.movies',
-                name: 'replaceOne',
-                filter: {
-                  title: "Inception"
-                },
-                replacement: {
-                  title: "Inception Reloaded",
-                  year: 2010,
-                  rating: "PG-13"
-                },
-                upsert: false
-              },
-            {
-                namespace: 'sample_mflix.users',
-                name: 'replaceOne',
-                filter: {
-                    name: "April Cole"
-                  },
-                  replacement: {
-                    name: "April Franklin",
-                    email: "aprilfrank@example.com"
-                  }
+        const clientReplacements = [{
+            namespace: 'sample_mflix.movies',
+            name: 'replaceOne',
+            filter: {
+                title: "The Dark Knight"
+            },
+            replacement: {
+                title: "The Dark Knight Rises",
+                year: 2012,
+                rating: "PG-13"
+            },
+            upsert: false
+        }, {
+            namespace: 'sample_mflix.movies',
+            name: 'replaceOne',
+            filter: {
+                title: "Inception"
+            },
+            replacement: {
+                title: "Inception Reloaded",
+                year: 2010,
+                rating: "PG-13"
+            },
+            upsert: false
+        }, {
+            namespace: 'sample_mflix.users',
+            name: 'replaceOne',
+            filter: {
+                name: "April Cole"
+            },
+            replacement: {
+                name: "April Franklin",
+                email: "aprilfrank@example.com"
+            }
         }];
 
         const client_replace_res = await client.bulkWrite(clientReplacements);
@@ -187,34 +181,32 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
         // end-update-coll
 
         // begin-update-client
-        const clientUpdates = [
-            {
-                namespace: 'sample_mflix.movies',
-                name: 'updateMany',
-                filter: {
-                    rated: "PG-13"
-                },
-                update: {
-                    $set: {
-                        rated: "PG-13 Updated",
-                        genre: "Updated Genre"
-                    }
-                },
-                upsert: false
-              },
-            {
-                namespace: 'sample_mflix.users',
-                name: 'updateOne',
-                filter: {
-                  name: "Jon Snow"
-                },
-                update: {
-                    $set: {
-                        name: "Aegon Targaryen",
-                        email: "targaryen@example.com"
-                    }
-                },
-                upsert: false
+        const clientUpdates = [{
+            namespace: 'sample_mflix.movies',
+            name: 'updateMany',
+            filter: {
+                rated: "PG-13"
+            },
+            update: {
+                $set: {
+                    rated: "PG-13 Updated",
+                    genre: "Updated Genre"
+                }
+            },
+            upsert: false
+        }, {
+            namespace: 'sample_mflix.users',
+            name: 'updateOne',
+            filter: {
+                name: "Jon Snow"
+            },
+            update: {
+                $set: {
+                    name: "Aegon Targaryen",
+                    email: "targaryen@example.com"
+                }
+            },
+            upsert: false
         }];
         const client_update_res = await client.bulkWrite(clientUpdates);
         console.log(`Modified documents: ${client_update_res.modifiedCount}`);
@@ -240,20 +232,18 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
         // end-delete-coll
 
         // begin-delete-client
-        const clientDeletes = [
-            {
-              namespace: 'sample_mflix.movies',
-              name: 'deleteMany',
-              filter: {
+        const clientDeletes = [{
+            namespace: 'sample_mflix.movies',
+            name: 'deleteMany',
+            filter: {
                 rated: "R"
-              }
-            },
-            {
-              namespace: 'sample_mflix.users',
-              name: 'deleteOne',
-              filter: {
+            }
+        }, {
+            namespace: 'sample_mflix.users',
+            name: 'deleteOne',
+            filter: {
                 email: "emilia_clarke@gameofthron.es"
-              }
+            }
         }];
 
         const client_delete_res = await client.bulkWrite(clientDeletes);
