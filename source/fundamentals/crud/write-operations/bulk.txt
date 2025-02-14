@@ -27,10 +27,14 @@ a request for each operation, you can perform multiple operations within one act
 
 This guide includes the following sections:
 
-- :ref:`node-bulk-sample-data` presents the sample data that is used by the
-  bulk operation examples.
-- :ref:`node-bulk-operation-types` describes how to use different bulk operation 
-  types to perform bulk insert, replace, update, and delete operations.
+- :ref:`node-bulk-insert-operation` describes how to perform bulk insert
+  operations on your collection or client.
+- :ref:`node-bulk-replace-operation` describes how to perform bulk replace
+  operations on your collection or client.
+- :ref:`node-bulk-update-operation` describes how to perform bulk update
+  operations on your collection or client.
+- :ref:`node-bulk-delete-operation` describes how to perform bulk delete
+  operations on your collection or client.
 - :ref:`node-bulk-return-type` describes the return object that results from your
   bulk write operations.
 - :ref:`node-bulk-handle-exceptions` describes the exceptions that occur if 
@@ -50,17 +54,15 @@ This guide includes the following sections:
    - {+mdb-server+} version 8.0 or later
    - {+driver-short+} version 6.10 or later
 
-.. _node-bulk-sample-data:
-
 Sample Data
------------
+~~~~~~~~~~~
 
 The examples in this guide use the ``movies`` and ``users`` collections in
 the ``sample_mflix`` database, which is included in the :atlas:`Atlas sample datasets </sample-data>`.
 To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
 :atlas:`Get Started with Atlas </getting-started>` guide.
 
-.. _node-bulk-operation-types:
+.. _node-bulk-insert-operation:
 
 Bulk Insert Operations
 ----------------------
