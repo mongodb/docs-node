@@ -38,14 +38,15 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        await movies.bulkWrite(insertModels);
+        const insert_result = await movies.bulkWrite(insertModels);
+        console.log(`Inserted documents: ${insert_result.insertedCount}`);
         // end-insert-coll
 
         // begin-insert-client
         const clientInserts = [
             {
-              name: 'insertOne',
               namespace: 'sample_mflix.movies',
+              name: 'insertOne',
               document: {
                 title: "The Favourite",
                 year: 2018,
@@ -54,8 +55,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
               }
             },
             {
-              name: 'insertOne',
               namespace: 'sample_mflix.movies',
+              name: 'insertOne',
               document: {
                 title: "I, Tonya",
                 year: 2017,
@@ -64,32 +65,19 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
               }
             },
             {
-                name: 'insertOne',
                 namespace: 'sample_mflix.users',
+                name: 'insertOne',
                 document: {
                     name: "Brian Schwartz",
                     email: "bschwartz@example.com"
                 }
         }];
-        await client.bulkWrite(clientInserts);
+
+        const client_insert_res = await client.bulkWrite(clientInserts);
+        console.log(`Inserted documents: ${client_insert_res.insertedCount}`);
         // end-insert-client
 
         await movies.insertMany(docs);
-
-        // Inserting additional movies
-        const additionalMovies = [{
-            title: "Dunkirk",
-            year: 2017,
-            rated: "PG-13",
-            released: "2017-07-21"
-        }, {
-            title: "Memento",
-            year: 2000,
-            rated: "R",
-            released: "2000-09-05"
-        }];
-        await movies.insertMany(additionalMovies);
-
 
         // begin-replace-coll
         const replaceOperations = [{
@@ -118,14 +106,15 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        await movies.bulkWrite(replaceOperations);
+        const replace_result = await movies.bulkWrite(replaceOperations);
+        console.log(`Modified documents: ${replace_result.modifiedCount}`);
         // end-replace-coll
 
         // begin-replace-client
         const clientReplacements = [
             {
-                name: 'replaceOne',
                 namespace: 'sample_mflix.movies',
+                name: 'replaceOne',
                 filter: {
                   title: "The Dark Knight"
                 },
@@ -137,8 +126,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
                 upsert: false
               },
             {
-                name: 'replaceOne',
                 namespace: 'sample_mflix.movies',
+                name: 'replaceOne',
                 filter: {
                   title: "Inception"
                 },
@@ -150,8 +139,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
                 upsert: false
               },
             {
-                name: 'replaceOne',
                 namespace: 'sample_mflix.users',
+                name: 'replaceOne',
                 filter: {
                     name: "April Cole"
                   },
@@ -160,10 +149,12 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
                     email: "aprilfrank@example.com"
                   }
         }];
-        await client.bulkWrite(clientReplacements);
+
+        const client_replace_res = await client.bulkWrite(clientReplacements);
+        console.log(`Modified documents: ${client_replace_res.modifiedCount}`);
         // end-replace-client        
 
-        // begin-update
+        // begin-update-coll
         const updateOperations = [{
             updateOne: {
                 filter: {
@@ -192,13 +183,44 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
         }];
 
         const update_result = await movies.bulkWrite(updateOperations);
+        console.log(`Modified documents: ${update_result.modifiedCount}`);
+        // end-update-coll
 
-        console.log(`Matched documents: ${result3.matchedCount}`);
-        console.log(`Modified documents: ${result3.modifiedCount}`);
-        // end-update
+        // begin-update-client
+        const clientUpdates = [
+            {
+                namespace: 'sample_mflix.movies',
+                name: 'updateMany',
+                filter: {
+                    rated: "PG-13"
+                },
+                update: {
+                    $set: {
+                        rated: "PG-13 Updated",
+                        genre: "Updated Genre"
+                    }
+                },
+                upsert: false
+              },
+            {
+                namespace: 'sample_mflix.users',
+                name: 'updateOne',
+                filter: {
+                  name: "Jon Snow"
+                },
+                update: {
+                    $set: {
+                        name: "Aegon Targaryen",
+                        email: "targaryen@example.com"
+                    }
+                },
+                upsert: false
+        }];
+        const client_update_res = await client.bulkWrite(clientUpdates);
+        console.log(`Modified documents: ${client_update_res.modifiedCount}`);
+        // end-update-client     
 
-
-        // begin-delete
+        // begin-delete-coll
         const deleteOperations = [{
             deleteOne: {
                 filter: {
@@ -213,12 +235,30 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-
         const delete_result = await movies.bulkWrite(deleteOperations);
+        console.log(`Deleted documents: ${delete_result.deletedCount}`);
+        // end-delete-coll
 
-        console.log(`Deleted documents: ${result4.deletedCount}`);
-        // end-delete
+        // begin-delete-client
+        const clientDeletes = [
+            {
+              namespace: 'sample_mflix.movies',
+              name: 'deleteMany',
+              filter: {
+                rated: "R"
+              }
+            },
+            {
+              namespace: 'sample_mflix.users',
+              name: 'deleteOne',
+              filter: {
+                email: "emilia_clarke@gameofthron.es"
+              }
+        }];
 
+        const client_delete_res = await client.bulkWrite(clientDeletes);
+        console.log(`Deleted documents: ${client_delete_res.deletedCount}`);
+        // end-delete-client
 
         console.log("Operations completed successfully.");
     } finally {
