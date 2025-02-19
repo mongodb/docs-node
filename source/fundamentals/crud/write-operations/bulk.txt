@@ -240,7 +240,7 @@ This example performs the following actions:
 
 1. Specifies two ``ReplaceOneModel`` instances in an array. The ``ReplaceOneModel`` 
    instances contain instructions to replace documents representing movies in the
-  ``movies`` collection.
+   ``movies`` collection.
 #. Calls the ``bulkWrite()`` method on the ``movies`` collection and passes an
    array of models as a parameter.
 #. Prints the number of modified documents.
@@ -572,10 +572,10 @@ Example
 This example performs the following actions:
 
 1. Specifies a ``DeleteOneModel`` and a ``DeleteManyModel`` instance in an array. 
-  These models contain instructions to delete documents in the
-  ``movies`` collection.
+   These models contain instructions to delete documents in the
+   ``movies`` collection.
 #. Calls the ``bulkWrite()`` method on the ``movies`` collection and passes an
-  array of models as a parameter.
+   array of models as a parameter.
 #. Prints the number of deleted documents.
 
 .. io-code-block::
@@ -644,11 +644,11 @@ Example
 This example performs the following actions:
 
 1. Specifies two ``ClientBulkWriteModel`` instances in an array. The
-  first model specifies a delete many operation on the ``movies``
-  collection, and the second model specifies a delete one operation
-  on the ``users`` collection.
+   first model specifies a delete many operation on the ``movies``
+   collection, and the second model specifies a delete one operation
+   on the ``users`` collection.
 #. Calls the ``bulkWrite()`` method on a client and passes an array of models as
-  a parameter.
+   a parameter.
 #. Prints the number of modified documents.
 
 .. io-code-block::
@@ -664,12 +664,15 @@ This example performs the following actions:
       :language: console
       :visible: false
 
-      Modified documents: 5538
+      Deleted documents: 5538
 
 .. _node-bulk-return-type:
 
 Return Type
 -----------
+
+BulkWriteResult
+~~~~~~~~~~~~~~~
 
 The ``Collection.bulkWrite()`` method returns a ``BulkWriteResult`` object, which provides
 information about your bulk operation.
@@ -697,6 +700,9 @@ The following tables describes the fields of a ``BulkWriteResult`` object:
 
    * - ``deletedCount`` 
      - The number of deleted documents
+
+ClientBulkWriteResult
+~~~~~~~~~~~~~~~~~~~~~
 
 The ``MongoClient.bulkWrite()`` method returns a ``ClientBulkWriteResult`` object,
 which includes information about the client bulk write operation.
