@@ -6,10 +6,7 @@ const {
 const uri = '<connection string>'; // Add your MongoDB connection string here
 
 (async () => {
-    const client = new MongoClient(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
+    const client = new MongoClient(uri);
 
     try {
         await client.connect();
@@ -38,8 +35,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        const insert_result = await movies.bulkWrite(insertModels);
-        console.log(`Inserted documents: ${insert_result.insertedCount}`);
+        const insertResult = await movies.bulkWrite(insertModels);
+        console.log(`Inserted documents: ${insertResult.insertedCount}`);
         // end-insert-coll
 
         // begin-insert-client
@@ -70,8 +67,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        const client_insert_res = await client.bulkWrite(clientInserts);
-        console.log(`Inserted documents: ${client_insert_res.insertedCount}`);
+        const clientInsertRes = await client.bulkWrite(clientInserts);
+        console.log(`Inserted documents: ${clientInsertRes.insertedCount}`);
         // end-insert-client
 
         await movies.insertMany(docs);
@@ -103,8 +100,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        const replace_result = await movies.bulkWrite(replaceOperations);
-        console.log(`Modified documents: ${replace_result.modifiedCount}`);
+        const replaceResult = await movies.bulkWrite(replaceOperations);
+        console.log(`Modified documents: ${replaceResult.modifiedCount}`);
         // end-replace-coll
 
         // begin-replace-client
@@ -142,8 +139,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        const client_replace_res = await client.bulkWrite(clientReplacements);
-        console.log(`Modified documents: ${client_replace_res.modifiedCount}`);
+        const clientReplaceRes = await client.bulkWrite(clientReplacements);
+        console.log(`Modified documents: ${clientReplaceRes.modifiedCount}`);
         // end-replace-client        
 
         // begin-update-coll
@@ -174,8 +171,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        const update_result = await movies.bulkWrite(updateOperations);
-        console.log(`Modified documents: ${update_result.modifiedCount}`);
+        const updateResult = await movies.bulkWrite(updateOperations);
+        console.log(`Modified documents: ${updateResult.modifiedCount}`);
         // end-update-coll
 
         // begin-update-client
@@ -206,8 +203,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             },
             upsert: false
         }];
-        const client_update_res = await client.bulkWrite(clientUpdates);
-        console.log(`Modified documents: ${client_update_res.modifiedCount}`);
+        const clientUpdateRes = await client.bulkWrite(clientUpdates);
+        console.log(`Modified documents: ${clientUpdateRes.modifiedCount}`);
         // end-update-client     
 
         // begin-delete-coll
@@ -225,8 +222,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        const delete_result = await movies.bulkWrite(deleteOperations);
-        console.log(`Deleted documents: ${delete_result.deletedCount}`);
+        const deleteResult = await movies.bulkWrite(deleteOperations);
+        console.log(`Deleted documents: ${deleteResult.deletedCount}`);
         // end-delete-coll
 
         // begin-delete-client
@@ -244,8 +241,8 @@ const uri = '<connection string>'; // Add your MongoDB connection string here
             }
         }];
 
-        const client_delete_res = await client.bulkWrite(clientDeletes);
-        console.log(`Deleted documents: ${client_delete_res.deletedCount}`);
+        const clientDeleteRes = await client.bulkWrite(clientDeletes);
+        console.log(`Deleted documents: ${clientDeleteRes.deletedCount}`);
         // end-delete-client
 
         console.log("Operations completed successfully.");

@@ -24,7 +24,7 @@ you can perform multiple operations within one action.
    in the {+mdb-server+} manual.
 
 You can use bulk operations to perform multiple write operations on
-a collection. You can also call bulk operations on your client,
+a collection. You can also run bulk operations from the client,
 which allows you to perform bulk writes across multiple namespaces.
 In MongoDB, a namespace consists of the database name and the collection
 name in the format ``<database>.<collection>``. 
