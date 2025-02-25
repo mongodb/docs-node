@@ -599,8 +599,8 @@ The {+driver-short+} v6.1 release includes the following features:
 - Detects environment variables for region settings when
   authenticating by using `IAM AssumeRoleWithWebIdentity 
   <https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRoleWithWebIdentity.html>`__ 
-  AWS authentication. To instruct the driver to use your region options, you 
-  must set both of the following environment variables:
+  ``MONGODB-AWS`` authentication. To instruct the driver to use your region options, 
+  you must set both of the following environment variables:
 
   - ``AWS_STS_REGIONAL_ENDPOINTS``
   - ``AWS_REGION``
