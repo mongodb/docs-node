@@ -606,7 +606,7 @@ The {+driver-short+} v6.1 release includes the following features:
 
   For more information on how to set region settings for ``MONGODB-AWS`` 
   authentication, see the :guilabel:`Web Identity Token` tab in the 
-  ``MONGODB-AWS`` section of the Authentication Mechanisms guide. 
+  :ref:`MONGODB-AWS <mongodb-aws>` section of the Authentication Mechanisms guide. 
 
 - Fixes a memory leak issue caused by recursive calls to the ``next()``
   method of the ``ChangeStream`` type.
