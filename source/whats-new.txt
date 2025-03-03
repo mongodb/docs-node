@@ -45,11 +45,11 @@ The {+driver-short+} v6.14 release includes the following features:
 - Adds support for the ``$lookup`` aggregation stage on encrypted collections. You must
   upgrade your ``mongodb-client-encryption`` package to v6.3 or later to use this feature.
 
-- Uses the {+driver-short+}'s ``isUint8Array`` method rather than the ``util/types``
-  implementation.
+- Removes the need to import the ``util/types`` package by specifying the {+driver-short+}'s
+  internal implementation of the ``isUint8Array`` method.
 
-- Reverts the version compatibility of ``@aws-sdk/credential-providers`` that was inadvertantly
-  raised in v6.13.1.
+- Reverts the version compatibility of ``@aws-sdk/credential-providers``
+  to v3.188.0.
 
 To learn more about this release, see the
 :github:`v6.14.0 Release Notes <mongodb/node-mongodb-native/releases/tag/v6.14.0>` on
