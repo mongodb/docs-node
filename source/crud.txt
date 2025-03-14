@@ -1,0 +1,36 @@
+.. _node-crud-landing:
+.. _node-crud-operations:
+
+===============
+CRUD Operations
+===============
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :description: Learn how to use {+driver-short+} to read and write MongoDB data.
+   :keywords: usage examples, query, find, code example, save, create
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+   
+   Insert Documents </crud/insert>
+   Query Documents </crud/query>
+   Update Documents </crud/update>
+   Delete Documents </crud/delete>
+   Bulk Write Operations </crud/bulk-write>
+   Transactions </crud/transactions>
+   Configure CRUD Operations </crud/configure>
+   Store Large Files </crud/gridfs>
+
+CRUD (Create, Read, Update, Delete) operations enable you to work with
+data stored in MongoDB.

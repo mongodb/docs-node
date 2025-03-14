@@ -1,0 +1,21 @@
+.. _node-replace:
+
+=================
+Replace Documents
+=================
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, write, add data, change
+
+Overview
+--------
+
+In this guide, you can learn how to use {+driver-short+} to perform a replace
+operation on a document in a MongoDB collection. A replace operation performs
+differently than an update operation. An update operation
+modifies only the specified fields in a target document. A replace operation removes *all* fields
+in the target document and replaces them with new ones.

@@ -39,7 +39,7 @@ Compatibility
        |
        | `API Documentation <{+api+}/classes/Collection.html#findOne>`__
        | :ref:`Usage Example <node-usage-findone>`
-       | :ref:`Fundamentals <node-fundamentals-retrieve-data>`
+       | :ref:`Query Operations <node-query>`
 
      - .. io-code-block::
           :copyable: true
