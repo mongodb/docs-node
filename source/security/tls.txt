@@ -1,4 +1,5 @@
 .. _node-connect-tls:
+.. _node-tls:
 
 ==========================
 Enable TLS on a Connection

@@ -25,6 +25,8 @@ MongoDB Node Driver
   Run a Database Command </run-command>
   Monitoring and Logging </monitoring-and-logging>
   Security </security>
+  Reference </reference>
+  Typescript </typescript>
   API Documentation <{+api+}>
   Issues & Help </issues-and-help>
   Release Notes <https://github.com/mongodb/node-mongodb-native/releases/>
@@ -60,7 +62,7 @@ Learn how to create and configure a connection to a MongoDB deployment in the
 Read and Write Data
 -------------------
 
-Learn how to find, update, and delete data in the :ref:`<node-crud>` section.
+Learn how to find, update, and delete data in the :ref:`<node-crud-operations>` section.
 
 Transform Your Data with Aggregation
 -------------------------------------

@@ -1,4 +1,5 @@
 .. _node-connect-socks:
+.. _node-socks:
 
 ===========================
 Enable SOCKS5 Proxy Support

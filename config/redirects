@@ -66,3 +66,11 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/fundamentals/authentication -> ${base}/security/authentication/
 [*-master]: ${prefix}/${version}/fundamentals/authentication/mechanisms/ -> ${base}/security/authentication/mechanisms/
 [*-master]: ${prefix}/${version}/fundamentals/authentication/enterprise-mechanisms -> ${base}/security/authentication/enterprise-mechanisms/
+[*-master]: ${prefix}/${version}/fundamentals/encrypt-fields -> ${base}/security/encrypt-fields/
+[*-master]: ${prefix}/${version}/fundamentals/connection/tls -> ${base}/security/tls/
+[*-master]: ${prefix}/${version}/fundamentals/connection/socks -> ${base}/security/socks/
+[*-master]: ${prefix}/${version}/fundamentals/typescript -> ${base}/typescript/
+[*-master]: ${prefix}/${version}/whats-new -> ${base}/reference/release-notes/
+[*-master]: ${prefix}/${version}/compatibility -> ${base}/reference/compatibility/
+[*-master]: ${prefix}/${version}/upgrade -> ${base}/reference/upgrade/
+[*-master]: ${prefix}/${version}/quick-reference -> ${base}/reference/quick-reference/

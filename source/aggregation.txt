@@ -20,11 +20,11 @@ Aggregation
 
 .. toctree::
 
-   Filtered Subset </aggregation/aggregation-tutorials/filtered-subset/>
-   Group & Total </aggregation/aggregation-tutorials/group-total/>
-   Unpack Arrays & Group </aggregation/aggregation-tutorials/unpack-arrays/>
-   One-to-One Join </aggregation/aggregation-tutorials/one-to-one-join/>
-   Multi-Field Join </aggregation/aggregation-tutorials/multi-field-join/>
+   Filtered Subset </aggregation/filtered-subset/>
+   Group & Total </aggregation/group-total/>
+   Unpack Arrays & Group </aggregation/unpack-arrays/>
+   One-to-One Join </aggregation/one-to-one-join/>
+   Multi-Field Join </aggregation/multi-field-join/>
 
 .. _nodejs-aggregation-overview:
 

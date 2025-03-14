@@ -23,6 +23,9 @@ Security
    :maxdepth: 1
 
    Authentication </security/authentication>
+   In-Use Encryption </security/encrypt-fields>
+   TLS Security Protocol </security/tls>
+   SOCKS Proxy </security/socks>
 
 Overview
 --------

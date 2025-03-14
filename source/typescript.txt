@@ -1,4 +1,5 @@
-.. node-fundamentals-typescript:
+.. _node-fundamentals-typescript:
+.. _node-typescript:
 
 ==========
 TypeScript
@@ -203,7 +204,7 @@ To learn more about the limitations of dot notation in the
 :ref:`<node-driver-recursive-types-dot-notation>`
 section.
 
-.. typescript-working-with-id:
+.. _node-typescript-working-with-id:
 
 Working with the _id Field
 --------------------------
