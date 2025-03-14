@@ -1,0 +1,23 @@
+.. _node-configure:
+
+=========================
+Configure CRUD Operations
+=========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: insert, update, replace, delete, options, code example
+
+Overview
+--------
+
+In this guide, you can learn how to configure read and write operations in {+driver-short+}.

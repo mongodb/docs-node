@@ -1,0 +1,28 @@
+.. _node-specify-documents-to-return:
+
+===========================
+Specify Documents to Return
+===========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :keywords: read, paginate, pagination, order, code example
+
+Overview
+--------
+
+In this guide, you can learn how to specify which documents to return from a read
+operation by using the following methods:
+
+- ``limit``: Specifies the maximum number of documents to return from a query.
+- ``sort``: Specifies the sort order for the returned documents.
+- ``skip``: Specifies the number of documents to skip before returning query results.

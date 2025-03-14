@@ -1,0 +1,24 @@
+.. _node-monitoring-logging:
+
+======================
+Monitoring and Logging
+======================
+
+.. facet::
+   :name: programming_language
+   :values: python
+
+.. meta::
+   :keywords: event
+
+.. toctree::
+
+   Monitoring </monitoring-and-logging/monitoring>
+   Logging </monitoring-and-logging/logging>
+   Change Streams </monitoring-and-logging/change-streams>
+
+Overview
+--------
+
+On this page, you can see copyable code examples that show common
+methods you can use to monitor and log events with {+driver-short+}.

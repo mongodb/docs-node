@@ -1,0 +1,30 @@
+.. _node-connection-pools:
+
+================
+Connection Pools
+================
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn about how {+driver-short+} uses connection pools to manage
+connections to a MongoDB deployment and how you can configure connection pool settings
+in your application.
+
+A connection pool is a cache of open database connections maintained by {+driver-short+}.
+When your application requests a connection to MongoDB, {+driver-short+} seamlessly
+gets a connection from the pool, performs operations, and returns the connection
+to the pool for reuse.
+
+Connection pools help reduce application latency and the number of times new connections
+are created by {+driver-short+}.

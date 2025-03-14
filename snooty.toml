@@ -7,14 +7,19 @@ intersphinx = [
 ]
 
 toc_landing_pages = [
-    "/fundamentals/authentication",
-    "/fundamentals",
-    "/fundamentals/connection",
-    "/fundamentals/crud",
-    "/fundamentals/bson",
-    "/usage-examples",
-    "/quick-start",
+    "/get-started",
+    "/connect",
+    "/aggregation",
+    "/aggregation/aggregation-tutorials",
+    "/security",
+    "/security/authentication",
     "/aggregation-tutorials",
+    "/data-formats",
+    "connect/connection-options",
+    "crud",
+    "/crud/query",
+    "crud/update",
+    "monitoring-and-logging"
 ]
 sharedinclude_root = "https://raw.githubusercontent.com/10gen/docs-shared/main/"
 

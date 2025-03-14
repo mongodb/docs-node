@@ -1,0 +1,25 @@
+.. _node-bson-control:
+.. _node-bson:
+
+====
+BSON
+====
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to create BSON documents, read BSON from a file, 
+and write BSON to a file by using {+driver-short+}.
+
+**BSON**, or Binary JSON, is the data format that MongoDB uses to organize
+and store data. This data format includes all JSON data structure types and
+adds support for types including dates, different size integers, ObjectIds, and
+binary data.
