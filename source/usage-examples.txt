@@ -59,7 +59,7 @@ can :guides:`import the sample dataset into a local MongoDB instance
 
 Once you have imported the dataset, you can copy and paste a usage
 example into your development environment of choice. You can follow the
-:doc:`quick start guide </quick-start>` to learn more about getting
+:doc:`get started guide </get-started>` to learn more about getting
 started with Node.js, npm, and the Node.js driver. Once you've copied
 a usage example, you must edit one line to get the example running
 with your instance of MongoDB:
@@ -121,9 +121,10 @@ Available Usage Examples
 - :doc:`Insert Operations </usage-examples/insert-operations>`
 - :doc:`Update Operations </usage-examples/update-and-replace-operations>`
 - :doc:`Delete Operations </usage-examples/delete-operations>`
-- :doc:`Count Documents </usage-examples/count>`
 - :doc:`Retrieve Distinct Values of a Field </usage-examples/distinct>`
 - :doc:`Run a Command </usage-examples/command>`
-- :doc:`Watch for Changes </usage-examples/changeStream>`
 - :doc:`Perform Bulk Operations </usage-examples/bulkWrite>`
 - :doc:`Perform a Transaction </usage-examples/transactions>`
+
+.. - :doc:`Count Documents </usage-examples/count>`
+.. - :doc:`Watch for Changes </usage-examples/changeStream>`
