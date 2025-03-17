@@ -1,0 +1,34 @@
+.. _node-security:
+
+=========
+Security
+=========
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :keywords: ldap, encryption, principal, tls, authorize, boto, ecs, aws
+   :description: Learn how to use {+driver-short+} to secure your data.
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   Authentication </security/authentication>
+   In-Use Encryption </security/encrypt-fields>
+   TLS Security Protocol </security/tls>
+   SOCKS Proxy </security/socks>
+
+Overview
+--------
+
+MongoDB supports multiple mechanisms that you can use to authenticate your application.
+This page contains code examples that show each of these mechanisms.
