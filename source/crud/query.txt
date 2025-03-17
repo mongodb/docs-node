@@ -21,8 +21,10 @@ Query Operations
    Find Documents </crud/query/retrieve>
    Specify Documents to Return </crud/query/specify-documents-to-return>
    Specify Fields to Return </crud/query/project>
+   Specify a Query </crud/query/query-document>
    Count Documents </crud/query/count>
    Distinct Field Values </crud/query/distinct>
+   Search Text </crud/query/text>
    Access Data from a Cursor </crud/query/cursor>
    Geospatial Queries </crud/query/geo>
 

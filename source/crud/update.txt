@@ -1,5 +1,5 @@
 .. _node-fundamentals-upsert:
-.. _node-udate:
+.. _node-update:
 
 ================
 Update Documents
@@ -22,7 +22,9 @@ Update Documents
    :titlesonly:
    :maxdepth: 1
 
+   Modify Documents </crud/update/modify>
    Replace </crud/update/replace>
+   Update Arrays </crud/update/embedded-arrays>
 
 Overview
 --------

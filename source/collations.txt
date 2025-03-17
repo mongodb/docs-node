@@ -1,4 +1,5 @@
 .. _node-fundamentals-collations:
+.. _node-collations:
 
 ==========
 Collations

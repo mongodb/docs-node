@@ -28,8 +28,10 @@ CRUD Operations
    Update Documents </crud/update>
    Delete Documents </crud/delete>
    Bulk Write Operations </crud/bulk-write>
+   Compound Operations </crud/compound-operations>
    Transactions </crud/transactions>
    Configure CRUD Operations </crud/configure>
+   Operations on Replica Sets </crud/read-write-pref>
    Store Large Files </crud/gridfs>
 
 CRUD (Create, Read, Update, Delete) operations enable you to work with

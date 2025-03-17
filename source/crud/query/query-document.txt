@@ -1,4 +1,5 @@
 .. _node-fundamentals-query-document:
+.. _node-query-document:
 
 ===============
 Specify a Query

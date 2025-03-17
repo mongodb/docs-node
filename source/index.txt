@@ -21,6 +21,7 @@ MongoDB Node Driver
   CRUD Operations </crud>
   Aggregation </aggregation>
   Data Formats </data-formats>
+  Collations </collations>
   Indexes </indexes>
   Run a Database Command </run-command>
   Monitoring and Logging </monitoring-and-logging>

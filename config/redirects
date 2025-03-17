@@ -41,6 +41,9 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/upsert/ -> ${base}/${version}/crud/update/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/delete/ -> ${base}/${version}/crud/delete/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/ -> ${base}/${version}/crud/query/
+[*-master]: ${prefix}/${version}/fundamentals/crud/query-document/ -> ${base}/${version}/crud/query/query-document/
+[*-master]: ${prefix}/${version}/fundamentals/crud/compound-operations/ -> ${base}/${version}/crud/compound-operations/
+[*-master]: ${prefix}/${version}/fundamentals/crud/read-write-pref/ -> ${base}/${version}/crud/read-write-pref/
 [*-master]: ${prefix}/${version}/fundamentals/transactions/ -> ${base}/${version}/crud/transactions/
 [*-master]: ${prefix}/${version}/fundamentals/gridfs/ -> ${base}/${version}/crud/gridfs/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/retrieve/ -> ${base}/${version}/crud/query/retrieve/
@@ -65,12 +68,18 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/aggregation-tutorials/unpack-arrays/ -> ${base}/aggregation/unpack-arrays/
 [*-master]: ${prefix}/${version}/fundamentals/authentication -> ${base}/security/authentication/
 [*-master]: ${prefix}/${version}/fundamentals/authentication/mechanisms/ -> ${base}/security/authentication/mechanisms/
-[*-master]: ${prefix}/${version}/fundamentals/authentication/enterprise-mechanisms -> ${base}/security/authentication/enterprise-mechanisms/
-[*-master]: ${prefix}/${version}/fundamentals/encrypt-fields -> ${base}/security/encrypt-fields/
-[*-master]: ${prefix}/${version}/fundamentals/connection/tls -> ${base}/security/tls/
-[*-master]: ${prefix}/${version}/fundamentals/connection/socks -> ${base}/security/socks/
-[*-master]: ${prefix}/${version}/fundamentals/typescript -> ${base}/typescript/
-[*-master]: ${prefix}/${version}/whats-new -> ${base}/reference/release-notes/
-[*-master]: ${prefix}/${version}/compatibility -> ${base}/reference/compatibility/
-[*-master]: ${prefix}/${version}/upgrade -> ${base}/reference/upgrade/
-[*-master]: ${prefix}/${version}/quick-reference -> ${base}/reference/quick-reference/
+[*-master]: ${prefix}/${version}/fundamentals/authentication/enterprise-mechanisms/ -> ${base}/security/authentication/enterprise-mechanisms/
+[*-master]: ${prefix}/${version}/fundamentals/encrypt-fields/ -> ${base}/security/encrypt-fields/
+[*-master]: ${prefix}/${version}/fundamentals/connection/tls/ -> ${base}/security/tls/
+[*-master]: ${prefix}/${version}/fundamentals/connection/socks/ -> ${base}/security/socks/
+[*-master]: ${prefix}/${version}/fundamentals/typescript/ -> ${base}/typescript/
+[*-master]: ${prefix}/${version}/whats-new/ -> ${base}/reference/release-notes/
+[*-master]: ${prefix}/${version}/compatibility/ -> ${base}/reference/compatibility/
+[*-master]: ${prefix}/${version}/upgrade/ -> ${base}/reference/upgrade/
+[*-master]: ${prefix}/${version}/quick-reference/ -> ${base}/reference/quick-reference/
+[*-master]: ${prefix}/${version}/fundamentals/collations/ -> ${base}/collations/
+[*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/text/ -> ${base}/crud/query/text/
+[*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/modify/ -> ${base}/crud/update/modify/
+[*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/embedded-arrays/ -> ${base}/crud/update/embedded-arrays/
+[*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/pkFactory/ -> ${base}/crud/pkFactory/
+
