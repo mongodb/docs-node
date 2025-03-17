@@ -21,7 +21,6 @@ MongoDB Node Driver
   CRUD Operations </crud>
   Aggregation </aggregation>
   Data Formats </data-formats>
-  Collations </collations>
   Indexes </indexes>
   Run a Database Command </run-command>
   Monitoring and Logging </monitoring-and-logging>
@@ -30,7 +29,6 @@ MongoDB Node Driver
   Typescript </typescript>
   API Documentation <{+api+}>
   Issues & Help </issues-and-help>
-  Release Notes <https://github.com/mongodb/node-mongodb-native/releases/>
   View the Source <https://github.com/mongodb/node-mongodb-native/>
 
 Introduction

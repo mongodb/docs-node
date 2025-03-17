@@ -77,7 +77,7 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/compatibility/ -> ${base}/reference/compatibility/
 [*-master]: ${prefix}/${version}/upgrade/ -> ${base}/reference/upgrade/
 [*-master]: ${prefix}/${version}/quick-reference/ -> ${base}/reference/quick-reference/
-[*-master]: ${prefix}/${version}/fundamentals/collations/ -> ${base}/collations/
+[*-master]: ${prefix}/${version}/fundamentals/collations/ -> ${base}/crud/configure/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/text/ -> ${base}/crud/query/text/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/modify/ -> ${base}/crud/update/modify/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/embedded-arrays/ -> ${base}/crud/update/embedded-arrays/
