@@ -12,6 +12,9 @@ Authentication
    SCRAM </security/authentication/scram>
    X.509 </security/authentication/x509>
    AWS IAM </security/authentication/aws-iam>
+   OIDC </security/authentication/oidc>
+   LDAP (PLAIN) </security/authentication/ldap>
+   Kerberos (GSSAPI) </security/authentication/kerberos>
 
 Overview
 --------
@@ -43,3 +46,43 @@ Enterprise Edition which includes:
    For instructions on MongoDB driver installation and deployment setup, see
    our :guides:`Connect to MongoDB guide </server/drivers/>`. Select your
    MongoDB deployment type and the Node.js client.
+
+MongoDB Edition Compatibility
+-----------------------------
+
+The following table lists the authentication mechanisms supported by MongoDB and
+the {+mdb-server+} editions that each mechanism is compatible with. Click the name of
+a mechanism to learn more about how to use it with your application.
+
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
+
+   * - Authentication Mechanism
+     - Atlas
+     - Enterprise Advanced
+     - Community
+   * - :ref:`<node-authentication-scram>`
+     - Yes
+     - Yes
+     - Yes
+   * - :ref:`<node-authentication-x509>`
+     - Yes
+     - Yes
+     - Yes
+   * - :ref:`<node-authentication-aws>`
+     - Yes
+     - No
+     - No
+   * - :ref:`OIDC (Workload Identity Federation) <node-enterprise-auth-oidc>`
+     - Yes
+     - Yes
+     - No
+   * - :ref:`<node-authentication-ldap>`
+     - Yes
+     - Yes
+     - No
+   * - :ref:`Kerberos (GSSAPI) <node-authentication-kerberos>`
+     - No
+     - Yes
+     - No

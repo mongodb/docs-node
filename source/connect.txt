@@ -57,5 +57,4 @@ Compatibility
 .. include:: /includes/fact-atlas-link.rst
 
 For information about authenticating to MongoDB,
-see :ref:`node-authentication-mechanisms` and
-:ref:`node-enterprise-authentication-mechanisms`.
+see the :ref:`Authentication Mechanisms <node-authentication-mechanisms>` section.

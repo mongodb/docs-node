@@ -1,4 +1,4 @@
-. _node-authentication-aws:
+.. _node-authentication-aws:
 
 ==================================
 AWS Identity and Access Management

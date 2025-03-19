@@ -1,8 +1,8 @@
-.. _node-enterprise-authentication-mechanisms:
+.. _node-enterprise-auth-oidc:
 
-====================================
-Enterprise Authentication Mechanisms
-====================================
+===================================
+OIDC (Workload Identity Federation)
+===================================
 
 .. contents:: On this page
    :local:
@@ -13,156 +13,38 @@ Enterprise Authentication Mechanisms
 .. facet::
    :name: genre
    :values: reference
- 
+
 .. meta::
-   :keywords: ldap, encryption, principal, tls
+   :keywords: .NET, code example
 
-In this guide, you can find sample code for connection to MongoDB with each
-authentication mechanism available in the MongoDB Enterprise Edition:
-``Kerberos (GSSAPI/SSPI)``, ``LDAP (PLAIN)``, and ``MONGODB-OIDC``.
+Overview
+--------
 
-Kerberos (GSSAPI/SSPI)
-----------------------
+The OpenID Connect (OIDC) authentication mechanism allows you to authenticate to
+MongoDB by using a third-party identity provider, such as Azure or Google Cloud
+Platform (GCP). 
 
-.. note::
-   The Node.js driver supports Kerberos on UNIX using the MIT Kerberos library
-   and on Windows using the SSPI API.
+The MONGODB-OIDC authentication mechanism requires {+mdb-server+} v7.0 or later running
+on a Linux platform. You can use this mechanism only when authenticating to MongoDB Atlas 
+or MongoDB Enterprise Advanced.
 
-The ``GSSAPI`` authentication mechanism uses your user principal to
-authenticate to a Kerberos service.
+.. tip:: Learn More about OIDC Authentication
 
-You can specify this authentication mechanism by performing the
-following actions while specifying options on your
-:manual:`connection string </reference/connection-string/>`:
-
-- Set the ``authMechanism`` parameter to ``GSSAPI``.
-- Set the ``SERVICE_NAME`` value in the ``authMechanismProperties``
-  parameter if using a value other than ``mongodb``.
-- Specify a ``SERVICE_REALM`` value in the ``authMechanismProperties``
-  parameter if a custom service realm is required.
-- Specify a ``CANONICALIZE_HOST_NAME`` value in the ``authMechanismProperties``
-  parameter if canonicalization of the hostname is required. This property can take
-  the following values:
-
-  - ``none``: (Default) Does not perform hostname canonicalization
-  - ``forward``: Performs a forward DNS lookup to canonicalize the hostname
-  - ``forwardAndReverse``: Performs a forward DNS lookup and then a
-    reverse lookup on that value to canonicalize the hostname
-
-.. important::
+   To learn more about configuring MongoDB Atlas for OIDC authentication, see
+   :atlas:`Set up Workforce Identity Federation with OIDC </workforce-oidc/#std-label-oidc-authentication-workforce>`
+   in the Atlas documentation.
    
-   The ``gssapiServiceName`` parameter is deprecated and may be removed
-   in future versions of the driver. Use
-   ``authMechanismProperties=SERVICE_NAME:<your service name>`` in the
-   connection URI instead.
-   See the
-   :manual:`authMechanismProperties </reference/connection-string/#urioption.authMechanismProperties>`
-   parameter documentation for more information.
+   To learn more about using OIDC authentication with MongoDB, see
+   :manual:`Authentication and Authorization with OIDC/OAuth 2.0 </core/security-oidc/>` and
+   :manual:`oidcIdentityProviders </reference/parameters/#mongodb-parameter-param.oidcIdentityProviders>`
+   in the {+mdb-server+} manual.
 
-The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
 
-.. important::
-   Always **URI encode** the principal using the ``encodeURIComponent`` method
-   to ensure it is correctly parsed.
+Specify OIDC Authentication
+---------------------------
 
-.. code-block:: js
-
-   const { MongoClient } = require("mongodb");
-
-   // specify the placeholder values for your environment in the following lines
-   const clusterUrl = "<MongoDB cluster URL>";
-   const principal = encodeURIComponent("<Kerberos principal and realm>");
-   const serviceRealm = "<Kerberos service realm>";
-   const canonicalizationSetting = "<canonicalization setting>";
-   const authMechanismProperties = `SERVICE_REALM:${serviceRealm},CANONICALIZE_HOST_NAME:${canonicalizationSetting}`;
-
-   const authMechanism = "GSSAPI";
-
-   // Connection URI
-   const uri = `mongodb+srv://${principal}@${clusterUrl}/?authMechanism=${authMechanism}&authMechanismProperties=${authMechanismProperties}`;
-
-   const client = new MongoClient(uri);
-
-   // Function to connect to the server
-   async function run() {
-     try {
-       // Establish and verify connection
-       await client.db("admin").command({ ping: 1 });
-       console.log("Connected successfully to server");
-     } finally {
-       // Ensures that the client will close when you finish/error
-       await client.close();
-     }
-   }
-   run().catch(console.dir);
-
-.. note::
-   The method refers to the ``GSSAPI`` authentication mechanism instead
-   of ``Kerberos`` because the driver authenticates through
-   `GSSAPI RFC-4652 <https://tools.ietf.org/html/rfc4752>`_, the SASL
-   mechanism.
-
-LDAP (PLAIN)
-------------
-
-The ``PLAIN`` authentication mechanism uses your username and password to
-authenticate to a Lightweight Directory Access Protocol (LDAP) server.
-
-You can specify this authentication mechanism by setting the ``authMechanism``
-parameter to ``PLAIN`` and including your LDAP username and password in the
-:manual:`connection string </reference/connection-string/>` as shown
-in the following sample code.
-
-.. code-block:: js
-
-   const { MongoClient } = require("mongodb");
-
-   // specify the placeholder values for your environment in the following lines
-   const clusterUrl = "<MongoDB cluster URL>";
-   const ldapUsername = "<LDAP username>";
-   const ldapPassword = "<LDAP password>";
-   const authMechanism = "PLAIN";
-
-   // Connection URI
-   const uri = `mongodb+srv://${ldapUsername}:${ldapPassword}@${clusterUrl}/?authMechanism=${authMechanism}`;
-
-   const client = new MongoClient(uri);
-
-   // Function to connect to the server
-   async function run() {
-     try {
-       // Establish and verify connection
-       await client.db("admin").command({ ping: 1 });
-       console.log("Connected successfully to server");
-     } finally {
-       // Ensures that the client will close when you finish/error
-       await client.close();
-     }
-   }
-   run().catch(console.dir);
-
-.. note::
-   The authentication mechanism is named ``PLAIN`` instead of ``LDAP`` since it
-   authenticates using the `PLAIN Simple Authentication and Security Layer
-   (SASL) defined in RFC-4616 <https://tools.ietf.org/html/rfc4616>`_.
-
-.. _node-enterprise-auth-oidc:
-
-MONGODB-OIDC
-------------
-
-.. important::
-
-   The MONGODB-OIDC authentication mechanism requires {+mdb-server+} v7.0 or later running
-   on a Linux platform.
-
-The following sections describe how to use the MONGODB-OIDC authentication mechanism to
-authenticate from various platforms.
-
-For more information about the MONGODB-OIDC authentication mechanism, see
-:manual:`OpenID Connect Authentication </core/security-oidc/>` and
-:manual:`MongoDB Server Parameters </reference/parameters/#mongodb-parameter-param.oidcIdentityProviders>`
-in the {+mdb-server+} manual.
+The following sections describe how to use the ``MONGODB-OIDC`` authentication 
+mechanism to authenticate from various platforms.
 
 .. _node-mongodb-oidc-azure-imds:
 
@@ -196,9 +78,9 @@ The following code example shows how to set the preceding connection options:
 
    const uri = "mongodb+srv://<username>@<hostname>:<port>/?authMechanism=MONGODB-OIDC"
                + "&authMechanismProperties=ENVIRONMENT:azure,TOKEN_RESOURCE:<audience>";
-   const client = new MongoClient(uri);                                  
+   const client = new MongoClient(uri);   
 
-.. _node-mongodb-oidc-gcp-imds:
+.. _node-mongodb-oidc-gcp-imds: 
 
 GCP IMDS
 ~~~~~~~~

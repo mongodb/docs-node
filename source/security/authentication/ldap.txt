@@ -1,0 +1,82 @@
+.. _node-authentication-ldap:
+
+===========================
+LDAP (PLAIN) Authentication
+===========================
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :keywords: code example
+
+Overview
+--------
+
+The PLAIN authentication mechanism allows you to use your Lightweight Directory Access
+Protocol (LDAP) username and password to authenticate to MongoDB.
+You can use this mechanism only when authenticating to MongoDB Enterprise Advanced.
+
+.. tip:: PLAIN Authentication
+
+   LDAP authentication uses the PLAIN Simple Authentication and Security Layer
+   (SASL) defined in `RFC-4616 <https://tools.ietf.org/html/rfc4616>`__.
+
+LDAP (PLAIN)
+------------
+
+The ``PLAIN`` authentication mechanism uses your username and password to
+authenticate to a Lightweight Directory Access Protocol (LDAP) server.
+
+You can specify this authentication mechanism by setting the ``authMechanism``
+parameter to ``PLAIN`` and including your LDAP username and password in the
+:manual:`connection string </reference/connection-string/>` as shown
+in the following sample code.
+
+.. code-block:: js
+
+   const { MongoClient } = require("mongodb");
+
+   // specify the placeholder values for your environment in the following lines
+   const clusterUrl = "<MongoDB cluster URL>";
+   const ldapUsername = "<LDAP username>";
+   const ldapPassword = "<LDAP password>";
+   const authMechanism = "PLAIN";
+
+   // Connection URI
+   const uri = `mongodb+srv://${ldapUsername}:${ldapPassword}@${clusterUrl}/?authMechanism=${authMechanism}`;
+
+   const client = new MongoClient(uri);
+
+   // Function to connect to the server
+   async function run() {
+     try {
+       // Establish and verify connection
+       await client.db("admin").command({ ping: 1 });
+       console.log("Connected successfully to server");
+     } finally {
+       // Ensures that the client will close when you finish/error
+       await client.close();
+     }
+   }
+   run().catch(console.dir);
+
+.. note::
+   The authentication mechanism is named ``PLAIN`` instead of ``LDAP`` since it
+   authenticates using the `PLAIN Simple Authentication and Security Layer
+   (SASL) defined in RFC-4616 <https://tools.ietf.org/html/rfc4616>`_.
+
+API Documentation
+-----------------
+
+To learn more about any of the methods or types discussed on this
+page, see the following API documentation:
+
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
