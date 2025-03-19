@@ -98,7 +98,7 @@ URI and a ``MongoClientOptions`` object.
    database, most applications only require a single instance of a
    ``MongoClient``, even across multiple requests. To learn more about
    how connection pools work in the driver, see the :ref:`FAQ page
-   <node-faq-connection-pool>`.
+   <node-connection-pools>`.
 
 Use the ``serverApi`` option in your ``MongoClientOptions`` object to
 enable the {+stable-api+} feature, which forces the server to run operations
