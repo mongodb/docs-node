@@ -9,8 +9,9 @@ Authentication
 
 .. toctree::
 
-   Authentication </security/authentication/mechanisms>
-   Enterprise Authentication </security/authentication/enterprise-mechanisms>
+   SCRAM </security/authentication/scram>
+   X.509 </security/authentication/x509>
+   AWS IAM </security/authentication/aws-iam>
 
 Overview
 --------
