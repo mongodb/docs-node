@@ -157,7 +157,7 @@ when applicable, and connection options.
       Click the button on the right of the connection string to copy it to
       your clipboard, as shown in the following screenshot:
 
-      .. figure:: /includes/figures/atlas_connection_copy_string_node.png
+      .. figure:: /includes/figures/atlas_connection_copy_uri_node.png
          :alt: The connection string copy button in the Atlas UI
 
    .. step:: Update the placeholders
@@ -169,7 +169,7 @@ when applicable, and connection options.
       Save this file to a safe location for use in the next section.
 
 After completing these steps, you have a connection string that
-contains your database username, database password, and database name.
+contains your database username and password.
 
 .. _node-quick-start-connect-to-mongodb:
 .. _node-get-started-connect-to-mongodb:
@@ -191,7 +191,7 @@ Connect to MongoDB
 
          const { MongoClient } = require("mongodb");
 
-         // Replace the uri string with your connection string.
+         // Replace the uri string with your connection string
          const uri = "<connection string uri>";
 
          const client = new MongoClient(uri);
@@ -201,13 +201,12 @@ Connect to MongoDB
              const database = client.db('sample_mflix');
              const movies = database.collection('movies');
 
-             // Query for a movie that has the title 'Back to the Future'
+             // Queries for a movie that has a title value of 'Back to the Future'
              const query = { title: 'Back to the Future' };
              const movie = await movies.findOne(query);
 
              console.log(movie);
            } finally {
-             // Ensures that the client will close when you finish/error
              await client.close();
            }
          }
@@ -246,7 +245,7 @@ Connect to MongoDB
       sample data.
 
 After you complete these steps, you have a working application that
-uses the driver to connect to your MongoDB deployment, run a query on
+uses the driver to connect to your MongoDB deployment, query
 the sample data, and print out the result.
 
 .. _node-quick-start-next-steps:
@@ -265,8 +264,8 @@ and retrieves a document that matches a query.
 
 Learn more about the {+driver-short+} from the following resources:
 
+- Discover how to configure your MongoDB connection in the
+  :ref:`Connect to MongoDB <node-connect>` section.
+
 - Discover how to perform read and write operations in the 
   :ref:`CRUD Operations <node-crud-landing>` section.
-
-- See examples of frequently-used operations in the 
-  :ref:`Usage Examples <node-usage-examples>` section.
