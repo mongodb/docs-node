@@ -58,7 +58,7 @@ A standard connection string includes the following components:
      - Optional. Authentication credentials. If you include these, the client
        authenticates the user against the database specified in ``authSource``.
        For more information about the ``authSource`` connection option, 
-       see :ref:`node-troubleshooting-connection-admin:`. 
+       see :ref:`node-troubleshooting-connection-admin`. 
 
    * - ``host[:port]``
 
