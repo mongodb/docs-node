@@ -23,14 +23,14 @@ Overview
 In this guide, you can learn how to specify which documents to return from a read
 operation by using the following methods:
 
-- ``limit``: Specifies the maximum number of documents to return from a query.
-- ``sort``: Specifies the sort order for the returned documents.
-- ``skip``: Specifies the number of documents to skip before returning query results.
+- ``limit()``: Specifies the maximum number of documents to return from a query.
+- ``sort()``: Specifies the sort order for the returned documents.
+- ``skip()``: Specifies the number of documents to skip before returning query results.
 
 Sample Data for Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-To follow the examples in this guide, use the following code snippet to insert documents
+To run the examples in this guide, use the following code snippet to insert documents
 that describe books into the ``myDB.books`` collection:
 
 .. code-block:: javascript
@@ -54,20 +54,19 @@ that describe books into the ``myDB.books`` collection:
 Limit
 -----
 
-Use ``limit`` to cap the number of documents that can be returned from a read operation. 
-``limit`` functions as a cap on the maximum number of
-documents that the operation can return, but the operation can return
-a smaller number of documents if there are not enough documents present
-to reach the limit. If ``limit`` is used with the
-:ref:`skip <node-fundamentals-skip>` method, the skip applies
-first and the limit only applies to the documents left over after
-the skip.
+Use the ``limit()`` method to cap the number of documents that can be returned from a read
+operation. This method specifies the maximum number of documents that the operation can
+return, but the operation can return a smaller number of documents if there are not enough
+documents present to reach the limit. If ``limit()`` is used with the :ref:`skip
+<node-fundamentals-skip>` method, the skip applies first and the limit only applies to the
+documents left over after the skip.
 
 The following example queries the collection to return the top three
-longest books. It matches all documents because the query filter is
-empty. Then, it applies a descending ``sort`` on the ``length`` field to
-return longer books before shorter books and a ``limit`` to
-return only the ``3`` first results:
+longest books. 
+
+- The query matches all documents because the query filter is empty.
+- The descending ``sort()`` method on the ``length`` field returns longer books before shorter books.
+- The ``limit()`` method specifies returning only the first ``3`` results.
 
 .. code-block:: javascript
    :emphasize-lines: 4
@@ -94,16 +93,16 @@ length:
 
 .. note::
 
-   The order in which you call ``limit`` and ``sort`` does not matter
-   because the driver reorders the calls to apply the sort first and the
-   limit after it. The following two calls are equivalent:
+   The order in which you call ``limit()`` and ``sort()`` does not matter because the
+   driver reorders the calls to apply the sort first. The following two calls are
+   equivalent:
 
    .. code-block:: javascript
 
       myColl.find(query).sort({ length: -1 }).limit(3);
       myColl.find(query).limit(3).sort({ length: -1 });
 
-You can also apply ``sort`` and ``limit`` by specifying them in an
+You can also apply ``sort()`` and ``limit()`` by specifying them in an
 ``options`` object in your call to the ``find()`` method. The following two
 calls are equivalent:
 
@@ -116,76 +115,20 @@ For more information on the ``options`` settings for the ``find()``
 method, see the
 `API documentation on find() <{+api+}/classes/Collection.html#find>`__.
 
-.. _node-fundamentals-skip:
-
-Skip
-----
-
-Use ``skip`` to omit documents from the beginning of the list of
-returned documents for a read operation. You can combine ``skip`` with
-:doc:`sort </fundamentals/crud/read-operations/sort>` to omit the top
-(for descending order) or bottom (for ascending order) results for a
-given query. Since the :manual:`order of documents returned
-</reference/method/cursor.sort/#result-ordering>` is not guaranteed in
-the absence of a sort, using ``skip`` without using ``sort`` omits
-arbitrary documents.
-
-If the value of ``skip`` exceeds the number of matched documents for
-a query, then that query returns no documents.
-
-In the following example, we query the collection with a filter that
-matches all the documents and pass options that specifies ``sort`` and
-``skip`` commands as query options. The sort option specifies that fruit
-documents that have higher ``length`` values are returned before ones with lower
-lengths. The skip option specifies that the first document is
-omitted from the result:
-
-.. code-block:: javascript
-
-   // define an empty query document
-   const query = {};
-   const options = {
-      // sort in descending (-1) order by length
-      sort : { length: -1 },
-      // omit the first document
-      skip : 1,
-   }
-
-   const cursor = myColl.find(query, options);
-   for await (const doc of cursor) {
-     console.dir(doc);
-   }
-
-Since we specified that query skip the first document, the code snippet above prints
-the second and third highest length documents:
-
-.. code-block:: json
-   :copyable: false
-
-   { "_id": 4, "name": "Infinite Jest", "author": "Wallace", "length": 1104 },
-   { "_id": 6, "name": "A Dance With Dragons", "author": "Martin", "length": 1104 }
-
-
-The ``sort`` and ``skip`` options can also be specified as methods chained to
-the ``find`` method. The following two commands are equivalent:
-
-.. code-block:: javascript
-
-   myColl.find(query, { sort: { rating: -1}, skip: 1});
-   myColl.find(query).sort({rating: -1}).skip(1);
+.. _node-fundamentals-sort:
 
 Sort
 ----
 
-Use ``sort`` to change the order in which read operations return
-documents. ``Sort`` tells MongoDB to order returned documents by the
+Use the ``sort()`` method to change the order in which read operations return
+documents. This method tells MongoDB to order returned documents by the
 values of one or more fields in a certain direction. To sort returned
 documents by a field in ascending (lowest first) order, use a value of
 ``1``. To sort in descending (greatest first) order instead, use ``-1``.
 If you do not specify a sort, MongoDB does not guarantee the order of
 query results.
 
-In the following example, we pass the sort document to a read operation to ensure that the
+The following example passes the sort document to a read operation to ensure that the
 operation returns books with longer lengths before books with shorter
 lengths:
 
@@ -215,11 +158,11 @@ documents when this sort is used with an empty query:
    { "_id": 5, "title": "Cryptonomicon", "author": "Stephenson", "length": 918 }
    { "_id": 1, "title": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 }
 
-Sometimes, the order of two or more documents is ambiguous using a
-specified sort. In the above case, both "A Dance with Dragons" and
-"Infinite Jest" have ``1104`` pages, so the order in which they are
-returned is not guaranteed. To resolve ties in your sorted results in a
-repeatable way, add more fields to the sort document:
+Sometimes, the order of two or more documents is ambiguous using a specified sort. In the
+above case,the documents that have ``title`` values of ``"A Dance with Dragons"`` and
+``"Infinite Jest"`` both have a ``length`` of ``1104``, so the order in which they are
+returned is not guaranteed. To resolve ties in your sorted results in a repeatable way,
+add more fields to the sort document:
 
 .. code-block:: javascript
    :emphasize-lines: 4
@@ -237,8 +180,7 @@ With the addition of the ``author`` field to the sort document, the read operati
 matching documents first by ``length`` then, if there is a tie, by ``author``. Matched
 document fields are compared in the same order as fields are specified in the sort
 document. ``find()`` returns the following ordering of documents when this sort is used on
-the documents matching the query, sorting ``"Martin"`` before ``"Wallace"`` for the two books with
-the same length:
+the documents matching the query:
 
 .. code-block:: json
    :copyable: false
@@ -250,16 +192,74 @@ the same length:
    { "_id": 4, "title": "Infinite Jest", "author": "Wallace", "length": 1104 }
    { "_id": 2, "title": "Les Misérables", "author": "Hugo", "length": 1462 }
 
+.. _node-fundamentals-skip:
+
+Skip
+----
+
+Use the ``skip()`` method to omit documents from the beginning of the list of
+returned documents for a read operation. You can combine ``skip()`` with
+:ref:`sort <node-fundamentals-sort>` to omit the top
+(for descending order) or bottom (for ascending order) results for a
+given query. Since the :manual:`order of documents returned
+</reference/method/cursor.sort/#result-ordering>` is not guaranteed in
+the absence of a sort, using ``skip()`` without using ``sort()`` omits
+arbitrary documents.
+
+If the value of ``skip()`` exceeds the number of matched documents for
+a query, then that query returns no documents.
+
+The following example queries the collection for the books with the second and third
+highest lengths. 
+
+- The query matches all documents because the query filter is empty.
+- The descending ``sort()`` method on the ``length`` field returns longer books before shorter books.
+- The ``skip()`` method specifies that the first matching document is ommited from the result.
+
+.. code-block:: javascript
+
+   // define an empty query document
+   const query = {};
+   const sort = { length: -1 };
+   const skip = 1;
+   const cursor = myColl.find(query).sort(sort).skip(1);
+   for await (const doc of cursor) {
+     console.dir(doc);
+   }
+
+Since the query skips the first matching document, the preceding code snippet prints
+the second and third highest length documents:
+
+.. code-block:: json
+   :copyable: false
+
+   { "_id": 4, "name": "Infinite Jest", "author": "Wallace", "length": 1104 },
+   { "_id": 6, "name": "A Dance With Dragons", "author": "Martin", "length": 1104 }
+
+You can also apply ``skip()`` and ``sort()`` by specifying them in an
+``options`` object in your call to the ``find()`` method. The following two
+calls are equivalent:
+
+.. code-block:: javascript
+
+   myColl.find(query).sort({ length: -1 }).skip(1);
+   myColl.find(query, { sort: { length: -1 }, skip: 1});
+
+For more information on the ``options`` settings for the ``find()``
+method, see the
+`API documentation on find() <{+api+}/classes/Collection.html#find>`__.
+
+
 Combine Limit, Sort, and Skip
 -----------------------------
 
-You can combine ``limit``, ``sort``, and ``skip`` in a single
+You can combine the ``limit()``, ``sort()``, and ``skip()`` options in a single
 operation. This allows you to set a maximum number of sorted documents to
 return, skipping a specified number of documents before returning.
 
 The following example returns documents with the ``length`` value of
 ``"1104"``. The results are sorted in alphabetical order, skipping the first
-document:
+document and specifies returning only the first result:
 
 .. code-block:: javascript
    :emphasize-lines: 5
@@ -271,8 +271,10 @@ document:
       sort : { title: 1 },
       // omit the first document
       skip : 1,
+      // returns only the first result
+      limit: 1,
    }
-   const cursor = myColl.find(query).sort(sort);
+   const cursor = myColl.find(query, options);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -288,16 +290,15 @@ document:
    that are returned. The driver automatically reorders the calls to perform the
    sort and skip operations first, and the limit operation afterward.
 
-You can also limit, sort, and skip results by specifying them as
-parameters in the ``find`` method. The following example specifies the
-same query as the preceding example:
+You can also limit, sort, and skip results by chaining each method to the ``find`` method.
+The following example specifies the same query as the preceding example:
 
 .. io-code-block::
 
    .. input:: 
       :language: javascript
 
-      myColl.find(query, { sort: { title: 1}, skip: 1});
+      myColl.find(query).sort({ title: 1 }).skip(1).limit(1);
 
    .. output::
       :language: json
@@ -315,8 +316,8 @@ For more information about retrieving documents, see :ref:`node-fundamentals-ret
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about any of the methods or types discussed in this
-guide, see the following API Documentation:
+To learn more about any of the methods discussed in this
+guide, see the following API documentation:
 
 - `find() <{+api+}/classes/Collection.html#find>`__
 - `limit() <{+api+}/classes/FindCursor.html#limit>`__
