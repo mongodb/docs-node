@@ -1,4 +1,4 @@
-.. _node-enterprise-auth-oidc:
+.. _node-authentication-oidc:
 
 ===================================
 OIDC (Workload Identity Federation)

@@ -155,7 +155,7 @@ The {+driver-short+} v6.11 release includes the following features:
      releases.
 
 - Adds OIDC authentication support for Kubernetes environments. To learn
-  more about this feature, see the :ref:`node-enterprise-auth-oidc`
+  more about this feature, see the :ref:`node-auth-oidc`
   section of the Enterprise Authentication Mechanisms guide.
 
   To use OIDC to authenticate from a Kubernetes environment, set the
@@ -629,7 +629,7 @@ The {+driver-short+} v6.1 release includes the following features:
 
   To learn how to set region settings when using the ``MONGODB-AWS`` 
   authentication mechanism, see the :guilabel:`Web Identity Token` tab in the 
-  :ref:`MONGODB-AWS <mongodb-aws>` section of the Authentication Mechanisms guide. 
+  :ref:`MONGODB-AWS <node-authentication-aws>` Authentication Mechanism guide. 
 
 - Fixes a memory leak issue caused by recursive calls to the ``next()``
   method of the ``ChangeStream`` type.
