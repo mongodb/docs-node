@@ -183,7 +183,7 @@ Connect to MongoDB
    .. step:: Create your Node.js application
 
       In your ``node_quickstart`` directory, create a file called
-      ``index.js`` to contain your application.
+      ``index.js`` for your application.
       
       Copy and paste the following code into the ``index.js`` file:
       
