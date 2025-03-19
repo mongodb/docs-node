@@ -28,26 +28,14 @@ Enterprise Advanced, and MongoDB Community Edition.
 .. tip:: X.509 Mechanism
 
    To learn how to use TLS/SSL with the {+driver-short+},
-   see the :ref:`tls-ssl` guide.
+   see the :ref:`node-tls` guide.
 
    For more information about X.509 certificates, see
    :manual:`Use x.509 Certificates to Authenticate Clients on Self-Managed Deployments
    </tutorial/configure-x509-client-authentication/>` in the {+mdb-server+} manual.
 
-Code Placeholders 
-~~~~~~~~~~~~~~~~~
-
-The code examples on this page use the following placeholders:
-
-- ``<hostname>``: The network address of your MongoDB deployment.
-- ``<port>``: The port number of the MongoDB deployment. If you omit this parameter,
-  the driver uses the default port number (``27017``). You don't need a port number
-  when connecting to a MongoDB Atlas cluster.
-- ``<authenticationDb>``: The MongoDB database that contains your user's
-  authentication data. If you omit this placeholder, the driver uses the
-  default ``admin`` database.
-
-To use the code examples, replace these placeholders with your own values.
+Specify X.509 Authentication
+----------------------------
 
 You can specify this authentication mechanism by setting the following
 parameters of your :manual:`connection string </reference/connection-string/>`:

@@ -59,8 +59,8 @@ following actions while specifying options on your
    ``authMechanismProperties=SERVICE_NAME:<your service name>`` in the
    connection URI instead.
    See the
-   :manual:`authMechanismProperties </reference/connection-string/#urioption.authMechanismProperties>`
-   parameter documentation for more information.
+   :manual:`Authentication Options </reference/connection-string-options/#authentication-options>`
+   section of the Connection String Options reference in the Server Manual.
 
 The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
 

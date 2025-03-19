@@ -30,20 +30,6 @@ You can use this mechanism only when authenticating to MongoDB Atlas.
    :atlas:`Set Up Authentication with AWS IAM </security/aws-iam-authentication/>` in
    the Atlas documentation.
 
-Code Placeholders 
-~~~~~~~~~~~~~~~~~
-
-The code examples on this page use the following placeholders:
-
-- ``<awsKeyId>``: Your AWS access key ID
-- ``<atlasUri>``: The network address of your MongoDB Atlas deployment
-- ``<awsSecretKey>``: Your AWS secret access key
-- ``<awsSessionToken>``: Your AWS session token
-- ``<hostname>``: The hostname of your MongoDB Atlas deployment
-- ``<port>``: The port of your MongoDB Atlas deployment
-
-To use the code examples on this page, replace these placeholders with your own values.
-
 Specify MONGODB-AWS Authentication
 ----------------------------------
 

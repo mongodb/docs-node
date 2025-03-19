@@ -15,7 +15,7 @@ OIDC (Workload Identity Federation)
    :values: reference
 
 .. meta::
-   :keywords: .NET, code example
+   :keywords: code example
 
 Overview
 --------

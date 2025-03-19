@@ -155,7 +155,7 @@ The {+driver-short+} v6.11 release includes the following features:
      releases.
 
 - Adds OIDC authentication support for Kubernetes environments. To learn
-  more about this feature, see the :ref:`node-auth-oidc`
+  more about this feature, see the :ref:`node-authentication-oidc`
   section of the Enterprise Authentication Mechanisms guide.
 
   To use OIDC to authenticate from a Kubernetes environment, set the

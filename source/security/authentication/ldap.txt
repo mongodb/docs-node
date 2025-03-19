@@ -22,7 +22,6 @@ Overview
 
 The PLAIN authentication mechanism allows you to use your Lightweight Directory Access
 Protocol (LDAP) username and password to authenticate to MongoDB.
-You can use this mechanism only when authenticating to MongoDB Enterprise Advanced.
 
 .. tip:: PLAIN Authentication
 
@@ -67,11 +66,6 @@ in the following sample code.
      }
    }
    run().catch(console.dir);
-
-.. note::
-   The authentication mechanism is named ``PLAIN`` instead of ``LDAP`` since it
-   authenticates using the `PLAIN Simple Authentication and Security Layer
-   (SASL) defined in RFC-4616 <https://tools.ietf.org/html/rfc4616>`_.
 
 API Documentation
 -----------------
