@@ -43,11 +43,11 @@ What's New in 6.15
 
 The {+driver-short+} v6.15 release includes the following features:
 
-- Adds support for supplying a custom AWS credential when configuring :ref:`authentication
+- Adds support for supplying custom AWS credentials when configuring :ref:`authentication
   <node-authentication-mechanisms>` or :ref:`In-Use Encryption <node-fle>`. You
   must supply the custom function signature in the form of ``() => Promise<AWS.Credentials>``.
   You can also specify provider chains from the AWS SDK, allowing you to
-  customize any your options. To view examples of how to provide custom
+  customize your options. To view examples of how to provide custom
   credentials, see the :github:`v6.15.0 Release Notes
   <mongodb/node-mongodb-native/releases/tag/v6.15.0>` on GitHub.
 - Fixes bugs that caused unhandled internal testing rejections.
