@@ -133,9 +133,6 @@ arbitrary documents.
 If the value of ``skip`` exceeds the number of matched documents for
 a query, then that query returns no documents.
 
-Example
--------
-
 In the following example, we query the collection with a filter that
 matches all the documents and pass options that specifies ``sort`` and
 ``skip`` commands as query options. The sort option specifies that fruit
@@ -188,10 +185,7 @@ documents by a field in ascending (lowest first) order, use a value of
 If you do not specify a sort, MongoDB does not guarantee the order of
 query results.
 
-Example
--------
-
-Pass the following sort document to a read operation to ensure that the
+In the following example, we pass the sort document to a read operation to ensure that the
 operation returns books with longer lengths before books with shorter
 lengths:
 
@@ -268,7 +262,7 @@ The following example returns documents with the ``length`` value of
 document:
 
 .. code-block:: javascript
-   :emphasize-lines: 4
+   :emphasize-lines: 5
 
    // define a query to look for length value of 1104
    const query = {length: "1104"};
