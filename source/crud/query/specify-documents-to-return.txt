@@ -156,8 +156,8 @@ omitted from the result:
      console.dir(doc);
    }
 
-Since we specified that query skip the first document, the second and third highest
-length documents are printed by the code snippet above:
+Since we specified that query skip the first document, the code snippet above prints
+the second and third highest length documents:
 
 .. code-block:: json
    :copyable: false
