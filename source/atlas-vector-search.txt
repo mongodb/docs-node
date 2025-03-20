@@ -95,7 +95,7 @@ This query uses the ``$vectorSearch`` stage to:
 
 - Consider up to the 150 most similar movie plots and return the top 10 results.
 
-It uses the $project stage to:
+It uses the ``$project`` stage to:
 
 - Only include the movie plot and title fields in the results.
 
