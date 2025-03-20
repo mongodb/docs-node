@@ -36,7 +36,7 @@ with your other data in Atlas. This allows you to filter on fields in your
 collection and perform vector search queries against vector data. You can also
 combine vector search with full-text search queries to return the most relevant
 results for your use case. You can integrate {+vector-search+} with popular AI
-frameworks and services to easily implement vector search in your applications.
+frameworks and services to implement vector search in your applications.
 
 To learn more about {+vector-search+}, see the :atlas:`{+vector-search+}
 </atlas-vector-search/vector-search-overview/>` guide in the MongoDB Atlas
