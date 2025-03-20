@@ -107,7 +107,6 @@ It uses the $project stage to:
    to find more tutorials on using the {+driver-short+} to perform Atlas
    Vector Searches.
 
-
 Additional Information
 ----------------------
 
