@@ -28,8 +28,8 @@ async function run() {
         }
     ];
 
-    const aggregationResult = await collection.aggregate(pipeline);
-    for await (const document of aggregationResult) {
+    const cursor = collection.aggregate(pipeline);
+    for await (const document of cursor) {
       console.log(document);
     }
     // end-atlas-search
