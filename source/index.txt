@@ -23,6 +23,7 @@ MongoDB Node Driver
   Data Formats </data-formats>
   Indexes </indexes>
   Run a Database Command </run-command>
+  Atlas Search </atlas-search>
   Monitoring and Logging </monitoring-and-logging>
   Security </security>
   Reference </reference>
@@ -84,6 +85,11 @@ Run a Database Command
 ----------------------
 
 Learn how to run a database command in the :ref:`<node-run-command>` section.
+
+Atlas Search
+------------
+
+Learn how to run Atlas Search queries in the :ref:`<node-atlas-search>` section.
 
 Monitoring and Logging
 ----------------------
