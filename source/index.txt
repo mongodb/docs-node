@@ -86,6 +86,11 @@ Run a Database Command
 
 Learn how to run a database command in the :ref:`<node-run-command>` section.
 
+Atlas Vector Search
+-------------------
+
+Learn how to run Atlas Vector Search queries in the :ref:`<node-atlas-vector-search>` section.
+
 Monitoring and Logging
 ----------------------
 
