@@ -199,7 +199,7 @@ Skip
 
 Use the ``skip()`` method to omit documents from the beginning of the list of
 returned documents for a read operation. You can combine ``skip()`` with
-:ref:`sort <node-fundamentals-sort>` to omit the top
+:ref:`sort() <node-fundamentals-sort>` to omit the top
 (for descending order) or bottom (for ascending order) results for a
 given query. Since the :manual:`order of documents returned
 </reference/method/cursor.sort/#result-ordering>` is not guaranteed in
@@ -214,7 +214,7 @@ highest lengths.
 
 - The query matches all documents because the query filter is empty.
 - The descending ``sort()`` method on the ``length`` field returns longer books before shorter books.
-- The ``skip()`` method specifies that the first matching document is ommited from the result.
+- The ``skip()`` method specifies that the first matching document is omitted from the result.
 
 .. code-block:: javascript
 
