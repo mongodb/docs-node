@@ -82,7 +82,7 @@ This example shows how to build an aggregation pipeline that uses the
 To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
 :atlas:`Get Started with Atlas </getting-started>` guide. The aggregation 
 pipeline searches for documents that include text in the ``plot``  field that is
-semantically related to the term "time travel". The ``queryVector``field in the 
+semantically related to the term "time travel". The ``queryVector`` field in the 
 ``$vectorSearch`` pipeline is the vector representation of your query.
 
 .. literalinclude:: /includes/aggregation/atlas-vector-search-example.js
