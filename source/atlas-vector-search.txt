@@ -1,4 +1,4 @@
-.. _ node-atlas-vector-search:
+.. _node-atlas-vector-search:
 
 ===================
 Atlas Vector Search
