@@ -14,7 +14,7 @@ async function run() {
     const pipeline = [
         {
           $search: {
-            index: "default",
+            index: "default", // Replace with your search index name
             text: {
               query: "Alabama",
               path: "title"
@@ -28,10 +28,7 @@ async function run() {
         }
     ];
 
-    // start-run-agg
     const aggregationResult = await collection.aggregate(pipeline);
-    // end-run-agg
-
     for await (const document of aggregationResult) {
       console.log(document);
     }
