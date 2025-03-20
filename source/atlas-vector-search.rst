@@ -1,0 +1,121 @@
+.. _node-atlas-vector-search:
+
+===================
+Atlas Vector Search
+===================
+
+.. facet::
+   :name: genre
+   :values: reference
+ 
+.. meta::
+   :keywords: code example, semantic, nearest
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+Overview
+--------
+
+In this guide, you can learn how to use the :atlas:`Atlas Vector Search
+</atlas-vector-search/vector-search-overview/>` feature
+in the {+driver-short+}. 
+
+You can use {+vector-search+} to perform vector search on your data stored in
+Atlas. Vector search allows you to query your data based on semantic meaning
+rather than just keyword matches, which helps you retrieve more relevant search
+results. It enables your AI-powered applications to support use cases such as
+semantic search, hybrid search, and generative search, including
+Retrieval-Augmented Generation (RAG).
+
+By using Atlas as a vector database, you can seamlessly index vector data along
+with your other data in Atlas. This allows you to filter on fields in your
+collection and perform vector search queries against vector data. You can also
+combine vector search with full-text search queries to return the most relevant
+results for your use case. You can integrate {+vector-search+} with popular AI
+frameworks and services to easily implement vector search in your applications.
+
+To learn more about {+vector-search+}, see the :atlas:`{+vector-search+}
+</atlas-vector-search/vector-search-overview/>` guide in the MongoDB Atlas
+documentation.
+
+.. important:: Feature Compatibility
+
+   To learn what versions of MongoDB Atlas support this feature, see
+   :atlas:`Limitations </atlas-vector-search/vector-search-stage/#limitations>`
+   in the MongoDB Atlas documentation.
+
+Perform a Vector Search
+-----------------------
+
+To use this feature, you must create a vector search index and index your
+vector embeddings. To learn about how to programmatically create a
+vector search index, see the :ref:`node-indexes` section in the
+Indexes guide. To learn more about vector embeddings, see
+:atlas:`How to Index Vector Embeddings for Vector Search
+</atlas-search/field-types/knn-vector/>` in the Atlas documentation.
+
+After you create a vector search index on your vector embeddings, you
+can reference this index in your pipeline stage, as shown in the
+following section.
+
+Vector Search Example
+~~~~~~~~~~~~~~~~~~~~~
+
+You can perform a vector search query by using the ``$vectorSearch`` stage
+in an :ref:`aggregation pipeline <node-aggregation>`. To perform a vector
+search on a collection, you must first have a collection with a field that contains
+vector data and a vector search index that covers that field. 
+
+.. tip::
+
+   To learn more about configuring a collection for vector search, see the :atlas:`{+vector-search+}
+   </atlas-vector-search/vector-search-overview/>` guide in the MongoDB Atlas
+   documentation.
+
+This example shows how to build an aggregation pipeline that uses the
+``$vectorSearch`` stage to perform an exact vector search on the
+``sample_mflix.embedded_movies`` collection in the :atlas:`Atlas sample datasets </sample-data>`.
+To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
+:atlas:`Get Started with Atlas </getting-started>` guide. The aggregation 
+pipeline searches for documents that include text in the ``plot``  field that is
+semantically related to the term "time travel". The ``queryVector``field in the 
+``$vectorSearch`` pipeline is the vector representation of your query.
+
+.. literalinclude:: /includes/aggregation/atlas-vector-search-example.js
+   :language: javascript
+
+This query uses the ``$vectorSearch`` stage to:
+
+- Compare vector embeddings of the search term against vector embeddings of movie plots in
+  the ``plot_embedding`` field of the ``sample_mflix.embedded_movies`` collection.
+
+- Consider up to the 150 most similar movie plots and return the top 10 results.
+
+It uses the $project stage to:
+
+- Only include the movie plot and title fields in the results.
+
+- Add a score field to show the relevance of each result to the search term.
+
+.. tip:: {+language+} Vector Search Examples
+    
+   Visit the :atlas:`Atlas documentation </atlas-vector-search/tutorials/>`
+   to find more tutorials on using the {+driver-short+} to perform Atlas
+   Vector Searches.
+
+
+Additional Information
+----------------------
+
+To learn more about Atlas Vector Search, see :atlas:`Atlas Vector Search </atlas-vector-search/>`
+in the Atlas documentation.
+
+API Documentation
+~~~~~~~~~~~~~~~~~
+
+To learn more about the ``aggregate()`` method, see the
+`API documentation <{+api+}/classes/Collection.html#aggregate>`__.

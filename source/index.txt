@@ -23,6 +23,7 @@ MongoDB Node Driver
   Data Formats </data-formats>
   Indexes </indexes>
   Run a Database Command </run-command>
+  Atlas Vector Search </atlas-vector-search>
   Monitoring and Logging </monitoring-and-logging>
   Security </security>
   Reference </reference>
