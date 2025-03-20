@@ -23,9 +23,9 @@ Overview
 
 To connect to a MongoDB deployment, you need two things:
 
-- A **connection URI**, also known as a *connection string*, which tells the
+- **Connection URI**, also known as a *connection string*, which tells the
   {+driver-short+} which MongoDB deployment to connect to.
-- A **MongoClient** object, which creates the connection to and performs 
+- **MongoClient** object, which creates the connection to and performs 
   operations on the MongoDB deployment.
 
 You can also use ``MongoClientOptions`` to customize the way the {+driver-short+} behaves
@@ -58,7 +58,7 @@ A standard connection string includes the following components:
      - Optional. Authentication credentials. If you include these, the client
        authenticates the user against the database specified in ``authSource``.
        For more information about the ``authSource`` connection option, 
-       see :ref:`node-troubleshooting-connection-admin`. 
+       see :ref:`node-troubleshooting-connection-admin` in the Connection Troubleshooting guide.
 
    * - ``host[:port]``
 
@@ -118,8 +118,7 @@ verify that the connection is successful:
    Call the ``MongoClient.connect()`` method explicitly if you want to verify that the
    connection is successful.
 
-To learn more about the Stable
-API feature, see the :ref:`{+stable-api+} page <nodejs-stable-api>`.
+To learn more about the {+stable-api+} feature, see the :ref:`{+stable-api+} page <nodejs-stable-api>`.
 
 API Documentation
 -----------------
