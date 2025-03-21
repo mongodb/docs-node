@@ -79,17 +79,6 @@ The aggregation pipeline searches  the ``plot``  field of each document in the c
 for text semantically related to the term "time travel". The ``queryVector`` field in the
 ``$vectorSearch`` pipeline is the vector representation of your query.
 
-       .. io-code-block::
-          :copyable: true
-
-          .. input::
-             :language: js
-
-             await coll.findOneAndDelete({ x: "on" });
-
-          .. output::
-             :language: js
-             :visible: false
 .. io-code-block::
    :copyable: true
 
