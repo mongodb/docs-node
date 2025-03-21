@@ -61,7 +61,7 @@ To connect to a local standalone MongoDB deployment, specify the host of the
 server. Optionally, specify the port of the server. If no port is specified, 
 the default port is ``27017``. 
 
-You can also specify the host and port to connect to using a  
+You can also specify the host and port to connect to by using a  
 connection string:
 
 .. literalinclude:: /includes/connect/connection-targets.js
@@ -88,11 +88,11 @@ specifying all nodes allows the driver to still connect to the replica set
 if one node is available.
 
 However, it is sufficient to pass the address of any one node in the replica set 
-to the driver. The node does not have to be the primary, and it may be a hidden node. 
+to the driver. The node does not need to be the primary, and it may be a hidden node. 
 The driver will then automatically discover the remaining nodes.
 
-The following example shows how to connect to the replica set using a connection
-string and verify the replica set name upon connection by using the 
+The following example shows how to connect to the replica set by using a connection
+string and verify the replica set name by using the 
 ``replicaSet`` connection string option:
 
 .. literalinclude:: /includes/connect/connection-targets.js
