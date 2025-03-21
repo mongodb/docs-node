@@ -24,19 +24,12 @@ In this guide, you can learn how to use the :atlas:`Atlas Vector Search
 </atlas-vector-search/vector-search-overview/>` feature
 in the {+driver-short+}. 
 
-You can use {+vector-search+} to perform vector search on your data stored in
+You can use {+vector-search+} to perform a vector search on your data stored in
 Atlas. Vector search allows you to query your data based on semantic meaning
 rather than just keyword matches, which helps you retrieve more relevant search
 results. It enables your AI-powered applications to support use cases such as
 semantic search, hybrid search, and generative search, including
 Retrieval-Augmented Generation (RAG).
-
-By using Atlas as a vector database, you can seamlessly index vector data along
-with your other data in Atlas. This allows you to filter on fields in your
-collection and perform vector search queries against vector data. You can also
-combine vector search with full-text search queries to return the most relevant
-results for your use case. You can integrate {+vector-search+} with popular AI
-frameworks and services to implement vector search in your applications.
 
 To learn more about {+vector-search+}, see the :atlas:`{+vector-search+}
 </atlas-vector-search/vector-search-overview/>` guide in the MongoDB Atlas
@@ -53,14 +46,26 @@ Perform a Vector Search
 
 To use this feature, you must create a vector search index and index your
 vector embeddings. To learn about how to programmatically create a
-vector search index, see the :ref:`node-indexes` section in the
-Indexes guide. To learn more about vector embeddings, see
+vector search index, see the :atlas:`Create an Atlas Vector Search index
+<atlas-vector-search/vector-search-type/#create-an-atlas-vector-search-index>` section in the
+Atlas documentation. To learn more about vector embeddings, see
 :atlas:`How to Index Vector Embeddings for Vector Search
-</atlas-search/field-types/knn-vector/>` in the Atlas documentation.
+<atlas-vector-search/create-embeddings/>` in the Atlas documentation.
 
 After you create a vector search index on your vector embeddings, you
 can reference this index in your pipeline stage, as shown in the
 following section.
+
+Sample Data
+-----------
+
+The example on this page shows how to build an aggregation pipeline that uses the
+``$vectorSearch`` stage to perform an exact vector search on the
+``sample_mflix.embedded_movies`` collection in the :atlas:`Atlas sample datasets
+</sample-data>`.
+
+To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
+:atlas:`Get Started with Atlas </getting-started>` guide.
 
 Vector Search Example
 ~~~~~~~~~~~~~~~~~~~~~
@@ -68,47 +73,64 @@ Vector Search Example
 You can perform a vector search query by using the ``$vectorSearch`` stage
 in an :ref:`aggregation pipeline <node-aggregation>`. To perform a vector
 search on a collection, you must first have a collection with a field that contains
-vector data and a vector search index that covers that field. 
+vector embeddings and a vector search index that covers that field. 
 
-.. tip::
-
-   To learn more about configuring a collection for vector search, see the :atlas:`{+vector-search+}
-   </atlas-vector-search/vector-search-overview/>` guide in the MongoDB Atlas
-   documentation.
-
-This example shows how to build an aggregation pipeline that uses the
-``$vectorSearch`` stage to perform an exact vector search on the
-``sample_mflix.embedded_movies`` collection in the :atlas:`Atlas sample datasets </sample-data>`.
-To learn how to create a free MongoDB Atlas cluster and load the sample datasets, see the
-:atlas:`Get Started with Atlas </getting-started>` guide. The aggregation 
-pipeline searches for documents that include text in the ``plot``  field that is
-semantically related to the term "time travel". The ``queryVector`` field in the 
+The aggregation pipeline searches  the ``plot``  field of each document in the collection
+for text semantically related to the term "time travel". The ``queryVector`` field in the
 ``$vectorSearch`` pipeline is the vector representation of your query.
 
-.. literalinclude:: /includes/aggregation/atlas-vector-search-example.js
-   :language: javascript
+       .. io-code-block::
+          :copyable: true
+
+          .. input::
+             :language: js
+
+             await coll.findOneAndDelete({ x: "on" });
+
+          .. output::
+             :language: js
+             :visible: false
+.. io-code-block::
+   :copyable: true
+
+   .. input:: /includes/aggregation/atlas-vector-search-example.js
+      :language: javascript
+      :dedent:
+
+   .. output:: 
+      :language: json
+      :visible: false
+
+      '{"plot":"A reporter, learning of time travelers visiting 20th century disasters, tries to change the history they know by averting upcoming disasters.","title":"Thrill Seekers","score":0.7892671227455139}'
+      '{"plot":"At the age of 21, Tim discovers he can travel in time and change what happens and has happened in his own life. His decision to make his world a better place by getting a girlfriend turns out not to be as easy as you might think.","title":"About Time","score":0.7843604683876038}'
+      '{"plot":"Hoping to alter the events of the past, a 19th century inventor instead travels 800,000 years into the future, where he finds humankind divided into two warring races.","title":"The Time Machine","score":0.7801066637039185}'
+      `{"plot":"After using his mother's newly built time machine, Dolf gets stuck involuntary in the year 1212. He ends up in a children's crusade where he confronts his new friends with modern techniques...","title":"Crusade in Jeans","score":0.7789170742034912}`
+      '{"plot":"An officer for a security agency that regulates time travel, must fend for his life against a shady politician who has a tie to his past.","title":"Timecop","score":0.7771612405776978}'
+      '{"plot":"A time-travel experiment in which a robot probe is sent from the year 2073 to the year 1973 goes terribly wrong thrusting one of the project scientists, a man named Nicholas Sinclair into a...","title":"A.P.E.X.","score":0.7730885744094849}'
+      `{"plot":"Agent J travels in time to M.I.B.'s early days in 1969 to stop an alien from assassinating his friend Agent K and changing history.","title":"Men in Black 3","score":0.7712380886077881}`
+      '{"plot":"Bound by a shared destiny, a teen bursting with scientific curiosity and a former boy-genius inventor embark on a mission to unearth the secrets of a place somewhere in time and space that exists in their collective memory.","title":"Tomorrowland","score":0.7669923901557922}'
+      '{"plot":"With the help of his uncle, a man travels to the future to try and bring his girlfriend back to life.","title":"Love Story 2050","score":0.7649372816085815}'
+      '{"plot":"A dimension-traveling wizard gets stuck in the 21st century because cell-phone radiation interferes with his magic. With his home world on the brink of war, he seeks help from a jaded ...","title":"The Portal","score":0.7640786170959473}'
+
 
 This query uses the ``$vectorSearch`` stage to:
 
-- Compare vector embeddings of the search term against vector embeddings of movie plots in
-  the ``plot_embedding`` field of the ``sample_mflix.embedded_movies`` collection.
+- Search for the specified term in the``plot_embedding`` field
 
-- Consider up to the 150 most similar movie plots and return the top 10 results.
+- Set the number of nearest neighbors used in the search to 150 by using the ``numCandidates`` option
 
 It uses the ``$project`` stage to:
 
-- Only include the movie plot and title fields in the results.
+- Only include the movie ``plot`` and ``title`` fields in the results.
 
-- Add a score field to show the relevance of each result to the search term.
-
-.. tip:: {+language+} Vector Search Examples
-    
-   Visit the :atlas:`Atlas documentation </atlas-vector-search/tutorials/>`
-   to find more tutorials on using the {+driver-short+} to perform Atlas
-   Vector Searches.
+- Add a ``score`` field to show the relevance of each result to the search term.
 
 Additional Information
 ----------------------
+
+Visit the :atlas:`Atlas documentation </atlas-vector-search/tutorials/>` 
+to find more tutorials on using the {+driver-short+} to perform Atlas
+Vector Searches.
 
 To learn more about Atlas Vector Search, see :atlas:`Atlas Vector Search </atlas-vector-search/>`
 in the Atlas documentation.

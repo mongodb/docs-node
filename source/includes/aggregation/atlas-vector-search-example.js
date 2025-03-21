@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-// connect to your Atlas cluster
+// Replace with the connection string to your Atlas cluster to connect
 const uri = "<connection-string>";
 
 const client = new MongoClient(uri);
@@ -9,11 +9,11 @@ async function run() {
     try {
         await client.connect();
 
-        // set namespace
+        // Set the namespace
         const database = client.db("sample_mflix");
         const coll = database.collection("embedded_movies");
 
-        // define pipeline
+        // Defines the pipeline
         const agg = [
             {
               '$vectorSearch': {
@@ -36,10 +36,10 @@ async function run() {
               }
             }
           ];
-        // run pipeline
+        // Runs pipeline
         const result = coll.aggregate(agg);
 
-        // print results
+        // Prints results
         await result.forEach((doc) => console.dir(JSON.stringify(doc)));
     } finally {
         await client.close();
