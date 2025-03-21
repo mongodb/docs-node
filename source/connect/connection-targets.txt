@@ -89,7 +89,7 @@ specifying all nodes allows the driver to still connect to the replica set
 if one node is available.
 
 However, it is sufficient to pass the address of any one node in the replica set 
-to the driver. The node does not have to be the primary, and it may be a hidden node. 
+to the driver. The node does not need to be the primary, and it may be a hidden node. 
 The driver will then automatically discover the remaining nodes.
 
 The following example shows how to connect to the replica set by using a connection
