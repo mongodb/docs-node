@@ -1,8 +1,8 @@
 .. _node-authentication-scram:
 
-=====
-SCRAM
-=====
+===============================
+SCRAM Authentication Mechanisms
+===============================
 
 .. contents:: On this page
    :local:
@@ -82,8 +82,7 @@ default by setting ``authMechanism`` to ``DEFAULT`` in the connection string:
 .. literalinclude:: /code-snippets/authentication/default.js
    :language: javascript
 
-For more information about the challenge-response (CR) and salted
-challenge-response authentication mechanisms (SCRAM) that MongoDB supports,
+To learn more about the SCRAM version that MongoDB supports,
 see the :manual:`SCRAM </core/security-scram/>` section of the {+mdb-server+}
 manual.
 
@@ -95,9 +94,8 @@ SCRAM-SHA-256
    ``SCRAM-SHA-256`` is the default authentication method for MongoDB starting
    in version 4.0
 
-``SCRAM-SHA-256`` is a salted challenge-response authentication mechanism
-(SCRAM) that uses your username and password, encrypted with the ``SHA-256``
-algorithm to authenticate your user.
+``SCRAM-SHA-256`` is a SCRAM version that uses your username and password, 
+encrypted with the ``SHA-256`` algorithm to authenticate your user.
 
 You can specify this authentication mechanism by setting the ``authMechanism``
 to the value ``SCRAM-SHA-256`` in the
@@ -118,7 +116,7 @@ following sample code.
    ``SCRAM-SHA-1`` is the default authentication method for MongoDB versions
    3.0, 3.2, 3.4, and 3.6.
 
-``SCRAM-SHA-1`` is a salted challenge-response mechanism (SCRAM) that uses your
+``SCRAM-SHA-1`` is a SCRAM version that uses your
 username and password, encrypted with the ``SHA-1`` algorithm to authenticate
 your user.
 

@@ -1,8 +1,8 @@
 .. _node-authentication-x509:
 
-=====
-X.509
-=====
+==============================
+X.509 Authentication Mechanism
+==============================
 
 .. contents:: On this page
    :local:
@@ -34,6 +34,16 @@ Enterprise Advanced, and MongoDB Community Edition.
    :manual:`Use x.509 Certificates to Authenticate Clients on Self-Managed Deployments
    </tutorial/configure-x509-client-authentication/>` in the {+mdb-server+} manual.
 
+Code Placeholders 
+~~~~~~~~~~~~~~~~~
+
+The code examples on this page use the following placeholders:
+
+- ``<cluster_url>``: The network address of your MongoDB deployment.
+- ``<pem_certificate_file_path>``: The path to your client PEM certificate file.
+
+To use the code examples, replace these placeholders with your own values.
+
 Specify X.509 Authentication
 ----------------------------
 
@@ -52,11 +62,6 @@ Pass the location of your client certificate file as the value of
 
 .. literalinclude:: /code-snippets/authentication/x509.js
    :language: javascript
-
-.. tip::
-   
-   To learn more about enabling TLS on a connection, see
-   :ref:`node-connect-tls`.
 
 TLS Options
 ~~~~~~~~~~~

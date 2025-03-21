@@ -1,9 +1,9 @@
 .. _node-authentication-mechanisms:
 .. _node-authentication:
 
-==============
-Authentication
-==============
+=========================
+Authentication Mechanisms
+=========================
 
 .. default-domain:: mongodb
 

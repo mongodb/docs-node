@@ -1,8 +1,8 @@
 .. _node-authentication-kerberos:
 
-=================
-Kerberos (GSSAPI)
-=================
+==========================================
+Kerberos (GSSAPI) Authentication Mechanism
+==========================================
 
 .. contents:: On this page
    :local:
@@ -44,7 +44,7 @@ following actions while specifying options on your
 - Specify a ``SERVICE_REALM`` value in the ``authMechanismProperties``
   parameter if a custom service realm is required.
 - Specify a ``CANONICALIZE_HOST_NAME`` value in the ``authMechanismProperties``
-  parameter if canonicalization of the hostname is required. This property can take
+  parameter if canonicalization of the hostname is required. This property accepts
   the following values:
 
   - ``none``: (Default) Does not perform hostname canonicalization
@@ -58,11 +58,11 @@ following actions while specifying options on your
    in future versions of the driver. Use
    ``authMechanismProperties=SERVICE_NAME:<your service name>`` in the
    connection URI instead.
-   See the
+   To learn more about the authentication options for a connection string, see the
    :manual:`Authentication Options </reference/connection-string-options/#authentication-options>`
    section of the Connection String Options reference in the Server Manual.
 
-The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
+The following code example authenticates to Kerberos for UNIX using ``GSSAPI``.
 
 .. important::
    Always **URI encode** the principal using the ``encodeURIComponent`` method
@@ -72,8 +72,8 @@ The following code sample authenticates to Kerberos for UNIX using ``GSSAPI``.
 
    const { MongoClient } = require("mongodb");
 
-   // specify the placeholder values for your environment in the following lines
-   const clusterUrl = "<MongoDB cluster URL>";
+   // Replace the placeholder values with the values for your environment in the following lines
+   const clusterUrl = "<cluster_url>";
    const principal = encodeURIComponent("<Kerberos principal and realm>");
    const serviceRealm = "<Kerberos service realm>";
    const canonicalizationSetting = "<canonicalization setting>";
