@@ -112,7 +112,6 @@ for text semantically related to the term "time travel". The ``queryVector`` fie
       '{"plot":"With the help of his uncle, a man travels to the future to try and bring his girlfriend back to life.","title":"Love Story 2050","score":0.7649372816085815}'
       '{"plot":"A dimension-traveling wizard gets stuck in the 21st century because cell-phone radiation interferes with his magic. With his home world on the brink of war, he seeks help from a jaded ...","title":"The Portal","score":0.7640786170959473}'
 
-
 This query uses the ``$vectorSearch`` stage to:
 
 - Search for the specified term in the``plot_embedding`` field
