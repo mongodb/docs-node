@@ -23,6 +23,12 @@ Overview
 In this guide, you can learn how to use a connection string and a ``MongoClient`` 
 object to connect to different types of MongoDB deployments.
 
+.. tip::
+
+   To learn more about how to retrieve your connection string, see 
+   the :atlas:`Connect via Drivers </driver-connection>` guide in 
+   the Atlas documentation.
+
 Atlas
 -----
 
@@ -34,11 +40,6 @@ in your connection string:
 - MongoDB password
 
 Then, pass your connection string to the ``MongoClient`` constructor.
-
-.. tip::
-
-   Follow the :atlas:`Atlas driver connection guide </driver-connection>`
-   to retrieve your connection string.
 
 When you connect to Atlas, we recommend using the {+stable-api+} client option to avoid
 breaking changes when Atlas upgrades to a new version of {+mdb-server+}.
@@ -61,7 +62,7 @@ To connect to a local standalone MongoDB deployment, specify the host of the
 server. Optionally, specify the port of the server. If no port is specified, 
 the default port is ``27017``. 
 
-You can also specify the host and port to connect to by using a  
+You can specify the host and port to connect to by using a  
 connection string:
 
 .. literalinclude:: /includes/connect/connection-targets.js
