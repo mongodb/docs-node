@@ -49,7 +49,7 @@ vector embeddings. To learn about how to programmatically create a
 vector search index, see the :atlas:`Create an Atlas Vector Search index
 </atlas-vector-search/vector-search-type/#create-an-atlas-vector-search-index>` section in the
 Atlas documentation. To learn more about vector embeddings, see
-:atlas:`How to Index Vector Embeddings for Vector Search
+:atlas:`How to Create Vector Embeddings
 </atlas-vector-search/create-embeddings/>` in the Atlas documentation.
 
 After you create a vector search index on your vector embeddings, you
