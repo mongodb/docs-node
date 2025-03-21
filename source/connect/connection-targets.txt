@@ -82,10 +82,10 @@ connects to ``localhost`` on the specified port:
 Replica Sets
 ------------
 
-To connect to a replica set, it is recommended to specify all nodes that are 
-part of the replica set. In the event that one or more nodes becomes unavailable,
-specifying all nodes allows the driver to still connect to the replica set, 
-as long as one node is available.
+To connect to a replica set, we recommend that you specify all nodes that are 
+part of the replica set. If one or more nodes becomes unavailable,
+specifying all nodes allows the driver to still connect to the replica set 
+if one node is available.
 
 However, it is sufficient to pass the address of any one node in the replica set 
 to the driver. The node does not have to be the primary, and it may be a hidden node. 
