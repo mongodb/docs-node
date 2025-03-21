@@ -70,7 +70,7 @@ A standard connection string includes the following components:
      - Optional. The authentication database to use if the
        connection string includes ``username:password@``
        authentication credentials but not the ``authSource`` option.  
-       When you call client.db() with no argument, this is the database that is used. If you don't include 
+       When you call ``client.db()`` with no argument, this is the database that is used. If you don't include 
        this component, the client authenticates the user against the ``admin`` database.
 
    * - ``?<options>``
