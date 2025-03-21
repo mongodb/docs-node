@@ -116,9 +116,9 @@ It uses the ``$project`` stage to:
 Additional Information
 ----------------------
 
-Visit the :atlas:`Atlas documentation </atlas-vector-search/tutorials/>` 
-to find more tutorials on using the {+driver-short+} to perform Atlas
-Vector Searches.
+To find more tutorials on using the {+driver-short+} to perform Atlas
+Vector Searches, see the :atlas:`Atlas Vector Search tutorials </atlas-vector-search/tutorials/>` 
+in the Atlas documentation.
 
 To learn more about Atlas Vector Search, see :atlas:`Atlas Vector Search </atlas-vector-search/>`
 in the Atlas documentation.
