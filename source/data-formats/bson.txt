@@ -129,7 +129,7 @@ The following example reads the sample BSON document from ``file.bson``:
 
    .. output::
       :visible: false
-      
+
       {_id: new ObjectId('67e1823d0d63bfdf87e8928e'), "address": {"street": "Pizza St",
       "zipcode": "10003"}, "coord": [-73.982419, 41.579505], "cuisine": "Pizza", "name":
       "Mongo's Pizza"}
@@ -138,5 +138,5 @@ API Documentation
 -----------------
 
 To learn more about any of the methods or types discussed in this
-guide, see the `bson <{+api+}/modules/BSON.html>`__ API documentation.
+guide, see the `BSON <{+api+}/modules/BSON.html>`__ API documentation.
 
