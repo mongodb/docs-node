@@ -34,7 +34,7 @@ You can use these methods either by chaining them to your read operation or by s
 
    If you chain ``sort()``, ``limit()``, or ``skip()`` to a read operation, you must
    specify all methods before iterating the cursor. If you specify a method after
-   iterating the cursor, the method does not apply. 
+   iterating the cursor, the method you specified does not apply to the operation. 
 
 Sample Data for Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
