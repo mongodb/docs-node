@@ -580,7 +580,7 @@ The following sections show sample output for each type of connection
 pool monitoring event.
 
 connectionPoolCreated
-~~~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -592,7 +592,7 @@ connectionPoolCreated
    }
 
 connectionPoolReady
-~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -603,7 +603,7 @@ connectionPoolReady
    }
 
 connectionPoolClosed
-~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -614,7 +614,7 @@ connectionPoolClosed
    }
 
 connectionCreated
-~~~~~~~~~~~~~~~~~
++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -626,7 +626,7 @@ connectionCreated
    }
 
 connectionReady
-~~~~~~~~~~~~~~~
++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -639,7 +639,7 @@ connectionReady
    }
 
 connectionClosed
-~~~~~~~~~~~~~~~~
+++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -653,7 +653,7 @@ connectionClosed
    }
 
 connectionCheckOutStarted
-~~~~~~~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -664,7 +664,7 @@ connectionCheckOutStarted
    }
 
 connectionCheckOutFailed
-~~~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -677,7 +677,7 @@ connectionCheckOutFailed
    }
 
 connectionCheckedOut
-~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -690,7 +690,7 @@ connectionCheckedOut
    }
 
 connectionCheckedIn
-~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
@@ -702,7 +702,7 @@ connectionCheckedIn
    }
 
 connectionPoolCleared
-~~~~~~~~~~~~~~~~~~~~~
++++++++++++++++++++++
 
 .. code-block:: none
    :copyable: false
