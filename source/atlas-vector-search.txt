@@ -1,8 +1,8 @@
 .. _node-atlas-vector-search:
 
-===================
-Atlas Vector Search
-===================
+================================
+Run an Atlas Vector Search Query
+================================
 
 .. facet::
    :name: genre
@@ -57,7 +57,7 @@ can reference this index in your pipeline stage, as shown in the
 following section.
 
 Sample Data
------------
+~~~~~~~~~~~
 
 The example on this page shows how to build an aggregation pipeline that uses the
 ``$vectorSearch`` stage to perform an exact vector search on the
@@ -75,9 +75,10 @@ in an :ref:`aggregation pipeline <node-aggregation>`. To perform a vector
 search on a collection, you must first have a collection with a field that contains
 vector embeddings and a vector search index that covers that field. 
 
-The aggregation pipeline searches  the ``plot``  field of each document in the collection
-for text semantically related to the term "time travel". The ``queryVector`` field in the
-``$vectorSearch`` pipeline is the vector representation of your query.
+In the following example, the aggregation pipeline searches the ``plot``  field of each
+document in the collection for text semantically related to the term "time travel". The
+``queryVector`` field in the ``$vectorSearch`` pipeline is the vector representation of
+your query.
 
 .. io-code-block::
    :copyable: true
@@ -105,26 +106,28 @@ This query uses the ``$vectorSearch`` stage to:
 
 - Search for the specified term in the ``plot_embedding`` field
 
-- Set the number of nearest neighbors used in the search to 150 by using the ``numCandidates`` option
+- Set the number of nearest neighbors used in the search to 150 by using the
+``numCandidates`` option
+
+- Return a maximum of 10 documents from the query using the ``limit`` option
 
 It uses the ``$project`` stage to:
 
-- Only include the movie ``plot`` and ``title`` fields in the results.
+- Only include the movie ``plot`` and ``title`` fields in the results
 
-- Add a ``score`` field to show the relevance of each result to the search term.
+- Add a ``score`` field to show the relevance of each result to the search term
 
 Additional Information
 ----------------------
 
-To find more tutorials on using the {+driver-short+} to perform Atlas
-Vector Searches, see the :atlas:`Atlas Vector Search tutorials </atlas-vector-search/tutorials/>` 
-in the Atlas documentation.
+To see more Atlas Vector Search tutorials for the {+driver-short+}, see the :atlas:`Atlas
+Vector Search tutorials </atlas-vector-search/tutorials/>` in the Atlas documentation.
 
-To learn more about Atlas Vector Search, see :atlas:`Atlas Vector Search </atlas-vector-search/>`
-in the Atlas documentation.
+To learn more about Atlas Vector Search, see the :atlas:`Atlas Vector Search </atlas-vector-search/>`
+guides in the Atlas documentation.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
-To learn more about the ``aggregate()`` method, see the
-`API documentation <{+api+}/classes/Collection.html#aggregate>`__.
+To learn more about the ``aggregate()`` method, see `aggregate()
+<{+api+}/classes/Collection.html#aggregate>`__ in the API documentation.
