@@ -163,7 +163,7 @@ This example performs the following actions:
    const limit = 3;
    const cursor = myColl.find(query).sort(sort).limit(limit);
    for await (const doc of cursor) {
-       console.dir(doc);
+      console.dir(doc);
    }
 
 The code example above outputs the following three documents, sorted by
