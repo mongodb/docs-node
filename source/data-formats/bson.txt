@@ -1,9 +1,9 @@
 .. _node-bson-control:
 .. _node-bson:
 
-====
-BSON
-====
+==============
+Work with BSON
+==============
 
 .. default-domain:: mongodb
 
@@ -75,9 +75,9 @@ BSON document:
 
 .. code-block:: javascript
 
-   document.restaurant_id = "12345"
-   delete document.cuisine
-   document.name = "Mongo's Pizza Place"   
+   document.restaurant_id = "12345";
+   delete document.cuisine;
+   document.name = "Mongo's Pizza Place";
 
 Write BSON to a File
 --------------------
@@ -90,12 +90,52 @@ The following example writes the sample BSON document to ``file.bson``:
 
 .. code-block:: javascript
 
-const fs = require('fs');  // Import the file system module
-const BSON = require('bson');  // Import the BSON package
+   const fs = require('fs');  // Import the file system module
+   const BSON = require('bson');  // Import the BSON package
 
-// Create a BSON object
-const bson = new BSON();
+   // Create a BSON object
+   const bsonData = BSON.serialize(result);
 
-// Write the BSON data to a file
-fs.writeFile('file.bson', bson.serialize(document));
+   // Write the BSON data to a file
+   fs.writeFile('file.bson', bsonData, (err) => {
+      if (err) throw err;
+      console.log('BSON data written to file.bson');
+    });
+
+Read BSON from a File
+---------------------
+
+To read BSON documents from a file, open a file stream in read-binary mode on the input
+file. Then, decode the documents from BSON format as you read them by using the ``bson.decode()``
+method.
+
+The following example reads the sample BSON document from ``file.bson``:
+
+.. io-code-block::
+   :copyable: true
+     
+   .. input::
+      :language: javascript
+
+      const fs = require('fs');  // Import the file system module
+      const BSON = require('bson');  // Import the BSON package
+
+      // Read the BSON data from a file
+      fs.readFile('file.bson', (err, data) => {
+         if (err) throw err;
+         const document = BSON.deserialize(data);
+         console.log(document);
+      });
+
+   .. output::
+      :visible: false
+      {_id: new ObjectId('67e1823d0d63bfdf87e8928e'), "address": {"street": "Pizza St",
+      "zipcode": "10003"}, "coord": [-73.982419, 41.579505], "cuisine": "Pizza", "name":
+      "Mongo's Pizza"}
+      
+API Documentation
+-----------------
+
+To learn more about any of the methods or types discussed in this
+guide, see the `bson <{+api+}/modules/BSON.html>`__ API documentation.
 
