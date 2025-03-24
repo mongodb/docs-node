@@ -27,6 +27,15 @@ operation by using the following methods:
 - ``limit()``: Specifies the maximum number of documents to return from a query.
 - ``skip()``: Specifies the number of documents to skip before returning query results.
 
+You can use these methods either by chaining them to your read operation or by specifying them in an
+``options`` object in your call to your read operation. 
+
+.. note::
+
+   If you chain ``sort()``, ``limit()``, or ``skip()`` to a read operation, you must
+   specify all methods before iterating the cursor. If you specify a method after
+   iterating the cursor, the method does not apply. 
+
 Sample Data for Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -154,7 +163,7 @@ This example performs the following actions:
    const limit = 3;
    const cursor = myColl.find(query).sort(sort).limit(limit);
    for await (const doc of cursor) {
-       console.dir;
+       console.dir(doc);
    }
 
 The code example above outputs the following three documents, sorted by
@@ -208,32 +217,32 @@ arbitrary documents.
 If the value of ``skip()`` exceeds the number of matched documents for
 a query, then that query returns no documents.
 
-This example queries the collection for the books with the second and third
-highest lengths by performing the following actions:
+This example queries the collection for the books with the fifth and sixth highest lengths 
+by performing the following actions:
 
 - Uses an empty query filter to match all documents in the collection
 - Calls the ``sort()`` method to apply a descending sort to the ``length`` field, which returns longer books before shorter books
-- Calls the ``skip()`` method to omit the first matching document from the result
+- Calls the ``skip()`` method to omit the first four matching documents from the result
 
 .. code-block:: javascript
 
    // define an empty query document
    const query = {};
    const sort = { length: -1 };
-   const skip = 1;
-   const cursor = myColl.find(query).sort(sort).skip(1);
+   const skip = 4;
+   const cursor = myColl.find(query).sort(sort).skip(skip);
    for await (const doc of cursor) {
      console.dir(doc);
    }
 
-Since the query skips the first matching document, the preceding code snippet prints
-the second and third highest length documents:
+Since the query skips the first four matching documents, the preceding code snippet prints
+the fifth and sixth highest length documents:
 
 .. code-block:: json
    :copyable: false
 
-   { "_id": 4, "name": "Infinite Jest", "author": "Wallace", "length": 1104 },
-   { "_id": 6, "name": "A Dance With Dragons", "author": "Martin", "length": 1104 }
+   { "_id": 5, "title": "Cryptonomicon", "author": "Stephenson", "length": 918 }
+   { "_id": 1, "title": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 }
 
 You can also apply ``skip()`` and ``sort()`` by specifying them in an
 ``options`` object in your call to the ``find()`` method. The following two
@@ -241,13 +250,14 @@ calls are equivalent:
 
 .. code-block:: javascript
 
-   myColl.find(query).sort({ length: -1 }).skip(1);
-   myColl.find(query, { sort: { length: -1 }, skip: 1});
+   myColl.find(query).sort({ length: -1 }).skip(4);
+   myColl.find(query, { sort: { length: -1 }, skip: 4});
 
 For more information on the ``options`` settings for the ``find()``
 method, see the
 `API documentation on find() <{+api+}/classes/Collection.html#find>`__.
 
+.. _node-fundamentals-combine-lim-sort-skip:
 
 Combine Limit, Sort, and Skip
 -----------------------------
