@@ -107,7 +107,7 @@ This query uses the ``$vectorSearch`` stage to:
 - Search for the specified term in the ``plot_embedding`` field
 
 - Set the number of nearest neighbors used in the search to 150 by using the
-``numCandidates`` option
+  ``numCandidates`` option
 
 - Return a maximum of 10 documents from the query using the ``limit`` option
 
