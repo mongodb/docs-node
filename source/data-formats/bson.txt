@@ -90,17 +90,15 @@ The following example writes the sample BSON document to ``file.bson``:
 
 .. code-block:: javascript
 
-   const fs = require('fs');  // Import the file system module
-   const BSON = require('bson');  // Import the BSON package
+   import fs from 'fs/promises';  // Import the file system module
+   import { BSON } from 'bson';  // Import the BSON package
 
    // Create a BSON object
    const bsonData = BSON.serialize(result);
 
    // Write the BSON data to a file
-   fs.writeFile('file.bson', bsonData, (err) => {
-      if (err) throw err;
-      console.log('BSON data written to file.bson');
-    });
+   await fs.writeFile('file.bson', bsonData);
+   console.log('BSON data written to file.bson');
 
 Read BSON from a File
 ---------------------
@@ -116,25 +114,23 @@ The following example reads the sample BSON document from ``file.bson``:
    .. input::
       :language: javascript
 
-      const fs = require('fs');  // Import the file system module
-      const BSON = require('bson');  // Import the BSON package
+      import fs from 'fs/promises';  // Import the file system module
+      import { BSON } from 'bson';  // Import the BSON package
 
       // Read the BSON data from a file
-      fs.readFile('file.bson', (err, data) => {
-         if (err) throw err;
-         const document = BSON.deserialize(data);
-         console.log(document);
-      });
+      const data = await fs.readFile('file.bson');
+      const document = BSON.deserialize(data);
+      console.log(document);
 
    .. output::
       :visible: false
 
       {
-      _id: new ObjectId('67e1823d0d63bfdf87e8928e'), 
-      "address": {"street": "Pizza St", "zipcode": "10003"}, 
-      "coord": [-73.982419, 41.579505], 
-      "cuisine": "Pizza", 
-      "name": "Mongo's Pizza"
+         _id: new ObjectId('67e1823d0d63bfdf87e8928e'),
+         address: { street: 'Pizza St', zipcode: '10003' },
+         coord: [ -73.982419, 41.579505 ],
+         cuisine: 'Pizza',
+         name: "Mongo's Pizza"
       }
       
 API Documentation
