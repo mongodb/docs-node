@@ -22,4 +22,80 @@ and write BSON to a file by using {+driver-short+}.
 **BSON**, or Binary JSON, is the data format that MongoDB uses to organize
 and store data. This data format includes all JSON data structure types and
 adds support for types including dates, different size integers, ObjectIds, and
-binary data.
+binary data. You can use BSON documents in your {+language+} application by importing the
+BSON package. For a complete list of supported types, see the
+:manual:`BSON Types </reference/bson-types>` server manual page.
+
+The code samples in this guide use the following BSON document as an example:
+
+.. code-block:: none
+
+   {
+       "address" : {
+           "street" : "Pizza St", 
+           "zipcode" : "10003" 
+       },
+       "coord" : [-73.982419, 41.579505],
+       "cuisine" : "Pizza",
+       "name" : "Mongo's Pizza"
+   }
+
+Create a BSON Document
+----------------------
+
+You can create a BSON document by using the same notation you use to create an
+object in {+language+}. {+driver-short+} automatically converts {+language+} objects
+into BSON documents when inserting them into a collection.
+
+The following example creates a BSON document that
+represents the preceding sample BSON document:
+
+.. code-block:: javascript
+
+   const document = {
+       "address": {
+           "street": "Pizza St",
+           "zipcode": "10003",
+         },
+       "coord": [-73.982419, 41.579505],
+       "cuisine": "Pizza",
+       "name": "Mongo's Pizza",
+   }
+
+Change a BSON Document
+----------------------
+
+You can modify the contents of a BSON document by using the same notation you use to modify
+an object in {+language+}. The following example makes three changes to the previous
+BSON document:
+
+1. Adds a new field, ``restaurant_id``, with the value ``12345``
+#. Removes the ``cuisine`` field
+#. Sets the value of the ``name`` field to ``"Mongo's Pizza Place"``
+
+.. code-block:: javascript
+
+   document.restaurant_id = "12345"
+   delete document.cuisine
+   document.name = "Mongo's Pizza Place"   
+
+Write BSON to a File
+--------------------
+
+To write BSON data to a file, import the file system module and open a file stream on the output file.
+Then, write each document to the output file. Ensure that documents are encoded in BSON
+format by using the ``bson.serialize()`` method.
+
+The following example writes the sample BSON document to ``file.bson``:
+
+.. code-block:: javascript
+
+const fs = require('fs');  // Import the file system module
+const BSON = require('bson');  // Import the BSON package
+
+// Create a BSON object
+const bson = new BSON();
+
+// Write the BSON data to a file
+fs.writeFile('file.bson', bson.serialize(document));
+
