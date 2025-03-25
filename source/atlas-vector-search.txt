@@ -108,8 +108,7 @@ your query.
       {
       plot: 'After using his mother's newly built time machine, Dolf gets stuck
       involuntary in the year 1212. He ends up in a children's crusade where he confronts
-      his new friends with modern techniques...
-      ,
+      his new friends with modern techniques...`,
       title: 'Crusade in Jeans',
       score: 0.92205810546875
       }
