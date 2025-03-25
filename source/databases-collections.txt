@@ -92,7 +92,7 @@ Get a List of Collections
 -------------------------
 
 You can query for a list of collections in a database by calling the
-``listCollections()`` method of a ``Db`` instance.
+``listCollections()`` method on a ``Db`` instance.
 
 The following example lists all collections in a database:
 
