@@ -71,7 +71,7 @@ Causal Consistency
 
    .. replacement:: find-one-method
 
-      ``find()``
+      ``findOne()``
 
    .. replacement:: delete-one-method
 
