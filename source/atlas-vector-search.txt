@@ -127,7 +127,7 @@ Vector Search tutorials </atlas-vector-search/tutorials/>` in the Atlas document
 To learn more about the syntax of the ``$vectorSearch`` pipeline stage,
 see the Syntax and Fields sections of the 
 :atlas:`Create and Run Queries </atlas-vector-search/vector-search-stage/#syntax>`
-guide in the Atlas Vector Search section of the MongoDB Atlas documentation.
+guide in the Atlas Vector Search section of the Atlas documentation.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
