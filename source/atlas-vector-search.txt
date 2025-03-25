@@ -20,8 +20,7 @@ Run an Atlas Vector Search Query
 Overview
 --------
 
-In this guide, you can learn how to use the :atlas:`Atlas Vector Search
-</atlas-vector-search/vector-search-overview/>` feature
+In this guide, you can learn how to use the Atlas Vector Search feature
 in the {+driver-short+}. 
 
 You can use {+vector-search+} to perform a vector search on your data stored in
@@ -32,7 +31,7 @@ semantic search, hybrid search, and generative search, including
 Retrieval-Augmented Generation (RAG).
 
 To learn more about {+vector-search+}, see the :atlas:`{+vector-search+}
-</atlas-vector-search/vector-search-overview/>` guide in the MongoDB Atlas
+</atlas-vector-search/vector-search-overview/>` guides in the MongoDB Atlas
 documentation.
 
 .. important:: Feature Compatibility
@@ -46,7 +45,7 @@ Perform a Vector Search
 
 To use this feature, you must create a vector search index and index your
 vector embeddings. To learn about how to programmatically create a
-vector search index, see the :atlas:`Create an Atlas Vector Search index
+vector search index, see the :atlas:`Create an Atlas Vector Search Index
 </atlas-vector-search/vector-search-type/#create-an-atlas-vector-search-index>` section in the
 Atlas documentation. To learn more about vector embeddings, see
 :atlas:`How to Create Vector Embeddings
@@ -54,13 +53,13 @@ Atlas documentation. To learn more about vector embeddings, see
 
 After you create a vector search index on your vector embeddings, you
 can reference this index in your pipeline stage, as shown in the
-following section.
+following example.
 
 Sample Data
 ~~~~~~~~~~~
 
 The example on this page shows how to build an aggregation pipeline that uses the
-``$vectorSearch`` stage to perform an exact vector search on the
+``$vectorSearch`` stage to perform a vector search on the
 ``sample_mflix.embedded_movies`` collection in the :atlas:`Atlas sample datasets
 </sample-data>`.
 
@@ -104,6 +103,8 @@ your query.
 
 This query uses the ``$vectorSearch`` stage to:
 
+- Perform an Approximate Nearest Neighbor (ANN) vector search
+
 - Search for the specified term in the ``plot_embedding`` field
 
 - Set the number of nearest neighbors used in the search to 150 by using the
@@ -123,8 +124,10 @@ Additional Information
 To see more Atlas Vector Search tutorials for the {+driver-short+}, see the :atlas:`Atlas
 Vector Search tutorials </atlas-vector-search/tutorials/>` in the Atlas documentation.
 
-To learn more about Atlas Vector Search, see the :atlas:`Atlas Vector Search </atlas-vector-search/>`
-guides in the Atlas documentation.
+To learn more about the syntax of the ``$vectorSearch`` pipeline stage,
+see the Syntax and Fields sections of the 
+:atlas:`Create and Run Queries </atlas-vector-search/vector-search-stage/#syntax>`
+guide in the Atlas Vector Search section of the MongoDB Atlas documentation.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~

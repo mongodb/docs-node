@@ -9,7 +9,7 @@ async function run() {
     try {
         await client.connect();
 
-        // Set the namespace
+        // Sets the namespace
         const database = client.db("sample_mflix");
         const coll = database.collection("embedded_movies");
 
