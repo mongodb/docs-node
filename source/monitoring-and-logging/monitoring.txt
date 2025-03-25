@@ -34,9 +34,15 @@ decisions when designing and debugging your application.
 
 In this guide you will learn how to perform these tasks:
 
+- :ref:`Monitor Command Events <node-command-monitoring>`
+- :ref:`Monitor Server Discovery and Monitoring (SDAM) Events <node-cluster-monitoring>`
+- :ref:`Monitor Connection Pool Events <node-connection-pool-monitoring>`
+
 This guide shows how to use information about the activity of the driver in code.
 To learn how to record events in the driver, see the {+driver-short+}'s 
 :ref:`Logging <node-logging>` guide. 
+
+.. _node-monitoring-events:
 
 Monitor Events
 --------------
@@ -64,6 +70,9 @@ Command Events
 A command event is an event related to a MongoDB database command. You can
 access one or more command monitoring events using the driver by subscribing to
 them in your application.
+
+To learn more about MongoDB database commands, see the
+:manual:`Database Commands </reference/command/>` guide in the Server Manual.
 
 Example
 ```````
@@ -718,7 +727,7 @@ API Documentation
 -----------------
 
 To learn more about any of the options or types discussed in this guide, see the
-following API documentaion:
+following API documentation:
 
 - `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
 - `MongoClient <{+api+}/classes/MongoClient.html>`__
