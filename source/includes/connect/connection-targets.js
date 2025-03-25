@@ -35,7 +35,7 @@ const client = new MongoClient("mongodb://host1:27017");
 // end-local-connection-uri
 
 // start-localhost
-const client = new MongoClient("mongodb://localhost:<port>");
+const client = new MongoClient("mongodb://localhost:27017");
 // end-localhost
 
 // start-replica-set-option

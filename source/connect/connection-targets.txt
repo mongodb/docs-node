@@ -63,7 +63,7 @@ server. Optionally, specify the port of the server. If no port is specified,
 the default port is ``27017``. 
 
 You can specify the host and port to connect to by using a  
-connection string:
+connection string, as shown in the following code:
 
 .. literalinclude:: /includes/connect/connection-targets.js
    :language: javascript
@@ -93,11 +93,11 @@ to the driver. The node does not need to be the primary, and it may be a hidden 
 The driver will then automatically discover the remaining nodes.
 
 The following example shows how to connect to the replica set by using a connection
-string and verify the replica set name by using the 
+string and how to verify the replica set name upon connection by using the 
 ``replicaSet`` connection string option:
 
 .. literalinclude:: /includes/connect/connection-targets.js
-   :language: ruby
+   :language: javascript
    :start-after: start-replica-set-option
    :end-before: end-replica-set-option
    :dedent:
