@@ -714,3 +714,11 @@ connectionPoolCleared
      interruptInUseConnections: true,
    }
 
+API Documentation
+-----------------
+
+To learn more about any of the options or types discussed in this guide, see the
+following API documentaion:
+
+- `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
