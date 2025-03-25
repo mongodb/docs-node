@@ -84,4 +84,4 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/pkFactory/ -> ${base}/crud/pkFactory/
 
 # Comprehensive Coverage Redirects
-[6.14-master]: ${prefix}/${version}/security/authentication/enterprise-mechanisms/ -> ${base}/security/authentication
+[*-master]: ${prefix}/${version}/security/authentication/enterprise-mechanisms/ -> ${base}/security/authentication
