@@ -54,13 +54,13 @@ An event is any action that occurs within the driver during its operation. The
 {+driver-short+} includes functionality for listening to a subset of these
 events.
 
-The {+driver-long+} organizes the events it defines into the following categories:
+The {+driver-short+} organizes the events it defines into the following categories:
 
 - Command Events
 - Server Discovery and Monitoring (SDAM) Events
 - Connection Pool Events
 
-The following ections show how to monitor each event category.
+The following sections show how to monitor each event category.
 
 .. _node-command-monitoring:
 
@@ -591,7 +591,7 @@ pool monitoring event.
 connectionPoolCreated
 +++++++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionPoolCreatedEvent {
@@ -603,7 +603,7 @@ connectionPoolCreated
 connectionPoolReady
 +++++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionPoolReadyEvent {
@@ -614,7 +614,7 @@ connectionPoolReady
 connectionPoolClosed
 ++++++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionPoolClosedEvent {
@@ -625,7 +625,7 @@ connectionPoolClosed
 connectionCreated
 +++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionCreatedEvent {
@@ -637,7 +637,7 @@ connectionCreated
 connectionReady
 +++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionReadyEvent {
@@ -650,7 +650,7 @@ connectionReady
 connectionClosed
 ++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionClosedEvent {
@@ -664,7 +664,7 @@ connectionClosed
 connectionCheckOutStarted
 +++++++++++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionCheckOutStartedEvent {
@@ -675,7 +675,7 @@ connectionCheckOutStarted
 connectionCheckOutFailed
 ++++++++++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionCheckOutFailedEvent {
@@ -688,7 +688,7 @@ connectionCheckOutFailed
 connectionCheckedOut
 ++++++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionCheckedOutEvent {
@@ -701,7 +701,7 @@ connectionCheckedOut
 connectionCheckedIn
 +++++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionCheckedInEvent {
@@ -713,7 +713,7 @@ connectionCheckedIn
 connectionPoolCleared
 +++++++++++++++++++++
 
-.. code-block:: none
+.. code-block:: javascript
    :copyable: false
 
    ConnectionPoolClearedEvent {
