@@ -56,7 +56,7 @@ a mechanism to learn more about how to use it with your application.
      - Yes
      - No
      - No
-   * - :ref:`OIDC (Workload Identity Federation) <node-authentication-oidc>`
+   * - :ref:`<node-authentication-oidc>`
      - Yes
      - Yes
      - No
@@ -64,7 +64,7 @@ a mechanism to learn more about how to use it with your application.
      - Yes
      - Yes
      - No
-   * - :ref:`Kerberos (GSSAPI) <node-authentication-kerberos>`
+   * - :ref:`<node-authentication-kerberos>`
      - No
      - Yes
      - No
