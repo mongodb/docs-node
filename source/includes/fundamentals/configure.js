@@ -1,60 +1,49 @@
-const { MongoClient, ReadConcern, ReadPreference, WriteConcern } = require('mongodb');
+const { MongoClient, ReadPreference } = require('mongodb');
 
 // start-client-settings
 const clientOptions = {
   readPreference: ReadPreference.SECONDARY,
-  readConcern: new ReadConcern('local'),
-  writeConcern: new WriteConcern('2')
+  readConcern: { level: "local" },
+  writeConcern: { w: 2 },
 };
 
-const client = new MongoClient('mongodb://localhost:27017', clientOptions);
+const client = new MongoClient("mongodb://localhost:27017", clientOptions);
 // end-client-settings
 
 async function main() {
   await client.connect();
 
   // start-client-settings-uri
-  const uri = 'mongodb://localhost:27017/?readPreference=secondary&readConcernLevel=local&w=2';
+  const uri = "mongodb://localhost:27017/?readPreference=secondary&readConcernLevel=local&w=2";
   const clientWithUri = new MongoClient(uri);
-  
-  await clientWithUri.connect();
   // end-client-settings-uri
-
-  // start-session-settings
-  const sessionOptions = {
-    readPreference: new ReadPreference(ReadPreference.PRIMARY_PREFERRED),
-    readConcern: new ReadConcern(ReadConcern.LOCAL),
-    writeConcern: new WriteConcern(WriteConcern.MAJORITY)
-  };
-
-  const session = client.startSession(sessionOptions);
-  // end-session-settings
 
   // start-transaction-settings
   const transactionOptions = {
-    readPreference: new ReadPreference(ReadPreference.PRIMARY),
-    readConcern: new ReadConcern(ReadConcern.MAJORITY),
-    writeConcern: new WriteConcern(1)
+    readPreference: ReadPreference.PRIMARY,
+    readConcern: { level: "majority" },
+    writeConcern: { w: 1 },
   };
 
+  const session = client.startSession();
   session.startTransaction(transactionOptions);
   // end-transaction-settings
 
   // Sets read and write settings for the "test_database" database
   // start-database-settings
-  const db = client.db('test_database', {
-    readPreference: new ReadPreference(ReadPreference.PRIMARY_PREFERRED),
-    readConcern: new ReadConcern(ReadConcern.AVAILABLE),
-    writeConcern: new WriteConcern(WriteConcern.MAJORITY)
+  const db = client.db("test_database", {
+    readPreference: ReadPreference.PRIMARY_PREFERRED,
+    readConcern: { level: "available" },
+    writeConcern: { w: "majority" },
   });
   // end-database-settings
 
   // Sets read and write settings for the "test_collection" collection
   // start-collection-settings
-  const collection = db.collection('test_collection', {
-    readPreference: new ReadPreference(ReadPreference.SECONDARY_PREFERRED),
-    readConcern: new ReadConcern(ReadConcern.AVAILABLE),
-    writeConcern: new WriteConcern(0)
+  const collection = db.collection("test_collection", {
+    readPreference: ReadPreference.SECONDARY_PREFERRED,
+    readConcern: { level: "available" },
+    writeConcern: { w: 0 },
   });
   // end-collection-settings
 
@@ -65,14 +54,14 @@ async function main() {
   const taggedReadPreference = new ReadPreference(
     ReadPreference.SECONDARY,
     [
-      { dc: 'ny' },
-      { dc: 'sf' },
+      { dc: "ny" },
+      { dc: "sf" },
       {}
     ]
   );
 
   const dbWithTags = client.db(
-    'test_database',
+    "test_database",
     { readPreference: taggedReadPreference }
   );
   // end-tag-set
@@ -80,9 +69,9 @@ async function main() {
   // Instructs the library to distribute reads between members within 35 milliseconds
   // of the closest member's ping time
   // start-local-threshold
-  const clientWithLocalThreshold = new MongoClient('mongodb://localhost:27017', {
-    replicaSet: 'repl0',
-    readPreference: new ReadPreference(ReadPreference.SECONDARY_PREFERRED),
+  const clientWithLocalThreshold = new MongoClient("mongodb://localhost:27017", {
+    replicaSet: "repl0",
+    readPreference: ReadPreference.SECONDARY_PREFERRED,
     localThresholdMS: 35
   });
   // end-local-threshold

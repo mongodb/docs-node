@@ -35,7 +35,6 @@ You can set write concern, read concern, and read preference options at the foll
 levels:
 
 - Client, which sets the *default for all operation executions* unless overridden
-- Session
 - Transaction
 - Database
 - Collection
@@ -85,29 +84,6 @@ URI, which is passed as a parameter to the ``MongoClient`` constructor:
     :start-after: start-client-settings-uri
     :end-before: end-client-settings-uri
 
-.. _node-read-write-session:
-
-Session Configuration
-~~~~~~~~~~~~~~~~~~~~~
-
-This example shows how to set the read preference, read concern, and
-write concern of a session by passing a ``ClientSessionOptions`` object to
-the ``startSession()`` method. The code configures the following settings:
-
-- ``PRIMARY_PREFERRED`` read preference: Read operations retrieve data from 
-  the primary replica set member, or secondary members if the primary is unavailable
-- ``LOCAL`` read concern: Read operations return the instance's most recent data 
-  without guaranteeing that the data has been written to a majority of the replica
-  set members
-- ``MAJORITY`` write concern: The majority of all replica set members
-  must acknowledge the write operation
-
-.. literalinclude:: /includes/fundamentals/configure.js
-    :language: javascript
-    :dedent:
-    :start-after: start-session-settings
-    :end-before: end-session-settings
-
 .. _node-read-write-transaction:
 
 Transaction Configuration
@@ -119,7 +95,7 @@ to the ``startTransaction()`` method. The code configures the following settings
 
 - ``PRIMARY`` read preference: Read operations retrieve data from 
   the primary replica set member
-- ``MAJORITY`` read concern: Read operations return the instance's most recent data 
+- ``majority`` read concern: Read operations return the instance's most recent data 
   that has been written to a majority of replica set members
 - ``1`` write concern: The primary replica set member must acknowledge the
   write operation
@@ -141,10 +117,10 @@ object to the ``db()`` method. The code configures the following settings:
 
 - ``PRIMARY_PREFERRED`` read preference: Read operations retrieve data from 
   the primary replica set member, or secondary members if the primary is unavailable
-- ``AVAILABLE`` read concern: Read operations return the instance's most recent data 
+- ``available`` read concern: Read operations return the instance's most recent data 
   without guaranteeing that the data has been written to a majority of the replica
   set members
-- ``MAJORITY`` write concern: The majority of all replica set members
+- ``majority`` write concern: The majority of all replica set members
   must acknowledge the write operation
 
 .. literalinclude:: /includes/fundamentals/configure.js
@@ -162,9 +138,9 @@ This example shows how to set the read preference, read concern, and
 write concern of a collection called ``test_collection`` by passing a ``CollectionOptions``
 object to the ``collection()`` method. The code configures the following settings:
 
-- ``SECONDARY_PREFERRED`` read preference: Read operations retrieve data from 
+- ``secondaryPreferred`` read preference: Read operations retrieve data from 
   secondary replica set members, or the primary members if no secondaries are available
-- ``AVAILABLE`` read concern: Read operations return the instance's most recent data 
+- ``available`` read concern: Read operations return the instance's most recent data 
   without guaranteeing that the data has been written to a majority of the replica
   set members
 - ``0`` write concern: Does not request acknowledgment of the write operation
@@ -185,12 +161,16 @@ those tags to target one or more members for a read operation.
 
 By default, the {+driver-short+} ignores tags when choosing a member
 to read from. To instruct the {+driver-short+} to prefer certain tags,
-pass them as a parameter to your `read preference class <{+api-root+}node/read_preferences.html#node.read_preferences.Primary>`__ 
+pass them as a parameter to your read preference class
 constructor. 
 
-In the following code example, the tag set passed to the ``read_preference`` parameter
-instructs {+driver-short+} to prefer reads from the New York data center
-(``'dc': 'ny'``) and to fall back to the San Francisco data center (``'dc': 'sf'``):
+This code example sets the ``readPreference`` option to a tag set that
+instructs ``test_database`` to prefer reads from secondary replica set
+members in the following order:
+
+1. Members from the New York data center (``{ dc: 'ny' }``)
+#. Members from the San Francisco data center (``{ dc: 'sf' }``)
+#. Any secondary members (``{}``)
 
 .. literalinclude:: /includes/fundamentals/configure.js
     :language: javascript
@@ -347,6 +327,7 @@ a ``first_name`` value of ``"Günter"``, with an umlaut, and returns
 the following update information:
 
 .. code-block:: none
+   :copyable: false
 
    { lastErrorObject: { updatedExisting: true, n: 1 },
      value: { _id: 3, first_name: 'Günter', last_name: 'Krause' },
