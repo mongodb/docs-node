@@ -18,11 +18,13 @@ MongoDB Node Driver
 
   Get Started <get-started>
   Connect </connect>
+  Databases & Collections </databases-collections>
   CRUD Operations </crud>
   Aggregation </aggregation>
   Data Formats </data-formats>
   Indexes </indexes>
   Run a Database Command </run-command>
+  Atlas Search </atlas-search>
   Atlas Vector Search </atlas-vector-search>
   Monitoring and Logging </monitoring-and-logging>
   Security </security>
@@ -59,6 +61,12 @@ Connect to MongoDB
 Learn how to create and configure a connection to a MongoDB deployment in the
 :ref:`<node-connect>` section.
 
+Databases and Collections
+-------------------------
+
+Learn how to interact wth MongoDB databases and collections in the
+:ref:`<node-databases-collections>` section.
+
 Read and Write Data
 -------------------
 
@@ -85,6 +93,11 @@ Run a Database Command
 ----------------------
 
 Learn how to run a database command in the :ref:`<node-run-command>` section.
+
+Atlas Search
+------------
+
+Learn how to run Atlas Search queries in the :ref:`<node-atlas-search>` section.
 
 Atlas Vector Search
 -------------------
