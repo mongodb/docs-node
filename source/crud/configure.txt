@@ -20,81 +20,244 @@ Configure CRUD Operations
 Overview
 --------
 
-In this guide, you can learn how to configure read and write operations in {+driver-short+}.
+In this guide, you can learn how to use the {+driver-short+} to configure read
+and write operations.
 
-.. _node-fundamentals-collations:
-.. _node-collations:
+Read and Write Settings
+-----------------------
 
-Collations
-----------
+You can control how the driver routes read operations by setting a **read preference**.
+You can also control options for how the driver waits for acknowledgment of
+read and write operations on a replica set by setting a **read concern** and a
+**write concern**.
 
-*Collations are available in MongoDB 3.4 and later.*
+You can set write concern, read concern, and read preference options at the following
+levels:
 
-You can use **collations**, a set of sorting rules, to run operations using
-string ordering for specific languages and locales (a community or region that
-shares common language idioms).
+- Client, which sets the *default for all operation executions* unless overridden
+- Session
+- Transaction
+- Database
+- Collection
 
-MongoDB sorts strings using *binary collation* by default. This collation
-method uses the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_
-character values to compare and order strings. Languages and locales
-have specific character ordering conventions that differ from the ASCII
-standard.
+The preceding list also indicates the increasing order of precedence of the option settings. For
+example, if you set a read concern level for a transaction, it will override a read
+concern level set for the client.
 
-For example, in Canadian French, the right-most accented character determines
-the ordering for strings when the other characters are the same. Consider the
-following French words: **cote**, **coté**, **côte**, and **côté**.
+.. tip::
 
-MongoDB sorts them in the following order using the default binary collation:
+    To learn more about the read and write settings, see the following guides in the
+    {+mdb-server+} manual:
 
-.. code-block:: none
+    - :manual:`Read Preference </core/read-preference/>`
+    - :manual:`Read Concern </reference/read-concern/>`
+    - :manual:`Write Concern </reference/write-concern/>`
 
-   cote
-   coté
-   côte
-   côté
+This section shows how to configure your read and write settings at each level.
 
-MongoDB sorts them in the following order using the Canadian French collation:
-
-.. code-block:: none
-
-   cote
-   côte
-   coté
-   côté
-
-Using Collations
-~~~~~~~~~~~~~~~~~~
-
-You can specify a collation when you create a new collection or new index. You
-can also specify a collation for :doc:`CRUD operations </crud>`
-and aggregations.
-
-When you create a new collection with a collation, you define the default
-collation for any of the :manual:`operations that support collation
-</reference/collation/#operations-that-support-collation>` called on that
-collection. You can override the collation for an operation by specifying a
-different one.
-
-.. note::
-
-   Currently, you cannot create a collation on an existing collection. To use
-   collations with an existing collection, create an index with the collation
-   and specify the same collation in your operations on it.
-
-When you create an index with a collation, you specify the sort order for
-operations that use that index. To use the collation in the index, you
-must provide a matching collation in the operation, and the operation must
-use the index. While most index types support collation, the following
-types support only binary comparison:
-
-- :manual:`text </reference/method/db.collection.createIndex/#options-for-text-indexes>`
-- :manual:`2d </reference/method/db.collection.createIndex/#options-for-2dsphere-indexes>`
-- :manual:`geoHaystack </reference/method/db.collection.createIndex/#options-for-geohaystack-indexes>`
-
-Collation Parameters
+Client Configuration
 ~~~~~~~~~~~~~~~~~~~~
 
-The collation object contains the following parameters:
+This example shows how to set the read preference, read concern, and
+write concern of a ``MongoClient`` instance by passing a ``MongoClientOptions``
+object to the constructor. The code configures the following settings:
+
+- ``SECONDARY`` read preference: Read operations retrieve data from 
+  secondary replica set members
+- ``local`` read concern: Read operations return the instance's most recent data 
+  without guaranteeing that the data has been written to a majority of the replica
+  set members
+- ``2`` write concern: The primary and one secondary replica set member
+  must acknowledge the write operation
+
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-client-settings
+    :end-before: end-client-settings
+
+Alternatively, you can specify the read and write settings in the connection
+URI, which is passed as a parameter to the ``MongoClient`` constructor:
+
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-client-settings-uri
+    :end-before: end-client-settings-uri
+
+.. _node-read-write-session:
+
+Session Configuration
+~~~~~~~~~~~~~~~~~~~~~
+
+This example shows how to set the read preference, read concern, and
+write concern of a session by passing a ``ClientSessionOptions`` object to
+the ``startSession()`` method. The code configures the following settings:
+
+- ``PRIMARY_PREFERRED`` read preference: Read operations retrieve data from 
+  the primary replica set member, or secondary members if the primary is unavailable
+- ``LOCAL`` read concern: Read operations return the instance's most recent data 
+  without guaranteeing that the data has been written to a majority of the replica
+  set members
+- ``MAJORITY`` write concern: The majority of all replica set members
+  must acknowledge the write operation
+
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-session-settings
+    :end-before: end-session-settings
+
+.. _node-read-write-transaction:
+
+Transaction Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This example shows how to set the read preference, read concern, and
+write concern of a transaction by passing a ``TransactionOptions`` object
+to the ``startTransaction()`` method. The code configures the following settings:
+
+- ``PRIMARY`` read preference: Read operations retrieve data from 
+  the primary replica set member
+- ``MAJORITY`` read concern: Read operations return the instance's most recent data 
+  that has been written to a majority of replica set members
+- ``1`` write concern: The primary replica set member must acknowledge the
+  write operation
+
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-transaction-settings
+    :end-before: end-transaction-settings
+
+.. _node-read-write-database:
+
+Database Configuration
+~~~~~~~~~~~~~~~~~~~~~~
+
+This example shows how to set the read preference, read concern, and
+write concern of a database called ``test_database`` by passing a ``DbOptions``
+object to the ``db()`` method. The code configures the following settings:
+
+- ``PRIMARY_PREFERRED`` read preference: Read operations retrieve data from 
+  the primary replica set member, or secondary members if the primary is unavailable
+- ``AVAILABLE`` read concern: Read operations return the instance's most recent data 
+  without guaranteeing that the data has been written to a majority of the replica
+  set members
+- ``MAJORITY`` write concern: The majority of all replica set members
+  must acknowledge the write operation
+
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-database-settings
+    :end-before: end-database-settings
+
+.. _node-read-write-collection:
+
+Collection Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+This example shows how to set the read preference, read concern, and
+write concern of a collection called ``test_collection`` by passing a ``CollectionOptions``
+object to the ``collection()`` method. The code configures the following settings:
+
+- ``SECONDARY_PREFERRED`` read preference: Read operations retrieve data from 
+  secondary replica set members, or the primary members if no secondaries are available
+- ``AVAILABLE`` read concern: Read operations return the instance's most recent data 
+  without guaranteeing that the data has been written to a majority of the replica
+  set members
+- ``0`` write concern: Does not request acknowledgment of the write operation
+
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-collection-settings
+    :end-before: end-collection-settings
+
+Tag Sets
+--------
+
+In {+mdb-server+}, you can apply key-value :manual:`tags
+</core/read-preference-tags/>` to replica-set
+members according to any criteria you choose. You can then use
+those tags to target one or more members for a read operation.
+
+By default, the {+driver-short+} ignores tags when choosing a member
+to read from. To instruct the {+driver-short+} to prefer certain tags,
+pass them as a parameter to your `read preference class <{+api-root+}node/read_preferences.html#node.read_preferences.Primary>`__ 
+constructor. 
+
+In the following code example, the tag set passed to the ``read_preference`` parameter
+instructs {+driver-short+} to prefer reads from the New York data center
+(``'dc': 'ny'``) and to fall back to the San Francisco data center (``'dc': 'sf'``):
+
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-tag-set
+    :end-before: end-tag-set
+
+Local Threshold
+---------------
+
+If multiple replica-set members match the read preference and tag sets you specify,
+the {+driver-short+} reads from the nearest replica set members, chosen according to
+their ping time.
+
+By default, the driver uses only those members whose ping times are within 15 milliseconds
+of the nearest member for queries. To distribute reads between members with
+higher latencies, pass the ``localThresholdMS`` option to the ``MongoClient()`` constructor.
+
+The following example specifies a local threshold of 35 milliseconds:
+
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-local-threshold
+    :end-before: end-local-threshold
+
+In the preceding example, the {+driver-short+} distributes reads between matching members
+within 35 milliseconds of the closest member's ping time.
+
+.. note::
+  
+   The {+driver-short+} ignores the value of ``localThresholdMS`` when communicating with a
+   replica set through a ``mongos`` instance. In this case, use the
+   :manual:`localThreshold </reference/program/mongos/#std-option-mongos.--localThreshold>`
+   command-line option.
+
+.. _node-configure-collation:
+
+Collation
+---------
+
+You can specify a **collation** to modify the behavior of read
+and write operations. A collation is a set of language-specific rules for string
+comparison, such as for letter case and accent marks.
+
+MongoDB sorts strings using *binary collation* by default. This default
+collation uses the `ASCII standard <https://en.wikipedia.org/wiki/ASCII>`_
+character values to compare and order strings. Languages and locales
+have specific character ordering conventions that differ from the ASCII
+standard, and you can choose to apply a different set of collation rules
+to your operation.
+
+You can specify a collation at the following levels:
+
+- Collection: Sets the default collation for operations on the collection.
+  You cannot define a collation for an existing collection.
+
+- Index: Sets the collation for operations that use the index.
+
+- Operation: Sets the operation's collation and overrides any inherited collations.
+
+.. _node-configure-collation-fields:
+
+Collation Fields
+~~~~~~~~~~~~~~~~
+
+The collation object contains the following fields:
 
 .. code-block:: javascript
 
@@ -109,213 +272,98 @@ The collation object contains the following parameters:
      backwards: <bool>
    }
 
-You must specify the ``locale`` field in the collation; all other fields
-are optional. For a complete list of supported locales and the default values
+When setting the ``collation`` option, you must specify the ``locale`` field.
+All other fields are optional. For a complete list of supported locales and the default values
 for the ``locale`` fields, see :manual:`Supported Languages and Locales
-</reference/collation-locales-defaults/#supported-languages-and-locales>`.
-For descriptions of each field, see the :manual:`Collation Document MongoDB
-manual entry </reference/collation/#collation-document>`.
+</reference/collation-locales-defaults/#supported-languages-and-locales>`
+in the {+mdb-server+} manual.
 
-Set a Default Collation on a Collection
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _node-configure-collation-exs:
 
-In the following example, we create a new collection called ``souvenirs`` and
-assign a default collation with the ``"fr_CA"`` locale. The collation applies
-to all :manual:`operations that support collation
-</reference/collation/#operations-that-support-collation>` performed on that
-collection.
+Collation Examples
+~~~~~~~~~~~~~~~~~~
 
-.. literalinclude:: /code-snippets/collation/collection-collation.js
-   :language: javascript
-   :start-after: start collection collation
-   :end-before: end collection collation
+To specify a collation, create a ``collation`` object and set its
+``locale`` field to the language collation you want to use. Then,
+pass this object as an options parameter to the method corresponding
+to the target collation level.
 
-Any of the operations that support collations automatically apply the collation
-defined on the collection. The query below searches the ``souvenirs``
-collection and applies the ``"fr_CA"`` locale collation:
+This section includes examples that set collations at the collection,
+index, and operation levels.
 
-.. literalinclude:: /code-snippets/collation/collection-auto-collation.js
-   :language: javascript
-   :start-after: start auto collation
-   :end-before: end auto collation
+.. _node-configure-collation-coll-index:
 
-You can specify a different collation as a parameter in an operation that
-supports collations. The following query specifies the ``"is"`` Iceland locale
-and ``caseFirst`` optional parameter with the value ``"upper"``:
+Set Collection and Index Collations
+```````````````````````````````````
 
-.. literalinclude:: /code-snippets/collation/collection-specify-collation.js
-   :language: javascript
-   :start-after: start specified collation
-   :end-before: end specified collation
+The following example creates a new collection named ``names``
+and sets its default collation to the ``"fr_CA"`` locale:
 
-Assign a Collation to an Index
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-collection-collation
+    :end-before: end-collection-collation
 
-In the following example, we create a new index on the ``title`` field of
-a collection with a collation set to the ``"en_US"`` locale.
+You can create an index on the ``names`` collection that specifies a different
+collation, as shown in the following example:
 
-.. literalinclude:: /code-snippets/collation/index-collation.js
-   :language: javascript
-   :start-after: start create index collation
-   :end-before: end create index collation
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-index-collation
+    :end-before: end-index-collation
 
-The following query uses the index we created:
-
-.. literalinclude:: /code-snippets/collation/query-index-collation.js
-   :language: javascript
-   :start-after: start query index collation
-   :end-before: end query index collation
-
-The following queries **do not** use the index that we created. The first
-query does not include a collation and the second contains a different
-strength value than the collation on the index.
-
-.. literalinclude:: /code-snippets/collation/query-not-indexed-collation.js
-   :language: javascript
-   :start-after: start not indexed collation
-   :end-before: end not indexed collation
-
-.. literalinclude:: /code-snippets/collation/query-index-no-collation.js
-   :language: javascript
-   :start-after: start index no collation
-   :end-before: end index no collation
-
-Collation Query Examples
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-Operations that read, update, and delete documents from a collection can use
-collations. This section includes examples of a selection of these. See the
-MongoDB manual for a full list of :manual:`operations that support collation
-</reference/collation/#operations-that-support-collation>`.
-
-find() and sort() Example
-`````````````````````````
-
-The following example calls both ``find()`` and ``sort()`` on a collection
-that uses the default binary collation. We use the German collation by
-setting the value of the ``locale`` parameter to ``"de"``.
-
-.. literalinclude:: /code-snippets/collation/find-sort-collation.js
-   :language: javascript
-   :start-after: start find sort collation
-   :end-before: end find sort collation
-
-findOneAndUpdate() Example
+Set an Operation Collation
 ``````````````````````````
 
-The following example calls the ``findOneAndUpdate()`` operation on a
-collection that uses the default binary collation. The collection contains the
-following documents:
+You can run an operation on the ``names`` collection, created in
+the :ref:`preceding section <node-configure-collation-coll-index>`, that overrides
+the default collation.
+
+The ``names`` collection contains the following documents:
 
 .. code-block:: none
 
-   { "_id" : 1, "first_name" : "Hans" }
-   { "_id" : 2, "first_name" : "Gunter" }
-   { "_id" : 3, "first_name" : "Günter" }
-   { "_id" : 4, "first_name" : "Jürgen" }
+   { "_id" : 1, "first_name" : "Hans", "last_name" : "Muller" }
+   { "_id" : 2, "first_name" : "Gunter", "last_name" : "Braun" }
+   { "_id" : 3, "first_name" : "Günter", "last_name" : "Krause" }
+   { "_id" : 4, "first_name" : "Jürgen", "last_name" : "Weber" }
 
-Consider the following ``findOneAndUpdate()`` operation on this collection
-which **does not** specify a collation:
+The following example calls the ``findOneAndUpdate()`` method to
+update the first matching document that has a ``first_name`` value of ``"Gunter"``, 
+applying a collation with the ``"de@collation=phonebook"`` locale:
 
-.. literalinclude:: /code-snippets/collation/findOneAndUpdate-default-order-collation.js
-   :language: javascript
-   :start-after: start findOneAndUpdate default order collation
-   :end-before: end findOneAndUpdate default order collation
+.. literalinclude:: /includes/fundamentals/configure.js
+    :language: javascript
+    :dedent:
+    :start-after: start-operation-collation
+    :end-before: end-operation-collation
 
-Since "Gunter" is the first sorted result when using a binary collation, none
-of the documents come lexically before and match the ``$lt`` comparison
-operator in the query document. As a result, the operation does not update any
-documents.
-
-Consider the same operation with a collation specified with the locale set to
-``de@collation=phonebook``. This locale specifies the ``collation=phonebook``
-option which contains rules for prioritizing proper nouns, identified by
-capitalization of the first letter. The ``de@collation=phonebook`` locale and
-option sorts characters with umlauts before the same characters without
-umlauts.
-
-.. literalinclude:: /code-snippets/collation/findOneAndUpdate-collation.js
-   :language: javascript
-   :start-after: start findOneAndUpdate collation
-   :end-before: end findOneAndUpdate collation 
-
-Since "Günter" lexically comes before "Gunter" using the
-``de@collation=phonebook`` collation specified in ``findOneAndUpdate()``,
-the operation returns the following updated document:
+In the preceding example, the ``de@collation=phonebook`` locale instructs
+the driver to sort characters with umlauts before the same characters without
+umlauts. As a result, the operation matches the document that has
+a ``first_name`` value of ``"Günter"``, with an umlaut, and returns
+the following update information:
 
 .. code-block:: none
 
    { lastErrorObject: { updatedExisting: true, n: 1 },
-     value: { _id: 3, first_name: 'Günter' },
+     value: { _id: 3, first_name: 'Günter', last_name: 'Krause' },
      ok: 1 }
 
-findOneAndDelete() Example
-``````````````````````````
+API Documentation
+-----------------
 
-The following example calls the ``findOneAndDelete()`` operation on a
-collection that uses the default binary collation and contains the following
-documents:
+To learn more about any of the methods or types discussed in this
+guide, see the following API documentation:
 
-.. code-block:: none
-
-   { "_id" : 1, "a" : "16" }
-   { "_id" : 2, "a" : "84" }
-   { "_id" : 3, "a" : "179" }
-
-In this example, we set the ``numericOrdering`` collation parameter to ``true``
-to sort numeric strings based on their numerical order instead of their
-lexical order.
-
-.. literalinclude:: /code-snippets/collation/findOneAndDelete-collation.js
-   :language: javascript
-   :start-after: start findOneAndDelete collation
-   :end-before: end findOneAndDelete collation
-
-After you run the operation above, the collection contains the following
-documents:
-
-.. code-block:: none
-
-   { "_id" : 1, "a" : "16" }
-   { "_id" : 2, "a" : "84" }
-
-If you perform the same operation without collation on the original
-collection of three documents, it matches documents based on the lexical value
-of the strings (``"16"``, ``"84"``, and ``"179"``), and deletes the first
-document it finds that matches the query criteria.
-
-.. literalinclude:: /code-snippets/collation/findOneAndDelete-no-collation.js
-   :language: javascript
-   :start-after: start findOneAndDelete no collation
-   :end-before: end findOneAndDelete no collation
-
-Since all the documents contain lexical values in the ``a`` field that
-match the criteria (greater than the lexical value of ``"100"``), the operation
-removes the first result. After you run the operation above, the collection
-contains the following documents:
-
-.. code-block:: none
-
-    { "_id" : 2, "a" : "84" }
-    { "_id" : 3, "a" : "179" }
-
-Aggregation Example
-```````````````````
-
-To use collation with the `aggregate <{+api+}/classes/Collection.html#aggregate>`__
-operation, pass the collation document in the options field, after the
-array of pipeline stages.
-
-The following example shows an aggregation pipeline on a collection that uses
-the default binary collation. The aggregation groups the ``first_name`` field,
-counts the total number of results in each group, and sorts the results by
-the German phonebook (``"de@collation=phonebook"`` locale) order.
-
-.. note::
-
-   You can specify only one collation on an aggregation.
-
-.. literalinclude:: /code-snippets/collation/aggregation-collation.js
-   :language: javascript
-   :start-after: start aggregation collation
-   :end-before: end aggregation collation
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `Db <{+api+}/classes/Db.html>`__
+- `Collection <{+api+}/classes/Collection.html>`__
+- `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
+- `ClientSessionOptions <{+api+}/interfaces/ClientSessionOptions.html>`__
+- `TransactionOptions <{+api+}/interfaces/TransactionOptions.html>`__
+- `DbOptions <{+api+}/interfaces/DbOptions.html>`__
+- `CollectionOptions <{+api+}/interfaces/CollectionOptions.html>`__
+- `collation <{+api+}/interfaces/CreateCollectionOptions.html#collation>`__
