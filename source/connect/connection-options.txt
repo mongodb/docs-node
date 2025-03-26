@@ -53,7 +53,7 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
      - Specifies the authentication mechanism method to use for connection to the
        server. If you do not specify a value, the driver uses the default mechanism,
        either ``SCRAM-SHA-1`` or ``SCRAM-SHA-256`` depending on the server version. See
-       :ref:`authentication mechanism <node-authentication-mechanisms>` for available
+       the :ref:`Authentication Mechanisms <node-authentication-mechanisms>` section for available
        authentication mechanisms.
 
    * - **authMechanismProperties**
