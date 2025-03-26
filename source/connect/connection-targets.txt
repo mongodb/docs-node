@@ -93,7 +93,7 @@ to the driver. The node does not need to be the primary, and it may be a hidden 
 The driver will then automatically discover the remaining nodes.
 
 The following example shows how to connect to the replica set by using a connection
-string and how to verify the replica set name upon connection by using the 
+string and how to verify the replica set name on connection by using the 
 ``replicaSet`` connection string option:
 
 .. literalinclude:: /includes/connect/connection-targets.js
