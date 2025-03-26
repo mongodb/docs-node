@@ -93,7 +93,7 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
      - ``30000``
      - Specifies the amount of time in milliseconds to wait to establish a single TCP
        socket connection to the server before raising an error. Specifying
-       ``0``  means your application will use the operating system's default socket timeout value.
+       ``0``  means your application sets an infinite socket timeout when establishing a socket.
 
    * - **directConnection**
      - boolean
