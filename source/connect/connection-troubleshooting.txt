@@ -340,3 +340,35 @@ The number of connections to the server may exceed ``maxPoolSize``. For more
 information about checking the number of connections, see
 :ref:`Check the Number of Connections <node-troubleshooting-connection-number-connections>`
 in the Error Sending Message section.
+
+Client Disconnect While Running Operation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting in {+mdb-server+} version 4.2, the server terminates
+running operations such as aggregations and find operations if the
+client disconnects.
+
+Other operations, such as write operations, continue to run on the
+{+mdb-server+} even if the client disconnects. This behavior can cause data
+inconsistencies if your application retries the operation after the
+client disconnects.
+
+Unexpected Network Behavior
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You might experience unexpected network behavior if the firewall between
+your application and MongoDB is misconfigured. These firewalls can be
+overly aggressive in their removal of connections, which can lead to
+unexpected errors.
+
+Confirm that your firewall exhibits the following behavior:
+
+- The firewall sends a ``FIN`` packet when closing a connection,
+  informing the driver that the socket is closed.
+
+- The firewall allows keepalive messages.
+
+.. tip::
+   
+   To learn more about keepalive messages, see the :ref:`keepAlive Connection Option
+   <node-faq-keepalive>` section in the Connection Options page.

@@ -40,6 +40,38 @@ concern level set for the client.
 These options allow you to customize the causal consistency and availability of the data
 in your replica sets.
 
+Connection String for Replica Sets
+----------------------------------
+
+The connection string passed to the driver must use exact hostnames for
+the servers as set in the :manual:`Replica Set Config </reference/replica-configuration/>`.
+Given the following configuration settings for your Replica Set, in
+order for the Replica Set discovery and :manual:`failover
+</reference/glossary/#term-failover>` to work, the driver must have access
+to ``server1``, ``server2``, and ``server3``.
+
+.. code-block:: JSON
+
+   {
+     "_id": "testSet",
+     "version": 1,
+     "protocolVersion": 1,
+     "members": [
+       {
+         "_id": 1,
+         "host": "server1:31000"
+       },
+       {
+         "_id": 2,
+         "host": "server2:31001"
+       },
+       {
+         "_id": 3,
+         "host": "server3:31002"
+       }
+     ]
+   }
+
 Write Concern
 -------------
 
