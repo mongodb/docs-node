@@ -91,7 +91,7 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
    * - **connectTimeoutMS**
      - non-negative integer
      - ``30000``
-     - Specifies the amount of time, in milliseconds, to wait to establish a single TCP
+     - Specifies the amount of time in milliseconds to wait to establish a single TCP
        socket connection to the server before raising an error. Specifying
        ``0``  means your application will use the operating system's default socket timeout value.
 
