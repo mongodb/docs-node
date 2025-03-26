@@ -40,8 +40,8 @@ concern level set for the client.
 These options allow you to customize the causal consistency and availability of the data
 in your replica sets.
 
-Connection String for Replica Sets
-----------------------------------
+Connection Strings for Replica Sets
+-----------------------------------
 
 The connection string passed to the driver must use exact hostnames for
 the servers as set in the :manual:`Replica Set Config </reference/replica-configuration/>`.
