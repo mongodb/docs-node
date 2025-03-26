@@ -405,7 +405,7 @@ Close Sockets After Connection
 ------------------------------
 
 If you experience unexpected network behavior or if a MongoDB process
-fails with an error, you may not receive confirmation that the
+fails with an error, you might not receive confirmation that the
 driver correctly closed the corresponding socket.
 
 To make sure that the driver correctly closes the socket in these cases,
@@ -436,7 +436,7 @@ The ``keepAlive`` connection option specifies whether to enable
 :wikipedia:`Transmission Control Protocol (TCP) keepalives
 <Keepalive#TCP_keepalive>` on a TCP socket. If you enable keepalives,
 the driver checks whether the connection is active by sending periodic pings
-to your MongoDB deployment. This functionality only works if your
+to your MongoDB deployment. This functionality works only if your
 operating system supports the ``SO_KEEPALIVE`` socket option.
 
 The ``keepAliveInitialDelay`` option specifies the number of

@@ -370,3 +370,35 @@ Confirm that your firewall exhibits the following behavior:
    
    To learn more about keepalive messages, see the :ref:`keepAlive Connection Option
    <node-faq-keepalive>` section in the Connection Options page.
+
+Connection String Errors for Replica Sets
+-----------------------------------------
+
+The connection string passed to the driver must use exact hostnames for
+the servers, as set in the :manual:`Replica Set Config </reference/replica-configuration/>`.
+Given the following configuration settings for your replica set, in
+order for the replica set discovery and :manual:`failover
+</reference/glossary/#term-failover>` to work, the driver must have access
+to ``server1``, ``server2``, and ``server3``.
+
+.. code-block:: JSON
+
+   {
+     "_id": "testSet",
+     "version": 1,
+     "protocolVersion": 1,
+     "members": [
+       {
+         "_id": 1,
+         "host": "server1:31000"
+       },
+       {
+         "_id": 2,
+         "host": "server2:31001"
+       },
+       {
+         "_id": 3,
+         "host": "server3:31002"
+       }
+     ]
+   }
