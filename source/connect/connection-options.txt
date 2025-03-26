@@ -255,7 +255,7 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
    * - **socketTimeoutMS**
      - non-negative integer
      - ``0``
-     - Specifies the amount of time, in milliseconds, spent attempting to send or receive
+     - Specifies the amount of time in milliseconds spent attempting to send or receive
        on a socket before timing out. Specifying ``0`` means your application will use the
        operating system's default socket timeout value.
 
