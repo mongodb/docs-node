@@ -31,20 +31,24 @@ async function main() {
 
   // Sets read and write settings for the "test_database" database
   // start-database-settings
-  const db = client.db("test_database", {
+  const dbOptions = {
     readPreference: ReadPreference.PRIMARY_PREFERRED,
     readConcern: { level: "available" },
     writeConcern: { w: "majority" },
-  });
+  };
+
+  const db = client.db("test_database", dbOptions);
   // end-database-settings
 
   // Sets read and write settings for the "test_collection" collection
   // start-collection-settings
-  const collection = db.collection("test_collection", {
+  const collOptions = {
     readPreference: ReadPreference.SECONDARY_PREFERRED,
     readConcern: { level: "available" },
     writeConcern: { w: 0 },
-  });
+  };
+
+  const collection = db.collection("test_collection", collOptions);
   // end-collection-settings
 
   // Instructs the library to prefer reads from secondary replica set members

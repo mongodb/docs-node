@@ -138,7 +138,7 @@ This example shows how to set the read preference, read concern, and
 write concern of a collection called ``test_collection`` by passing a ``CollectionOptions``
 object to the ``collection()`` method. The code configures the following settings:
 
-- ``secondaryPreferred`` read preference: Read operations retrieve data from 
+- ``SECONDARY_PREFERRED`` read preference: Read operations retrieve data from 
   secondary replica set members, or the primary members if no secondaries are available
 - ``available`` read concern: Read operations return the instance's most recent data 
   without guaranteeing that the data has been written to a majority of the replica
@@ -207,7 +207,8 @@ within 35 milliseconds of the closest member's ping time.
    :manual:`localThreshold </reference/program/mongos/#std-option-mongos.--localThreshold>`
    command-line option.
 
-.. _node-configure-collation:
+.. _node-fundamentals-collations:
+.. _node-collations:
 
 Collation
 ---------
@@ -310,9 +311,10 @@ The ``names`` collection contains the following documents:
    { "_id" : 3, "first_name" : "Günter", "last_name" : "Krause" }
    { "_id" : 4, "first_name" : "Jürgen", "last_name" : "Weber" }
 
-The following example calls the ``findOneAndUpdate()`` method to
-update the first matching document that has a ``first_name`` value of ``"Gunter"``, 
-applying a collation with the ``"de@collation=phonebook"`` locale:
+This example calls the ``findOneAndUpdate()`` method to update
+the first matching document that has a ``first_name`` value of ``"Gunter"``.
+The code applies a collation with the ``"de"`` locale and the ``"phonebook"``
+locale variant:
 
 .. literalinclude:: /includes/fundamentals/configure.js
     :language: javascript
@@ -320,7 +322,7 @@ applying a collation with the ``"de@collation=phonebook"`` locale:
     :start-after: start-operation-collation
     :end-before: end-operation-collation
 
-In the preceding example, the ``de@collation=phonebook`` locale instructs
+In the preceding example, the ``phonebook`` locale variant instructs
 the driver to sort characters with umlauts before the same characters without
 umlauts. As a result, the operation matches the document that has
 a ``first_name`` value of ``"Günter"``, with an umlaut, and returns
@@ -332,6 +334,11 @@ the following update information:
    { lastErrorObject: { updatedExisting: true, n: 1 },
      value: { _id: 3, first_name: 'Günter', last_name: 'Krause' },
      ok: 1 }
+
+.. tip::
+
+   To learn more about locale variants, see :manual:`Local Variants </reference/collation/#local-variants>`
+   in the {+mdb-server+} manual.
 
 API Documentation
 -----------------
