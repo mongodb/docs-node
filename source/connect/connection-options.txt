@@ -256,8 +256,8 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
      - non-negative integer
      - ``0``
      - Specifies the amount of time in milliseconds spent attempting to send or receive
-       on a socket before timing out. Specifying ``0`` means your application will use the
-       operating system's default socket timeout value.
+       on a socket before timing out. Specifying ``0`` means your application sets an
+       infinite socket timeout when establishing a socket.
 
    * - **srvMaxHosts**
      - non-negative integer
@@ -394,12 +394,12 @@ To see all the available settings, see the
 `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
 API Documentation.
 
-To specify ``maxTimeMS``, chain the ``maxTimeMS()`` method with a
-timeout specification to an operation that returns a ``Cursor``:
+To specify ``maxTimeMS``, pass in the ``maxTimeMS`` method as an option with a timeout
+specification to an operation that returns a ``Cursor``:
 
 .. code-block:: javascript
 
-   const cursor = myColl.find({}).maxTimeMS(50);
+   const Cursor = collection.distinct('my-key', { maxTimeMS: 50 });
 
 Close Sockets After Connection
 ------------------------------
