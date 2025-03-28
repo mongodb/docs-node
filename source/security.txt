@@ -30,5 +30,10 @@ Security
 Overview
 --------
 
-MongoDB supports multiple mechanisms that you can use to authenticate your application.
-This page contains code examples that show each of these mechanisms.
+Learn how to set up security and authentication for your application 
+in the following sections:
+
+- :ref:`Authentication <node-authentication>`
+- :ref:`In-Use Encryption <node-fle>`
+- :ref:`TLS Security Protocol <node-tls>`
+- :ref:`SOCKS Proxy <node-socks>`
