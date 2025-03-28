@@ -1,8 +1,8 @@
 .. _node-security:
 
-=========
-Security
-=========
+================
+Secure Your Data
+================
 
 .. contents:: On this page
    :local:
