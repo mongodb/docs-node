@@ -28,9 +28,9 @@ Monitoring involves collecting information about the activities of a running
 program, which you can use with an application performance management
 library.
 
-Monitoring the {+driver-short+} lets you understand the driver's resource usage 
-and performance and can help you make informed
-decisions when designing and debugging your application.
+Monitoring the {+driver-short+} lets you understand the driver's resource usage
+and performance,  and can help you make informed decisions when designing and
+debugging your application.
 
 In this guide you will learn how to perform these tasks:
 
@@ -74,6 +74,12 @@ them in your application.
 To learn more about MongoDB database commands, see the
 :manual:`Database Commands </reference/command/>` guide in the Server Manual.
 
+.. note::
+
+   Command monitoring is disabled by default. To enable command
+   monitoring, pass the ``monitorCommands`` option as ``true`` to
+   your ``MongoClient`` constructor. 
+
 Example
 ```````
 
@@ -82,12 +88,6 @@ to one of the command monitoring events created by the MongoDB deployment:
 
 .. literalinclude:: /code-snippets/monitoring/apm-subscribe.js
    :language: javascript
-
-.. note::
-
-   Command monitoring is disabled by default. To enable command
-   monitoring, pass the ``monitorCommands`` option as ``true`` to
-   your ``MongoClient`` constructor. 
 
 Event Descriptions
 ``````````````````
@@ -181,7 +181,9 @@ Server Discovery and Monitoring Events
 The {+driver-short+} creates topology events, also known as SDAM events, when
 there is a change in the state of the instance or cluster that you connected to.
 For example, the driver creates an event when you establish a new connection or
-if the cluster elects a new primary.
+if the cluster elects a new primary node.
+
+To learn more about topology events, see the :manual:`Replication </replication>` guide in the Server Manual.
 
 The following sections demonstrate how to record topology changes in your application
 and explore the information provided in these events.
@@ -189,7 +191,7 @@ and explore the information provided in these events.
 Event Subscription Example
 ``````````````````````````
 
-You can access one or more SDAM events using the driver by subscribing to them
+You can access one or more SDAM events by subscribing to them
 in your application. The following example demonstrates connecting to a
 replica set and subscribing to one of the SDAM events created by the MongoDB
 deployment:
@@ -580,7 +582,8 @@ You can subscribe to any of the following connection pool monitoring events:
        is executed.
 
    * - ``connectionPoolCleared``
-     - Created when a connection pool is cleared.
+     - Created when all connections are closed and the connection pool is
+       cleared.
 
 Example Event Documents
 ```````````````````````
