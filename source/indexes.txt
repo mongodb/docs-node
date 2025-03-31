@@ -181,6 +181,36 @@ explanation of multikey indexes, including a discussion of their behavior
 and limitations, see the :manual:`Multikey Indexes page
 </core/index-multikey>` in the {+mdb-server+} manual.
 
+.. _node-atlas-search-indexes:
+
+Atlas Search and Atlas Vector Search Indexes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can programmatically manage your Atlas Search and Atlas Vector
+Search indexes by using the {+driver-short+}.
+
+The Atlas Search feature enables you to perform full-text searches on
+collections hosted on MongoDB Atlas. To learn more about Atlas
+Search, see the :atlas:`Atlas Search
+</atlas-search/atlas-search-overview/>` documentation.
+
+Atlas Vector Search enables you to perform semantic searches on vector
+embeddings stored in Atlas. To learn more about Atlas
+Vector Search, see the :atlas:`Atlas Vector Search
+</atlas-vector-search/vector-search-overview/>` documentation.
+
+To learn more about how to run Atlas Vector Search queries, see the 
+:ref:`node-atlas-vector-search` guide.
+
+The following sections contain code examples that demonstrate how to manage Atlas 
+Search and Atlas Vector Search indexes.
+
+Create a Search Index
+`````````````````````
+
+You can create an Atlas Search or an Atlas Vector Search index by providing
+
+
 Clustered Indexes
 ~~~~~~~~~~~~~~~~~
 
