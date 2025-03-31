@@ -1,44 +1,70 @@
 .. _node-authentication-mechanisms:
 .. _node-authentication:
 
-==============
-Authentication
-==============
+=========================
+Authentication Mechanisms
+=========================
 
 .. default-domain:: mongodb
 
 .. toctree::
 
-   Authentication </security/authentication/mechanisms>
-   Enterprise Authentication </security/authentication/enterprise-mechanisms>
+   SCRAM </security/authentication/scram>
+   X.509 </security/authentication/x509>
+   AWS IAM </security/authentication/aws-iam>
+   OIDC </security/authentication/oidc>
+   LDAP (PLAIN) </security/authentication/ldap>
+   Kerberos (GSSAPI) </security/authentication/kerberos>
 
 Overview
 --------
 
-These guides show you how to authenticate to a MongoDB instance using the
-Node.js driver.
+In this guide, you can learn how to authenticate to MongoDB by using the
+**authentication mechanisms** available in {+mdb-server+}.
+Authentication mechanisms are processes by which the driver and server confirm
+the identity of a client to ensure security before connecting.
 
-The :doc:`Authentication Mechanisms </security/authentication/mechanisms>` guide contains
-sample connection code using each authentication mechanism supported in the
-MongoDB Community Edition which includes:
+.. tip:: Connecting to MongoDB
+   
+   To learn how to establish a connection to your MongoDB deployment, see the
+   :ref:`node-connect` guide.
 
-- ``DEFAULT``
-- ``SCRAM-SHA-256``
-- ``SCRAM-SHA-1``
-- ``MONGODB-CR``
-- ``MONGODB-AWS``
-- ``X.509``
+MongoDB Edition Compatibility
+-----------------------------
 
-The :doc:`Enterprise Authentication Mechanisms
-</security/authentication/enterprise-mechanisms>` guide contains sample
-connection code using authentication mechanisms available only in MongoDB
-Enterprise Edition which includes:
+The following table lists the authentication mechanisms supported by MongoDB and
+the {+mdb-server+} editions that each mechanism is compatible with. Click the name of
+a mechanism to learn more about how to use it with your application.
 
-- ``Kerberos (GSSAPI/SSPI)``
-- ``LDAP (PLAIN)``
-- ``MONGODB-OIDC``
+.. list-table::
+   :header-rows: 1
+   :stub-columns: 1
 
-.. note::
-   For instructions on MongoDB driver installation and deployment setup, see
-   our :guides:`Connect to MongoDB guide </server/drivers/>`. Select your
-   MongoDB deployment type and the Node.js client.
+   * - Authentication Mechanism
+     - Atlas
+     - Enterprise Advanced
+     - Community
+   * - :ref:`<node-authentication-scram>`
+     - Yes
+     - Yes
+     - Yes
+   * - :ref:`<node-authentication-x509>`
+     - Yes
+     - Yes
+     - Yes
+   * - :ref:`<node-authentication-aws>`
+     - Yes
+     - No
+     - No
+   * - :ref:`<node-authentication-oidc>`
+     - Yes
+     - Yes
+     - No
+   * - :ref:`<node-authentication-ldap>`
+     - Yes
+     - Yes
+     - No
+   * - :ref:`<node-authentication-kerberos>`
+     - No
+     - Yes
+     - No
