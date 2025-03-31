@@ -26,8 +26,6 @@ using the {+driver-long+} to connect to a MongoDB deployment.
    This page addresses only connection issues. If you encounter any other issues
    with MongoDB or the driver, visit the following resources:
 
-   - The :ref:`Frequently Asked Questions (FAQ) <node-faq>` for the
-     {+driver-short+}
    - The :ref:`Issues & Help <node-issues-help>` page, which has
      information about reporting bugs, contributing to the driver, and 
      finding more resources
@@ -35,7 +33,7 @@ using the {+driver-long+} to connect to a MongoDB deployment.
      questions, discussions, or general technical support
 
 Connection Error
-~~~~~~~~~~~~~~~~
+----------------
 
 The following error message indicates that the driver cannot connect to a server
 on the specified hostname or port. Multiple situations can generate this error
@@ -53,7 +51,7 @@ issue.
 .. _node-troubleshooting-connection-string-port:
 
 Check Your Connection String
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Verify that the hostname and port number in the connection string are both
 accurate. The default port value for a MongoDB instance is
@@ -62,7 +60,7 @@ accurate. The default port value for a MongoDB instance is
 .. _node-troubleshooting-connection-firewall:
 
 Configure Your Firewall
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Verify that the ports your MongoDB deployment listens on are not blocked by a
 firewall on the same network. MongoDB uses port ``27017`` by default. To learn
@@ -75,7 +73,7 @@ more about the default ports MongoDB uses and how to change them, see
    used by your MongoDB deployment.
 
 ECONNREFUSED Error
-~~~~~~~~~~~~~~~~~~
+------------------
 
 If the connection is refused when the driver attempts to connect to the MongoDB
 instance, it generates this error message:
@@ -89,7 +87,7 @@ The following sections describe actions you can take to potentially resolve the
 issue.
 
 Ensure MongoDB and Your Client Use the Same Protocol
-----------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In Node.js v17 and later, the DNS resolver uses ``IPv6`` by default when both
 the client and host support both. For example, if MongoDB uses IPv4 and your
@@ -112,7 +110,7 @@ specifying ``family: 4`` as an
    });
 
 ECONNRESET Error
-~~~~~~~~~~~~~~~~
+----------------
 
 If the connection is reset when the driver calls ``client.connect()``, it
 generates this error message:
@@ -125,7 +123,7 @@ generates this error message:
 The following section describes a method that may help resolve the issue.
 
 Control the Number of File Descriptors
---------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A file descriptor is a unique identifier associated with an open process. In most
 operating systems, each open connection from the driver is associated with a
@@ -143,7 +141,7 @@ file descriptor limit in your operating system.
    Always be cautious when changing the configuration of your operating system.
 
 Authentication Error
-~~~~~~~~~~~~~~~~~~~~
+--------------------
 
 The {+driver-short+} can fail to connect to a MongoDB instance if
 the authorization is not configured correctly. If you are using ``SCRAM-SHA-256``
@@ -169,7 +167,7 @@ issue.
 .. _node-troubleshooting-connection-string-auth:
 
 Check Your Connection String
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An invalid connection string is the most common cause of authentication
 issues when attempting to connect to MongoDB using ``SCRAM-SHA-256``.
@@ -203,7 +201,7 @@ This results in the following output:
 .. _node-troubleshooting-connection-admin:
 
 Verify the User Is in the Authentication Database
--------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To successfully authenticate a connection by using a username and password with
 ``SCRAM-SHA-256``, the username must be defined in the authentication database.
@@ -224,7 +222,7 @@ instance hosted on the local machine with the same code. A deployment on
 the same machine doesn't require any authorization to connect.
 
 Error Sending Message
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 When the driver fails to send a command after you make a request,
 it may display the following error message:
@@ -238,7 +236,7 @@ The following sections describe actions you can take to potentially resolve the
 issue.
 
 Check the User Permissions
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Verify that you've accessed the MongoDB deployment with the correct user. The
 term "message" in the error can be a command sent by the driver.
@@ -251,7 +249,7 @@ to a MongoDB deployment. For more information about how to configure RBAC in Mon
 see :manual:`Default MongoDB Port </core/authorization/>`.
 
 Configure Your Firewall
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 The firewall needs to have an open port for communicating with the MongoDB
 instance. For more information about configuring the firewall, see
@@ -261,7 +259,7 @@ the Connection Error section.
 .. _node-troubleshooting-connection-number-connections:
 
 Check the Number of Connections
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Each ``MongoClient`` instance supports a maximum number of concurrent open
 connections in its connection pool. You can configure the parameter ``maxPoolSize``
@@ -270,12 +268,12 @@ number of open connections equal to ``maxPoolSize``, the server waits until
 a connection becomes available. If this wait time exceeds the ``maxIdleTimeMS``
 value, the driver responds with an error.
 
-For more information about how connection pooling works, see
-:ref:`How Does Connection Pooling Work in the Node Driver? <node-faq-connection-pool>`
-in the FAQ.
+For more information about how connection pooling works, see the
+:ref:`Connection Pool Overview <node-faq-connection-pool>`
+in the Connection Pools page.
 
 Too Many Open Connections
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 The driver creates the following error message when it attempts to open a
 connection, but it's reached the maximum number of connections:
@@ -288,7 +286,7 @@ connection, but it's reached the maximum number of connections:
 The following section describes a method that may help resolve the issue.
 
 Check the Number of Connections
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To create more open connections, increase the value of ``maxPoolSize``. For more
 information about checking the number of connections, see
@@ -296,7 +294,7 @@ information about checking the number of connections, see
 in the Error Sending Message section.
 
 Timeout Error
-~~~~~~~~~~~~~
+-------------
 
 When the network is not able to deliver a request from the driver to the server
 quickly enough, it can time out. When this happens, you might receive an error message
@@ -311,7 +309,7 @@ If you receive this error, try the following action to resolve the
 issue.
 
 Set connectTimeoutMS
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 The driver may hang when it's unable to establish a connection because it
 takes too long attempting to reach unreachable replica set nodes. You can limit the
@@ -335,9 +333,73 @@ The following example sets ``connectTimeoutMS`` to 10000 milliseconds.
    });
 
 Check the Number of Connections
--------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The number of connections to the server may exceed ``maxPoolSize``. For more
 information about checking the number of connections, see
 :ref:`Check the Number of Connections <node-troubleshooting-connection-number-connections>`
 in the Error Sending Message section.
+
+Client Disconnect While Running Operation
+-----------------------------------------
+
+Starting in {+mdb-server+} version 4.2, the server terminates
+running operations such as aggregations and find operations if the
+client disconnects.
+
+Other operations, such as write operations, continue to run on the
+{+mdb-server+} even if the client disconnects. This behavior can cause data
+inconsistencies if your application retries the operation after the
+client disconnects.
+
+Unexpected Network Behavior
+---------------------------
+
+You might experience unexpected network behavior if the firewall between
+your application and MongoDB is misconfigured. These firewalls can be
+overly aggressive in their removal of connections, which can lead to
+unexpected errors.
+
+Confirm that your firewall exhibits the following behavior:
+
+- The firewall sends a ``FIN`` packet when closing a connection,
+  informing the driver that the socket is closed.
+
+- The firewall allows keepalive messages.
+
+.. tip::
+   
+   To learn more about keepalive messages, see the :ref:`keepAlive Connection Option
+   <node-faq-keepalive>` section in the Connection Options page.
+
+Connection String Errors for Replica Sets
+-----------------------------------------
+
+The connection string passed to the driver must use exact hostnames for
+the servers, as set in the :manual:`Replica Set Config </reference/replica-configuration/>`.
+Given the following configuration settings for your replica set, in
+order for the replica set discovery and :manual:`failover
+</reference/glossary/#term-failover>` to work, the driver must have access
+to ``server1``, ``server2``, and ``server3``.
+
+.. code-block:: JSON
+
+   {
+     "_id": "testSet",
+     "version": 1,
+     "protocolVersion": 1,
+     "members": [
+       {
+         "_id": 1,
+         "host": "server1:31000"
+       },
+       {
+         "_id": 2,
+         "host": "server2:31001"
+       },
+       {
+         "_id": 3,
+         "host": "server3:31002"
+       }
+     ]
+   }

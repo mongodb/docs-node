@@ -92,9 +92,9 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
    * - **connectTimeoutMS**
      - non-negative integer
      - ``30000``
-     - Specifies the amount of time, in milliseconds, to wait to establish a single TCP
+     - Specifies the amount of time in milliseconds to wait to establish a single TCP
        socket connection to the server before raising an error. Specifying
-       ``0`` disables the connection timeout.
+       ``0``  means your application sets an infinite socket timeout when establishing a socket.
 
    * - **directConnection**
      - boolean
@@ -256,8 +256,9 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
    * - **socketTimeoutMS**
      - non-negative integer
      - ``0``
-     - Specifies the amount of time, in milliseconds, spent attempting to send or receive on a
-       socket before timing out. Specifying ``0`` means no timeout.
+     - Specifies the amount of time in milliseconds spent attempting to send or receive
+       on a socket before timing out. Specifying ``0`` means your application sets an
+       infinite socket timeout when establishing a socket.
 
    * - **srvMaxHosts**
      - non-negative integer
@@ -343,6 +344,114 @@ string, see :manual:`Connection Strings </reference/connection-string/>` in the
        protocol messages. ``-1`` signifies the default level, ``0`` signifies
        no compression, ``1`` signifies the fastest speed, and ``9`` signifies
        the best compression. See :ref:`node-network-compression` for more information.
+
+Connection Time Out Options
+---------------------------
+
+.. list-table::
+   :widths: 22 78
+   :header-rows: 1
+
+   * - Setting
+     - Description
+     
+   * - **connectTimeoutMS**
+     - ``connectTimeoutMS`` is a :ref:`connection option
+       <node-connection-options>` that sets the time, in milliseconds,
+       for an individual connection from your connection pool to
+       establish a TCP connection to the {+mdb-server+} before
+       timing out. To modify the allowed time for 
+       `MongoClient.connect <{+api+}/classes/MongoClient.html#connect>`__ to establish a  
+       connection to a {+mdb-server+}, use the ``serverSelectionTimeoutMS`` option instead.
+
+       **Default:** 30000
+
+   * - **socketTimeoutMS**
+     - ``socketTimeoutMS`` specifies the amount of time the driver waits
+       for an inactive socket before closing it. The default value is to
+       never time out the socket. This option applies only to sockets that
+       have already been connected.
+
+   * - **maxTimeMS**
+     - `maxTimeMS <{+api+}/classes/FindCursor.html#maxTimeMS>`__
+       specifies the maximum amount of time that the server 
+       waits for an operation to complete after it has reached the
+       server. If an operation runs over the specified time limit, it
+       returns a timeout error. You can pass ``maxTimeMS`` only to an
+       individual operation or to a cursor.
+
+To specify the optional settings for your ``MongoClient``, declare one or
+more available settings in the ``options`` object of the constructor as
+follows:
+
+.. code-block:: javascript
+
+   const client = new MongoClient(uri, {
+     connectTimeoutMS: <integer value>,
+     socketTimeoutMS: <integer value>
+   });
+
+To see all the available settings, see the
+`MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
+API Documentation.
+
+To specify ``maxTimeMS``, pass in the ``maxTimeMS`` method as an option with a timeout
+specification to an operation that returns a ``Cursor``:
+
+.. code-block:: javascript
+
+   const Cursor = collection.distinct('my-key', { maxTimeMS: 50 });
+
+Close Sockets After Connection
+------------------------------
+
+If you experience unexpected network behavior or if a MongoDB process
+fails with an error, you might not receive confirmation that the
+driver correctly closed the corresponding socket.
+
+To make sure that the driver correctly closes the socket in these cases,
+set the ``socketTimeoutMS`` option. When a MongoDB process times out, the driver
+will close the socket. We recommend that you select a value
+for ``socketTimeoutMS`` that is two to three times longer than the
+expected duration of the slowest operation that your application executes.
+
+Prevent Long-Running Operations From Slowing Down the Server
+------------------------------------------------------------
+
+You can prevent long-running operations from slowing down the server by
+specifying a timeout value. You can chain the ``maxTimeMS()`` method to
+an operation that returns a ``Cursor`` to set a timeout on a specific action.
+
+The following example shows how you can chain the ``maxTimeMS()`` method
+to an operation that returns a ``Cursor``:
+
+.. literalinclude:: /code-snippets/faq/maxTimeMS-example.js
+  :language: javascript
+
+.. _node-faq-keepalive:
+
+keepAlive Connection Option
+---------------------------
+
+The ``keepAlive`` connection option specifies whether to enable
+:wikipedia:`Transmission Control Protocol (TCP) keepalives
+<Keepalive#TCP_keepalive>` on a TCP socket. If you enable keepalives,
+the driver checks whether the connection is active by sending periodic pings
+to your MongoDB deployment. This functionality works only if your
+operating system supports the ``SO_KEEPALIVE`` socket option.
+
+The ``keepAliveInitialDelay`` option specifies the number of
+milliseconds that the driver waits before initiating a keepalive.
+
+The 5.3 driver version release deprecated these options. Starting in
+version 6.0 of the driver, the ``keepAlive`` option is permanently set
+to ``true``, and the ``keepAliveInitialDelay`` is set to 300000
+milliseconds (300 seconds).
+
+.. warning::
+   
+   If your firewall ignores or drops the keepalive messages, you might
+   not be able to identify dropped connections.
 
 Additional Information
 ----------------------

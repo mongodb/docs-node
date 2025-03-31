@@ -119,7 +119,57 @@ verify that the connection is successful:
    Call the ``MongoClient.connect()`` method explicitly if you want to verify that the
    connection is successful.
 
-To learn more about the {+stable-api+} feature, see the :ref:`{+stable-api+} page <nodejs-stable-api>`.
+To learn more about the {+stable-api+} feature, see the :ref:`{+stable-api+} page
+<nodejs-stable-api>`.
+
+Prevent a Slow Operation From Delaying Other Operations
+-------------------------------------------------------
+
+When you use the same ``MongoClient`` instance to run multiple MongoDB
+operations concurrently, a slow operation can cause delays to other
+operations. Slow operations keep a connection to MongoDB occupied,
+which can cause other operations to wait until another connection
+becomes available.
+
+If you suspect that slow MongoDB operations are causing delays, you
+can check the performance of all in-progress operations by using the
+following methods:
+
+- Enable the database profiler on your deployment. To learn more, see
+  :manual:`Database Profiler </tutorial/manage-the-database-profiler/>`
+  in the Server manual.
+- Run the ``db.currentOp()`` MongoDB Shell command. To learn more, see the 
+  :manual:`db.currentOp() </reference/method/db.currentOp/>`
+  documentation in the Server manual.
+- Enable connection pool monitoring. To learn more, see
+  :ref:`node-connection-pool-monitoring`.
+
+After you determine which operations are causing delays, try to improve
+the performance of these operations. Read the :website:`Best Practices
+Guide for MongoDB Performance </basics/best-practices>` for possible solutions.
+
+If you implement performance best practices but still
+experience delays, you can modify your connection settings to increase
+the size of the connection pool. A connection pool is the group of
+connections to the server that the driver maintains at any time.
+
+To specify the maximum size of a
+connection pool, you can set the ``maxPoolSize`` option in the
+:ref:`connection options <node-connection-options>` for your
+``MongoClient`` instance. The default value
+of ``maxPoolSize`` is ``100``. If the number of in-use connections to a
+server reaches ``maxPoolSize``, the next operation sent to the server
+pauses until a connection to the driver becomes available. The following
+code sets ``maxPoolSize`` to ``150`` when creating a new ``MongoClient``:
+
+.. code-block:: js
+   
+   const client = new MongoClient(uri, { maxPoolSize: 150 });
+
+.. tip::
+   
+   To learn more about connection pooling, see the :ref:`Connection Pool Overview
+   <node-faq-connection-pool>` section in the Connection Pools page.
 
 API Documentation
 -----------------
