@@ -86,6 +86,8 @@ To learn more about the SCRAM version that MongoDB supports,
 see the :manual:`SCRAM </core/security-scram/>` section of the {+mdb-server+}
 manual.
 
+.. _node-scram-sha-256:
+
 SCRAM-SHA-256
 -------------
 
@@ -109,8 +111,10 @@ following sample code.
 .. literalinclude:: /code-snippets/authentication/sha256.js
    :language: javascript
 
-``SCRAM-SHA-1``
----------------
+.. _node-scram-sha-1:
+
+SCRAM-SHA-1
+-----------
 
 .. note::
    ``SCRAM-SHA-1`` is the default authentication method for MongoDB versions
