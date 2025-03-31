@@ -16,6 +16,8 @@ Choose a Connection Target
    :backlinks: none
    :depth: 2
    :class: singlecol
+   
+.. _node-other-ways-to-connect:
 
 Overview
 --------
