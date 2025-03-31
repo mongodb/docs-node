@@ -27,9 +27,10 @@ Read and Write Settings
 -----------------------
 
 You can control how the driver routes read operations by setting a **read preference**.
-You can also control options for how the driver waits for acknowledgment of
-read and write operations on a replica set by setting a **read concern** and a
-**write concern**.
+You can also control how the driver handles data consistency and durability by setting
+a **read concern** or **write concern**. Read concerns specify the level of durability
+required for the data when performing read operations, and write concerns specify
+how the driver waits for acknowledgment of write operations on a replica set.
 
 You can set write concern, read concern, and read preference options at the following
 levels:
