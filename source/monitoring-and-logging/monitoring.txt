@@ -1,8 +1,8 @@
 .. _node-monitoring:
 
-==========
-Monitoring
-==========
+==========================
+Monitor Application Events
+==========================
 
 .. contents:: On this page
    :local:
