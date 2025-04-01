@@ -26,8 +26,8 @@ using the {+driver-long+} to connect to a MongoDB deployment.
    with MongoDB or the driver, visit the following resources:
 
    - The :ref:`Issues & Help <node-issues-help>` page, which has
-     information about reporting bugs, contributing to the driver, and 
-     finding more resources
+     information about how to report bugs, contribute to the driver, and 
+     find more resources
    - The `MongoDB Community Forums <https://community.mongodb.com>`__ for
      questions, discussions, or general technical support
 
