@@ -355,10 +355,6 @@ embeddings stored in Atlas. To learn more about Atlas
 Vector Search, see the :atlas:`Atlas Vector Search
 </atlas-vector-search/vector-search-overview/>` documentation.
 
-Before you can perform a search on an Atlas collection, you must first
-create an Atlas Search index on the collection. An Atlas Search
-index is a data structure that categorizes data in a searchable format.
-
 To learn more about how to run Atlas Vector Search queries, see the 
 :ref:`node-atlas-vector-search` guide.
 
@@ -420,7 +416,7 @@ Update a Search Index
 ~~~~~~~~~~~~~~~~~~~~~
 
 You can use the `updateSearchIndex()
-<{+api+}/classes/Collection.html#updateSearchIndex>`__ method to update An
+<{+api+}/classes/Collection.html#updateSearchIndex>`__ method to update an
 Atlas Search or Atlas Vector Search index.
 
 The following code shows how to use the ``updateSearchIndex()`` method to 
