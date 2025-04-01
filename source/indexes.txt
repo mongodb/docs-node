@@ -1,9 +1,9 @@
 .. _node-fundamentals-indexes:
 .. _node-indexes:
 
-=======
-Indexes
-=======
+======================
+Indexes on Collections
+======================
 
 .. facet::
    :name: genre
