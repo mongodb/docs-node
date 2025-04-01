@@ -417,11 +417,11 @@ Update a Search Index
 
 You can use the `updateSearchIndex()
 <{+api+}/classes/Collection.html#updateSearchIndex>`__ method to update an
-Atlas Search or Atlas Vector Search index.
+Atlas Search or Atlas Vector Search index by providing a new index definition.
 
 The following code shows how to use the ``updateSearchIndex()`` method to 
-update an Atlas Search index called ``search1`` to specify a string type 
-for the ``description`` field:
+update an Atlas Search index called ``search1`` to change the type of the 
+``description`` field to a string:
 
 .. literalinclude:: /code-snippets/indexes/searchIndexes.js
    :language: javascript
