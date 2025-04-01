@@ -31,21 +31,59 @@ are created by {+driver-short+}.
 
 .. _node-faq-connection-pool:
 
-Connection Pool Overview
--------------------------
+Configuring Connection Pools
+----------------------------
 
 Every ``MongoClient`` instance has a built-in connection pool for each server
 in your MongoDB topology. Connection pools open sockets on demand to
 support concurrent requests to MongoDB in your application.
 
-The maximum size of each connection pool is set by the ``maxPoolSize`` option, which
-defaults to ``100``. If the number of in-use connections to a server reaches
-the value of ``maxPoolSize``, the next request to that server will wait
-until a connection becomes available.
+You can specify the following connection pool settings in your ``MongoClient``
+instance:
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Setting
+     - Description
+
+   * - ``maxPoolSize``
+     - | The maximum number of concurrent connections that the pool maintains.
+         If the number of in-use connections to a server reaches the specified
+         value, the next request to that server waits until a connection becomes
+         available.
+       |
+       | **Default**: ``100``
+
+   * - ``maxConnecting``
+     - | The maximum number of connections that each pool can establish
+         concurrently.
+
+   * - ``minPoolSize``
+     - | The minimum number of concurrent connections that the pool maintains.
+       |
+       | **Default**: ``0``
+
+   * - ``maxIdleTimeMS``
+     - | The maximum number of milliseconds that a connection can remain idle in
+         the pool.
+       |
+       | **Default**: ``0`` (no limit)
+
+   * - ``waitQueueTimeoutMS``
+     - | The maximum number of milliseconds that a request can wait for a socket
+         to become available.
+       |
+       | **Default**: ``0`` (no limit)
+
+maxPoolSize
+~~~~~~~~~~~
 
 In addition to the sockets needed to support your application's requests,
 each ``MongoClient`` instance opens two more sockets per server
 in your MongoDB topology for monitoring the server's state.
+
 For example, a client connected to a three-node replica set opens six
 monitoring sockets. If the application uses the default setting for
 ``maxPoolSize`` and only queries the primary (default) node, then
@@ -56,6 +94,21 @@ secondary nodes, those connection pools grow and there can be
 
 To support high numbers of concurrent MongoDB requests
 within one process, you can increase ``maxPoolSize``.
+
+The following code creates a ``MongoClient`` instance with a maximum connection
+pool size of ``50`` by using the ``maxPoolSize`` option:
+
+.. code-block:: javascript
+
+   const { MongoClient } = require('mongodb');
+
+   const uri = '<connection-string>';
+   const client = new MongoClient(uri, {
+     maxPoolSize: 50
+   });
+
+maxConnecting
+~~~~~~~~~~~~~
 
 Connection pools are rate-limited. The ``maxConnecting`` option
 determines the number of connections that the pool can create in
@@ -69,24 +122,63 @@ connection succeeds only when one the following cases occurs:
 - The driver's ability to reuse existing connections improves due to
   rate-limits on connection creation.
 
-You can set the minimum number of concurrent connections to
-each server with the ``minPoolSize`` option, which defaults to ``0``.
-The driver initializes the connection pool with this number of sockets. If
-sockets are closed, causing the total number
-of sockets (both in use and idle) to drop below the minimum, more
-sockets are opened until the minimum is reached.
+The following code creates a ``MongoClient`` instance with a maximum number of
+connection that the pool can create set to ``2``:
+
+.. code-block:: javascript
+
+   const { MongoClient } = require('mongodb');
+
+   const uri = '<connection-string>';
+   const client = new MongoClient(uri, {
+      maxConnecting: 2
+   });
+
+minPoolSize
+~~~~~~~~~~~
+
+You can set the minimum number of concurrent connections to each server with the
+``minPoolSize`` option. The driver initializes the connection pool with this
+number of sockets. If sockets are closed, causing the total number of sockets
+(both in use and idle) to drop below the minimum, more sockets are opened until
+the minimum is reached.
+
+The following code creates a ``MongoClient`` instance with a minimum connnection
+pool size of ``10`` by specifying the ``minPoolSize`` option in the ``options``
+object:
+
+.. code-block:: javascript
+
+   const { MongoClient } = require('mongodb');
+
+   const uri = '<connection-string>';
+   const client = new MongoClient(uri, {
+     minPoolSize: 10
+   });
+
+maxIdleTimeMS
+~~~~~~~~~~~~~
 
 You can set the maximum number of milliseconds that a connection can
 remain idle in the pool by setting the ``maxIdleTimeMS`` option.
 Once a connection has been idle for ``maxIdleTimeMS``, the connection
 pool removes and replaces it. This option defaults to ``0`` (no limit).
 
-The following default configuration for a ``MongoClient`` works for most
-applications:
+The following code creates a ``MongoClient`` instance with a maximum idle time
+of ``10000`` milliseconds (10 seconds) by specifying the  ``maxIdleTimeMS``
+setting in the ``options`` object:
 
-.. code-block:: js
-   
-   const client = new MongoClient("<connection string>");
+.. code-block:: javascript
+
+   const { MongoClient } = require('mongodb');
+
+   const uri = '<connection-string>';
+   const client = new MongoClient(uri, {
+     maxIdleTimeMS: 10000
+   });
+
+waitQueueTimeoutMS
+~~~~~~~~~~~~~~~~~~
 
 ``MongoClient`` supports multiple concurrent requests. For each process,
 create a client and reuse it for all operations in a process. This
@@ -103,6 +195,22 @@ A request that waits more than the length of time defined by
 option if it is more important to bound the duration of operations
 during a load spike than it is to complete every operation.
 
+The following code creates a ``MongoClient`` instance with a maximum wait queue
+timeout of ``10000`` milliseconds (10 seconds) by declaring it in the
+``options`` object:
+
+.. code-block:: javascript
+
+   const { MongoClient } = require('mongodb');
+
+   const uri = '<connection-string>';
+   const client = new MongoClient(uri, {
+     waitQueueTimeoutMS: 10000
+   });
+
+Clossing Connections
+--------------------
+
 When ``MongoClient.close()`` is called by any request, the driver
 closes all idle sockets and closes all sockets that are in
 use as they are returned to the pool. Calling ``MongoClient.close()``
@@ -116,26 +224,20 @@ Avoid Socket Timeouts
 ---------------------
 
 Having a large connection pool does not always reduce reconnection
-requests. Consider the following example:
+requests. Consider the following example scenario:
 
-An application has a connection pool size of 5 sockets and has the
-``socketTimeoutMS`` option set to 5000 milliseconds. Operations occur,
-on average, every 3000 milliseconds, and reconnection requests are
-frequent. Each socket times out after 5000 milliseconds, which means
-that all sockets must do something during those 5000 milliseconds to
-avoid closing.
+- An application has a connection pool size of 5 sockets and has the
+  ``socketTimeoutMS`` option set to 5000 milliseconds. 
+- Operations occur, on average, every 3000 milliseconds, and reconnection
+  requests are frequent. 
+- - Each socket times out after 5000 milliseconds, which means that all sockets
+    must do something during those 5000 milliseconds to avoid closing.
 
-One message every 3000 milliseconds is not enough to keep the sockets
-active, so several of the sockets will time out after 5000 milliseconds.
+In this scenario, each socket times out after 5000 milliseconds, requiring
+activity within this timeout period to avoid closure. However, one message every
+3000 milliseconds isn't enough to keep all sockets active, causing several of
+them to time out.
+
 To avoid excessive socket timeouts, reduce the number of connections
 that the driver can maintain in the connection pool by specifying the
 ``maxPoolSize`` option.
-
-To specify the optional ``maxPoolSize`` setting for your ``MongoClient``, declare
-it in the ``options`` object of the constructor as follows:
-
-.. code-block:: javascript
-
-   const client = new MongoClient(uri, {
-     maxPoolSize: <integer value>,
-   });
