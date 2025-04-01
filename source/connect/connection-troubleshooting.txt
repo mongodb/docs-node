@@ -88,7 +88,7 @@ issue.
 Ensure MongoDB and Your Client Use the Same Protocol
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Node.js v17 and later, the DNS resolver uses ``IPv6`` by default when both
+In Node.js v?.17 and later, the DNS resolver uses ``IPv6`` by default when both
 the client and host support both. For example, if MongoDB uses IPv4 and your
 client uses IPv6, the driver returns the previous error message.
 
