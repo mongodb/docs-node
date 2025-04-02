@@ -1,8 +1,8 @@
 .. _node-connection-pools:
 
-================
-Connection Pools
-================
+=========================================
+Manage Connections Using Connection Pools
+=========================================
 
 .. facet::
    :name: genre
@@ -31,8 +31,8 @@ are created by {+driver-short+}.
 
 .. _node-faq-connection-pool:
 
-Configuring Connection Pools
-----------------------------
+Configure Connection Pools
+--------------------------
 
 Every ``MongoClient`` instance has a built-in connection pool for each server
 in your MongoDB topology. Connection pools open sockets on demand to
@@ -147,10 +147,10 @@ minPoolSize
 ~~~~~~~~~~~
 
 You can set the minimum number of concurrent connections to each server with the
-``minPoolSize`` option. The driver initializes the connection pool with this
-number of sockets. If sockets are closed, causing the total number of sockets
-(both in use and idle) to drop below the minimum, more sockets are opened until
-the minimum is reached.
+``minPoolSize`` option. The driver initializes the connection pool with the
+number of sockets set by the option. If sockets are closed, causing the total
+number of sockets (both in use and idle) to drop below the minimum, more sockets
+are opened until the minimum is reached.
 
 The following code creates a ``MongoClient`` instance with a minimum connnection
 pool size of ``10`` by specifying the ``minPoolSize`` option in the ``options``
@@ -261,7 +261,7 @@ them to time out.
 
 To avoid excessive socket timeouts, reduce the number of connections that the
 driver can maintain in the connection pool by specifying the ``maxPoolSize``
-option. To learn how to set this option, see the
+option. To learn how to set the ``maxPoolSize`` option, see the
 :ref:`node-connection-pool-max-pool-size` section.
 
 API Documentation
@@ -272,3 +272,8 @@ For more information about creating a ``MongoClient`` object with the
 
 - `MongoClient <{+api+}/classes/MongoClient.html>`__
 - `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
+- `maxPoolSize <{+api+}/interfaces/MongoClientOptions.html#maxPoolSize>`__
+- `maxConnecting <{+api+}/interfaces/MongoClientOptions.html#maxConnecting>`__
+- `minPoolSize <{+api+}/interfaces/MongoClientOptions.html#minPoolSize>`__
+- `maxIdleTimeMS <{+api+}/interfaces/MongoClientOptions.html#maxIdleTimeMS>`__
+- `waitQueueTimeoutMS <{+api+}/interfaces/MongoClientOptions.html#waitQueueTimeoutMS>`__
