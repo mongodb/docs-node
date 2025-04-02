@@ -99,7 +99,8 @@ To support high numbers of concurrent MongoDB requests
 within one process, you can increase ``maxPoolSize``.
 
 The following code creates a ``MongoClient`` instance with a maximum connection
-pool size of ``50`` by using the ``maxPoolSize`` option:
+pool size of ``50`` by specifying the ``maxPoolSize`` option in the
+``options`` object:
 
 .. code-block:: javascript
 
@@ -128,7 +129,8 @@ connection succeeds only when one the following cases occurs:
   rate-limits on connection creation.
 
 The following code creates a ``MongoClient`` instance with a maximum number of
-connection that the pool can create set to ``2``:
+``2`` connections by specifying the ``maxConnecting`` option in the ``options``
+object:
 
 .. code-block:: javascript
 
@@ -259,5 +261,14 @@ them to time out.
 
 To avoid excessive socket timeouts, reduce the number of connections that the
 driver can maintain in the connection pool by specifying the ``maxPoolSize``
-option. To learn how to set this option, see
-:ref:`node-connection-pool-max-pool-size`.
+option. To learn how to set this option, see the
+:ref:`node-connection-pool-max-pool-size` section.
+
+API Documentation
+-----------------
+
+For more information about creating a ``MongoClient`` object with the 
+{+driver-short+} and specifying options, see the following API documentation: 
+
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
