@@ -4,12 +4,9 @@
 Monitoring and Logging
 ======================
 
-.. facet::
-   :name: programming_language
-   :values: python
-
 .. meta::
    :keywords: event
+   :description: Learn how to monitor and log events by using the {+driver-long+}.
 
 .. toctree::
 
@@ -20,5 +17,9 @@ Monitoring and Logging
 Overview
 --------
 
-On this page, you can see copyable code examples that show common
-methods you can use to monitor and log events with {+driver-short+}.
+Learn how to set up monitoring and logging for your application in the following
+sections:
+
+- :doc:`/monitoring-and-logging/monitoring`
+- :doc:`/monitoring-and-logging/logging`
+- :doc:`/monitoring-and-logging/change-streams`

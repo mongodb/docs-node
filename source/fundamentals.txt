@@ -17,7 +17,6 @@ Fundamentals
    Indexes </fundamentals/indexes>
    Collations </fundamentals/collations>
    Logging </fundamentals/logging>
-   Monitoring </fundamentals/monitoring>
    GridFS </fundamentals/gridfs>
    Time Series </fundamentals/time-series>
    TypeScript </fundamentals/typescript>
