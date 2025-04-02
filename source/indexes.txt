@@ -1,9 +1,9 @@
 .. _node-fundamentals-indexes:
 .. _node-indexes:
 
-=======
-Indexes
-=======
+======================
+Indexes on Collections
+======================
 
 .. facet::
    :name: genre
@@ -340,27 +340,27 @@ To learn more, see :manual:`Unique Indexes </core/index-unique>`.
 
 .. _node-indexes-search:
 
-Search Indexes
---------------
+Atlas Search and Atlas Vector Search Indexes
+--------------------------------------------
 
-Atlas Search is a feature that allows you to perform full-text
-searches. To learn more, see the :ref:`Atlas Search <fts-top-ref>`
-documentation.
+You can programmatically manage your Atlas Search and Atlas Vector
+Search indexes by using the {+driver-short+}.
 
-Before you can perform a search on an Atlas collection, you must first
-create an Atlas Search index on the collection. An Atlas Search
-index is a data structure that categorizes data in a searchable format.
+The Atlas Search feature enables you to perform full-text searches on
+collections hosted on MongoDB Atlas. To learn more about Atlas
+Search, see the :atlas:`Atlas Search
+</atlas-search/atlas-search-overview/>` documentation.
 
-You can use the following methods to manage your Search indexes:
+Atlas Vector Search enables you to perform semantic searches on vector
+embeddings stored in Atlas. To learn more about Atlas
+Vector Search, see the :atlas:`Atlas Vector Search
+</atlas-vector-search/vector-search-overview/>` documentation.
 
-- ``createSearchIndex()``
-- ``createSearchIndexes()``
-- ``listSearchIndexes()``
-- ``updateSearchIndex()``
-- ``dropSearchIndex()``
+To learn more about how to run an Atlas Search or Atlas Vector Search query, see the 
+:ref:`node-atlas-search` or :ref:`node-atlas-vector-search` guide.
 
-The following sections provide code samples that use each of the preceding
-methods to manage Search indexes.
+The following sections contain code examples that demonstrate how to manage Atlas 
+Search and Atlas Vector Search indexes.
 
 Create a Search Index
 ~~~~~~~~~~~~~~~~~~~~~
@@ -368,10 +368,10 @@ Create a Search Index
 You can use the `createSearchIndex()
 <{+api+}/classes/Collection.html#createSearchIndex>`__ and
 `createSearchIndexes() <{+api+}/classes/Collection.html#createSearchIndexes>`__
-methods to create new Search indexes.
+methods to create new Atlas Search and Atlas Vector Search indexes.
 
 The following code shows how to
-use the ``createSearchIndex()`` method to create an index called
+use the ``createSearchIndex()`` method to create an Atlas Search index called
 ``search1``:
 
 .. literalinclude:: /code-snippets/indexes/searchIndexes.js
@@ -380,15 +380,12 @@ use the ``createSearchIndex()`` method to create an index called
    :start-after: start createSearchIndex example
    :end-before: end createSearchIndex example
 
-When connecting to {+mdb-server+} v6.0.11 and later v6 versions, or
-v7.0.2 and later v7 versions, you can use the driver to create an Atlas
-Vector Search index on a collection. Learn more about this feature in
-the :atlas:`Atlas Vector Search documentation
-</atlas-vector-search/vector-search-overview/>`.
+When connecting to {+mdb-server+} v6.0.11 and later, you can use the driver to 
+create an Atlas Vector Search index by specifying ``vectorSearch`` in the ``type``
+field of the index definition. 
 
 The following code shows how to use the ``createSearchIndex()`` method
-to create a search index in which the ``type`` field is
-``vectorSearch``:
+to create an Atlas Vector Search index:
 
 .. literalinclude:: /code-snippets/indexes/searchIndexes.js
    :language: javascript
@@ -401,13 +398,14 @@ List Search Indexes
 
 You can use the `listSearchIndexes()
 <{+api+}/classes/Collection.html#listSearchIndexes>`__
-method to return a cursor that contains the Search indexes of a given
-collection. The ``listSearchIndexes()`` method takes an optional string
-parameter, ``name``, to return only the indexes with matching names. It
-also takes an optional `aggregateOptions <{+api+}/interfaces/AggregateOptions.html>`__ parameter.
+method to return a cursor that contains the Atlas Search and Atlas Vector Search 
+indexes of a given collection. The ``listSearchIndexes()`` method takes an 
+optional string parameter, ``name``, to return only the indexes with matching 
+names. It also takes an optional 
+`aggregateOptions <{+api+}/interfaces/AggregateOptions.html>`__ parameter.
 
 The following code uses the ``listSearchIndexes()`` method to list the
-Search indexes in a collection:
+Atlas Search and Atlas Vector Search indexes in a collection:
 
 .. literalinclude:: /code-snippets/indexes/searchIndexes.js
    :language: javascript
@@ -419,12 +417,12 @@ Update a Search Index
 ~~~~~~~~~~~~~~~~~~~~~
 
 You can use the `updateSearchIndex()
-<{+api+}/classes/Collection.html#updateSearchIndex>`__ method to update a Search
-index.
+<{+api+}/classes/Collection.html#updateSearchIndex>`__ method to update an
+Atlas Search or Atlas Vector Search index by providing a new index definition.
 
-The following code shows how to
-use the ``updateSearchIndex()`` method to update an index called
-``search1`` to specify a string type for the ``description`` field:
+The following code shows how to use the ``updateSearchIndex()`` method to 
+update an Atlas Search index called ``search1`` to change the type of the 
+``description`` field to a string:
 
 .. literalinclude:: /code-snippets/indexes/searchIndexes.js
    :language: javascript
@@ -436,12 +434,11 @@ Drop a Search Index
 ~~~~~~~~~~~~~~~~~~~
 
 You can use the `dropSearchIndex()
-<{+api+}/classes/Collection.html#dropSearchIndex>`__ method to remove a Search
-index.
+<{+api+}/classes/Collection.html#dropSearchIndex>`__ method to remove an Atlas 
+Search or Atlas Vector Search index.
 
-The following code shows how to
-use the ``dropSearchIndex()`` method to remove an index called
-``search1``:
+The following code shows how to use the ``dropSearchIndex()`` method to remove 
+an index called ``search1``:
 
 .. literalinclude:: /code-snippets/indexes/searchIndexes.js
    :language: javascript
