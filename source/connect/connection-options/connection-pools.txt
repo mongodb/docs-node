@@ -77,6 +77,9 @@ instance:
        |
        | **Default**: ``0`` (no limit)
 
+
+.. _node-connection-pool-max-pool-size:
+
 maxPoolSize
 ~~~~~~~~~~~
 
@@ -107,6 +110,8 @@ pool size of ``50`` by using the ``maxPoolSize`` option:
      maxPoolSize: 50
    });
 
+.. _node-connection-pool-max-connecting:
+
 maxConnecting
 ~~~~~~~~~~~~~
 
@@ -134,6 +139,8 @@ connection that the pool can create set to ``2``:
       maxConnecting: 2
    });
 
+.. _node-connection-pool-min-pool-size:
+
 minPoolSize
 ~~~~~~~~~~~
 
@@ -156,6 +163,8 @@ object:
      minPoolSize: 10
    });
 
+.. _node-connection-pool-max-idle-time:
+
 maxIdleTimeMS
 ~~~~~~~~~~~~~
 
@@ -176,6 +185,8 @@ setting in the ``options`` object:
    const client = new MongoClient(uri, {
      maxIdleTimeMS: 10000
    });
+
+.. _node-connection-pool-wait-queue-timeout:
 
 waitQueueTimeoutMS
 ~~~~~~~~~~~~~~~~~~
@@ -208,17 +219,25 @@ timeout of ``10000`` milliseconds (10 seconds) by declaring it in the
      waitQueueTimeoutMS: 10000
    });
 
-Clossing Connections
+Closing Connections
 --------------------
 
-When ``MongoClient.close()`` is called by any request, the driver
-closes all idle sockets and closes all sockets that are in
-use as they are returned to the pool. Calling ``MongoClient.close()``
-closes only inactive sockets and does not directly terminate
-any ongoing operations. The driver closes any in-use sockets only when
-the associated operations complete. However, the ``MongoClient.close()``
-method does close existing sessions and transactions, which might indirectly
-affect the behavior of ongoing operations and open cursors.
+When any request calls ``MongoClient.close()``, the {+driver-short+} performs
+the following actions:
+
+- Closes all idle sockets in the connection pool
+- Closes all sockets that are in use as they are returned to the pool
+- Closes all sockets that are in use only when the associated operations
+  complete
+
+Calling ``MongoClient.close()`` closes only inactive sockets and does not
+directly terminate any ongoing operations. 
+
+.. note::
+
+   The ``MongoClient.close()`` method does close existing sessions and
+   transactions, which might indirectly affect the behavior of ongoing
+   operations and open cursors.
 
 Avoid Socket Timeouts
 ---------------------
@@ -230,14 +249,15 @@ requests. Consider the following example scenario:
   ``socketTimeoutMS`` option set to 5000 milliseconds. 
 - Operations occur, on average, every 3000 milliseconds, and reconnection
   requests are frequent. 
-- - Each socket times out after 5000 milliseconds, which means that all sockets
-    must do something during those 5000 milliseconds to avoid closing.
+- Each socket times out after 5000 milliseconds, which means that all sockets
+  must do something during those 5000 milliseconds to avoid closing.
 
 In this scenario, each socket times out after 5000 milliseconds, requiring
 activity within this timeout period to avoid closure. However, one message every
 3000 milliseconds isn't enough to keep all sockets active, causing several of
 them to time out.
 
-To avoid excessive socket timeouts, reduce the number of connections
-that the driver can maintain in the connection pool by specifying the
-``maxPoolSize`` option.
+To avoid excessive socket timeouts, reduce the number of connections that the
+driver can maintain in the connection pool by specifying the ``maxPoolSize``
+option. To learn how to set this option, see
+:ref:`node-connection-pool-max-pool-size`.
