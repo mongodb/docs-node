@@ -1,8 +1,8 @@
 .. _node-connection-pools:
 
-=========================================
-Manage Connections Using Connection Pools
-=========================================
+========================================
+Manage Connections with Connection Pools
+========================================
 
 .. facet::
    :name: genre
