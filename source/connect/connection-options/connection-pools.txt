@@ -34,9 +34,10 @@ are created by {+driver-short+}.
 Configure Connection Pools
 --------------------------
 
-Every ``MongoClient`` instance has a built-in connection pool for each server
-in your MongoDB topology. Connection pools open sockets on demand to
-support concurrent requests to MongoDB in your application.
+Every ``MongoClient`` instance has a built-in connection pool for each server in
+your MongoDB topology. If you do not configure the ``minPoolSize`` option,
+connection pools open sockets on demand to support concurrent requests to
+MongoDB in your application.
 
 You can specify the following connection pool settings in your ``MongoClient``
 instance:
@@ -83,23 +84,23 @@ instance:
 maxPoolSize
 ~~~~~~~~~~~
 
-In addition to the sockets needed to support your application's requests,
-each ``MongoClient`` instance opens two more sockets per server
-in your MongoDB topology for monitoring the server's state.
+In addition to the sockets needed to support your application's requests, each
+``MongoClient`` instance opens up to two or more connections per server in your
+MongoDB topology for monitoring the server's state.
 
-For example, a client connected to a three-node replica set opens six
-monitoring sockets. If the application uses the default setting for
-``maxPoolSize`` and only queries the primary (default) node, then
-there can be at most ``106`` total connections in the connection pool. If the
-application uses a :ref:`read preference <read-preference>` to query the
-secondary nodes, those connection pools grow and there can be
-``306`` total connections.
+For example, a client connected to a three-node replica set opens six monitoring
+sockets. If the application uses the default setting for ``maxPoolSize`` and
+only queries the primary (default) node, then there can be at most ``106`` open
+sockets and ``100`` connections in the connection pool. If the application uses
+a :ref:`read preference <read-preference>` to query the secondary nodes, those
+connection pools grow and there can be ``306`` total connections including the
+open monitoring sockets.
 
 To support high numbers of concurrent MongoDB requests
 within one process, you can increase ``maxPoolSize``.
 
 The following code creates a ``MongoClient`` instance with a maximum connection
-pool size of ``50`` by specifying the ``maxPoolSize`` option in the
+pool size of ``200`` by specifying the ``maxPoolSize`` option in the
 ``options`` object:
 
 .. code-block:: javascript
@@ -108,7 +109,7 @@ pool size of ``50`` by specifying the ``maxPoolSize`` option in the
 
    const uri = '<connection-string>';
    const client = new MongoClient(uri, {
-     maxPoolSize: 50
+     maxPoolSize: 200
    });
 
 .. _node-connection-pool-max-connecting:
@@ -116,21 +117,19 @@ pool size of ``50`` by specifying the ``maxPoolSize`` option in the
 maxConnecting
 ~~~~~~~~~~~~~
 
-Connection pools are rate-limited. The ``maxConnecting`` option
-determines the number of connections that the pool can create in
-parallel at any time. For example, if the value of ``maxConnecting`` is
-``2``, the third request that attempts to concurrently check out a
-connection succeeds only when one the following cases occurs:
+Connection pools rate-limit of connection establishment. The ``maxConnecting``
+option determines the number of connections that the pool can create in parallel
+at any time. For example, if the value of ``maxConnecting`` is ``2``, the third
+request that attempts to concurrently check out a connection succeeds only when
+one the following cases occurs:
 
 - The connection pool finishes creating a connection and there are fewer
   than ``maxPoolSize`` connections in the pool.
 - An existing connection is checked back into the pool.
-- The driver's ability to reuse existing connections improves due to
-  rate-limits on connection creation.
 
 The following code creates a ``MongoClient`` instance with a maximum number of
-``2`` connections by specifying the ``maxConnecting`` option in the ``options``
-object:
+``2`` connections to be established concurrently per pool by specifying the
+``maxConnecting`` option in the ``options`` object:
 
 .. code-block:: javascript
 
@@ -146,11 +145,12 @@ object:
 minPoolSize
 ~~~~~~~~~~~
 
-You can set the minimum number of concurrent connections to each server with the
-``minPoolSize`` option. The driver initializes the connection pool with the
-number of sockets set by the option. If sockets are closed, causing the total
-number of sockets (both in use and idle) to drop below the minimum, more sockets
-are opened until the minimum is reached.
+You can set the minimum number of connections to each server with the
+``minPoolSize`` option. The driver ensures that there are always at least the
+number of connections set by the ``minPoolSize`` option in the connection pool.
+If sockets are closed, causing the total number of sockets (both in use and
+idle) to drop below the minimum, more sockets are opened until the minimum is
+reached.
 
 The following code creates a ``MongoClient`` instance with a minimum connnection
 pool size of ``10`` by specifying the ``minPoolSize`` option in the ``options``
