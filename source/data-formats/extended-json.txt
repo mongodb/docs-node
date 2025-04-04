@@ -31,9 +31,9 @@ Extended JSON Formats
 
 MongoDB Extended JSON features different string formats to represent BSON data.
 Each of the different formats conform to the JSON RFC
-and meet specific use cases. The **extended** format, also known as the
+and meet specific use cases. The **Extended** format, also known as the
 **canonical** format, features specific representations for every BSON type
-for bidirectional conversion without loss of information. The **Relaxed mode**
+for bidirectional conversion without loss of information. The **Relaxed Mode**
 format is more concise and closer to ordinary JSON, but does not represent
 all the type information such as the specific byte size of number fields.
 
@@ -58,14 +58,6 @@ See the following table to see a description of each format:
        | This format prioritizes human-readability and interoperability at the loss of
          certain type information.
 
-.. note::
-
-   The driver parses the ``$uuid`` Extended JSON type from a string to a
-   ``BsonBinary`` object of binary subtype 4. For more information about ``$uuid`` field
-   parsing, see the
-   :spec:`special rules for parsing $uuid fields </extended-json.rst#special-rules-for-parsing-uuid-fields>`
-   section in the extended JSON specification.
-
 To learn more about JSON, BSON, and Extended JSON, see
 `our article about JSON and BSON <https://www.mongodb.com/resources/basics/json-and-bson>`__
 and :manual:`Extended JSON </reference/mongodb-extended-json/>` in the {+mdb-server+} manual.
@@ -76,7 +68,7 @@ Extended JSON Examples
 ~~~~~~~~~~~~~~~~~~~~~~
 
 The following examples show a document containing an ObjectId, date, and long
-number field represented in each Extended JSON format. Click the tab that
+number field represented in the Extended JSON format. Click the tab that
 corresponds to the format of the example you want to see:
 
 .. tabs::
@@ -116,13 +108,13 @@ The following example outputs an Extended JSON string in the Relaxed format:
    .. input::
       :language: js
 
-      const { EJSON } = require('bson');
+      const { Binary, Code, EJSON } = require('bson');
 
       doc = [
-         {'foo': [1, 2]},
-         {'bar': {'hello': 'world'}},
-         {'code': Code('function x() { return 1; }', {})},
-         {"$binary": {"base64":"AQIDBA==","subType":"00"}}
+         {"foo": [1, 2]},
+         {"bar": {"hello": "world"}},
+         {"code": new Code("function x() { return 1; }", {})},
+         {"bin": Binary.createFromBase64("AQIDBA==", 0)}
       ]
 
       const ejson_str = EJSON.stringify(doc);
@@ -132,7 +124,7 @@ The following example outputs an Extended JSON string in the Relaxed format:
       :language: none
       :visible: false
 
-      [{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}},{"$binary":{"base64":"AQIDBA==","subType":"00"}}]
+      [{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}},{"bin":{"$binary":{"base64":"AQIDBA==","subType":"00"}}}]
 
 By default, the ``stringify()`` method returns the Extended JSON string in the 
 Relaxed format. To specify the Canonical format, set the ``relaxed`` 
@@ -145,12 +137,13 @@ The following example shows how to output Extended JSON in the Canonical format:
    .. input::
       :language: js
 
-      const { EJSON } = require('bson');
+      const { Binary, Code, EJSON } = require('bson');
 
       doc = [
-         {'foo': [1, 2]},
-         {'bar': {'hello': 'world'}},
-         {'code': Code('function x() { return 1; }', {})}
+         {"foo": [1, 2]},
+         {"bar": {"hello": "world"}},
+         {"code": new Code("function x() { return 1; }", {})},
+         {"bin": Binary.createFromBase64("AQIDBA==", 0)}
       ]
 
       const ejson_str = EJSON.stringify(doc, { relaxed: false });
@@ -160,7 +153,7 @@ The following example shows how to output Extended JSON in the Canonical format:
       :language: none
       :visible: false
 
-      [{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}}, {"$binary":{"base64":"AQIDBA==","subType":"00"}}]
+      [{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}},{"bin":{"$binary":{"base64":"AQIDBA==","subType":"00"}}}]
 
 Read Extended JSON
 ------------------
@@ -179,7 +172,7 @@ JavaScript value or object by using the ``parse()`` method:
       import { BSON } from 'mongodb';
       const EJSON = BSON.EJSON;
 
-      const ejson_str = '[{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}}]'
+      const ejson_str = '[{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$code":"function x() { return 1; }","$scope":{}}},{"bin":{"$binary":{"base64":"AQIDBA==","subType":"00"}}}]'
 
       const doc = EJSON.parse(ejson_str);
       console.log(doc)
@@ -189,10 +182,19 @@ JavaScript value or object by using the ``parse()`` method:
       :visible: false
 
       [
-         {'foo': [1, 2]},
-         {'bar': {'hello': 'world'}},
-         {'code': Code('function x() { return 1; }', {})}
+        { foo: [ 1, 2 ] },
+        { bar: { hello: 'world' } },
+        { code: new Code('function x() { return 1; }', {}) },
+        { bin: Binary.createFromBase64('AQIDBA==', 0) }
       ]
+
+.. note::
+
+   The driver parses the ``$uuid`` Extended JSON type from a string to a
+   ``BsonBinary`` object of binary subtype 4. For more information about ``$uuid`` field
+   parsing, see the
+   :spec:`special rules for parsing $uuid fields </extended-json.rst#special-rules-for-parsing-uuid-fields>`
+   section in the extended JSON specification.
 
 Additional Information
 ----------------------
