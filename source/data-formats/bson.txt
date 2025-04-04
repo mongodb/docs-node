@@ -46,7 +46,7 @@ The code samples in this guide use the following BSON document as an example:
    compatibility issues with other BSON packages. You can import the {+driver-short+}'s 
    BSON package with the following import statement:
 
-   .. code-block::
+   .. code-block:: js
 
        import { BSON } from 'mongodb';  
 
