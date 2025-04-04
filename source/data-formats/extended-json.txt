@@ -1,4 +1,4 @@
-. _node-extended-json:
+.. _node-extended-json:
 
 ============================
 Work with Extended JSON Data
