@@ -196,14 +196,8 @@ JavaScript value or object by using the ``parse()`` method:
    :spec:`special rules for parsing $uuid fields </extended-json.rst#special-rules-for-parsing-uuid-fields>`
    section in the extended JSON specification.
 
-Additional Information
-----------------------
-
-The resources in the following sections provide more information about working
-with Extended JSON.
-
 API Documentation
-~~~~~~~~~~~~~~~~~
+-----------------
 
 To learn more about any of the methods or types discussed in this
 guide, see the `EJSON <https://github.com/mongodb/js-bson#ejson>`__ API documentation.
