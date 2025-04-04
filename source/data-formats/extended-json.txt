@@ -103,6 +103,65 @@ corresponds to the format of the example you want to see:
            "numViews": 36520312
          }
 
+Write Extended JSON
+-------------------
+
+You can write an Extended JSON string from a BSON document object by using the
+``EJSON.stringify()`` method.
+
+The following example outputs an Extended JSON string in the Relaxed format:
+
+.. io-code-block::
+
+   .. input::
+      :language: js
+
+      const { EJSON } = require('bson');
+
+      doc = [
+         {'foo': [1, 2]},
+         {'bar': {'hello': 'world'}},
+         {'code': Code('function x() { return 1; }', {})},
+         {"$binary": {"base64":"AQIDBA==","subType":"00"}}
+      ]
+
+      const ejson_str = EJSON.stringify(doc);
+      console.log(ejson_str);
+
+   .. output::
+      :language: none
+      :visible: false
+
+      [{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}},{"$binary":{"base64":"AQIDBA==","subType":"00"}}]
+
+By default, the ``stringify()`` method returns the Extended JSON string in the 
+Relaxed format. To specify the Canonical format, set the ``relaxed`` 
+option to ``false``.
+
+The following example shows how to output Extended JSON in the Canonical format:
+
+.. io-code-block::
+
+   .. input::
+      :language: js
+
+      const { EJSON } = require('bson');
+
+      doc = [
+         {'foo': [1, 2]},
+         {'bar': {'hello': 'world'}},
+         {'code': Code('function x() { return 1; }', {})}
+      ]
+
+      const ejson_str = EJSON.stringify(doc, { relaxed: false });
+      print(ejson_str)
+
+   .. output::
+      :language: none
+      :visible: false
+
+      [{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}}, {"$binary":{"base64":"AQIDBA==","subType":"00"}}]
+
 Read Extended JSON
 ------------------
 
@@ -134,64 +193,6 @@ JavaScript value or object by using the ``parse()`` method:
          {'bar': {'hello': 'world'}},
          {'code': Code('function x() { return 1; }', {})}
       ]
-
-Write Extended JSON
--------------------
-
-You can write an Extended JSON string from a BSON document object by using the
-``EJSON.stringify()`` method.
-
-The following example outputs an Extended JSON string in the Relaxed format:
-
-.. io-code-block::
-
-   .. input::
-      :language: js
-
-      const { EJSON } = require('bson');
-
-      doc = [
-         {'foo': [1, 2]},
-         {'bar': {'hello': 'world'}},
-         {'code': Code('function x() { return 1; }', {})}
-      ]
-
-      const ejson_str = EJSON.stringify(doc);
-      console.log(ejson_str);
-
-   .. output::
-      :language: none
-      :visible: false
-
-      [{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}}]
-
-By default, the ``stringify()`` method returns the Extended JSON string in the 
-Relaxed format. To specify the Canonical format, set the ``relaxed`` 
-option to ``false``.
-
-The following example shows how to output Extended JSON in the Canonical format:
-
-.. io-code-block::
-
-   .. input::
-      :language: js
-
-      const { EJSON } = require('bson');
-
-      doc = [
-         {'foo': [1, 2]},
-         {'bar': {'hello': 'world'}},
-         {'code': Code('function x() { return 1; }', {})}
-      ]
-
-      const ejson_str = EJSON.stringify(doc, { relaxed: false });
-      print(ejson_str)
-
-   .. output::
-      :language: none
-      :visible: false
-
-      [{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}}]
 
 Additional Information
 ----------------------
