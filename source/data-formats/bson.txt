@@ -1,9 +1,9 @@
 .. _node-bson-control:
 .. _node-bson:
 
-==============
-Work with BSON
-==============
+===================
+Work with BSON Data
+===================
 
 .. default-domain:: mongodb
 
@@ -39,6 +39,16 @@ The code samples in this guide use the following BSON document as an example:
        "cuisine" : "Pizza",
        "name" : "Mongo's Pizza"
    }
+
+.. note:: Use the {+driver-short+}'s BSON package
+
+   We recommend that you use the BSON package that is bundled with the driver to avoid
+   compatibility issues with other BSON packages. You can import the {+driver-short+}'s 
+   BSON package with the following import statement:
+
+   .. code-block::
+
+       import { BSON } from 'mongodb';  
 
 Create a BSON Document
 ----------------------
@@ -91,7 +101,7 @@ The following example writes the sample BSON document to ``file.bson``:
 .. code-block:: javascript
 
    import fs from 'fs/promises';  // Import the file system module
-   import { BSON } from 'bson';  // Import the BSON package
+   import { BSON } from 'mongodb';  // Import the BSON package
 
    // Create a BSON object
    const bsonData = BSON.serialize(result);
@@ -115,7 +125,7 @@ The following example reads the sample BSON document from ``file.bson``:
       :language: javascript
 
       import fs from 'fs/promises';  // Import the file system module
-      import { BSON } from 'bson';  // Import the BSON package
+      import { BSON } from 'mongodb';  // Import the BSON package
 
       // Read the BSON data from a file
       const data = await fs.readFile('file.bson');
