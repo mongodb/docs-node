@@ -44,7 +44,7 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/ -> ${base}/${version}/crud/query/
 [*-master]: ${prefix}/${version}/fundamentals/crud/query-document/ -> ${base}/${version}/crud/query/query-document/
 [*-master]: ${prefix}/${version}/fundamentals/crud/compound-operations/ -> ${base}/${version}/crud/compound-operations/
-[*-master]: ${prefix}/${version}/fundamentals/crud/read-write-pref/ -> ${base}/${version}/crud/read-write-pref/
+[*-master]: ${prefix}/${version}/fundamentals/crud/read-write-pref/ -> ${base}/${version}/crud/configure/
 [*-master]: ${prefix}/${version}/fundamentals/transactions/ -> ${base}/${version}/crud/transactions/
 [*-master]: ${prefix}/${version}/fundamentals/gridfs/ -> ${base}/${version}/crud/gridfs/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/retrieve/ -> ${base}/${version}/crud/query/retrieve/
