@@ -24,21 +24,19 @@ To connect to an instance or deployment not hosted on Atlas, see
       To retrieve your connection string for the deployment that
       you created in the :ref:`previous step <node-quick-start-create-deployment>`,
       log into your Atlas account and navigate to the
-      :guilabel:`Database` section and click the :guilabel:`Connect` button
+      :guilabel:`Clusters` section and click the :guilabel:`Connect` button
       for your new deployment.
 
       .. figure:: /includes/figures/atlas_connection_select_cluster.png
          :alt: The connect button in the clusters section of the Atlas UI
 
-      Proceed to the :guilabel:`Connect your application` section and select
-      "Node.js" from the :guilabel:`Driver` selection menu and the version
+      Select the :guilabel:`Drivers` option from the :guilabel:`Connect to your application` 
+      section. Once you are in the :guilabel:`Connecting with MongoDB Driver` 
+      menu, select "Node.js" from the :guilabel:`Driver` selection menu and the version
       that best matches the version you installed from the :guilabel:`Version`
       selection menu.
 
       Select the :guilabel:`Password (SCRAM)` authentication mechanism.
-      
-      Deselect the :guilabel:`Include full driver code example` to view
-      the connection string.
 
    .. step:: Copy your Connection String
 
