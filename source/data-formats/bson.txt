@@ -138,4 +138,3 @@ API Documentation
 
 To learn more about any of the methods or types discussed in this
 guide, see the `BSON <{+api+}/modules/BSON.html>`__ API documentation.
-
