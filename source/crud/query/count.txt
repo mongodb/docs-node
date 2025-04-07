@@ -5,8 +5,26 @@
 Count Documents
 ===============
 
-The Node.js driver provides two methods for counting documents in a
-collection:
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, count documents
+   :description: Learn how to count documents in a collection using the {+driver-long+}.
+
+Overview
+--------
+
+In this guide, you can learn how to count the number of documents in your
+MongoDB collections. The {+driver-short+} provides two methods for counting
+documents in a collection:
 
 - `collection.countDocuments() <{+api+}/classes/Collection.html#countDocuments>`__ returns the number of documents in
   the collection that match the specified query. If you specify an empty
@@ -24,7 +42,7 @@ provides an **accurate** count of the number of documents and supports
 specifying a filter. Choose the appropriate method for your workload.
 
 To specify which documents you wish to count, ``countDocuments()``
-accepts a :doc:`query </fundamentals/crud/query-document>` parameter.
+accepts a :doc:`query </crud/query>` parameter.
 ``countDocuments()`` counts the documents that match the specified query.
 
 ``countDocuments()`` and ``estimatedDocumentCount()`` support optional
@@ -43,15 +61,15 @@ documentation for each method for more information.
 
       collection.countDocuments({}, { hint: "_id_" });
 
-Example
--------
+countDocuments() Usage Example
+------------------------------
+
+.. include:: /includes/crud/example-intro.rst
 
 The following example estimates the number of documents in the
 ``movies`` collection in the ``sample_mflix`` database, and then returns
 an accurate count of the number of documents in the ``movies``
-collection with ``Canada`` in the ``countries`` field.
-
-.. include:: /includes/connect-guide-note.rst
+collection with ``Canada`` in the ``countries`` field:
 
 .. tabs::
 
@@ -81,3 +99,14 @@ Running the preceding sample code, you see the following output:
 
    Estimated number of documents in the movies collection: 23541
    Number of movies from Canada: 1349
+
+API Documentation
+-----------------
+
+To learn more about any of the types or methods discussed in this guide, see the
+following API documentation:
+
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `Db <{+api+}/classes/Db.html>`__
+- `Collection <{+api+}/classes/Collection.html>`__
+- `countDocuments() <{+api+}/classes/Collection.html#countDocuments>`__

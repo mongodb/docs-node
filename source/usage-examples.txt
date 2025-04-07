@@ -20,7 +20,6 @@ Usage Examples
    
 .. toctree::
 
-   Find </usage-examples/find-operations>
    Insert </usage-examples/insert-operations>
    Update & Replace </usage-examples/update-and-replace-operations>
    Delete </usage-examples/delete-operations>

@@ -120,7 +120,8 @@ You can specify the collation to the ``distinct()`` method by defining a
 ``collation`` field as an ``options`` parameter. This field allows you to set
 regional rules for string ordering and comparisons.
 
-See :ref:`node-fundamentals-collations` for instructions on applying collations.
+See the :ref:`node-collations` section of the :ref:`node-configure` guide for
+instructions on applying collations.
 
 .. note::
 
@@ -162,15 +163,47 @@ with unaccented first letters:
 
    [ "Borgatti's", "Samba Kitchen", "Tanoreen", "Via Carota", "White Bear", "Äpfel" ]
 
-Additional Information
-----------------------
+.. _node-usage-distinct:
 
-For a runnable example of retrieving distinct values, see :ref:`node-usage-distinct`.
+distinct() Usage Example
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/crud/example-intro.rst
+
+The following snippet retrieves a list of distinct values for the ``year``
+document field from the ``movies`` collection. It uses a query document to
+match movies that include "Barbara Streisand" as a ``director``.
+
+.. tabs::
+
+  .. tab:: JavaScript
+     :tabid: javascript
+
+     .. literalinclude:: /code-snippets/usage-examples/distinct.js
+        :language: javascript
+        :linenos:
+
+  .. tab:: TypeScript
+     :tabid: typescript
+
+     .. literalinclude:: /code-snippets/usage-examples/distinct.ts
+        :language: typescript
+        :linenos:
+
+Running the preceding example, you see the following output:
+
+.. code-block:: json
+   :copyable: false
+
+   [ 1983, 1991, 1996 ]
 
 API Documentation
-~~~~~~~~~~~~~~~~~
+-----------------
 
-To learn more about the ``distinct()`` method and its parameters, you can visit the
-`API documentation <{+api+}/classes/Collection.html#distinct>`__.
+To learn more about any of the types or methods discussed in this guide, see the
+following API documentation:
 
-
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `Db <{+api+}/classes/Db.html>`__
+- `Collection <{+api+}/classes/Collection.html>`__
+- `distinct() <{+api+}/classes/Collection.html#distinct>`__.

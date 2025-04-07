@@ -42,10 +42,8 @@ You can also further specify the information that the find operation
 returns by specifying optional parameters or by chaining other methods,
 as shown in the following guides:
 
-- :ref:`node-fundamentals-sort`
-- :ref:`node-fundamentals-skip`
-- :ref:`node-fundamentals-limit`
-- :ref:`node-fundamentals-project`
+- :ref:`node-specify-documents-to-return`
+- :ref:`node-project`
 
 You can also use an aggregation operation to retrieve data. This type of
 operation allows you to apply an ordered pipeline of transformations to the
@@ -144,14 +142,112 @@ a ``null`` value if there are no matches.
         ...
       ]
 
+.. _node-usage-findone:
+
+findOne() Usage Example
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/crud/example-intro.rst
+
+The following full file example finds a single document from the ``movies``
+collection. It uses the following parameters:
+
+- A **query document** that configures the query to return only
+  movies with the title of exactly the text ``'The Room'``.
+
+- A **sort** that organizes matched documents in descending order by
+  rating, so if our query matches multiple documents the returned
+  document will be the document with the highest rating.
+
+- A **projection** that explicitly excludes the ``_id`` field from
+  returned documents and explicitly includes only the ``title`` and
+  ``imdb`` object (and its embedded fields).
+
+.. _node-driver-findone-usage-example-code-snippet:
+
+.. tabs::
+
+  .. tab:: JavaScript
+     :tabid: javascript
+
+     .. literalinclude:: /code-snippets/usage-examples/findOne.js
+        :language: javascript
+
+  .. tab:: TypeScript
+     :tabid: typescript
+
+     .. literalinclude:: /code-snippets/usage-examples/findOne.ts
+        :language: typescript
+
+
+Running the preceding example, you see the following output:
+
+.. code-block:: javascript
+   :copyable: false
+
+   { title: 'The Room', imdb: { rating: 3.5, votes: 25673, id: 368226 } }
+
+.. _node-usage-find:
+
+find() Usage Example
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/crud/example-intro.rst
+
+The following full file example finds documents from the ``movies`` collection. It
+uses the following parameters:
+
+- A **query document** that configures the query to return only
+  movies with a runtime of less than 15 minutes.
+
+- A **sort** that organizes returned documents in ascending order by
+  title (alphabetical order in which "A" comes before "Z" and "1" before
+  "9").
+
+- A **projection** that explicitly excludes the ``_id`` field from
+  returned documents and explicitly includes only the ``title`` and
+  ``imdb`` object (and its embedded fields).
+
+.. _node-driver-find-usage-example-code-snippet:
+
+.. tabs::
+
+  .. tab:: JavaScript
+     :tabid: javascript
+
+     .. literalinclude:: /code-snippets/usage-examples/find.js
+        :language: javascript
+        :linenos:
+
+  .. tab:: TypeScript
+     :tabid: typescript
+
+     .. literalinclude:: /code-snippets/usage-examples/find.ts
+        :language: typescript
+        :linenos:
+
+Running the preceding example, you see the following output:
+
+.. code-block:: javascript
+   :copyable: false
+
+   { title: '10 Minutes', imdb: { rating: 7.9, votes: 743, id: 339976 } }
+   { title: '3x3', imdb: { rating: 6.9, votes: 206, id: 1654725 } }
+   { title: '7:35 in the Morning', imdb: { rating: 7.3, votes: 1555, id: 406501 } }
+   { title: '8', imdb: { rating: 7.8, votes: 883, id: 1592502 } }
+   ...
+
+The ``sort`` and ``projection`` options can also be specified as methods
+(``sort()`` and ``project()``) chained to the ``find()`` method.
+The following two commands are equivalent:
+
+.. code-block:: javascript
+
+   movies.find({ runtime: { $lt: 15 } }, { sort: { title: 1 }, projection: { _id: 0, title: 1, imdb: 1 }});
+   movies.find({ runtime: { $lt: 15 } }).sort({ title: 1}).project({ _id: 0, title: 1, imdb: 1 });
+
 Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~
-
-For runnable code examples that demonstrate find operations, see the following
-usage examples:
-
-- :ref:`node-usage-findone`
-- :ref:`node-usage-find`
 
 For more information about the ``findOne()`` and ``find()`` methods, see the
 following Server manual documentation:

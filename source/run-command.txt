@@ -10,6 +10,14 @@ Run a Command
    :depth: 2
    :class: singlecol
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: database, call, admin, administration, meta, backend, configure
+   :description: Learn about how to run database commands in the {+driver-long+}.
+
 Overview
 --------
 
@@ -200,6 +208,49 @@ describe any metadata inconsistencies in the database:
    If you store the command response in a cursor, you see only the
    command result documents when you access the contents of the cursor. You won't
    see the ``ok``, ``operationTime``, and ``$clusterTime`` fields.
+
+.. _node-run-command-usageex:
+
+Usage Example
+-------------
+
+.. include:: /includes/crud/example-intro.rst
+
+In the following sample code, we send the ``dbStats`` command to request
+statistics from the ``sample_mflix`` database:
+
+.. tabs::
+
+  .. tab:: JavaScript
+     :tabid: javascript
+
+     .. literalinclude:: /code-snippets/usage-examples/command.js
+        :language: javascript
+        :linenos:
+
+  .. tab:: TypeScript
+     :tabid: typescript
+
+     .. literalinclude:: /code-snippets/usage-examples/command.js
+        :language: javascript
+        :linenos:
+
+.. note:: Identical Code Snippets
+
+   The JavaScript and TypeScript code snippets above are identical. There are no
+   TypeScript specific features of the driver relevant to this use case.
+
+Running the preceding command, you see the following output:
+
+.. code-block:: javascript
+   :copyable: false
+
+   {
+     db: 'sample_mflix',
+     collections: 6,
+     views: 0,
+     objects: 75620,
+     ..
 
 .. _addl-info-runcommand:
 
