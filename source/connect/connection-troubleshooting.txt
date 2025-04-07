@@ -26,8 +26,8 @@ using the {+driver-long+} to connect to a MongoDB deployment.
    with MongoDB or the driver, visit the following resources:
 
    - The :ref:`Issues & Help <node-issues-help>` page, which has
-     information about reporting bugs, contributing to the driver, and 
-     finding more resources
+     information about how to report bugs, contribute to the driver, and 
+     find more resources
    - The `MongoDB Community Forums <https://community.mongodb.com>`__ for
      questions, discussions, or general technical support
 
@@ -169,12 +169,13 @@ Check Your Connection String
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An invalid connection string is the most common cause of authentication
-issues when attempting to connect to MongoDB using ``SCRAM-SHA-256``.
+issues when you attempt to connect to MongoDB by using ``SCRAM-SHA-256``.
 
 .. tip::
 
    For more information about connection strings,
-   see :ref:`Connection URI <node-connection-uri>` in the Connection Guide.
+   see the :ref:`Connection URI <node-connection-uri>` section in the Connection 
+   Guide.
 
 If your connection string contains a username and password, ensure that they
 are in the correct format. If the username or password includes any of the
@@ -313,7 +314,7 @@ Set connectTimeoutMS
 The driver may hang when it's unable to establish a connection because it
 takes too long attempting to reach unreachable replica set nodes. You can limit the
 time the driver spends attempting to establish the connection by using the
-``connectTimeMS`` setting. To learn more about this setting, see the
+``connectTimeoutMS`` setting. To learn more about this setting, see the
 :manual:`Timeout Options </reference/connection-string/#timeout-options>` in
 the Server manual.
 
