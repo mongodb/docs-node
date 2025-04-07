@@ -228,7 +228,7 @@ The following table describes the fields that you can set in a
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more 
-         about collations, see the :ref:`node-fundamentals-collations` guide.
+         about collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``String`` or ``Object``
 
    * - ``hint`` 
@@ -307,7 +307,7 @@ The following table describes the fields that you can set in a
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more 
-         about collations, see the :ref:`node-fundamentals-collations` guide.
+         about collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``String`` or ``Object``
 
    * - ``hint`` 
@@ -395,7 +395,7 @@ The following table describes the fields you can set in an ``UpdateOneModel`` or
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more about 
-         collations, see the :ref:`node-fundamentals-collations` guide.
+         collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``Object``
 
    * - ``hint`` 
@@ -482,7 +482,7 @@ to specify an update operation:
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more about 
-         collations, see the :ref:`node-fundamentals-collations` guide.
+         collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``Document``
 
    * - ``hint`` 
@@ -566,7 +566,7 @@ The following table describes the fields you can set in a ``DeleteOneModel`` or
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more about 
-         collations, see the :ref:`node-fundamentals-collations` guide.
+         collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``Object``
 
    * - ``hint`` 

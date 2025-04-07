@@ -5,6 +5,6 @@
     instance, see the :ref:`node-connect` guide. This example
     also uses the ``movies`` collection in the ``sample_mflix`` database
     included in the :atlas:`Atlas sample datasets </sample-data>`. You
-    can load them into your database on the free tier of MongoDB Atlas
-    by following the :atlas:`Get Started with Atlas Guide
-    </getting-started/#atlas-getting-started>`.
+    can load them into your database on the free tier of MongoDB Atlas by
+    following the :atlas:`Get Started with Atlas Guide
+    </getting-started/#atlas-getting-started>`. 
