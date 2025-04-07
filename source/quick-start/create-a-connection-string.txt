@@ -27,7 +27,7 @@ To connect to an instance or deployment not hosted on Atlas, see
       :guilabel:`Clusters` section and click the :guilabel:`Connect` button
       for your new deployment.
 
-      .. figure:: /includes/figures/atlas_connection_select_cluster.png
+      .. figure:: /includes/figures/atlas_connect.png
          :alt: The connect button in the clusters section of the Atlas UI
 
       Select the :guilabel:`Drivers` option from the :guilabel:`Connect to your application` 
@@ -43,7 +43,7 @@ To connect to an instance or deployment not hosted on Atlas, see
       Click the button on the right of the connection string to copy it to
       your clipboard as shown in the following screenshot:
 
-      .. figure:: /includes/figures/atlas_connection_copy_string_node.png
+      .. figure:: /includes/figures/atlas_connection_copy_string.png
          :alt: The connection string copy button in the Atlas UI
 
    .. step:: Update the Placeholders
