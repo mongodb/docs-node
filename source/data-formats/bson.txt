@@ -54,7 +54,7 @@ example generates a random UUID:
 
 .. code-block:: javascript
 
-   import { BSON } from 'bson';  
+   import { BSON } from 'mongodb';  
 
    const myUuid = new BSON.UUID();
 
