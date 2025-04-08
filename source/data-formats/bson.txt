@@ -20,11 +20,8 @@ In this guide, you can learn how to create BSON documents, read BSON from a file
 and write BSON to a file by using the {+driver-short+}.
 
 **BSON**, or Binary JSON, is the data format that MongoDB uses to organize
-and store data. This data format includes all JSON data structure types and
-adds support for types including dates, different size integers, ObjectIds, and
-binary data. You can use BSON documents in your {+language+} application by importing the
-BSON package. For a complete list of supported types, see the
-:manual:`BSON Types </reference/bson-types>` server manual page.
+and store data. You can use BSON documents in your {+language+} application 
+by importing the BSON package. 
 
 The code samples in this guide use the following BSON document as an example:
 
@@ -39,6 +36,27 @@ The code samples in this guide use the following BSON document as an example:
        "cuisine" : "Pizza",
        "name" : "Mongo's Pizza"
    }
+
+BSON Data Types
+---------------
+
+BSON supports all JSON data structure types and adds support for types including 
+dates, different size integers, ObjectIds, and binary data. For a complete list of 
+supported types, see the :manual:`BSON Types </reference/bson-types>` server 
+manual page.
+
+Universally Unique IDs (UUIDs)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The {+driver-short+} has a BSON Binary subclass for UUIDs. You can create a UUID 
+object by using the ``UUID()`` method. The following code example generates a random 
+UUID:
+
+.. code-block:: javascript
+
+   import { BSON } from 'bson';  
+
+   const myUuid = new BSON.UUID();
 
 Create a BSON Document
 ----------------------
@@ -137,5 +155,7 @@ API Documentation
 -----------------
 
 To learn more about any of the methods or types discussed in this
-guide, see the `BSON <{+api+}/modules/BSON.html>`__ API documentation.
+guide, see the following API documentation:
 
+- `BSON <{+api+}/modules/BSON.html>`__ 
+- `UUID <{+api+}/classes/BSON.UUID.html>`__
