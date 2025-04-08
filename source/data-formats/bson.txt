@@ -48,9 +48,9 @@ manual page.
 Universally Unique IDs (UUIDs)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The {+driver-short+} has a BSON Binary subclass for UUIDs. You can create a UUID 
-object by using the ``UUID()`` method. The following code example generates a random 
-UUID:
+The {+driver-short+} supports UUIDs with the BSON Binary subclass ``UUID``. You 
+can create a ``UUID`` object by using the ``UUID()`` method. The following code 
+example generates a random UUID:
 
 .. code-block:: javascript
 
