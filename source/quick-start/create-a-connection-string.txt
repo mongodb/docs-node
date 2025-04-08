@@ -31,7 +31,7 @@ To connect to an instance or deployment not hosted on Atlas, see
          :alt: The connect button in the clusters section of the Atlas UI
 
       Select the :guilabel:`Drivers` option from the :guilabel:`Connect to your application` 
-      section. Once you are in the :guilabel:`Connecting with MongoDB Driver` 
+      section. Then in the :guilabel:`Connecting with MongoDB Driver` 
       menu, select "Node.js" from the :guilabel:`Driver` selection menu and the version
       that best matches the version you installed from the :guilabel:`Version`
       selection menu.
