@@ -48,7 +48,7 @@ Server Manual.
 Universally Unique IDs (UUIDs)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The {+driver-short+} supports UUIDs with the BSON Binary subclass ``UUID``. You 
+The {+driver-short+} supports UUIDs by using the BSON Binary subclass ``UUID``. You 
 can create a ``UUID`` object by using the ``UUID()`` method. The following code 
 example generates a random UUID:
 
