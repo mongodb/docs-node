@@ -8,7 +8,7 @@ Delete Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -34,8 +34,8 @@ documents you want to delete.
 
 .. note::
 
-  If your application requires the deleted document after deletion,
-  consider using the
+  If your application uses information about the deleted document after deletion,
+  you can use the
   `collection.findOneAndDelete() <{+api+}/classes/Collection.html#findOneAndDelete>`__
   method, which has a similar interface to ``deleteOne()`` but also
   returns the deleted document.
@@ -76,34 +76,19 @@ deleted by the associated operation.
 
 .. _node-usage-deleteone:
 
-deleteOne() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~~~
+deleteOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
+
+.. include:: /includes/crud/example-identical-code.rst
 
 The following code is a complete, standalone file that performs a delete one
 operation:
 
-.. tabs::
-
-  .. tab:: JavaScript
-     :tabid: javascript
-
-     .. literalinclude:: /code-snippets/usage-examples/deleteOne.js
-        :language: javascript
-        :linenos:
-
-  .. tab:: TypeScript
-     :tabid: typescript
-
-     .. literalinclude:: /code-snippets/usage-examples/deleteOne.js
-        :language: javascript
-        :linenos:
-
-.. note:: Identical Code Snippets
-
-   The JavaScript and TypeScript code snippets above are identical. There are no
-   TypeScript specific features of the driver relevant to this use case.
+.. literalinclude:: /code-snippets/usage-examples/deleteOne.js
+   :language: javascript
+   :linenos:
 
 Running the preceding example, you see the following output:
 
@@ -112,8 +97,8 @@ Running the preceding example, you see the following output:
 
    Successfully deleted one document.
 
-If you run the example more than once, you see the following output because
-you deleted the matching document in the first run:
+If you run the example more than once, the code produces the following output
+because you deleted the matching document in the first run:
 
 .. code-block:: none
    :copyable: false
@@ -122,8 +107,8 @@ you deleted the matching document in the first run:
 
 .. _node-usage-deletemany:
 
-deleteMany() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+deleteMany() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 

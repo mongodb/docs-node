@@ -7,7 +7,7 @@ Replace Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
    
 .. facet::
@@ -125,8 +125,8 @@ for more information on :manual:`unique indexes </core/index-unique/>`.
 
 .. _node-usage-replaceone:
 
-replaceOne() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+replaceOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 

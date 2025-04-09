@@ -833,14 +833,14 @@ A ``MongoClientBulkWriteError`` object contains the following properties:
 
 .. _node-usage-bulk:
 
-bulkWrite() Usage Example
--------------------------
+bulkWrite() Example: Full File
+------------------------------
 
 .. include:: /includes/crud/example-intro.rst
 
 The following code is a complete, standalone file that performs a bulk write
 operation on the ``theaters`` collection in the ``sample_mflix`` database. The
-example call to ``bulkWrite()`` includes examples of ``insertOne``,
+``operations`` parameter includes examples of ``insertOne``,
 ``updateMany``, and ``deleteOne`` write operations:
 
 .. tabs::

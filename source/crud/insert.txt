@@ -15,7 +15,7 @@ Insert Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
@@ -117,8 +117,8 @@ section, see the following resources:
 
 .. _node-usage-insert:
 
-insertOne() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~~~
+insertOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 
@@ -146,7 +146,7 @@ Running the preceding example, you see the following output:
 .. code-block:: none
    :copyable: false
 
-   A document was inserted with the _id: <your _id value>
+   A document was inserted with the _id: ...
 
 Insert Multiple Documents
 -------------------------
@@ -274,8 +274,8 @@ section, see the following resources:
 
 .. _node-usage-insertmany:
 
-insertMany() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+insertMany() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 

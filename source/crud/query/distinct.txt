@@ -165,14 +165,14 @@ with unaccented first letters:
 
 .. _node-usage-distinct:
 
-distinct() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~~
+distinct() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 
 The following snippet retrieves a list of distinct values for the ``year``
 document field from the ``movies`` collection. It uses a query document to
-match movies that include "Barbara Streisand" as a ``director``.
+match movies that include ``"Barbara Streisand"`` in the ``director`` array.
 
 .. tabs::
 

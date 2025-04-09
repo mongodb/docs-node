@@ -16,7 +16,7 @@ Find Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. _nodejs-driver-retrieve-data-overview:
@@ -144,22 +144,22 @@ a ``null`` value if there are no matches.
 
 .. _node-usage-findone:
 
-findOne() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~
+findOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 
 The following full file example finds a single document from the ``movies``
 collection. It uses the following parameters:
 
-- A **query document** that configures the query to return only
-  movies with the title of exactly the text ``'The Room'``.
+- **Filter** that matches documents in which the ``title`` value is ``'The
+  Room'``.
 
-- A **sort** that organizes matched documents in descending order by
+- **Sort** that organizes matched documents in descending order by
   rating, so if our query matches multiple documents the returned
   document will be the document with the highest rating.
 
-- A **projection** that explicitly excludes the ``_id`` field from
+- **Projection** that explicitly excludes the ``_id`` field from
   returned documents and explicitly includes only the ``title`` and
   ``imdb`` object (and its embedded fields).
 
@@ -189,8 +189,8 @@ Running the preceding example, you see the following output:
 
 .. _node-usage-find:
 
-find() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~
+find() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 
@@ -237,9 +237,9 @@ Running the preceding example, you see the following output:
    { title: '8', imdb: { rating: 7.8, votes: 883, id: 1592502 } }
    ...
 
-The ``sort`` and ``projection`` options can also be specified as methods
-(``sort()`` and ``project()``) chained to the ``find()`` method.
-The following two commands are equivalent:
+You can also specify ``sort`` and ``projection`` options by chaining the
+``sort()`` and ``projection`` methods to the ``find()`` method. The following
+two commands are equivalent:
 
 .. code-block:: javascript
 
@@ -330,8 +330,8 @@ data whenever write operations are executed on the collection.
 Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~
 
-For a runnable example of the ``watch()`` method, see the
-:ref:`Watch for Changes <node-usage-watch>` usage example.
+For a runnable example of the ``watch()`` method, see the :ref:`examples
+<node-usage-watch:>` section in the :ref:`node-change-streams` guide.
 
 .. _node-retrieve-instruqt-lab:
 

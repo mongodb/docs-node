@@ -8,7 +8,7 @@ Modify Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -151,8 +151,8 @@ for more information on :manual:`unique indexes </core/index-unique/>`.
 
 .. _node-usage-updateone:
 
-updateOne() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~~~
+updateOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 
@@ -189,8 +189,8 @@ If you run the example above, you see the following output:
 
 .. _node-usage-updatemany:
 
-updateMany() Usage Example
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+updateMany() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. include:: /includes/crud/example-intro.rst
 

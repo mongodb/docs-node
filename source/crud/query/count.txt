@@ -8,7 +8,7 @@ Count Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. facet::
@@ -42,7 +42,7 @@ provides an **accurate** count of the number of documents and supports
 specifying a filter. Choose the appropriate method for your workload.
 
 To specify which documents you wish to count, ``countDocuments()``
-accepts a :doc:`query </crud/query>` parameter.
+accepts a :ref:`query </crud/query>` parameter.
 ``countDocuments()`` counts the documents that match the specified query.
 
 ``countDocuments()`` and ``estimatedDocumentCount()`` support optional
@@ -61,36 +61,21 @@ documentation for each method for more information.
 
       collection.countDocuments({}, { hint: "_id_" });
 
-countDocuments() Usage Example
-------------------------------
+countDocuments() Example: Full File
+-----------------------------------
 
 .. include:: /includes/crud/example-intro.rst
+
+.. include:: /includes/crud/example-identical-code.rst
 
 The following example estimates the number of documents in the
 ``movies`` collection in the ``sample_mflix`` database, and then returns
 an accurate count of the number of documents in the ``movies``
 collection with ``Canada`` in the ``countries`` field:
 
-.. tabs::
-
-  .. tab:: JavaScript
-     :tabid: javascript
-
      .. literalinclude:: /code-snippets/usage-examples/count.js
         :language: javascript
         :linenos:
-
-  .. tab:: TypeScript
-     :tabid: typescript
-
-     .. literalinclude:: /code-snippets/usage-examples/count.js
-        :language: javascript
-        :linenos:
-
-.. note:: Identical Code Snippets
-
-   The JavaScript and TypeScript code snippets above are identical. There are no
-   TypeScript specific features of the driver relevant to this use case.
 
 Running the preceding sample code, you see the following output:
 
