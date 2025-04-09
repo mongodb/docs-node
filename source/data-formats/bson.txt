@@ -41,9 +41,9 @@ BSON Data Types
 ---------------
 
 BSON supports all JSON data structure types and adds support for types including 
-dates, different size integers, ObjectIds, and binary data. For a complete list of 
+dates, different size integers, ``ObjectId``, and binary data. For a complete list of 
 supported types, see the :manual:`BSON Types </reference/bson-types>` page in the 
-Server Manual.
+{+mdb-server+} Manual.
 
 Universally Unique IDs (UUIDs)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
