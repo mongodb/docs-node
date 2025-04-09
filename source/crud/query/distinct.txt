@@ -190,7 +190,7 @@ match movies that include ``"Barbara Streisand"`` in the ``director`` array.
         :language: typescript
         :linenos:
 
-Running the preceding example, you see the following output:
+Running the preceding example, results in the following output:
 
 .. code-block:: json
    :copyable: false

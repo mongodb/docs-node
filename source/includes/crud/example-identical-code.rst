@@ -1,4 +1,4 @@
-.. note:: Identical Code Snippets
+.. note:: Identical Code Examples
 
-   The JavaScript and TypeScript code snippets above are identical. There are no
+   The following JavaScript and TypeScript code examples are identical. There are no
    TypeScript specific features of the driver relevant to this use case.

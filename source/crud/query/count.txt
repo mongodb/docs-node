@@ -77,7 +77,7 @@ collection with ``Canada`` in the ``countries`` field:
         :language: javascript
         :linenos:
 
-Running the preceding sample code, you see the following output:
+Running the preceding sample code results in the following output:
 
 .. code-block:: none
    :copyable: false

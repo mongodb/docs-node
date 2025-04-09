@@ -90,7 +90,7 @@ operation:
    :language: javascript
    :linenos:
 
-Running the preceding example, you see the following output:
+Running the preceding example results in the following output:
 
 .. code-block:: none
    :copyable: false
@@ -131,7 +131,7 @@ operation:
          :language: typescript
          :linenos:
 
-Running the preceding example for the first time, you see the following output:
+Running the preceding example for the first time results in the following output:
 
 .. code-block:: none
    :copyable: false

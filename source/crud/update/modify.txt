@@ -180,7 +180,7 @@ operation:
         :language: typescript
         :linenos:
 
-If you run the example above, you see the following output:
+Running the preceding example results in the following output:
 
 .. code-block:: none
    :copyable: false

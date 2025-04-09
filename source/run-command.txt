@@ -225,7 +225,7 @@ statistics from the ``sample_mflix`` database:
    :language: javascript
    :linenos:
 
-Running the preceding command, you see the following output:
+Running the preceding command results in the following output:
 
 .. code-block:: javascript
    :copyable: false
