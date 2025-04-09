@@ -35,7 +35,7 @@ and meet specific use cases. The **Extended** format, also known as the
 **Canonical** format, features specific representations for every BSON type
 for bidirectional conversion without loss of information. The **Relaxed Mode**
 format is more concise and closer to ordinary JSON, but does not represent
-all the type information such as the specific byte size of number fields.
+all the type information such as the specific bit width of numeric fields.
 
 See the following table to see a description of each format:
 
@@ -108,23 +108,24 @@ The following example outputs an Extended JSON string in the Relaxed format:
    .. input::
       :language: js
 
-      const { Binary, Code, EJSON } = require('bson');
+      import { Binary, Code, BSON } from 'mongodb';
+      const EJSON = BSON.EJSON;
 
-      doc = [
-         {"foo": [1, 2]},
-         {"bar": {"hello": "world"}},
-         {"code": new Code("function x() { return 1; }", {})},
-         {"bin": Binary.createFromBase64("AQIDBA==", 0)}
-      ]
+      const doc = {
+         { foo: [1, 2] },
+         { bar: { hello: "world" } },
+         { code: new Code("function x() { return 1; }", {}) },
+         { date: new Date(2024, 6, 20, 10, 30, 0) },
+      };
 
-      const ejson_str = EJSON.stringify(doc);
-      console.log(ejson_str);
+      const ejsonStr = EJSON.stringify(doc);
+      console.log(ejsonStr);
 
    .. output::
       :language: none
       :visible: false
 
-      [{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}},{"bin":{"$binary":{"base64":"AQIDBA==","subType":"00"}}}]
+      [{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$code":"function x() { return 1; }","$scope":{}}},{"date":{"$date":"2024-07-20T14:30:00Z"}}]
 
 By default, the ``stringify()`` method returns the Extended JSON string in the 
 Relaxed format. To specify the Canonical format, set the ``relaxed`` 
@@ -139,21 +140,21 @@ The following example shows how to output Extended JSON in the Canonical format:
 
       const { Binary, Code, EJSON } = require('bson');
 
-      doc = [
-         {"foo": [1, 2]},
-         {"bar": {"hello": "world"}},
-         {"code": new Code("function x() { return 1; }", {})},
-         {"bin": Binary.createFromBase64("AQIDBA==", 0)}
-      ]
+      const doc = {
+         { foo: [1, 2] },
+         { bar: { hello: "world" } },
+         { code: new Code("function x() { return 1; }", {}) },
+         { date: new Date(2024, 6, 20, 10, 30, 0) },
+      };
 
-      const ejson_str = EJSON.stringify(doc, { relaxed: false });
-      print(ejson_str)
+      const ejsonStr = EJSON.stringify(doc, { relaxed: false });
+      print(ejsonStr)
 
    .. output::
       :language: none
       :visible: false
 
-      [{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$scope":{},"$code":"function x() { return 1; }"}},{"bin":{"$binary":{"base64":"AQIDBA==","subType":"00"}}}]
+      [{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$code":"function x() { return 1; }","$scope":{}}},{"date":{"$date":{"$numberLong":"1721485800000"}}}]
 
 Read Extended JSON
 ------------------
@@ -172,10 +173,21 @@ JavaScript value or object by using the ``parse()`` method:
       import { BSON } from 'mongodb';
       const EJSON = BSON.EJSON;
 
-      const ejson_str = '[{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$code":"function x() { return 1; }","$scope":{}}},{"bin":{"$binary":{"base64":"AQIDBA==","subType":"00"}}}]'
+      const ejsonStr = const ejsonStr = `{
+         "foo": [
+            { "$numberInt": "1" },
+            { "$numberInt": "2" }
+         ],
+         "bar": { "hello": "world" },
+         "code": {
+            "$code": "function x() { return 1; }",
+            "$scope": {}
+         },
+         "bin": { "$binary": { "base64": "AQIDBA==", "subType": "00" } }
+      }`;
 
-      const doc = EJSON.parse(ejson_str);
-      console.log(doc)
+      const doc = EJSON.parse(ejsonStr);
+      console.log(doc);
 
    .. output::
       :language: none
