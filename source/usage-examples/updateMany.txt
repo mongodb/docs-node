@@ -4,6 +4,9 @@
 Update Multiple Documents
 =========================
 
+.. meta::
+   :description: Update multiple documents in a MongoDB collection using the `updateMany()` method with a filter and update document.
+
 .. default-domain:: mongodb
 
 You can update multiple documents using the

@@ -16,6 +16,7 @@ What's New
 
 .. meta::
    :keywords: version, update, upgrade, backwards compatibility
+   :description: Discover the latest features and updates in recent versions of the Node.js driver, including new support for compression algorithms, authentication mechanisms, and various performance improvements.
 
 Learn what's new in:
 

@@ -4,6 +4,9 @@
 Use the Core API
 ================
 
+.. meta::
+   :description: Perform a transaction using the Core API in Node.js to update inventory, customer orders, and save order details in a multi-document transaction.
+
 .. contents:: On this page
    :local:
    :backlinks: none

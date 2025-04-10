@@ -6,6 +6,7 @@
  
 .. meta::
    :keywords: code example, multiple, modify, customize, debug
+   :description: Execute database commands using the `command()` method on a `Db` instance in Node.js, with options for command behavior.
 
 =====================
 Run a Command Example

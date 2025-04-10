@@ -4,6 +4,9 @@
 Authentication
 ==============
 
+.. meta::
+   :description: Authenticate to a MongoDB instance using the Node.js driver with various supported authentication mechanisms.
+
 .. default-domain:: mongodb
 
 .. toctree::

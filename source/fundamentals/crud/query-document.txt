@@ -4,6 +4,9 @@
 Specify a Query
 ===============
 
+.. meta::
+   :description: Learn how to use query documents with operators like comparison, logical, element, and evaluation to filter documents in a MongoDB collection.
+
 .. default-domain:: mongodb
 
 .. contents:: On this page

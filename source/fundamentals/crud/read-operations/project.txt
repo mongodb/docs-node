@@ -4,6 +4,9 @@
 Specify Which Fields to Return
 ==============================
 
+.. meta::
+   :description: Use projections in MongoDB to control which fields are returned in query results, optimizing network bandwidth by including or excluding specific fields.
+
 .. default-domain:: mongodb
 
 .. contents:: On this page

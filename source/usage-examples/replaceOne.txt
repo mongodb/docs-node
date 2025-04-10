@@ -4,6 +4,9 @@
 Replace a Document
 ==================
 
+.. meta::
+   :description: Replace a single document in a MongoDB collection using the `replaceOne()` method, with options for upsert and error handling.
+
 .. default-domain:: mongodb
 
 You can replace a single document using the

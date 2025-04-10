@@ -4,6 +4,9 @@
 Collations
 ==========
 
+.. meta::
+   :description: Learn how to use collations in MongoDB to apply specific sorting rules for string operations based on language and locale preferences.
+
 .. default-domain:: mongodb
 
 .. contents:: On this page

@@ -10,6 +10,7 @@ Promises
 
 .. meta:: 
    :keywords: code example, node.js, operation status, chain
+   :description: Learn to use Promises with the Node.js driver for asynchronous operations, including handling success and failure states, chaining, and using `await`.
 
 .. contents:: On this page
    :local:
