@@ -173,18 +173,7 @@ JavaScript value or object by using the ``parse()`` method:
       import { BSON } from 'mongodb';
       const EJSON = BSON.EJSON;
 
-      const ejsonStr = const ejsonStr = `{
-         "foo": [
-            { "$numberInt": "1" },
-            { "$numberInt": "2" }
-         ],
-         "bar": { "hello": "world" },
-         "code": {
-            "$code": "function x() { return 1; }",
-            "$scope": {}
-         },
-         "bin": { "$binary": { "base64": "AQIDBA==", "subType": "00" } }
-      }`;
+      const ejsonStr = '[{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$code":"function x() { return 1; }","$scope":{}}},{"date":{"$date":{"$numberLong":"1721485800000"}}}]'
 
       const doc = EJSON.parse(ejsonStr);
       console.log(doc);
@@ -194,10 +183,10 @@ JavaScript value or object by using the ``parse()`` method:
       :visible: false
 
       [
-        { foo: [ 1, 2 ] },
-        { bar: { hello: 'world' } },
-        { code: new Code('function x() { return 1; }', {}) },
-        { bin: Binary.createFromBase64('AQIDBA==', 0) }
+         { foo: [ 1, 2 ] },
+         { bar: { hello: 'world' } },
+         { code: new Code('function x() { return 1; }', {}) },
+         { date: 2024-07-20T14:30:00.000Z }
       ]
 
 .. note::
