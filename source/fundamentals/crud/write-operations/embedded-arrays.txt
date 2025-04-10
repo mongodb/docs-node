@@ -4,6 +4,9 @@
 Update Arrays in a Document
 ===========================
 
+.. meta::
+   :description: Learn how to use array update operators to modify embedded arrays in documents, including positional, all positional, and filtered positional operators.
+
 .. default-domain:: mongodb
 
 .. contents:: On this page

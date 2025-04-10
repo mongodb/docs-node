@@ -4,6 +4,9 @@
 Sort Results
 ============
 
+.. meta::
+   :description: Use the `sort` function to order MongoDB query results by specified fields in ascending or descending order, resolving ties with additional fields.
+
 .. default-domain:: mongodb
 
 .. contents:: On this page

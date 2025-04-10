@@ -4,6 +4,9 @@
 Insert Multiple Documents
 =========================
 
+.. meta::
+   :description: Insert multiple documents into a MongoDB collection using the `insertMany()` method with options to control insertion behavior.
+
 .. default-domain:: mongodb
 
 You can insert multiple documents using the

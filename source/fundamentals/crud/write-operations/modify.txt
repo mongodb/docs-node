@@ -4,6 +4,9 @@
 Modify Documents
 ================
 
+.. meta::
+   :description: Modify documents in a MongoDB collection using update and replace operations with methods like `updateOne()`, `updateMany()`, and `replaceOne()`.
+
 .. contents:: On this page
    :local:
    :backlinks: none

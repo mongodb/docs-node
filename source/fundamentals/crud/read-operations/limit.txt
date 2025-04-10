@@ -4,6 +4,9 @@
 Limit the Number of Returned Results
 ====================================
 
+.. meta::
+   :description: Use the `limit` method to cap the number of documents returned in a MongoDB read operation, with examples of combining it with `sort` and `skip` for pagination.
+
 .. default-domain:: mongodb
 
 .. contents:: On this page

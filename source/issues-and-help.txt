@@ -4,6 +4,9 @@
 Issues & Help
 =============
 
+.. meta::
+   :description: Find support for Node.js driver issues through community forums, report bugs or request features via JIRA, and contribute with pull requests.
+
 .. default-domain:: mongodb
 
 Our developer community is vibrant and highly engaged, with extensive experience using Node.js with MongoDB.

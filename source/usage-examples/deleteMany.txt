@@ -4,6 +4,9 @@
 Delete Multiple Documents
 =========================
 
+.. meta::
+   :description: Delete multiple documents in a MongoDB collection using the `deleteMany()` method with a query to specify which documents to remove.
+
 .. default-domain:: mongodb
 
 You can delete multiple documents in a collection at once using the
