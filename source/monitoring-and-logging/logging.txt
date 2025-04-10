@@ -202,18 +202,13 @@ The following example sets the maximum document length to 500 characters:
 Additional Information
 ----------------------
 
-For more information about monitoring with the {+driver-short+}, see the
-following monitoring guides:
-
-- :ref:`Command Monitoring <node-command-monitoring>`
-- :ref:`Cluster Monitoring <node-cluster-monitoring>`
-- :ref:`Connection Pool Monitoring <node-connection-pool-monitoring>`
+For more information about monitoring with the {+driver-short+}, see the :ref:`Monitoring <node-monitoring>` guide.
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
 
 To learn more about any of the options or types discussed in this guide, see the
-following API documentaion:
+following API documentation:
 
 - `MongoClientOptions <{+api+}/interfaces/MongoClientOptions.html>`__
 - `mongodbLogComponentSeverities <{+api+}/interfaces/MongoClientOptions.html#mongodbLogComponentSeverities>`__
