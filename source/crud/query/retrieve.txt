@@ -91,18 +91,16 @@ see the :ref:`node-fundamentals-query-document` guide.
    to the ``findOne()`` method, the operation returns a single
    document from a collection.
 
-   You can specify options in a find operation even when you pass an
+   You can cursor methods to a find operation even when you pass an
    empty query. For example, the following code shows how you can
-   specify a projection as an option while executing a find operation
+   specify a projection while executing a find operation
    that receives an empty query parameter:
 
    .. code-block:: javascript
 
-      const options = {
-        projection: { _id: 0, field1: 1 },
-      };
+      const projection = { _id: 0, field1: 1 };
 
-      const findResult = await myColl.findOne({}, options);
+      const findResult = await myColl.findOne().project(projection);
 
    For more information about projecting document fields, see the
    :ref:`node-fundamentals-project` guide.

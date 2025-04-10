@@ -41,7 +41,9 @@ documentation for each method for more information.
 
    .. code-block:: javascript
 
-      collection.countDocuments({}, { hint: "_id_" });
+      con
+
+      collection.countDocuments({}).hint("_id");
 
 Example
 -------
