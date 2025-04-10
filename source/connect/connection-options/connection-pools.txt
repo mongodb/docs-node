@@ -85,7 +85,7 @@ maxPoolSize
 ~~~~~~~~~~~
 
 In addition to the sockets needed to support your application's requests, each
-``MongoClient`` instance opens up to two or more connections per server in your
+``MongoClient`` instance opens up to two connections per server in your
 MongoDB topology for monitoring the server's state.
 
 For example, a client connected to a three-node replica set opens six monitoring
@@ -117,7 +117,7 @@ pool size of ``200`` by specifying the ``maxPoolSize`` option in the
 maxConnecting
 ~~~~~~~~~~~~~
 
-Connection pools rate-limit of connection establishment. The ``maxConnecting``
+Connection pools rate-limit connection establishment. The ``maxConnecting``
 option determines the number of connections that the pool can create in parallel
 at any time. For example, if the value of ``maxConnecting`` is ``2``, the third
 request that attempts to concurrently check out a connection succeeds only when
