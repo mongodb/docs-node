@@ -157,7 +157,7 @@ Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~
 
 For runnable code examples that demonstrate find operations, see the following
-full file examples:
+examples:
 
 - :ref:`node-usage-findone`
 - :ref:`node-usage-find`

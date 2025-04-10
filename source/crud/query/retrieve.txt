@@ -197,14 +197,14 @@ find() Example: Full File
 The following full file example finds documents from the ``movies`` collection. It
 uses the following parameters:
 
-- A **query document** that configures the query to return only
-  movies with a runtime of less than 15 minutes.
+- **Filter** that matches documents in which the ``runtime`` value is less than 15
+  minutes.
 
-- A **sort** that organizes returned documents in ascending order by
+- **Sort** that organizes returned documents in ascending order by
   title (alphabetical order in which "A" comes before "Z" and "1" before
   "9").
 
-- A **projection** that explicitly excludes the ``_id`` field from
+- **Projection** that explicitly excludes the ``_id`` field from
   returned documents and explicitly includes only the ``title`` and
   ``imdb`` object (and its embedded fields).
 
@@ -331,7 +331,7 @@ Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~
 
 For a runnable example of the ``watch()`` method, see the :ref:`examples
-<node-usage-watch:>` section in the :ref:`node-change-streams` guide.
+<node-usage-watch>` section in the :ref:`node-change-streams` guide.
 
 .. _node-retrieve-instruqt-lab:
 

@@ -14,7 +14,7 @@ interface Movie {
 
 async function run() {
   try {
-    const database = client.db("smaple_mflix");
+    const database = client.db("sample_mflix");
     // Specifying a Schema is optional, but it enables type hints on
     // finds and inserts
     const movies = database.collection<Movie>("movies");
