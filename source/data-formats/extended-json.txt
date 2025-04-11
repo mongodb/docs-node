@@ -165,6 +165,9 @@ by the string by using the ``EJSON.parse()`` method.
 The following example shows how you can read an Extended JSON string into a
 JavaScript value or object by using the ``parse()`` method:
 
+.. The back ticks on ejsonStr in the below code example causes the orange 
+.. highlighting in this file, but the page still renders correctly.
+
 .. io-code-block::
 
    .. input::
