@@ -22,6 +22,7 @@ Specialized Data Formats
    :maxdepth: 1
 
    BSON </data-formats/bson>
+   Extended JSON <data-formats/extended-json>
    Time Series Data </data-formats/time-series>
 
 Overview
