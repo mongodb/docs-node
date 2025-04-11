@@ -40,12 +40,12 @@ options API to achieve the same result:
    // Uses the cursor chaining API
    myColl.find(query).sort({ length: -1 }).limit(3);
 
-   // Uses the 
+   // Uses the object API
    myColl.find(query, { sort: { length: -1 }, limit: 3 });
 
-We recommend that you use the cursor chaining API for [what is the reason]. The following on this
-page use the cursor chaining API. For more information on passing an ``options``
-object to the ``find()`` method, see the
+We recommend that you use the cursor chaining API for [what is the reason]. The 
+following examples on this page use the cursor chaining API. For more information 
+on passing an ``options`` object to the ``find()`` method, see the
 `find() <{+api+}/classes/Collection.html#find>`__ API documentation.
 
 Sample Data for Examples
