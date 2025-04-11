@@ -27,8 +27,8 @@ operation by using the following methods:
 - ``limit()``: Specifies the maximum number of documents to return from a query.
 - ``skip()``: Specifies the number of documents to skip before returning query results.
 
-Cursor Chaining API vs. Options API
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Cursor Chaining API versus the Options API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can specify which documents to return by chaining the above methods to your read 
 operation or by specifying them in an ``options`` object in your call to your 
