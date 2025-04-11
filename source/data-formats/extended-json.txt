@@ -112,10 +112,10 @@ The following example outputs an Extended JSON string in the Relaxed format:
       const EJSON = BSON.EJSON;
 
       const doc = {
-         { foo: [1, 2] },
-         { bar: { hello: "world" } },
-         { code: new Code("function x() { return 1; }", {}) },
-         { date: new Date(2024, 6, 20, 10, 30, 0) },
+         foo: [1, 2],
+         bar: { hello: "world" },
+         code: new Code("function x() { return 1; }", {}),
+         date: new Date(2024, 6, 20, 10, 30, 0),
       };
 
       const ejsonStr = EJSON.stringify(doc);
@@ -141,10 +141,10 @@ The following example shows how to output Extended JSON in the Canonical format:
       const { Binary, Code, EJSON } = require('bson');
 
       const doc = {
-         { foo: [1, 2] },
-         { bar: { hello: "world" } },
-         { code: new Code("function x() { return 1; }", {}) },
-         { date: new Date(2024, 6, 20, 10, 30, 0) },
+         foo: [1, 2],
+         bar: { hello: "world" },
+         code: new Code("function x() { return 1; }", {}),
+         date: new Date(2024, 6, 20, 10, 30, 0),
       };
 
       const ejsonStr = EJSON.stringify(doc, { relaxed: false });
@@ -173,7 +173,19 @@ JavaScript value or object by using the ``parse()`` method:
       import { BSON } from 'mongodb';
       const EJSON = BSON.EJSON;
 
-      const ejsonStr = '[{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$code":"function x() { return 1; }","$scope":{}}},{"date":{"$date":{"$numberLong":"1721485800000"}}}]'
+      const ejsonStr = `{
+         "foo": [
+            { "$numberInt": "1" },
+            { "$numberInt": "2" }
+         ],
+         "bar": { "hello": "world" },
+         "code": {
+            "$code": "function x() { return 1; }",
+            "$scope": {}
+         },
+         "bin": { "$binary": { "base64": "AQIDBA==", "subType": "00" } }
+         }`;
+
 
       const doc = EJSON.parse(ejsonStr);
       console.log(doc);
