@@ -49,12 +49,12 @@ Universally Unique IDs (UUIDs)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The {+driver-short+} supports UUIDs by using the BSON Binary subclass ``UUID``. You 
-can create a ``UUID`` object by using the ``UUID()`` method. The following code 
+can create a ``UUID`` object by using the ``UUID()`` constructor. The following code 
 example generates a random UUID:
 
 .. code-block:: javascript
 
-   import { BSON } from 'mongodb';  
+   import { UUID } from 'mongodb';  
 
    const myUuid = new BSON.UUID();
 
