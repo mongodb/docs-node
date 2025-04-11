@@ -27,14 +27,26 @@ operation by using the following methods:
 - ``limit()``: Specifies the maximum number of documents to return from a query.
 - ``skip()``: Specifies the number of documents to skip before returning query results.
 
-You can use these methods either by chaining them to your read operation or by specifying them in an
-``options`` object in your call to your read operation. 
+Cursor Chaining API vs. Options API
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note::
+You can specify which documents to return by chaining the above methods to your read 
+operation or by specifying them in an ``options`` object in your call to your 
+read operation. The following example shows how to use both the chaining API and the
+options API to achieve the same result:
 
-   If you chain ``sort()``, ``limit()``, or ``skip()`` to a read operation, you must
-   specify all methods before iterating the cursor. If you specify a method after
-   iterating the cursor, the method you specified does not apply to the operation. 
+.. code-block:: javascript
+
+   // Uses the cursor chaining API
+   myColl.find(query).sort({ length: -1 }).limit(3);
+
+   // Uses the 
+   myColl.find(query, { sort: { length: -1 }, limit: 3 });
+
+We recommend that you use the cursor chaining API for [what is the reason]. The following on this
+page use the cursor chaining API. For more information on passing an ``options``
+object to the ``find()`` method, see the
+`find() <{+api+}/classes/Collection.html#find>`__ API documentation.
 
 Sample Data for Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,6 +67,12 @@ that describe books into the ``myDB.books`` collection:
      { "_id": 5, "name": "Cryptonomicon", "author": "Stephenson", "length": 918 },
      { "_id": 6, "name": "A Dance With Dragons", "author": "Martin", "length": 1104 },
    ]);
+
+.. note::
+
+   When you chain ``sort()``, ``limit()``, or ``skip()`` to a read operation, you must
+   specify all methods before iterating the cursor. If you specify a method after
+   iterating the cursor, the method you specified does not apply to the operation.
 
 .. include:: /includes/access-cursor-note.rst
 
@@ -187,19 +205,6 @@ length:
       myColl.find(query).sort({ length: -1 }).limit(3);
       myColl.find(query).limit(3).sort({ length: -1 });
 
-You can also apply ``sort()`` and ``limit()`` by specifying them in an
-``options`` object in your call to the ``find()`` method. The following two
-calls are equivalent:
-
-.. code-block:: javascript
-
-   myColl.find(query).sort({ length: -1 }).limit(3);
-   myColl.find(query, { sort: { length: -1 }, limit: 3 });
-
-For more information on the ``options`` settings for the ``find()``
-method, see the
-`API documentation on find() <{+api+}/classes/Collection.html#find>`__.
-
 .. _node-fundamentals-skip:
 
 Skip
@@ -244,21 +249,6 @@ the fifth and sixth highest length documents:
    { "_id": 5, "title": "Cryptonomicon", "author": "Stephenson", "length": 918 }
    { "_id": 1, "title": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 }
 
-You can also apply ``skip()`` and ``sort()`` by specifying them in an
-``options`` object in your call to the ``find()`` method. The following two
-calls are equivalent:
-
-.. code-block:: javascript
-
-   myColl.find(query).sort({ length: -1 }).skip(4);
-   myColl.find(query, { sort: { length: -1 }, skip: 4});
-
-For more information on the ``options`` settings for the ``find()``
-method, see the
-`API documentation on find() <{+api+}/classes/Collection.html#find>`__.
-
-.. _node-fundamentals-combine-lim-sort-skip:
-
 Combine Limit, Sort, and Skip
 -----------------------------
 
@@ -270,49 +260,30 @@ The following example returns documents with the ``length`` value of
 ``"1104"``. The results are sorted in alphabetical order, skipping the first
 document and includes only the first result:
 
-.. code-block:: javascript
-
-   // define a query to look for length value of 1104
-   const query = {length: "1104"};
-   const options = {
-      // sort in alphabetical (1) order by title
-      sort : { title: 1 },
-      // omit the first document
-      skip : 1,
-      // returns only the first result
-      limit: 1,
-   }
-   const cursor = myColl.find(query, options);
-   for await (const doc of cursor) {
-     console.dir(doc);
-   }
-
-.. code-block:: json
-   :copyable: false
-
-   { "_id": 4, "title": "Infinite Jest", "author": "Wallace", "length": 1104 }
-
-.. note::
-
-   The order in which you call these methods doesn't change the documents
-   that are returned. The driver automatically reorders the calls to perform the
-   sort and skip operations first, and the limit operation afterward.
-
-You can also limit, sort, and skip results by chaining each method to the ``find`` method.
-The following example specifies the same query as the preceding example:
-
 .. io-code-block::
 
    .. input:: 
       :language: javascript
 
-      myColl.find(query).sort({ title: 1 }).skip(1).limit(1);
+      const query = {length: "1104"};
+
+      const cursor = myColl.find(query).sort({ title: 1 }).skip(1).limit(1);
+
+      for await (const doc of cursor) {
+         console.dir(doc);
+      }
 
    .. output::
       :language: json
       :visible: false
       
       { "_id": 4, "title": "Infinite Jest", "author": "Wallace", "length": 1104 }
+
+.. note::
+
+   The order in which you call these methods doesn't change the documents
+   that are returned. The driver automatically reorders the calls to perform the
+   sort and skip operations first, and the limit operation afterward.
 
 Additional Information
 ----------------------
