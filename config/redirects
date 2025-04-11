@@ -26,6 +26,8 @@ raw: ${prefix}/stable -> ${base}/current/
 
 [*-v6.0)]: ${prefix}/${version}/fundamentals/connection/socks/ -> ${base}/${version}/
 
+# Comprehensive Coverage Redirects
+
 [*-master]: ${prefix}/${version}/quick-start/download-and-install/ -> ${base}/${version}/get-started/
 [*-master]: ${prefix}/${version}/quick-start/create-a-deployment/ -> ${base}/${version}/get-started/
 [*-master]: ${prefix}/${version}/quick-start/create-a-connection-string/ -> ${base}/${version}/get-started/
@@ -49,7 +51,6 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/fundamentals/gridfs/ -> ${base}/${version}/crud/gridfs/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/retrieve/ -> ${base}/${version}/crud/query/retrieve/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/project/ -> ${base}/${version}/crud/query/project/
-[*-master]: ${prefix}/${version}/fundamentals/usage-examples/count/ -> ${base}/${version}/crud/query/count/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/distinct/ -> ${base}/${version}/crud/query/distinct/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/cursor/ -> ${base}/${version}/crud/query/cursor/
 [*-master]: ${prefix}/${version}/fundamentals/crud/read-operations/geo/ -> ${base}/${version}/crud/query/geo/
@@ -83,6 +84,23 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/modify/ -> ${base}/crud/update/modify/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/embedded-arrays/ -> ${base}/crud/update/embedded-arrays/
 [*-master]: ${prefix}/${version}/fundamentals/crud/write-operations/pkFactory/ -> ${base}/crud/pkFactory/
-
-# Comprehensive Coverage Redirects
 [*-master]: ${prefix}/${version}/security/authentication/enterprise-mechanisms/ -> ${base}/security/authentication
+
+# Usage Example Redirects
+
+[*-master]: ${prefix}/${version}/usage-examples/findOne/ -> ${base}/crud/query/retrieve/
+[*-master]: ${prefix}/${version}/usage-examples/find/ -> ${base}/crud/query/retrieve/
+[*-master]: ${prefix}/${version}/usage-examples/insertOne/ -> ${base}/crud/insert/
+[*-master]: ${prefix}/${version}/usage-examples/insertMany/ -> ${base}/crud/insert/
+[*-master]: ${prefix}/${version}/usage-examples/updateOne/ -> ${base}/crud/update/modify/
+[*-master]: ${prefix}/${version}/usage-examples/updateMany/ -> ${base}/crud/update/modify/
+[*-master]: ${prefix}/${version}/usage-examples/replaceOne/ -> ${base}/crud/update/replace/
+[*-master]: ${prefix}/${version}/usage-examples/deleteOne/ -> ${base}/crud/delete/
+[*-master]: ${prefix}/${version}/usage-examples/deleteMany/ -> ${base}/crud/delete/
+[*-master]: ${prefix}/${version}/usage-examples/count/ -> ${base}/crud/query/count/
+[*-master]: ${prefix}/${version}/usage-examples/distinct/ -> ${base}/crud/query/distinct/
+[*-master]: ${prefix}/${version}/usage-examples/command/ -> ${base}/run-command/
+[*-master]: ${prefix}/${version}/usage-examples/bulkWrite/ -> ${base}/bulk-write/
+[*-master]: ${prefix}/${version}/usage-examples/transactions/ -> ${base}/crud/transactions/
+[*-master]: ${prefix}/${version}/usage-examples/transaction-conv/ -> ${base}/crud/transactions/transaction-conv/
+[*-master]: ${prefix}/${version}/usage-examples/transaction-core/ -> ${base}/crud/transactions/transaction-core/

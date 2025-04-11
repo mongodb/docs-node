@@ -10,6 +10,14 @@ Bulk Operations
    :depth: 2
    :class: singlecol
 
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta::
+   :description: Learn how to perform bulk operations by using the {+driver-long+}.
+   :keywords: insert, update, replace, code example, efficiency
+
 Overview
 --------
 
@@ -220,7 +228,7 @@ The following table describes the fields that you can set in a
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more 
-         about collations, see the :ref:`node-fundamentals-collations` guide.
+         about collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``String`` or ``Object``
 
    * - ``hint`` 
@@ -299,7 +307,7 @@ The following table describes the fields that you can set in a
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more 
-         about collations, see the :ref:`node-fundamentals-collations` guide.
+         about collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``String`` or ``Object``
 
    * - ``hint`` 
@@ -387,7 +395,7 @@ The following table describes the fields you can set in an ``UpdateOneModel`` or
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more about 
-         collations, see the :ref:`node-fundamentals-collations` guide.
+         collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``Object``
 
    * - ``hint`` 
@@ -474,7 +482,7 @@ to specify an update operation:
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more about 
-         collations, see the :ref:`node-fundamentals-collations` guide.
+         collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``Document``
 
    * - ``hint`` 
@@ -558,7 +566,7 @@ The following table describes the fields you can set in a ``DeleteOneModel`` or
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more about 
-         collations, see the :ref:`node-fundamentals-collations` guide.
+         collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``Object``
 
    * - ``hint`` 
@@ -635,7 +643,7 @@ to specify a delete operation:
 
    * - ``collation`` 
      - | (Optional) The collation to use when sorting results. To learn more about 
-         collations, see the :ref:`node-fundamentals-collations` guide.
+         collations, see the :ref:`node-collations` section of the :ref:`node-configure` guide.
        | Type: ``Document``
 
 Example
@@ -822,6 +830,52 @@ A ``MongoClientBulkWriteError`` object contains the following properties:
      - | The partial result of the client bulk write that reflects the operation's
          progress before the error.
        | Type: ``ClientBulkWriteResult``
+
+.. _node-usage-bulk:
+
+bulkWrite() Example: Full File
+------------------------------
+
+.. include:: /includes/crud/example-intro.rst
+
+The following code is a complete, standalone file that performs a bulk write
+operation on the ``theaters`` collection in the ``sample_mflix`` database. The
+``operations`` parameter includes examples of ``insertOne``,
+``updateMany``, and ``deleteOne`` write operations:
+
+.. tabs::
+
+   .. tab:: JavaScript
+      :tabid: javascript
+
+      .. literalinclude:: /code-snippets/usage-examples/bulkWrite.js
+         :language: javascript
+         :linenos:
+
+   .. tab:: TypeScript
+      :tabid: typescript
+
+      .. literalinclude:: /code-snippets/usage-examples/bulkWrite.ts
+         :language: typescript
+         :linenos:
+
+Running the preceding example results in the following output:
+
+.. code-block:: javascript
+   :copyable: false
+
+   BulkWriteResult {
+     insertedCount: 2,
+     matchedCount: 1,
+     modifiedCount: 1,
+     deletedCount: 0,
+     upsertedCount: 0,
+     upsertedIds: {},
+     insertedIds: {
+       '0': new ObjectId("..."),
+       '1': new ObjectId("...")
+     }
+   }
 
 .. _node-bulk-addtl-info:
 

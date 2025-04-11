@@ -5,8 +5,26 @@
 Count Documents
 ===============
 
-The Node.js driver provides two methods for counting documents in a
-collection:
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 2
+   :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, count documents
+   :description: Learn how to count documents in a collection using the {+driver-long+}.
+
+Overview
+--------
+
+In this guide, you can learn how to count the number of documents in your
+MongoDB collections. The {+driver-short+} provides two methods for counting
+documents in a collection:
 
 - `collection.countDocuments() <{+api+}/classes/Collection.html#countDocuments>`__ returns the number of documents in
   the collection that match the specified query. If you specify an empty
@@ -24,7 +42,7 @@ provides an **accurate** count of the number of documents and supports
 specifying a filter. Choose the appropriate method for your workload.
 
 To specify which documents you wish to count, ``countDocuments()``
-accepts a :doc:`query </fundamentals/crud/query-document>` parameter.
+accepts a :ref:`query <node-find>` parameter.
 ``countDocuments()`` counts the documents that match the specified query.
 
 ``countDocuments()`` and ``estimatedDocumentCount()`` support optional
@@ -43,41 +61,37 @@ documentation for each method for more information.
 
       collection.countDocuments({}, { hint: "_id_" });
 
-Example
--------
+countDocuments() Example: Full File
+-----------------------------------
+
+.. include:: /includes/crud/example-intro.rst
+
+.. include:: /includes/crud/example-identical-code.rst
 
 The following example estimates the number of documents in the
 ``movies`` collection in the ``sample_mflix`` database, and then returns
 an accurate count of the number of documents in the ``movies``
-collection with ``Canada`` in the ``countries`` field.
-
-.. include:: /includes/connect-guide-note.rst
-
-.. tabs::
-
-  .. tab:: JavaScript
-     :tabid: javascript
+collection with ``Canada`` in the ``countries`` field:
 
      .. literalinclude:: /code-snippets/usage-examples/count.js
         :language: javascript
         :linenos:
 
-  .. tab:: TypeScript
-     :tabid: typescript
-
-     .. literalinclude:: /code-snippets/usage-examples/count.js
-        :language: javascript
-        :linenos:
-
-.. note:: Identical Code Snippets
-
-   The JavaScript and TypeScript code snippets above are identical. There are no
-   TypeScript specific features of the driver relevant to this use case.
-
-Running the preceding sample code, you see the following output:
+Running the preceding sample code results in the following output:
 
 .. code-block:: none
    :copyable: false
 
    Estimated number of documents in the movies collection: 23541
    Number of movies from Canada: 1349
+
+API Documentation
+-----------------
+
+To learn more about any of the types or methods discussed in this guide, see the
+following API documentation:
+
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `Db <{+api+}/classes/Db.html>`__
+- `Collection <{+api+}/classes/Collection.html>`__
+- `countDocuments() <{+api+}/classes/Collection.html#countDocuments>`__
