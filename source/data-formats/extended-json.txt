@@ -108,7 +108,7 @@ The following example outputs an Extended JSON string in the Relaxed format:
    .. input::
       :language: js
 
-      import { Binary, Code, BSON } from 'mongodb';
+      import { Code, BSON } from 'mongodb';
       const EJSON = BSON.EJSON;
 
       const doc = {
@@ -125,7 +125,7 @@ The following example outputs an Extended JSON string in the Relaxed format:
       :language: none
       :visible: false
 
-      [{"foo":[1,2]},{"bar":{"hello":"world"}},{"code":{"$code":"function x() { return 1; }","$scope":{}}},{"date":{"$date":"2024-07-20T14:30:00Z"}}]
+      {"foo":[1,2],"bar":{"hello":"world"},"code":{"$code":"function x() { return 1; }","$scope":{}},"date":{"$date":"2024-07-20T14:30:00Z"}}
 
 By default, the ``stringify()`` method returns the Extended JSON string in the 
 Relaxed format. To specify the Canonical format, set the ``relaxed`` 
@@ -138,7 +138,8 @@ The following example shows how to output Extended JSON in the Canonical format:
    .. input::
       :language: js
 
-      const { Binary, Code, EJSON } = require('bson');
+      import { Code, BSON } from 'mongodb';
+      const EJSON = BSON.EJSON;
 
       const doc = {
          foo: [1, 2],
@@ -154,7 +155,7 @@ The following example shows how to output Extended JSON in the Canonical format:
       :language: none
       :visible: false
 
-      [{"foo":[{"$numberInt":"1"},{"$numberInt":"2"}]},{"bar":{"hello":"world"}},{"code":{"$code":"function x() { return 1; }","$scope":{}}},{"date":{"$date":{"$numberLong":"1721485800000"}}}]
+      {"foo":[{"$numberInt":"1"},{"$numberInt":"2"}],"bar":{"hello":"world"},"code":{"$code":"function x() { return 1; }","$scope":{}},"date":{"$date":{"$numberLong":"1721485800000"}}}  
 
 Read Extended JSON
 ------------------
@@ -187,8 +188,7 @@ JavaScript value or object by using the ``parse()`` method:
             "$scope": {}
          },
          "bin": { "$binary": { "base64": "AQIDBA==", "subType": "00" } }
-         }`;
-
+      }`;
 
       const doc = EJSON.parse(ejsonStr);
       console.log(doc);
@@ -197,12 +197,12 @@ JavaScript value or object by using the ``parse()`` method:
       :language: none
       :visible: false
 
-      [
-         { foo: [ 1, 2 ] },
-         { bar: { hello: 'world' } },
-         { code: new Code('function x() { return 1; }', {}) },
-         { date: 2024-07-20T14:30:00.000Z }
-      ]
+      {
+        foo: [ 1, 2 ],
+        bar: { hello: 'world' },
+        code: new Code('function x() { return 1; }', {}),
+        bin: Binary.createFromBase64('AQIDBA==', 0)
+      }
 
 .. note::
 
