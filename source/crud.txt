@@ -31,7 +31,6 @@ CRUD Operations
    Compound Operations </crud/compound-operations>
    Transactions </crud/transactions>
    Configure CRUD Operations </crud/configure>
-   Operations on Replica Sets </crud/read-write-pref>
    Store Large Files </crud/gridfs>
 
 CRUD (Create, Read, Update, Delete) operations enable you to work with
