@@ -215,10 +215,6 @@ database:
    const uri = "mongodb://<db_username>:<db_password>@<hostname>:<port>/?authSource=users";
    const client = new MongoClient(uri);
 
-You can check if this is the issue by attempting to connect to a MongoDB
-instance hosted on the local machine with the same code. A deployment on
-the same machine doesn't require any authorization to connect.
-
 Error Sending Message
 ---------------------
 
