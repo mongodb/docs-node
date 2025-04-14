@@ -5,7 +5,7 @@ Access Data From a Cursor
 =========================
 
 .. meta::
-   :description: Access data from a cursor in MongoDB using various paradigms like asynchronous iteration, manual iteration, and streaming, while managing resources with utility methods.
+   :description: Access data from a cursor in the MongoDB Node.js Driver by using various paradigms like asynchronous iteration, manual iteration, and streaming, while managing resources with utility methods.
 
 .. default-domain:: mongodb
 

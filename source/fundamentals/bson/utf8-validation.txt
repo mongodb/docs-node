@@ -5,7 +5,7 @@ UTF-8 Validation
 ================
 
 .. meta::
-   :description: Learn how to enable or disable UTF-8 validation in the Node.js driver to manage data encoding and processing overhead.
+   :description: Learn how to enable or disable UTF-8 validation in the MongoDB Node.js Driver to manage data encoding and processing overhead.
 
 .. contents:: On this page
    :local:

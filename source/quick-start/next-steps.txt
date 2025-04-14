@@ -5,7 +5,7 @@ Next Steps
 ==========
 
 .. meta::
-   :description: Explore further resources to enhance your understanding of the MongoDB Node.js driver, including CRUD operations and usage examples.
+   :description: Explore further resources to enhance your understanding of the MongoDB Node.js Driver, including CRUD operations and usage examples.
 
 Congratulations on completing the quick start tutorial!
 

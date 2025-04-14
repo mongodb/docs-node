@@ -5,7 +5,7 @@ Update Multiple Documents
 =========================
 
 .. meta::
-   :description: Update multiple documents in a MongoDB collection using the `updateMany()` method with a filter and update document.
+   :description: Update multiple documents in a collection with the MongoDB Node.js Driver by using the updateMany() method with a filter.
 
 .. default-domain:: mongodb
 

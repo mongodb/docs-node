@@ -5,7 +5,7 @@ Use the Convenient Transaction API
 ==================================
 
 .. meta::
-   :description: Perform a transaction using the Convenient Transaction API in Node.js to update inventory and record orders atomically.
+   :description: Perform a transaction using the Convenient Transaction API with the MongoDB Node.js Driver to update data atomically.
 
 .. contents:: On this page
    :local:

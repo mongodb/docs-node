@@ -5,7 +5,7 @@ Perform a Transaction
 =====================
 
 .. meta::
-   :description: Explore how to perform transactions using the Node.js driver with both the Convenient Transaction API and the Core API.
+   :description: Explore how to perform transactions using the MongoDB Node.js Driver with both the Convenient Transaction API and the Core API.
 
 .. toctree::
    :caption: Transaction Usage Examples

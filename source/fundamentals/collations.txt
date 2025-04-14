@@ -5,7 +5,7 @@ Collations
 ==========
 
 .. meta::
-   :description: Learn how to use collations in MongoDB to apply specific sorting rules for string operations based on language and locale preferences.
+   :description: Learn how to use collations to apply specific sorting rules for string operations based on language and locale preferences with the MongoDB Node.js Driver.
 
 .. default-domain:: mongodb
 

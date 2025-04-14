@@ -5,7 +5,7 @@ Count Documents
 ===============
 
 .. meta::
-   :description: Learn how to count documents in a MongoDB collection using Node.js, with methods for both estimated and accurate counts.
+   :description: Learn how to count documents in a collection by using the MongoDB Node.js Driver, with methods for both estimated and accurate counts.
 
 The Node.js driver provides two methods for counting documents in a
 collection:

@@ -5,7 +5,7 @@ Use the Core API
 ================
 
 .. meta::
-   :description: Perform a transaction using the Core API in Node.js to update inventory, customer orders, and save order details in a multi-document transaction.
+   :description: Use the Core API with the MongoDB Node.js Driver to update multiple documents in a single transaction.
 
 .. contents:: On this page
    :local:

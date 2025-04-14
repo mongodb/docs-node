@@ -5,7 +5,7 @@ Replace a Document
 ==================
 
 .. meta::
-   :description: Replace a single document in a MongoDB collection using the `replaceOne()` method, with options for upsert and error handling.
+   :description: Replace a single document in a collection using the replaceOne() method in the MongoDB Node.js Driver, with options for upsert and error handling.
 
 .. default-domain:: mongodb
 

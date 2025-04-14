@@ -5,7 +5,7 @@ Connect to MongoDB
 ==================
 
 .. meta::
-   :description: Connect to MongoDB using Node.js by creating an application, assigning a connection string, and running a query to retrieve data.
+   :description: Connect to MongoDB using the MongoDB Node.js Driver by creating an application, assigning a connection string, and running a query to retrieve data.
 
 .. procedure::
    :style: connected

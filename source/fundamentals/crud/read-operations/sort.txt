@@ -5,7 +5,7 @@ Sort Results
 ============
 
 .. meta::
-   :description: Use the `sort` function to order MongoDB query results by specified fields in ascending or descending order, resolving ties with additional fields.
+   :description: Use the sort function in the MongoDB Node.js Driver to order query results by specified fields and resolve ties with other fields.
 
 .. default-domain:: mongodb
 

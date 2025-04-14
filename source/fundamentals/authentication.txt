@@ -5,7 +5,7 @@ Authentication
 ==============
 
 .. meta::
-   :description: Authenticate to a MongoDB instance using the Node.js driver with various supported authentication mechanisms.
+   :description: Authenticate using the MongoDB Node.js Driver with various supported authentication mechanisms.
 
 .. default-domain:: mongodb
 

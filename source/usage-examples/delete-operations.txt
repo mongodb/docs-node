@@ -3,7 +3,7 @@ Delete Operations
 =================
 
 .. meta::
-   :description: Explore examples of deleting single or multiple documents using the Node.js Driver.
+   :description: Explore examples of deleting single or multiple documents using the MongoDB Node.js Driver.
 
 .. default-domain:: mongodb
 

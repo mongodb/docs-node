@@ -5,7 +5,7 @@ Undefined Values
 ================
 
 .. meta::
-   :description: Learn to control the serialization of `undefined` values in MongoDB Node.js driver by using the `ignoreUndefined` setting at various levels.
+   :description: Learn to control the serialization of undefined values in MongoDB Node.js Driver by using the ignoreUndefined setting at various levels.
 
 .. contents:: On this page
    :local:

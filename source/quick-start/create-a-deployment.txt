@@ -5,7 +5,7 @@ Create a MongoDB Deployment
 ===========================
 
 .. meta::
-   :description: To use the Node.js Driver, set up a free tier MongoDB deployment on Atlas, including creating an account, saving credentials, and loading sample data.
+   :description: Set up a free tier MongoDB deployment on Atlas, including creating an account, saving credentials, and loading sample data.
 
 You can create a free tier MongoDB deployment on MongoDB Atlas
 to store and manage your data. MongoDB Atlas hosts and manages
