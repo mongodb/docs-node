@@ -35,7 +35,7 @@ Server SSL Error
 ----------------
 
 If the driver cannot securely connect to the specified host, you may get an 
-error message similar to the following:
+error message that contains the following:
 
 .. code-block:: none
    :copyable: false
