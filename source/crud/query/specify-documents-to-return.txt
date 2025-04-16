@@ -27,27 +27,6 @@ operation by using the following methods:
 - ``limit()``: Specifies the maximum number of documents to return from a query.
 - ``skip()``: Specifies the number of documents to skip before returning query results.
 
-Cursor Chaining API versus the Options API
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You can specify which documents to return by chaining the above methods to your read 
-operation or by specifying them in an ``options`` object in your call to your 
-read operation. The following example shows how to use both the chaining API and the
-options API to achieve the same result:
-
-.. code-block:: javascript
-
-   // Uses the cursor chaining API
-   myColl.find(query).sort({ length: -1 }).limit(3);
-
-   // Uses the object API
-   myColl.find(query, { sort: { length: -1 }, limit: 3 });
-
-We recommend that you use the cursor chaining API for [what is the reason]. The 
-following examples on this page use the cursor chaining API. For more information 
-on passing an ``options`` object to the ``find()`` method, see the
-`find() <{+api+}/classes/Collection.html#find>`__ API documentation.
-
 Sample Data for Examples
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
