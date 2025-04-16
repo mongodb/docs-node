@@ -31,18 +31,13 @@ using the {+driver-long+} to connect to a MongoDB deployment.
    - The `MongoDB Community Forums <https://community.mongodb.com>`__ for
      questions, discussions, or general technical support
 
-Server SSL Error
+Connection Error
 ----------------
 
 If the driver cannot securely connect to the specified host, you may get an 
-error message that contains the following:
+``MongoServerSelectionError``.
 
-.. code-block:: none
-   :copyable: false
-
-   MongoServerSelectionError: SSL alert internal error
-
-The following section describes an action you can take to potentially resolve the
+The following sections describes actions you can take to potentially resolve the
 issue.
 
 .. _node-troubleshooting-connection-firewall:
@@ -64,9 +59,10 @@ Check Your Network Access List
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Verify that your IP Address is listed in the IP Access List for your cluster.
-You can find your IP Access List in the :guilabel:`Network Access` section of 
+You can find your IP Access List in the Network Access section of 
 the Atlas UI. To learn more about how to configure your IP Access List, 
-see the :atlas:`</security/ip-access-list/>` guide in the Atlas documentation. 
+see the :atlas:`Configure IP Access List Entries </security/ip-access-list/>` 
+guide in the Atlas documentation. 
 
 ECONNREFUSED Error
 ------------------
