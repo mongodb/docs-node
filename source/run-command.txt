@@ -1,8 +1,8 @@
 .. _node-run-command:
 
-==============
-Run a Command
-==============
+======================
+Run a Database Command
+======================
 
 .. meta::
    :description: Learn how to execute database commands using the MongoDB Node.js Driver, including options and response handling.
@@ -12,6 +12,14 @@ Run a Command
    :backlinks: none
    :depth: 2
    :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: database, call, admin, administration, meta, backend, configure
+   :description: Learn about how to run database commands in the {+driver-long+}.
 
 Overview
 --------
@@ -203,6 +211,34 @@ describe any metadata inconsistencies in the database:
    If you store the command response in a cursor, you see only the
    command result documents when you access the contents of the cursor. You won't
    see the ``ok``, ``operationTime``, and ``$clusterTime`` fields.
+
+.. _node-run-command-usageex:
+
+Run Command Example: Full File
+------------------------------
+
+.. include:: /includes/crud/example-intro.rst
+
+.. include:: /includes/crud/example-identical-code.rst
+
+In the following sample code, we send the ``dbStats`` command to request
+statistics from the ``sample_mflix`` database:
+
+.. literalinclude:: /code-snippets/usage-examples/command.js
+   :language: javascript
+   :linenos:
+
+Running the preceding command results in the following output:
+
+.. code-block:: javascript
+   :copyable: false
+
+   {
+     db: 'sample_mflix',
+     collections: 6,
+     views: 0,
+     objects: 75620,
+     ..
 
 .. _addl-info-runcommand:
 

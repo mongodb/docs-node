@@ -763,7 +763,7 @@ The {+driver-short+} v6.0 release includes the following features:
   Although you cannot pass these options to the
   ``Db.command()`` method, you can still set them in the command
   document. To learn more, see the :ref:`Command Options
-  <node-command-options>` section of the Run a Command guide.
+  <node-command-options>` section of the Run a Database Command guide.
 
 To learn more about this release, see the
 `v6.0.0 Release Highlights <https://github.com/mongodb/node-mongodb-native/releases/tag/v6.0.0>`__.

@@ -4,9 +4,14 @@
 Use the Convenient Transaction API
 ==================================
 
+.. facet::
+   :name: genre
+   :values: reference
+ 
 .. meta::
    :description: Perform a transaction using the Convenient Transaction API with the MongoDB Node.js Driver to update data atomically.
-
+   :keywords: modify, customize
+   
 .. contents:: On this page
    :local:
    :backlinks: none

@@ -94,8 +94,9 @@ The following classes accept all type parameters:
 - `AggregationCursor <{+api+}/classes/AggregationCursor.html>`__
 
 You can find a code snippet that shows how to specify a type for the ``FindCursor``
-class in the
-:ref:`Find Multiple Documents Usage Example <node-driver-find-usage-example-code-snippet>`.
+class in the :ref:`find() Example: Full File
+<node-driver-find-usage-example-code-snippet>` section of the :ref:`node-find`
+guide.
 
 .. _node-ts-type-safety:
 

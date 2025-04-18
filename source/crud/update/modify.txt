@@ -11,8 +11,15 @@ Modify Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
+
+.. facet::
+   :name: genre
+   :values: reference
+
+.. meta:: 
+   :keywords: code example, node.js, modify data
 
 Overview
 --------
@@ -29,6 +36,8 @@ The {+driver-short+} provides the following methods to change documents:
 - ``updateOne()``
 - ``updateMany()``
 - ``replaceOne()``
+
+To learn how to replace documents, see the :ref:`<node-replace>` guide.
 
 .. tip:: Interactive Lab
    
@@ -143,89 +152,91 @@ You cannot modify the ``_id`` field of a document nor change a field to
 a value that violates a unique index constraint. See the {+mdb-server+} manual
 for more information on :manual:`unique indexes </core/index-unique/>`.
 
-.. _node-fundamentals-replaceone:
-.. _replacementDocument:
+.. _node-usage-updateone:
 
-Replace a Document
-------------------
+updateOne() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To perform a replacement operation, create a **replacement document** that
-consists of the fields and values that you want to use in your
-**replace** operation. Replacement documents use the following format:
+.. include:: /includes/crud/example-intro.rst
 
-.. code-block:: javascript
+This example uses the ``$set`` update operator which specifies
+update values for document fields. For more information on update operators,
+see the :manual:`MongoDB update operator reference documentation
+</reference/operator/update/#update-operators>`.
 
-   {
-      <field>: {
-         <value>
-      },
-      <field>: {
-         ...
-      }
-   }
+The following code is a complete, standalone file that performs an update one
+operation:
 
-Replacement documents are the documents that you want to take the place of
-existing documents that match the query filters.
+.. tabs::
 
-Example
-~~~~~~~
+  .. tab:: JavaScript
+     :tabid: javascript
 
-Consider a document in the ``myDB.items`` collection with fields
-describing an item for sale, its price, and the quantity available:
+     .. literalinclude:: /code-snippets/usage-examples/updateOne.js
+        :language: javascript
+        :linenos:
 
-.. code-block:: javascript
+  .. tab:: TypeScript
+     :tabid: typescript
 
-   {
-      _id: 501,
-      item: "3-wick beeswax candle",
-      price: 18.99,
-      quantity: 10,
-   }
+     .. literalinclude:: /code-snippets/usage-examples/updateOne.ts
+        :language: typescript
+        :linenos:
 
-Suppose you wanted to replace this document with one that contains a
-description for an entirely different item. Your replacement operation might
-resemble the following:
+Running the preceding example results in the following output:
 
-.. code-block:: javascript
-
-   const myDB = client.db("myDB");
-   const myColl = myDB.collection("items");
-
-   const filter = { _id: 501 };
-
-   // replace the matched document with the replacement document
-   const replacementDocument = {
-      item: "Vintage silver flatware set",
-      price: 79.15,
-      quantity: 1,
-   };
-   const result = await myColl.replaceOne(filter, replacementDocument);
-
-The replaced document contains the contents of the replacement document
-and the immutable ``_id`` field as follows:
-
-.. code-block:: javascript
+.. code-block:: none
    :copyable: false
 
-   {
-      _id: 501,
-      item: "Vintage silver flatware set",
-      price: 79.15,
-      quantity: 1,
-   }
+   1 document(s) matched the filter, updated 1 document(s)
 
-If a replace operation fails to match any documents in a collection, it
-does not make any changes. Replace operations can be configured to perform
-an :doc:`upsert </crud/update>` which
-attempts to perform the replacement, but if no documents are matched, it
-inserts a new document with the specified fields and values.
+.. _node-usage-updatemany:
 
-You cannot modify the ``_id`` field of a document nor change a field to
-a value that violates a unique index constraint. See the {+mdb-server+} manual
-for more information on :manual:`unique indexes </core/index-unique/>`.
+updateMany() Example: Full File
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. include:: /includes/crud/example-intro.rst
+
+The following code is a complete, standalone file that performs an update many
+operation:
+
+.. tabs::
+
+   .. tab:: JavaScript
+      :tabid: javascript
+
+      .. literalinclude:: /code-snippets/usage-examples/updateMany.js
+         :language: javascript
+         :linenos:
+
+   .. tab:: TypeScript
+      :tabid: typescript
+
+      .. literalinclude:: /code-snippets/usage-examples/updateMany.ts
+         :language: typescript
+         :linenos:
+
+Running the preceding example, you see an output like the following:
+
+.. code-block:: none
+   :copyable: false
+
+   Updated 477 documents
 
 .. _node-update-instruqt-lab:
 
 .. instruqt:: /mongodb-docs/tracks/update-node?token=em_FEr9KfMh4WQ0VosU
    :title: updateMany() Lesson
    :drawer:
+
+API Documentation
+-----------------
+
+To learn more about any of the types or methods discussed in this guide, see the
+following API documentation:
+
+- `MongoClient <{+api+}/classes/MongoClient.html>`__
+- `Db <{+api+}/classes/Db.html>`__
+- `Collection <{+api+}/classes/Collection.html>`__
+- `updateOne() <{+api+}/classes/Collection.html#updateOne>`__
+- `updateMany() <{+api+}/classes/Collection.html#updateMany>`__

@@ -16,7 +16,7 @@ Update Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 .. toctree::
@@ -36,9 +36,9 @@ an insert or update operation depends on whether the document exists.
 In these cases, you can streamline your application logic by using the
 ``upsert`` option available in the following methods:
 
-- :doc:`updateOne() </usage-examples/updateOne>`
-- :doc:`replaceOne() </usage-examples/replaceOne>`
-- :doc:`updateMany() </usage-examples/updateMany>`
+- :ref:`updateOne() <node-usage-updateone>`
+- :ref:`replaceOne() <node-usage-replaceone>`
+- :ref:`updateMany() <node-usage-updatemany>`
 
 If the query filter passed to these methods does not find any matches and
 you set the ``upsert`` option to ``true``, MongoDB inserts the update
