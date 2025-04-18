@@ -261,8 +261,7 @@ document and includes only the first result:
 .. note::
 
    The order in which you call these methods doesn't change the documents
-   that are returned. The driver automatically reorders the calls to perform the
-   sort and skip operations first, and the limit operation afterward.
+   that are returned. 
 
 Additional Information
 ----------------------
