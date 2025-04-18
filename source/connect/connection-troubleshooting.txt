@@ -34,7 +34,7 @@ using the {+driver-long+} to connect to a MongoDB deployment.
 Connection Error
 ----------------
 
-If the driver cannot securely connect to the specified host, you may get an 
+If the driver cannot connect to the specified host, you may get an 
 ``MongoServerSelectionError``.
 
 The following sections describes actions you can take to potentially resolve the
