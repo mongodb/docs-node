@@ -18,6 +18,12 @@ Transactions
    :depth: 2
    :class: singlecol
 
+.. toctree::
+   :caption: Transaction Usage Examples
+
+   Convenient Transaction API </crud/transactions/transaction-conv>
+   Core API </crud/transactions/transaction-core>
+
 Overview
 --------
 
@@ -47,24 +53,43 @@ ACID transactions </basics/acid-transactions>`.
    Operations </core/transactions/#transactions-and-operations>` section in
    the Server manual.
 
-In MongoDB, multi-document transactions run within a **client session**.
-A client session is a grouping of related read or write operations that
-you want to execute sequentially. We recommend you reuse
-your client for multiple sessions and transactions instead of
-instantiating a new client each time.
-
-When combined with ``majority`` read and
-write concerns, the driver guarantees causal consistency between the
-operations. To learn more, see :manual:`Client Sessions and Causal Consistency Guarantees
-</core/read-isolation-consistency-recency/#client-sessions-and-causal-consistency-guarantees>` in the
-Server manual.
-
 Learn more about how to use the driver to perform multi-document
 transactions in the following sections of this guide:
 
 - :ref:`Transaction APIs <nodejs-transaction-apis>`
 - :ref:`Transaction Options <nodejs-transaction-settings>`
 - :ref:`Transaction Errors <nodejs-transaction-errors>`
+
+.. _nodejs-causal-consistency:
+
+Causal Consistency
+~~~~~~~~~~~~~~~~~~
+
+.. sharedinclude:: dbx/causal-consistency.rst
+
+   .. replacement:: insert-one-method
+
+      ``insertOne()``
+
+   .. replacement:: update-one-method
+
+      ``updateOne()``
+
+   .. replacement:: find-one-method
+
+      ``findOne()``
+
+   .. replacement:: delete-one-method
+
+      ``deleteOne()``
+
+   .. replacement:: majority-rc
+
+      ``majority``
+
+   .. replacement:: majority-wc
+
+      ``majority``
 
 .. _nodejs-transaction-apis:
 

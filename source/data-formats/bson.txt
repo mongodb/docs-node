@@ -1,9 +1,9 @@
 .. _node-bson-control:
 .. _node-bson:
 
-==============
-Work with BSON
-==============
+===================
+Work with BSON Data
+===================
 
 .. default-domain:: mongodb
 
@@ -20,11 +20,8 @@ In this guide, you can learn how to create BSON documents, read BSON from a file
 and write BSON to a file by using the {+driver-short+}.
 
 **BSON**, or Binary JSON, is the data format that MongoDB uses to organize
-and store data. This data format includes all JSON data structure types and
-adds support for types including dates, different size integers, ObjectIds, and
-binary data. You can use BSON documents in your {+language+} application by importing the
-BSON package. For a complete list of supported types, see the
-:manual:`BSON Types </reference/bson-types>` server manual page.
+and store data. You can use BSON documents in your {+language+} application 
+by importing the BSON package. 
 
 The code samples in this guide use the following BSON document as an example:
 
@@ -39,6 +36,37 @@ The code samples in this guide use the following BSON document as an example:
        "cuisine" : "Pizza",
        "name" : "Mongo's Pizza"
    }
+
+.. note:: Use the {+driver-short+}'s BSON package
+
+   We recommend that you use the BSON package that is bundled with the driver to avoid
+   compatibility issues with other BSON packages. You can import the {+driver-short+}'s 
+   BSON package with the following import statement:
+
+   .. code-block:: js
+
+       import { BSON } from 'mongodb';  
+
+BSON Data Types
+---------------
+
+BSON supports all JSON data structure types and adds support for types including 
+dates, different size integers, ``ObjectId``, and binary data. For a complete list of 
+supported types, see the :manual:`BSON Types </reference/bson-types>` page in the 
+{+mdb-server+} Manual.
+
+Universally Unique IDs (UUIDs)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The {+driver-short+} supports UUIDs by using the BSON Binary subclass ``UUID``. You 
+can create a ``UUID`` object by using the ``UUID()`` constructor. The following code 
+example generates a random UUID:
+
+.. code-block:: javascript
+
+   import { UUID } from 'mongodb';  
+
+   const myUuid = new UUID();
 
 Create a BSON Document
 ----------------------
@@ -91,7 +119,7 @@ The following example writes the sample BSON document to ``file.bson``:
 .. code-block:: javascript
 
    import fs from 'fs/promises';  // Import the file system module
-   import { BSON } from 'bson';  // Import the BSON package
+   import { BSON } from 'mongodb';  // Import the BSON package
 
    // Create a BSON object
    const bsonData = BSON.serialize(result);
@@ -115,7 +143,7 @@ The following example reads the sample BSON document from ``file.bson``:
       :language: javascript
 
       import fs from 'fs/promises';  // Import the file system module
-      import { BSON } from 'bson';  // Import the BSON package
+      import { BSON } from 'mongodb';  // Import the BSON package
 
       // Read the BSON data from a file
       const data = await fs.readFile('file.bson');
@@ -137,5 +165,7 @@ API Documentation
 -----------------
 
 To learn more about any of the methods or types discussed in this
-guide, see the `BSON <{+api+}/modules/BSON.html>`__ API documentation.
+guide, see the following API documentation:
 
+- `BSON <{+api+}/modules/BSON.html>`__ 
+- `UUID <{+api+}/classes/BSON.UUID.html>`__

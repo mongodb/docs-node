@@ -1,8 +1,8 @@
 .. _node-atlas-search:
 
-============
-Atlas Search
-============
+=========================
+Run an Atlas Search Query
+=========================
 
 .. facet::
    :name: genre
