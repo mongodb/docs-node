@@ -152,6 +152,6 @@ For more projection examples, see the
 
 .. note::
 
-   You must chain ``FindCursor`` methods such as ``project()`` to a read operation 
+   You must chain a cursor method such as ``project()`` to a read operation 
    before iterating the cursor. If you specify a projection after 
    iterating the cursor, the projection does not apply to the operation.
