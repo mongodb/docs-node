@@ -34,10 +34,10 @@ using the {+driver-long+} to connect to a MongoDB deployment.
 Connection Error
 ----------------
 
-If the driver cannot connect to the specified host, you may get an 
+If the driver cannot connect to the specified host, you might get an 
 ``MongoServerSelectionError``.
 
-The following sections describes actions you can take to potentially resolve the
+The following sections describe actions you can take to potentially resolve the
 issue.
 
 .. _node-troubleshooting-connection-firewall:
@@ -128,7 +128,7 @@ resolve this error, you can decrease the number of maximum allowed connections
 by setting the value of ``maxPoolSize``. Alternatively, you could increase the
 file descriptor limit in your operating system. To learn more about how to set
 ``maxPoolSize``, see the API documentation for 
-`maxPoolSize <{+api+}//interfaces/MongoClientOptions.html#maxPoolSize>`__ .
+`maxPoolSize <{+api+}/interfaces/MongoClientOptions.html#maxPoolSize>`__ .
 
 .. warning::
 
