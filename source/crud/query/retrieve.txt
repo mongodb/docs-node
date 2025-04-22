@@ -235,14 +235,12 @@ Running the preceding example results in the following output:
    { title: '8', imdb: { rating: 7.8, votes: 883, id: 1592502 } }
    ...
 
-You can also specify ``sort`` and ``projection`` options by chaining the
-``sort()`` and ``projection`` methods to the ``find()`` method. The following
-two commands are equivalent:
+.. note::
 
-.. code-block:: javascript
-
-   movies.find({ runtime: { $lt: 15 } }, { sort: { title: 1 }, projection: { _id: 0, title: 1, imdb: 1 }});
-   movies.find({ runtime: { $lt: 15 } }).sort({ title: 1}).project({ _id: 0, title: 1, imdb: 1 });
+   You must chain cursor methods such as ``sort()`` or ``project()`` 
+   to a read operation before iterating the cursor. If you specify 
+   a cursor method after iterating the cursor, the setting does not 
+   apply to the read operation.  
 
 Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~
