@@ -49,10 +49,10 @@ that describe books into the ``myDB.books`` collection:
 
 .. note::
 
-   You must chain ``FindCursor`` methods such as ``sort()``, ``limit()``, or 
+   You must chain a cursor method such as ``sort()``, ``limit()``, or 
    ``skip()`` to a read operation before iterating the cursor. If you specify 
-   a ``FindCursor`` method after iterating the cursor, the setting does not 
-   apply to the operation.
+   a cursor method after iterating the cursor, the setting does not 
+   apply to the read operation.  
 
 .. include:: /includes/access-cursor-note.rst
 

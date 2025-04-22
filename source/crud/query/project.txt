@@ -149,3 +149,9 @@ the following results:
 
 For more projection examples, see the
 :manual:`MongoDB Manual page on Project Fields to Return from Query </tutorial/project-fields-from-query-results/>`.
+
+.. note::
+
+   You must chain ``FindCursor`` methods such as ``project()`` to a read operation 
+   before iterating the cursor. If you specify a projection after 
+   iterating the cursor, the projection does not apply to the operation.
