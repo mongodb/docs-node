@@ -48,7 +48,8 @@ Configure Your Firewall
 Verify that the ports your MongoDB deployment listens on are not blocked by a
 firewall on the same network. MongoDB uses port ``27017`` by default. To learn
 more about the default ports MongoDB uses and how to change them, see
-:manual:`Default MongoDB Port </reference/default-mongodb-port/>`.
+:manual:`Default MongoDB Port </reference/default-mongodb-port/>` in the 
+{+mdb-server+} manual.
 
 .. warning::
 
