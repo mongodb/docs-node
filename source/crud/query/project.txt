@@ -64,8 +64,8 @@ field of each document:
    :emphasize-lines: 2
 
    // return only* the name field
-   const projection = { name: 1 };
-   const cursor = myColl.find().project(projection);
+   const projectFields = { name: 1 };
+   const cursor = myColl.find().project(projectFields);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -101,8 +101,8 @@ returned documents.
    :emphasize-lines: 2
 
    // return only the name field
-   const projection = { _id: 0, name: 1 };
-   const cursor = myColl.find().project(projection);
+   const projectFields = { _id: 0, name: 1 };
+   const cursor = myColl.find().project(projectFields);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -130,8 +130,8 @@ order in which they are returned.
 
 .. code-block:: javascript
 
-   const projection = { _id: 0, rating: 1, name: 1 };
-   const cursor = myColl.find().project(projection);
+   const projectFields = { _id: 0, rating: 1, name: 1 };
+   const cursor = myColl.find().project(projectFields);
    for await (const doc of cursor) {
      console.dir(doc);
    }

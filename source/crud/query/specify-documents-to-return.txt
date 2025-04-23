@@ -74,8 +74,8 @@ lengths:
    // define an empty query document
    const query = {};
    // sort in descending (-1) order by length
-   const sort = { length: -1 };
-   const cursor = myColl.find(query).sort(sort);
+   const sortFields = { length: -1 };
+   const cursor = myColl.find(query).sort(sortFields);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -106,8 +106,8 @@ add more fields to the sort document:
    // define an empty query document
    const query = {};
    // sort in ascending (1) order by length
-   const sort = { length: 1, author: 1 };
-   const cursor = myColl.find(query).sort(sort);
+   const sortFields = { length: 1, author: 1 };
+   const cursor = myColl.find(query).sort(sortFields);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -152,9 +152,9 @@ This example performs the following actions:
    // define an empty query document
    const query = {};
    // sort in descending (-1) order by length
-   const sort = { length: -1 };
-   const limit = 3;
-   const cursor = myColl.find(query).sort(sort).limit(limit);
+   const sortFields = { length: -1 };
+   const limitNum = 3;
+   const cursor = myColl.find(query).sort(sortFields).limit(limitNum);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -208,9 +208,9 @@ by performing the following actions:
 
    // define an empty query document
    const query = {};
-   const sort = { length: -1 };
-   const skip = 4;
-   const cursor = myColl.find(query).sort(sort).skip(skip);
+   const sortFields = { length: -1 };
+   const skipNum = 4;
+   const cursor = myColl.find(query).sort(sortFields).skip(skipNum);
    for await (const doc of cursor) {
      console.dir(doc);
    }
