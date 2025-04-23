@@ -235,12 +235,7 @@ Running the preceding example results in the following output:
    { title: '8', imdb: { rating: 7.8, votes: 883, id: 1592502 } }
    ...
 
-.. note::
-
-   You must chain cursor methods such as ``sort()`` or ``project()`` 
-   to a read operation before iterating the cursor. If you specify 
-   a cursor method after iterating the cursor, the setting does not 
-   apply to the read operation.  
+.. include:: /includes/crud/chain-cursor-methods.rst 
 
 Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~

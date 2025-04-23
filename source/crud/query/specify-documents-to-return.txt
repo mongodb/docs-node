@@ -47,12 +47,7 @@ that describe books into the ``myDB.books`` collection:
      { "_id": 6, "name": "A Dance With Dragons", "author": "Martin", "length": 1104 },
    ]);
 
-.. note::
-
-   You must chain a cursor method such as ``sort()``, ``limit()``, or 
-   ``skip()`` to a read operation before iterating the cursor. If you specify 
-   a cursor method after iterating the cursor, the setting does not 
-   apply to the read operation.  
+.. include:: /includes/crud/chain-cursor-methods.rst 
 
 .. include:: /includes/access-cursor-note.rst
 

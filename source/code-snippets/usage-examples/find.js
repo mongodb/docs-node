@@ -14,11 +14,11 @@ async function run() {
 
     // Query for movies that have a runtime less than 15 minutes
     const query = { runtime: { $lt: 15 } };
-    const sort = { title: 1 };
-    const projection = { _id: 0, title: 1, imdb: 1 };
+    const sortFields = { title: 1 };
+    const projectFields = { _id: 0, title: 1, imdb: 1 };
 
     // Execute query 
-    const cursor = movies.find(query).sort(sort).project(projection);
+    const cursor = movies.find(query).sort(sortFields).project(projectFields);
 
     // Print a message if no documents were found
     if ((await movies.countDocuments(query)) === 0) {
