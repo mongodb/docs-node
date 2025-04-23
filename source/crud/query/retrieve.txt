@@ -96,9 +96,9 @@ see the :ref:`node-fundamentals-query-document` guide.
 
    .. code-block:: javascript
 
-      const projection = { _id: 0, field1: 1 };
+      const projectFields = { _id: 0, field1: 1 };
 
-      const findResult = await myColl.findOne().project(projection);
+      const findResult = await myColl.findOne().project(projectFields);
 
    For more information about projecting document fields, see the
    :ref:`node-fundamentals-project` guide.
@@ -235,14 +235,7 @@ Running the preceding example results in the following output:
    { title: '8', imdb: { rating: 7.8, votes: 883, id: 1592502 } }
    ...
 
-You can also specify ``sort`` and ``projection`` options by chaining the
-``sort()`` and ``projection`` methods to the ``find()`` method. The following
-two commands are equivalent:
-
-.. code-block:: javascript
-
-   movies.find({ runtime: { $lt: 15 } }, { sort: { title: 1 }, projection: { _id: 0, title: 1, imdb: 1 }});
-   movies.find({ runtime: { $lt: 15 } }).sort({ title: 1}).project({ _id: 0, title: 1, imdb: 1 });
+.. include:: /includes/crud/chain-cursor-methods.rst 
 
 Additional Information
 ~~~~~~~~~~~~~~~~~~~~~~

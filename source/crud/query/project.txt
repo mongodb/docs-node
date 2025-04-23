@@ -67,8 +67,8 @@ field of each document:
    :emphasize-lines: 2
 
    // return only* the name field
-   const projection = { name: 1 };
-   const cursor = myColl.find().project(projection);
+   const projectFields = { name: 1 };
+   const cursor = myColl.find().project(projectFields);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -104,8 +104,8 @@ returned documents.
    :emphasize-lines: 2
 
    // return only the name field
-   const projection = { _id: 0, name: 1 };
-   const cursor = myColl.find().project(projection);
+   const projectFields = { _id: 0, name: 1 };
+   const cursor = myColl.find().project(projectFields);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -133,8 +133,8 @@ order in which they are returned.
 
 .. code-block:: javascript
 
-   const projection = { _id: 0, rating: 1, name: 1 };
-   const cursor = myColl.find().project(projection);
+   const projectFields = { _id: 0, rating: 1, name: 1 };
+   const cursor = myColl.find().project(projectFields);
    for await (const doc of cursor) {
      console.dir(doc);
    }
@@ -152,3 +152,5 @@ the following results:
 
 For more projection examples, see the
 :manual:`MongoDB Manual page on Project Fields to Return from Query </tutorial/project-fields-from-query-results/>`.
+
+.. include:: /includes/crud/chain-cursor-methods.rst 
