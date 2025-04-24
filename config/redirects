@@ -104,3 +104,4 @@ raw: ${prefix}/stable -> ${base}/current/
 [*-master]: ${prefix}/${version}/usage-examples/transactions/ -> ${base}/crud/transactions/
 [*-master]: ${prefix}/${version}/usage-examples/transaction-conv/ -> ${base}/crud/transactions/transaction-conv/
 [*-master]: ${prefix}/${version}/usage-examples/transaction-core/ -> ${base}/crud/transactions/transaction-core/
+[*-master]: ${prefix}/${version}/fundamentals/promises/ -> ${base}/promises/
