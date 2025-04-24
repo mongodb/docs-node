@@ -31,6 +31,7 @@ CRUD Operations
    Compound Operations </crud/compound-operations>
    Transactions </crud/transactions>
    Configure CRUD Operations </crud/configure>
+   Generate Custom Values for ``_id`` </crud/pkFactory>
    Store Large Files </crud/gridfs>
 
 CRUD (Create, Read, Update, Delete) operations enable you to work with
@@ -44,4 +45,5 @@ data stored in MongoDB.
 - :ref:`node-crud-compound-operations`
 - :ref:`node-transactions`
 - :ref:`node-configure`
+- :ref:`node-pkfactory`
 - :ref:`node-gridfs`
