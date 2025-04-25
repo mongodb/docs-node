@@ -1,7 +1,7 @@
 .. _node-promises:
 
 =========================================
-Use Promises with Asynchronous Javascript
+Use Promises with Asynchronous JavaScript
 =========================================
 
 .. facet::
@@ -20,15 +20,15 @@ Use Promises with Asynchronous Javascript
 Overview
 --------
 
-The Node.js driver uses the asynchronous Javascript API to communicate with
+The Node.js driver uses the asynchronous JavaScript API to communicate with
 your MongoDB cluster.
 
-Asynchronous Javascript allows you to execute operations without waiting for
+Asynchronous JavaScript allows you to execute operations without waiting for
 the processing thread to become free. This helps prevent your application
 from becoming unresponsive when
 executing long-running operations. For more information about asynchronous
-Javascript, see the MDN web documentation on
-`Asynchronous Javascript <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous>`_.
+JavaScript, see the MDN web documentation on
+`Asynchronous JavaScript <https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous>`_.
 
 This section describes ``Promises`` that you can use with the Node.js driver to
 access the results of your method calls to your MongoDB cluster.
