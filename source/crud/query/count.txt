@@ -73,9 +73,9 @@ The following example estimates the number of documents in the
 an accurate count of the number of documents in the ``movies``
 collection with ``Canada`` in the ``countries`` field:
 
-     .. literalinclude:: /code-snippets/usage-examples/count.js
-        :language: javascript
-        :linenos:
+.. literalinclude:: /code-snippets/usage-examples/count.js
+   :language: javascript
+   :linenos:
 
 Running the preceding sample code results in the following output:
 

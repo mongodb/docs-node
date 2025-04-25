@@ -94,7 +94,7 @@ read events from the change stream:
 
       You can attach listener functions to the ``ChangeStream``  object
       by calling the ``on()`` method. This method is inherited from the
-      Javascript ``EventEmitter`` class. Pass the string ``"change"`` as
+      JavaScript ``EventEmitter`` class. Pass the string ``"change"`` as
       the first parameter and your listener function as the second parameter as shown below:
 
       .. code-block:: javascript

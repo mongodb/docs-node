@@ -17,7 +17,6 @@ Specify Connection Options
    :maxdepth: 1
 
    Compress Network Traffic </connect/connection-options/network-compression>
-   Customize Server Selection </connect/connection-options/server-selection>
    Stable API </connect/connection-options/stable-api>
    Limit Server Execution Time </connect/connection-options/csot>
    Connection Pools </connect/connection-options/connection-pools>
