@@ -133,8 +133,8 @@ Version 6.0 Breaking Changes
   returns the server command response, which varies depending on the MongoDB
   Server version or type that the driver connects to. To learn more
   about transactions, see the :ref:`Convenient Transaction API
-  <node-usage-convenient-txn>` and :ref:`Core API <node-usage-core-txn>` usage
-  examples and the :ref:`nodejs-transactions` guide.
+  <node-usage-convenient-txn>` and :ref:`Core API <node-usage-core-txn>` guides
+  and the :ref:`nodejs-transactions` guide.
 - Raised the optional ``kerberos`` dependency minimum version to 2.0.1 and
   removed support for version 1.x.
 - Raised the optional ``zstd`` dependency minimum version to 1.1.0.
