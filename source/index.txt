@@ -30,7 +30,7 @@ MongoDB Node Driver
   Monitoring and Logging </monitoring-and-logging>
   Security </security>
   Reference </reference>
-  Typescript </typescript>
+  TypeScript </typescript>
   API Documentation <{+api+}>
   Issues & Help </issues-and-help>
   View the Source <https://github.com/mongodb/node-mongodb-native/>

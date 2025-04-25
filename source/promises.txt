@@ -1,8 +1,8 @@
 .. _node-promises:
 
-========
-Promises
-========
+=========================================
+Use Promises with Asynchronous Javascript
+=========================================
 
 .. facet::
    :name: genre
