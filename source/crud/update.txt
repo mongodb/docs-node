@@ -78,6 +78,8 @@ If a food truck named "Deli Llama" exists, the method call above updates
 the document in the collection. However, if there are no food trucks named
 "Deli Llama" in your collection, no changes are made.
 
+.. _node-upsert:
+
 Performing an Upsert
 --------------------
 

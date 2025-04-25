@@ -20,6 +20,7 @@ MongoDB Node Driver
   Connect </connect>
   Databases & Collections </databases-collections>
   CRUD Operations </crud>
+  Promises </promises>
   Aggregation </aggregation>
   Data Formats </data-formats>
   Indexes </indexes>
@@ -29,7 +30,7 @@ MongoDB Node Driver
   Monitoring and Logging </monitoring-and-logging>
   Security </security>
   Reference </reference>
-  Typescript </typescript>
+  TypeScript </typescript>
   API Documentation <{+api+}>
   Issues & Help </issues-and-help>
   View the Source <https://github.com/mongodb/node-mongodb-native/>
@@ -108,7 +109,7 @@ Monitoring and Logging
 ----------------------
 
 Learn how to monitor changes to your application and write them to logs in the
-:ref:`<node-monitoring-and-logging>` section.
+:ref:`<node-monitoring-logging>` section.
 
 Secure Your Data
 ----------------
