@@ -1,8 +1,8 @@
 .. _node-get-started:
 
-=======================================
-Getting Started with the Node.js Driver
-=======================================
+===================================
+Get Started with the Node.js Driver
+===================================
 
 .. facet::
    :name: genre
