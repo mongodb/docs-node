@@ -1,4 +1,5 @@
 .. _node-connect:
+.. _node-connection:
 
 ==================
 Connect to MongoDB

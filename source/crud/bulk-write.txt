@@ -1,4 +1,5 @@
 .. _node-bulk-write:
+.. _node-fundamentals-bulk:
 
 ===============
 Bulk Operations
