@@ -12,6 +12,14 @@ Connection Options
    :keywords: node.js, customize
    :description: Explore connection and authentication options available in the MongoDB Node.js Driver, including settings for app name, authentication mechanisms, and TLS configurations.
 
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   Compress Network Traffic </connect/connection-options/network-compression>
+   Stable API </connect/connection-options/stable-api>
+   Limit Server Execution Time </connect/connection-options/csot>
+
 This section explains the MongoDB connection and authentication options
 supported by the {+driver-short+} that you can set within a ``MongoClientOptions`` instance. 
 

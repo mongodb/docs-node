@@ -1,8 +1,8 @@
 .. _node-fundamentals-upsert:
 
-======================================
-Insert or Update in a Single Operation
-======================================
+=======================================
+Insert and Update in a Single Operation
+=======================================
 
 .. facet::
    :name: genre
@@ -15,8 +15,16 @@ Insert or Update in a Single Operation
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
+
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   Modify Documents </crud/update/modify>
+   Replace </crud/update/replace>
+   Update Arrays </crud/update/embedded-arrays>
 
 Overview
 --------

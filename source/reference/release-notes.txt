@@ -1,8 +1,9 @@
 .. _node-whats-new:
+.. _node-release-notes:
 
-==========
-What's New
-==========
+=============
+Release Notes
+=============
 
 .. contents:: On this page
    :local:

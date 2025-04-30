@@ -1,4 +1,5 @@
 .. _node-connection:
+.. _node-connect:
 
 ==================
 Connect to MongoDB
@@ -16,13 +17,10 @@ Connect to MongoDB
 
 .. toctree::
 
-   Connection Guide </fundamentals/connection/connect>
-   Connection Options </fundamentals/connection/connection-options>
-   Network Compression </fundamentals/connection/network-compression>
-   TLS </fundamentals/connection/tls>
-   SOCKS5 Proxy Support </fundamentals/connection/socks>
-   Limit Server Execution Time </fundamentals/connection/csot>
+   Create a MongoClient </connect/mongoclient>
+   Connection Options </connect/connection-options>
    Connect with AWS Lambda <https://www.mongodb.com/docs/atlas/manage-connections-aws-lambda/>
+   Connection Troubleshooting </connect/connection-troubleshooting>
 
 .. contents:: On this page
    :local:

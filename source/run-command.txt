@@ -1,8 +1,8 @@
 .. _node-run-command:
 
-==============
-Run a Command
-==============
+======================
+Run a Database Command
+======================
 
 .. meta::
    :description: Learn how to execute database commands using the MongoDB Node.js Driver, including options and response handling.
