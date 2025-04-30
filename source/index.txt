@@ -16,19 +16,23 @@ MongoDB Node Driver
   :titlesonly:
   :maxdepth: 1
 
-  Quick Start </quick-start>
-  Quick Reference </quick-reference>
-  What's New </whats-new>
-  Usage Examples </usage-examples>
-  Fundamentals </fundamentals>
-  Aggregation Tutorials </aggregation-tutorials>
+  Get Started <get-started>
+  Connect </connect>
+  Databases & Collections </databases-collections>
+  CRUD Operations </crud>
+  Promises </promises>
+  Aggregation </aggregation>
+  Data Formats </data-formats>
+  Indexes </indexes>
+  Run a Database Command </run-command>
+  Atlas Search </atlas-search>
+  Atlas Vector Search </atlas-vector-search>
+  Monitoring and Logging </monitoring-and-logging>
+  Security </security>
+  Reference </reference>
+  TypeScript </typescript>
   API Documentation <{+api+}>
-  FAQ </faq>
-  Connection Troubleshooting </connection-troubleshooting>
   Issues & Help </issues-and-help>
-  Compatibility </compatibility>
-  Upgrade </upgrade>
-  Release Notes <https://github.com/mongodb/node-mongodb-native/releases/>
   View the Source <https://github.com/mongodb/node-mongodb-native/>
 
 Introduction
