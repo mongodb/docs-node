@@ -219,4 +219,4 @@ For more information about the concepts in this guide, see the following documen
 .. - :manual:`checkMetadataConsistency Command </reference/command/checkMetadataConsistency/>`
 
 To learn how to retrieve data from a cursor, see the
-:ref:`node-access-cursor` fundamentals page.
+:ref:`node-access-cursor` guide.

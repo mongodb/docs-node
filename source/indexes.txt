@@ -1,4 +1,5 @@
 .. _node-fundamentals-indexes:
+.. _node-indexes:
 
 =======
 Indexes

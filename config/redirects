@@ -97,3 +97,22 @@ raw: ${prefix}/stable -> ${base}/current/
 [v6.15-master]: ${prefix}/${version}/fundamentals/crud/write-operations/embedded-arrays/ -> ${base}/crud/update/embedded-arrays/
 [v6.15-master]: ${prefix}/${version}/fundamentals/crud/write-operations/pkFactory/ -> ${base}/crud/pkFactory/
 [v6.15-master]: ${prefix}/${version}/fundamentals/promises/ -> ${base}/promises/
+
+# Usage Example Redirects
+
+[v6.16-master]: ${prefix}/${version}/usage-examples/findOne/ -> ${base}/crud/query/retrieve/
+[v6.16-master]: ${prefix}/${version}/usage-examples/find/ -> ${base}/crud/query/retrieve/
+[v6.16-master]: ${prefix}/${version}/usage-examples/insertOne/ -> ${base}/crud/insert/
+[v6.16-master]: ${prefix}/${version}/usage-examples/insertMany/ -> ${base}/crud/insert/
+[v6.16-master]: ${prefix}/${version}/usage-examples/updateOne/ -> ${base}/crud/update/modify/
+[v6.16-master]: ${prefix}/${version}/usage-examples/updateMany/ -> ${base}/crud/update/modify/
+[v6.16-master]: ${prefix}/${version}/usage-examples/replaceOne/ -> ${base}/crud/update/replace/
+[v6.16-master]: ${prefix}/${version}/usage-examples/deleteOne/ -> ${base}/crud/delete/
+[v6.16-master]: ${prefix}/${version}/usage-examples/deleteMany/ -> ${base}/crud/delete/
+[v6.16-master]: ${prefix}/${version}/usage-examples/count/ -> ${base}/crud/query/count/
+[v6.16-master]: ${prefix}/${version}/usage-examples/distinct/ -> ${base}/crud/query/distinct/
+[v6.16-master]: ${prefix}/${version}/usage-examples/command/ -> ${base}/run-command/
+[v6.16-master]: ${prefix}/${version}/usage-examples/bulkWrite/ -> ${base}/bulk-write/
+[v6.16-master]: ${prefix}/${version}/usage-examples/transactions/ -> ${base}/crud/transactions/
+[v6.16-master]: ${prefix}/${version}/usage-examples/transaction-conv/ -> ${base}/crud/transactions/transaction-conv/
+[v6.16-master]: ${prefix}/${version}/usage-examples/transaction-core/ -> ${base}/crud/transactions/transaction-core/

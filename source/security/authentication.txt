@@ -11,8 +11,8 @@ Authentication
 
 .. toctree::
 
-   Authentication </fundamentals/authentication/mechanisms>
-   Enterprise Authentication </fundamentals/authentication/enterprise-mechanisms>
+   Authentication </authentication/mechanisms>
+   Enterprise Authentication </authentication/enterprise-mechanisms>
 
 Overview
 --------

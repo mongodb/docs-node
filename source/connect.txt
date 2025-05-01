@@ -17,7 +17,7 @@ Connect to MongoDB
 
 .. toctree::
 
-   Create a MongoClient </connect/mongoclient>
+   Connection Guide </connect/connect>
    Connection Options </connect/connection-options>
    Connect with AWS Lambda <https://www.mongodb.com/docs/atlas/manage-connections-aws-lambda/>
    Connection Troubleshooting </connect/connection-troubleshooting>

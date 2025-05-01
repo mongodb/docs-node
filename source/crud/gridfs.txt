@@ -1,8 +1,8 @@
 .. _node-gridfs:
 
-======
-GridFS
-======
+=============================
+Store Large Files with GridFS
+=============================
 
 .. facet::
    :name: genre
@@ -167,8 +167,8 @@ see the following resources:
 
 - `find() API documentation <{+api+}/classes/GridFSBucket.html#find>`__
 - `FindCursor API documentation <{+api+}/classes/FindCursor.html>`__
-- :doc:`Cursor Fundamentals page </fundamentals/crud/read-operations/cursor>`
-- :doc:`Read Operations page </fundamentals/crud/read-operations/>`
+- :ref:`Access Data From a Cursor guide <node-cursor>`
+- :ref:`Find Documents guide <node-find>`
 
 .. _gridfs-download-files:
 
