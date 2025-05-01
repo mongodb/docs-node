@@ -1,4 +1,5 @@
 .. _nodejs-transactions:
+.. _node-transactions:
 
 ============
 Transactions

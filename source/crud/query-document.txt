@@ -1,4 +1,5 @@
 .. _node-fundamentals-query-document:
+.. _node-query-document:
 
 ===============
 Specify a Query
@@ -12,7 +13,7 @@ Specify a Query
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview

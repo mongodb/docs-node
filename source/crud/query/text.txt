@@ -1,4 +1,5 @@
 .. _node-fundamentals-text:
+.. _node-search-text:
 
 ===========
 Search Text

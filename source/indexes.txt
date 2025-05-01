@@ -1,9 +1,9 @@
 .. _node-fundamentals-indexes:
 .. _node-indexes:
 
-=======
-Indexes
-=======
+======================
+Indexes on Collections
+======================
 
 .. facet::
    :name: genre
@@ -260,7 +260,7 @@ MongoDB supports queries of geospatial coordinate data using **2dsphere
 indexes**. With a 2dsphere index, you can query the geospatial data for
 inclusion, intersection, and proximity. For more information on querying
 geospatial data with the MongoDB Node.js driver, read our
-:doc:`Search Geospatial </fundamentals/crud/read-operations/geo>` guide.
+:doc:`Search Geospatial </crud/query/geo>` guide.
 
 To create a 2dsphere index, you must specify a field that contains
 only **GeoJSON objects**. For more details on this type, see the MongoDB

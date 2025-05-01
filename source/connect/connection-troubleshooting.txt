@@ -177,7 +177,7 @@ issues when attempting to connect to MongoDB using ``SCRAM-SHA-256``.
 .. tip::
 
    For more information about connection strings,
-   see :ref:`Connection URI <node-connection-uri>` in the Connection Guide.
+   see :ref:`Connection URI <node-connection-uri>` section in the Connection Guide.
 
 If your connection string contains a username and password, ensure that they
 are in the correct format. If the username or password includes any of the

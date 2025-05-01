@@ -1,4 +1,5 @@
 .. _node-usage-replaceone:
+.. _node-replace:
 
 ==================
 Replace a Document

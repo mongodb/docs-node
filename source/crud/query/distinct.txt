@@ -1,4 +1,5 @@
 .. _node-fundamentals-distinct:
+.. _node-distinct:
 
 ========================
 Retrieve Distinct Values

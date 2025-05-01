@@ -1,4 +1,5 @@
 .. _node-fundamentals-change-a-document:
+.. _node-modify:
 
 ================
 Modify Documents
@@ -10,7 +11,7 @@ Modify Documents
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
@@ -133,11 +134,10 @@ the ``quantity`` field and all other values unchanged:
       quantity: 5,
    }
 
-If an update operation fails to match any documents in a collection, it
-does not make any changes. Update operations can be configured to perform
-an :doc:`upsert </fundamentals/crud/write-operations/upsert>` which
-attempts to perform an update, but if no documents are matched, inserts
-a new document with the specified fields and values.
+If an update operation fails to match any documents in a collection, it does not
+make any changes. Update operations can be configured to perform an :doc:`upsert
+</crud/update>` which attempts to perform an update, but if no documents are
+matched, inserts a new document with the specified fields and values.
 
 You cannot modify the ``_id`` field of a document nor change a field to
 a value that violates a unique index constraint. See the {+mdb-server+} manual

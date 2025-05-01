@@ -1,4 +1,5 @@
 .. _node-fundamentals-insert-data:
+.. _node-insert:
 
 ================
 Insert Documents
@@ -45,8 +46,8 @@ operations:
    full-screen button (:guilabel:`⛶`) in the top-right corner of the lab pane.
 
 The following sections focus on ``insertOne()`` and ``insertMany()``. For an
-example on how to use the ``bulkWrite()`` method, see our runnable :doc:`Bulk
-Operations Example </usage-examples/bulkWrite>`.
+example on how to use the ``bulkWrite()`` method, see the :ref:`node-usage-bulk`
+section of the :ref:`node-bulk-write` guide.
 
 .. _id-note:
 

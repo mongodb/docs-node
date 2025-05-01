@@ -1,4 +1,5 @@
 .. _node-usage-count:
+.. _node-count:
 
 ===============
 Count Documents
@@ -26,7 +27,7 @@ provides an **accurate** count of the number of documents and supports
 specifying a filter. Choose the appropriate method for your workload.
 
 To specify which documents you wish to count, ``countDocuments()``
-accepts a :doc:`query </fundamentals/crud/query-document>` parameter.
+accepts a :ref:`query <node-find>` parameter.
 ``countDocuments()`` counts the documents that match the specified query.
 
 ``countDocuments()`` and ``estimatedDocumentCount()`` support optional

@@ -1,4 +1,5 @@
 .. _node-fundamentals-update-array:
+.. _node-update-arrays:
 
 ===========================
 Update Arrays in a Document

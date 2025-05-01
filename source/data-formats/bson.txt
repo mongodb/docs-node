@@ -1,4 +1,5 @@
 .. _node-bson-control:
+.. _node-bson:
 
 =============
 BSON Settings

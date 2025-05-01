@@ -1,4 +1,5 @@
 .. _node-authentication-mechanisms:
+.. _node-authentication:
 
 ==============
 Authentication

@@ -1,3 +1,5 @@
+.. _node-time-series:
+
 ===========
 Time Series
 ===========
@@ -39,7 +41,7 @@ querying time series data.
 For more information on querying data in the MongoDB Node.js driver, see the
 following resources:
 
-- :ref:`Guide On Read Operations <nodejs-driver-retrieve-data-overview>`
+- :ref:`Guide On Read Operations <node-find>`
 - :ref:`Guide On Aggregation <nodejs-aggregation-overview>`
 
 .. note:: Window Functions
