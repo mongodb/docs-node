@@ -14,8 +14,8 @@ Monitoring
 .. toctree::
    :caption: CRUD Operations
 
-   Clusters  </monitoring-and-logging/monitoring/cluster-monitoring>
-   Commands </monitoring-and-logging/monitoring/command-monitoring>
+   Cluster  </monitoring-and-logging/monitoring/cluster-monitoring>
+   Command </monitoring-and-logging/monitoring/command-monitoring>
    Connection Pool </monitoring-and-logging/monitoring/connection-monitoring>
 
 - :doc:`Cluster Monitoring </monitoring-and-logging/monitoring/cluster-monitoring>`: monitoring
