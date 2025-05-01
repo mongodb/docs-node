@@ -28,6 +28,7 @@ MongoDB Node Driver
   Atlas Vector Search </atlas-vector-search>
   Monitoring and Logging </monitoring-and-logging>
   Security </security>
+  Usage Examples </usage-examples>
   Reference </reference>
   TypeScript </typescript>
   API Documentation <{+api+}>
