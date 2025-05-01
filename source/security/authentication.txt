@@ -10,8 +10,8 @@ Authentication
 
 .. toctree::
 
-   Authentication <security/authentication/mechanisms>
-   Enterprise Authentication <security/authentication/enterprise-mechanisms>
+   Authentication </security/authentication/mechanisms>
+   Enterprise Authentication </security/authentication/enterprise-mechanisms>
 
 Overview
 --------
