@@ -1,8 +1,9 @@
 .. _node-read-operations:
+.. _node-query:
 
-===============
+================
 Query Operations
-===============
+================
 
 .. meta::
    :description: Learn about the commands for running MongoDB read operations by using the {+driver-long+}.

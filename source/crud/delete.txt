@@ -1,4 +1,5 @@
 .. _node-fundamentals-delete:
+.. _node-delete:
 
 ================
 Delete Documents

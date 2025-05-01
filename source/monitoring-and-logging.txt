@@ -20,6 +20,6 @@ Overview
 Learn how to set up monitoring and logging for your application in the following
 sections:
 
-- :doc:`/monitoring-and-logging/monitoring`
+- :ref:`Monitoring <node-cluster-monitoring>`
 - :doc:`/monitoring-and-logging/logging`
 - :doc:`/monitoring-and-logging/change-streams`
