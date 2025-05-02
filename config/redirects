@@ -98,7 +98,7 @@ raw: ${prefix}/stable -> ${base}/current/
 [v6.5-master]: ${prefix}/${version}/fundamentals/crud/write-operations/pkFactory/ -> ${base}/crud/pkFactory/
 [v6.5-master]: ${prefix}/${version}/fundamentals/promises/ -> ${base}/promises/
 
-# Usage Example Redirects
+# CC Usage Example Redirects
 
 [v6.16-master]: ${prefix}/${version}/usage-examples/findOne/ -> ${base}/${version}/crud/query/retrieve/
 [v6.16-master]: ${prefix}/${version}/usage-examples/find/ -> ${base}/${version}/crud/query/retrieve/
