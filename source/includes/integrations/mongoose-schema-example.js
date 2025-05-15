@@ -17,5 +17,5 @@ const blog = new Schema({
   }]
 });
 // end-schema-example
-const Blog = model('Blog', blogSchema);
+const Blog = model('Blog', blog);
 export default Blog;

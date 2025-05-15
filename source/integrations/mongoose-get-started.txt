@@ -24,9 +24,9 @@ Overview
 Mongoose is an Object Data Modeling (ODM) library for MongoDB. You can use
 Mongoose to help with data modeling, schema enforcement, model validation, and
 general data manipulation. Because MongoDB has a flexible data model that allows
-you to easily alter and update databases in the future, there aren't rigid
-schemas. Mongoose enforces a semi-regid schema from the beginning. When you use
-Mongoose, you must define a schema and model.
+you to alter and update databases in the future, there aren't rigid schemas.
+Mongoose enforces a semi-regid schema from the beginning. When you use Mongoose,
+you must define a schema and model.
 
 In this tutorial, you will perform the following actions:
 
@@ -38,7 +38,7 @@ In this tutorial, you will perform the following actions:
 - Validate your data
 - Use multiple schemas and middleware
 
-You will also learn other useful methods to grow your experience using Mongoose with MongoDB.
+You will also learn additional methods to grow your experience using Mongoose with MongoDB.
 
 Schemas
 -------
@@ -117,7 +117,7 @@ and install the necessary dependencies:
    npm i -D nodemon
 
 Open your project in your preferred code editor. This tutorial uses ES Modules
-instead of CommonJS. You need to add the module type to use ES Modules. Go to
+instead of CommonJS. You must add the ``module`` type to use ES Modules. Go to
 the package.json file and add the following code:
 
 .. code-block:: json
@@ -361,8 +361,8 @@ Additional Methods
 
 Mongoose includes several helper methods that are abstracted from regular
 MongoDB methods. In this section, you can find examples of some of these
-methods. You don't need to add these methods to your ``index.js`` file to proceed
-with the tutorial, but they are helpful to reference.
+methods. These methods are not used specifically in this tutorial, but they are
+helpful to reference when getting started with Mongoose.
 
 exists()
 ~~~~~~~~
@@ -405,11 +405,11 @@ after your query, as shown in the following example:
 Validate Your Data
 ------------------
 
-If you refer to the schema, note that the articles inserted so far have not
-contained the ``author``, ``dates``, or ``comments`` fields even though these fields are
-included in the schema. This is because although you defined the structure of
-your document, you have not defined which fields are required. Without defining
-the required fields, you can omit any fields.
+The articles inserted so far have not contained the ``author``, ``dates``, or
+``comments`` fields, even though these fields are included in the schema. This is
+because although you defined the structure of your document, you have not
+defined which fields are required. Without defining the required fields, you can
+omit any fields.
 
 To add data validation and define these requirements, update the schema in
 ``Blog.js`` like the following:
@@ -429,7 +429,7 @@ its value.
     ``value: {type: String}``.
 
 You can use several validation methods with Mongoose. For example, you can set
-``required`` to true on any fields that you would like to require.
+``required`` to true on any fields that you want to require.
 
 You can also validate the type and the formatting. In the preceding code, the
 ``slug`` field is defined as a ``string`` that is always in ``lowercase``. This
@@ -448,7 +448,7 @@ Multiple Schemas
 ----------------
 
 Now that you have validation on your blog schema, and the author field is
-``required``, you need to update ``index.js`` to include the author. To do this,
+``required``, you must update ``index.js`` to include the author. To do this,
 you can create a separate schema.
 
 In the model folder, create a new file named ``User.js``. Add the following code to
@@ -458,8 +458,8 @@ this file:
    :language: javascript
    :dedent:
 
-To reference blog schema, update the ``Blog.js`` file to include the following
-code:
+To reference this new user model in the blog schema, update the ``Blog.js`` file
+to include the following code:
 
 .. code-block:: javascript
 
@@ -500,7 +500,7 @@ the following code to the top of the file to import the user model:
    :end-before: end-user-import
 
 Since you added field validation to the blog schema, the previous code to
-insert, update, and delete blogs, as well as to specify fields to project, won't
+insert, update, and delete blogs, and to specify fields to project, won't
 pass the validation and the application will error.
 
 Replace the existing code with the following code to create a new user, and then
@@ -532,7 +532,7 @@ following code:
         __v: 0
       }
 
-The preceding code adds a ``users`` collection along with the ``blogs`` collection in
+The preceding code adds a ``users`` collection with the ``blogs`` collection in
 the MongoDB database. This code adds the required ``author`` field and sets its
 value to the ``user._id``. 
 
