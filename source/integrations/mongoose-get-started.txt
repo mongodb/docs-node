@@ -354,10 +354,10 @@ To delete multiple articles, you can add the following code:
 
       Deleted Many Blogs: { acknowledged: true, deletedCount: 4 }
 
-.. _node-mongoose-get-started-additional-methods:
+.. _node-mongoose-get-started-helper-methods:
 
-Additional Methods
-------------------
+Helper Methods
+--------------
 
 Mongoose includes several helper methods that are abstracted from regular
 MongoDB methods. In this section, you can find examples of some of these
@@ -631,8 +631,8 @@ Resources and Next Steps
 
 You now have a sample project that uses Mongoose to perform CRUD operations on a
 MongoDB collection. From here, you can choose to build on this project to
-incorporate more :ref:`Mongoose methods
-<node-mongoose-get-started-additional-methods>` and build more complex queries.
+incorporate :ref:`Mongoose helper methods
+<node-mongoose-get-started-helper-methods>` and build more complex queries.
 
 To learn more about using Mongoose with MongoDB, see the `Mongoose documentation
 <https://mongoosejs.com/docs/guide.html>`__.
