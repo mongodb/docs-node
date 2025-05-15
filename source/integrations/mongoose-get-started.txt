@@ -116,7 +116,7 @@ and install the necessary dependencies:
 
 Open your project in your preferred code editor. This tutorial uses ES Modules
 instead of CommonJS. You must add the ``module`` type to use ES Modules. Go to
-the package.json file and add the following code:
+the ``package.json`` file and add the following code:
 
 .. code-block:: json
 
@@ -159,7 +159,7 @@ folder/file. Open this file and add the following code:
    :dedent:
 
 You now have your first model and schema set up, and you can start inserting
-data in the database.
+data into the database.
 
 Insert Data
 -----------
@@ -249,11 +249,11 @@ Find Data
 ---------
 
 To update a specific document, you can use the Mongoose ``findById()`` method to get
-a document by its ObjectId.
+a document by its ``ObjectId``.
 
 Add following code to your ``index.js`` file to find a specific article by its
-ObjectId, replacing the ``<object id>`` placeholder with the ObjectId for the
-document that you inserted previously:
+``ObjectId``, replacing the ``<object id>`` placeholder with the ``ObjectId``
+value for the document that you inserted previously:
 
 .. io-code-block::
    :copyable:
@@ -291,8 +291,8 @@ Like with the {+driver-short+}, you can use Mongoose to project only the fields 
 you need. The following code specifies to only project the ``title``, ``slug``, and
 ``content`` fields. 
 
-Add the following code to your ``index.js`` file, replacing the
-``<object id>`` placeholder with the ObjectId for the document that you inserted
+Add the following code to your ``index.js`` file, replacing the ``<object id>``
+placeholder with the ``ObjectId`` value for the document that you inserted
 previously:
 
 .. io-code-block::
@@ -354,6 +354,8 @@ To delete multiple articles, you can add the following code:
 
       Deleted Many Blogs: { acknowledged: true, deletedCount: 4 }
 
+.. _node-mongoose-get-started-additional-methods:
+
 Additional Methods
 ------------------
 
@@ -365,7 +367,7 @@ helpful to reference when getting started with Mongoose.
 exists()
 ~~~~~~~~
 
-The ``exists()`` method returns either null or the ObjectId of a document that
+The ``exists()`` method returns either null or the ``ObjectId`` of a document that
 matches the provided query. The following is an example of matching an article
 based on the ``author`` field:
 
@@ -384,9 +386,10 @@ operation using ``findOne()`` and the equivalent approach using the ``where()`` 
 .. code-block:: javascript
 
    const blogFind = await Blog.findOne({ author: "Jess Garcia" });
+   console.log(blogFind);
 
    const blogWhere = await Blog.where("author").equals("Jess Garcia");
-   console.log(blogWhere)
+   console.log(blogWhere);
 
 You can use either method to perform find operations. You can also chain
 multiple ``where()`` methods to build increasingly complex queries.
@@ -396,8 +399,8 @@ after your query, as shown in the following example:
 
 .. code-block:: javascript
 
-   const blog = await Blog.where("author").equals("Jess Garcia").select("title author")
-   console.log(blog)
+   const blog = await Blog.where("author").equals("Jess Garcia").select("title author");
+   console.log(blog);
 
 
 Validate Your Data
@@ -449,7 +452,7 @@ Now that you have validation on your blog schema, and the author field is
 ``required``, you must update ``index.js`` to include the author. To do this,
 you can create a separate schema.
 
-In the model folder, create a new file named ``User.js``. Add the following code to
+In the ``model`` folder, create a new file named ``User.js``. Add the following code to
 this file:
 
 .. literalinclude:: /includes/integrations/mongoose-userSchema.js
@@ -627,9 +630,9 @@ Resources and Next Steps
 ------------------------
 
 You now have a sample project that uses Mongoose to perform CRUD operations on a
-MongoDB collection. From here, you can choose to build on this project to include
-more complex queries, or you can use this project as a reference for your own
-applications.
+MongoDB collection. From here, you can choose to build on this project to
+incorporate more :ref:`Mongoose methods
+<node-mongoose-get-started-additional-methods>` and build more complex queries.
 
 To learn more about using Mongoose with MongoDB, see the `Mongoose documentation
 <https://mongoosejs.com/docs/guide.html>`__.
