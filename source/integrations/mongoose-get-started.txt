@@ -38,8 +38,6 @@ In this tutorial, you will perform the following actions:
 - Validate your data
 - Use multiple schemas and middleware
 
-You will also learn additional methods to grow your experience using Mongoose with MongoDB.
-
 Schemas
 -------
 
@@ -629,8 +627,9 @@ Resources and Next Steps
 ------------------------
 
 You now have a sample project that uses Mongoose to perform CRUD operations on a
-MongoDB collection. From here, you can choose to build on this project to use
-additional methods or try building more complex queries.
+MongoDB collection. From here, you can choose to build on this project to include
+more complex queries, or you can use this project as a reference for your own
+applications.
 
 To learn more about using Mongoose with MongoDB, see the `Mongoose documentation
 <https://mongoosejs.com/docs/guide.html>`__.
