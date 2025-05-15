@@ -15,7 +15,7 @@ Get Started with Mongoose
 .. contents:: On this page
    :local:
    :backlinks: none
-   :depth: 1
+   :depth: 2
    :class: singlecol
 
 Overview
@@ -39,7 +39,7 @@ In this tutorial, you will perform the following actions:
 - Use multiple schemas and middleware
 
 Schemas
--------
+~~~~~~~
 
 A schema defines the structure of your collection documents. A Mongoose schema
 maps directly to a MongoDB collection.
@@ -67,7 +67,7 @@ following types are permitted:
 - Map
 
 Models
-------
+~~~~~~
 
 Models take your schema and apply it to each document in its collection.  Models
 are responsible for all document interactions such as create, read, update, and
@@ -158,11 +158,15 @@ folder/file. Open this file and add the following code:
    :language: javascript
    :dedent:
 
+Perform CRUD Operations
+-----------------------
+
 You now have your first model and schema set up, and you can start inserting
-data into the database.
+data into the database. The following sections show you how to perform CRUD
+operations using Mongoose.
 
 Insert Data
------------
+~~~~~~~~~~~
 
 Go to ``index.js`` and add the following import statement to the top of your file:
 
@@ -216,7 +220,7 @@ To run the code, use the following command in your terminal:
    insert multiple articles into your database.
 
 Update Data
------------
+~~~~~~~~~~~
 
 To update data, you can directly edit the local object with Mongoose. Then, you
 can use the ``save()`` method to write the update to the database. Add the
@@ -246,7 +250,7 @@ following code to update the article you inserted in the previous section:
       }
 
 Find Data
----------
+~~~~~~~~~
 
 To update a specific document, you can use the Mongoose ``findById()`` method to get
 a document by its ``ObjectId``.
@@ -285,7 +289,7 @@ value for the document that you inserted previously:
    see the `Promises guide <https://mongoosejs.com/docs/promises.html>`__ in the Mongoose documentation.
    
 Specify Document Fields
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Like with the {+driver-short+}, you can use Mongoose to project only the fields that
 you need. The following code specifies to only project the ``title``, ``slug``, and
@@ -315,7 +319,7 @@ previously:
       }
 
 Delete Data
------------
+~~~~~~~~~~~
 
 Mongoose uses the ``deleteOne()`` and ``deleteMany()`` methods to delete data from a
 collection. You can specify the field of the document you want to delete and
@@ -621,7 +625,7 @@ update the title, and then save the updated article:
         updated: 2025-05-15T18:18:30.249Z
       }
 
-When this runs, the returned article includes an ``updated`` date.
+When you run the application, the returned article includes an ``updated`` date.
 
 Besides the ``pre()`` middleware function, Mongoose also offers a ``post()``
 middleware function.
