@@ -1,3 +1,6 @@
+.. meta::
+   :robots: noindex, nosnippet 
+
 =========================
 Access Data From a Cursor
 =========================
