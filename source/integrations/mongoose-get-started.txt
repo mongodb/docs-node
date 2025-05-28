@@ -167,9 +167,10 @@ Before you begin this tutorial, perform the following actions:
       .. procedure::
          :style: connected
 
-         .. step:: Insert Data
+      Insert Data
+      ~~~~~~~~~~~
 
-            Go to ``index.js`` and add the following import statement to the top of your file:
+      Go to ``index.js`` and add the following import statement to the top of your file:
 
 .. literalinclude:: /includes/integrations/mongoose-get-started-blogSchema.js
    :language: javascript
