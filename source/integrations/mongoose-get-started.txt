@@ -102,7 +102,7 @@ helpful to reference when getting started with Mongoose.
 exists()
 ````````
 
-The ``exists()`` method returns either null or the ``ObjectId`` of a document that
+The ``exists()`` method returns either ``null`` or the ``ObjectId`` of a document that
 matches the provided query. The following is an example of matching an article
 based on the ``author`` field:
 
@@ -111,12 +111,16 @@ based on the ``author`` field:
    const blog = await Blog.exists({ author: 'Jess Garcia' });
    console.log(blog);
 
+For more information, see the `Model.exists()
+<https://mongoosejs.com/docs/api/model.html#Model.exists()>`__ section of the
+Mongoose API documentation.
+
 where()
 ```````
 
-Mongoose has a unique style of querying data. The ``where()`` method allows you to
-chain and build queries. The following is an example of performing a find
-operation using ``findOne()`` and the equivalent approach using the ``where()`` method:
+The ``where()`` method allows you to chain and build queries. The following is
+an example of performing a find operation by using ``findOne()`` and the equivalent
+approach by using the ``where()`` method:
 
 .. code-block:: javascript
 
@@ -137,12 +141,16 @@ after your query, as shown in the following example:
    const blog = await Blog.where("author").equals("Jess Garcia").select("title author");
    console.log(blog);
 
+For more information, see the `Model.where()
+<https://mongoosejs.com/docs/api/model.html#Model.$where()>`__ section of the
+Mongoose API documentation.
+
 Prerequisites
 -------------
 
 Before you begin this tutorial, perform the following actions:
 
-- Set up a MongoDB Atlas account and configure a cluster that is M0 or higher.
+- Set up a MongoDB Atlas account and configure a cluster.
   To view instructions, see the :atlas:`Get Started with Atlas
   </getting-started>` guide.
 - Install `Node.js <https://nodejs.org/en/download>`__ {+min-node-version+} or later.
@@ -152,9 +160,9 @@ Before you begin this tutorial, perform the following actions:
 
    .. step:: Set up your environment.
 
-      This tutorial uses npm to install dependencies and nodemon to run the code
-      locally. Run the following commands in your terminal to initialize your
-      project and install the necessary dependencies:
+      This tutorial uses `nodemon <https://www.npmjs.com/package/nodemon>`__ to
+      run the code locally. Run the following commands in your terminal to
+      initialize your project and install the necessary dependencies: 
 
       .. code-block:: bash
 
@@ -199,8 +207,9 @@ Before you begin this tutorial, perform the following actions:
       schema and model.
 
       With Mongoose, you create a schema model file for each schema that is
-      needed. To do this, use the folder/file structure. Create the
-      ``model/Blog.js`` folder/file. Open this file and add the following code:
+      needed. First, create the a folder called ``model`` to put all your schema
+      files in, then create your first schema file called ``Blog.js``. Open this
+      file and add the following code:  
 
       .. literalinclude:: /includes/integrations/mongoose-blogSchema.js
          :language: javascript
@@ -274,7 +283,9 @@ Before you begin this tutorial, perform the following actions:
 
       To update data, you can directly edit the local object with Mongoose.
       Then, you can use the ``save()`` method to write the update to the
-      database. Add the following code to update the article you inserted in the
+      database. 
+      
+      Add the following code to update the article you inserted in the
       previous section: 
 
       .. io-code-block::
@@ -413,14 +424,14 @@ Before you begin this tutorial, perform the following actions:
 
    .. step:: Validate Your Data
 
-      The articles inserted so far have not contained the ``author``, ``dates``,
-      or ``comments`` fields, even though these fields are included in the
-      schema. This is because although you defined the structure of your
-      document, you have not defined which fields are required. Without defining
-      the required fields, you can omit any fields.
+      The articles inserted in the previous steps do not contain the ``author``,
+      ``dates``, or ``comments`` fields, even though these fields are included
+      in the schema. This is because although you defined the structure of your
+      document, you have not defined which fields are required. Any field that
+      is no defined as required can be omitted. 
 
       To add data validation and define these requirements, update the schema in
-      ``Blog.js`` like the following:
+      ``Blog.js`` as shown in the following example:
 
       .. literalinclude:: /includes/integrations/mongoose-blogSchema-validate.js
          :language: javascript
@@ -437,12 +448,11 @@ Before you begin this tutorial, perform the following actions:
          ``value: {type: String}``.
 
       You can use several validation methods with Mongoose. For example, you can
-      set ``required`` to true on any fields that you want to require. 
-
-      You can also validate the type and the formatting. In the preceding code,
-      the ``slug`` field is defined as a ``string`` that is always in
-      ``lowercase``. This validation takes the slug input and converts it to
-      lowercase before saving the document to the database. 
+      set ``required`` to true on any fields that you want to require. You can
+      also validate the type and the formatting. In the preceding code, the
+      ``slug`` field is defined as a ``string`` that is always in ``lowercase``.
+      This validation takes the slug input and converts it to lowercase before
+      saving the document to the database.  
 
       For the ``createdAt`` date field, you can set the default by using an
       arrow function. This field is also specified to be impossible to change
@@ -454,8 +464,8 @@ Before you begin this tutorial, perform the following actions:
 
    .. step:: Introduce Multiple Schemas
 
-      Now that you have validation on your blog schema, and the author field is
-      ``required``, you must update ``index.js`` to include the author. To do
+      Now that you have validation on your blog schema, and the ``author`` field is
+      ``required``, you must update ``index.js`` to include the ``author``. To do
       this, you can create a separate schema. 
 
       In the ``model`` folder, create a new file named ``User.js``. Add the
@@ -508,7 +518,7 @@ Before you begin this tutorial, perform the following actions:
          :start-after: start-user-import
          :end-before: end-user-import
 
-      Since you added field validation to the blog schema, the previous code to
+      Because you added field validation to the blog schema, the previous code to
       insert, update, and delete blogs, and to specify fields to project, won't
       pass the validation and the application will error.
 
@@ -579,13 +589,13 @@ Before you begin this tutorial, perform the following actions:
                __v: 0
             }
 
-      This populates the data for the ``author`` field in the data for this
-      article. Mongoose uses the MongoDB ``$lookup`` method to do this under the
-      hood. 
+      This populates the data for the ``author`` field with the data for this
+      article. Mongoose uses the MongoDB ``$lookup`` method to populate the data
+      automatically. 
 
    .. step:: Add Middleware
 
-      In Mongoose, middleware are functions that run before, and, or during the
+      In Mongoose, middleware are functions that run before, or during, the
       execution of asynchronous functions at the schema level. 
       
       To use middleware in this project, go to the ``Blog.js`` file. Here you
@@ -635,13 +645,19 @@ Before you begin this tutorial, perform the following actions:
       Besides the ``pre()`` middleware function, Mongoose also offers a
       ``post()`` middleware function.
 
-Resources and Next Steps
-------------------------
+Next Steps
+----------
 
 You now have a sample project that uses Mongoose to perform CRUD operations on a
 MongoDB collection. From here, you can choose to build on this project to
 incorporate :ref:`Mongoose helper methods
 <node-mongoose-get-started-helper-methods>` and build more complex queries.
 
+Additional Resources
+--------------------
+
 To learn more about using Mongoose with MongoDB, see the `Mongoose documentation
 <https://mongoosejs.com/docs/guide.html>`__.
+
+To find support or to contribute to the MongoDB community, see the `MongoDB
+Developer Community <https://www.mongodb.com/community/>`__ page. 
