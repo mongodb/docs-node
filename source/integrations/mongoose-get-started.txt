@@ -28,16 +28,6 @@ you to alter and update databases in the future, there aren't rigid schemas.
 However, Mongoose enforces a semi-rigid schema from the beginning, so
 you must define a schema and model.
 
-In this tutorial, you will perform the following actions:
-
-- Set up your environment to use Mongoose
-- Connect to MongoDB
-- Create a Mongoose schema and model
-- Insert, update, find, and delete data
-- Project document fields
-- Validate your data
-- Use multiple schemas and middleware
-
 Schemas
 ~~~~~~~
 
@@ -145,8 +135,21 @@ For more information, see the `Model.where()
 <https://mongoosejs.com/docs/api/model.html#Model.$where()>`__ section of the
 Mongoose API documentation.
 
+Tutorial
+--------
+
+In this tutorial, you will perform the following actions:
+
+- Set up your environment to use Mongoose
+- Connect to MongoDB
+- Create a Mongoose schema and model
+- Insert, update, find, and delete data
+- Project document fields
+- Validate your data
+- Use multiple schemas and middleware
+
 Prerequisites
--------------
+~~~~~~~~~~~~~
 
 Before you begin this tutorial, perform the following actions:
 
@@ -185,7 +188,7 @@ Before you begin this tutorial, perform the following actions:
          "type": "module",
          ...
 
-   .. step:: Connect to MongoDB
+   .. step:: Connect to MongoDB.
 
       In the root level of your project, create a file named ``index.js`` and
       add the following code to the top of the file:
@@ -201,7 +204,7 @@ Before you begin this tutorial, perform the following actions:
       string, see the :atlas:`Connect to Your Cluster
       </tutorial/connect-to-your-cluster>` tutorial in the Atlas documentation. 
 
-   .. step:: Create a Schema and Model
+   .. step:: Create a schema and a model.
 
       Before you start adding and updating data in MongoDB, you must create a
       schema and model.
@@ -215,7 +218,7 @@ Before you begin this tutorial, perform the following actions:
          :language: javascript
          :dedent:
 
-   .. step:: Perform CRUD Operations
+   .. step:: Perform CRUD operations.
 
       You now have your first model and schema set up, and you can start
       inserting data into the database. The following sections show you how to
@@ -422,7 +425,7 @@ Before you begin this tutorial, perform the following actions:
 
             Deleted Many Blogs: { acknowledged: true, deletedCount: 4 }
 
-   .. step:: Validate Your Data
+   .. step:: Validate your data.
 
       The articles inserted in the previous steps do not contain the ``author``,
       ``dates``, or ``comments`` fields, even though these fields are included
@@ -462,7 +465,7 @@ Before you begin this tutorial, perform the following actions:
 
          Validators only run on the ``create()`` and ``save()`` methods.
 
-   .. step:: Introduce Multiple Schemas
+   .. step:: Introduce multiple schemas.
 
       Now that you have validation on your blog schema, and the ``author`` field is
       ``required``, you must update ``index.js`` to include the ``author``. To do
@@ -593,7 +596,7 @@ Before you begin this tutorial, perform the following actions:
       article. Mongoose uses the MongoDB ``$lookup`` method to populate the data
       automatically. 
 
-   .. step:: Add Middleware
+   .. step:: Add middleware.
 
       In Mongoose, middleware are functions that run before, or during, the
       execution of asynchronous functions at the schema level. 
