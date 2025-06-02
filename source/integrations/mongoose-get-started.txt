@@ -91,7 +91,7 @@ methods. These methods are not used specifically in this tutorial, but they are
 helpful to reference when getting started with Mongoose.
 
 exists()
-````````
+~~~~~~``
 
 The ``exists()`` method returns either ``null`` or the ``ObjectId`` of a document that
 matches the provided query. The following is an example of matching an article
@@ -107,7 +107,7 @@ For more information, see the `Model.exists()
 Mongoose API documentation.
 
 where()
-```````
+~~~~~~`
 
 The ``where()`` method allows you to chain and build queries. The following is
 an example of performing a find operation by using ``findOne()`` and the equivalent
@@ -149,18 +149,17 @@ In this tutorial, you will perform the following actions:
 - Validate your data
 - Use multiple schemas and middleware
 
-Prerequisites
-~~~~~~~~~~~~~
-
-Before you begin this tutorial, perform the following actions:
-
-- Set up a MongoDB Atlas account and configure a cluster.
-  To view instructions, see the :atlas:`Get Started with Atlas
-  </getting-started>` guide.
-- Install `Node.js <https://nodejs.org/en/download>`__ {+min-node-version+} or later.
-
 .. procedure::
    :style: connected
+
+   .. step:: Prerequisites
+
+      Before you begin this tutorial, perform the following actions:
+
+      - Set up a MongoDB Atlas account and configure a cluster. To view
+        instructions, see the :atlas:`Get Started with Atlas </getting-started>`
+        guide.
+      - Install `Node.js <https://nodejs.org/en/download>`__ {+min-node-version+} or later.
 
    .. step:: Set up your environment.
 
@@ -226,7 +225,7 @@ Before you begin this tutorial, perform the following actions:
       perform CRUD operations using Mongoose.
 
       Insert Data
-      ````````````
+      ~~~~~~~~~~~
 
       Go to ``index.js`` and add the following import statement to the top of your file:
 
@@ -280,7 +279,7 @@ Before you begin this tutorial, perform the following actions:
          insert multiple articles into your database.
 
       Update Data
-      ````````````
+      ~~~~~~~~~~~~
 
       To update data, you can directly edit the local object with Mongoose.
       Then, you can use the ``save()`` method to write the update to the
@@ -313,7 +312,7 @@ Before you begin this tutorial, perform the following actions:
             }
 
       Find Data
-      ``````````
+      ~~~~~~~~~~
 
       To find a specific document, you can use the Mongoose ``findById()``
       method to get a document by its ``ObjectId``.
@@ -354,7 +353,7 @@ Before you begin this tutorial, perform the following actions:
          documentation. 
    
       Specify Document Fields
-      ```````````````````````
+      ~~~~~~~~~~~~~~~~~~~~~~~
 
       You can use Mongoose to project only the
       fields that you need. The following code specifies to only project the
@@ -384,7 +383,7 @@ Before you begin this tutorial, perform the following actions:
             }
 
       Delete Data
-      ```````````
+      ~~~~~~~~~~~
 
       Mongoose uses the ``deleteOne()`` and ``deleteMany()`` methods to delete
       data from a collection. You can specify the field of the document you want
