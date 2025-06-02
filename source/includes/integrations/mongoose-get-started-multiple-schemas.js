@@ -34,9 +34,20 @@ console.log('Article Populated:', articlePopulate);
 // end-populate-author
 
 // start-middleware-update
-// Middleware to update the updated field before saving
-const articleUpdated = await Blog.findById("68262cac638b7ec7ed0a086b").exec();
-articleUpdated.title = "Updated Title";
-await articleUpdated.save();
-console.log('Article Updated:', articleUpdated);
+// Uses middleware to update the updated field before saving and updating
+
+// Create a new article
+const articleMiddlewareUpdate = await Blog.create({
+  title: 'Another Awesome Post!',
+  slug: 'Another-Awesome-Post',
+  author: user._id,
+  content: 'Here is another awesome post',
+});
+console.log('Original Article: ', articleMiddlewareUpdate);
+// Wait
+await new Promise(resolve => setTimeout(resolve, 1000));
+// Update the article
+articleMiddlewareUpdate.content = "Check my updated field"
+await articleMiddlewareUpdate.save();
+console.log('Auto-updated Article:', articleMiddlewareUpdate);
 // end-middleware-update

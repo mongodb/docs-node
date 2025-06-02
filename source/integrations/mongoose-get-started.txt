@@ -152,14 +152,14 @@ In this tutorial, you will perform the following actions:
 .. procedure::
    :style: connected
 
-   .. step:: Prerequisites
+   .. step:: Verify the prerequisites.
 
-      Before you begin this tutorial, perform the following actions:
+      Before you begin this tutorial, ensure you have the following components prepared:
 
-      - Set up a MongoDB Atlas account and configure a cluster. To view
+      - An MongoDB Atlas account with a configured cluster. To view
         instructions, see the :atlas:`Get Started with Atlas </getting-started>`
         guide.
-      - Install `Node.js <https://nodejs.org/en/download>`__ {+min-node-version+} or later.
+      - `Node.js <https://nodejs.org/en/download>`__ {+min-node-version+} or later.
 
    .. step:: Set up your environment.
 
@@ -626,11 +626,11 @@ In this tutorial, you will perform the following actions:
       In Mongoose, middleware are functions that run before, or during, the
       execution of asynchronous functions at the schema level. 
       
-      To use middleware in this project, go to the ``Blog.js`` file. Here you
-      can set the ``updated`` date field to update every time an article is
-      saved or updated by using middleware.
-
-      Add the following code to a line below your ``blogSchema`` declaration:
+      One example of middleware is a function that automatically updates the
+      ``updated`` field of a ``Blog`` instance before saving or updating.
+      
+      To add this middleware function, add the following code to the
+      ``blogSchema`` declaration in your ``Blog.js`` file:
 
       .. literalinclude:: /includes/integrations/mongoose-blogSchema-validate.js
          :language: javascript
@@ -638,8 +638,9 @@ In this tutorial, you will perform the following actions:
          :end-before: end-blogSchema-middleware
          :dedent:
 
-      Go to the ``index.js`` file and then add the following code to find an
-      article, update the title, and then save the updated article:
+      To see the effect of this function, add the following code to your
+      ``index.js`` file to find an article, update the title, and then save the
+      updated article: 
 
       .. io-code-block::
          :copyable:
@@ -653,25 +654,41 @@ In this tutorial, you will perform the following actions:
             :language: console
             :visible: false
 
-            Article Updated: {
-               _id: new ObjectId('...'),
-               title: 'Updated Title',
-               slug: 'awesome-post',
+            Original Article:  {
+               title: 'Another Awesome Post!',
+               slug: 'another-awesome-post',
                published: false,
-               author: new ObjectId('...'),
-               content: 'This is the best post ever',
-               tags: [ 'featured', 'announcement' ],
-               createdAt: 2025-05-15T18:04:28.590Z,
+               author: new ObjectId('683df165ce6200f8fafc9c95'),
+               content: 'Here is another awesome post',
+               tags: [],
+               _id: new ObjectId('683df167ce6200f8fafc9ca1'),
+               createdAt: 2025-06-02T18:45:59.892Z,
                comments: [],
-               __v: 0,
-               updated: 2025-05-15T18:18:30.249Z
-            }
+               updated: 2025-06-02T18:45:59.894Z,
+               __v: 0
+             }
+             Auto-updated Article: {
+               title: 'Another Awesome Post!',
+               slug: 'another-awesome-post',
+               published: false,
+               author: new ObjectId('683df165ce6200f8fafc9c95'),
+               content: 'Check my updated field',
+               tags: [],
+               _id: new ObjectId('683df167ce6200f8fafc9ca1'),
+               createdAt: 2025-06-02T18:45:59.892Z,
+               comments: [],
+               updated: 2025-06-02T18:46:01.034Z,
+               __v: 0
+             }
 
-      When you run the application, the returned article includes an ``updated``
-      date. 
+      When you run the application, you can see that the original article has an
+      ``updated`` value, though one was not specified. You can also see that the
+      ``updated`` value increase when the article is modified. 
       
       Besides the ``pre()`` middleware function, Mongoose also offers a
-      ``post()`` middleware function.
+      ``post()`` middleware function. For more information about middleware, see
+      the `Middleware <https://mongoosejs.com/docs/middleware.html>`__ page in
+      the Mongoose documentation.
 
 Next Steps
 ----------
