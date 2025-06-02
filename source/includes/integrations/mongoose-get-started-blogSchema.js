@@ -49,3 +49,15 @@ console.log('Deleted One Blog:', blogOne);
 const blogMany = await Blog.deleteMany({ slug: "awesome-post" });
 console.log('Deleted Many Blogs:', blogMany);
 // end-delete-many
+
+// start-validated-insert
+// Creates a new blog post and inserts it into database
+const article = await Blog.create({
+  title: 'Awesome Post!',
+  slug: 'awesome-post',
+  published: true,
+  author: 'A.B. Cee',
+  content: 'This is the best post ever',
+  tags: ['featured', 'announcement'],
+});
+// end-validated-insert

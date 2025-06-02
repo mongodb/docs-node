@@ -1,8 +1,9 @@
 .. _node-mongoose-get-started:
+.. original URL: https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/
 
-=========================
-Get Started with Mongoose
-=========================
+===================================
+Tutorial: Get Started with Mongoose
+===================================
 
 .. facet::
    :name: genre
@@ -210,7 +211,7 @@ Before you begin this tutorial, perform the following actions:
       schema and model.
 
       With Mongoose, you create a schema model file for each schema that is
-      needed. First, create the a folder called ``model`` to put all your schema
+      needed. First, create a folder called ``model`` to put all your schema
       files in, then create your first schema file called ``Blog.js``. Open this
       file and add the following code:  
 
@@ -224,11 +225,8 @@ Before you begin this tutorial, perform the following actions:
       inserting data into the database. The following sections show you how to
       perform CRUD operations using Mongoose.
 
-      .. procedure::
-         :style: connected
-
       Insert Data
-      ~~~~~~~~~~~
+      ````````````
 
       Go to ``index.js`` and add the following import statement to the top of your file:
 
@@ -282,7 +280,7 @@ Before you begin this tutorial, perform the following actions:
          insert multiple articles into your database.
 
       Update Data
-      ~~~~~~~~~~~
+      ````````````
 
       To update data, you can directly edit the local object with Mongoose.
       Then, you can use the ``save()`` method to write the update to the
@@ -315,9 +313,9 @@ Before you begin this tutorial, perform the following actions:
             }
 
       Find Data
-      ~~~~~~~~~
+      ``````````
 
-      To update a specific document, you can use the Mongoose ``findById()``
+      To find a specific document, you can use the Mongoose ``findById()``
       method to get a document by its ``ObjectId``.
 
       Add following code to your ``index.js`` file to find a specific article by
@@ -356,9 +354,9 @@ Before you begin this tutorial, perform the following actions:
          documentation. 
    
       Specify Document Fields
-      ~~~~~~~~~~~~~~~~~~~~~~~
+      ```````````````````````
 
-      Like with the {+driver-short+}, you can use Mongoose to project only the
+      You can use Mongoose to project only the
       fields that you need. The following code specifies to only project the
       ``title``, ``slug``, and ``content`` fields. 
 
@@ -386,7 +384,7 @@ Before you begin this tutorial, perform the following actions:
             }
 
       Delete Data
-      ~~~~~~~~~~~
+      ```````````
 
       Mongoose uses the ``deleteOne()`` and ``deleteMany()`` methods to delete
       data from a collection. You can specify the field of the document you want
@@ -433,22 +431,12 @@ Before you begin this tutorial, perform the following actions:
       document, you have not defined which fields are required. Any field that
       is no defined as required can be omitted. 
 
-      To add data validation and define these requirements, update the schema in
-      ``Blog.js`` as shown in the following example:
-
-      .. literalinclude:: /includes/integrations/mongoose-blogSchema-validate.js
-         :language: javascript
-         :start-after: start-blogSchema
-         :end-before: end-blogSchema
-         :dedent:
-
       In Mongoose, when you include validation on a field, you must pass an
       object as its value.  
 
-      ..  tip::
+      .. note::
 
-         When you use schemas with Mongoose, ``value: String`` is the same as
-         ``value: {type: String}``.
+         Validators only run on the ``create()`` and ``save()`` methods.
 
       You can use several validation methods with Mongoose. For example, you can
       set ``required`` to true on any fields that you want to require. You can
@@ -461,15 +449,35 @@ Before you begin this tutorial, perform the following actions:
       arrow function. This field is also specified to be impossible to change
       later by setting ``immutable`` to ``true``. 
 
-      .. note::
+      To add data validation and define these requirements, update the schema in
+      ``Blog.js`` as shown in the following example:
 
-         Validators only run on the ``create()`` and ``save()`` methods.
+      .. literalinclude:: /includes/integrations/mongoose-blogSchema-validate.js
+         :language: javascript
+         :start-after: start-blogSchema
+         :end-before: end-blogSchema
+         :dedent:
+      
+      After adding this validation, your application will crash. Add an
+      ``author`` field to the ``create()`` call in your ``index.js`` file to
+      meet the new validation requirement:
+
+      .. literalinclude:: /includes/integrations/mongoose-get-started-blogSchema.js
+         :start-after: start-validated-insert
+         :end-before: end-validated-insert
+         :language: javascript
+         :emphasize-lines: 5
+         :dedent:
+
+      ..  tip::
+
+         When you use schemas with Mongoose, ``value: String`` is the same as
+         ``value: {type: String}``.
 
    .. step:: Introduce multiple schemas.
 
-      Now that you have validation on your blog schema, and the ``author`` field is
-      ``required``, you must update ``index.js`` to include the ``author``. To do
-      this, you can create a separate schema. 
+      Next, you can add more complexity to your ``author`` field by creating a
+      another schema, and nesting it in the blog schema.
 
       In the ``model`` folder, create a new file named ``User.js``. Add the
       following code to this file: 
@@ -478,8 +486,15 @@ Before you begin this tutorial, perform the following actions:
          :language: javascript
          :dedent:
 
-      To reference this new user model in the blog schema, update the
-      ``Blog.js`` file to include the following code: 
+      To use your new User model to define the ``author`` field in the blog
+      schema, update the ``Blog.js`` file with the following changes:
+
+      - Add ``SchemaTypes`` to the list of constructors extracted from the
+        Mongoose library.
+      - Change the ``author`` field ``type`` to ``SchemaTypes.ObjectId`` and add
+        a reference (``ref``) to the ``'User'`` model.
+
+      The following code shows these updates:
 
       .. code-block:: javascript
 
@@ -487,30 +502,34 @@ Before you begin this tutorial, perform the following actions:
          const { Schema, SchemaTypes, model } = mongoose;
 
          const blogSchema = new Schema({
-         ...
-         author: {
-            type: SchemaTypes.ObjectId,
-            ref: 'User',
-            required: true,
-         },
-         ...,
-         comments: [{
-            user: {
+            ...
+            author: {
                type: SchemaTypes.ObjectId,
                ref: 'User',
                required: true,
             },
-            content: String,
-            votes: Number
-           }];
+            ...,
          });
          ...
 
+      You can also reuse the name User model for the ``comment.user`` field by
+      changing the ``blogSchema`` definition:
 
-      The preceding code sets the ``author`` and ``comments.user`` to
-      ``SchemaTypes.ObjectId`` and adds a ``ref``, or reference, to the user
-      model. Be sure to destructure ``SchemaTypes`` from Mongoose at the top of
-      the file below the import statement. 
+      .. code-block:: javascript
+
+         const blogSchema = new Schema({
+            ...,
+            comments: [{
+               user: {
+                  type: SchemaTypes.ObjectId,
+                  ref: 'User',
+                  required: true,
+               },
+               content: String,
+               votes: Number
+            }];
+         });
+         ...
 
       To use the new user model in your application, go to the ``index.js``
       file. Add the following code to the top of the file to import the user
@@ -525,8 +544,15 @@ Before you begin this tutorial, perform the following actions:
       insert, update, and delete blogs, and to specify fields to project, won't
       pass the validation and the application will error.
 
-      Replace the existing code with the following code to create a new user,
-      and then create a new article that uses this user as the author, as shown
+      Create a new user by adding the following ``create()`` call:
+
+      .. literalinclude:: /includes/integrations/mongoose-get-started-multiple-schemas.js
+         :language: javascript
+         :start-after: start-create-user
+         :end-before: end-create-user
+
+      Update the existing ``create()`` call with the following code to create a
+      new article that uses the new user as the author, as shown
       in the following code: 
 
       .. io-code-block::

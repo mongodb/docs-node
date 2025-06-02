@@ -6,13 +6,15 @@ import User from './model/User.js';
 
 mongoose.connect("<connection string>");
 
-// start-article-with-author
+// start-create-user
 // Create a new user
 const user = await User.create({
   name: 'Jess Garica',
   email: 'jgarcia@email.com',
 });
+// end-create-user
 
+// start-article-with-author
 // Creates a new blog post that references the user as the author
 const articleAuthor = await Blog.create({
   title: 'Awesome Post!',
