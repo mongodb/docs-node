@@ -52,7 +52,7 @@ The {+driver-short+} v6.17 release includes the following features:
 - Upgrades the ``bson`` package to v6.10.4. For more information about this release,
   see the :github:`v6.10.4 Release Notes <mongodb/js-bson/releases/tag/v6.10.4>` for the
   ``bson`` package on GitHub.
-  
+
 - Adds the ``keepAliveInitialDelay`` option when constructing a ``MongoClient``.
   This option defaults to ``120000`` milliseconds.
 
@@ -65,9 +65,9 @@ The {+driver-short+} v6.17 release includes the following features:
 - Instructs the ``MongoClient.close()`` method to close outstanding in-use
   connections.
 
-- Adds support for configuring the DEK cache expiration time by providing a
-  ``keyTimeoutMS`` encryption option. This option defaults to ``6000`` milliseconds
-  and requires ``mongodb-client-encryption`` version 6.4 or later.
+- Adds a ``keyTimeoutMS`` encryption option for configuring DEK cache expiration time.
+  This option defaults to ``6000`` milliseconds and requires ``mongodb-client-encryption``
+  version 6.4 or later.
 
 - Instructs update operations to generate an error if the ``ignoreUndefined`` is set
   to ``true`` and all updates are undefined.
