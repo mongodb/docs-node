@@ -56,7 +56,7 @@ The {+driver-short+} v6.17 release includes the following features:
 - Adds the ``keepAliveInitialDelay`` option when constructing a ``MongoClient``.
   This option defaults to ``120000`` milliseconds.
 
-- Retries OIDC authentication when the initial authentication fails due an
+- Retries OIDC authentication when the initial authentication fails due to an
   expired token error.
   
 - Adds the ``sort`` option for ``updateOne()`` and ``replaceOne()`` operations.
