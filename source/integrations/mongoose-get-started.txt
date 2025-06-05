@@ -91,7 +91,7 @@ methods. These methods are not used specifically in this tutorial, but they are
 helpful to reference when getting started with Mongoose.
 
 exists()
-~~~~~~``
+~~~~~~~~
 
 The ``exists()`` method returns either ``null`` or the ``ObjectId`` of a document that
 matches the provided query. The following is an example of matching an article
@@ -107,7 +107,7 @@ For more information, see the `Model.exists()
 Mongoose API documentation.
 
 where()
-~~~~~~`
+~~~~~~~
 
 The ``where()`` method allows you to chain and build queries. The following is
 an example of performing a find operation by using ``findOne()`` and the equivalent
@@ -511,7 +511,7 @@ In this tutorial, you will perform the following actions:
          });
          ...
 
-      You can also reuse the name User model for the ``comment.user`` field by
+      You can reuse the same ``User`` model for the ``comment.user`` field by
       changing the ``blogSchema`` definition:
 
       .. code-block:: javascript
