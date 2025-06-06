@@ -12,7 +12,7 @@
 }
 
 {
-// start-custom-credentials-function
+    // start-custom-credentials-function
     const { MongoClient } = require('mongodb');
 
     const client = new MongoClient('<cluster_url>?authMechanism=MONGODB-AWS', {
