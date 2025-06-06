@@ -153,7 +153,7 @@ The driver checks for your credentials in the following sources in order:
       .. literalinclude:: /code-snippets/authentication/aws-env-variable.js
          :language: javascript
 
-Retrieving AWS Credentials
+Specifying AWS Credentials
 --------------------------
 
 When you install the optional ``aws-sdk/credential-providers`` dependency, the driver
@@ -169,7 +169,7 @@ from the AWS SDK to the AWS authentication mechanism:
    :start-after: // start-custom-credentials
    :end-before: // end-custom-credentials   
 
-TO use a custom provider, you can pass any async function that returns your credentials
+To use a custom provider, you can pass any asynchronous function that returns your credentials
 to the ``AWS_CREDENTIAL_PROVIDER`` property. The following example shows how to pass
 a custom provider function that fetches credentials from environment variables to the
 AWS authentication mechanism:
