@@ -160,8 +160,8 @@ When you install the optional ``aws-sdk/credential-providers`` dependency, the d
 uses the AWS SDK to retrieve credentials from the environment. If you have a shared AWS
 credentials file or config file, the driver uses those credentials by default.
 
-To manually specify the AWS credentials to retrieve, you can use the ``AWS_CREDENTIAL_PROVIDER``
-property to specify the credential provider. The following example passes a provider chain
+To manually specify the AWS credentials to retrieve, you can set the ``AWS_CREDENTIAL_PROVIDER``
+property to the credential provider. The following example passes a provider chain
 from the AWS SDK to the AWS authentication mechanism:
 
 .. literalinclude:: /code-snippets/authentication/aws-custom-credentials.js
