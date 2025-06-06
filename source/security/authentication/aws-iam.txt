@@ -167,7 +167,8 @@ from the AWS SDK to the AWS authentication mechanism:
 .. literalinclude:: /code-snippets/authentication/aws-custom-credentials.js
    :language: javascript
    :start-after: // start-custom-credentials
-   :end-before: // end-custom-credentials   
+   :end-before: // end-custom-credentials
+   :dedent:
 
 To use a custom provider, you can pass any asynchronous function that returns your credentials
 to the ``AWS_CREDENTIAL_PROVIDER`` property. The following example shows how to pass
@@ -178,6 +179,7 @@ AWS authentication mechanism:
    :language: javascript
    :start-after: // start-custom-credentials-function
    :end-before: // end-custom-credentials-function
+   :dedent:
 
 API Documentation
 -----------------
