@@ -27,9 +27,12 @@ In this guide, you can learn how to use the MongoDB Node.js Driver to perform
 **aggregation operations**.
 
 Aggregation operations process data in your MongoDB collections and return
-reduced and summarized results. The MongoDB Aggregation framework is modeled on the 
+computed results. The MongoDB Aggregation framework is modeled on the 
 concept of data processing pipelines. Documents enter a pipeline comprised of one or
 more stages, and this pipeline transforms the documents into an aggregated result.
+
+To learn more about the aggregation stages supported by the Node.js Driver, see :ref:`Aggregation Stages <>`.
+.. todo-- add link here
 
 Analogy
 ~~~~~~~
@@ -89,43 +92,40 @@ Consider the following :manual:`limitations </core/aggregation-pipeline-limits/>
   property of the ``AggregateOptions`` object that you pass to the
   ``Aggregate()`` method. 
 
-- The :manual:`$graphLookup </reference/operator/aggregation/graphLookup/>`
-  stage has a strict memory limit of 100 megabytes and will ignore the
-  ``AllowDiskUse`` property.
-
+.. 
 Aggregation Example
 -------------------
-
+..
 To perform an aggregation, pass a list of aggregation stages to the
 ``collection.aggregate()`` method.
-
+..
 .. note::
-  
+ .. 
    This example uses the ``sample_restaurants.restaurants`` collection
    from the :atlas:`Atlas sample datasets </sample-data>`. To learn how to create a
    free MongoDB Atlas cluster and load the sample datasets, see the :ref:`Get Started <node-get-started>` guide.
-
+..
 The following code example produces a count of the number of bakeries in each borough
 of New York City. To do so, the aggregation pipeline uses the following aggregation stages:
-
+..
 - A :manual:`$match </reference/operator/aggregation/match/>` stage to filter
   for documents whose ``cuisine`` field contains the element ``Bakery``.
-
+..
 - A :manual:`$group </reference/operator/aggregation/group/>` stage to group the
   matching documents by the ``borough`` field, accumulating a count of documents
   for each distinct value in the ``borough`` field.
-
+..
 .. literalinclude:: /code-snippets/aggregation/agg.js
    :start-after: begin aggregation
    :end-before: end aggregation
    :language: javascript
    :dedent:
-
+..
 This example produces the following output:
-
+..
 .. code-block:: json
    :copyable: false
-
+..
    { _id = 'Bronx', count = 71 }
    { _id = 'Brooklyn', count = 173 }
    { _id = 'Staten Island', count = 20 }
@@ -136,15 +136,13 @@ This example produces the following output:
 Additional information
 ----------------------
 
-MongoDB Server Manual
-~~~~~~~~~~~~~~~~~~~~~
-
 To view a full list of expression operators, see 
 :manual:`Aggregation Operators </reference/operator/aggregation/>`.
 
+.. 
 To learn more about assembling an aggregation pipeline and view examples, see
 :manual:`Aggregation Pipeline </core/aggregation-pipeline/>`.
-
+.. 
 To learn more about creating pipeline stages and view examples, see 
 :manual:`Aggregation Stages </reference/operator/aggregation-pipeline/>`.
 
@@ -152,12 +150,13 @@ To learn about explaining MongoDB aggregation operations, see
 :manual:`Explain Results </reference/explain-results/>` and
 :manual:`Query Plans </core/query-plans/>`.
 
+.. 
 API Documentation
 ~~~~~~~~~~~~~~~~~
-
+.. 
 For more information about the aggregation operations discussed in this guide, see the
 following API documentation:
-
+.. 
 - `Collection() <https://mongodb.github.io/node-mongodb-native/6.17/classes/Collection.html>`__
 - `aggregate() <https://mongodb.github.io/node-mongodb-native/6.17/classes/Collection.html#aggregate>`__
 - `AggregateOptions <https://mongodb.github.io/node-mongodb-native/6.17/interfaces/AggregateOptions.html>`__
