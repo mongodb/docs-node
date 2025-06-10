@@ -165,11 +165,6 @@ API Documentation
 For more information about the aggregation operations discussed in this guide, see the
 following API documentation:
 
-- `Aggregate() <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.IMongoCollection-1.Aggregate.html>`__
-- `AggregateOptions <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.AggregateOptions.html>`__
-- `Group()
-  <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.PipelineStageDefinitionBuilder.Group.html>`__
-- `Match() <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.PipelineStageDefinitionBuilder.Match.html>`__
-- `Where() <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.Linq.MongoQueryable.Where.html>`__
-- `GroupBy() <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.Linq.MongoQueryable.GroupBy.html>`__
-- `Select() <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.Linq.MongoQueryable.Select.html>`__
+- `Collection() <https://mongodb.github.io/node-mongodb-native/api-generated/collection.html?highlight=match#:~:text=(index)%20%C2%BB-,Collection,-()%C2%B6>`__
+- `aggregate() <https://mongodb.github.io/node-mongodb-native/api-generated/collection.html?highlight=aggregate#aggregate:~:text=%7D)%0A%20%20%7D)%3B%0A%7D)%3B-,aggregate,-%C2%B6>`__
+.. try to find $match and $group api links ..
