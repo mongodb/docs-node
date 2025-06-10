@@ -133,12 +133,12 @@ This example produces the following output:
 .. code-block:: json
    :copyable: false
 
-   { _id = Bronx, Count = 71 }
-   { _id = Brooklyn, Count = 173 }
-   { _id = Staten Island, Count = 20 }
-   { _id = Missing, Count = 2 }
-   { _id = Manhattan, Count = 221 }
-   { _id = Queens, Count = 204 }
+   { _id = 'Bronx', count = 71 }
+   { _id = 'Brooklyn', count = 173 }
+   { _id = 'Staten Island', count = 20 }
+   { _id = 'Missing', count = 2 }
+   { _id = 'Manhattan', count = 221 }
+   { _id = 'Queens', count = 204 }
 
 Additional information
 ----------------------
