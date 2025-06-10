@@ -97,7 +97,7 @@ Consider the following :manual:`limitations </core/aggregation-pipeline-limits/>
   property of the ``AggregateOptions`` object that you pass to the
   ``Aggregate()`` method. 
 
-- The :manual:`$graphLookup </reference/operator/aggregation/graphLookup/>` stage has a strict memory
+- The :ref:`$graphLookup </reference/operator/aggregation/graphLookup/>` stage has a strict memory
    limit of 100 megabytes and will ignore the ``AllowDiskUse`` property.
 
 Aggregation Example
