@@ -18,14 +18,6 @@ Aggregation
    :depth: 2
    :class: singlecol
 
-.. toctree::
-
-   Filtered Subset </aggregation/filtered-subset/>
-   Group & Total </aggregation/group-total/>
-   Unpack Arrays & Group </aggregation/unpack-arrays/>
-   One-to-One Join </aggregation/one-to-one-join/>
-   Multi-Field Join </aggregation/multi-field-join/>
-
 .. _nodejs-aggregation-overview:
 
 Overview
@@ -93,7 +85,7 @@ Consider the following :manual:`limitations </core/aggregation-pipeline-limits/>
 
 - Pipeline stages have a memory limit of 100 megabytes by default. If required,
   you can exceed this limit by enabling the `AllowDiskUse
-  <{+new-api-root+}/MongoDB.Driver/MongoDB.Driver.AggregateOptions.AllowDiskUse.html#MongoDB_Driver_AggregateOptions_AllowDiskUse>`__
+  <https://mongodb.github.io/node-mongodb-native/6.17/interfaces/AggregateOptions.html#allowDiskUse>`__
   property of the ``AggregateOptions`` object that you pass to the
   ``Aggregate()`` method. 
 
@@ -166,6 +158,7 @@ API Documentation
 For more information about the aggregation operations discussed in this guide, see the
 following API documentation:
 
-- `Collection() <https://mongodb.github.io/node-mongodb-native/api-generated/collection.html?highlight=match#:~:text=(index)%20%C2%BB-,Collection,-()%C2%B6>`__
-- `aggregate() <https://mongodb.github.io/node-mongodb-native/api-generated/collection.html?highlight=aggregate#aggregate:~:text=%7D)%0A%20%20%7D)%3B%0A%7D)%3B-,aggregate,-%C2%B6>`__
+- `Collection() <https://mongodb.github.io/node-mongodb-native/6.17/classes/Collection.html>`__
+- `aggregate() <https://mongodb.github.io/node-mongodb-native/6.17/classes/Collection.html#aggregate>`__
+- `AggregateOptions <https://mongodb.github.io/node-mongodb-native/6.17/interfaces/AggregateOptions.html>`__
 .. try to find $match and $group api links ..
