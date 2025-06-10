@@ -157,11 +157,11 @@ Specifying AWS Credentials
 --------------------------
 
 When you install the optional ``aws-sdk/credential-providers`` dependency, the driver
-uses the AWS SDK to retrieve credentials from the environment. If you have a shared AWS
+retrieves credentials in a priority order defined by the AWS SDK. If you have a shared AWS
 credentials file or config file, the driver uses those credentials by default.
 
 To manually specify the AWS credentials to retrieve, you can set the ``AWS_CREDENTIAL_PROVIDER``
-property to the credential provider. The following example passes a provider chain
+property to a defined credential provider from the AWS SDK. The following example passes a provider chain
 from the AWS SDK to the AWS authentication mechanism:
 
 .. literalinclude:: /code-snippets/authentication/aws-custom-credentials.js
@@ -171,7 +171,7 @@ from the AWS SDK to the AWS authentication mechanism:
    :dedent:
 
 To use a custom provider, you can pass any asynchronous function that returns your credentials
-to the ``AWS_CREDENTIAL_PROVIDER`` property. The following example shows how to pass
+to the ``AWS_CREDENTIAL_PROVIDER`` authentication mechanism property. The following example shows how to pass
 a custom provider function that fetches credentials from environment variables to the
 AWS authentication mechanism:
 
@@ -180,6 +180,9 @@ AWS authentication mechanism:
    :start-after: // start-custom-credentials-function
    :end-before: // end-custom-credentials-function
    :dedent:
+
+To learn more about how the ``aws-sdk/credential-providers`` dependency retrieves
+credentials, see the `AWS SDK documentation <https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-credential-providers/#fromnodeproviderchain>`__.
 
 API Documentation
 -----------------
