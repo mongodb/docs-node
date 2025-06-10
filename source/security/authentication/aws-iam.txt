@@ -163,7 +163,7 @@ credentials file or config file, the driver uses those credentials by default.
 .. tip::
 
    To learn more about how the ``aws-sdk/credential-providers`` dependency retrieves
-   credentials, see the `AWS SDK documentation <https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-credential-providers/#fromnodeproviderchain>`__.
+   credentials, see the `AWS SDK documentation <https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-credential-providers/>`__.
 
 To manually specify the AWS credentials to retrieve, you can set the ``AWS_CREDENTIAL_PROVIDER``
 property to a defined credential provider from the AWS SDK. The following example passes a provider chain
