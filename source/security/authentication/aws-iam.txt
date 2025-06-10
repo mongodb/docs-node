@@ -160,6 +160,11 @@ When you install the optional ``aws-sdk/credential-providers`` dependency, the d
 retrieves credentials in a priority order defined by the AWS SDK. If you have a shared AWS
 credentials file or config file, the driver uses those credentials by default.
 
+.. tip::
+
+   To learn more about how the ``aws-sdk/credential-providers`` dependency retrieves
+   credentials, see the `AWS SDK documentation <https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-credential-providers/#fromnodeproviderchain>`__.
+
 To manually specify the AWS credentials to retrieve, you can set the ``AWS_CREDENTIAL_PROVIDER``
 property to a defined credential provider from the AWS SDK. The following example passes a provider chain
 from the AWS SDK to the AWS authentication mechanism:
@@ -180,9 +185,6 @@ AWS authentication mechanism:
    :start-after: // start-custom-credentials-function
    :end-before: // end-custom-credentials-function
    :dedent:
-
-To learn more about how the ``aws-sdk/credential-providers`` dependency retrieves
-credentials, see the `AWS SDK documentation <https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-credential-providers/#fromnodeproviderchain>`__.
 
 API Documentation
 -----------------
