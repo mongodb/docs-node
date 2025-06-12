@@ -6,12 +6,12 @@ import User from './model/User.js';
 
 mongoose.connect("<connection string>");
 
-// start-create-user-bad-email
+// start-create-user-improper-email
 const user = await User.create({
   name: 'Jess Garica',
   email: 'jgarciaemail.com',
 });
-// end-create-user-bad-email
+// end-create-user-improper-email
 
 // start-create-user-ok-email
 const user = await User.create({

@@ -280,7 +280,7 @@ In this tutorial, you will perform the following actions:
       .. note::
 
          By default, Mongoose queries return thenables, which are objects with
-         some of the properties of a JavaScript Promise. You can append the
+         some properties of a JavaScript Promise. You can append the
          ``exec()`` method to a query to receive a true JavaScript Promise. To
          learn more about working with promises in Mongoose, see the `Promises
          guide <https://mongoosejs.com/docs/promises.html>`__ in the Mongoose
@@ -592,8 +592,8 @@ In this tutorial, you will perform the following actions:
 
          .. input:: /includes/integrations/mongoose-middleware.js
             :language: javascript
-            :start-after: start-create-user-bad-email
-            :end-before: end-create-user-bad-email
+            :start-after: start-create-user-improper-email
+            :end-before: end-create-user-improper-email
             :emphasize-lines: 3
 
          .. output::
