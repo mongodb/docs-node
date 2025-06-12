@@ -140,9 +140,11 @@ In this tutorial, you will perform the following actions:
 
       .. code-block:: json
 
-         npm run dev
+         npm run dev  
       
-      Every time you save a code change, your application will run again.
+      .. note::
+
+         When you use nodemon, the code runs every time you save a file.
 
    .. step:: Connect to MongoDB
 
@@ -209,36 +211,6 @@ In this tutorial, you will perform the following actions:
       the object representing a blog article, and then saves it to the database.
       The returned document logs to the console, including its ``_id``. Take
       note of this ``_id`` for use in future steps.
-
-      To run the code, use the following command in your terminal:
-
-      .. io-code-block::
-         :copyable:
-
-         .. input:: 
-            :language: bash
-
-            npm run dev
-
-         .. output::
-            :language: console
-            :visible: false
-
-            Created article: {
-               title: 'Awesome Post!',
-               slug: 'awesome-post',
-               published: true,
-               content: 'This is the best post ever',
-               tags: [ 'featured', 'announcement' ],
-               _id: new ObjectId('...'),
-               comments: [],
-               __v: 0
-            }
-      
-      .. note::
-
-         When you use nodemon, the code runs every time you save a file. Saving will
-         insert multiple articles into your database.
 
       Update Data
       ~~~~~~~~~~~~
@@ -310,7 +282,7 @@ In this tutorial, you will perform the following actions:
          By default, Mongoose queries return thenables, which are objects with
          some of the properties of a JavaScript Promise. You can append the
          ``exec()`` method to a query to receive a true JavaScript Promise. To
-         learn more about working with promises and Mongoose, see the `Promises
+         learn more about working with promises in Mongoose, see the `Promises
          guide <https://mongoosejs.com/docs/promises.html>`__ in the Mongoose
          documentation. 
    
@@ -397,8 +369,8 @@ In this tutorial, you will perform the following actions:
 
       .. note::
 
-         Validators automatically run on the ``create()`` and ``save()``methods.
-         You specify them to run them on update methods, such as ``update()``
+         Validators automatically run on the ``create()`` and ``save()`` methods.
+         You can specify them to run them on update methods, such as ``update()``
          and ``updateOne()`` by setting the ``runValidators`` option to
          ``true``. For more information about validators, see the `Validation
          <https://mongoosejs.com/docs/validation.html>`__ page in the Mongoose
@@ -406,7 +378,7 @@ In this tutorial, you will perform the following actions:
 
       You can use several validation methods with Mongoose. For example, you can
       set ``required`` to true on any fields that you want to require. You can
-      also validate the type and the formatting. In the preceding code, the
+      also validate the type and the formatting. In the following code, the
       ``slug`` field is defined as a ``string`` with a ``minLength`` of ``4``.
       This means that providing a ``slug`` with fewer than 4 characters will
       result in a ``ValidationError``.  
@@ -428,7 +400,7 @@ In this tutorial, you will perform the following actions:
          :start-after: start-validated-insert
          :end-before: end-validated-insert
          :language: javascript
-         :emphasize-lines: 5
+         :emphasize-lines: 6
          :dedent:
 
       ..  tip::
@@ -439,19 +411,6 @@ In this tutorial, you will perform the following actions:
       For more information, see the `Validation
       <https://mongoosejs.com/docs/validation.html>`__ page in the Mongoose
       documentation.
-      
-      .. tip:: Mongoose Custom Setters
-
-         Mongoose also provides three custom setter options that modify your data
-         when it is saved, and can be implemented in the same was as validators:
-
-         - lowercase
-         - uppercase
-         - trim 
-      
-         For more information, see the `SchemaStringOptions
-         <https://mongoosejs.com/docs/api/schemastringoptions.html#SchemaStringOptions.prototype.lowercase>`
-         page in the Mongoose API documentation.
 
    .. step:: Introduce multiple schemas
 
@@ -656,6 +615,36 @@ Next Steps
 You now have a sample project that uses Mongoose to perform CRUD operations on a
 MongoDB collection. From here, you can choose to build on this project with more
 complex queries or document validation.
+
+Mongoose Custom Setters
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Custom setters modify your data when it is saved, and can be implemented similar
+to validators. Mongoose provides the following custom setters:
+
+- ``lowercase``
+- ``uppercase``
+- ``trim`` 
+
+The following example lowercases the characters in the ``blog.slug`` field:
+
+.. code-block:: javascript
+   :emphasize-lines: 7
+
+   const blogSchema = new Schema({
+      ...
+      slug:  {
+         type: String,
+         required: true,
+         minLength: 4,
+         lowercase: true,
+      },
+      ...
+   });
+
+For more information, see the `SchemaStringOptions
+<https://mongoosejs.com/docs/api/schemastringoptions.html#SchemaStringOptions.prototype.lowercase>`__
+page in the Mongoose API documentation.
 
 Helper Methods
 ~~~~~~~~~~~~~~
