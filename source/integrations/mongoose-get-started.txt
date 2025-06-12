@@ -614,7 +614,8 @@ Next Steps
 
 You now have a sample project that uses Mongoose to perform CRUD operations on a
 MongoDB collection. From here, you can choose to build on this project with more
-complex queries or document validation.
+complex queries or document validation. The following sections includes some
+examples of Mongoose features that you might use to in your application.
 
 Mongoose Custom Setters
 ~~~~~~~~~~~~~~~~~~~~~~~
