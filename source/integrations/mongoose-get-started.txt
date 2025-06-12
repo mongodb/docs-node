@@ -54,7 +54,9 @@ following types are permitted:
 - Mixed
 - ObjectId
 - Array
+- Int32
 - Decimal128
+- Double
 - Map
 
 Models
@@ -82,60 +84,6 @@ MongoDB.
 
 .. _node-mongoose-get-started-helper-methods:
 
-Helper Methods
-~~~~~~~~~~~~~~
-
-Mongoose includes several helper methods that are abstracted from regular
-MongoDB methods. In this section, you can find examples of some of these
-methods. These methods are not used specifically in this tutorial, but they are
-helpful to reference when getting started with Mongoose.
-
-exists()
-~~~~~~~~
-
-The ``exists()`` method returns either ``null`` or the ``ObjectId`` of a document that
-matches the provided query. The following is an example of matching an article
-based on the ``author`` field:
-
-.. code-block:: javascript
-
-   const blog = await Blog.exists({ author: 'Jess Garcia' });
-   console.log(blog);
-
-For more information, see the `Model.exists()
-<https://mongoosejs.com/docs/api/model.html#Model.exists()>`__ section of the
-Mongoose API documentation.
-
-where()
-~~~~~~~
-
-The ``where()`` method allows you to chain and build queries. The following is
-an example of performing a find operation by using ``findOne()`` and the equivalent
-approach by using the ``where()`` method:
-
-.. code-block:: javascript
-
-   const blogFind = await Blog.findOne({ author: "Jess Garcia" });
-   console.log(blogFind);
-
-   const blogWhere = await Blog.where("author").equals("Jess Garcia");
-   console.log(blogWhere);
-
-You can use either method to perform find operations. You can also chain
-multiple ``where()`` methods to build increasingly complex queries.
-
-To include projection when using the ``where()`` method, chain the ``select()`` method
-after your query, as shown in the following example:
-
-.. code-block:: javascript
-
-   const blog = await Blog.where("author").equals("Jess Garcia").select("title author");
-   console.log(blog);
-
-For more information, see the `Model.where()
-<https://mongoosejs.com/docs/api/model.html#Model.$where()>`__ section of the
-Mongoose API documentation.
-
 Tutorial
 --------
 
@@ -152,7 +100,7 @@ In this tutorial, you will perform the following actions:
 .. procedure::
    :style: connected
 
-   .. step:: Verify the prerequisites.
+   .. step:: Verify the prerequisites
 
       Before you begin this tutorial, ensure you have the following components prepared:
 
@@ -161,7 +109,7 @@ In this tutorial, you will perform the following actions:
         guide.
       - `Node.js <https://nodejs.org/en/download>`__ {+min-node-version+} or later.
 
-   .. step:: Set up your environment.
+   .. step:: Set up your environment
 
       This tutorial uses `nodemon <https://www.npmjs.com/package/nodemon>`__ to
       run the code locally. Run the following commands in your terminal to
@@ -187,8 +135,16 @@ In this tutorial, you will perform the following actions:
          },
          "type": "module",
          ...
+      
+      Start your application with ``nodemon`` by running the following command:
 
-   .. step:: Connect to MongoDB.
+      .. code-block:: json
+
+         npm run dev
+      
+      Every time you save a code change, your application will run again.
+
+   .. step:: Connect to MongoDB
 
       In the root level of your project, create a file named ``index.js`` and
       add the following code to the top of the file:
@@ -204,7 +160,7 @@ In this tutorial, you will perform the following actions:
       string, see the :atlas:`Connect to Your Cluster
       </tutorial/connect-to-your-cluster>` tutorial in the Atlas documentation. 
 
-   .. step:: Create a schema and a model.
+   .. step:: Create a schema and a model
 
       Before you start adding and updating data in MongoDB, you must create a
       schema and model.
@@ -217,8 +173,14 @@ In this tutorial, you will perform the following actions:
       .. literalinclude:: /includes/integrations/mongoose-blogSchema.js
          :language: javascript
          :dedent:
+      
+      This schema enables a ``timestamps`` option, which adds Mongoose-manged
+      ``createdAt`` and ``updatedAt`` fields to the schema that are updated
+      automatically. For more information, see the `Timestamps
+      <https://mongoosejs.com/docs/timestamps.html>`__ page in the Mongoose
+      documentation. 
 
-   .. step:: Perform CRUD operations.
+   .. step:: Perform CRUD operations
 
       You now have your first model and schema set up, and you can start
       inserting data into the database. The following sections show you how to
@@ -315,11 +277,10 @@ In this tutorial, you will perform the following actions:
       ~~~~~~~~~~
 
       To find a specific document, you can use the Mongoose ``findById()``
-      method to get a document by its ``ObjectId``.
+      method to query for a document by specifying its ``_id``.
 
       Add following code to your ``index.js`` file to find a specific article by
-      its ``ObjectId``, replacing the ``<object id>`` placeholder with the
-      ``ObjectId`` value for the document that you inserted previously:
+      its ``_id``:
 
       .. io-code-block::
          :copyable:
@@ -346,10 +307,11 @@ In this tutorial, you will perform the following actions:
       
       .. note::
 
-         The Mongoose ``exec()`` function is an option of the ``findById()``
-         method that returns a promise. To learn more about working with
-         promises and Mongoose, see the `Promises guide
-         <https://mongoosejs.com/docs/promises.html>`__ in the Mongoose
+         By default, Mongoose queries return thenables, which are objects with
+         some of the properties of a JavaScript Promise. You can append the
+         ``exec()`` method to a query to receive a true JavaScript Promise. To
+         learn more about working with promises and Mongoose, see the `Promises
+         guide <https://mongoosejs.com/docs/promises.html>`__ in the Mongoose
          documentation. 
    
       Specify Document Fields
@@ -422,31 +384,32 @@ In this tutorial, you will perform the following actions:
 
             Deleted Many Blogs: { acknowledged: true, deletedCount: 4 }
 
-   .. step:: Validate your data.
+   .. step:: Validate your data
 
       The articles inserted in the previous steps do not contain the ``author``,
       ``dates``, or ``comments`` fields, even though these fields are included
       in the schema. This is because although you defined the structure of your
       document, you have not defined which fields are required. Any field that
-      is no defined as required can be omitted. 
+      is not defined as required can be omitted. 
 
       In Mongoose, when you include validation on a field, you must pass an
       object as its value.  
 
       .. note::
 
-         Validators only run on the ``create()`` and ``save()`` methods.
+         Validators automatically run on the ``create()`` and ``save()``methods.
+         You specify them to run them on update methods, such as ``update()``
+         and ``updateOne()`` by setting the ``runValidators`` option to
+         ``true``. For more information about validators, see the `Validation
+         <https://mongoosejs.com/docs/validation.html>`__ page in the Mongoose
+         documentation. 
 
       You can use several validation methods with Mongoose. For example, you can
       set ``required`` to true on any fields that you want to require. You can
       also validate the type and the formatting. In the preceding code, the
-      ``slug`` field is defined as a ``string`` that is always in ``lowercase``.
-      This validation takes the slug input and converts it to lowercase before
-      saving the document to the database.  
-
-      For the ``createdAt`` date field, you can set the default by using an
-      arrow function. This field is also specified to be impossible to change
-      later by setting ``immutable`` to ``true``. 
+      ``slug`` field is defined as a ``string`` with a ``minLength`` of ``4``.
+      This means that providing a ``slug`` with fewer than 4 characters will
+      result in a ``ValidationError``.  
 
       To add data validation and define these requirements, update the schema in
       ``Blog.js`` as shown in the following example:
@@ -472,8 +435,25 @@ In this tutorial, you will perform the following actions:
 
          When you use schemas with Mongoose, ``value: String`` is the same as
          ``value: {type: String}``.
+      
+      For more information, see the `Validation
+      <https://mongoosejs.com/docs/validation.html>`__ page in the Mongoose
+      documentation.
+      
+      .. tip:: Mongoose Custom Setters
 
-   .. step:: Introduce multiple schemas.
+         Mongoose also provides three custom setter options that modify your data
+         when it is saved, and can be implemented in the same was as validators:
+
+         - lowercase
+         - uppercase
+         - trim 
+      
+         For more information, see the `SchemaStringOptions
+         <https://mongoosejs.com/docs/api/schemastringoptions.html#SchemaStringOptions.prototype.lowercase>`
+         page in the Mongoose API documentation.
+
+   .. step:: Introduce multiple schemas
 
       Next, you can add more complexity to your ``author`` field by creating a
       another schema, and nesting it in the blog schema.
@@ -488,7 +468,7 @@ In this tutorial, you will perform the following actions:
       To use your new User model to define the ``author`` field in the blog
       schema, update the ``Blog.js`` file with the following changes:
 
-      - Add ``SchemaTypes`` to the list of constructors extracted from the
+      - Add ``SchemaTypes`` to the list of properties extracted from the
         Mongoose library.
       - Change the ``author`` field ``type`` to ``SchemaTypes.ObjectId`` and add
         a reference (``ref``) to the ``'User'`` model.
@@ -497,18 +477,14 @@ In this tutorial, you will perform the following actions:
 
       .. code-block:: javascript
 
-         import mongoose from 'mongoose';
          const { Schema, SchemaTypes, model } = mongoose;
-
-         const blogSchema = new Schema({
-            ...
+         
+         ... // Inside Schema block:
             author: {
                type: SchemaTypes.ObjectId,
                ref: 'User',
                required: true,
             },
-            ...,
-         });
          ...
 
       You can reuse the same ``User`` model for the ``comment.user`` field by
@@ -516,25 +492,20 @@ In this tutorial, you will perform the following actions:
 
       .. code-block:: javascript
 
-         const blogSchema = new Schema({
-            ...,
+         ... // Inside Schema block:
             comments: [{
                user: {
                   type: SchemaTypes.ObjectId,
                   ref: 'User',
                   required: true,
                },
-               content: String,
-               votes: Number
-            }];
-         });
          ...
 
       To use the new user model in your application, go to the ``index.js``
       file. Add the following code to the top of the file to import the user
       model: 
 
-      .. literalinclude:: /includes/integrations/mongoose-get-started-multiple-schemas.js
+      .. literalinclude:: /includes/integrations/mongoose-multiple-schemas.js
          :language: javascript
          :start-after: start-user-import
          :end-before: end-user-import
@@ -545,7 +516,7 @@ In this tutorial, you will perform the following actions:
 
       Create a new user by adding the following ``create()`` call:
 
-      .. literalinclude:: /includes/integrations/mongoose-get-started-multiple-schemas.js
+      .. literalinclude:: /includes/integrations/mongoose-multiple-schemas.js
          :language: javascript
          :start-after: start-create-user
          :end-before: end-create-user
@@ -557,7 +528,7 @@ In this tutorial, you will perform the following actions:
       .. io-code-block::
          :copyable:
 
-         .. input:: /includes/integrations/mongoose-get-started-multiple-schemas.js
+         .. input:: /includes/integrations/mongoose-multiple-schemas.js
             :language: javascript
             :start-after: start-article-with-author
             :end-before: end-article-with-author
@@ -584,13 +555,16 @@ In this tutorial, you will perform the following actions:
       field and sets its value to the ``user._id``.  
 
       To add the values of the ``name`` and ``email`` fields to the ``author``
-      field for the article, you can use the Mongoose ``populate()`` method. Add
-      the following code to ``index.js`` to populate this data: 
+      field for the article, you can append the Mongoose ``populate()`` method
+      to your Blog query. The ``populate()`` method will perform a second query
+      for the User document referenced by ``user._id``.  
+      
+      Add the following code to ``index.js`` to populate this data: 
 
       .. io-code-block::
          :copyable:
 
-         .. input:: /includes/integrations/mongoose-get-started-multiple-schemas.js
+         .. input:: /includes/integrations/mongoose-multiple-schemas.js
             :language: javascript
             :start-after: start-populate-author
             :end-before: end-populate-author
@@ -617,74 +591,60 @@ In this tutorial, you will perform the following actions:
                __v: 0
             }
 
-      This populates the data for the ``author`` field with the data for this
-      article. Mongoose uses the MongoDB ``$lookup`` method to populate the data
-      automatically. 
+      For more information, see the `Document.populate()
+      <https://mongoosejs.com/docs/api/document.html#Document.prototype.populate()>`__
+      page of the Mongoose API documentation.
 
-   .. step:: Add middleware.
+   .. step:: Add middleware
 
       In Mongoose, middleware are functions that run before, or during, the
       execution of asynchronous functions at the schema level. 
       
-      One example of middleware is a function that automatically updates the
-      ``updated`` field of a ``Blog`` instance before saving or updating.
+      One example of middleware is a function that validates the
+      ``email`` field of a ``User`` instance before saving or updating.
+
+      This example uses the ``validator`` package. You can install the
+      ``validator`` package by running the following command:
+
+      .. code-block:: bash
+
+         npm install validator
       
       To add this middleware function, add the following code to the
-      ``blogSchema`` declaration in your ``Blog.js`` file:
+      ``userSchema`` declaration in your ``User.js`` file:
 
-      .. literalinclude:: /includes/integrations/mongoose-blogSchema-validate.js
+      .. literalinclude:: /includes/integrations/mongoose-userSchema-validate.js
          :language: javascript
-         :start-after: start-blogSchema-middleware
-         :end-before: end-blogSchema-middleware
+         :start-after: start-validate-import
+         :end-before: end-validate-import
          :dedent:
 
-      To see the effect of this function, add the following code to your
-      ``index.js`` file to find an article, update the title, and then save the
-      updated article: 
+      .. literalinclude:: /includes/integrations/mongoose-userSchema-validate.js
+         :language: javascript
+         :start-after: start-middleware-definition
+         :end-before: end-middleware-definition
+         :dedent:
+
+      To see the effect of this function, modify the ``user.email`` field in
+      your ``index.js`` file to make it an invalid email address: 
 
       .. io-code-block::
          :copyable:
 
-         .. input:: /includes/integrations/mongoose-get-started-multiple-schemas.js
+         .. input:: /includes/integrations/mongoose-middleware.js
             :language: javascript
-            :start-after: start-middleware-update
-            :end-before: end-middleware-update
+            :start-after: start-create-user-bad-email
+            :end-before: end-create-user-bad-email
+            :emphasize-lines: 3
 
          .. output::
             :language: console
             :visible: false
-
-            Original Article:  {
-               title: 'Another Awesome Post!',
-               slug: 'another-awesome-post',
-               published: false,
-               author: new ObjectId('683df165ce6200f8fafc9c95'),
-               content: 'Here is another awesome post',
-               tags: [],
-               _id: new ObjectId('683df167ce6200f8fafc9ca1'),
-               createdAt: 2025-06-02T18:45:59.892Z,
-               comments: [],
-               updated: 2025-06-02T18:45:59.894Z,
-               __v: 0
-             }
-             Auto-updated Article: {
-               title: 'Another Awesome Post!',
-               slug: 'another-awesome-post',
-               published: false,
-               author: new ObjectId('683df165ce6200f8fafc9c95'),
-               content: 'Check my updated field',
-               tags: [],
-               _id: new ObjectId('683df167ce6200f8fafc9ca1'),
-               createdAt: 2025-06-02T18:45:59.892Z,
-               comments: [],
-               updated: 2025-06-02T18:46:01.034Z,
-               __v: 0
-             }
-
-      When you run the application, you can see that the original article has an
-      ``updated`` value, though one was not specified. You can also see that the
-      ``updated`` value increase when the article is modified. 
       
+            Error: Invalid email format
+      
+      If you correct the email address, you can see that the error is not thrown.
+
       Besides the ``pre()`` middleware function, Mongoose also offers a
       ``post()`` middleware function. For more information about middleware, see
       the `Middleware <https://mongoosejs.com/docs/middleware.html>`__ page in
@@ -694,9 +654,68 @@ Next Steps
 ----------
 
 You now have a sample project that uses Mongoose to perform CRUD operations on a
-MongoDB collection. From here, you can choose to build on this project to
-incorporate :ref:`Mongoose helper methods
-<node-mongoose-get-started-helper-methods>` and build more complex queries.
+MongoDB collection. From here, you can choose to build on this project with more
+complex queries or document validation.
+
+Helper Methods
+~~~~~~~~~~~~~~
+
+Mongoose includes several helper methods that are abstracted from regular
+MongoDB methods. In this section, you can find examples of some of these
+methods. These methods are not used specifically in this tutorial, but they are
+helpful to reference when getting started with Mongoose.
+
+exists()
+~~~~~~~~
+
+The ``exists()`` method returns either ``null`` or the first document that
+matches the provided query. The following is an example of matching an article
+based on the ``author`` field:
+
+.. code-block:: javascript
+
+   const blog = await Blog.exists({ author: 'Jess Garcia' });
+   console.log(blog);
+
+For more information, see the `Model.exists()
+<https://mongoosejs.com/docs/api/model.html#Model.exists()>`__ section of the
+Mongoose API documentation.
+
+where()
+~~~~~~~
+
+The ``where()`` method allows you to chain and build complex queries. 
+
+The following is an example of performing a find operation by using
+``findOne()`` with a plain query object and the equivalent
+query with the ``where()`` method:
+
+.. code-block:: javascript
+
+   const blogFind = await Blog.findOne({ author: "Jess Garcia" });
+   console.log(blogFind);
+
+   const blogWhere = await Blog.where("author").equals("Jess Garcia");
+   console.log(blogWhere);
+
+Generally, the ``where()`` method is used for complex queries involving dynamic
+query building or multiple comparators, or when using this method improves
+readability. However, there is no performance difference between using the
+``where()`` or a plain object query.
+
+To include projection when using the ``where()`` method, chain the ``select()`` method
+after your query, as shown in the following example:
+
+.. code-block:: javascript
+
+   const blog = await Blog.where("author").equals("Jess Garcia").select("title author");
+   console.log(blog);
+
+For more information, see the following sections of the Mongoose API
+documentation:
+
+- `Model.where() <https://mongoosejs.com/docs/api/model.html#Model.$where()>`__ 
+- `Query.select()<https://mongoosejs.com/docs/api/query.html#Query.prototype.select()>`__
 
 Additional Resources
 --------------------

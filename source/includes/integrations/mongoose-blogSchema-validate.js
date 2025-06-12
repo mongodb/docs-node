@@ -10,7 +10,7 @@ const blogSchema = new Schema({
   slug:  {
     type: String,
     required: true,
-    lowercase: true,
+    minLength: 4,
   },
   published: {
     type: Boolean,
@@ -22,17 +22,13 @@ const blogSchema = new Schema({
   },
   content: String,
   tags: [String],
-  createdAt: {
-    type: Date,
-    default: () => Date.now(),
-    immutable: true,
-  },
-  updated: Date,
   comments: [{
     user: String,
     content: String,
     votes: Number
   }]
+}, {
+  timestamps: true
 });
 // end-blogSchema
 

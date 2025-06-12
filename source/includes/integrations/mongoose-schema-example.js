@@ -8,13 +8,13 @@ const blog = new Schema({
   author: String,
   content: String,
   tags: [String],
-  createdAt: Date,
-  updated: Date,
   comments: [{
     user: String,
     content: String,
     votes: Number
   }]
+}, {
+  timestamps: true
 });
 // end-schema-example
 const Blog = model('Blog', blog);
