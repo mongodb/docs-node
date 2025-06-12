@@ -689,8 +689,8 @@ query with the ``where()`` method:
 
 Generally, the ``where()`` method is used for complex queries involving dynamic
 query building or multiple comparators, or when using this method improves
-readability. However, there is no performance difference between using the
-``where()`` or a plain object query.
+readability. There is no performance difference between using the
+``where()`` method or a plain object query.
 
 To include projection when using the ``where()`` method, chain the ``select()`` method
 after your query, as shown in the following example:
@@ -704,7 +704,7 @@ For more information, see the following sections of the Mongoose API
 documentation:
 
 - `Model.where() <https://mongoosejs.com/docs/api/model.html#Model.$where()>`__ 
-- `Query.select()<https://mongoosejs.com/docs/api/query.html#Query.prototype.select()>`__
+- `Query.select() <https://mongoosejs.com/docs/api/query.html#Query.prototype.select()>`__
 
 Additional Resources
 --------------------
