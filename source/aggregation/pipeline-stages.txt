@@ -22,53 +22,33 @@ Overview
 ------------
 
 On this page, you can learn how to create an aggregation pipeline and pipeline
-stages by using methods in the Node.js Driver.
+stages by using methods in the {+driver-short+}.
 
 Build an Aggregation Pipeline
 -----------------------------
 
-You can use the {+driver-short+} to build an aggregation pipeline by INSERT
-HERE. See the following sections to learn more about each of these approaches.
+You can use the {+driver-short+} to build an aggregation pipeline by adding
+aggregation stages and operations to the aggregation framework. See the
+following code to learn how to format the framework.
 
-.. note::
- .. 
-   This example uses the ``sample_restaurants.restaurants`` collection
-   from the :atlas:`Atlas sample datasets </sample-data>`. To learn how to create a
-   free MongoDB Atlas cluster and load the sample datasets, see the :ref:`Get Started <node-get-started>` guide.
 
-The following code example produces a count of the number of bakeries in each borough
-of New York City. To do so, the aggregation pipeline uses the following aggregation stages:
+.. code-block:: javascript
 
-- A :manual:`$match </reference/operator/aggregation/match/>` stage to filter
-  for documents whose ``cuisine`` field contains the element ``Bakery``.
-- A :manual:`$group </reference/operator/aggregation/group/>` stage to group the
-  matching documents by the ``borough`` field, accumulating a count of documents
-  for each distinct value in the ``borough`` field.
+  // Defines the aggregation pipeline
+  const pipeline = [
+    { $match: { ... } },
+    { $group: { ... } }
+  ];
 
-.. literalinclude:: /code-snippets/aggregation/agg.js
-   :start-after: begin aggregation
-   :end-before: end aggregation
-   :language: javascript
-   :dedent:
-
-This example produces the following output:
-
-.. code-block:: json
-   :copyable: false
-
-   { _id = 'Bronx', count = 71 }
-   { _id = 'Brooklyn', count = 173 }
-   { _id = 'Staten Island', count = 20 }
-   { _id = 'Missing', count = 2 }
-   { _id = 'Manhattan', count = 221 }
-   { _id = 'Queens', count = 204 }
+  // Executes the aggregation pipeline
+  const results = coll.aggregate(pipeline);
 
 
 Aggregation Stage Methods
 -------------------------
 
 The following table lists the stages in the aggregation pipeline. The methods
-retain the same name when used in Node.js. To learn more about an aggregation
+are formatted as they are listed when used in Node.js. To learn more about an aggregation
 stage and see a code example in a Node.js application, follow the link from the
 stage name to its reference page in the {+mdb-server+} manual.
 
