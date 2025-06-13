@@ -318,5 +318,11 @@ error-handling logic into your application for the following errors:
   </core/transactions-in-applications/#unknowntransactioncommitresult>` on
   the Driver API page in the Server manual.
 
-The Convenient Transaction API incorporates retry logic for these error
-types, so the driver retries the transaction until there is a successful commit.
+To learn how to implement retry logic to prevent these errors while using the
+Core API, see :manual:`Core API
+</docs/manual/core/transactions-in-applications/#core-api>` in the Server
+manual.
+
+The Convenient Transaction API incorporates retry logic for these error types,
+so the driver automatically retries the transaction until there is a successful
+commit.
