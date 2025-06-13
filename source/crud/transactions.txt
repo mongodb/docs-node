@@ -311,14 +311,14 @@ transaction must be retried:
 
 - ``TransientTransactionError``: Raised if a write operation encounters an error
   before the driver commits the transaction. To learn more about this error
-  type, see the :manual:`TransientTransactionError description 
-</core/transactions-in-applications/#transienttransactionerror>` on the Drivers API page in the
-Server manual.
+  type, see the :manual:`TransientTransactionError
+  description </core/transactions-in-applications/#transienttransactionerror>` on
+  the Drivers API page in the Server manual.
 - ``UnknownTransactionCommitResult``: Raised if the commit operation encounters
   an error. To learn more about this error type, see the
-  :manual:`UnknownTransactionCommitResult description 
-</core/transactions-in-applications/#unknowntransactioncommitresult>` on the Drivers API page in the
-Server manual.
+  :manual:`UnknownTransactionCommitResult
+  description </core/transactions-in-applications/#unknowntransactioncommitresult>`
+  on the Drivers API page in the Server manual.
 
 The Convenient Transaction API incorporates retry logic for these error types,
 so the driver automatically retries the transaction until there is a successful
