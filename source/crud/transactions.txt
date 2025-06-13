@@ -324,8 +324,8 @@ The Convenient Transaction API incorporates retry logic for these error types,
 so the driver automatically retries the transaction until there is a successful
 commit.
 
-Core API Error Error Handling
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Core API Error Handling
+~~~~~~~~~~~~~~~~~~~~~~~
 
 If you are using the Core API to perform a transaction, you must implement the
 error-handling logic into your application. To do so, you must create the
