@@ -329,14 +329,14 @@ Core API Error Handling
 
 If you are using the Core API to perform a transaction, you must implement the
 error-handling logic into your application. To do so, you must create the
-following functions that run until there is a successful commit or a different
-error:
+following functions:
 
 - A function that retries the entire transaction when the driver encounters a
   ``TransientTransactionError`` 
 - A function that retries the commit operation when the driver encounters an
   ``UnknownTransactionCommitResult``
 
-For an example of this retry logic, see the :manual:`Core API section
+These functions must run until there is a successful commit or a different
+error. For an example of this retry logic, see the :manual:`Core API section
 </core/transactions-in-applications/#core-api>` on the Drivers API page in the
 Server manual.
