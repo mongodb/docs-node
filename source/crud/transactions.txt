@@ -304,24 +304,25 @@ the ``startTransaction()`` method:
 Transaction Errors
 ------------------
 
-If you are using the Core API to perform a transaction, you must incorporate
-error-handling logic into your application for the following errors:
+Since MongoDB transactions are :website:`ACID compliant
+</basics/acid-transactions>`, the driver may produce errors during operation to
+ensure your data maintains consistent. If the following errors occur, the
+transaction must be retried:
 
-- ``TransientTransactionError``: Raised if a write operation errors
-  before the driver commits the transaction. To learn more about this error, see the
-  :manual:`TransientTransactionError description
-  </core/transactions-in-applications/#transienttransactionerror>` on
-  the Drivers API page in the Server manual.
-- ``UnknownTransactionCommitResult``: Raised if the commit operation
-  encounters an error. To learn more about this error, see the
-  :manual:`UnknownTransactionCommitResult description
-  </core/transactions-in-applications/#unknowntransactioncommitresult>` on
-  the Drivers API page in the Server manual.
+- ``TransientTransactionError``: Raised if a write operation encounters an error
+  before the driver commits the transaction.
+- ``UnknownTransactionCommitResult``: Raised if the commit operation encounters
+  an error.
 
-To learn how to implement retry logic to prevent these errors while using the
-Core API, see the :manual:`Core API section
+If you are using the Core API to perform a transaction, you must implement the
+error-handling logic into your application. To do so, you must create separate
+functions within your application that explicitly retry transaction and commit
+operations when these errors are detected. To see an
+example of this retry logic, see the :manual:`Core API section
 </core/transactions-in-applications/#core-api>` on the Drivers API page in the
 Server manual.
 
-The Convenient Transaction API incorporates retry logic for these error
-types, so the driver retries the transaction until there is a successful commit.
+The Convenient Transaction API incorporates retry logic for these error types,
+so the driver automatically retries the transaction until there is a successful
+commit. You do not have to explicitly declare functions for the API to retry
+transaction operations with these errors. 
