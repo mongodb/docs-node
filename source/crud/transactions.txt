@@ -159,6 +159,8 @@ You must perform the following steps when using this API:
 The following code demonstrates how to perform a transaction by using
 the Core API:
 
+.. include:: /includes/explicit-resource-management.rst
+
 .. literalinclude:: /code-snippets/transactions/txn-api-examples.js
    :language: javascript
    :emphasize-lines: 2,4,10,16,20,24,26 

@@ -195,6 +195,8 @@ adjust cursor handling by configuring either the cursor lifetime or cursor
 iteration mode if needed. To configure the mode, set the ``timeoutMode`` option
 to ``cursorLifetime``, which is the default, or ``iteration``.
 
+.. include:: /includes/explicit-resource-management.rst
+
 Cursor Lifetime Mode
 ~~~~~~~~~~~~~~~~~~~~
 
