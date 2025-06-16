@@ -304,9 +304,9 @@ the ``startTransaction()`` method:
 Transaction Errors
 ------------------
 
-Since MongoDB transactions are :website:`ACID compliant
-</basics/acid-transactions>`, the driver may produce errors during operation to
-ensure your data maintains consistent. If the following errors occur, the
+Because MongoDB transactions are :website:`ACID compliant
+</basics/acid-transactions>`, the driver might produce errors during operation
+to ensure your data maintains consistent. If the following errors occur, the
 transaction must be retried:
 
 - ``TransientTransactionError``: Raised if a write operation encounters an error
@@ -320,6 +320,11 @@ transaction must be retried:
   description </core/transactions-in-applications/#unknowntransactioncommitresult>`
   on the Drivers API page in the Server manual.
 
+The following sections describe how to handle these errors for different APIs.
+
+Convenient Transaction Error Handling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The Convenient Transaction API incorporates retry logic for these error types,
 so the driver automatically retries the transaction until there is a successful
 commit.
@@ -327,9 +332,8 @@ commit.
 Core API Error Handling
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-If you are using the Core API to perform a transaction, you must implement the
-error-handling logic into your application. To do so, you must create the
-following functions:
+If you are using the Core API to perform a transaction, you must add the following
+error-handling functions to your application:
 
 - A function that retries the entire transaction when the driver encounters a
   ``TransientTransactionError`` 
