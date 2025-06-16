@@ -1,4 +1,4 @@
-..note:: Explicit Resource Management 
+.. note:: Explicit Resource Management 
 
     Since v6.9, the {+driver-long+} now natively supports explicit resource
     management for ``MongoClient``, ``ClientSession``, ``ChangeStreams``, and
