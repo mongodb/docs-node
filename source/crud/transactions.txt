@@ -322,8 +322,8 @@ transaction must be retried:
 
 The following sections describe how to handle these errors for different APIs.
 
-Convenient Transaction Error Handling
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Convenient Transaction API Error Handling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Convenient Transaction API incorporates retry logic for these error types,
 so the driver automatically retries the transaction until there is a successful
