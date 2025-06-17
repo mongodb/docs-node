@@ -306,8 +306,8 @@ Transaction Errors
 
 Because MongoDB transactions are :website:`ACID compliant
 </basics/acid-transactions>`, the driver might produce errors during operation
-to ensure your data maintains consistent. If the following errors occur, the
-transaction must be retried:
+to ensure your data maintains consistent. If the following errors occur, your
+application must retry the transaction:
 
 - ``TransientTransactionError``: Raised if a write operation encounters an error
   before the driver commits the transaction. To learn more about this error
