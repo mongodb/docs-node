@@ -320,13 +320,13 @@ application must retry the transaction:
   description </core/transactions-in-applications/#unknowntransactioncommitresult>`
   on the Drivers API page in the Server manual.
 
-The following sections describe how to handle these errors for different APIs.
+The following sections describe how to handle these errors when using different APIs.
 
 Convenient Transaction API Error Handling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Convenient Transaction API incorporates retry logic for these error types,
-so the driver automatically retries the transaction until there is a successful
+The Convenient Transaction API incorporates retry logic for these error types.
+The driver automatically retries the transaction until there is a successful
 commit.
 
 Core API Error Handling
