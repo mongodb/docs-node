@@ -115,13 +115,13 @@ raw: ${prefix}/stable -> ${base}/current/
 
 ## Aggregation Tutorials Redirects
 
-[*-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/filtered-subset/ -> ${server}/tutorial/aggregation-examples/filtered-subset/
-[*-master]: ${prefix}/${version}/aggregation/filtered-subset/ -> ${server}/tutorial/aggregation-examples/filtered-subset/
-[*-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/group-total/ -> ${server}/tutorial/aggregation-examples/group-and-total/
-[*-master]: ${prefix}/${version}/aggregation/group-total/ -> ${server}/tutorial/aggregation-examples/group-and-total/
-[*-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/multi-field-join/ -> ${server}/tutorial/aggregation-examples/multi-field-join/
-[*-master]: ${prefix}/${version}/aggregation/multi-field-join/ -> ${server}/tutorial/aggregation-examples/multi-field-join/
-[*-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/one-to-one-join/ -> ${server}/tutorial/aggregation-examples/one-to-one-join/
-[*-master]: ${prefix}/${version}/aggregation/one-to-one-join/ -> ${server}/tutorial/aggregation-examples/one-to-one-join/
-[*-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/unpack-arrays/ -> ${server}/tutorial/aggregation-examples/unpack-arrays/
-[*-master]: ${prefix}/${version}/aggregation/unpack-arrays/ -> ${server}/tutorial/aggregation-examples/unpack-arrays/
+[v6.5-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/filtered-subset/ -> ${server}/tutorial/aggregation-examples/filtered-subset/
+[v6.5-master]: ${prefix}/${version}/aggregation/filtered-subset/ -> ${server}/tutorial/aggregation-examples/filtered-subset/
+[v6.5-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/group-total/ -> ${server}/tutorial/aggregation-examples/group-and-total/
+[v6.5-master]: ${prefix}/${version}/aggregation/group-total/ -> ${server}/tutorial/aggregation-examples/group-and-total/
+[v6.5-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/multi-field-join/ -> ${server}/tutorial/aggregation-examples/multi-field-join/
+[v6.5-master]: ${prefix}/${version}/aggregation/multi-field-join/ -> ${server}/tutorial/aggregation-examples/multi-field-join/
+[v6.5-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/one-to-one-join/ -> ${server}/tutorial/aggregation-examples/one-to-one-join/
+[v6.5-master]: ${prefix}/${version}/aggregation/one-to-one-join/ -> ${server}/tutorial/aggregation-examples/one-to-one-join/
+[v6.5-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/unpack-arrays/ -> ${server}/tutorial/aggregation-examples/unpack-arrays/
+[v6.5-master]: ${prefix}/${version}/aggregation/unpack-arrays/ -> ${server}/tutorial/aggregation-examples/unpack-arrays/
