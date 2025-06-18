@@ -115,6 +115,7 @@ raw: ${prefix}/stable -> ${base}/current/
 
 ## Aggregation Tutorials Redirects
 
+[v6.5-master]: ${prefix}/${version}/aggregation-tutorials/ -> ${server}/tutorial/aggregation-complete-examples/
 [v6.5-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/filtered-subset/ -> ${server}/tutorial/aggregation-examples/filtered-subset/
 [v6.5-master]: ${prefix}/${version}/aggregation/filtered-subset/ -> ${server}/tutorial/aggregation-examples/filtered-subset/
 [v6.5-master]: ${prefix}/${version}/aggregation/aggregation-tutorials/group-total/ -> ${server}/tutorial/aggregation-examples/group-and-total/
