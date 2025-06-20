@@ -159,8 +159,6 @@ You must perform the following steps when using this API:
 The following code demonstrates how to perform a transaction by using
 the Core API:
 
-.. include:: /includes/explicit-resource-management.rst
-
 .. literalinclude:: /code-snippets/transactions/txn-api-examples.js
    :language: javascript
    :emphasize-lines: 2,4,10,16,20,24,26 
@@ -183,6 +181,8 @@ the Core API:
       const session = client1.startSession();
       client2.db('myDB').collection('myColl').insertOne({ name: 'Jane Eyre' }, { session });
 
+.. include:: /includes/explicit-resource-management.rst
+  
 To see a fully runnable example that uses this API, see the
 :ref:`node-usage-core-txn` usage example. 
 

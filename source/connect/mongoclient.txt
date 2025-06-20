@@ -108,8 +108,6 @@ with behavior compatible with the specified API version.
 The following code shows how you can specify the connection string and the
 {+stable-api+} client option when connecting to a MongoDB deployment on Atlas and
 verify that the connection is successful:
- 
-.. include:: /includes/explicit-resource-management.rst
 
 .. literalinclude:: /code-snippets/connection/stable-api-connect.js
    :language: javascript
@@ -120,6 +118,8 @@ verify that the connection is successful:
    method when using the client to perform CRUD operations on your MongoDB deployment.
    Call the ``MongoClient.connect()`` method explicitly if you want to verify that the
    connection is successful.
+
+.. include:: /includes/explicit-resource-management.rst
 
 To learn more about the {+stable-api+} feature, see the :ref:`{+stable-api+} page
 <nodejs-stable-api>`.
