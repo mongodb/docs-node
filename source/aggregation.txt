@@ -19,7 +19,9 @@ Aggregation
    :class: singlecol
 
 .. toctree::
-
+   :titlesonly:
+   :maxdepth: 1
+   
    Pipeline Stages </aggregation/pipeline-stages>
    
 .. _nodejs-aggregation-overview:

@@ -166,7 +166,7 @@ manual.
 
   * - :manual:`$listSearchIndexes </reference/operator/aggregation/listSearchIndexes/>`
     - Returns information about existing :ref:`Atlas Search indexes
-      <indexes/#atlas-search-and-atlas-vector-search-indexes>` on a specified collection.
+      <node-indexes-search>` on a specified collection.
 
   * - :manual:`$lookup </reference/operator/aggregation/facet/>`
     - Performs a left outer join to another collection in the
