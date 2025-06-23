@@ -47,14 +47,14 @@ Analogy
 ~~~~~~~
 
 The aggregation pipeline is similar to an automobile factory assembly line. An
-assembly lines has stations with specialized tools that are used to perform
+assembly line has stations with specialized tools that are used to perform
 specific tasks. For example, when building a car, the assembly line begins with
-a frame. As the car frame moves though the assembly line, each station adds a
-new part. The factory transforms and assembles the initial parts, resulting in
-finished cars.
+a frame. As the car frame moves though the assembly line, each station assembles
+a separate part. The result is a transformed final product, the finished car.
 
 The *aggregation pipeline* is the assembly line, the *aggregation stages* are
-the assembly stations, and the *expression operators* are the specialized tools.
+the assembly stations, the *expression operators* are the specialized tools, and
+the *aggregated result* is the finished product.
 
 Compare Aggregation and Find Operations
 ---------------------------------------
