@@ -1,9 +1,9 @@
 .. _node-aggregation:
 .. _nodejs-aggregation:
 
-===========
-Aggregation
-===========
+======================
+Aggregation Operations
+======================
 
 .. facet::
    :name: genre
@@ -21,7 +21,7 @@ Aggregation
 .. toctree::
    :titlesonly:
    :maxdepth: 1
-   
+
    Pipeline Stages </aggregation/pipeline-stages>
    
 .. _nodejs-aggregation-overview:
@@ -37,7 +37,7 @@ computed results. The MongoDB Aggregation framework is modeled on the
 concept of data processing pipelines. Documents enter a pipeline comprised of one or
 more stages, and this pipeline transforms the documents into an aggregated result.
 
-To learn more about the aggregation stages supported by the Node.js Driver, see :ref:`Aggregation Stages <node-aggregation-pipeline-stages>`.
+To learn more about the aggregation stages supported by the Node.js Driver, see :ref:`Aggregation Pipeline Stages <node-aggregation-pipeline-stages>`.
 
 .. _node-aggregation-tutorials:
 
