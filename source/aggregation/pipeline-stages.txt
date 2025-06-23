@@ -62,11 +62,10 @@ method. See the following examples to learn more about each of these approaches.
 Aggregation Stage Methods
 -------------------------
 
-The following table lists the stages in the aggregation pipeline. The stages are
-formatted as they are listed when used in Node.js unless noted otherwise in the
-description column. To learn more about an aggregation stage and see a code
-example in a Node.js application, follow the link from the stage name to its
-reference page in the {+mdb-server+} manual.
+The following table lists the stages in the aggregation pipeline. To learn more
+about an aggregation stage and see a code example in a Node.js application,
+follow the link from the stage name to its reference page in the {+mdb-server+}
+manual.
 
 
 .. list-table::
@@ -116,7 +115,7 @@ reference page in the {+mdb-server+} manual.
       the aggregation pipeline.
 
   * - :manual:`$currentOp </reference/operator/aggregation/currentOp/>`
-    - Returns a stream of documents containing information on active and/or
+    - Returns a stream of documents containing information on active and
       dormant operations as well as inactive sessions that are holding locks as
       part of a transaction.
 
@@ -162,12 +161,12 @@ reference page in the {+mdb-server+} manual.
 
   * - :manual:`$listSampledQueries </reference/operator/aggregation/listSampledQueries/>`
     - Lists sampled queries for all collections or a specific collection. Only
-      available on collections with :manual:`Queryable Encryption
+      available for collections with :manual:`Queryable Encryption
       </core/queryable-encryption/>` enabled.
 
   * - :manual:`$listSearchIndexes </reference/operator/aggregation/listSearchIndexes/>`
     - Returns information about existing :ref:`Atlas Search indexes
-      <atlas/atlas-search/#fts-indexes>` on a specified collection.
+      <indexes/#atlas-search-and-atlas-vector-search-indexes>` on a specified collection.
 
   * - :manual:`$lookup </reference/operator/aggregation/facet/>`
     - Performs a left outer join to another collection in the
@@ -202,11 +201,9 @@ reference page in the {+mdb-server+} manual.
   * - :manual:`$redact </reference/operator/aggregation/redact>`
     - Reshapes each document in the stream by restricting the content for each
       document based on information stored in the documents themselves.
-      Incorporates the functionality of :manual:`$project
-      </reference/operator/aggregation/project/>` and :manual:`$match
-      </reference/operator/aggregation/match/>`. Can be used to implement field
-      level redaction. For each input document, outputs either one or zero
-      documents.
+      Incorporates the functionality of ``$project`` and ``$match``. Can be used
+      to implement field level redaction. For each input document, outputs
+      either one or zero documents.
 
   * - :manual:`$replaceRoot </reference/operator/aggregation/replaceRoot/>`
     - Replaces a document with the specified embedded document. The
@@ -301,7 +298,7 @@ reference page in the {+mdb-server+} manual.
 
       This stage is available only for MongoDB Atlas clusters, and is not
       available for self-managed deployments. To learn more, see
-      :ref:`Atlas Vector Search <csharp-atlas-vector-search>`. 
+      :ref:`Atlas Vector Search <node-atlas-vector-search>`. 
 
 API Documentation
 ~~~~~~~~~~~~~~~~~
