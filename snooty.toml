@@ -11,7 +11,7 @@ toc_landing_pages = [
     "/connect",
     "/security",
     "/security/authentication",
-    "/aggregation-tutorials",
+    "/aggregation",
     "/data-formats",
     "/connect/connection-options",
     "/crud",
