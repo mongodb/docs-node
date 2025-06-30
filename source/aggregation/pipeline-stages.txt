@@ -22,7 +22,7 @@ Overview
 ------------
 
 In this guide, you can learn how to create an aggregation pipeline and pipeline
-stages by using methods in the {+driver-short+}.
+stages by using methods in the {+driver-long+}.
 
 Build an Aggregation Pipeline
 -----------------------------
