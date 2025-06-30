@@ -1,8 +1,8 @@
 .. _node-aggregation-pipeline-stages:
 
-===============
+===========================
 Aggregation Pipeline Stages
-===============
+===========================
 
 .. contents:: On this page
    :local:
@@ -16,13 +16,16 @@ Aggregation Pipeline Stages
 
 .. meta::
    :keywords: node.js, code example, transform, pipeline
-   :description: Learn the different possible stages of the aggregation pipeline in the {+driver-short+}.
+   :description: Learn the different possible stages of the aggregation pipeline in the Node.js Driver.
 
 Overview
 ------------
 
-On this page, you can learn how to create an aggregation pipeline and pipeline
+In this guide, you can learn how to create an aggregation pipeline and pipeline
 stages by using methods in the {+driver-short+}.
+
+To learn more about the aggregation stages supported by the Node.js Driver, see
+:ref:`Aggregation Pipeline Stages <node-aggregation-pipeline-stages>`.
 
 Build an Aggregation Pipeline
 -----------------------------
@@ -57,7 +60,6 @@ method. See the following examples to learn more about each of these approaches.
         { $match: { ... } },
         { $group: { ... } }
       ]);
-
 
 Aggregation Stage Methods
 -------------------------
@@ -95,17 +97,17 @@ manual.
   * - :manual:`$changeStream </reference/operator/aggregation/changeStream/>`
     - Returns a change stream cursor for the collection. 
       
-      Instead of being passed to the ``.aggregate()`` method,
-      ``$changeStream`` uses the ``.watch()`` method on a ``collection``
+      Instead of being passed to the ``aggregate()`` method,
+      ``$changeStream`` uses the ``watch()`` method on a ``Collection``
       object.
 
   * - :manual:`$changeStreamSplitLargeEvent </reference/operator/aggregation/changeStreamSplitLargeEvent/>`
     - Splits large change stream events that exceed 16 MB into smaller fragments returned
       in a change stream cursor.
 
-      Instead of being passed to the ``.aggregate()`` method,
-      ``$changeStreamSplitLargeEvent`` uses the ``.watch()`` method on a
-      ``collection`` object.
+      Instead of being passed to the ``aggregate()`` method,
+      ``$changeStreamSplitLargeEvent`` uses the ``watch()`` method on a
+      ``Collection`` object.
   
   * - :manual:`$collStats </reference/operator/aggregation/collStats/>`
     - Returns statistics regarding a collection or view.
@@ -312,7 +314,8 @@ To learn more about creating pipeline stages, see :manual:`Aggregation Stages
 For more information about the methods and classes used on this page, see the
 following API documentation:
 
-- `Collection() <https://mongodb.github.io/node-mongodb-native/6.17/classes/Collection.html>`__
-- `aggregate() <https://mongodb.github.io/node-mongodb-native/6.17/classes/Collection.html#aggregate>`__
-- `AggregateOptions <https://mongodb.github.io/node-mongodb-native/6.17/interfaces/AggregateOptions.html>`__
+- `Collection <{+api+}/classes/Collection.html>`__
+- `aggregate() <{+api+}/classes/Collection.html#aggregate>`__
+- `watch() <{+api+}/classes/Collection.html#watch>`__
+- `AggregateOptions <{+api+}/interfaces/AggregateOptions.html>`__
 

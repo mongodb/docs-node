@@ -29,7 +29,7 @@ Aggregation Operations
 Overview
 --------
 
-In this guide, you can learn how to use the MongoDB Node.js Driver to perform
+In this guide, you can learn how to use the {+driver-long+} to perform
 **aggregation operations**.
 
 Aggregation operations process data in your MongoDB collections and return
@@ -98,7 +98,6 @@ Consider the following :manual:`limitations </core/aggregation-pipeline-limits/>
 
 - Returned documents must not violate the :manual:`BSON document size limit </reference/limits/#mongodb-limit-BSON-Document-Size>`
   of 16 megabytes.
-
 - Pipeline stages have a memory limit of 100 megabytes by default. If required,
   you can exceed this limit by enabling the `AllowDiskUse
   <https://mongodb.github.io/node-mongodb-native/6.17/interfaces/AggregateOptions.html#allowDiskUse>`__
