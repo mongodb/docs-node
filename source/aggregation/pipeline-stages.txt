@@ -24,9 +24,6 @@ Overview
 In this guide, you can learn how to create an aggregation pipeline and pipeline
 stages by using methods in the {+driver-short+}.
 
-To learn more about the aggregation stages supported by the Node.js Driver, see
-:ref:`Aggregation Pipeline Stages <node-aggregation-pipeline-stages>`.
-
 Build an Aggregation Pipeline
 -----------------------------
 
