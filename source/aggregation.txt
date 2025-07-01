@@ -33,12 +33,12 @@ In this guide, you can learn how to use the {+driver-long+} to perform
 **aggregation operations**.
 
 Aggregation operations process data in your MongoDB collections and return
-computed results. The MongoDB Aggregation framework is modeled on the 
-concept of data processing pipelines. Documents enter a pipeline comprised of one or
-more stages, and this pipeline transforms the documents into an aggregated result.
+computed results. The MongoDB Aggregation framework is modeled on the concept of
+data processing pipelines. Documents enter a pipeline comprised of one or more
+stages, and this pipeline transforms the documents into an aggregated result.
 
 To learn more about the aggregation stages supported by the {+driver-short+},
-see :ref:` <node-aggregation-pipeline-stages>`.
+see :ref:`node-aggregation-pipeline-stages`.
 
 .. _node-aggregation-tutorials:
 
@@ -65,9 +65,9 @@ Compare Aggregation and Find Operations
 ---------------------------------------
 
 The following table lists the different tasks you can perform with find
-operations compared to what you can achieve with aggregation
-operations. The aggregation framework provides expanded functionality
-that allows you to transform and manipulate your data.
+operations compared to what you can achieve with aggregation operations. The
+aggregation framework provides expanded functionality that allows you to
+transform and manipulate your data.
 
 .. list-table::
    :header-rows: 1
