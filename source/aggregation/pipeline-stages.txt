@@ -38,25 +38,25 @@ method. See the following examples to learn more about each of these approaches.
 
       .. code-block:: javascript
 
-        // Defines the aggregation pipeline
-        const pipeline = [
-          { $match: { ... } },
-          { $group: { ... } }
-        ];
+         // Defines the aggregation pipeline
+         const pipeline = [
+           { $match: { ... } },
+           { $group: { ... } }
+         ];
 
-        // Executes the aggregation pipeline
-        const results = collection.aggregate(pipeline);
+         // Executes the aggregation pipeline
+         const results = collection.aggregate(pipeline);
 
   .. tab:: Direct Aggregation
     :tabid: pipeline-direct
 
     .. code-block:: javascript
 
-      // Defines and executes the aggregation pipeline
-      collection.aggregate([
-        { $match: { ... } },
-        { $group: { ... } }
-      ]);
+       // Defines and executes the aggregation pipeline
+       collection.aggregate([
+         { $match: { ... } },
+         { $group: { ... } }
+       ]);
 
 Aggregation Stage Methods
 -------------------------
@@ -115,7 +115,7 @@ manual.
 
   * - :manual:`$currentOp </reference/operator/aggregation/currentOp/>`
     - Returns a stream of documents containing information on active and
-      dormant operations as well as inactive sessions that are holding locks as
+      dormant operations and any inactive sessions that are holding locks as
       part of a transaction.
 
   * - :manual:`$densify </reference/operator/aggregation/densify/>`
@@ -303,7 +303,7 @@ API Documentation
 ~~~~~~~~~~~~~~~~~
 
 To learn more about assembling an aggregation pipeline, see :manual:`Aggregation
-Pipeline </core/aggregation-pipeline/>` in the MongoDB Server manual. 
+Pipeline </core/aggregation-pipeline/>` in the {+mdb-server+} manual. 
 
 To learn more about creating pipeline stages, see :manual:`Aggregation Stages
 </reference/operator/aggregation-pipeline/>` in the MongoDB Server manual.

@@ -37,7 +37,8 @@ computed results. The MongoDB Aggregation framework is modeled on the
 concept of data processing pipelines. Documents enter a pipeline comprised of one or
 more stages, and this pipeline transforms the documents into an aggregated result.
 
-To learn more about the aggregation stages supported by the Node.js Driver, see :ref:`Aggregation Pipeline Stages <node-aggregation-pipeline-stages>`.
+To learn more about the aggregation stages supported by the {+driver-short+},
+see :ref:` <node-aggregation-pipeline-stages>`.
 
 .. _node-aggregation-tutorials:
 
@@ -94,10 +95,11 @@ that allows you to transform and manipulate your data.
 Server Limitations
 ------------------
 
-Consider the following :manual:`limitations </core/aggregation-pipeline-limits/>` when performing aggregation operations:
+Consider the following :manual:`limitations
+</core/aggregation-pipeline-limits/>` when performing aggregation operations:
 
-- Returned documents must not violate the :manual:`BSON document size limit </reference/limits/#mongodb-limit-BSON-Document-Size>`
-  of 16 megabytes.
+- Returned documents must not violate the :manual:`BSON document size limit
+  </reference/limits/#mongodb-limit-BSON-Document-Size>` of 16 megabytes.
 - Pipeline stages have a memory limit of 100 megabytes by default. If required,
   you can exceed this limit by enabling the `AllowDiskUse
   <https://mongodb.github.io/node-mongodb-native/6.17/interfaces/AggregateOptions.html#allowDiskUse>`__
@@ -107,9 +109,9 @@ Consider the following :manual:`limitations </core/aggregation-pipeline-limits/>
 Additional information
 ----------------------
 
-To view a full list of expression operators, see 
-:manual:`Aggregation Operators </reference/operator/aggregation/>`.
+To view a full list of expression operators, see :manual:`Aggregation Operators
+</reference/operator/aggregation/>` in the {+mdb-server+} manual.
 
-To learn about explaining MongoDB aggregation operations, see
-:manual:`Explain Results </reference/explain-results/>` and
-:manual:`Query Plans </core/query-plans/>`.
+To learn about explaining MongoDB aggregation operations, see :manual:`Explain
+Results </reference/explain-results/>` and :manual:`Query Plans
+</core/query-plans/>` in the {+mdb-server+} manual.
