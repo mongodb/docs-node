@@ -45,7 +45,7 @@ method. See the following examples to learn more about each of these approaches.
          ];
 
          // Executes the aggregation pipeline
-         const results = collection.aggregate(pipeline);
+         const results = async collection.aggregate(pipeline);
 
   .. tab:: Direct Aggregation
     :tabid: pipeline-direct
@@ -53,7 +53,7 @@ method. See the following examples to learn more about each of these approaches.
     .. code-block:: javascript
 
        // Defines and executes the aggregation pipeline
-       collection.aggregate([
+       const results = async collection.aggregate([
          { $match: { ... } },
          { $group: { ... } }
        ]);
@@ -91,20 +91,21 @@ manual.
       of buckets.
 
   * - :manual:`$changeStream </reference/operator/aggregation/changeStream/>`
-    - Returns a change stream cursor for the collection. 
+    - Returns a change stream cursor for the collection. Must be the first stage
+      in the pipeline.
       
-      Instead of being passed to the ``aggregate()`` method,
-      ``$changeStream`` uses the ``watch()`` method on a ``Collection``
-      object.
+      ``$changeStream`` returns an ``AggregationCursor`` when passed to the
+      ``aggregate()`` method and a ``ChangeStreamCursor`` when passed to the
+      ``watch()`` method.
 
   * - :manual:`$changeStreamSplitLargeEvent
       </reference/operator/aggregation/changeStreamSplitLargeEvent/>`
     - Splits large change stream events that exceed 16 MB into smaller fragments returned
-      in a change stream cursor.
+      in a change stream cursor. Must be the first stage in the pipeline.
 
-      Instead of being passed to the ``aggregate()`` method,
-      ``$changeStreamSplitLargeEvent`` uses the ``watch()`` method on a
-      ``Collection`` object.
+      ``$changeStreamSplitLargeEvent`` returns an ``AggregationCursor`` when
+      passed to the ``aggregate()`` method and a ``ChangeStreamCursor`` when
+      passed to the  ``watch()`` method.
   
   * - :manual:`$collStats </reference/operator/aggregation/collStats/>`
     - Returns statistics regarding a collection or view.
