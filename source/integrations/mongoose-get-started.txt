@@ -656,7 +656,7 @@ methods. These methods are not used specifically in this tutorial, but they are
 helpful to reference when getting started with Mongoose.
 
 exists()
-~~~~~~~~
+````````
 
 The ``exists()`` method returns either ``null`` or the first document that
 matches the provided query. The following is an example of matching an article
@@ -672,7 +672,7 @@ For more information, see the `Model.exists()
 Mongoose API documentation.
 
 where()
-~~~~~~~
+```````
 
 The ``where()`` method allows you to chain and build complex queries. 
 
