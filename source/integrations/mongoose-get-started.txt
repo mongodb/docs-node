@@ -176,7 +176,7 @@ In this tutorial, you will perform the following actions:
          :language: javascript
          :dedent:
       
-      This schema enables a ``timestamps`` option, which adds Mongoose-manged
+      This schema enables a ``timestamps`` option, which adds mongoose-manged
       ``createdAt`` and ``updatedAt`` fields to the schema that are updated
       automatically. For more information, see the `Timestamps
       <https://mongoosejs.com/docs/timestamps.html>`__ page in the Mongoose
@@ -685,8 +685,13 @@ query with the ``where()`` method:
    const blogFind = await Blog.findOne({ author: "Jess Garcia" });
    console.log(blogFind);
 
-   const blogWhere = await Blog.where("author").equals("Jess Garcia");
+   const blogWhere = await Blog.findOne().where("author").equals("Jess Garcia");
    console.log(blogWhere);
+
+In this implementation, the ``where()`` implementation starts with a
+``findOne()`` which tells Mongoose to treat it as a ``findOne()`` query. This is
+important because if you use ``where()`` on its own (``Blog.where(...)``),
+Mongoose implicitly treats it as a ``find()`` operation. 
 
 Generally, the ``where()`` method is used for complex queries involving dynamic
 query building or multiple comparators, or when using this method improves
@@ -698,7 +703,7 @@ after your query, as shown in the following example:
 
 .. code-block:: javascript
 
-   const blog = await Blog.where("author").equals("Jess Garcia").select("title author");
+   const blog = await Blog.findOne().where("author").equals("Jess Garcia").select("title author");
    console.log(blog);
 
 For more information, see the following sections of the Mongoose API
