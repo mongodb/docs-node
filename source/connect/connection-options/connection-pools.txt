@@ -172,7 +172,7 @@ object:
    This configuration allows the connection pool to close unused connections 
    during periods of inactivity. 
    
-   In versions prior to 6.18.0, idle connections were not cleaned up when
+   In versions earlier than 6.18.0, idle connections were not cleaned up when
    ``minPoolSize`` was set to ``0``. Starting in version 6.18.0, the connection
    pool correctly cleans up idle connections regardless of the ``minPoolSize``
    setting.
