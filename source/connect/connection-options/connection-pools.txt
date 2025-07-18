@@ -173,9 +173,9 @@ object:
    during periods of inactivity. 
    
    In versions earlier than 6.18.0, the {+driver-short+} did not close idle
-   connections when ``minPoolSize`` was set to ``0``. Starting in version
-   6.18.0, the connection pool correctly closes idle connections regardless
-   of the ``minPoolSize`` setting.
+   connections when ``minPoolSize`` was set to ``0`` during periods of
+   inactivity. Starting in version 6.18.0, the connection pool correctly closes
+   idle connections regardless of the ``minPoolSize`` setting.
 
 .. _node-connection-pool-max-idle-time:
 
