@@ -31,10 +31,14 @@ async function run() {
     const projection = { _id: 0, type: 1, genre: 1 };
 
     // Execute the query using the defined criteria and projection
-    const cursor = await movies
+    const cursor = movies
       .find(query)
       .sort(sort)
       .project(projection);
+    
+    for await (const doc of cursor) {
+      console.log(doc);
+    }
     // end-query
 
   } finally {

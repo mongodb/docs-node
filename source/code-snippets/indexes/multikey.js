@@ -26,9 +26,13 @@ async function run() {
     const projection = { _id: 0, cast: 1 , title: 1 };
 
     // Perform a find operation with the preceding filter and projection
-    const cursor = await movies
+    const cursor = movies
       .find(query)
       .project(projection);
+
+    for await (const doc of cursor) {
+      console.log(doc);
+    }
     // end-query
 
   } finally {

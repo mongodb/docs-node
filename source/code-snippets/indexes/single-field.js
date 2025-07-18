@@ -25,10 +25,14 @@ async function run() {
     const sort = { title: 1 };
     const projection = { _id: 0, title: 1 };
     // Execute the query using the defined parameters
-    const cursor = await movies
+    const cursor = movies
       .find(query)
       .sort(sort)
       .project(projection);
+
+    for await (const doc of cursor) {
+      console.log(doc);
+    }
     // end-query
   } finally {
     await client.close();
