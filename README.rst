@@ -1,24 +1,4 @@
-=================================
-MongoDB Node Driver Documentation
-=================================
+The source for the Node Driver documentation has been moved to the docs-mongodb-internal repo:
+https://github.com/10gen/docs-mongodb-internal/tree/main/content/node
 
-This repository contains documentation for the MongoDB Node Driver.
-
-
-File JIRA Tickets
------------------
-
-Please file issue reports or requests at the `Documentation Jira Project
-<https://jira.mongodb.org/browse/DOCS>`_.
-
-Licenses
---------
-
-All documentation is available under the terms of a `Creative Commons
-License <https://creativecommons.org/licenses/by-nc-sa/3.0/>`_.
-
-The MongoDB Documentation Project is governed by the terms of the
-`MongoDB Contributor Agreement
-<https://www.mongodb.com/legal/contributor-agreement>`_.
-
--- The MongoDB Docs Team
+This repo is being maintained for archival reasons only.
